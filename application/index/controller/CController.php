@@ -18,7 +18,7 @@ class CController extends Controller
         parent::__construct($app);
 
         #配置Session作用域
-        Session::prefix('PC');
+//        Session::prefix('PC');
     }
 
     /**

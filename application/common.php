@@ -140,7 +140,11 @@ function getSmsContent($data){
  * @param $page_size
  * @return int
  */
-function getPageTotal($total,$page_size){
+function getPageTotal(int $total,int $page_size){
+    if($total === 0){
+        return 0;
+    }
+
     return ceil((int)$total/(int)$page_size);
 }
 
@@ -165,4 +169,56 @@ function checkUserAuth($type,$authType){
     }
     $arr = explode(',',$authGroup[$type]);
     return in_array($authType,$arr) ? true :false;
+}
+
+
+/**
+ * 人性化时间显示
+ * @param $time
+ * @return false|string
+ */
+function formatTime($time){
+    $stime = $time;
+    $htime = date("H:i",$time);
+    $time = time() - $time;
+    if ($time < 60){
+        $str = '刚刚';
+    }elseif($time < 60 * 60){
+        $min = floor($time/60);
+        $str = $min.'分钟前';
+    }elseif($time < 60 * 60 * 24){
+        $h = floor($time/(60*60));
+        $str = $h.'小时前';
+    }elseif($time < 60 * 60 * 24 * 3){
+        $d = floor($time/(60*60*24));
+        if($d==1){
+            $str = '昨天 '.$htime.'分';
+        }else{
+            $str = '前天 '.$htime.'分';
+        }
+    }else{
+        $str =date('Y-m-d',$stime);
+    }
+
+    return $str;
+}
+
+/**
+ * 获取列表分页信息
+ * @param type $total
+ * @param type $pageindex
+ * @param type $pagesize
+ * @return type
+ */
+function getPagingInfo($total,$pageindex=1,$pagesize=20){
+    $pagesize = ((int)$pagesize == 0?1:(int)$pagesize);
+    $offset = (intval($pageindex) - 1) * intval($pagesize);
+    return [
+        'offset'=>$offset,
+        'pagesize'=>$pagesize,
+        'total'=>$total,
+        'page_index'=>$pageindex,
+        'page_total'=>ceil((int)$total/(int)$pagesize),
+        'limit'=>" limit {$offset},{$pagesize}"
+    ];
 }
