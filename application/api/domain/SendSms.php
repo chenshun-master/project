@@ -27,6 +27,14 @@ class SendSms
             'created_time'  =>date('Y-m-d H:i:s')
         ];
         $id = Db::table('wl_verification_code')->insertGetId($data);
+
+        Db::name('sms_whitelist')->insertGetId([
+            'ip'            =>request()->ip(),
+            'type'          =>$type,
+            'mobile'        =>$mobile,
+            'created_time'  =>date('Y-m-d H:i:s')
+        ]);
+
         if($id){
             $data['id'] =  $id;
             return $data;
@@ -49,7 +57,6 @@ class SendSms
         }
 
         $result = $this->createSmsLog($mobile,$type);
-
         if(!$result){
             return false;
         }
@@ -60,9 +67,7 @@ class SendSms
             $result['code'],config('conf.sms.code.code_msg')
         ];
 
-        $isTrue = $smsObj->SendSms($sign,$template_id,$result['mobile'],getSmsContent($data));
-
-        return $isTrue;
+        return $smsObj->SendSms($sign,$template_id,$result['mobile'],getSmsContent($data));
     }
 
     /**
@@ -92,7 +97,6 @@ class SendSms
         }
     }
 
-
     /**
      * 发送其它消息类短信
      * @param $mobile           手机号
@@ -108,20 +112,17 @@ class SendSms
 
     /**
      * 白名单
+     * @param $mobile   手机号
+     * @param $type     发送类型
+     * @return bool
      */
     private function _whiteList($mobile,$type){
         $ip = request()->ip();
-
         $count = Db::name('sms_whitelist')
             ->where('ip',$ip)
             ->where('type',1)
             ->whereBetweenTime('created_time', date('Y-m-d'))
             ->count();
-
-
-        dump($count);exit;
-
-
-        return false;
+        return ($count > 10) ? true : false;
     }
 }

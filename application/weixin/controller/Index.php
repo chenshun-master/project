@@ -159,8 +159,10 @@ class Index extends BaseController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $smsObject->sendCode($mobile,1,9715,12318);
-
+        $isTrue = $smsObject->sendCode($mobile,1,9715,12318);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
         return $this->returnData([],'发送成功',200);
     }
 
