@@ -27,7 +27,6 @@ function returnData($data=[],$msg='',$code = 200){
     ]));
 }
 
-
 /**
  * 生成随机数字
  * @param Int $length [default is 6]
@@ -221,4 +220,34 @@ function getPagingInfo($total,$pageindex=1,$pagesize=20){
         'page_total'=>ceil((int)$total/(int)$pagesize),
         'limit'=>" limit {$offset},{$pagesize}"
     ];
+}
+
+/**
+ *
+ * 处理文章缩略图数据
+ * @param $data            缩略图数组
+ * @return false|string
+ */
+function handleThumbnailData($data){
+    $tmp_arr = [];
+    $i = 1;
+
+    foreach ($data as $val){
+        $key = 'img_'.$i;
+        $tmp_arr[$key] = $val;
+        $i++;
+    }
+    return json_encode($tmp_arr);
+}
+
+
+/**
+ * 判断是否为微信浏览器
+ * @return bool
+ */
+function is_weixin(){
+    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+        return true;
+    }
+    return false;
 }

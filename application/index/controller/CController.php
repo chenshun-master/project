@@ -18,7 +18,7 @@ class CController extends Controller
         parent::__construct($app);
 
         #配置Session作用域
-//        Session::prefix('PC');
+        //Session::prefix('PC');
     }
 
     /**
@@ -61,13 +61,14 @@ class CController extends Controller
      * @param array $data    接口数据
      * @param string $msg    信息提示
      * @param int $code      状态码
+     * @param int $httpCode  http状态码
      * @return false|string
      */
-    protected function returnData($data=[],$msg='',$code = 200){
-        return json_encode([
+    protected function returnData($data=[],$msg='',$code = 200,$httpCode=200){
+        return json([
             'code' =>$code,
             'msg'  =>$msg,
             'data' =>$data
-        ]);
+        ],$httpCode);
     }
 }

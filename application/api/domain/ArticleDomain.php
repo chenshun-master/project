@@ -18,16 +18,19 @@ class ArticleDomain
      * @return bool
      */
     public function createArticle($data){
+        if(isset($data['thumbnailImg']) && count($data['thumbnailImg']) > 0){
+            $data['thumbnailImg'] = handleThumbnailData($data['thumbnailImg']);
+        }
+
+        $data['status'] = 1;
+        $date['comment_status'] = 1;
+
         $res = ArticleModel::create($data);
+
+        #处理其它业务逻辑(后期的等级积分处理)
 
         return $res ? true : false;
     }
-
-
-
-
-
-
 
     /**
      * 添加文章评论
@@ -228,9 +231,10 @@ class ArticleDomain
             return $data;
         }
 
+        $date = date('Y-m-d H:i:s');
         $arr = explode(',',$articleRes['tag']);
-        $sql = "SELECT `article`.`id`,`article`.`user_id`,`article`.`title`,`article`.`type`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`user`.`nickname`,`user`.`mobile` FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND ";
-        $total_sql = "SELECT count(1) as total FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND ";
+        $sql = "SELECT `article`.`id`,`article`.`user_id`,`article`.`title`,`article`.`type`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`user`.`nickname`,`user`.`mobile` FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
+        $total_sql = "SELECT count(1) as total FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
 
         $like_sql = '';
         foreach ($arr as $val){
@@ -290,5 +294,4 @@ class ArticleDomain
             'total'         =>$total
         ];
     }
-
 }

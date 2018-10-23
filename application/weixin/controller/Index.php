@@ -25,20 +25,23 @@ class Index extends BaseController
 
         return $this->fetch('index/loginReister');
     }
+
 	/**
 	 * 用戶登录页
-	 * */
+     */
 	 public function login(){
-	        if($this->checkLogin()){
-	            return redirect('/weixin/user/main');
-	        }
-	
-	        return $this->fetch('index/login');
-	    }
-	    /**
+        if($this->checkLogin()){
+            return redirect('/weixin/user/main');
+        }
+
+        return $this->fetch('index/login');
+     }
+
+    /**
 	 * 找回密码页
-	 * */
+     */
 	 public function backpwd(){
+<<<<<<< HEAD
 	        if($this->checkLogin()){
 	            return redirect('/weixin/user/main');
 	        }
@@ -55,6 +58,11 @@ class Index extends BaseController
 	
 	        return $this->fetch('index/resetpwd');
 	    }
+=======
+        return $this->fetch('index/backpwd');
+     }
+
+>>>>>>> 0489b64f36c5141fb917e6a6d046d9bae0c3f8e2
     /**
      * 用户密码登录提交处理控制器
      */
@@ -169,8 +177,10 @@ class Index extends BaseController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $smsObject->sendCode($mobile,1,9715,12318);
-
+        $isTrue = $smsObject->sendCode($mobile,1,9715,12318);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
         return $this->returnData([],'发送成功',200);
     }
 
@@ -299,6 +309,20 @@ class Index extends BaseController
         }
 
         return $this->returnData([],'绑定失败',305);
+    }
+
+    /**
+     * 404错误页面
+     */
+    public function error404(){
+        echo '404 错误页面';
+    }
+
+    /**
+     * 404错误页面
+     */
+    public function error500(){
+        echo '500 错误页面';
     }
 
 }

@@ -4,6 +4,8 @@ namespace app\weixin\controller;
 use think\App;
 use think\Controller;
 use think\facade\Session;
+use think\route\dispatch\Redirect;
+
 /**
  * 微信端基类控制器
  * Class BaseController
@@ -17,7 +19,12 @@ class BaseController extends Controller
         parent::__construct($app);
 
         #配置Session作用域
-//        Session::prefix('weixin');
+        //Session::prefix('weixin');
+
+        #判断是否为微信浏览器
+        if(is_weixin() && config('conf.weixin_automatic_logon')){
+            return $this->redirect('weixin/index/otherLogin?platform=weixin');
+        }
     }
 
     /**

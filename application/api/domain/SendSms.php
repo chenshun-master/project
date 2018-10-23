@@ -27,6 +27,14 @@ class SendSms
             'created_time'  =>date('Y-m-d H:i:s')
         ];
         $id = Db::table('wl_verification_code')->insertGetId($data);
+
+        Db::name('sms_whitelist')->insertGetId([
+            'ip'            =>request()->ip(),
+            'type'          =>$type,
+            'mobile'        =>$mobile,
+            'created_time'  =>date('Y-m-d H:i:s')
+        ]);
+
         if($id){
             $data['id'] =  $id;
             return $data;
@@ -42,21 +50,23 @@ class SendSms
      * @return bool
      */
     public function sendCode($mobile,$type,$sign,$template_id){
-        $result = $this->createSmsLog($mobile,$type);
+        #注册短信白名单检测(防止恶意发送短信)
+        $isTrue = $this->_whiteList($mobile,$type);
+        if($isTrue){
+            return false;
+        }
 
+        $result = $this->createSmsLog($mobile,$type);
         if(!$result){
             return false;
         }
 
         $smsObj = new ChuangRuiSms();
-
         $data = [
             $result['code'],config('conf.sms.code.code_msg')
         ];
 
-        $isTrue = $smsObj->SendSms($sign,$template_id,$result['mobile'],getSmsContent($data));
-
-        return $isTrue;
+        return $smsObj->SendSms($sign,$template_id,$result['mobile'],getSmsContent($data));
     }
 
     /**
@@ -86,7 +96,6 @@ class SendSms
         }
     }
 
-
     /**
      * 发送其它消息类短信
      * @param $mobile           手机号
@@ -98,5 +107,21 @@ class SendSms
         $smsObj = new ChuangRuiSms();
         $content = $result['code'].'##'.config('conf.sms.code.code_msg');
         $isTrue = $smsObj->SendSms($sign,$template_id,$result['mobile'],$content);
+    }
+
+    /**
+     * 白名单
+     * @param $mobile   手机号
+     * @param $type     发送类型
+     * @return bool
+     */
+    private function _whiteList($mobile,$type){
+        $ip = request()->ip();
+        $count = Db::name('sms_whitelist')
+            ->where('ip',$ip)
+            ->where('type',1)
+            ->whereBetweenTime('created_time', date('Y-m-d'))
+            ->count();
+        return ($count > 10) ? true : false;
     }
 }

@@ -19,7 +19,7 @@ return [
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
     'app_trace'              => false,
     // 是否支持多模块
@@ -135,12 +135,17 @@ return [
 
     // 异常页面的模板文件
     'exception_tmpl'         => Env::get('think_path') . 'tpl/think_exception.tpl',
+    //自定义异常请求码的页面配置 建议只做非500错误页面
+//    'http_exception_template'    =>[
+//        404 =>  Env::get('app_path') . 'weixin/view/index/index.html',
+//        500 =>  Env::get('app_path') . 'index/view/exception_html/500.html',
+//    ],
 
     // 错误显示信息,非调试模式有效
     'error_message'          => '页面错误！请稍后再试～',
     // 显示错误信息
     'show_error_msg'         => false,
-    // 异常处理handle类 留空使用 \think\exception\Handle
-    'exception_handle'       => '',
+    // 异常处理handle类 留空使用 \think\exception\Handle    \app\common\exception\Http
+//    'exception_handle'       => '\app\common\exception\Http',
 
 ];
