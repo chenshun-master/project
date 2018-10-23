@@ -62,7 +62,6 @@ class SendSms
         }
 
         $smsObj = new ChuangRuiSms();
-
         $data = [
             $result['code'],config('conf.sms.code.code_msg')
         ];
