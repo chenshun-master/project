@@ -25,7 +25,26 @@ class Index extends BaseController
 
         return $this->fetch('index/loginReister');
     }
-
+	/**
+	 * 用戶登录页
+	 * */
+	 public function login(){
+	        if($this->checkLogin()){
+	            return redirect('/weixin/user/main');
+	        }
+	
+	        return $this->fetch('index/login');
+	    }
+	    /**
+	 * 找回密码页
+	 * */
+	 public function backpwd(){
+	        if($this->checkLogin()){
+	            return redirect('/weixin/user/main');
+	        }
+	
+	        return $this->fetch('index/backpwd');
+	    }
     /**
      * 用户密码登录提交处理控制器
      */
