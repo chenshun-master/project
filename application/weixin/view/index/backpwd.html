@@ -22,9 +22,16 @@
 			<a href="login.html"  class="zj"></a>
 				<div class="wx-reg">		
 					<h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">找回密码</h3>
+<<<<<<< HEAD
 			     	<p style="margin-top: 40px;"><input id="mobile" type="text"  placeholder="请输入你的手机号" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
 					<p style="margin-top: 40px;"><input id="sms_code" type="text" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
 					<button id="btn" style="margin-top: 100px;" onclick="objClass.submit()">找回密码</button>
+=======
+			     	<p style="margin-top: 40px;"><input id="phone" type="text" name="phone" placeholder="请输入你的手机号"><button id="code-btn">获取验证码</button></p>
+					<p style="margin-top: 40px;"><input id="code" type="text" name="code" placeholder="请输入你收到的验证码"></p>
+					<button id="btn" style="margin-top: 100px;">找回密码</button>
+					
+>>>>>>> b9975a35d50b2627ffef71d5961a637ec6cbf675
 				</div>
 				<p class="weixin"><a href="/weixin/index/otherLogin?platform=weixin" class="qian"><img src="/static/image/reg/wx.jpg" width="80px" height="80px"/ style="float: left;margin-left: 100px;margin-left: 20px;"/><span style="margin-left: 30px;"> <<微信授权登录</span></a></p>
 			</div>
