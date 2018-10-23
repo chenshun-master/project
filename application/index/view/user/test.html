@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<form id="infoLogoForm" enctype='multipart/form-data'>
+    <div class="cnt-updateWrapper" >
+        <input type="file" id="ctn-input-file" name="image" accept="image/*" style="height:40px">
+    </div>
+</form>
+<hr style="height: 5px;background: #000;" />
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(function(){
+        $.ajax({
+            url:'http://www.mytp.com/index/user/releaseArticle',
+            type:'POST',
+            dataType:'JSON',
+            success:function(res){
+                console.log(res);
+            }
+        });
+    });
+
+    $(function(){
+
+    })
+
+
+
+    // $("#ctn-input-file").on("change", function(){
+    //     $.ajax({
+    //         url: 'http://www.mytp.com/api/user/uploadauthimg',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: new FormData($('#infoLogoForm')[0]),
+    //         processData: false,
+    //         contentType: false,
+    //         dataType:"json",
+    //         beforeSend: function(){
+    //             uploading = true;
+    //         },
+    //         success : function(data) {
+
+    //         }
+    //     });
+    // });
+
+
+
+</script>
+</body>
+</html>

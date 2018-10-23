@@ -222,3 +222,21 @@ function getPagingInfo($total,$pageindex=1,$pagesize=20){
         'limit'=>" limit {$offset},{$pagesize}"
     ];
 }
+
+/**
+ *
+ * 处理文章缩略图数据
+ * @param $data            缩略图数组
+ * @return false|string
+ */
+function handleThumbnailData($data){
+    $tmp_arr = [];
+    $i = 1;
+
+    foreach ($data as $val){
+        $key = 'img_'.$i;
+        $tmp_arr[$key] = $val;
+        $i++;
+    }
+    return json_encode($tmp_arr);
+}

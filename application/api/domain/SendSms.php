@@ -42,6 +42,12 @@ class SendSms
      * @return bool
      */
     public function sendCode($mobile,$type,$sign,$template_id){
+        #注册短信白名单检测(防止恶意发送短信)
+        $isTrue = $this->_whiteList($mobile,$type);
+        if($isTrue){
+            return false;
+        }
+
         $result = $this->createSmsLog($mobile,$type);
 
         if(!$result){
@@ -98,5 +104,24 @@ class SendSms
         $smsObj = new ChuangRuiSms();
         $content = $result['code'].'##'.config('conf.sms.code.code_msg');
         $isTrue = $smsObj->SendSms($sign,$template_id,$result['mobile'],$content);
+    }
+
+    /**
+     * 白名单
+     */
+    private function _whiteList($mobile,$type){
+        $ip = request()->ip();
+
+        $count = Db::name('sms_whitelist')
+            ->where('ip',$ip)
+            ->where('type',1)
+            ->whereBetweenTime('created_time', date('Y-m-d'))
+            ->count();
+
+
+        dump($count);exit;
+
+
+        return false;
     }
 }
