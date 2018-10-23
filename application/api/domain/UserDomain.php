@@ -107,7 +107,7 @@ class UserDomain
             ->where('mobile', $mobile)
             ->update(['password' => encryptPwd($password)]);
 
-        if(!$res){
+        if($res === false){
             return false;
         }
 
