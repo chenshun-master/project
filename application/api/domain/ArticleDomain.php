@@ -13,15 +13,21 @@ use think\Db;
 class ArticleDomain
 {
     /**
-     * 添加文章
+     * 发布文章
      * @param $data  待添加数据
      * @return bool
      */
-    public function create($data){
+    public function createArticle($data){
         $res = ArticleModel::create($data);
 
         return $res ? true : false;
     }
+
+
+
+
+
+
 
     /**
      * 添加文章评论
@@ -73,7 +79,7 @@ class ArticleDomain
     }
 
     /**
-     * 根据文章id获取文章详细信息
+     * 获取手机端文章详情页
      * @param $id
      * @return array
      * @throws \think\Exception
@@ -83,14 +89,17 @@ class ArticleDomain
      * @throws \think\exception\PDOException
      */
     public function getArticleInfo($id){
-        $data = [
-            'info'=>[],
-            'comment_infos'=>[]
-        ];
+        $data = ['article_info'=>[],'comment_infos'=>[]];
 
-        $articleRes = Db::name('article')->where('id',$id)->find();
+        $articleRes = Db::name('article')
+            ->alias('article')
+            ->where('article.id',$id)
+            ->join('wl_user user','article.user_id = user.id')
+            ->field('article.*,user.nickname,user.mobile')
+            ->find();
+
         if($articleRes){
-            $data['info'] = $articleRes;
+            $data['article_info'] = $articleRes;
             Db::name('article')->where('id',$id)->inc('hits')->update();
 
             $commentRes = Db::name('comment')->where('object_id',$id)->order('created_time', 'asc')->column('*','id');
@@ -99,7 +108,6 @@ class ArticleDomain
             foreach ($commentRes as $k => $val){
                 $tmp_array = $val;
                 $tmp_array['parent_info'] = isset($commentRes[$val['parent_id']]) ? $commentRes[$val['parent_id']] :[];
-
                 $array[] = $tmp_array;
             }
 
@@ -171,22 +179,30 @@ class ArticleDomain
     }
 
     /**
-     * 获取文章列表
-     * @param $page                  第几页
-     * @param $page_size             分页大小
-     * @param string $search         搜索关键词
+     * 获取微信端主页列表数据
+     * @param int $page              第几页
+     * @param int $page_size         分页大小
+     * @param int $type              获取数据类型
      * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getArticleList($page,$page_size,$search=''){
-        $obj = Db::name('article');
-        if(!empty($search)){
-            $obj->where('title|tag','like',"%{$search}%");
+    public function getHomeList($page,$page_size,$type){
+        $obj = Db::table('wl_article')->alias('article');
+
+        if($type != 0){
+            $obj->where('article.type', $type);
         }
 
+        $obj->where('article.status', 1);
+        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+        $obj->order('article.published_time', 'desc');
         $total = $obj->count();
+
+        $obj->join('wl_user user','article.user_id = user.id');
+        $obj->field('article.*,user.nickname,user.mobile');
+
         $rows = $obj->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
@@ -195,4 +211,84 @@ class ArticleDomain
             'total'         =>$total
         ];
     }
+
+    /**
+     * 获取相关文章
+     */
+    public function getRelevantList($id,$page,$page_size){
+        $data = [
+            'rows'          =>[],
+            'page'          =>1,
+            'page_total'    =>0,
+            'total'         =>0
+        ];
+
+        $articleRes = Db::name('article')->where('id',$id)->field('tag,type')->find();
+        if(!$articleRes){
+            return $data;
+        }
+
+        $arr = explode(',',$articleRes['tag']);
+        $sql = "SELECT `article`.`id`,`article`.`user_id`,`article`.`title`,`article`.`type`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`user`.`nickname`,`user`.`mobile` FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND ";
+        $total_sql = "SELECT count(1) as total FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND ";
+
+        $like_sql = '';
+        foreach ($arr as $val){
+            if(!empty($val)){
+                $like_sql .= "OR `article`.`tag` LIKE '%{$val}%' ";
+            }
+        }
+        $sql .= ' ( '.ltrim($like_sql,'OR').' ) ';
+        $total_sql .= ' ( '.ltrim($like_sql,'OR').' ) ';
+
+        $count = Db::query($total_sql.' limit 1');
+        if(isset($count) && $count[0]['total'] > 0){
+            $page_info = getPagingInfo($count[0]['total'],$page,$page_size);
+            $rows = Db::query($sql.' order by article.published_time desc '.$page_info['limit']);
+            return [
+                'rows'          =>$rows,
+                'page'          =>$page,
+                'page_total'    =>getPageTotal($count[0]['total'],$page_size),
+                'total'         =>$count[0]
+            ];
+        }
+        return $data;
+    }
+
+    /**
+     * 获取指定用户发布文章
+     * @param $user_id         用户ID
+     * @param $type            获取文章类型
+     * @param $page            获取第几页数据
+     * @param $page_size       分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserPublishArticle($user_id,$type,$page,$page_size){
+        $obj = Db::table('wl_article')->alias('article');
+
+        if($type != 0){
+            $obj->where('article.type', $type);
+        }
+
+        $obj->where('article.user_id', $user_id);
+        $obj->where('article.status', 1);
+        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+        $obj->order('article.published_time', 'desc');
+        $total = $obj->count();
+
+        $obj->join('wl_user user','article.user_id = user.id');
+        $obj->field('article.*,user.nickname,user.mobile');
+
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
 }

@@ -2,6 +2,7 @@
 namespace app\weixin\controller;
 
 use think\App;
+use think\Request;
 
 /**
  * 文章处理控制器
@@ -10,7 +11,6 @@ use think\App;
  */
 class Article extends BaseController
 {
-
     private $articleDomain;
 
     public function __construct(App $app = null)
@@ -75,5 +75,56 @@ class Article extends BaseController
             return $this->returnData([],'评论失败',305);
         }
         return $this->returnData([],'评论成功',200);
+    }
+
+    /**
+     * 获取首页文章列表
+     */
+    public function getArticleList(Request $request){
+        $type = $request->param('type',0);
+        $page = $request->param('page',1);
+        $page_size = $request->param('page_size',15);
+
+        $data = $this->articleDomain->getHomeList($page,$page_size,$type);
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取手机端文章详情页
+     */
+    public function getArticleInfo(Request $request){
+        $id = $request->param('id',0);
+        $data = $this->articleDomain->getArticleInfo($id);
+
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 根据发表文章的相关文章
+     */
+    public function getRelevantList(Request $request){
+        $id = $request->param('id',0);
+        $page = $request->param('page',1);
+        $page_size = $request->param('page_size',10);
+
+        $data = $this->articleDomain->getRelevantList($id,$page,$page_size);
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取指定用户发布文章
+     */
+    public function getUserPublishArticle(Request $request){
+        $user_id = (int)$request->param('user_id',0);
+        $type = (int)$request->param('type',1);
+        $page = (int)$request->param('page',1);
+        $page_size = (int)$request->param('page_size',10);
+
+        if(empty($user_id) || empty($type) || empty($page) || empty($page_size)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size);
+        return $this->returnData($data,'',200);
     }
 }
