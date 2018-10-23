@@ -41,28 +41,14 @@ class Index extends BaseController
 	 * 找回密码页
      */
 	 public function backpwd(){
-<<<<<<< HEAD
 	        if($this->checkLogin()){
 	            return redirect('/weixin/user/main');
 	        }
 	
-	        return $this->fetch('index/backpwd');
-	    }
-	 /**
-	 * 重置密码页
-	 * */
-	 public function resetpwd(){
-	        if($this->checkLogin()){
-	            return redirect('/weixin/user/main');
-	        }
 	
-	        return $this->fetch('index/resetpwd');
-	    }
-=======
         return $this->fetch('index/backpwd');
      }
 
->>>>>>> 0489b64f36c5141fb917e6a6d046d9bae0c3f8e2
     /**
      * 用户密码登录提交处理控制器
      */
