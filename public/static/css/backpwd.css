@@ -32,7 +32,7 @@ z-index: 1;
 	line-height: 85px;
 	border: 1px solid gray;
 	font-size:0.4rem;
-	border-radius: 25px;
+	border-radius: 10px;
 	margin: 0 auto;
 
 }
@@ -43,16 +43,16 @@ z-index: 1;
 	font-size:0.28rem;
 	-webkit-tap-highlight-color:rgba(255,0,0,0);
 	color: #a9a9a9;
-	padding-left: 10px;
+	padding-left: 30px;
 }
 .wx-reg button{
-	width: 200px;
+	width: 220px;
 	height: 50px;
 	font-size:0.28rem;
 	outline:none;
 	background: white;
 	padding-bottom: 10px;
-	color:#ff5000;
+	color:#0FD6DD;
 
 }
 .eye{
@@ -77,11 +77,11 @@ z-index: 1;
 		color: #1f1f1f;
 		font-size:0.26rem;
 		float: left;
-		text-decoration: blink;
+		text-decoration: underline;
 }
 
 .yj{
-		padding-left:50px ;
+	padding-left:50px ;
 	padding-top: 20px;
 	width: 100px;
 	height: 100px;
@@ -89,10 +89,21 @@ z-index: 1;
 	background: url(../image/reg/yj.png)no-repeat  10px 21px;
 }
 .zj{
-			padding-left:50px ;
+			padding-left:75px;
 	padding-top: 20px;
 	width: 100px;
 	height: 100px;
 	float: left;font-size: 0.24rem;color: #fff;
-	background: url(../image/reg/zj.png)no-repeat  10px 21px;
+	background: url(../image/reg/zj.png)no-repeat  36px 21px;
+	background-size: 30px;
+}
+.weixin{
+	width: 350px;
+	height: 80px;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	line-height: 70px;
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
+		<title>Title</title>
+		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+	
+	</head>
+
+	<body>
+		<div class="con">
+			<div class="wx-top">
+			<a href="login.html"  class="zj">返回</a>
+			<a href="" style="float: right;font-size: 0.24rem;color: #fff;" class="yj"></a>
+				<div class="wx-reg">		
+					<h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">重置密码</h3>
+			     	<p style="margin-top: 40px;"><input id="pwd" type="text" name="pwd" placeholder="设置新密码" style="width: 280px;"></p>
+					<button id="btn" style="margin-top: 100px;">完成</button>
+				</div>
+					
+			</div>
+		
+		</div>
+
+	</body>
+	<script type="text/javascript"> 
+		$('#btn').click(function() {
+			var pwd = $("#pwd").val(); //重置的密码  
+	
+			//向后台发送处理数据  
+			$.ajax({
+				type: "POST", //用POST方式传输  
+				dataType: "json", //数据格式:JSON  
+				url: 'demo.php', //目标地址  
+				data: "pwd=" + pwd,
+				error: function(XMLHttpRequest, textStatus, errorThrown) {},
+				success: function(msg) {}
+			});
+		});
+	</script>
+</html>

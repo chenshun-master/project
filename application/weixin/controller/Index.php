@@ -45,6 +45,16 @@ class Index extends BaseController
 	
 	        return $this->fetch('index/backpwd');
 	    }
+	 /**
+	 * 重置密码页
+	 * */
+	 public function resetpwd(){
+	        if($this->checkLogin()){
+	            return redirect('/weixin/user/main');
+	        }
+	
+	        return $this->fetch('index/resetpwd');
+	    }
     /**
      * 用户密码登录提交处理控制器
      */
@@ -258,8 +268,8 @@ class Index extends BaseController
     public function otherLoginBindingMobile(Request $request){
         $id    = $request->param('id','');
 
-
-        echo '绑定手机号页面';
+        
+        return $this->fetch('index/otherLoginBindingMobile');
     }
 
     /**

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; border: 0; list-style: none; list-style-image: none; list-style-type: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video { margin: 0; padding: 0; border: 0; font: inherit; vertical-align: baseline; }
+ol, ul { list-style: none; }
+body{position:relative;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
+body{max-width:750px;margin:0 auto;min-width: 320px;}
+ul li{list-style-type: none;}
+a{text-decoration: none;color: #221815;display: block;}
+.con{
+	width: 100%;
+	height: 2000px;
+}
+.wx-top{
+	width: 100%;
+	height: 440px;
+	background: url(../image/user/bj-1.jpg)no-repeat center;
+	position: relative;
+}
+.wx-img{
+	width: 200px;
+	height: 200px;
+	display: block;
+	border-radius: 50%;
+	margin: 0 auto;
+	background-color: lawngreen;
+	position: absolute;
+	top: 30px;
+	left: 0;
+	right: 0;
+}
+.wx-con {
+width: 680px;
+height: 215px;
+margin: 0 auto;	
+position:absolute ;
+bottom:0px;
+left: 0;
+right: 0;
+text-align: center;
+}
+ .wx-con button{
+ 	width: 208px;
+ 	height: 56px;
+ 	background-color: #FFFFFF;
+ 	color: #0AB9BF;
+ 	font-size: 0.34rem;
+ 	border-radius: 10px;
+ 	border: 0px;
+ }
+.wx-boy{
+	width: 680px;
+	height: 100px;
+	line-height: 100px;
+	margin: 0 auto;
+}
+.wx-lie li{
+	width: 170px;
+	height: 37px;
+	line-height: 37px;
+	font-size:0.24rem;
+	color:#000000;
+	float: left;
+	text-align: center;
+	margin-top: 30px;
+}
+.wx-content{
+	width: 100%;
+}

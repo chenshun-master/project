@@ -27,9 +27,17 @@ class User extends BaseController
     /**
      * 用户个人中心主页
      */
-    public function main(){
+/*    public function main(){
 
 
         dump($this->getUserInfo());
-    }
+   }*/
+	 public function main(){
+	        if($this->checkLogin()){
+	            return redirect('/weixin/user/main');
+	        }
+	
+	        return $this->fetch('user/main');
+	        
+	    }
 }
