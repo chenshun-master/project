@@ -34,9 +34,37 @@
 				</ul>
 			</div>
 			<div class="wx-content">
-				
+				<div class="top">
+			<span id="one" style="margin-left: 80px;">文章</span>
+			<span id="two">视频</span>
+			<span id="two">粉丝</span>
+		</div>
+		<div class="xia">
+			<div class="one">
+
+				<h1>手机号快捷登录</h1>
+			</div>
+			<div class="two">
+
+				<h2>账号密码登录</h2>
+			</div>
+			<div class="two">
+				<h2>大萨达撒</h2>
+			</div>
+		</div>
 			</div>
 		</div>
 	</body>
-
+<script type="text/javascript">
+		$(function(){
+			$(".one").show();
+			$(".top span").eq(0).addClass("se")
+			var index=0;
+			$("span").click(function(){
+				index=$(this).index();
+				$(".xia div").eq(index).show().siblings().hide();
+				$(".top span").eq(index).addClass("se").siblings().removeClass("se")
+			})
+		})
+</script>
 </html>

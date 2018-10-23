@@ -60,7 +60,7 @@ z-index: 1;
 	height: 50px;
 	background-color: red;
 }
-#btn {
+#btn ,#btn1{
 	width: 590px;
 	height: 90px;
 	line-height: 85px;
