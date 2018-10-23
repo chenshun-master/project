@@ -27,7 +27,6 @@ function returnData($data=[],$msg='',$code = 200){
     ]));
 }
 
-
 /**
  * 生成随机数字
  * @param Int $length [default is 6]
@@ -239,4 +238,16 @@ function handleThumbnailData($data){
         $i++;
     }
     return json_encode($tmp_arr);
+}
+
+
+/**
+ * 判断是否为微信浏览器
+ * @return bool
+ */
+function is_weixin(){
+    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+        return true;
+    }
+    return false;
 }

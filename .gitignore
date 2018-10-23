@@ -9,3 +9,4 @@ public/uploads/
 composer.lock
 config/database.php
 config/conf.php
+runtime/

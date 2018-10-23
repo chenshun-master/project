@@ -27,29 +27,23 @@
         });
     });
 
-    $(function(){
+    $("#ctn-input-file").on("change", function(){
+        $.ajax({
+            url: 'http://www.mytp.com/index/article/uploadthumbnailimg',
+            type: 'POST',
+            cache: false,
+            data: new FormData($('#infoLogoForm')[0]),
+            processData: false,
+            contentType: false,
+            dataType:"json",
+            beforeSend: function(){
+                uploading = true;
+            },
+            success : function(data) {
 
-    })
-
-
-
-    // $("#ctn-input-file").on("change", function(){
-    //     $.ajax({
-    //         url: 'http://www.mytp.com/api/user/uploadauthimg',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: new FormData($('#infoLogoForm')[0]),
-    //         processData: false,
-    //         contentType: false,
-    //         dataType:"json",
-    //         beforeSend: function(){
-    //             uploading = true;
-    //         },
-    //         success : function(data) {
-
-    //         }
-    //     });
-    // });
+            }
+        });
+    });
 
 
 

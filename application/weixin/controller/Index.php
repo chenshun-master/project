@@ -25,26 +25,25 @@ class Index extends BaseController
 
         return $this->fetch('index/loginReister');
     }
+
 	/**
 	 * 用戶登录页
-	 * */
+     */
 	 public function login(){
-	        if($this->checkLogin()){
-	            return redirect('/weixin/user/main');
-	        }
-	
-	        return $this->fetch('index/login');
-	    }
-	    /**
+        if($this->checkLogin()){
+            return redirect('/weixin/user/main');
+        }
+
+        return $this->fetch('index/login');
+     }
+
+    /**
 	 * 找回密码页
-	 * */
+     */
 	 public function backpwd(){
-	        if($this->checkLogin()){
-	            return redirect('/weixin/user/main');
-	        }
-	
-	        return $this->fetch('index/backpwd');
-	    }
+        return $this->fetch('index/backpwd');
+     }
+
     /**
      * 用户密码登录提交处理控制器
      */
@@ -291,6 +290,20 @@ class Index extends BaseController
         }
 
         return $this->returnData([],'绑定失败',305);
+    }
+
+    /**
+     * 404错误页面
+     */
+    public function error404(){
+        echo '404 错误页面';
+    }
+
+    /**
+     * 404错误页面
+     */
+    public function error500(){
+        echo '500 错误页面';
     }
 
 }
