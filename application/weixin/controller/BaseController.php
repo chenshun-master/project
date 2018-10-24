@@ -20,11 +20,6 @@ class BaseController extends Controller
 
         #配置Session作用域
         //Session::prefix('weixin');
-
-        #判断是否为微信浏览器
-        if(is_weixin() && config('conf.weixin_automatic_logon')){
-            return $this->redirect('weixin/index/otherLogin?platform=weixin');
-        }
     }
 
     /**
