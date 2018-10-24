@@ -127,4 +127,9 @@ class Article extends BaseController
         $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size);
         return $this->returnData($data,'',200);
     }
+
+    public function userMain()
+    {
+        return $this->fetch('article/userMain');
+    }
 }
