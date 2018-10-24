@@ -8,6 +8,8 @@ body { font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
+body{
+background: #F4F5F6;}
 .con{
 	width: 100%;
 	height: 2000px;
@@ -40,7 +42,7 @@ left: 0;
 right: 0;
 text-align: center;
 }
- .wx-con button{
+ .wx-con button {
  	width: 208px;
  	height: 56px;
  	background-color: #FFFFFF;
@@ -49,48 +51,59 @@ text-align: center;
  	border-radius: 10px;
  	border: 0px;
  }
-.wx-boy{
-	width: 680px;
-	height: 100px;
-	line-height: 100px;
-	margin: 0 auto;
-}
-.wx-lie li{
-	width: 170px;
-	height: 37px;
-	line-height: 37px;
-	font-size:0.24rem;
-	color:#000000;
-	float: left;
-	text-align: center;
-	margin-top: 30px;
-}
-.wx-content{
-	width: 100%;
-}
-.one,.two{
-				width: 100%;
-				height: 1000px;
-				background-color: navajowhite;
-				display: none;
-				font-size: 0.32rem;
-				margin-top: 25px;
-				
-			}
-			.top span{
-				text-align: center;
-				width: 100px;
-				height: 55px;
-				font-size: 0.32rem;
-				display: inline-block;
-			}
-			.se{
-				border-bottom: 2px solid #0fd6dd;
-				color: #0fd6dd;
-			}
-			.top{
-				width: 500px;
-				height: 65px;
-				margin: 0 auto;
-				margin-top: -34px;
-			}
+ 
+ .wx-boy {
+ 	width: 680px;
+ 	height: 100px;
+ 	line-height: 100px;
+ 	margin: 0 auto;
+ }
+ 
+ .wx-lie li {
+ 	width: 170px;
+ 	height: 37px;
+ 	line-height: 37px;
+ 	font-size: 0.24rem;
+ 	color: #000000;
+ 	float: left;
+ 	text-align: center;
+ 	margin-top: 30px;
+ }
+ 
+ .wx-content {
+ 	width: 100%;
+ }
+ 
+ .one,
+ .two {
+ 	width: 100%;
+ 	height: 1000px;
+ 	background-color: navajowhite;
+ 	display: none;
+ 	font-size: 0.32rem;
+ 	margin-top: 25px;
+ }
+ 
+ .top span {
+ 	text-align: center;
+ 	width: 100px;
+ 	height: 55px;
+ 	font-size: 0.32rem;
+ 	display: inline-block;
+ }
+ 
+ .se {
+ 	border-bottom: 2px solid #0fd6dd;
+ 	color: #0fd6dd;
+ }
+ 
+ .top {
+ 	width: 500px;
+ 	height: 65px;
+ 	margin: 0 auto;
+ 	margin-top: -34px;
+ }
+ .one-1{
+ width: 100%;
+ height: 416px;
+ }
