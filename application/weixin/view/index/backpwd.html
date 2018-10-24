@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
 		<!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
 		<meta charset="utf-8">
@@ -10,7 +9,12 @@
 		<meta content="telephone=no" name="format-detection" />
         <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
-		<title>Title</title>
+		<title>账号找回</title>
+        <style>
+            .code-hui{
+                color: #cccccc !important;
+            }
+        </style>
 		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 	
@@ -26,12 +30,16 @@
 					<p style="margin-top: 40px;"><input id="sms_code" type="text" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
 					<button id="btn" style="margin-top: 100px;" onclick="objClass.submit()">找回密码</button>
 				</div>
-				<p class="weixin"><a href="/weixin/index/otherLogin?platform=weixin" class="qian"><img src="/static/image/reg/wx.jpg" width="80px" height="80px"/ style="float: left;margin-left: 100px;margin-left: 20px;"/><span style="margin-left: 30px;"> <<微信授权登录</span></a></p>
+				<!--<p class="weixin"><a href="/weixin/index/otherLogin?platform=weixin" class="qian"><img src="/static/image/reg/wx.jpg" width="80px" height="80px"/ style="float: left;margin-left: 100px;margin-left: 20px;"/><span style="margin-left: 30px;"> <<微信授权登录</span></a></p>-->
 			</div>
 		</div>
 	</body>
     <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+        var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
+        codeObj.run();
+
         var  objClass = {
             loading:false,
             sendSmsCode:false,
@@ -106,6 +114,7 @@
                         success:function(res){
                             if(res.code == 200){
                                 layer.open({content: '发送成功',skin: 'msg',time: 2});
+                                codeObj.sendSmsCode();
                                 return false;
                             }else if(res.code == 301){
                                 layer.open({content: '请求参数错误',skin: 'msg',time: 2});
