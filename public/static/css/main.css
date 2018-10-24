@@ -10,7 +10,7 @@ ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
 .con{
 	width: 100%;
-	height: 2000px;
+	height: 3000px;
 }
 .wx-top{
 	width: 100%;
@@ -40,7 +40,7 @@ left: 0;
 right: 0;
 text-align: center;
 }
- .wx-con button{
+ .wx-con button {
  	width: 208px;
  	height: 56px;
  	background-color: #FFFFFF;
@@ -49,48 +49,209 @@ text-align: center;
  	border-radius: 10px;
  	border: 0px;
  }
-.wx-boy{
-	width: 680px;
-	height: 100px;
-	line-height: 100px;
-	margin: 0 auto;
+ 
+ .wx-boy {
+ 	width: 680px;
+ 	height: 100px;
+ 	line-height: 100px;
+ 	margin: 0 auto;
+ }
+ 
+ .wx-lie li {
+ 	width: 170px;
+ 	height: 37px;
+ 	line-height: 37px;
+ 	font-size: 0.24rem;
+ 	color: #000000;
+ 	float: left;
+ 	text-align: center;
+ 	margin-top: 30px;
+ }
+ 
+ .wx-content {
+ 	width: 100%;
+ }
+ 
+ .one,.two,.san {
+ 	width: 100%;
+ 	display: none;
+ 	font-size: 0.32rem;
+ 	margin-top: 25px;
+ }
+ 
+ .top span {
+ 	text-align: center;
+ 	width: 100px;
+ 	height: 55px;
+ 	font-size: 0.32rem;
+ 	display: inline-block;
+ }
+ 
+ .se {
+ 	border-bottom: 2px solid #0fd6dd;
+ 	color: #0fd6dd;
+ }
+ 
+ .top {
+ 	width: 500px;
+ 	height: 65px;
+ 	margin: 0 auto;
+ 	margin-top: -34px;
+ }
+
+.wx-name{
+width: 100%;
+height: 72px;
+margin-top: 52px;
+position: relative;
 }
-.wx-lie li{
-	width: 170px;
-	height: 37px;
-	line-height: 37px;
-	font-size:0.24rem;
-	color:#000000;
-	float: left;
-	text-align: center;
-	margin-top: 30px;
+.wx-tou{
+width: 72px;
+height: 72px;
+display: block;
+border-radius: 50%;
+background: khaki;
+position: absolute;
+top: 0;
+left: 34px;
 }
-.wx-content{
-	width: 100%;
+.wx-yh{
+position: absolute;
+top: 0px;
+left: 124px;
 }
-.one,.two{
-				width: 100%;
-				height: 1000px;
-				background-color: navajowhite;
-				display: none;
-				font-size: 0.32rem;
-				margin-top: 25px;
-				
-			}
-			.top span{
-				text-align: center;
-				width: 100px;
-				height: 55px;
-				font-size: 0.32rem;
-				display: inline-block;
-			}
-			.se{
-				border-bottom: 2px solid #0fd6dd;
-				color: #0fd6dd;
-			}
-			.top{
-				width: 500px;
-				height: 65px;
-				margin: 0 auto;
-				margin-top: -34px;
-			}
+.wx-rig{
+width: 50px;
+height: 50px;
+position: absolute;
+top:10px;
+right: 36px;
+background: url(../image/user/slh.png)no-repeat center;
+}
+.wx-nei1{
+width: 100%;
+height: 180px;
+position: relative;
+}
+.wx-nei1 dt{
+width:402px ;
+height: 66px;
+margin: 26px 20px 22px 36px;
+}
+.wx-nei1 dd{
+width: 256px;
+height: 180px;
+background: grey;
+float: right;
+position: absolute;
+top: 0;
+right: 0;
+margin-right: 36px;
+}
+.wx-fen{
+width: 100%;
+height: 40px;
+margin-top: 34px;
+}
+.wx-fen li{
+width: 60px;
+height: 40px;
+float: left;
+background: fuchsia;
+padding-left: 40px;
+}
+.wx-fen li:nth-child(1){
+margin-left: 94px;
+background: url(../image/user/zf.png)no-repeat -6px 6px;
+background-size: 32px 32px;
+}
+.wx-fen li:nth-child(2){
+margin-left: 185px;
+background: url(../image/user/ly.png)no-repeat 1px 6px;
+background-size: 32px 32px;
+}
+.wx-fen li:nth-child(3){
+margin-left: 188px;
+background: url(../image/user/dz.png)no-repeat 16px 6px;
+background-size: 32px 32px;
+}
+.wx-fen li span{
+color: #000000;
+font-size: 0.26rem;
+}
+.on1{
+width: 644px;
+height: 82px;
+margin: 0 auto;
+margin-top: 44px;
+font-size: 0.34rem;
+color: #1F1F1F;
+font-weight: bold;
+margin-left: 36px;
+}
+.on1-img{
+width: 100%;
+height: 750px;
+margin-top: 30px;
+}
+.on1-img img{
+width: 246px;
+height: 246px;
+display: block;
+float: left;
+background: gray;
+}
+.wx-video{
+width: 100%;
+height: 420px;
+margin-top: 30px;
+}
+.wx-you{
+width: 100%;
+height: 248px;
+position: relative;
+}
+.you1{
+width: 100%;
+height: 148px;#0FD6DD
+background: red;
+position: absolute;
+top: 52px;
+}
+.you1 img{
+width: 148px;
+height: 148px;
+display: block;
+background: grey;
+border-radius: 50%;
+margin-left: 36px;
+}
+.you1 dl{
+width: 286px;
+height: 64px;
+position: absolute;
+top: 40px;
+left: 214px;
+}
+.you1 dl dt{
+font-size: 0.26rem;
+font-weight: bold;
+color: #1D1D1D;
+}
+.you1 dl dd{
+font-size: 0.24rem;
+color: #898989;
+
+}
+.you1 button{
+width: 144px;
+height: 56px;
+line-height: 56px;
+background: #0FD6DD;
+color: #FEFEFE;
+font-size: 0.3rem;
+position: absolute;
+top: 44px;
+right: 36px;
+border-radius: 10px;
+}
