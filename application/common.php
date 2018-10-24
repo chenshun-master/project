@@ -251,3 +251,13 @@ function is_weixin(){
     }
     return false;
 }
+
+/**
+ * 手机号脱敏
+ * @param $mobile     手机号
+ * @return mixed
+ */
+function mobileFilter($mobile){
+    return substr_replace($mobile,'****',3,4);
+}
+
