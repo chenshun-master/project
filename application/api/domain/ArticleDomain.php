@@ -305,4 +305,31 @@ class ArticleDomain
         $sql = "SELECT type,count(1) as total from wl_article where user_id = {$user_id} AND  status=1 and published_time <='{$date}'  GROUP BY type";
         return Db::query($sql);
     }
+
+    /**
+     * 获取指定用户点赞过的相关文章列表
+     */
+    public function getArticleLikeData($user_id,$page,$page_size){
+        $obj = Db::table('wl_article')->alias('article');
+        $obj->where('article.status', 1);
+        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+        $obj->order('article.published_time', 'desc');
+        $obj->where('article.id', 'IN', function ($query) use ($user_id)  {
+            $query->table('wl_user_like')->where('user_id', $user_id)->where('type', 'in', [1,2,3])->field('object_id');
+        });
+
+        $total = $obj->count();
+
+        $obj->join('wl_user user','article.user_id = user.id');
+        $obj->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
+
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
 }

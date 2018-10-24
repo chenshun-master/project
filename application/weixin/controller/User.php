@@ -16,10 +16,13 @@ class User extends BaseController
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-
         $this->_userDomain = new \app\api\domain\UserDomain();
     }
 
+    /**
+     * 用户中心主页
+     * @return mixed
+     */
     public function main()
     {
         return $this->fetch('user/main');
@@ -87,4 +90,52 @@ class User extends BaseController
         return $this->returnData([],'密码修改失败',305);
     }
 
+    /**
+     * 添加好友申请
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function addFriend(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $friend_id  = $request->param('friend_id',0);
+        $isTrue = \Validate::checkRule($friend_id,'number');
+        if($isTrue || $friend_id == ''){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $user_info = $this->getUserInfo();
+        $res = $this->_userDomain->addFriend($user_info['id'],$friend_id);
+        if(!$res){
+            return $this->returnData([],'添加好友申请失败',305);
+        }
+
+        return $this->returnData([],'添加好友申请成功',200);
+    }
+
+    /**
+     * 解除好友关系
+     */
+    public function agreeFriend(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $id  = $request->param('id',0);
+        $isTrue = \Validate::checkRule($id,'number');
+        if($isTrue || $friend_id == 0){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $user_info = $this->getUserInfo();
+        $res = $this->_userDomain->delFriend($user_info['id'],$friend_id);
+        if(!$res){
+            return $this->returnData([],'解除好友关系失败',305);
+        }
+
+        return $this->returnData([],'解除好友关系成功',200);
+    }
 }

@@ -130,6 +130,11 @@ class Article extends BaseController
         return $this->returnData($data,'',200);
     }
 
+    /**
+     * 个人中心（游客查看）
+     * @param Request $request
+     * @return mixed
+     */
     public function userMain(Request $request)
     {
         $user_id = (int)$request->param('id',0);
@@ -164,4 +169,26 @@ class Article extends BaseController
         ]);
         return $this->fetch('article/userMain');
     }
+
+    /**
+     * 获取用户点赞过的文章列表
+     * @return false|string
+     */
+    public function getUserLikeData(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'请登录后再进行操作',401);
+        }
+
+        $page = (int)$request->param('page',1);
+        $page_size = (int)$request->param('page_size',10);
+
+        if(empty($page) || empty($page_size)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $user_info  = $this->getUserInfo();
+        $data = $this->articleDomain->getArticleLikeData($user_info['id'],$type,$page,$page_size);
+        return $this->returnData($data,'',200);
+    }
+
 }

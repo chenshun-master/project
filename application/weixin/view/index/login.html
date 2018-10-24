@@ -92,7 +92,7 @@ var  objClass = {
                         layer.open({type: 2,content: '登录中...',time:4});
                         setTimeout(function(){
                             window.location.href = '/weixin/user/main';
-                        },2000)
+                        },2000);
                         return false;
                     }else if(res.code == 301){
                         layer.open({content: '请求参数错误',skin: 'msg',time: 2});
