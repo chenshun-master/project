@@ -41,6 +41,15 @@ class UserDomain
     }
 
     /**
+     * 获取用户信息
+     * @param $user_id     用户id
+     * @return array|null|\PDOStatement|string|\think\Model
+     */
+    public function getUserInfo($user_id){
+        return $this->userModel->findUserId($user_id);
+    }
+
+    /**
      * 登录操作
      * @param $mobile
      * @param $password
@@ -203,5 +212,22 @@ class UserDomain
         }
 
         return true;
+    }
+
+
+    /**
+     * 获取文章发布者信息
+     */
+    public function getArticleUserInfo($user_id){
+        return  Db::name('user')->where('id',$user_id)->field('id,type,mobile,nickname,portrait,profile')->find();
+    }
+
+
+    public function checkFriend($user_id,$to_user_id){
+        $sql = "SELECT id from wl_users_friends where status = 1  AND (user_id = 8 and friend_id = 4) OR (user_id = 4 and friend_id = 8) LIMIT 1";
+
+        $res = Db::query($sql);
+
+        return $res ? true : false;
     }
 }

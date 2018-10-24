@@ -12,12 +12,14 @@ use think\Request;
 class Article extends BaseController
 {
     private $articleDomain;
+    private $userDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->articleDomain = new \app\api\domain\ArticleDomain();
+        $this->userDomain    = new \app\api\domain\UserDomain();
     }
 
     /**
@@ -128,8 +130,38 @@ class Article extends BaseController
         return $this->returnData($data,'',200);
     }
 
-    public function userMain()
+    public function userMain(Request $request)
     {
+        $user_id = (int)$request->param('id',0);
+        $res = $this->articleDomain->getArticleStatisticsData($user_id);
+
+        $data = [
+            'type_1'=>['type'=>1,'total'=>0],
+            'type_2'=>['type'=>2,'total'=>0],
+            'type_3'=>['type'=>3,'total'=>0],
+            'type_4'=>['type'=>4,'total'=>0]
+        ];
+
+        if($res){
+            foreach ($res as $val){
+                $type = 'type_'.$val['type'];
+                $data[$type] = $val;
+            }
+        }
+
+        $user_info = $this->userDomain->getArticleUserInfo($user_id);
+
+        $is_friend = false;
+        if($this->clearUserLogin()){
+            $user_info = $this->getUserInfo();
+            $is_friend = $this->userDomain->checkFriend($user_info['id'],$user_id);
+        }
+
+        $this->assign([
+            'statistics'=>$data,
+            'user_info' =>$user_info,
+            'is_friend' =>$is_friend,
+        ]);
         return $this->fetch('article/userMain');
     }
 }

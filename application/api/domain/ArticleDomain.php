@@ -204,7 +204,7 @@ class ArticleDomain
         $total = $obj->count();
 
         $obj->join('wl_user user','article.user_id = user.id');
-        $obj->field('article.*,user.nickname,user.mobile');
+        $obj->field('article.*,user.nickname,INSERT(user.mobile,4,4,\'****\') as mobile');
 
         $rows = $obj->page($page,$page_size)->select();
         return [
@@ -284,7 +284,7 @@ class ArticleDomain
         $total = $obj->count();
 
         $obj->join('wl_user user','article.user_id = user.id');
-        $obj->field('article.*,user.nickname,user.mobile');
+        $obj->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
 
         $rows = $obj->page($page,$page_size)->select();
         return [
@@ -293,5 +293,16 @@ class ArticleDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+    /**
+     * 获取文章统计数据
+     * @param $user_id
+     * @return mixed
+     */
+    public function getArticleStatisticsData($user_id){
+        $date = date('Y-m-d H:i:s');
+        $sql = "SELECT type,count(1) as total from wl_article where user_id = {$user_id} AND  status=1 and published_time <='{$date}'  GROUP BY type";
+        return Db::query($sql);
     }
 }
