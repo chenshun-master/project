@@ -184,4 +184,24 @@ class UserDomain
             Db::rollback();return false;
         }
     }
+
+    /**
+     * 修改用户信息
+     * @param $user_id          用户id
+     * @param $data             修改数据
+     * @return bool
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function editProfile($user_id,$data){
+        $res = Db::name('user')
+            ->where('id', $user_id)
+            ->update($data);
+
+        if($res === false){
+            return false;
+        }
+
+        return true;
+    }
 }
