@@ -153,17 +153,27 @@
         };
 
 
-$(function(){
-  $("#xian").click(function(){
-	if($("input").prop("type")=="password"){
-		$("input").prop("type","text");
-		$("#xian img").attr("src","/static/image/reg/by.png")
-	}else{
-		 $("input").prop("type","password");
-		$("#xian img").attr("src","/static/image/reg/zy.png")
-	}
+			$(function(){
+			  $("#xian").click(function(){
+				if($("input").prop("type")=="password"){
+					$("input").prop("type","text");
+					$("#xian img").attr("src","/static/image/reg/by.png")
+				}else{
+					 $("input").prop("type","password");
+					$("#xian img").attr("src","/static/image/reg/zy.png")
+				}
+			
+			  });
+			})
+			$(function(){
+			    $('.wx-reg input').on('.wx-reg input ',function(){
+			        if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")&&($.trim($('#password').val())!=="")){
+			        $('#btn').css({'background':'#0fd6dd'});
+			    }else{
+			        $('#btn').css({'background':'#EBEBEB'});
+			         }
+			    });
+			});
 
-  });
-})
 </script>
 </html>
