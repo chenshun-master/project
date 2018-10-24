@@ -132,4 +132,11 @@ class Article extends BaseController
     {
         return $this->fetch('article/userMain');
     }
+       /**
+     * 文章详情页
+     */
+    public function article_details(){
+        return $this->fetch('article/article_details');
+    }
+
 }
