@@ -189,6 +189,11 @@ class Article extends BaseController
         $user_info  = $this->getUserInfo();
         $data = $this->articleDomain->getArticleLikeData($user_info['id'],$type,$page,$page_size);
         return $this->returnData($data,'',200);
+}
+   /**
+     * 文章详情页
+     */
+    public function articleDetails(){
+        return $this->fetch('article/article_details');
     }
-
 }
