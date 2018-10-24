@@ -33,9 +33,7 @@ class User extends BaseController
         dump($this->getUserInfo());
    }*/
 	 public function main(){
-	        if($this->checkLogin()){
-	            return redirect('/weixin/user/main');
-	        }
+
 	
 	        return $this->fetch('user/main');
 	        

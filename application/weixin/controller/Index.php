@@ -30,6 +30,8 @@ class Index extends BaseController
 	 * 用戶登录页
      */
 	 public function login(){
+
+	     $this->clearUserLogin();
         if($this->checkLogin()){
             return redirect('/weixin/user/main');
         }
@@ -41,11 +43,6 @@ class Index extends BaseController
 	 * 找回密码页
      */
 	 public function backpwd(){
-	        if($this->checkLogin()){
-	            return redirect('/weixin/user/main');
-	        }
-	
-	
         return $this->fetch('index/backpwd');
      }
 
@@ -84,6 +81,11 @@ class Index extends BaseController
     public function codeLogin(Request $request){
         $mobile    = $request->param('mobile','');
         $sms_code  = $request->param('sms_code','');
+
+        if(empty($mobile) || empty($sms_code)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
         $smsObj = new \app\api\domain\SendSms();
         $res = $smsObj->checkSmsCode($mobile,3,$sms_code);
         if($res === 0){
@@ -96,11 +98,7 @@ class Index extends BaseController
         $info = $userDomain->login($mobile,'',true);
 
         if($info === 2){
-            return $this->returnData([],'用户不存在',302);
-        }
-
-        if($info === 3){
-            return $this->returnData([],'输入密码错误',303);
+            return $this->returnData([],'用户不存在',304);
         }
 
         $this->saveUserLogin($info);
@@ -193,6 +191,7 @@ class Index extends BaseController
      * 发送第三方登录绑定手机号验证码
      */
     public function sendOtherLoginSmsCode(Request $request){
+
         $mobile    = $request->param('mobile','');
         $id    = $request->param('id','');
         if(empty($mobile) || !checkMobile($mobile)){
@@ -264,7 +263,6 @@ class Index extends BaseController
     public function otherLoginBindingMobile(Request $request){
         $id    = $request->param('id','');
 
-        
         return $this->fetch('index/otherLoginBindingMobile');
     }
 
@@ -296,6 +294,98 @@ class Index extends BaseController
 
         return $this->returnData([],'绑定失败',305);
     }
+
+    /**
+     * 发送重置密码验证码
+     */
+    public function sendResetPwdSmsCode(Request $request){
+        $mobile    = $request->param('mobile','');
+        if(empty($mobile) || !checkMobile($mobile)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $userModel = new UserModel();
+        if(!$userModel->findMobileExists($mobile)){
+            return $this->returnData([],'该用户未被使用',302);
+        }
+
+        $smsObject = new \app\api\domain\SendSms();
+        $isTrue = $smsObject->sendCode($mobile,2,9715,12318);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
+        return $this->returnData([],'发送成功',200);
+    }
+
+    /**
+     * 重置密码短信验证码验证接口
+     */
+    public function checkSmsCode(Request $request){
+        $mobile    = $request->param('mobile','');
+        $code    = $request->param('sms_code','');
+
+        $smsObj  = new \app\api\domain\SendSms();
+        $res = $smsObj->checkSmsCode($mobile,2,$code);
+        if($res === 0){
+            return $this->returnData([],'验证码错误',302);
+        }else if($res === 2){
+            return $this->returnData([],'验证码已过期',303);
+        }
+
+        $secret_key = config('conf.secret_key');
+        return $this->returnData([
+            'mobile'       =>$mobile,
+            'verify_code'  =>encryptStr($mobile,'E',$secret_key)
+        ],'验证通过',200);
+    }
+
+    /**
+     * 用户重置密码页面
+     * @param Request $request
+     * @return mixed
+     */
+    public function rePwd(Request $request){
+        $this->assign([
+            'mobile'        =>$request->param('mobile'),
+            'verify_code'   =>$request->param('verify_code')
+        ]);
+
+        return $this->fetch('index/resetpwd');
+    }
+
+    /**
+     * 重置密码提交页面
+     */
+    public function postResetPwd(Request $request){
+        $mobile         = $request->param('mobile','');
+        $verify_code    = $request->param('verify_code','');
+        $password1      = $request->param('password1','');
+        $password2      = $request->param('password2','');
+
+        if(empty($mobile) || empty($verify_code) || empty($password1) || empty($password2) || !checkMobile($mobile)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        if($password1 !== $password2){
+            return $this->returnData([],'两次密码不一致',302);
+        }
+
+        $secret_key = config('conf.secret_key');
+        $tmp_str =  encryptStr($verify_code,'D',$secret_key);
+
+        if($tmp_str !== $mobile){
+            return $this->returnData([],'密码重置失败',305);
+        }
+
+        $userDomain = new UserDomain();
+        $isTrue = $userDomain->resetPassword($mobile,$password1);
+
+        if(!$isTrue){
+            return $this->returnData([],'密码重置失败',305);
+        }
+        return $this->returnData([],'密码重置成功',200);
+    }
+
 
     /**
      * 404错误页面

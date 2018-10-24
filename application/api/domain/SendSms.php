@@ -66,6 +66,11 @@ class SendSms
             $result['code'],config('conf.sms.code.code_msg')
         ];
 
+
+        if(config('conf.send_sms') === false){
+            return true;
+        }
+
         return $smsObj->SendSms($sign,$template_id,$result['mobile'],getSmsContent($data));
     }
 
