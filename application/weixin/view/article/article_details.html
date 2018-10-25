@@ -16,7 +16,7 @@
 
 <body>
 <div class="con">
-    <div class="ding"></div>
+    <div class="ding"><p>详情页</p></div>
     <div class="wx-top">
         <p class="top1">{$article_info['title']}</p>
         <div class="wx-name">
@@ -27,7 +27,7 @@
             </dl>
             <button class="wx-rig">加好友</button>
         </div>
-        <div>{$article_info['content']}</div>
+        <div style="margin-left: 35px;font-size: 0.34rem;">{$article_info['content']}</div>
         <p class="wx-fx" style="margin-top: 50px;">
             <button style="margin-left: 36px;" id="cus-click-fabulous"  data-fabulous="{$isFabulous? '2' : '1'}" onclick="objClass.clickFabulous()">{$article_info['like']}</button>
             <button>分享朋友圈</button>
@@ -158,7 +158,7 @@
                var html = '<div class="pl">'+
                     '<img src="'+data.portrait +'" alt=""/>'+
                     '<div class="pin">'+
-                        '<p class="xm"><span>'+ data.nickname +'</span> <span>'+ data.like_count +'</span></p>'+
+                        '<p class="xm"><span style="float:left">'+ data.nickname +'</span> <span style="float:right">'+ data.like_count +'</span></p>'+
                         '<p class="wx-p">'+data.content+'</p>'+
                         '<p class="wx-hf">'+
                         '<span class="hf-sj">'+ data.created_time +'</span>'+
