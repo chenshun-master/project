@@ -198,7 +198,11 @@ class Article extends BaseController
    /**
      * 文章详情页
      */
-    public function articleDetails(){
+    public function articleDetails(Request $request){
+        $id = $request->param('id',0);
+        $data = $this->articleDomain->getArticleInfo($id);//dump($data);exit;
+        $this->assign($data);
+
         return $this->fetch('article/article_details');
     }
 

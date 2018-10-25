@@ -108,7 +108,7 @@ class ArticleDomain
             ->alias('article')
             ->where('article.id',$id)
             ->join('wl_user user','article.user_id = user.id')
-            ->field('article.*,user.nickname,user.mobile')
+            ->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile')
             ->find();
 
         if($articleRes){
