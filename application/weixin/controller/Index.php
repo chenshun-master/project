@@ -25,6 +25,16 @@ class Index extends BaseController
 
         return $this->fetch('index/loginReister');
     }
+    /**
+     * 用户修改密码
+     */
+    public function modifypwd(){
+        if($this->checkLogin()){
+            return redirect('/weixin/user/main');
+        }
+
+        return $this->fetch('index/modify_pwd');
+    }
 
 	/**
 	 * 用戶登录页
@@ -40,8 +50,14 @@ class Index extends BaseController
          }
 
         return $this->fetch('index/login');
-     }
+    }
+      /**
+     * 用户主页
+     */
+    public function homepage(){
+        return $this->fetch('index/home_page');
 
+}
     /**
 	 * 找回密码页
      */

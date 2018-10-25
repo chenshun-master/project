@@ -221,6 +221,7 @@ class Article extends BaseController
         return $this->fetch('article/article_video');
     }
 
+
     /**
      * 文章视频页
      */
@@ -236,6 +237,9 @@ class Article extends BaseController
         $data = $this->articleDomain->getFirstComment($id,1,15);
         return $this->returnData($data,'',200);
     }
+
+
+
 
     public function test(){
         $data = [
