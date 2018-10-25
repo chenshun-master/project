@@ -224,7 +224,7 @@ float: left;
 width: 122px;
 height: 46px;
 border-radius: 50px;
-background: #F4F5F6;
+background: gainsboro;
 color: #222222;
 font-size: 0.24rem;
 float: left;
@@ -244,7 +244,7 @@ height: 100px;
 margin-top: 56px;
 }
 .wx-foot input{
-width: 380px;
+width: 420px;
 height: 64px;
 border-radius: 50px;
 padding-left: 50px;
@@ -254,6 +254,7 @@ background: url(../image/user/xpl.png)no-repeat 7px 6px;
 background-size: 40px;
 background-color: #F4F5F6;
 float: left;
+margin-left:40px;
 }
 .wx-foot dl{
 width: 50px;
@@ -270,7 +271,7 @@ height: 50px;
 display: block;
 background: gold;
 float: left;
-margin-left: 46px;
+margin-left: 55px;
 background: url(../image/user/sc.png)no-repeat 10px 10px;
 background-size: 40px;
 }
