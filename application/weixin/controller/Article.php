@@ -72,7 +72,7 @@ class Article extends BaseController
             'created_time' =>date('Y-m-d H:i:s')
         ];
 
-        $res = $this->articleDomain->createComment($data);
+        $res = $this->articleDomain->createComment($data,'article');
         if(!$res){
             return $this->returnData([],'评论失败',305);
         }
@@ -157,7 +157,7 @@ class Article extends BaseController
         $user_info = $this->userDomain->getArticleUserInfo($user_id);
 
         $is_friend = false;
-        if($this->clearUserLogin()){
+        if($this->checkLogin()){
             $user_info = $this->getUserInfo();
             $is_friend = $this->userDomain->checkFriend($user_info['id'],$user_id);
         }
@@ -172,9 +172,13 @@ class Article extends BaseController
 
     /**
      * 获取用户点赞过的文章列表
+     * @param Request $request
      * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function getUserLikeData(){
+    public function getUserLikeData(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'请登录后再进行操作',401);
         }
@@ -190,10 +194,24 @@ class Article extends BaseController
         $data = $this->articleDomain->getArticleLikeData($user_info['id'],$type,$page,$page_size);
         return $this->returnData($data,'',200);
 }
+
    /**
      * 文章详情页
      */
     public function articleDetails(){
         return $this->fetch('article/article_details');
+    }
+
+    public function test(){
+        $data = [
+            'user_id'      =>4,
+            'parent_id'    =>25,
+            'object_id'    =>1,
+            'content'      =>'asdfasdfasdf11111111222222222223333333',
+            'created_time' =>date('Y-m-d H:i:s')
+        ];
+
+        $res = $this->articleDomain->createComment($data,'interlocution');
+        dump($res);
     }
 }
