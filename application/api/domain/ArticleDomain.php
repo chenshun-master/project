@@ -40,23 +40,35 @@ class ArticleDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function createComment($data){
+
+    /**
+     * 添加文章评论
+     * @param $data        待添加数据
+     * @param string $tablename    评论所对应的表名
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function createComment($data,$tablename='article'){
         $data['floor']              = 1;
         $data['like_count']         = 0;
         $data['status']             = 1;
+        $data['table_name']         = $tablename;
 
-        $res = Db::name('article')->where('id',$data['object_id'])->field(['id','comment_status'])->find();
-        if(!$res || $res['comment_status'] != 1){
-            return false;
+        if($tablename == 'article'){
+            $res = Db::name('article')->where('id',$data['object_id'])->field(['id','comment_status'])->find();
+            if(!$res || $res['comment_status'] != 1){
+                return false;
+            }
         }
 
         if($data['parent_id'] !== 0){
             $commentModel = new CommentModel();
             $commentRes = $commentModel->findId($data['parent_id']);
-            if(!$commentRes || $commentRes['object_id'] != $data['object_id'] || $commentRes['user_id'] == $data['user_id']){
+            if(!$commentRes || $commentRes['object_id'] != $data['object_id'] || $data['table_name'] != $commentRes['table_name'] || $commentRes['user_id'] == $data['user_id']){
                 return false;
             }
-
             $data['floor'] = $commentRes['floor'] + 1;
         }
 
@@ -67,23 +79,21 @@ class ArticleDomain
                 return false;
             }
 
-            $res4 = Db::name('article')->where('id',$data['object_id'])->inc('comment_count')->update();
-            if(!$res4){
-                Db::rollback();
+            if($tablename == 'article'){
+                $res4 = Db::name('article')->where('id',$data['object_id'])->inc('comment_count')->update();
+                if(!$res4){
+                    Db::rollback();
+                }
             }
-
-            Db::commit();
-            return true;
+            Db::commit();return true;
         } catch (\Exception $e) {
-            // 回滚事务
-            Db::rollback();
-            return false;
+            Db::rollback();return false;
         }
     }
 
     /**
      * 获取手机端文章详情页
-     * @param $id
+     * @param $id      文章id
      * @return array
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
@@ -122,20 +132,20 @@ class ArticleDomain
 
     /**
      * 用户点赞操作
-     * @param $user_id         用户id
-     * @param $object_id       内容原来的主键id
-     * @param $type            点赞来源及类型  1:文章  2:案例 3:视频
-     * @param $flag            1:点赞  2:取消点赞
-     * @return bool
+     * @param int        $user_id           用户id
+     * @param int        $object_id         内容原来的主键id
+     * @param int        $flag              点赞类型    1:点赞    2:取消点赞
+     * @param string     $tablename         内容以前所在表,不带前缀(article:文章点赞  ,comment:评论点赞)
+     * @return bool      点赞结果
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function addFabulous($user_id,$object_id,$type,$flag){
+    public function addFabulous($user_id,$object_id,$flag,$tablename = 'article'){
         $res = Db::name('user_like')
             ->where('user_id',$user_id)
-            ->where('type',$type)
             ->where('object_id',$object_id)
+            ->where('table_name',$tablename)
             ->field(['id'])
             ->find();
 
@@ -147,9 +157,17 @@ class ArticleDomain
                 if(!$res1){
                     Db::rollback();return false;
                 }
-                $res2 = Db::name('article')->where('id',$object_id)->dec('like',1)->update();
-                if(!$res2){
-                    Db::rollback();return false;
+
+                if($tablename == 'article'){
+                    $res2 = Db::name('article')->where('id',$object_id)->dec('like',1)->update();
+                    if(!$res2){
+                        Db::rollback();return false;
+                    }
+                }else if($tablename == 'comment'){
+                    $res2 = Db::name('comment')->where('id',$object_id)->dec('like_count',1)->update();
+                    if(!$res2){
+                        Db::rollback();return false;
+                    }
                 }
                 Db::commit();return true;
             } catch (\Exception $e) {
@@ -160,19 +178,25 @@ class ArticleDomain
             Db::startTrans();
             try {
                 $res3 = Db::name('user_like')->insert([
-                    'user_id'      =>$user_id,
-                    'object_id'    =>$object_id,
-                    'type'         =>$type,
-                    'created_time' =>date('Y-m-d H:i:s')
+                    'user_id'               =>$user_id,
+                    'object_id'             =>$object_id,
+                    'table_name'            =>$tablename,
+                    'created_time'          =>date('Y-m-d H:i:s')
                 ]);
-
                 if(!$res3){
                     Db::rollback();return false;
                 }
 
-                $res4 = Db::name('article')->where('id',$object_id)->inc('like')->update();
-                if(!$res4){
-                    Db::rollback();return false;
+                if($tablename == 'article'){
+                    $res4 = Db::name('article')->where('id',$object_id)->inc('like')->update();
+                    if(!$res4){
+                        Db::rollback();return false;
+                    }
+                }else if($tablename == 'comment'){
+                    $res4 = Db::name('comment')->where('id',$object_id)->inc('like_count')->update();
+                    if(!$res4){
+                        Db::rollback();return false;
+                    }
                 }
                 Db::commit();return true;
             } catch (\Exception $e) {
@@ -216,7 +240,14 @@ class ArticleDomain
     }
 
     /**
-     * 获取相关文章
+     * 获取相关文章                    文章id
+     * @param int $id
+     * @param int $page              第几页
+     * @param int $page_size         分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getRelevantList($id,$page,$page_size){
         $data = [
@@ -296,8 +327,8 @@ class ArticleDomain
     }
 
     /**
-     * 获取文章统计数据
-     * @param $user_id
+     * 获取指定用用户的文章统计数据
+     * @param $user_id       用户id
      * @return mixed
      */
     public function getArticleStatisticsData($user_id){
@@ -308,6 +339,13 @@ class ArticleDomain
 
     /**
      * 获取指定用户点赞过的相关文章列表
+     * @param $user_id         用户id
+     * @param $page            获取第几页数据
+     * @param $page_size       分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getArticleLikeData($user_id,$page,$page_size){
         $obj = Db::table('wl_article')->alias('article');
@@ -315,8 +353,9 @@ class ArticleDomain
         $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
         $obj->order('article.published_time', 'desc');
         $obj->where('article.id', 'IN', function ($query) use ($user_id)  {
-            $query->table('wl_user_like')->where('user_id', $user_id)->where('type', 'in', [1,2,3])->field('object_id');
+            $query->table('wl_user_like')->where('user_id', $user_id)->where('table_name','article')->field('object_id');
         });
+        $obj->where('article.type', 'in', [1,2,3]);
 
         $total = $obj->count();
 
