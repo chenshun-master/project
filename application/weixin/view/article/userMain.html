@@ -33,9 +33,12 @@
 			</div>
 			<div class="wx-content">
 				<div class="top">
-			<span id="one" style="margin-left: 80px;">文章</span>
+					<div id="ul" >
+				<span id="one" style="margin-left: 207px;">文章</span>
 			<span id="two">视频</span>
 			<span id="three">粉丝</span>
+					</div>
+
 		</div>
 		<div class="xia">
 		<div class="one ones">
@@ -237,7 +240,17 @@
 				}
 			})
 		})
-		
+$(function(){
+	$(window).scroll(function(){
+		if($(window).scrollTop()>526){
+			$("#ul").addClass("ul")
+
+		}else if($(window).scrollTop()<=526){
+			$("#ul").removeClass("ul")
+			$("#ul").addClass("cc")
+		}
+	})
+})
 
 </script>
 </html>

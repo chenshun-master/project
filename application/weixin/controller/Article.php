@@ -206,6 +206,19 @@ class Article extends BaseController
         return $this->fetch('article/article_details');
     }
 
+       /**
+     * 文章视频页
+     */
+    public function articleVideo(){
+        return $this->fetch('article/article_video');
+    }
+           /**
+     * 文章视频页
+     */
+    public function personal(){
+        return $this->fetch('article/personal');
+
+}
     public function test(){
         $data = [
             'user_id'      =>4,
