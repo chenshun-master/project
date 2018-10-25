@@ -212,13 +212,14 @@ class Article extends BaseController
     public function articleVideo(){
         return $this->fetch('article/article_video');
     }
-           /**
-     * 文章视频页
+    /**
+     * 个人中心页
      */
     public function personal(){
         return $this->fetch('article/personal');
 
 }
+
     public function test(){
         $data = [
             'user_id'      =>4,

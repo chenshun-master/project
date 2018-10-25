@@ -65,23 +65,60 @@
 			</div>
 			<div class="wx-n1">
 				<dl>
-					<dt>消息通知<span class="fh"></span></dt>
-					<dd>用户认证<span  class="fh"></span></dd>
+					<dt id="tan">消息通知<span class="fh"></span></dt>
+					<dd id="dan">用户认证<span  class="fh"></span></dd>
 				</dl>
 			</div>
 			<div class="wx-n2">
 				<dl>
-					<dt>修改密码<span class="fh"></span></dt>
+					<dt onclick ="xg()">修改密码<span class="fh"></span></dt>
 					<dd>修改手机号<span  class="fh"></span></dd>
 				</dl>
 			</div>
 			<div class="wx-n3">
 				<dl>
-					<dt>修改密码<span style="color: #000000;font-size: 0.28rem;margin-left: 335px;">1994111200</span><span class="fh"></span></dt>
+					<dt class="tkyy">联系我们<span style="color: #000000;font-size: 0.28rem;margin-left: 335px;">1994111200</span><span class="fh"></span></dt>
 				</dl>
 			</div>
 			<button id="btn">退出登录</button>
+			<div class="wkf">此功能尚未开发</div>
+			<div class="marsk-container">
+			<div class="tkyy_con">
+				<p  class="dian">1994111200</p>
+				<p ><span class="quxiao">取消</span><span class="bd">拨打</span></p>
+				</div>
+			</div>
 		</div>
 	</body>
+<script type="text/javascript">
+		$(function() {
+			$('#tan').click(function() {
+				$('.wkf').show().delay(2000).fadeOut();
+			});
+			$('#dan').click(function() {
+				$('.wkf').show().delay(2000).fadeOut();
+			});
+		});
+		$(document).ready(function() {
+				$(".tkyy").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container").click(function(event) {
+					var _con = $('.tkyy_con'); // 设置目标区域
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container').hide(); //淡出消失
+					}
+				});
+				$(".quxiao").click(function(){
+					$('.marsk-container').hide(); //淡出消失
+				})
 
+			});
+			function xg()
+        {
+            window.location.href = "../index/modifypwd.html";
+        }
+</script>
 </html>
