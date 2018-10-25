@@ -283,8 +283,8 @@ class ArticleDomain
             return [
                 'rows'          =>$rows,
                 'page'          =>$page,
-                'page_total'    =>getPageTotal($count[0]['total'],$page_size),
-                'total'         =>$count[0]
+                'page_total'    =>(int)getPageTotal($count[0]['total'],$page_size),
+                'total'         =>$count[0]['total']
             ];
         }
         return $data;
@@ -371,4 +371,42 @@ class ArticleDomain
         ];
     }
 
+    /**
+     * 判断文章是否点赞过
+     */
+    public function checkFabulous($user_id,$article_id){
+        $res = Db::name('user_like')
+            ->where('user_id',$user_id)
+            ->where('object_id',$article_id)
+            ->where('table_name','article')
+            ->field(['id'])
+            ->find();
+
+        return $res ? true :false;
+    }
+
+
+    /**
+     * 获取一级评论
+     */
+    public function getFirstComment($article_id,$page,$page_size){
+        $obj = Db::name('comment');
+        $obj->alias('comment');
+        $obj->where('comment.object_id',$article_id);
+        $obj->where('comment.parent_id',0);
+        $obj->where('comment.table_name','article');
+        $obj->join('wl_user user','comment.user_id = user.id');
+        $obj->order('comment.created_time', 'desc');
+        $total = $obj->count();
+
+        $obj->field('comment.id,comment.user_id,comment.object_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
+
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
 }
