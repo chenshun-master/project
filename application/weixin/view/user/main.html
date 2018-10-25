@@ -12,54 +12,145 @@
 		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-
 	<body>
 		<div class="con">
 			<div class="wx-top">
-				<img src="" alt="" />
+				<img src="{$user_info['portrait']}" alt="" style="border: #ffffff !important;" />
 				<dl >
-					<dt>用户名称</dt>
-					<dd>申请认证</dd>
+					<dt>{$user_info['nickname']? $user_info['nickname'] : $user_info['mobile']|mobileFilter}</dt>
+					<?php if($user_info['type'] == 1):?>
+						<dd>申请认证</dd>
+					<?php elseif($user_info['type'] == 2):?>
+						<dd>认证用户</dd>
+					<?php elseif($user_info['type'] == 3):?>
+						<dd>认证医生</dd>
+					<?php elseif($user_info['type'] == 4):?>
+						<dd>认证医院</dd>
+					<?php elseif($user_info['type'] == 5):?>
+						<dd>官方团队</dd>
+					<?php endif;?>
 				</dl>
 				<a href="" class="tz"></a>
 			</div>
 			<div class="wx-wen">
 				<dl style="margin-left: 20px;">
-				   	<dt>99</dt>
+				   	<dt>0</dt>
 					<dd>文章</dd>
 				</dl>
 				<dl>
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				   	<dt>0</dt>
+					<dd>视频</dd>
 				</dl>
 					<dl>
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				   	<dt>0</dt>
+					<dd>案例</dd>
 				</dl>
 				<dl>
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				   	<dt>0</dt>
+					<dd>问答</dd>
 				</dl>
 			</div>
 			<div class="wx-sc">
-				<dl style="margin-left: 20px;">
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				<dl >
+				   	<dt class="sc"></dt>
+					<dd>我的收藏</dd>
 				</dl>
 				<dl>
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				   	<dt class="pl"></dt>
+					<dd>我的评论</dd>
 				</dl>
 					<dl>
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				   	<dt class="dz"></dt>
+					<dd>我的点赞</dd>
 				</dl>
 				<dl>
-				   	<dt>99</dt>
-					<dd>文章</dd>
+				   	<dt class="ll"></dt>
+					<dd>浏览历史</dd>
 				</dl>
+				<dl>
+				   	<dt class="kf"></dt>
+					<dd>客服中心</dd>
+				</dl>
+			</div>
+			<div class="wx-n1">
+				<dl>
+					<dt id="tan">消息通知<span class="fh"></span></dt>
+					<dd id="dan">用户认证<span  class="fh"></span></dd>
+				</dl>
+			</div>
+			<div class="wx-n2">
+				<dl>
+                    <a href="/weixin/user/modifypwd"><dt >修改密码<span class="fh"></span></dt></a>
+					<dd>修改手机号<span  class="fh"></span></dd>
+				</dl>
+			</div>
+			<div class="wx-n3">
+				<dl>
+					<dt class="tkyy">联系我们<span style="color: #000000;font-size: 0.28rem;margin-left: 335px;">1994111200</span><span class="fh"></span></dt>
+				</dl>
+			</div>
+
+            <div class="wx-n3">
+                <dl>
+                    <dt onclick="objClass.test()">测试<span class="fh"></span></dt>
+                </dl>
+            </div>
+
+
+            <button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
+			<div class="wkf">此功能尚未开发</div>
+			<div class="marsk-container">
+			<div class="tkyy_con">
+				<p  class="dian">1994111200</p>
+				<p ><span class="quxiao">取消</span><span class="bd"><a href="tel:18798276809">拨打</a></span></p>
+				</div>
 			</div>
 		</div>
 	</body>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
 
+    var objClass ={
+        randomString:function(len){
+            len = len || 32;
+            var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+            var maxPos = $chars.length;
+            var pwd = '';
+            for (i = 0; i < len; i++) {
+                pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+            }
+            return pwd;
+        },
+        test:function(){
+            redream.showTip('asdfas',2000);
+            alert(redream.randomString(5));
+        }
+    };
+
+		$(function() {
+			$('#tan').click(function() {
+				$('.wkf').show().delay(2000).fadeOut();
+			});
+			$('#dan').click(function() {
+				$('.wkf').show().delay(2000).fadeOut();
+			});
+		});
+		$(document).ready(function() {
+				$(".tkyy").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container").click(function(event) {
+					var _con = $('.tkyy_con'); // 设置目标区域
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container').hide(); //淡出消失
+					}
+				});
+				$(".quxiao").click(function(){
+					$('.marsk-container').hide(); //淡出消失
+				})
+
+			});
+</script>
 </html>

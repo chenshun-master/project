@@ -25,6 +25,16 @@ class User extends BaseController
      */
     public function main()
     {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $user_info = $this->getUserInfo();  //dump($user_info);exit;
+
+        $this->assign([
+            'user_info'=>$user_info
+        ]);
+
         return $this->fetch('user/main');
     }
 
@@ -90,6 +100,15 @@ class User extends BaseController
         return $this->returnData([],'密码修改失败',305);
     }
 
+    public function modifypwd(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        return $this->fetch('user/modify_pwd');
+    }
+
+
     /**
      * 添加好友申请
      * @return false|string
@@ -137,5 +156,14 @@ class User extends BaseController
         }
 
         return $this->returnData([],'解除好友关系成功',200);
+    }
+
+
+    /**
+     * 退出登录
+     */
+    public function signOut(){
+        $this->clearUserLogin();
+        return redirect('/weixin/index/login');
     }
 }

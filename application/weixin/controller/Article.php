@@ -223,13 +223,6 @@ class Article extends BaseController
 
 
     /**
-     * 文章视频页
-     */
-    public function personal(){
-        return $this->fetch('article/personal');
-    }
-
-    /**
      * 获取文章评论信息
      */
     public function getCommentList(Request $request){
