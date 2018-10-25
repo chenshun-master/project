@@ -25,7 +25,7 @@ class Article extends BaseController
     /**
      * 文章点赞处理
      */
-    public function clickZan(){
+    public function clickZan(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'请登录后再进行操作',401);
         }
@@ -34,13 +34,13 @@ class Article extends BaseController
         $type = $request->param('type',1);
         $user_id = $this->getUserInfo()['id'];
 
-        $res = $this->articleDomain->addFabulous($user_id,$id,1,$type);
+        $res = $this->articleDomain->addFabulous($user_id,$id,$type,$tablename = 'article');
 
         if(!$res){
-            return $this->returnData([],'点赞失败',305);
+            return $this->returnData([],'操作失败',305);
         }
 
-        return $this->returnData([],'点赞成功',200);
+        return $this->returnData(['type'=>$type],'操作成功',200);
     }
 
     /**
@@ -200,25 +200,43 @@ class Article extends BaseController
      */
     public function articleDetails(Request $request){
         $id = $request->param('id',0);
-        $data = $this->articleDomain->getArticleInfo($id);//dump($data);exit;
+        $data = $this->articleDomain->getArticleInfo($id);
+
+        $isFabulous = false;
+        if($this->checkLogin()){
+            $user_info = $this->getUserInfo();
+            $isFabulous = $this->articleDomain->checkFabulous($user_info['id'],$id);
+        }
+
         $this->assign($data);
+        $this->assign('isFabulous',$isFabulous);
 
         return $this->fetch('article/article_details');
     }
 
-       /**
+    /**
      * 文章视频页
      */
     public function articleVideo(){
         return $this->fetch('article/article_video');
     }
-           /**
+
+    /**
      * 文章视频页
      */
     public function personal(){
         return $this->fetch('article/personal');
+    }
 
-}
+    /**
+     * 获取文章评论信息
+     */
+    public function getCommentList(Request $request){
+        $id = $request->param('id',6);
+        $data = $this->articleDomain->getFirstComment($id,1,15);
+        return $this->returnData($data,'',200);
+    }
+
     public function test(){
         $data = [
             'user_id'      =>4,
