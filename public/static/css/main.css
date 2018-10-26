@@ -109,7 +109,7 @@ text-align: center;
 width: 100%;
 height: 72px;
 margin-top: 25px;
-border-top: 10px solid #EEEEEE;
+
 position: relative;
 }
 .wx-tou{
@@ -142,8 +142,13 @@ position: relative;
 }
 .wx-nei1 dt{
 width:402px ;
-height: 66px;
+height: auto;
+padding-top: 15px;
 margin: 26px 20px 22px 36px;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
 }
 .wx-nei1 dd{
 width: 256px;
@@ -188,12 +193,16 @@ font-size: 0.26rem;
 }
 .on1{
 width: 644px;
-height: 82px;
+height: auto;
 margin: 0 auto;
 margin-top: 44px;
 font-size: 0.34rem;
 color: #1F1F1F;
 margin-left: 36px;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;
 }
 .on1-img{
 width: 100%;
