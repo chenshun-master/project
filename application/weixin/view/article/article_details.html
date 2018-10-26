@@ -81,12 +81,18 @@
             page_total:1,
             page_size:3,
             template:function(data){
-                var html = '<div class="wzxq" >'+
+                var src = '';
+                if(data.thumbnail != ''){
+                    var thumbnailObj = $.parseJSON(data.thumbnail);
+                    src = thumbnailObj.img_1;
+                }
+
+                var html = '<div class="wzxq cus-recommend-href" data-id="'+data.id+'" >'+
                     '<div class="wx-x">'+
                         '<h3>'+data.title+'</h3>'+
                         '<p style="margin-top: -20px;"><span>'+ data.nickname +'</span> <span>'+ data.hits +'阅览量</span></p>'+
                     '</div>'+
-                    '<img src="" alt=""/>'+
+                    '<img src="'+ src +'" alt=""/>'+
                 '</div>';
                 return html;
             }
@@ -279,7 +285,7 @@
     setTimeout(function(){
         objClass.loadRecommendList();
     },500);
-    //
+
     setTimeout(function(){
         objClass.loadCommentList();
 
@@ -291,5 +297,9 @@
             objClass.replyComment($(this));
         });
     },1000);
+
+    $(document).on('click','.cus-recommend-href',function(){
+        window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
+    });
 </script>
 </html>
