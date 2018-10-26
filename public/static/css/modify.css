@@ -8,83 +8,27 @@ body { font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
-
 .con {
 	width: 100%;
-	height: 4000px;
+	height: auto;
 }
 .wx-top{
 	width: 100%;
-	height: 420px;
-	position: relative;
+	height: 272px;
+	border-bottom: 10px solid #F4F5F6;
 }
-.wx-video{
-	width: 100%;
-	height: 420px;
-	display: block;
-	background: #EEEEEE;
+.wx-top img{
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	margin-top: 50px;
+	margin-left: 36px;
+		float: left;
 }
-.wx-top a{
-	width: 50px;
-	height: 50px;
-	display: block;
-	position: absolute;
-	top: 26px;
-	left: 36px;
-	background: url(../image/reg/zj.png)no-repeat 10px 10px;
-	background-size: 35px;
-}
-.wx-name{
-width: 100%;
-height: 72px;
-margin-top: 40px;
-position: relative;
-}
-.wx-tou{
-width: 72px;
-height: 72px;
-display: block;
-border-radius: 50%;
-background: khaki;
-position: absolute;
-top: 0;
-left: 34px;
-}
-.wx-yh{
-position: absolute;
-top: 0px;
-left: 124px;
-}
-.wx-rig{
-width: 140px;
-height: 56px;
-background: #7DB0E8;
-color:#FFFFFF;
-font-size: 0.26rem;
-position: absolute;
-right: 36px;
-top: 8px;
-border-radius: 10px;
-}
-.wx-yh dd{
-	width: 168px;
-	height: 30px;
-	padding-left: 35px;
-	background: url(../image/user/hy2.png)no-repeat 1px 1px ;
-	background-size: 30px;
-}
-.wx-bt{
-	width: 680px;
-	height: auto;
-	background: khaki;
-	margin: 0 auto;
-	margin-top: 26px;
-	font-size: 0.36rem;
-	color: #1D1D1D;
-	text-align: left;
-}
-.wx-bt p{
-	overflow: hidden;
-text-overflow:ellipsis;
-white-space: nowrap;
+.wx-top p{
+	width: 500px;
+	margin-top: 105px;
+	margin-left: 32px;
+	font-size: 32px;
+	float: left;
 }
