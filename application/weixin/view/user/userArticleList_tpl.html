@@ -1,0 +1,92 @@
+
+<?php if(count($rows) > 0):?>
+    <?php foreach($rows as $val):?>
+        <?php if(empty($val['thumbnail'])):?>
+            <div class="ont-3" data-id="{$val['id']}"  style="height: 360px;padding-top:20px;border-bottom: 10px solid #EEEEEE;">
+                <div class="wx-name">
+                    <img src="{$val['nickname']?$val['portrait']:''}" alt="" class="wx-tou">
+                    <dl class="wx-yh">
+                        <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">{$val['nickname']}</dt>
+                        <dd style="font-size:0.24rem;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
+                    </dl>
+                    <span class="wx-rig"></span>
+                </div>
+                <p class="on1">{$val['title']}</p>
+                <ul class="wx-fen">
+                    <li><span><i class="iconfont icon-share_light " id="cc"></i></span></li>
+                    <li style="margin-left: 100px;">
+                        <span class="iconfont icon-comment_light" id="cc"></span>
+                        <span id="ee">{$val['comment_count']}</span>
+                    </li>
+                    <li style="margin-left: 100px;">
+                        <span data-click="{$val['isZan']}" data-id="{$val['id']}" class="cus-article-fabulous" >
+                            <span class="iconfont icon-appreciate_light" id="cc"></span>
+                            <span id="ee" class="cus-article-like-num">{$val['like']}</span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        <?php else:?>
+            <?php
+               $thumbnail = json_decode($val['thumbnail'],true);
+               if(count($thumbnail) == 1):
+            ?>
+                    <div class="one-1" data-id="{$val['id']}" style="height: 380px;border-bottom: 10px solid #EEEEEE;">
+                        <div class="wx-name" style="border:none;">
+                            <img src="{$val['nickname']?$val['portrait']:''}" alt="" class="wx-tou">
+                            <dl class="wx-yh">
+                                <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">{$val['nickname']}</dt>
+                                <dd style="font-size:0.24rem;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
+                            </dl>
+                            <span class="wx-rig"></span>
+                        </div>
+                        <div class="wx-nei1">
+                            <dl>
+                                <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;">{$val['title']}</dt>
+                                <dd><img src="{$thumbnail['img_1']}" alt="图片"/></dd>
+                            </dl>
+                        </div>
+                        <ul class="wx-fen">
+                            <li><span><i class="iconfont icon-share_light " id="cc"></i></span></li>
+                            <li style="margin-left: 100px;"><span class="iconfont icon-comment_light" id="cc"></span><span
+                                    id="ee">{$val['comment_count']}</span></li>
+                            <li style="margin-left: 100px;"><span class="iconfont icon-appreciate_light" id="cc"></span><span id="ee" data-click="{$val['isZan']}" data-id="{$val['id']}" class="cus-article-fabulous">{$val['like']}</span>
+                            </li>
+                        </ul>
+                    </div>
+            <?php else:?>
+                    <div class="one-2 " data-id="{$val['id']}" style="padding-top:20px;height: 1150px;border-bottom: 10px solid #EEEEEE;">
+                        <div class="wx-name">
+                            <img src="{$val['nickname']?$val['portrait']:''}" alt="" class="wx-tou">
+                            <dl class="wx-yh">
+                                <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">{$val['nickname']}</dt>
+                                <dd style="font-size:0.24rem;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
+                            </dl>
+                            <span class="wx-rig"></span>
+                        </div>
+                        <p class="on1">{$val['title']}</p>
+                        <div class="on1-img">
+                            <?php foreach($thumbnail as $_v):?>
+                                <dd><img src="{$_v}" alt="图片"/></dd>
+                            <?php endforeach;?>
+                        </div>
+                        <ul class="wx-fen">
+                            <li><span><i class="iconfont icon-share_light " id="cc"></i></span></li>
+                            <li style="margin-left: 100px;"><span class="iconfont icon-comment_light" id="cc"></span><span
+                                    id="ee">{$val['comment_count']}</span></li>
+                            <li style="margin-left: 100px;"><span class="iconfont icon-appreciate_light" id="cc"></span><span id="ee" data-click="{$val['isZan']}" data-id="{$val['id']}" class="cus-article-fabulous">{$val['like']}</span>
+                            </li>
+                        </ul>
+                    </div>
+            <?php endif;?>
+        <?php endif;?>
+    <?php endforeach;?>
+<?php endif;?>
+
+
+
+
+
+
+
+

@@ -41,13 +41,7 @@ class Index extends BaseController
 
         return $this->fetch('index/login');
     }
-      /**
-     * 用户主页
-     */
-    public function homepage(){
-        return $this->fetch('index/home_page');
 
-}
     /**
 	 * 找回密码页
      */

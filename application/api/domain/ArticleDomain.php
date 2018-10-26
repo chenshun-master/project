@@ -296,12 +296,14 @@ class ArticleDomain
      * @param $type            获取文章类型
      * @param $page            获取第几页数据
      * @param $page_size       分页大小
+     * @param bool $flag            是否是用户中心调用
+     * @param int $uid            是否是用户中心调用
      * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getUserPublishArticle($user_id,$type,$page,$page_size){
+    public function getUserPublishArticle($user_id,$type,$page,$page_size,$flag = false,$uid=0){
         $obj = Db::table('wl_article')->alias('article');
 
         if($type != 0){
@@ -309,13 +311,22 @@ class ArticleDomain
         }
 
         $obj->where('article.user_id', $user_id);
-        $obj->where('article.status', 1);
-        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+
+        if(!$flag){
+            $obj->where('article.status', 1);
+            $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+        }
+
         $obj->order('article.published_time', 'desc');
         $total = $obj->count();
 
         $obj->join('wl_user user','article.user_id = user.id');
-        $obj->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
+
+        if($uid){
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =8 AND wl_user_like.object_id = article.id) as isZan");
+        }else{
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
+        }
 
         $rows = $obj->page($page,$page_size)->select();
         return [
