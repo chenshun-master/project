@@ -8,6 +8,7 @@
 		<meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
         <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/reg.css" />
 		<title>注册用户</title>
@@ -24,11 +25,11 @@
 	<body style="background-color: #fff;">
 		<div class="con">
 			<div class="wx-top">
-			<a href="login.html"  class="zj"></a>
+			<a href="login.html"  class="iconfont icon-back_light" style="font-size: 40px;padding-top: 10px;margin-left: 25px;"></a>
 				<div class="wx-reg">
 					<h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">免费注册</h3>
 			     	<p><input id="mobile" type="text"  placeholder="请输入你的手机号"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
-					<p style="margin-top: 15px;"><input id="sms_code" type="text"  placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
+					<p style="margin-top: 15px;"><input id="sms_code" type="text"  placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 500px;" ></p>
 					<p style="margin-top: 15px;"><input id="password" type="password"  placeholder="6~16个字符，区分大小写" style="width: 400px;"><span id='xian'><img src="/static/image/reg/zy.png" width="40px"/></span></p>
 					<button id="btn" style="margin-top: 25px;" onclick="objClass.submit()">完成注册并登录</button>
 					<span class="dian" style="margin-top: 20px;">点击“获取验证码”按钮，即表示同意<span style="color:#7DB0E8;">注册协议</span></span>
