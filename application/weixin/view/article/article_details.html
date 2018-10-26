@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/article_details.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <title>{$article_info['title']}</title>
     <style>
         .wkf{
@@ -43,8 +44,8 @@
             </dl>
             <button class="wx-rig">加好友</button>
         </div>
-        <div style="margin-left: 35px;font-size: 0.34rem;">{$article_info['content']}</div>
-        <p class="wx-fx" style="margin-top: 50px;">
+        <div style="margin-left: 35px;font-size: 0.34rem;" class="mp">{$article_info['content']}</div>
+        <p class="wx-fx" style="margin-top: 30px;">
             <button style="margin-left: 36px;" id="cus-click-fabulous"  data-fabulous="{$isFabulous? '2' : '1'}" onclick="objClass.clickFabulous()">{$article_info['like']}</button>
             <button>分享朋友圈</button>
             <button>分享微信</button>
@@ -68,6 +69,44 @@
             <dl></dl>
             <dt></dt>
         </div>
+        			<div class="marsk-container">
+			<div class="tkyy_con">
+				<div class="z-top">
+					<a id="tui" class="iconfont icon-close_light" style="float: left;font-size: 50px; color:#999999 ;"></a>回复
+				</div>
+				<div class="wz1">
+					<img src="/static/image/user/default-head.png"/>
+					<div class="wz2">
+						<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">半颗心</span><span style="float: right;color: #999999;font-size: 24px;"><i class="iconfont icon-appreciate_light"></i>55</span></p>
+					<p>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
+					<p>13小时前</p>
+					<div class="wz3" style="margin-top: 20px;">
+						<img src="/static/image/user/default-head.png"/>
+					<div class="wz4">
+						<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;">半颗心</span></p>
+					<p>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
+					<p style="font-size:0.18rem;color: #888888;margin-left: 64px;margin-top: 10px;">13小时前</p>
+					</div>
+					</div>
+				</div>
+				</div>
+						<div class="wz1">
+					<img src="/static/image/user/default-head.png"/>
+					<div class="wz2">
+						<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">半颗心</span><span style="float: right;color: #999999;font-size: 24px;"><i class="iconfont icon-appreciate_light"></i>55</span></p>
+					<p>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
+					<p>13小时前</p>
+					<div class="wz3" style="margin-top: 20px;">
+						<img src="/static/image/user/default-head.png"/>
+					<div class="wz4">
+						<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;">半颗心</span></p>
+					<p>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
+					<p style="font-size:0.18rem;color: #888888;margin-left: 64px;margin-top: 10px;">13小时前</p>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
     </div>
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -278,7 +317,9 @@
 
         //一级回复评论方法
         replyComment:function(obj){
-            redream.showTip('此功能等待添加');
+//          redream.showTip('此功能等待添加');
+            
+            $(".marsk-container").show();
         }
     };
 
@@ -297,6 +338,22 @@
             objClass.replyComment($(this));
         });
     },1000);
+    		$(document).ready(function() {
+				$(".cus-reply-btn").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container").click(function(event) {
+					var _con = $('.tkyy_con'); // 设置目标区域
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container').hide(); //淡出消失
+					}
+				});
+				$("#tui").click(function(){
+					$('.marsk-container').hide(); //淡出消失
+				})
+			});
 
     $(document).on('click','.cus-recommend-href',function(){
         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');

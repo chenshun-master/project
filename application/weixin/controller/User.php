@@ -42,7 +42,15 @@ class User extends BaseController
 
         return $this->fetch('user/main');
     }
-
+    
+   /**
+     * 修改资料页面
+     * @return mixed
+     */
+    public function modify()
+    {      
+   return $this->fetch('user/modify');
+    }
     /**
      * 上传用户头像接口
      */

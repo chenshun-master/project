@@ -11,13 +11,13 @@ a{text-decoration: none;color: #221815;display: block;}
 
 .con{
 	width: 100%;
-	height: 3000px;
+	height: auto;
 background: white;
 }
 .wx-top{
 	width: 100%;
 	height: 440px;
-
+	background: url(../image/user/bj-1.png)no-repeat ;
 	position: relative;
 }
 .wx-img{
@@ -46,7 +46,7 @@ text-align: center;
  	width: 208px;
  	height: 56px;
  	background-color: #FFFFFF;
- 	color: #0AB9BF;
+ 	color: #7DB0E8;
  	font-size: 0.34rem;
  	border-radius: 10px;
  	border: 0px;
@@ -94,8 +94,8 @@ text-align: center;
  }
  
  .se {
- 	border-bottom: 2px solid #0fd6dd;
- 	color: #0fd6dd;
+ 	border-bottom: 2px solid #7DB0E8;
+ 	color: #7DB0E8;
  }
  
  .top {
@@ -117,7 +117,7 @@ width: 72px;
 height: 72px;
 display: block;
 border-radius: 50%;
-background: khaki;
+background: #eeeeee;
 position: absolute;
 top: 0;
 left: 34px;
@@ -163,32 +163,31 @@ margin-right: 36px;
 .wx-fen{
 width: 100%;
 height: 40px;
-margin-top: 34px;
+margin-top: 15px;
 }
 .wx-fen li{
 width: 60px;
 height: 40px;
 float: left;
-background: fuchsia;
+
 padding-left: 40px;
 }
 .wx-fen li:nth-child(1){
-margin-left: 94px;
-background: url(../image/user/zf.png)no-repeat -6px 6px;
+margin-left: 50px;
 background-size: 32px 32px;
 }
 .wx-fen li:nth-child(2){
-margin-left: 185px;
-background: url(../image/user/ly.png)no-repeat 1px 6px;
+margin-left: 180px;
+;
 background-size: 32px 32px;
 }
 .wx-fen li:nth-child(3){
 margin-left: 188px;
-background: url(../image/user/dz.png)no-repeat 16px 6px;
+
 background-size: 32px 32px;
 }
 .wx-fen li span{
-color: #000000;
+color: #333333;
 font-size: 0.26rem;
 }
 .on1{
@@ -229,7 +228,7 @@ position: relative;
 }
 .you1{
 width: 100%;
-height: 148px;#0FD6DD
+height: 148px;#7DB0E8
 background: red;
 position: absolute;
 top: 52px;
@@ -238,7 +237,7 @@ top: 52px;
 width: 148px;
 height: 148px;
 display: block;
-background: grey;
+background: #eeeeee;
 border-radius: 50%;
 margin-left: 36px;
 }
@@ -263,7 +262,7 @@ color: #898989;
 width: 144px;
 height: 56px;
 line-height: 56px;
-background: #0FD6DD;
+background: #7DB0E8;
 color: #FEFEFE;
 font-size: 0.3rem;
 position: absolute;
@@ -284,4 +283,12 @@ border-radius: 10px;
 		width: 750px;
 	height: 88px;
 	background: white;
+}
+.oner .one-1{
+	height: 750px;
+	border-bottom: 10px solid #F4F5F6;
+}
+#ttb{
+	font-size: 40px;
+	color: #999999;
 }
