@@ -27,6 +27,10 @@
             font-size:0.28rem;
             border-radius:10px ;
         }
+
+        .souBak{
+            color: #7DB0E8 !important;
+        }
     </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
@@ -35,7 +39,7 @@
 <body>
 <div class="con">
     <div class="wx-top">
-        <a href="javascript:history.go(-1)" class="tb"></a>用户名称
+        <a href="javascript:history.go(-1)" class="tb"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
     </div>
     <div class="wx-t1">
         <img src=""/>
@@ -56,7 +60,18 @@
                 <dt>{$publishStatistics['type_4']['total']}</dt>
                 <dd>问答</dd>
             </dl>
-            <button id="btn">申请认证</button>
+            <button id="btn">
+                <?php if($user_info['type'] == 1):?>
+                申请认证
+                <?php elseif($user_info['type'] == 2):?>
+                认证用户
+                <?php elseif($user_info['type'] == 3):?>
+                认证医生
+                <?php elseif($user_info['type'] == 4):?>
+                认证医院
+                <?php elseif($user_info['type'] == 5):?>
+                官方团队
+                <?php endif;?></button>
             <button id="btn1">编辑资料</button>
         </div>
     </div>
@@ -136,9 +151,13 @@
                         if(type == 1){
                             obj.data('click',1);
                             obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) + 1);
+                            obj.find('.cus-tubiao').removeClass('icon-appreciate_light').addClass('icon-appreciate_fill_light').addClass('souBak');
+
+
                         }else{
                             obj.data('click',0);
                             obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) -1);
+                            obj.find('.cus-tubiao').removeClass('icon-appreciate_fill_light').removeClass('souBak').addClass('icon-appreciate_light');
                         }
                     }
                 }
@@ -159,6 +178,12 @@
     $(document).on('click','.cus-article-href',function(){
         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
     });
+
+    $(document).on('click','.cus-article-href2',function(){
+        window.location.href = '/weixin/article/userMain/id'+ $(this).data('uid');
+    });
+
+
 
     $(function () {
         $(window).scroll(function () {

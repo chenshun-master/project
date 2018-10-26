@@ -323,10 +323,11 @@ class ArticleDomain
         $obj->join('wl_user user','article.user_id = user.id');
 
         if($uid){
-            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =8 AND wl_user_like.object_id = article.id) as isZan");
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$uid} AND wl_user_like.object_id = article.id) as isZan");
         }else{
             $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
         }
+
 
         $rows = $obj->page($page,$page_size)->select();
         return [

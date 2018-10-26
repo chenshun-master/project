@@ -190,6 +190,8 @@ class User extends BaseController
         $user_info = $this->getUserInfo();
         $this->_publishTotal($user_info['id']);
 
+        $this->assign('user_info',$user_info);
+
         return $this->fetch('user/userArticleList');
     }
 
@@ -269,7 +271,8 @@ class User extends BaseController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-        $data = $this->_articleDomain->getUserPublishArticle($this->getUserId(),$type,$page,$page_size,$this->getUserId());
+
+        $data = $this->_articleDomain->getUserPublishArticle($this->getUserId(),$type,$page,$page_size,true,$this->getUserId());
 
         $this->assign($data);
 
