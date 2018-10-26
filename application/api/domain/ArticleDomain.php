@@ -150,7 +150,7 @@ class ArticleDomain
             ->find();
 
         if($res){
-            if($flag == 1){return true;}
+            if($flag == 1){return false;}
             Db::startTrans();
             try {
                 $res1 = Db::name('user_like')->where('id',$res['id'])->delete();
@@ -389,7 +389,7 @@ class ArticleDomain
     /**
      * 获取一级评论
      */
-    public function getFirstComment($article_id,$page,$page_size){
+    public function getFirstComment($article_id,$page,$page_size,$user_id=0){
         $obj = Db::name('comment');
         $obj->alias('comment');
         $obj->where('comment.object_id',$article_id);
@@ -399,7 +399,11 @@ class ArticleDomain
         $obj->order('comment.created_time', 'desc');
         $total = $obj->count();
 
-        $obj->field('comment.id,comment.user_id,comment.object_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
+        if($user_id == 0){
+            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
+        }else{
+            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = COMMENT.id) as isZan");
+        }
 
         $rows = $obj->page($page,$page_size)->select();
         return [

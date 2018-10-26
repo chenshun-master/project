@@ -10,6 +10,22 @@
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/article_details.css"/>
     <title>用户中心</title>
+    <style>
+        .wkf{
+            display: none;
+            position: fixed;
+            top: 565px;
+            left: 256px;
+            width: 240px;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            background: #0FD6DD;
+            color: #FFFFFF;
+            font-size:0.28rem;
+            border-radius:10px ;
+        }
+    </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -54,6 +70,7 @@
         </div>
     </div>
 </body>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var objClass = {
         article_id:{$article_info['id']},
@@ -136,7 +153,7 @@
                     objClass.oneLoading = false;
                 },
                 success:function(res){
-                    console.log(res);
+                    // console.log(res);
 
                     if(res.code == 200){
                         $('#cus-click-fabulous').data('fabulous',2)
@@ -153,16 +170,26 @@
             ini:false,
             page:0,
             page_total:1,
-            page_size:10,
+            page_size:100,
             template:function(data){
+               var src = (data.portrait =='' || data.portrait == null) ? '' :data.portrait;
+
+
+
+               if(data.reply_count == 0){
+                   var button_html = '<button class="cus-reply-btn" >回复</button>';
+               }else{
+                   var button_html = '<button class="cus-reply-btn" >'+ data.reply_count +' 回复</button>';
+               }
+
                var html = '<div class="pl">'+
-                    '<img src="'+data.portrait +'" alt=""/>'+
+                    '<img src="'+src +'" alt=""/>'+
                     '<div class="pin">'+
-                        '<p class="xm"><span style="float:left">'+ data.nickname +'</span> <span style="float:right">'+ data.like_count +'</span></p>'+
+                        '<p class="xm"><span style="float:left">'+ data.nickname +'</span> <span style="float:right" class="cus-comment-fabulous" data-id="'+data.id+'" data-click="'+ data.isZan +'" >'+ data.like_count +'</span></p>'+
                         '<p class="wx-p">'+data.content+'</p>'+
                         '<p class="wx-hf">'+
-                        '<span class="hf-sj">'+ data.created_time +'</span>'+
-                        '<button>'+ data.reply_count +'回复</button>'+
+                        '<span class="hf-sj">'+ redream.beautifyTime(data.created_time) +'</span>'+
+                            button_html+
                         '</p>'+
                     '</div>'+
                 '</div>';
@@ -193,7 +220,7 @@
                     objClass.commentData.loading = false;
                 },
                 success:function(res){
-                    console.log(res);
+                    // console.log(res);
                     if(res.code == 200){
                         var data = res.data;
                         if(objClass.commentData.ini == false){
@@ -211,16 +238,58 @@
                     }
                 }
             });
+        },
 
+        //评论点赞方法
+        clickCommentFabulous:function(obj){
+            var id = obj.data('id');
+            var type = obj.data('click') == 1 ?2:1;
+            $.ajax({
+                url:"/weixin/article/commentClickZan",
+                type:'post',
+                data:{id:id,type:type},
+                dataType:'json',
+                beforeSend:function(){
+                    objClass.oneLoading = true;
+                },
+                complete:function(){
+                    objClass.oneLoading = false;
+                },
+                success:function(res){
+                    // console.log(res);
+                    if(res.code == 200){
+                        if(type == 1){
+                            obj.data('click',1);
+                            obj.text(parseInt(obj.text()) + 1 );
+                        }else{
+                            obj.data('click',0);
+                            obj.text(parseInt(obj.text()) -1 );
+                        }
+                    }
+                }
+            });
+        },
+
+        //一级回复评论方法
+        replyComment:function(obj){
+            redream.showTip('此功能等待添加');
         }
     };
 
     setTimeout(function(){
         objClass.loadRecommendList();
     },500);
-
+    //
     setTimeout(function(){
         objClass.loadCommentList();
+
+        $(document).on('click','.cus-comment-fabulous',function(){
+            objClass.clickCommentFabulous($(this));
+        });
+
+        $(document).on('click','.cus-reply-btn',function(){
+            objClass.replyComment($(this));
+        });
     },1000);
 </script>
 </html>

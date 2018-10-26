@@ -185,9 +185,11 @@ function formatTime($time){
     }elseif($time < 60 * 60){
         $min = floor($time/60);
         $str = $min.'分钟前';
-    }elseif($time < 60 * 60 * 24){
-        $h = floor($time/(60*60));
-        $str = $h.'小时前';
+    }elseif($time < 60 * 60 * 4) {
+        $h = floor($time / (60 * 60));
+        $str = $h . '小时前';
+    }else if($time < 60 * 60 * 24){
+        $str = '今天 '.$htime.'分';
     }elseif($time < 60 * 60 * 24 * 3){
         $d = floor($time/(60*60*24));
         if($d==1){
@@ -196,7 +198,7 @@ function formatTime($time){
             $str = '前天 '.$htime.'分';
         }
     }else{
-        $str =date('Y-m-d',$stime);
+        $str =date('Y年m月d日',$stime);
     }
 
     return $str;

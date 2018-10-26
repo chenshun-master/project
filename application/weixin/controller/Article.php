@@ -34,7 +34,28 @@ class Article extends BaseController
         $type = $request->param('type',1);
         $user_id = $this->getUserInfo()['id'];
 
-        $res = $this->articleDomain->addFabulous($user_id,$id,$type,$tablename = 'article');
+        $res = $this->articleDomain->addFabulous($user_id,$id,$type,'article');
+
+        if(!$res){
+            return $this->returnData([],'操作失败',305);
+        }
+
+        return $this->returnData(['type'=>$type],'操作成功',200);
+    }
+
+    /**
+     * 评论点赞处理
+     */
+    public function commentClickZan(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'请登录后再进行操作',401);
+        }
+
+        $id = $request->param('id','');
+        $type = $request->param('type',1);
+        $user_id = $this->getUserInfo()['id'];
+
+        $res = $this->articleDomain->addFabulous($user_id,$id,$type, 'comment');
 
         if(!$res){
             return $this->returnData([],'操作失败',305);
@@ -226,8 +247,15 @@ class Article extends BaseController
      * 获取文章评论信息
      */
     public function getCommentList(Request $request){
-        $id = $request->param('id',6);
-        $data = $this->articleDomain->getFirstComment($id,1,15);
+        $id = $request->param('id',0);
+        $page = $request->param('page',1);
+        $page_size = $request->param('page_size',20);
+        $user_id = 0;
+        if($this->checkLogin()){
+            $user_id = $this->getUserInfo()['id'];
+        }
+
+        $data = $this->articleDomain->getFirstComment($id,$page,$page_size,$user_id);
         return $this->returnData($data,'',200);
     }
 
