@@ -47,7 +47,7 @@ class Index extends BaseController
     public function homepage(){
         return $this->fetch('index/home_page');
 
-}
+    }
     /**
 	 * 找回密码页
      */

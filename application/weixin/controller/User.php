@@ -17,6 +17,7 @@ class User extends BaseController
     {
         parent::__construct($app);
         $this->_userDomain = new \app\api\domain\UserDomain();
+        $this->_articleDomain = new \app\api\domain\ArticleDomain();
     }
 
     /**
@@ -158,7 +159,6 @@ class User extends BaseController
         return $this->returnData([],'解除好友关系成功',200);
     }
 
-
     /**
      * 退出登录
      */
@@ -166,4 +166,79 @@ class User extends BaseController
         $this->clearUserLogin();
         return redirect('/weixin/index/login');
     }
+
+    /**
+     * 用户文章列表页面
+     */
+    public function userArticleList(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $user_info = $this->getUserInfo();
+
+        $this->_publishTotal($user_info['id']);
+
+    }
+
+    /**
+     * 用户视频列表页面
+     */
+    public function userVideoList(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $user_info = $this->getUserInfo();
+
+        $this->_publishTotal($user_info['id']);
+    }
+
+    /**
+     * 用户案例列表页面
+     */
+    public function userCaseList(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $user_info = $this->getUserInfo();
+
+        $this->_publishTotal($user_info['id']);
+    }
+
+    /**
+     * 用户问答列表页面
+     */
+    public function userProblemList(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $user_info = $this->getUserInfo();
+
+        $this->_publishTotal($user_info['id']);
+    }
+
+    
+    private function _publishTotal($user_id){
+        $res = $this->_articleDomain->getArticleStatisticsData($user_id);
+
+        $data = [
+            'type_1'=>['type'=>1,'total'=>0],
+            'type_2'=>['type'=>2,'total'=>0],
+            'type_3'=>['type'=>3,'total'=>0],
+            'type_4'=>['type'=>4,'total'=>0]
+        ];
+
+        if($res){
+            foreach ($res as $val){
+                $type = 'type_'.$val['type'];
+                $data[$type] = $val;
+            }
+        }
+
+        $this->assign('publishStatistics',$data);
+    }
+
 }
