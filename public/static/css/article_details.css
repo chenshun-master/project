@@ -99,7 +99,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	height: 72px;
 	line-height: 72px;
 	border: 1px solid #E0E0E0;
-	border-radius: 50px;
+	border-radius: 10px;
 	color: #1D1D1D;
 	font-size: 0.24rem;
 	background: white;
@@ -273,7 +273,7 @@ a{text-decoration: none;color: #221815;display: block;}
 .wx-hf button {
 	width: 122px;
 	height: 46px;
-	border-radius: 50px;
+	border-radius: 10px;
 	background: gainsboro;
 	color: #222222;
 	font-size: 0.24rem;
@@ -298,7 +298,7 @@ a{text-decoration: none;color: #221815;display: block;}
 .wx-foot input {
 	width: 420px;
 	height: 64px;
-	border-radius: 50px;
+	border-radius: 10px;
 	padding-left: 50px;
 	color: #040404;
 	font-size: 0.26rem;
