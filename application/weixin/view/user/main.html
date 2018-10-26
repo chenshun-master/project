@@ -74,14 +74,14 @@
 			</div>
 			<div class="wx-n1">
 				<dl>
-					<dt id="tan">消息通知<span class="fh"></span></dt>
-					<dd id="dan">用户认证<span  class="fh"></span></dd>
+					<dt  onclick="redream.showTip('此功能尚未开发')">消息通知<span class="fh"></span></dt>
+					<dd  onclick="redream.showTip('此功能尚未开发')">用户认证<span  class="fh"></span></dd>
 				</dl>
 			</div>
 			<div class="wx-n2">
 				<dl>
                     <a href="/weixin/user/modifypwd"><dt >修改密码<span class="fh"></span></dt></a>
-					<dd>修改手机号<span  class="fh"></span></dd>
+                    <dd onclick="redream.showTip('此功能尚未开发')">修改手机号<span  class="fh"></span></dd>
 				</dl>
 			</div>
 			<div class="wx-n3">
@@ -89,12 +89,6 @@
 					<dt class="tkyy">联系我们<span style="color: #000000;font-size: 0.28rem;margin-left: 335px;">1994111200</span><span class="fh"></span></dt>
 				</dl>
 			</div>
-
-            <div class="wx-n3">
-                <dl>
-                    <dt onclick="objClass.test()">测试<span class="fh"></span></dt>
-                </dl>
-            </div>
 
 
             <button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
@@ -109,31 +103,6 @@
 	</body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-
-    var objClass ={
-        randomString:function(len){
-            len = len || 32;
-            var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
-            var maxPos = $chars.length;
-            var pwd = '';
-            for (i = 0; i < len; i++) {
-                pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
-            }
-            return pwd;
-        },
-        test:function(){
-            redream.showTip('这是我的提示信息',10000);
-        }
-    };
-
-		$(function() {
-			$('#tan').click(function() {
-				$('.wkf').show().delay(2000).fadeOut();
-			});
-			$('#dan').click(function() {
-				$('.wkf').show().delay(2000).fadeOut();
-			});
-		});
 		$(document).ready(function() {
 				$(".tkyy").click(function(event) {
 					event.stopPropagation(); //停止事件冒泡
@@ -149,7 +118,6 @@
 				$(".quxiao").click(function(){
 					$('.marsk-container').hide(); //淡出消失
 				})
-
 			});
 </script>
 </html>
