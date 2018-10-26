@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/home_page.css"/>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_890503_bqq4ljep3ij.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <title>用户中心</title>
+    <style>
+        .wkf{
+            display: none;
+            position: fixed;
+            top: 565px;
+            left: 256px;
+            width: 240px;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            background: #0FD6DD;
+            color: #FFFFFF;
+            font-size:0.28rem;
+            border-radius:10px ;
+        }
+    </style>
+    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div class="con">
+    <div class="wx-top">
+        <a href="" class="tb"></a>用户名称
+    </div>
+    <div class="wx-t1">
+        <img src=""/>
+        <div class="wx-wen">
+            <dl>
+                <dt>{$publishStatistics['type_1']['total']}</dt>
+                <dd>文章</dd>
+            </dl>
+            <dl>
+                <dt>{$publishStatistics['type_2']['total']}</dt>
+                <dd>视频</dd>
+            </dl>
+            <dl>
+                <dt>{$publishStatistics['type_3']['total']}</dt>
+                <dd>案例</dd>
+            </dl>
+            <dl>
+                <dt>{$publishStatistics['type_4']['total']}</dt>
+                <dd>问答</dd>
+            </dl>
+            <button id="btn">申请认证</button>
+            <button id="btn1">编辑资料</button>
+        </div>
+    </div>
+
+    <div id="cus-container">
+
+    </div>
+    <p onclick="objClass.loadList()" style="font-size: 28px;text-align: center;line-height: 60px;">加载更多...</p>
+</div>
+
+</body>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var objClass = {
+        listData:{
+            loading:false,
+            ini:false,
+            page:0,
+            page_total:1,
+            page_size:10,
+        },
+
+        //相关推荐数据加载
+        loadList:function(){
+            if(this.listData.loading){
+                return false;
+            }
+
+            this.listData.page++;
+            if(this.listData.ini == true){
+                if(this.listData.page > this.listData.page_total){
+                    redream.showTip('已加载所有数据');
+                    return false;
+                }
+            }
+            $.ajax({
+                url:"/weixin/user/getPublishList",
+                type:'post',
+                data:{type:1,page:this.listData.page,page_size:this.listData.page_size},
+                dataType:'json',
+                beforeSend:function(){
+                    objClass.listData.loading = true;
+                },
+                complete:function(){
+                    objClass.listData.loading = false;
+                },
+                success:function(res){
+                    if(res.code == 200){
+                        if(objClass.listData.ini == false){
+                            objClass.listData.ini = true;
+                            objClass.listData.page_total = res.data.page_total;
+                        }
+
+                        $('#cus-container').append(res.data.htmlContent);
+                    }
+                }
+            });
+        },
+
+        //用户点赞操作
+        clickFabulous:function(obj){
+            var id = obj.data('id');
+            var type = obj.data('click') == 1 ?2:1;
+            $.ajax({
+                url:"/weixin/article/clickZan",
+                type:'post',
+                data:{id:id,type:type},
+                dataType:'json',
+                beforeSend:function(){
+                    objClass.oneLoading = true;
+                },
+                complete:function(){
+                    objClass.oneLoading = false;
+                },
+                success:function(res){
+                    if(res.code == 200){
+                        if(type == 1){
+                            obj.data('click',1);
+                            obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) + 1);
+                        }else{
+                            obj.data('click',0);
+                            obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) -1);
+                        }
+                    }
+                }
+            });
+        },
+    };
+
+    setTimeout(function(){
+        objClass.loadList();
+
+        $(document).on('click','.cus-article-fabulous',function(event){
+            objClass.clickFabulous($(this));
+
+            event.stopPropagation();
+        });
+    },1000);
+
+    $(document).on('click','.cus-article-href',function(){
+        window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
+    });
+
+    $(function () {
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop();//滚动条在Y轴上的滚动距离。
+            var scrollHeight = $(document).height();//内容可视区域的高度加上溢出（滚动）的距离。
+            var windowHeight = $(this).height();//内容可视区域的高度。
+            //滚动条到底部的条件即为scrollTop + clientHeight == scrollHeight。
+            if (scrollTop + windowHeight == scrollHeight) {
+                //业务逻辑代码
+            }
+        });
+    })
+</script>
+</html>

@@ -41,6 +41,18 @@ class BaseController extends Controller
     }
 
     /**
+     * 获取用户ID
+     * @return int
+     */
+    protected function getUserId(){
+        $info = Session::get('user_info');
+        if($info){
+            return $info['id'];
+        }
+        return 0;
+    }
+
+    /**
      * 用户信息
      * @param $data
      * @return bool

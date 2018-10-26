@@ -220,11 +220,6 @@ class Article extends BaseController
      * 文章详情页
      */
     public function articleDetails(Request $request){
-
-
-//        dump(json_encode([
-//            'img_1'=>'https://p1.pstatp.com/list/190x124/pgc-image/R7VpBDh9WROHZm'
-//        ]));exit;
         $id = $request->param('id',0);
         $data = $this->articleDomain->getArticleInfo($id);
 
@@ -247,7 +242,6 @@ class Article extends BaseController
         return $this->fetch('article/article_video');
     }
 
-
     /**
      * 获取文章评论信息
      */
@@ -263,9 +257,6 @@ class Article extends BaseController
         $data = $this->articleDomain->getFirstComment($id,$page,$page_size,$user_id);
         return $this->returnData($data,'',200);
     }
-
-
-
 
     public function test(){
         $data = [

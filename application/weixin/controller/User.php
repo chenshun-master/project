@@ -176,9 +176,9 @@ class User extends BaseController
         }
 
         $user_info = $this->getUserInfo();
-
         $this->_publishTotal($user_info['id']);
 
+        return $this->fetch('user/userArticleList');
     }
 
     /**
@@ -220,7 +220,6 @@ class User extends BaseController
         $this->_publishTotal($user_info['id']);
     }
 
-    
     private function _publishTotal($user_id){
         $res = $this->_articleDomain->getArticleStatisticsData($user_id);
 
@@ -239,6 +238,32 @@ class User extends BaseController
         }
 
         $this->assign('publishStatistics',$data);
+    }
+
+    /**
+     * 获取用户发布列表信息
+     * @return false|string
+     */
+    public function getPublishList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $type = (int)$request->param('type',1);
+        $page = (int)$request->param('page',1);
+        $page_size = (int)$request->param('page_size',10);
+
+        if(empty($type) || empty($page) || empty($page_size)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $data = $this->_articleDomain->getUserPublishArticle($this->getUserId(),$type,$page,$page_size,$this->getUserId());
+
+        $this->assign($data);
+
+        $data['htmlContent'] = $this->fetch('user/userArticleList_tpl');
+
+        return $this->returnData($data,'',200);
     }
 
 }
