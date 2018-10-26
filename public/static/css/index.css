@@ -143,12 +143,13 @@ margin-right: 42px;
 	height: 264px;
 	margin: 0 auto;
 	border-bottom: 1px solid #F1F1F1;
+	font-size: 0.38rem;
 }
 .wx-bn1{
 	width: 414px;
 	height: 150px;
 	color: #1F1F1F;
-	font-size: 0.35rem;
+	font-size: 0.38rem;
 	overflow: hidden;
 	float: left;
 }
