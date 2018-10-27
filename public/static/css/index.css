@@ -45,9 +45,10 @@ margin-right: 42px;
 }
 .wx-n1{
 	width: 680px;
-	height: 200px;
+	height: 180px;
 	border-bottom: 1px solid #F1F1F1;
 	margin: 0 auto;
+
 
 }
 .wx-n2 {
@@ -55,6 +56,10 @@ margin-right: 42px;
 	height: 100px;
 	color: #1F1F1F;
 	font-size: 0.38rem;
+		display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;
 }
 
 .wx-n3 {
