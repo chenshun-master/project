@@ -10,27 +10,139 @@
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/modify.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/mobileSelect.css"/>
+    <script src="/static/js/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
     <title>修改資料</title>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
 <div class="con">
-  <div class="wx-top">
+  <div class="wx-top tkyy" >
   	<img src="/static/image/user/default-head.png"/>
-  	<p>修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
+  	<p >修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
   </div>
   <div class="wx-con">
-  	<p><span style="margin-left: 36px;">昵称</span><span style="margin-left: 100px;">性命跟</span></p>
-  	<p><span style="margin-left: 36px;">性别</span><span style="margin-left: 100px;">女</span></p>
+  	<p class="nc" ><span style="margin-left: 36px;">昵称</span><span style="margin-left: 100px;">性命跟</span></p>
+  	<p class="xb"><span style="margin-left: 36px;">性别</span><span style="margin-left: 100px;">女</span></p>
   </div>
     <div class="wx-con">
-  	<p><span style="margin-left: 36px;">生日</span><span style="margin-left: 100px;">1994-12-1</span></p>
-  	<p><span style="margin-left: 36px;">地区</span><span style="margin-left: 100px;">性命跟</span></p>
+  	<p ><span style="margin-left: 36px;">生日</span><span type="text"  style="margin-left: 100px;width: 500px;"  id="select_1"/>2000年1月1日</p>
+  	<p><span style="margin-left: 36px;">地区</span><span style="margin-left: 500px;color: #7DB0E8;">待完善</span></p>
   </div>
-    <p class="k1"><span style="margin-left: 36px;">简介</span><span style="margin-left: 100px;">发送到</span></p>
+    <p class="k1"><span style="margin-left: 36px;">简介</span><span style="margin-left: 100px;">.............</span></p>
     <button class="btn">保存</button>
+			<div class="marsk-container">
+			<div class="tkyy_con">
+				<button>传照片</button>
+				<button>拍照</button>
+				<button class="quxiao" >取消</button>
+				</div>
+			</div>
+			<div class="marsk-container1">
+			<div class="tkyy_con1">
+				<textarea name="" rows="" cols=""></textarea>
+				<p class="con-q"><span>支持中英文、数字</span> <button class="qued">确定</button></p>
+				</div>
+			</div>
+			<div class="marsk-container3">
+			<div class="tkyy_con3">
+				<button>男</button>
+				<button>女</button>
+				<button class="quxiao1" >取消</button>
+				</div>
+			</div>
+			<div class="marsk-container4">
+			<div class="tkyy_con4">
+				<textarea name="" rows="" cols=""></textarea>
+				<p class="con-q1"><span>支持中英文、数字</span> <button class="qud">确定</button></p>
+				</div>
 </div>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//上传头像
+				$(".tkyy").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container").click(function(event) {
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container').hide(); //淡出消失
+					}
+				});
+				$(".quxiao").click(function(){
+					$('.marsk-container').hide(); //淡出消失
+				})
+				$(".quxiao1").click(function(){
+					$('.marsk-container3').hide(); //淡出消失
+				})
+				//修改昵称点击确定输入框消失
+				$(".qued").click(function(){
+					$('.marsk-container1').hide(); //淡出消失
+				})
+								//修改昵称点击确定输入框消失
+				$(".qud").click(function(){
+					$('.marsk-container4').hide(); //淡出消失
+				})
+				
+				//修改昵称
+				$(".nc").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container1").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container1").click(function(event) {
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container1').hide(); //淡出消失
+					}
+				});
+								//修改性别
+				$(".xb").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container3").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container3").click(function(event) {
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container1').hide(); //淡出消失
+					}
+				});
+								//修改性别
+				$(".k1").click(function(event) {
+					event.stopPropagation(); //停止事件冒泡
+					$(".marsk-container4").toggle();
+				});
+				//点击空白处隐藏弹出层
+				$(".marsk-container4").click(function(event) {
+					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+						$('.marsk-container4').hide(); //淡出消失
+					}
+					});
+					$("#select_1").click(function() {
+					var scrollTop = document.body.scrollTop; //保存点击前滚动条的位置
+					window.onscroll = function() {
+						document.body.scrollTop = scrollTop; //赋值给滚动条的位置
+					}
+					}) 
+					$("#select_1").click(function() {
+					window.onscroll = function() {
+						document.body.scrollTop = document.body.scrollTop; //关闭后清除保存位置的值
+					}
+					})
+					});</script>
+<script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    /*设置全部参数*/
+    $.selectDate("#select_1",{
+        start:1980,
+        end:2018,
+        select:[2012,5,6],
+        title:" "
+    },function (data) {
+        console.log(data);
+    });
 
+</script>
 </html>
