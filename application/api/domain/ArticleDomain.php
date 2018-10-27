@@ -258,12 +258,13 @@ class ArticleDomain
         ];
 
         $articleRes = Db::name('article')->where('id',$id)->field('tag,type')->find();
-        if(!$articleRes){
+        if(!$articleRes || $articleRes['tag'] ==''){
             return $data;
         }
 
         $date = date('Y-m-d H:i:s');
         $arr = explode(',',$articleRes['tag']);
+
         $sql = "SELECT `article`.`id`,`article`.`user_id`,`article`.`title`,`article`.`type`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`user`.`nickname`,`user`.`mobile` FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
         $total_sql = "SELECT count(1) as total FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
 

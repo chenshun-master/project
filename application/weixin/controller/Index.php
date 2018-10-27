@@ -1,11 +1,21 @@
 <?php
 namespace app\weixin\controller;
 use app\api\domain\UserDomain;
+use think\App;
 use think\Request;
 use app\api\model\UserModel;
 use anerg\OAuth2\OAuth;
 class Index extends BaseController
 {
+
+
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->articleDomain = new \app\api\domain\ArticleDomain();
+    }
+
+
     /**
      * 网站首页
      * @return mixed
@@ -13,6 +23,21 @@ class Index extends BaseController
     public function index()
     {
         return $this->fetch('index/index');
+    }
+
+    /**
+     * 获取首页文章列表
+     */
+    public function getArticleList(Request $request){
+        $type = $request->param('type',0);
+        $page = $request->param('page',1);
+        $page_size = $request->param('page_size',15);
+
+        $data = $this->articleDomain->getHomeList($page,$page_size,$type);//halt($data);
+        $this->assign($data);
+
+        $data['conetnt'] = $this->fetch('index/index_tpl');
+        return $this->returnData($data,'',200);
     }
 
     /**
