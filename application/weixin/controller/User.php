@@ -37,9 +37,6 @@ class User extends BaseController
         $this->assign([
             'user_info'=>$user_info
         ]);
-
-
-
         return $this->fetch('user/main');
     }
     
@@ -49,8 +46,9 @@ class User extends BaseController
      */
     public function modify()
     {      
-   return $this->fetch('user/modify');
+        return $this->fetch('user/modify');
     }
+
     /**
      * 上传用户头像接口
      */
@@ -256,7 +254,11 @@ class User extends BaseController
 
     /**
      * 获取用户发布列表信息
+     * @param Request $request
      * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getPublishList(Request $request){
         if(!$this->checkLogin()){
@@ -279,6 +281,35 @@ class User extends BaseController
         $data['htmlContent'] = $this->fetch('user/userArticleList_tpl');
 
         return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 提交修改信息页面
+     */
+    public function editProfile(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $nickname   = $request->post('nickname','');
+        $sex        = (int)$request->post('sex',0);
+        $profile    = $request->post('profile',0);
+
+        if(empty($nickname)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $res = $this->_userDomain->editProfile([
+            'nickname'      =>$nickname,
+            'sex'           =>$sex,
+            'profile'       =>$profile
+        ]);
+
+        if(!$res){
+            return $this->returnData([],'修改失败',305);
+        }
+
+        return $this->returnData([],'修改成功',200);
     }
 
 }
