@@ -101,6 +101,18 @@ class Article extends BaseController
     }
 
     /**
+     * 获取首页文章列表
+     */
+    public function getArticleList(Request $request){
+        $type = $request->param('type',0);
+        $page = $request->param('page',1);
+        $page_size = $request->param('page_size',15);
+
+        $data = $this->articleDomain->getHomeList($page,$page_size,$type);
+        return $this->returnData($data,'',200);
+    }
+
+    /**
      * 获取手机端文章详情页
      */
     public function getArticleInfo(Request $request){
@@ -135,9 +147,7 @@ class Article extends BaseController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-
-
-        $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size,false,$this->getUserId());
+        $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size);
         return $this->returnData($data,'',200);
     }
 
