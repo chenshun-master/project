@@ -45,7 +45,12 @@ class User extends BaseController
      * @return mixed
      */
     public function modify()
-    {      
+    {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $this->assign('user_info',$this->getUserInfo());
         return $this->fetch('user/modify');
     }
 
@@ -286,7 +291,7 @@ class User extends BaseController
     /**
      * 提交修改信息页面
      */
-    public function editProfile(){
+    public function editProfile(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
@@ -299,7 +304,7 @@ class User extends BaseController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-        $res = $this->_userDomain->editProfile([
+        $res = $this->_userDomain->editProfile($this->getUserId(),[
             'nickname'      =>$nickname,
             'sex'           =>$sex,
             'profile'       =>$profile
