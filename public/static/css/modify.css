@@ -100,6 +100,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	font-size: 28px;
 	color: #000000;
 	background: white;
+	border-bottom: 1px solid #F1F1F1;
 
 }
 .tkyy_con button:nth-child(2) {
@@ -199,6 +200,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	font-size: 28px;
 	color: #000000;
 	background: white;
+		border-bottom: 1px solid #F1F1F1;
 
 }
 .tkyy_con3 button:nth-child(2) {

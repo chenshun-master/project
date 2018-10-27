@@ -9,6 +9,7 @@ body {font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
+*:focus { outline: none; }
 
 .con{
 	width: 100%;
