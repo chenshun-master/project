@@ -67,7 +67,7 @@ class Article extends BaseController
     /**
      * 文章评论处理
      */
-    public function comment(){
+    public function comment(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'请登录后再进行操作',401);
         }

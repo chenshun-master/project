@@ -25,6 +25,7 @@
             color: #FFFFFF;
             font-size: 0.28rem;
             border-radius: 10px;
+            z-index: 9999999999999999;
         }
 
         .cus-blue {
@@ -74,10 +75,8 @@
             <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
         </div>
 
-
-
         <div class="marsk-container">
-            <div class="tkyy_con">
+            <div class="tkyy_con" style="border: none;">
                 <div class="z-top">
                     <a id="tui" class="iconfont icon-close_light"
                        style="float: left;font-size: 50px; color:#999999 ;"></a>回复
@@ -95,8 +94,10 @@
         </div>
 
         <div class="kl1"><input type="text" placeholder="请输入评论内容" class="neirong">
-            <button class="fb1">发布</button>
+            <button class="fb1" onclick="objClass.publishComment()">发布</button>
         </div>
+
+
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
@@ -310,11 +311,12 @@
                                 obj.removeClass('cus-blue').removeClass('icon-appreciate_fill_light').addClass('icon-appreciate_light');
                             }
                         }
+                    }else{
+                        redream.showTip('请先进行登录');
                     }
                 }
             });
         },
-
 
         //子评论配置信息
         subreviewConf: {
@@ -400,6 +402,35 @@
 
             $(".marsk-container").show();
             this.loadSubreviewList();
+        },
+
+        //发表评论
+        publishComment:function(){
+            var content = $('.neirong').val();
+            $('.neirong').focus();
+            if(content != ''){
+                redream.showTip('发布');
+            }
+            $.ajax({
+                url: "/weixin/article/comment",
+                type: 'post',
+                data: {pid: 0, object_id: objClass.article_id,content:content},
+                dataType: 'json',
+                beforeSend: function () {
+                    objClass.oneLoading = true;
+                },
+                complete: function () {
+                    objClass.oneLoading = false;
+                },
+                success: function (res) {
+                    if (res.code == 200) {
+
+                        redream.showTip('发布成功');
+                    }else if (res.code == 401){
+                        redream.showTip('请先进行登录');
+                    }
+                }
+            });
         }
     };
 
@@ -458,11 +489,7 @@
 <script type="text/javascript">
     $(".xpq1").click(function () {
         $('.kl1').show();
-        $('.neirong').focus().blur(function(){
-            $(this).val('');
-            $('.kl1').hide();
-            $(".xpq1").show();
-        });
+        $('.neirong').focus();
     });
 
     $(function () {
