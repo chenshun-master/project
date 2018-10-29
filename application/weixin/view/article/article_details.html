@@ -38,6 +38,7 @@
 
 <body style="background:#ffffff;">
 <div class="con">
+	<textarea name="" rows="" cols=""></textarea>
     <div class="ding"><p>详情页</p></div>
     <div class="wx-top">
         <p class="top1">{$article_info['title']}</p>
@@ -73,6 +74,10 @@
 
             </div>
             <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
+        </div>
+
+        <div class="" style="height: 120px;">
+        	
         </div>
 
         <div class="marsk-container">
@@ -475,9 +480,11 @@
         });
         $("#tui").click(function () {
             $('.marsk-container').hide(); //淡出消失
-
         })
-
+        $('.cus-reply-btn').click(function(){
+        $('html,body').addClass('ovfHiden'); //使网页不可滚动
+   $(".tkyy_con").show();
+        })
     });
 
     $('.cus-touser-main').on('click', function () {
