@@ -51,7 +51,6 @@ class ArticleDomain
      * @throws \think\exception\DbException
      */
     public function createComment($data,$tablename='article'){
-        $data['floor']              = 1;
         $data['like_count']         = 0;
         $data['status']             = 1;
         $data['table_name']         = $tablename;
@@ -69,20 +68,26 @@ class ArticleDomain
             if(!$commentRes || $commentRes['object_id'] != $data['object_id'] || $data['table_name'] != $commentRes['table_name'] || $commentRes['user_id'] == $data['user_id']){
                 return false;
             }
-            $data['floor'] = $commentRes['floor'] + 1;
         }
 
         Db::startTrans();
         try {
-            $res3 = Db::name('comment')->insert($data);
-            if(!$res3){
+            $id = Db::name('comment')->insertGetId($data);
+            if(!$id){
                 return false;
+            }
+
+            $path = ($data['parent_id'] == 0) ? ",{$id}," : "{$commentRes['path']}{$id}," ;
+
+            $res1 = Db::name('comment')->where('id',$id)->update(['path'=>$path]);
+            if(!$res1){
+                Db::rollback();return false;
             }
 
             if($tablename == 'article'){
                 $res4 = Db::name('article')->where('id',$data['object_id'])->inc('comment_count')->update();
                 if(!$res4){
-                    Db::rollback();
+                    Db::rollback();return false;
                 }
             }
             Db::commit();return true;
@@ -114,17 +119,6 @@ class ArticleDomain
         if($articleRes){
             $data['article_info'] = $articleRes;
             Db::name('article')->where('id',$id)->inc('hits')->update();
-
-            $commentRes = Db::name('comment')->where('object_id',$id)->order('created_time', 'asc')->column('*','id');
-
-            $array = [];
-            foreach ($commentRes as $k => $val){
-                $tmp_array = $val;
-                $tmp_array['parent_info'] = isset($commentRes[$val['parent_id']]) ? $commentRes[$val['parent_id']] :[];
-                $array[] = $tmp_array;
-            }
-
-            $data['comment_infos'] = $array;
         }
 
         return $data;
@@ -419,6 +413,55 @@ class ArticleDomain
         }
 
         $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取二级以上评论
+     */
+    public function getSecondComment($object_id,$comment_id,$page,$page_size,$user_id=0){
+        $obj = Db::name('comment');
+        $obj->alias('comment');
+        $obj->where('comment.object_id',$object_id);
+        $obj->where('comment.parent_id','>',0);
+        $obj->where('comment.table_name','article');
+        $obj->where('comment.path','like',",{$comment_id},%");
+        $obj->leftJoin('wl_user user','comment.user_id = user.id');
+        $obj->order('comment.created_time', 'desc');
+        $total = $obj->count();
+        if($user_id == 0){
+            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
+        }else{
+            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = COMMENT.id) as isZan");
+        }
+
+        $rows = $obj->page($page,$page_size)->select();
+
+        if($rows){
+            //获取子评论
+            $ids = [];
+            foreach($rows as $val){
+                $ids[]  = $val['parent_id'];
+            }
+
+            $rows2 = Db::table('wl_comment')
+                ->where('wl_comment.id', 'in', $ids)
+                ->leftJoin('wl_user user','wl_comment.user_id = user.id')
+                ->column("wl_comment.id,wl_comment.content,wl_comment.created_time,user.portrait,user.nickname,user.mobile",'wl_comment.id');
+
+            foreach($rows as $_key => $_val){
+                $rows[$_key]['parent'] = $rows2[$_val['parent_id']];
+                if(!empty($rows[$_key]['parent']['mobile'])){
+                    $rows[$_key]['parent']['mobile'] = mobileFilter($rows[$_key]['parent']['mobile']);
+                }
+            }
+        }
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,

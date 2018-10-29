@@ -258,16 +258,42 @@ class Article extends BaseController
         return $this->returnData($data,'',200);
     }
 
-    public function test(){
-        $data = [
-            'user_id'      =>4,
-            'parent_id'    =>25,
-            'object_id'    =>1,
-            'content'      =>'asdfasdfasdf11111111222222222223333333',
-            'created_time' =>date('Y-m-d H:i:s')
-        ];
+    /**
+     * 获取文章二级以上评论信息
+     */
+    public function getSecondCommentList(Request $request){
+        $id             = (int)$request->param('id',0);
+        $comment_id     = (int)$request->param('comment_id',0);
+        $page           = $request->param('page',1);
+        $page_size      = $request->param('page_size',20);
+        $user_id        = 0;
 
-        $res = $this->articleDomain->createComment($data,'interlocution');
-        dump($res);
+        if(empty($id) || empty($page_size)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        if($this->checkLogin()){
+            $user_id = $this->getUserInfo()['id'];
+        }
+
+        $data = $this->articleDomain->getSecondComment($id,$comment_id,$page,$page_size,$user_id);
+        return $this->returnData($data,'',200);
+    }
+
+    public function test(){
+        $data = $this->articleDomain->getSecondComment(6,64,1,15,0);
+        halt($data);
+
+//        for($i=0;$i<=30;$i++){
+//            $data = [
+//                'user_id'      =>7,
+//                'parent_id'    =>312,
+//                'object_id'    =>6,
+//                'content'      =>'四级评论-'.$i.'fasdnfjaksnksdmfa asdjkf 安师大 暗示你  那可就  健康法南京南京看你家开发商能尽快 卡死',
+//                'created_time' =>date('Y-m-d H:i:s')
+//            ];
+//
+//            $this->articleDomain->createComment($data,'article');
+//        }
     }
 }

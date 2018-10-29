@@ -263,12 +263,14 @@ a{text-decoration: none;color: #221815;display: block;}
 
 .hf-sj {
 	display: block;
-	width: 150px;
+	min-width: 100px;
+	max-width: 200px;
 	height: 46px;
 	line-height: 46px;
 	font-size: 0.24rem;
 	color: #222222;
 	float: left;
+    padding-right:20px;
 }
 
 .wx-hf button {
