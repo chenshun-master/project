@@ -410,26 +410,30 @@
         },
 
         //发表评论
+        publishCommentConf:{
+            loading:false,
+        },
         publishComment:function(){
             var content = $('.neirong').val();
             $('.neirong').focus();
-            if(content != ''){
-                redream.showTip('发布');
+
+            if(this.publishCommentConf.loading){
+                return false;
             }
+
             $.ajax({
                 url: "/weixin/article/comment",
                 type: 'post',
                 data: {pid: 0, object_id: objClass.article_id,content:content},
                 dataType: 'json',
                 beforeSend: function () {
-                    objClass.oneLoading = true;
-                },
-                complete: function () {
-                    objClass.oneLoading = false;
+                    objClass.publishCommentConf.loading = true;
                 },
                 success: function (res) {
+                    objClass.publishCommentConf.loading = false;
                     if (res.code == 200) {
-
+                        $('.neirong').val('');
+                        $('.kl1').hide();
                         redream.showTip('发布成功');
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
@@ -491,7 +495,6 @@
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
     });
 </script>
-
 
 <script type="text/javascript">
     $(".xpq1").click(function () {
