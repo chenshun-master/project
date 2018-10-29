@@ -27,7 +27,7 @@
             border-radius: 10px;
         }
 
-        .cus-blue{
+        .cus-blue {
             color: #7DB0E8 !important;
         }
     </style>
@@ -75,10 +75,11 @@
         </div>
 
         <div class="wx-foot">
-            <input type="text" placeholder="写评论..."/>
+            <input type="text" placeholder="写评论..." class="xpq1"/>
             <dl></dl>
             <dt></dt>
         </div>
+
         <div class="marsk-container">
             <div class="tkyy_con">
                 <div class="z-top">
@@ -89,6 +90,10 @@
                 <div id="cus-subreview-container"></div>
 
             </div>
+        </div>
+
+        <div class="kl1"><input type="text" placeholder="请输入评论内容"/class="neirong">
+            <button class="fb1">发布</button>
         </div>
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -203,9 +208,9 @@
 
 
                 if (data.reply_count == 0 || data.reply_count == null) {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="'+data.id+'"  >回复</button>';
+                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  >回复</button>';
                 } else {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="'+data.id+'" >' + data.reply_count + ' 回复</button>';
+                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '" >' + data.reply_count + ' 回复</button>';
                 }
 
                 var html = '<div class="pl">' +
@@ -267,7 +272,7 @@
         },
 
         //评论点赞方法
-        clickCommentFabulous: function (obj,flag) {
+        clickCommentFabulous: function (obj, flag) {
             var id = obj.data('id');
             var type = obj.data('click') == 1 ? 2 : 1;
             $.ajax({
@@ -283,7 +288,7 @@
                 },
                 success: function (res) {
                     if (res.code == 200) {
-                        if(flag == 1){
+                        if (flag == 1) {
                             if (type == 1) {
                                 obj.data('click', 1);
                                 obj.text(parseInt(obj.text()) + 1);
@@ -292,7 +297,7 @@
                                 obj.data('click', 0);
                                 obj.text(parseInt(obj.text()) - 1);
                             }
-                        }else{
+                        } else {
                             if (type == 1) {
                                 obj.data('click', 1);
                                 obj.next().text(parseInt(obj.next().text()) + 1);
@@ -309,36 +314,35 @@
         },
 
 
-
         //子评论配置信息
-        subreviewConf:{
+        subreviewConf: {
             loading: false,
             ini: false,
             page: 0,
             page_total: 1,
             page_size: 10,
             template: function (data) {
-                var css = (data.isZan != 0) ? ' icon-appreciate_fill_light cus-blue ':'icon-appreciate_light';
-                return  '<div class="wz1">' +
-                        '<img src="'+ data.portrait +'" />' +
-                        '<div class="wz2">' +
-                            '<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">'+data.nickname+'</span><span style="float: right;color: #999999;font-size: 24px;"><i class="iconfont cus-pinglun-click '+ css+'" data-id="' + data.id + '" data-click="' + data.isZan + '" ></i><span class="cus-pinglun-text">'+ data.like_count +'</span></span></p>' +
-                            '<p>'+data.content+'</p>' +
-                            '<p>'+ redream.beautifyTime(data.created_time)+'</p>' +
-                            '<div class="wz3" style="margin-top: 20px;">'+
-                                '<img src="/static/image/user/default-head.png"/>'+
-                                '<div class="wz4">'+
-                                '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;">'+ data.parent.nickname +'</span></p>' +
-                                '<p>'+ data.parent.content +'</p>\n' +
-                                '<p style="font-size:0.18rem;color: #888888;margin-left: 64px;margin-top: 10px;">'+ redream.beautifyTime(data.parent.created_time) +'</p>' +
-                             '</div>' +
-                        '</div>' +
-                        '</div>' +
+                var css = (data.isZan != 0) ? ' icon-appreciate_fill_light cus-blue ' : 'icon-appreciate_light';
+                return '<div class="wz1">' +
+                    '<img src="' + data.portrait + '" />' +
+                    '<div class="wz2">' +
+                    '<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">' + data.nickname + '</span><span style="float: right;color: #999999;font-size: 24px;"><i class="iconfont cus-pinglun-click ' + css + '" data-id="' + data.id + '" data-click="' + data.isZan + '" ></i><span class="cus-pinglun-text">' + data.like_count + '</span></span></p>' +
+                    '<p>' + data.content + '</p>' +
+                    '<p>' + redream.beautifyTime(data.created_time) + '</p>' +
+                    '<div class="wz3" style="margin-top: 20px;">' +
+                    '<img src="/static/image/user/default-head.png"/>' +
+                    '<div class="wz4">' +
+                    '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;">' + data.parent.nickname + '</span></p>' +
+                    '<p>' + data.parent.content + '</p>\n' +
+                    '<p style="font-size:0.18rem;color: #888888;margin-left: 64px;margin-top: 10px;">' + redream.beautifyTime(data.parent.created_time) + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                     '</div>';
             }
         },
         //加载子评论信息
-        loadSubreviewList:function(){
+        loadSubreviewList: function () {
             if (this.subreviewConf.loading) {
                 return false;
             }
@@ -352,7 +356,12 @@
             $.ajax({
                 url: "/weixin/article/getSecondCommentList",
                 type: 'post',
-                data: {id: objClass.article_id,comment_id:objClass.subreviewConf.commentid, page: objClass.subreviewConf.page, page_size: objClass.subreviewConf.page_size},
+                data: {
+                    id: objClass.article_id,
+                    comment_id: objClass.subreviewConf.commentid,
+                    page: objClass.subreviewConf.page,
+                    page_size: objClass.subreviewConf.page_size
+                },
                 dataType: 'json',
                 beforeSend: function () {
                     objClass.subreviewConf.loading = true;
@@ -400,25 +409,30 @@
         objClass.loadCommentList();
 
         $(document).on('click', '.cus-comment-fabulous', function () {
-            objClass.clickCommentFabulous($(this),1);
+            objClass.clickCommentFabulous($(this), 1);
         });
 
         $(document).on('click', '.cus-reply-btn', function () {
             objClass.replyComment($(this));
         });
 
-        $(document).on('click','.cus-pinglun-click',function(){
-            objClass.clickCommentFabulous($(this),2);
+
+        $(document).on('click', '.cus-pinglun-click', function () {
+            objClass.clickCommentFabulous($(this), 2);
         });
     }, 1000);
+
+    $(document).on('click', '.cus-recommend-href', function () {
+        window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
+    });
 
 
     $(document).ready(function () {
         $(".cus-reply-btn").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
+            $(".marsk-container").css({'overflow': 'hidden'});
         });
-
         //点击空白处隐藏弹出层
         $(".marsk-container").click(function (event) {
             var _con = $('.tkyy_con'); // 设置目标区域
@@ -426,18 +440,32 @@
                 $('.marsk-container').hide(); //淡出消失
             }
         });
-
         $("#tui").click(function () {
             $('.marsk-container').hide(); //淡出消失
-        })
-    });
 
-    $(document).on('click', '.cus-recommend-href', function () {
-        window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
+        })
+
     });
 
     $('.cus-touser-main').on('click', function () {
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".xpq1").click(function () {
+        $('.kl1').show();
+    });
+
+    $(function () {
+        $('.kl1 input').on('.kl1 input ', function () {
+            if (($.trim($('.neirong').val()) !== "")) {
+                $('.fb1').css({'color': '#7DB0E8'});
+            } else {
+                $('.fb1').css({'color': '#EBEBEB'});
+            }
+        });
     });
 </script>
 </html>
