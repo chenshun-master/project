@@ -43,14 +43,18 @@
         <p>修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
     </div>
     <div class="wx-con">
-        <p><span style="margin-left: 36px;">昵称</span><input style="margin-left: 100px;" placeholder="请输入昵称" class="ln1"  maxlength="20" id="fr-nickname" value="{$user_info['nickname']}"  /></p>
-        <p class="xb"><span style="margin-left: 36px;">性别</span><span style="margin-left: 100px;">女</span></p>
+        <p><span style="margin-left: 36px;">昵称</span><input style="margin-left: 60px;" placeholder="请输入昵称" class="ln1"  maxlength="20" id="fr-nickname" value="{$user_info['nickname']}"  /></p>
+        <p class="xb"><span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;">女</span></p>
     </div>
     <div class="wx-con">
-        <p><span style="margin-left: 36px;">生日</span><span style="margin-left: 100px;width: 500px;" id="select_1"  >2000年1月1日</span></p>
+        <p><span style="margin-left: 36px;">生日</span><span style="margin-left: 60px;width: 500px;" id="select_1"  >2000年1月1日</span></p>
         <p><span style="margin-left: 36px;">地区</span><span style="margin-left: 500px;color: #7DB0E8;">待完善</span></p>
     </div>
-    <p class="k1"><span style="margin-left: 36px;">简介</span><span style="margin-left: 100px;">{$user_info['profile']}</span></p>
+    <div class="jianj">
+    	<span>简介</span>
+    	<textarea name="" rows="" cols=""></textarea>
+    	<span class="zhongj">支持中英文、数字</p>
+    </div>
     <button class="btn" onclick="objClass.submit()">保存</button>
     <div class="marsk-container">
         <div class="tkyy_con">
@@ -74,14 +78,7 @@
             <button class="quxiao1">取消</button>
         </div>
     </div>
-    <div class="marsk-container4">
-        <div class="tkyy_con4">
-            <textarea name="" rows="" cols=""></textarea>
-            <p class="con-q1"><span>支持中英文、数字</span>
-                <button class="qud">确定</button>
-            </p>
-        </div>
-    </div>
+
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -122,10 +119,6 @@
         $(".k1").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container4").toggle();
-        });
-        //点击空白处隐藏弹出层
-        $(".marsk-container4").click(function (event) {
-            $('.marsk-container4').hide(); //淡出消失
         });
         $("#select_1").click(function () {
             var scrollTop = document.body.scrollTop; //保存点击前滚动条的位置
