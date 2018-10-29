@@ -199,8 +199,9 @@ margin-top: 20px;
 
 .pl {
 	width: 680px;
-	height: 333px;
+	height: 270px;
 	margin: 0 auto;
+	padding: 20px 0px;
 }
 
 .pl img {
@@ -216,10 +217,11 @@ margin-top: 20px;
 
 .pin {
 	width: 576px;
-	height: 276px;
+	height: auto;
 	float: right;
 	margin-top: 50px;
 	margin-right: 10px;
+
 }
 
 .xm span:nth-child(1) {
@@ -247,16 +249,15 @@ margin-top: 20px;
 
 .wx-p {
 	width: 576px;
-	height: 112px;
+	height: quto;
 	font-size: 0.30rem;
 	color: #1F1F1F;
-	margin-top: 50px;
-	;
-	overflow: hidden;
+	margin-top: 50px;;
+	/*overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 2;*/
 }
 
 .wx-hf {
@@ -296,6 +297,7 @@ margin-top: 20px;
 }
 
 .wx-foot {
+	display: none;
     width: 100%;
     height: 100px;
     position: fixed;
@@ -303,6 +305,7 @@ margin-top: 20px;
     background: white;
     padding-top: 10px;
     border-top: 1px solid rgb(242, 242, 242);
+    z-index: 2;
 }
 
 .wx-foot input {
@@ -350,17 +353,17 @@ margin-top: 20px;
 	left: 0;
 	bottom: 0px;
 	background: rgba(0, 0, 0, .5);
-	z-index: 10;
+	z-index: 99999;
 }
 
 .tkyy_con {
 	position: fixed;
-	bottom: 0;
+	top: 0;
 	width: 100%;
-	height: 1200px;
 	background: #FFFFFF;
 	margin: 0 auto;
 	border-radius: 10px;
+	z-index: 1;
 }
 
 .z-top {
@@ -375,8 +378,9 @@ margin-top: 20px;
 
 .wz1 {
 	width: 100%;
-	height: 466px;
-	border: 1px solid #F1F1F1;
+	height: 510px;
+	border-bottom: 1px solid #F1F1F1;
+	margin-left: -40px;
 }
 
 .wz1 img {
@@ -384,9 +388,12 @@ margin-top: 20px;
 	height: 72px;
 	border-radius: 50%;
 	margin-top: 30px;
-	margin-left: 36px;
+	margin-left: 45px;
 	display: block;
 	float: left;
+	background: url(../image/user/bj-8.png)no-repeat 10px 10px;
+	background-size: 25px;
+	background: darkgray;
 }
 .wz2 img {
 	width: 56px;
@@ -399,7 +406,7 @@ margin-top: 20px;
 }
 
 .wz2 {
-	width: 574px;
+	width: 535px;
 	height: 400px;
 	float: right;
 	margin-top: 36px;
@@ -408,13 +415,17 @@ margin-top: 20px;
 
 .wz2 p:nth-child(1) {
 	height: auto;
-	line-height: 40px;
+margin-top: -30px;
+
 }
 .wz4 p:nth-child(1) {
 	height: auto;
 	line-height: 30px;
 }
-
+.wz4{
+	padding: 5px 0;
+	height: auto;
+}
 .wz2 i {
 	font-size: 50px;
 	color: #999999;
@@ -422,9 +433,10 @@ margin-top: 20px;
 }
 
 .wz2 p:nth-child(2) {
-	width: 578px;
+	width: 560px;
 	color: #1F1F1F;
 	font-size: 0.32rem;
+	margin-top: 10px;
 	height: auto;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -433,12 +445,13 @@ margin-top: 20px;
 	-webkit-line-clamp: 3; //显示的行
 }
 .wz4 p:nth-child(2) {
-	width: 484px;
+	width: 530px;
 	color: #1F1F1F;
-	font-size: 0.22rem;
+	font-size: 0.25rem;
 	margin-top: 10px;
 	height: auto;
 	overflow: hidden;
+	padding: 10px 10px 0px 10px;
 	text-overflow: ellipsis;
 	display: -webkit-box; //作为弹性伸缩盒子模型显示。
 	-webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
@@ -451,7 +464,7 @@ margin-top: 20px;
 	height: auto;
 }
 .wz3{
-	height: 160px;
+	height: auto;
 	background: #F0F0F0;
 }
 .mp{
@@ -464,7 +477,6 @@ margin-top: 20px;
 	-webkit-line-clamp: 3; //显示的行
 }
 .kl1 {
-	display: none;
 	width: 100%;
 	height: 100px;
 	position: fixed;

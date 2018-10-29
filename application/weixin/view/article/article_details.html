@@ -38,7 +38,6 @@
 
 <body style="background:#ffffff;">
 <div class="con">
-	<textarea name="" rows="" cols=""></textarea>
     <div class="ding"><p>详情页</p></div>
     <div class="wx-top">
         <p class="top1">{$article_info['title']}</p>
@@ -87,7 +86,7 @@
                        style="float: left;font-size: 50px; color:#999999 ;"></a>回复
                 </div>
 
-                <div id="cus-subreview-container"></div>
+                <div id="cus-subreview-container" style="overflow-y: auto;overflow-x: hidden;padding: 20px 0px;"></div>
 
             </div>
         </div>
@@ -102,16 +101,16 @@
             <button class="fb1" onclick="objClass.publishComment()">发布</button>
         </div>
 
-        <!--<div style="z-index: 99999;height: 800px;width: 100%;background: red;position: fixed;top:20px;overflow-y: auto">-->
-            <!--<div style="height: 20000px;width: 100%;background: #0FD6DD;">-->
-                <!--adssfasdnflaksnd <br/>-->
+        <!--<div style="z-index: 99999;height: 800px;width: 100%;background: red;position: fixed;top:20px;overflow-y: auto">
+            <div style="height: 20000px;width: 100%;background: #0FD6DD;">
+                adssfasdnflaksnd <br/>
 
 
-                <!--adssfasdnflaksnd <br/>-->
-                <!--adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>-->
+                adssfasdnflaksnd <br/>
+                adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>
 
-            <!--</div>-->
-        <!--</div>-->
+            </div>
+        </div>-->
 
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -351,9 +350,9 @@
                     '<div class="wz3" style="margin-top: 20px;">' +
                     '<img src="/static/image/user/default-head.png"/>' +
                     '<div class="wz4">' +
-                    '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;">' + data.parent.nickname + '</span></p>' +
+                    '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;float: left;margin-top: 20px;margin-left: 11px;">' + data.parent.nickname + '</span></p>' +
                     '<p>' + data.parent.content + '</p>\n' +
-                    '<p style="font-size:0.18rem;color: #888888;margin-left: 64px;margin-top: 10px;">' + redream.beautifyTime(data.parent.created_time) + '</p>' +
+                    '<p style="font-size:0.20rem;color: #888888;margin-top: 10px;margin-left:10px">' + redream.beautifyTime(data.parent.created_time) + '</p>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -414,9 +413,18 @@
             this.subreviewConf.commentid = obj.data('commentid');
 
             $('#cus-subreview-container').html('');
-
-            $(".marsk-container").show();
+            var h = getClientHeight();
+            
+            console.log(h);
+            $('.marsk-container').css('height',h + 'px').show();
+			var h2 = h - 82;
+			console.log(h2);
+            $('#cus-subreview-container').css('height',h2 + 'px');
+//          alert(getClientHeight());
             this.loadSubreviewList();
+            
+//          redream.unScroll();
+
         },
 
         //发表评论
@@ -462,7 +470,7 @@
 
         $(document).on('click', '.cus-comment-fabulous', function () {
             objClass.clickCommentFabulous($(this), 1);
-        });	
+        });
 
         $(document).on('click', '.cus-reply-btn', function () {
             objClass.replyComment($(this));
@@ -483,8 +491,7 @@
         $(".cus-reply-btn").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
-        
-
+            $(".marsk-container").css({'overflow': 'hidden'});
         });
         //点击空白处隐藏弹出层
         $(".marsk-container").click(function (event) {
@@ -496,7 +503,10 @@
         $("#tui").click(function () {
             $('.marsk-container').hide(); //淡出消失
         })
-     
+        $('.cus-reply-btn').click(function(){
+        $('html,body').addClass('ovfHiden'); //使网页不可滚动
+   $(".tkyy_con").show();
+        })
     });
 
     $('.cus-touser-main').on('click', function () {
@@ -511,9 +521,6 @@
     });
 
     // document.body.parentNode.style.overflow = 'hidden';//隐藏且禁用横向纵向两个滚动条
-    redream.unScroll();
-    redream.removeUnScroll();
-
 
     $(function () {
         $('.kl1 input').on('.kl1 input ', function () {
@@ -524,6 +531,18 @@
             }
         });
     });
-     
+    function getClientHeight()
+{
+  var clientHeight=0;
+  if(document.body.clientHeight&&document.documentElement.clientHeight)
+  {
+  var clientHeight = (document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+  }
+  else
+  {
+  var clientHeight = (document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+  }
+  return clientHeight;
+}
 </script>
 </html>

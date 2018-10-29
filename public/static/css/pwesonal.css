@@ -35,7 +35,7 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 
 .wx-top dt {
-	width: 184px;
+	width: auto;
 	height: 32px;
 	color: #1B1B1B;
 	font-size: 0.32rem;
