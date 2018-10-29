@@ -462,7 +462,7 @@
 
         $(document).on('click', '.cus-comment-fabulous', function () {
             objClass.clickCommentFabulous($(this), 1);
-        });	
+        });
 
         $(document).on('click', '.cus-reply-btn', function () {
             objClass.replyComment($(this));
@@ -483,8 +483,7 @@
         $(".cus-reply-btn").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
-        
-
+            $(".marsk-container").css({'overflow': 'hidden'});
         });
         //点击空白处隐藏弹出层
         $(".marsk-container").click(function (event) {
@@ -496,7 +495,10 @@
         $("#tui").click(function () {
             $('.marsk-container').hide(); //淡出消失
         })
-     
+        $('.cus-reply-btn').click(function(){
+        $('html,body').addClass('ovfHiden'); //使网页不可滚动
+   $(".tkyy_con").show();
+        })
     });
 
     $('.cus-touser-main').on('click', function () {
@@ -514,7 +516,6 @@
     redream.unScroll();
     redream.removeUnScroll();
 
-
     $(function () {
         $('.kl1 input').on('.kl1 input ', function () {
             if (($.trim($('.neirong').val()) !== "")) {
@@ -524,6 +525,5 @@
             }
         });
     });
-     
 </script>
 </html>
