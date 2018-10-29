@@ -10,8 +10,7 @@
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/modify.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/mobileSelect.css"/>
-    <script src="/static/js/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/datePicker.js" type="text/javascript" charset="utf-8"></script>
     <title>修改資料</title>
     <style>
         *:focus {
@@ -32,11 +31,12 @@
             font-size:0.28rem;
             border-radius:10px ;
         }
+
     </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
-<body style="background: #ffffff;">
+<body style="background: #ffffff;overflow:auto">
 <div class="con">
     <div class="wx-top tkyy">
         <img src="/static/image/user/default-head.png"/>
@@ -47,7 +47,7 @@
         <p class="xb"><span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;">女</span></p>
     </div>
     <div class="wx-con">
-        <p><span style="margin-left: 36px;">生日</span><span style="margin-left: 60px;width: 500px;" id="select_1"  >2000年1月1日</span></p>
+        <p><span style="margin-left: 36px;">生日</span><input style="margin-left: 60px;width: 500px;height: 70px;font-size: 28px;" id="demo1" placeholder="2012-8-9" readonly="readonly"></input></p>
         <p><span style="margin-left: 36px;">地区</span><span style="margin-left: 500px;color: #7DB0E8;">待完善</span></p>
     </div>
     <div class="jianj">
@@ -136,15 +136,6 @@
 <script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-    /*设置全部参数*/
-    $.selectDate("#select_1", {
-        start: 1980,
-        end: 2018,
-        select: [2012, 5, 6],
-        title: " "
-    }, function (data) {
-        console.log(data);
-    });
 
 
     var objClass = {
@@ -179,6 +170,24 @@
             });
         }
     };
+    //编辑日期
+    
 
+			var calendar = new datePicker();
+			calendar.init({
+				'trigger': '#demo1',
+				/*按钮选择器，用于触发弹出插件*/
+				'type': 'date',
+				/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+				'minDate': '1900-1-1',
+				/*最小日期*/
+				'maxDate': '2100-12-31',
+				/*最大日期*/
+				'onSubmit': function() { /*确认时触发事件*/
+					var theSelectData = calendar.value;
+					console.log(theSelectData);
+				},
+				'onClose': function() { /*取消时触发事件*/ }
+			});
 </script>
 </html>

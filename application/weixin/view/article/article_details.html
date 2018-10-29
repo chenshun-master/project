@@ -65,7 +65,7 @@
         </div>
 
         <div class="wx-foot">
-            <input type="text" placeholder="写评论..."/>
+            <input type="text" placeholder="写评论..." class="xpq1" />
             <dl></dl>
             <dt></dt>
         </div>
@@ -108,6 +108,7 @@
 				</div>
 			</div>
     </div>
+    	<div class="kl1"><input type="text" placeholder="请输入评论内容"/class="neirong"> <button class="fb1">发布</button></div>
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
@@ -338,23 +339,26 @@
             objClass.replyComment($(this));
         });
     },1000);
-    		$(document).ready(function() {
-				$(".cus-reply-btn").click(function(event) {
-					event.stopPropagation(); //停止事件冒泡
-					$(".marsk-container").toggle();
-				});
-				//点击空白处隐藏弹出层
-				$(".marsk-container").click(function(event) {
-					var _con = $('.tkyy_con'); // 设置目标区域
-					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+	    		$(document).ready(function() {
+					$(".cus-reply-btn").click(function(event) {
+						event.stopPropagation(); //停止事件冒泡
+						$(".marsk-container").toggle();
+						$(".marsk-container").css({'overflow':'hidden'});
+					});
+					//点击空白处隐藏弹出层
+					$(".marsk-container").click(function(event) {
+						var _con = $('.tkyy_con'); // 设置目标区域
+						if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+							$('.marsk-container').hide(); //淡出消失
+						}
+					});
+					$("#tui").click(function(){
 						$('.marsk-container').hide(); //淡出消失
-					}
+					
+					})
+					
 				});
-				$("#tui").click(function(){
-					$('.marsk-container').hide(); //淡出消失
-				})
-			});
-
+				
     $(document).on('click','.cus-recommend-href',function(){
         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
     });
@@ -362,5 +366,22 @@
     $('.cus-touser-main').on('click',function(){
         window.location.href = '/weixin/article/userMain/id/'+ $(this).data('user_id');
     });
+
+</script>
+<script type="text/javascript">
+		$(".xpq1").click(function(){
+					$('.kl1').show();
+			});
+			
+	
+$(function(){
+    $('.kl1 input').on('.kl1 input ',function(){
+        if(($.trim($('.neirong').val())!=="")){
+        $('.fb1').css({'color':'#7DB0E8'});
+    }else{
+        $('.fb1').css({'color':'#EBEBEB'});
+         }
+    });
+});
 </script>
 </html>
