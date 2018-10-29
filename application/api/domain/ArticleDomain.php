@@ -218,6 +218,7 @@ class ArticleDomain
 
         $obj->where('article.status', 1);
         $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+        $obj->order('article.is_top', 'desc');
         $obj->order('article.published_time', 'desc');
         $total = $obj->count();
 
