@@ -3,8 +3,7 @@
 <head>
     <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection"/>
@@ -39,20 +38,28 @@
 <body style="background: #ffffff;overflow:auto">
 <div class="con">
     <div class="wx-top tkyy">
-        <img src="/static/image/user/default-head.png"/>
+        <img src="{$user_info['portrait']}"/>
         <p>修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
     </div>
     <div class="wx-con">
         <p><span style="margin-left: 36px;">昵称</span><input style="margin-left: 60px;" placeholder="请输入昵称" class="ln1"  maxlength="20" id="fr-nickname" value="{$user_info['nickname']}"  /></p>
-        <p class="xb"><span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;">女</span></p>
+        <p class="xb">
+            <span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;"  id="fr-sex" data-sex="{$user_info['sex']}">
+                {switch name="user_info.sex"}
+                    {case value="1"}男{/case}
+                    {case value="2"}女{/case}
+                    {default /} 未知
+                {/switch}
+            </span>
+        </p>
     </div>
     <div class="wx-con">
-        <p><span style="margin-left: 36px;">生日</span><input style="margin-left: 60px;width: 500px;height: 70px;font-size: 28px;" id="demo1" placeholder="2012-8-9" readonly="readonly"></input></p>
+        <p><span style="margin-left: 36px;">生日</span><input style="margin-left: 60px;width: 500px;height: 70px;font-size: 28px;" id="fr-birthday-date" placeholder="设置我的生日" readonly="readonly" value="{$user_info['birthday_date']}"></p>
         <p><span style="margin-left: 36px;">地区</span><span style="margin-left: 500px;color: #7DB0E8;">待完善</span></p>
     </div>
     <div class="jianj">
     	<span>简介</span>
-    	<textarea name="" rows="" cols=""></textarea>
+    	<textarea name="" rows="" cols="" id="fr-profile" >{$user_info['profile']}</textarea>
     	<span class="zhongj">支持中英文、数字</p>
     </div>
     <button class="btn" onclick="objClass.submit()">保存</button>
@@ -63,23 +70,25 @@
             <button class="quxiao">取消</button>
         </div>
     </div>
-    <div class="marsk-container1">
-        <div class="tkyy_con1">
-            <textarea name="" rows="" cols=""></textarea>
-            <p class="con-q"><span>支持中英文、数字</span>
-                <button class="qued">确定</button>
-            </p>
-        </div>
-    </div>
+    <!--<div class="marsk-container1">-->
+        <!--<div class="tkyy_con1">-->
+            <!--<textarea name="" rows="" cols="" style="padding-left: 5px !important;" ></textarea>-->
+            <!--<p class="con-q"><span>支持中英文、数字</span>-->
+                <!--<button class="qued">确定</button>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="marsk-container3">
-        <div class="tkyy_con3">
-            <button>男</button>
-            <button>女</button>
-            <button class="quxiao1">取消</button>
+        <div class="tkyy_con3" id="cus-sex-btns">
+            <button data-val="1" >男</button>
+            <button data-val="2">女</button>
+            <button class="quxiao1" data-val="cancel">取消</button>
         </div>
     </div>
 
 </body>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         //上传头像
@@ -87,77 +96,83 @@
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
         });
+
         //点击空白处隐藏弹出层
         $(".marsk-container").click(function (event) {
-
             $('.marsk-container').hide(); //淡出消失
-
         });
+
         $(".quxiao").click(function () {
             $('.marsk-container').hide(); //淡出消失
         })
+
         $(".quxiao1").click(function () {
             $('.marsk-container3').hide(); //淡出消失
         })
 
         //点击空白处隐藏弹出层
         $(".marsk-container1").click(function (event) {
-
             $('.marsk-container1').hide(); //淡出消失
-
         });
+
         //修改性别
         $(".xb").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container3").toggle();
         });
+
         //点击空白处隐藏弹出层
         $(".marsk-container3").click(function (event) {
             $('.marsk-container1').hide(); //淡出消失
         });
+
         //修改性别
         $(".k1").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container4").toggle();
         });
+
         $("#select_1").click(function () {
             var scrollTop = document.body.scrollTop; //保存点击前滚动条的位置
             window.onscroll = function () {
                 document.body.scrollTop = scrollTop; //赋值给滚动条的位置
             }
-        })
+        });
+
         $("#select_1").click(function () {
             window.onscroll = function () {
                 document.body.scrollTop = document.body.scrollTop; //关闭后清除保存位置的值
             }
-        })
-    });</script>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>
-
+        });
+    });
+</script>
 <script type="text/javascript">
-
-
     var objClass = {
         loading:false,
         submit:function(){
-            var nickname = $('#fr-nickname').val();
-            var sex = 1;
-            var profile = 'asdfasdfasdfa sdfasdf ';
+            var nickname        = $.trim($('#fr-nickname').val());
+            var sex             = $('#fr-sex').data('sex');
+            var profile         = $('#fr-profile').val();
+            var birthday_date   = $('#fr-birthday-date').val();
             if(this.loading){
+                return false;
+            }
+
+            if(nickname == ''){
+                redream.showTip('昵称不能为空');
                 return false;
             }
 
             $.ajax({
                 url:"/weixin/user/editProfile",
                 type:'post',
-                data:{nickname:nickname,sex:sex,profile:profile},
+                data:{nickname:nickname,sex:sex,profile:profile,birthday_date:birthday_date},
                 dataType:'json',
                 beforeSend:function(){
-                    objClass.oneLoading = true;
+                    objClass.loading = true;
                 },
                 complete:function(){
-                    objClass.oneLoading = false;
+                    objClass.loading = false;
                 },
                 success:function(res){
                     if(res.code == 200){
@@ -170,24 +185,32 @@
             });
         }
     };
-    //编辑日期
-    
 
-			var calendar = new datePicker();
-			calendar.init({
-				'trigger': '#demo1',
-				/*按钮选择器，用于触发弹出插件*/
-				'type': 'date',
-				/*模式：date日期；datetime日期时间；time时间；ym年月；*/
-				'minDate': '1900-1-1',
-				/*最小日期*/
-				'maxDate': '2100-12-31',
-				/*最大日期*/
-				'onSubmit': function() { /*确认时触发事件*/
-					var theSelectData = calendar.value;
-					console.log(theSelectData);
-				},
-				'onClose': function() { /*取消时触发事件*/ }
-			});
+    $('#cus-sex-btns button').on('click',function(){
+        if($(this).data('val') != 'cancel'){
+            var text = ($(this).data('val') == 1) ? '男' : '女';
+            $('#fr-sex').data('sex',$(this).data('val')).text(text);
+        }
+
+        $(".marsk-container3").toggle();
+    });
+
+    //编辑日期
+    var calendar = new datePicker();
+    calendar.init({
+        'trigger': '#fr-birthday-date',
+        /*按钮选择器，用于触发弹出插件*/
+        'type': 'date',
+        /*模式：date日期；datetime日期时间；time时间；ym年月；*/
+        'minDate': '1900-1-1',
+        /*最小日期*/
+        'maxDate': '2100-12-31',
+        /*最大日期*/
+        'onSubmit': function() { /*确认时触发事件*/
+            var theSelectData = calendar.value;
+            console.log(theSelectData);
+        },
+        'onClose': function() { /*取消时触发事件*/ }
+    });
 </script>
 </html>

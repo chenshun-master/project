@@ -50,7 +50,9 @@ class User extends BaseController
             return redirect('/weixin/index/login');
         }
 
-        $this->assign('user_info',$this->getUserInfo());
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+
+        $this->assign('user_info',$user_info);
         return $this->fetch('user/modify');
     }
 
@@ -298,7 +300,8 @@ class User extends BaseController
 
         $nickname   = $request->post('nickname','');
         $sex        = (int)$request->post('sex',0);
-        $profile    = $request->post('profile',0);
+        $profile    = $request->post('profile','');
+        $birthday_date    = $request->post('birthday_date','0000-00-00');
 
         if(empty($nickname)){
             return $this->returnData([],'请求参数不符合规范',301);
@@ -307,7 +310,8 @@ class User extends BaseController
         $res = $this->_userDomain->editProfile($this->getUserId(),[
             'nickname'      =>$nickname,
             'sex'           =>$sex,
-            'profile'       =>$profile
+            'profile'       =>$profile,
+            'birthday_date' =>$birthday_date
         ]);
 
         if(!$res){
