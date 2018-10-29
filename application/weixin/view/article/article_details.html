@@ -452,7 +452,7 @@
 
         $(document).on('click', '.cus-comment-fabulous', function () {
             objClass.clickCommentFabulous($(this), 1);
-        });
+        });	
 
         $(document).on('click', '.cus-reply-btn', function () {
             objClass.replyComment($(this));
@@ -473,6 +473,7 @@
         $(".cus-reply-btn").click(function (event) {
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
+        
 
         });
         //点击空白处隐藏弹出层
@@ -507,5 +508,6 @@
             }
         });
     });
+     
 </script>
 </html>
