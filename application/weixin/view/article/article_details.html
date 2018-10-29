@@ -35,7 +35,7 @@
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
-<body>
+<body style="background:#ffffff;">
 <div class="con">
     <div class="ding"><p>详情页</p></div>
     <div class="wx-top">
@@ -74,11 +74,7 @@
             <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
         </div>
 
-        <div class="wx-foot">
-            <input type="text" placeholder="写评论..." class="xpq1"/>
-            <dl></dl>
-            <dt></dt>
-        </div>
+
 
         <div class="marsk-container">
             <div class="tkyy_con">
@@ -92,7 +88,13 @@
             </div>
         </div>
 
-        <div class="kl1"><input type="text" placeholder="请输入评论内容"/class="neirong">
+        <div class="wx-foot">
+            <input type="text" placeholder="写评论..." class="xpq1"/>
+            <dl></dl>
+            <dt></dt>
+        </div>
+
+        <div class="kl1"><input type="text" placeholder="请输入评论内容" class="neirong">
             <button class="fb1">发布</button>
         </div>
 </body>
@@ -456,6 +458,11 @@
 <script type="text/javascript">
     $(".xpq1").click(function () {
         $('.kl1').show();
+        $('.neirong').focus().blur(function(){
+            $(this).val('');
+            $('.kl1').hide();
+            $(".xpq1").show();
+        });
     });
 
     $(function () {
