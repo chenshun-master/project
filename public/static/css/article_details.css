@@ -471,11 +471,6 @@ margin-top: -30px;
 	min-height: 300px;
 	height: auto;
 	margin-top: 20px;
-		overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box; //作为弹性伸缩盒子模型显示。
-	-webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-	-webkit-line-clamp: 3; //显示的行
 }
 .kl1 {
 	width: 100%;
