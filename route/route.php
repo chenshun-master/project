@@ -15,6 +15,17 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+
+/**
+ * PC 端路由分组
+ */
+//Route::group('index', function () {
+//    Route::get('/postLogin', 'index/postLogin');
+//});
+
+
+
+
 return [
 
 ];

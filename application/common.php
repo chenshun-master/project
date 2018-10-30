@@ -262,4 +262,3 @@ function is_weixin(){
 function mobileFilter($mobile){
     return substr_replace($mobile,'****',3,4);
 }
-

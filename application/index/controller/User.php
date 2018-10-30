@@ -15,6 +15,19 @@ class User extends CController
     }
 
     /**
+     * 用户个人中心主页
+     */
+    public function main(){
+        if(!$this->checkLogin()){
+            return redirect('/login');
+        }
+
+        return $this->fetch('user/main');
+    }
+
+
+
+    /**
      * 用户上传认证图片接口
      */
     public function uploadAuthImg(Request $request){
@@ -110,5 +123,4 @@ class User extends CController
 
         return $this->returnData([],'认证申请提交成功',200);
     }
-
 }
