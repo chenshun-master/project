@@ -18,7 +18,8 @@ class CController extends Controller
         parent::__construct($app);
 
         #配置Session作用域
-        //Session::prefix('PC');
+        Session::prefix('PC');
+
     }
 
     /**
@@ -70,5 +71,20 @@ class CController extends Controller
             'msg'  =>$msg,
             'data' =>$data
         ],$httpCode);
+    }
+
+
+    /**
+     * 404错误页面
+     */
+    public function error404(){
+        echo '404 错误页面';
+    }
+
+    /**
+     * 500错误页面
+     */
+    public function error500(){
+        echo '500 错误页面';
     }
 }

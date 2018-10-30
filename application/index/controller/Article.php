@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use think\App;
 use think\Request;
 
 class Article extends CController
@@ -85,14 +86,14 @@ class Article extends CController
      * 发布文章接口
      */
     public function releaseArticle(Request $request){
-        if(!$this->checkLogin()){
-            return $this->returnData([],'请先进行登录',401);
-        }
+//        if(!$this->checkLogin()){
+//            return $this->returnData([],'请先进行登录',401);
+//        }
 
-        $user_info = $this->getUserInfo();
-        if(!checkUserAuth($user_info['type'],7)){
-            return $this->returnData([],'未授权操作',403);
-        }
+//        $user_info = $this->getUserInfo();
+//        if(!checkUserAuth($user_info['type'],7)){
+//            return $this->returnData([],'未授权操作',403);
+//        }
 
         $title = $request->param('title','');
         $tag = $request->param('tag','');
@@ -106,7 +107,8 @@ class Article extends CController
         }
 
         $data = [
-            'user_id'=>$user_info['id'],
+//            'user_id'=>$user_info['id'],
+            'user_id'=>8,
             'type'=>1,
             'title'=>$title,
             'tag'=>$tag,
@@ -151,6 +153,8 @@ class Article extends CController
         }
     }
 
-
+    public function test(){
+        return $this->fetch('article/test');
+    }
 
 }

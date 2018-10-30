@@ -229,6 +229,7 @@ class Article extends BaseController
             $isFabulous = $this->articleDomain->checkFabulous($user_info['id'],$id);
         }
 
+//        halt($data);
         $this->assign($data);
         $this->assign('isFabulous',$isFabulous);
 

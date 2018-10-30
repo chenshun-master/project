@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div style="margin: 0 auto;margin-top: 10px;min-height:500px;width: 80%;border: 1px solid #cccccc; ">
+            <div style="height: 50px;line-height: 50px;padding-left: 10px;">
+                <div style="float: left;width: 7%;"> 标题 </div>
+                <div style="float: left;width: 90%;"><input type="text" value="" id="fr-title" style="width: 100%;"></div>
+            </div>
+            <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;">
+                <div style="float: left;width: 7%;"> 摘要 </div>
+                <div style="float: left;width: 90%;"><input type="text" value="" id="fr-zaiyao" style="width: 100%;"></div>
+            </div>
+            <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;">
+                <div style="float: left;width: 7%;"> 标签 </div>
+                <div style="float: left;width: 90%;"><input type="text" value="" id="fr-tag" style="width: 100%;"></div>
+            </div>
+            <div style="clear: both;padding-left: 10px;">
+                <div style="float: left;width: 7%;"> 文章内容 </div>
+                <div style="float: left;width: 90%;">
+                        <textarea id="editor_id" name="content" style="width:100% !important;height:300px;"></textarea>
+                </div>
+            </div>
+            <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;text-align: center">
+                <button onclick="objClass.submit()">提交</button>
+            </div>
+        </div>
+</body>
+<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
+<script>
+    KindEditor.ready(function(K) {
+        window.editor = K.create('#editor_id',{
+            cssPath : '/static/plugin/kindeditor/plugins/code/prettify.css',
+            uploadJson : '../php/upload_json.php',
+            fileManagerJson : '../php/file_manager_json.php',
+            allowFileManager : true,
+            afterCreate : function() {
+                var self = this;
+                self.sync();
+            }
+        });
+
+        window.editor.sync();
+    });
+
+
+    var objClass = {
+        loading:false,
+        submit:function(){
+            window.editor.sync();
+            var content = $.trim($('#editor_id').val());
+            var title = $.trim($('#fr-title').val());
+            var zaiyao = $('#fr-zaiyao').val();
+            var tag = $('#fr-tag').val();
+
+            if(title == ''){
+                redream.showTip('标题不能为空');
+                return false;
+            }
+
+            if(this.loading){
+                return false;
+            }
+
+            $.ajax({
+                url:"/index/article/releaseArticle",
+                type:'post',
+                data:{title:title,tag:tag,centent:content,excerpt:zaiyao},
+                dataType:'json',
+                beforeSend:function(){
+                    objClass.oneLoading = true;
+                },
+                complete:function(){
+                    objClass.oneLoading = false;
+                },
+                success:function(res){
+                    if(res.code == 200){
+                        redream.showTip('发布成功');
+                        $('#editor_id').val('');
+                        $('#fr-title').val('');
+                        $('#fr-zaiyao').val('');
+                        $('#fr-tag').val('');
+                    }
+                }
+            });
+
+        }
+    };
+
+</script>
+
+</html>
