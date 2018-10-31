@@ -27,14 +27,14 @@ html,body{ height:100%;overflow:visible }
 
 .ding p {
 	text-align: center;
-	font-size: 34px;
+	font-size: 0.34rem;
 	color: #1B1B1B;
 }
 
 .wx-top {
 	width: 100%;
 	height: 120px;
-	font-size:48px;
+	font-size:0.48rem;
 	color: #1D1D1D;
 }
 
@@ -42,7 +42,7 @@ html,body{ height:100%;overflow:visible }
 	width: 670px;
 	height: auto;
 	margin: 0 auto;
-	font-size: 35px;
+	font-size: 0.35rem;
 }
 
 .top2 {
@@ -51,7 +51,7 @@ html,body{ height:100%;overflow:visible }
 	margin: 0 auto;
 	margin-top: 96px;
 	color: #1F1F1F;
-	font-size: 34px;
+	font-size: 0.34rem;
 }
 
 .wx-name {
@@ -83,7 +83,7 @@ html,body{ height:100%;overflow:visible }
 	height: 56px;
 	background: #7DB0E8;
 	color: #FFFFFF;
-	font-size:26px;
+	font-size:0.26rem;
 	position: absolute;
 	right: 36px;
 	top: 8px;
@@ -105,7 +105,7 @@ html,body{ height:100%;overflow:visible }
 	border: 1px solid #E0E0E0;
 	border-radius: 10px;
 	color: #1D1D1D;
-	font-size: 24px;
+	font-size: 0.24rem;
 	background: white;
 }
 
@@ -131,7 +131,7 @@ html,body{ height:100%;overflow:visible }
 	height: 50px;
 	background: #F2F2F2;
 	color: #1D1D1D;
-	font-size:28px;
+	font-size:0.28rem;
 	text-align: center;
 	margin-top: 50px;
 }
@@ -160,13 +160,13 @@ html,body{ height:100%;overflow:visible }
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	color: #1F1F1F;
-	font-size: 34px;
+	font-size: 0.34rem;
 }
 
 .wx-x p span:nth-child(1) {
 	margin-top: 20px;
 	float: left;
-	font-size: 22px;
+	font-size: 0.22rem;
 	color: #898989;
 }
 
@@ -174,7 +174,7 @@ html,body{ height:100%;overflow:visible }
 margin-top: 20px;
     float: right;
     margin-right: 30px;
-    font-size: 22px;
+    font-size: 0.22rem;
     color: #898989;
 }
 
@@ -192,7 +192,7 @@ margin-top: 20px;
 	line-height: 106px;
 	text-align: center;
 	color: #222222;
-	font-size: 28px;
+	font-size: 0.28rem;
 	background: url(../image/user/jx.png)no-repeat 440px 35px;
 	background-size: 30px;
 }
@@ -228,7 +228,7 @@ margin-top: 20px;
 	width: auto;
 	height: 30px;
 	color: #7DB0E8;
-	font-size: 30px;
+	font-size: 0.3rem;
 	display: block;
 	float: left;
 	padding-top: -3px;
@@ -239,7 +239,7 @@ margin-top: 20px;
 	width: 90px;
 	height: 40px;
 	color: #1D1D1D;
-	font-size: 24px;
+	font-size: 0.24rem;
 	background: gainsboro;
 	padding-left: 45px;
 	background: url(../image/user/dz.png)no-repeat 0px 2px;
@@ -250,7 +250,7 @@ margin-top: 20px;
 .wx-p {
 	width: 576px;
 	height: quto;
-	font-size: 30px;
+	font-size: 0.3rem;
 	color: #1F1F1F;
 	margin-top: 50px;;
 	/*overflow: hidden;
@@ -271,7 +271,7 @@ margin-top: 20px;
 	max-width: 200px;
 	height: 46px;
 	line-height: 46px;
-	font-size: 24px;
+	font-size: 0.24rem;
 	color: #222222;
 	float: left;
     padding-right:20px;
@@ -283,7 +283,7 @@ margin-top: 20px;
 	border-radius: 10px;
 	background: gainsboro;
 	color: #222222;
-	font-size: 24px;
+	font-size: 0.24rem;
 	float: left;
 }
 
@@ -291,7 +291,7 @@ margin-top: 20px;
 	width: 220px;
 	height: 26px;
 	color: #898989;
-	font-size: 28px;
+	font-size: 0.28rem;
 	margin-left: 124px;
 	margin-top: 10px;
 }
@@ -314,7 +314,7 @@ margin-top: 20px;
 	border-radius: 10px;
 	padding-left: 50px;
 	color: #040404;
-	font-size: 26px;
+	font-size: 0.26rem;
 	background: url(../image/user/xpl.png)no-repeat 9px 9px;
 	background-size: 40px;
 	background-color: #F4F5F6;
@@ -371,7 +371,7 @@ margin-top: 20px;
 	height: 82px;
 	line-height: 82px;
 	color: #1B1B1B;
-	font-size: 34px;
+	font-size: 0.34rem;
 	text-align: center;
 	border: 1px solid #F1F1F1;
 }
@@ -427,7 +427,7 @@ margin-top: -30px;
 	height: auto;
 }
 .wz2 i {
-	font-size: 50px;
+	font-size: 0.5rem;
 	color: #999999;
 	margin-right: 10px;
 }
@@ -435,7 +435,7 @@ margin-top: -30px;
 .wz2 p:nth-child(2) {
 	width: 560px;
 	color: #1F1F1F;
-	font-size: 32px;
+	font-size: 0.32rem;
 	margin-top: 10px;
 	height: auto;
 	overflow: hidden;
@@ -447,7 +447,7 @@ margin-top: -30px;
 .wz4 p:nth-child(2) {
 	width: 530px;
 	color: #1F1F1F;
-	font-size:25px;
+	font-size:0.25rem;
 	margin-top: 10px;
 	height: auto;
 	overflow: hidden;
@@ -460,7 +460,7 @@ margin-top: -30px;
 .wz2 p:nth-child(3) {
 	width: 578px;
 	color: #888888;
-	font-size: 24px;
+	font-size: 0.24rem;
 	height: auto;
 }
 .wz3{
@@ -470,7 +470,7 @@ margin-top: -30px;
 .mp{
 	min-height: 300px;
 /*	height: auto;*/
-	margin-top: 10px;
+	margin-top: 20px;
 }
 .kl1 {
 	width: 100%;
@@ -487,14 +487,14 @@ margin-top: -30px;
 	height: 60px;
 	background: #E5E5E5;
 	color: #888888;
-	font-size: 32px;
+	font-size: 0.32rem;
 	padding-left: 22px;
 }
 .kl1>button{
 
 	line-height: 30px;
 	color: #888888;
-	font-size: 32px;
+	font-size: 0.32rem;
 	background: white;
 }
 .ovfHiden{overflow: hidden;height: 100%;}
