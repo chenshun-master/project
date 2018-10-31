@@ -54,7 +54,7 @@ text-align: center;
  
  .wx-boy {
  	width: 680px;
- 	height: 100px;
+ 	height: 115px;
  	line-height: 100px;
  	margin: 0 auto;
  }
@@ -194,8 +194,8 @@ font-size: 0.26rem;
 width: 644px;
 height: auto;
 margin: 0 auto;
-margin-top: 44px;
-font-size: 0.34rem;
+margin-top: 20px;
+font-size: 0.32rem;
 color: #1F1F1F;
 margin-left: 36px;
 display: -webkit-box;

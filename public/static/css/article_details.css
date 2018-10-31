@@ -293,6 +293,7 @@ margin-top: 20px;
 	color: #222222;
 	font-size: 0.24rem;
 	float: left;
+	margin-left: 15px;
 }
 
 .xs {
@@ -368,6 +369,7 @@ margin-top: 20px;
 	position: fixed;
 	top: 0;
 	width: 100%;
+	height: auto;
 	background: #FFFFFF;
 	margin: 0 auto;
 	border-radius: 10px;

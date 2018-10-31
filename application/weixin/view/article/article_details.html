@@ -65,7 +65,7 @@
             </dl>
             <button class="wx-rig">加好友</button>
         </div>
-        <div style="margin-left: 10px;font-size: 0.32rem;" class="mp"><?php echo $article_info['content'] ?></div>
+        <div style="margin-left: 10px;font-size: 0.32rem;padding: 5px 15px" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="min-height: 50px;">
             <button style="margin-left: 20px;" id="cus-click-fabulous"    class="<?php if($isFabulous == 2):?>wx-fabulous-yes<?php endif;?>"     data-fabulous="{$isFabulous? '2' : '1'}"
                     onclick="objClass.clickFabulous()">{$article_info['like']}
@@ -106,7 +106,7 @@
         </div>
 
         <div class="wx-foot">
-            <input type="text" placeholder="写评论..." class="xpq1 wl-hf"/>
+            <input type="text" placeholder="写评论..." class="xpq1"/>
             <dl></dl>
             <dt></dt>
         </div>
@@ -275,10 +275,11 @@
                     objClass.commentData.loading = false;
                 },
                 success: function (res) {
-                    // console.log(res);
                     if (res.code == 200) {
                         var data = res.data;
                         if (objClass.commentData.ini == false) {
+
+                            $('#cus-comment-content').html('');
                             objClass.commentData.ini = true;
                             objClass.commentData.page_total = data.page_total;
                             if (data.page_total == 0) {
@@ -429,7 +430,7 @@
             $('#cus-subreview-container').css('height',h2 + 'px');
 //          alert(getClientHeight());
             this.loadSubreviewList();
-            
+            redream
 //          redream.unScroll();
 
         },
@@ -441,6 +442,7 @@
         publishComment:function(){
             var content = $('.neirong').val();
             $('.neirong').focus();
+            $('.neirong').val('');
             if(this.publishCommentConf.loading){
                 return false;
             }
@@ -458,9 +460,17 @@
                     if (res.code == 200) {
                         $('.neirong').val('');
                         $('.wx-foot').show();
-                         $('.xpq1').blur();
-                          $('.neirong').blur();
+                        $('.wl-zhez').hide();
+                        document.activeElement.blur();
+                        $(".wl-zhez").blur();
+                        $('.wl-zhez').hide();
+                        $(".neirong").val("");
                         redream.showTip('发布成功');
+                        objClass.commentData.ini= false;
+                        objClass.commentData.page= 0;
+                        objClass.commentData.page_total= 0;
+                       objClass.loadCommentList();
+                        $('.neirong').val('');
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
                     }
@@ -513,7 +523,7 @@
         })
         $('.cus-reply-btn').click(function(){
         $('html,body').addClass('ovfHiden'); //使网页不可滚动
-   $(".tkyy_con").show();
+   			$(".tkyy_con").show();
         })
     });
 
@@ -537,6 +547,7 @@
                 $('.fb1').css({'color': '#7DB0E8'});
             } else {
                 $('.fb1').css({'color': '#EBEBEB'});
+                $('neirong').val('');
             }
         });
     });
@@ -557,17 +568,20 @@
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$(".wl-hf").click(function(event) {
+				$(".xpq1").click(function(event) {
 					event.stopPropagation(); //停止事件冒泡
 					$(".wl-zhez").toggle();
+					$('.neirong').focus();
+					
 				});
 				//点击空白处隐藏弹出层
 				$(".wl-zhez").click(function(event) {
 					var _con = $('.wl-zl'); // 设置目标区域
 					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
 						$('.wl-zhez').hide(); //淡出消失
-						$('.wx-foot').show(); 
+						$('.wx-foot').show();
 					}
+                    $('.neirong').val("");
 				});
 
 			});
