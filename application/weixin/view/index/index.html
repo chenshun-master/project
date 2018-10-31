@@ -103,7 +103,7 @@
 
                         
                         $('#wx-wz').append(res.data.conetnt);
-                                               
+
                         if(objClass.listData.page >= objClass.listData.page_total){
                         	me.lock();
 		                    // 无数据
@@ -137,11 +137,15 @@
 //      objClass.loadList(me);
 //  },500);
 
-    $(document).on('click','.cus-article-href',function(){
-        if($(this).data('type') == 1){
-            window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
-        }
-    });
+    // $(document).on('click','.cus-article-href',function(){
+    //     if($(this).data('type') == 1){
+    //         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
+    //     }
+    // });
+
+    function clickHref(id){
+        window.location.href = '/weixin/article/articleDetails/id/'+ id;
+    }
 </script>
 
 </html>

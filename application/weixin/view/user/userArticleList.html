@@ -37,13 +37,13 @@
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
-<body>
+<body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
         <a href="javascript:history.go(-1)" class="tb"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
     </div>
     <div class="wx-t1">
-        <img src=""/>
+        <img src="{$user_info['portrait']}"/>
         <div class="wx-wen">
             <dl>
                 <dt>{$publishStatistics['type_1']['total']}</dt>
