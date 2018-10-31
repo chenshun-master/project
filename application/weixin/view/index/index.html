@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection" />
     <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <title>主页</title>
     <style>
         .wkf{
@@ -25,8 +26,7 @@
             border-radius:10px ;
         }
     </style>
-    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+
 </head>
 <body style="background: #ffffff;">
 <div class="con" >
@@ -34,18 +34,27 @@
         <a href="/weixin/user/main" class="topa"></a>
     </div>
     <ul class="biao">
-        <li style="margin-left: 34px;"><a href="">推荐</a></li>
+        <li style="margin-left: 50px;"><a href="">推荐</a></li>
         <li><a href="">文章</a></li>
         <li><a href="">视频</a></li>
         <li><a href="">案例</a></li>
         <li><a href="">问答</a></li>
         <li style="margin-right: 36px;"><a href="">其它</a></li>
     </ul>
-    <div id="cus-container"></div>
-    <div  onclick="objClass.loadList()" style="font-size: 34px;text-align: center;height: 50px;line-height: 50px;"> 加载更多</div>
+
+
+			<div id="cus-container" style="min-height: 300px;">
+				<div id="wx-wz">
+			
+				</div>
+			</div>
+<!--    <div  onclick="objClass.loadList()" style="font-size: 34px;text-align: center;height: 50px;line-height: 50px;"> 加载更多</div>-->
 </div>
 </body>
+<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var objClass = {
         listData:{
@@ -57,7 +66,7 @@
         },
 
         //相关推荐数据加载
-        loadList:function(){
+        loadList:function(me){
             if(this.listData.loading){
                 return false;
             }
@@ -83,20 +92,50 @@
                 success:function(res){
                     if(res.code == 200){
                         if(objClass.listData.ini == false){
+                       
                             objClass.listData.ini = true;
                             objClass.listData.page_total = res.data.page_total;
+                        	me.isLockUp = false;
+					        me.isLockDown = false;
+					        me.isData = true;
+					         	$('#wx-wz').html('');
                         }
-                        $('#cus-container').append(res.data.conetnt);
+
+                        
+                        $('#wx-wz').append(res.data.conetnt);
+                                               
+                        if(objClass.listData.page >= objClass.listData.page_total){
+                        	me.lock();
+		                    // 无数据
+		                    me.noData();
+                        }
                     }
+                    
+                    me.resetload();
                 }
             });
         },
 
     };
-
-    setTimeout(function(){
-        objClass.loadList();
-    },500);
+    
+    
+ 	$('#cus-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+        	objClass.listData.loading = false;
+        	objClass.listData.ini = false;
+        	objClass.listData.page = 0;
+        	objClass.listData.page_total = 1;       
+        	objClass.loadList(me);
+        },
+        loadDownFn : function(me){
+            objClass.loadList(me);
+        }
+    });
+    
+//  setTimeout(function(me){
+//      objClass.loadList(me);
+//  },500);
 
     $(document).on('click','.cus-article-href',function(){
         if($(this).data('type') == 1){
