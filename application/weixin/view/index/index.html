@@ -62,7 +62,7 @@
             ini:false,
             page:0,
             page_total:1,
-            page_size:100,
+            page_size:15,
         },
 
         //相关推荐数据加载
@@ -74,7 +74,7 @@
             this.listData.page++;
             if(this.listData.ini == true){
                 if(this.listData.page > this.listData.page_total){
-                    redream.showTip('已加载所有数据');
+                    me.resetload();
                     return false;
                 }
             }
@@ -92,25 +92,15 @@
                 success:function(res){
                     if(res.code == 200){
                         if(objClass.listData.ini == false){
-                       
                             objClass.listData.ini = true;
                             objClass.listData.page_total = res.data.page_total;
-                        	me.isLockUp = false;
-					        me.isLockDown = false;
-					        me.isData = true;
-					         	$('#wx-wz').html('');
+                            $('#wx-wz').html('');
                         }
-
-                        
                         $('#wx-wz').append(res.data.conetnt);
-
                         if(objClass.listData.page >= objClass.listData.page_total){
-                        	me.lock();
-		                    // 无数据
 		                    me.noData();
                         }
                     }
-                    
                     me.resetload();
                 }
             });
