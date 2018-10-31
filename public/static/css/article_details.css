@@ -303,7 +303,7 @@ margin-top: 20px;
 }
 
 .wx-foot {
-	display: none;
+	display: block;
     width: 100%;
     height: 100px;
     position: fixed;
