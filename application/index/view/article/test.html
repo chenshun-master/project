@@ -18,13 +18,20 @@
                 <div style="float: left;width: 7%;"> 标签 </div>
                 <div style="float: left;width: 90%;"><input type="text" value="" id="fr-tag" style="width: 100%;"></div>
             </div>
+            <div style="clear: both;min-height: 200px;padding-left: 10px;">
+                <div style="float: left;width: 7%;"> 缩略图 </div>
+                <div style="float: left;width: 90%;" id="ccc">
+                    <div style="width: 126px;height: 126px;border: 1px solid #cccccc;float: left;" id="ttttt">
+                        <form id="infoLogoForm" enctype='multipart/form-data'>
+                        <input type="file"  name="img"  accept="image/*" id="btn-input-file" style="position: relative;width: 120px;height: 120px;opacity: 0" />
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div style="clear: both;padding-left: 10px;">
                 <div style="float: left;width: 7%;"> 文章内容 </div>
                 <div style="float: left;width: 90%;">
-                        <textarea id="editor_id" name="content" style="width:100% !important;height:300px;">
-
-
-                        </textarea>
+                        <textarea id="editor_id" name="content" style="width:100% !important;height:300px;"></textarea>
                 </div>
             </div>
             <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;text-align: center">
@@ -96,6 +103,27 @@
         }
     };
 
+
+    $("#btn-input-file").on("change", function(){
+        $.ajax({
+            url: '/index/article/uploadThumbnailImg',
+            type: 'POST',
+            cache: false,
+            data: new FormData($('#infoLogoForm')[0]),
+            processData: false,
+            contentType: false,
+            dataType:"json",
+            beforeSend: function(){
+
+            },
+            success : function(data) {
+                if(data.code == 200){
+                    var html = '<div style="width: 124px;height: 124px;border: 2px solid #cccccc;float: left;margin-right: 3px;"><img src="'+data.data.image_url+'" alt="" width="120" height="120"></div>';
+                    $('#ccc').prepend(html);
+                }
+            }
+        });
+    });
 </script>
 
 </html>
