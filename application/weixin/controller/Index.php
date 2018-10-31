@@ -30,8 +30,8 @@ class Index extends BaseController
      */
     public function getArticleList(Request $request){
         $type = $request->param('type',0);
-        $page = $request->param('page',1);
-        $page_size = $request->param('page_size',15);
+        $page = (int)$request->param('page',1);
+        $page_size = (int)$request->param('page_size',15);
 
         $data = $this->articleDomain->getHomeList($page,$page_size,$type);//halt($data);
         $this->assign($data);
