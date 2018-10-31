@@ -403,17 +403,18 @@ class ArticleDomain
         $obj->where('comment.object_id',$article_id);
         $obj->where('comment.parent_id',0);
         $obj->where('comment.table_name','article');
-        $obj->join('wl_user user','comment.user_id = user.id');
+        $obj->leftJoin('wl_user user','comment.user_id = user.id');
         $obj->order('comment.created_time', 'desc');
         $total = $obj->count();
 
         if($user_id == 0){
-            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
+            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan,(SELECT count(1) from wl_comment where path like CONCAT(comment.path,'%') and wl_comment.id <> comment.id) AS reply_count");
         }else{
-            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan");
+            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan,(SELECT count(1) from wl_comment where path like CONCAT(comment.path,'%') and wl_comment.id <> comment.id) AS reply_count");
         }
 
-        $rows = $obj->page($page,$page_size)->select();
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -436,9 +437,9 @@ class ArticleDomain
         $obj->order('comment.created_time', 'desc');
         $total = $obj->count();
         if($user_id == 0){
-            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
+            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
         }else{
-            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.reply_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan");
+            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan");
         }
 
         $rows = $obj->page($page,$page_size)->select();
