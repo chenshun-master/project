@@ -118,6 +118,7 @@ html,body{ height:100%;overflow:visible }
 
 .wx-fabulous-yes{
     background: url(../image/index/dz.png)no-repeat 35px 10px !important;
+    background-size: 30px;
 }
 
 .wx-fx button:nth-child(2) {
@@ -232,7 +233,7 @@ margin-top: 20px;
 
 .xm span:nth-child(1) {
 	width: auto;
-	height: 30px;
+	height: auto;
 	color: #7DB0E8;
 	font-size: 0.3rem;
 	display: block;
@@ -255,7 +256,7 @@ margin-top: 20px;
 
 .wx-p {
 	width: 576px;
-	height: quto;
+	height: auto;
 	font-size: 0.3rem;
 	color: #1F1F1F;
 	margin-top: 50px;;
@@ -269,6 +270,7 @@ margin-top: 20px;
 .wx-hf {
 	width: 576px;
 	height: 46px;
+	margin-top: 15px;
 }
 
 .hf-sj {
@@ -474,6 +476,9 @@ margin-top: -30px;
 	background: #F0F0F0;
 }
 .mp{
+	text-indent:30px;
+	padding: 0 10px;
+	padding-bottom: 20px;
 	min-height: 300px;
 /*	height: auto;*/
 	margin-top: 20px;
