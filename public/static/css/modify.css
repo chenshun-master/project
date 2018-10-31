@@ -101,7 +101,10 @@ a{text-decoration: none;color: #221815;display: block;}
 	background: white;
 	border-bottom: 1px solid #F1F1F1;
 
+	position: relative;
+
 }
+
 .tkyy_con button:nth-child(2) {
 	width: 100%;
 	height: 86px;

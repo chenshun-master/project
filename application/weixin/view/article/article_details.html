@@ -110,12 +110,15 @@
             <dl></dl>
             <dt></dt>
         </div>
-        <div class="wl-zhez">
-        <div class="kl1 wl-zl" style=""><input type="text" placeholder="请输入评论内容" class="neirong" >
-            <button class="fb1" onclick="objClass.publishComment()">发布</button>
-        </div>
-</div>
 
+
+        <div class="wl-zhez">
+            <div class="kl1 wl-zl" style="">
+                <input type="text" placeholder="请输入评论内容" class="neirong" >
+                <input type="hidden"  value="0" id="cus-comment-pid" >
+                <button class="fb1" onclick="objClass.publishComment()">发布</button>
+            </div>
+        </div>
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
@@ -232,7 +235,7 @@
 
 
                 if (data.reply_count == 0 || data.reply_count == null) {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="0">回复</button>';
+                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="0" data-name="@' + data.nickname + '" >回复</button>';
                 } else {
                     var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="'+ data.reply_count +'"  >' + data.reply_count + ' 回复</button>';
                 }
@@ -422,17 +425,10 @@
 
             $('#cus-subreview-container').html('');
             var h = getClientHeight();
-            
-            console.log(h);
             $('.marsk-container').css('height',h + 'px').show();
 			var h2 = h - 82;
-			console.log(h2);
             $('#cus-subreview-container').css('height',h2 + 'px');
-//          alert(getClientHeight());
             this.loadSubreviewList();
-            redream
-//          redream.unScroll();
-
         },
 
         //发表评论
@@ -443,6 +439,8 @@
             var content = $('.neirong').val();
             $('.neirong').focus();
             $('.neirong').val('');
+
+            var pid = $('#cus-comment-pid').val();
             if(this.publishCommentConf.loading){
                 return false;
             }
@@ -450,7 +448,7 @@
             $.ajax({
                 url: "/weixin/article/comment",
                 type: 'post',
-                data: {pid: 0, object_id: objClass.article_id,content:content},
+                data: {pid: pid, object_id: objClass.article_id,content:content},
                 dataType: 'json',
                 beforeSend: function () {
                     objClass.publishCommentConf.loading = true;
@@ -493,7 +491,13 @@
         $(document).on('click', '.cus-reply-btn', function () {
             var num = parseInt($(this).data('replynum'));
             if(num == 0 || num == ''){
-                
+                var name = $(this).data('name');
+                $('#cus-comment-pid').val($(this).data('commentid'));
+                $('.neirong').attr('placeholder','回复 '+ name);
+                $('.wx-foot').hide();
+                $('.kl1').show();
+                $('.wl-zhez').show();
+                $('.fb1').css('color','#ccc');
             }else{
                 objClass.replyComment($(this));
             }
@@ -539,12 +543,12 @@
 
 <script type="text/javascript">
     $(".xpq1").click(function () {
-
-        $('.wx-foot').hide()
-                $('.kl1').show();
+        $('.wx-foot').hide();
+        $('.kl1').show();
+        $('.fb1').css('color','#ccc');
+        $('.neirong').val('');
+        $('#cus-comment-pid').val('');
     });
-
-    // document.body.parentNode.style.overflow = 'hidden';//隐藏且禁用横向纵向两个滚动条
 
     $(function () {
         $('.kl1 input').on('.kl1 input ', function () {
@@ -571,24 +575,27 @@
 }
 </script>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$(".xpq1").click(function(event) {
-					event.stopPropagation(); //停止事件冒泡
-					$(".wl-zhez").toggle();
-					$('.neirong').focus();
-					
-				});
-				//点击空白处隐藏弹出层
-				$(".wl-zhez").click(function(event) {
-					var _con = $('.wl-zl'); // 设置目标区域
-					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-						$('.wl-zhez').hide(); //淡出消失
-						$('.wx-foot').show();
-					}
-                    $('.neirong').val("");
-				});
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".xpq1").click(function(event) {
+            event.stopPropagation(); //停止事件冒泡
+            $(".wl-zhez").toggle();
+            $('.neirong').focus();
 
-			});
-		</script>
+        });
+
+
+        //点击空白处隐藏弹出层
+        $(".wl-zhez").click(function(event) {
+            var _con = $('.wl-zl'); // 设置目标区域
+            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+                $('.wl-zhez').hide(); //淡出消失
+                $('.wx-foot').show();
+            }
+            $('.neirong').val("");
+            $('#cus-comment-pid').val('');
+        });
+
+    });
+</script>
 </html>

@@ -82,7 +82,7 @@ overflow: hidden;
 	font-size: 0.2rem;
 }
 .wx-n3 .yh{
-	width: 100px;
+	min-width: 100px;
 	height: 24px;
 	display: block;
 	margin-left: 12px;
