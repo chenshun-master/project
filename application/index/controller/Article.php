@@ -18,14 +18,14 @@ class Article extends CController
      * 上传文章缩略图
      */
     public function uploadThumbnailImg(Request $request){
-        if(!$this->checkLogin()){
-            return $this->returnData([],'用户未登录',401);
-        }
-        $user_info = $this->getUserInfo();
-
-        if(!checkUserAuth($user_info['type'],7)){
-            return $this->returnData([],'未授权操作',403);
-        }
+//        if(!$this->checkLogin()){
+//            return $this->returnData([],'用户未登录',401);
+//        }
+//        $user_info = $this->getUserInfo();
+//
+//        if(!checkUserAuth($user_info['type'],7)){
+//            return $this->returnData([],'未授权操作',403);
+//        }
 
         $file = request()->file("img");
         $img_domain = config('conf.file_save_domain');
