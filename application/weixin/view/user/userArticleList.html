@@ -73,17 +73,16 @@
                 <?php elseif($user_info['type'] == 5):?>
                 官方团队
                 <?php endif;?></button>
-            <button id="btn1">编辑资料</button>
+            <button onclick="redream.href('/weixin/user/modify')">编辑资料</button>
         </div>
     </div>
 
     <div id="cus-container">
-        <div id="cus-container-list"></div>
+        <div id="cus-container-list">
+
+        </div>
     </div>
-    <!--<p onclick="objClass.loadList()" style="font-size: 28px;text-align: center;line-height: 60px;">加载更多...</p>-->
-    <!--<div class="zwnr" >-->
-        <!--暂无文章内容-->
-    <!--</div>-->
+
 </div>
 
 </body>
@@ -109,7 +108,7 @@
             this.listData.page++;
             if(this.listData.ini == true){
                 if(this.listData.page > this.listData.page_total){
-                    return false;
+                    me.resetload();return false;
                 }
             }
             $.ajax({
@@ -125,24 +124,16 @@
                 },
                 success:function(res){
                     if(res.code == 200){
-
                         if(objClass.listData.ini == false){
                             objClass.listData.ini = true;
                             objClass.listData.page_total = res.data.page_total;
-                            me.isLockUp = false;
-                            me.isLockDown = false;
-                            me.isData = true;
                             $('#cus-container-list').html('');
                         }
-
                         $('#cus-container-list').append(res.data.htmlContent);
-
                         if(objClass.listData.page >= objClass.listData.page_total){
-                            me.lock();
                             me.noData();
                         }
                     }
-
                     me.resetload();
                 }
             });

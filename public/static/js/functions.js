@@ -136,8 +136,18 @@
             })
         },
         /**启用滚动条**/
+
         removeUnScroll:function() {
             $(document).unbind("scroll.unable");
+        },
+
+
+        /**
+         * js 页面跳转
+         * @param href   页面路径
+         */
+        href:function(href){
+            window.location.href = href;
         }
 }
 })(window,jQuery);
