@@ -53,7 +53,7 @@
             </dl>
             <button class="wx-rig">加好友</button>
         </div>
-        <div style="margin-left: 20px;font-size: 0.34rem;" class="mp"><?php echo $article_info['content'] ?></div>
+        <div style="margin-left: 33px;font-size: 0.34rem;" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="margin-top: 30px;">
             <button style="margin-left: 20px;" id="cus-click-fabulous" data-fabulous="{$isFabulous? '2' : '1'}"
                     onclick="objClass.clickFabulous()">{$article_info['like']}
@@ -86,7 +86,9 @@
                        style="float: left;font-size: 0.5rem; color:#999999 ;"></a>回复
                 </div>
 
-                <div id="cus-subreview-container" style="overflow-y: auto;overflow-x: hidden;padding: 20px 0px;"></div>
+                <div id="cus-subreview-container" style="overflow-y: auto;overflow-x: hidden;padding: 20px 0px;">
+
+                </div>
 
             </div>
         </div>
@@ -96,21 +98,10 @@
             <dl></dl>
             <dt></dt>
         </div>
-
-        <div class="kl1"><input type="text" placeholder="请输入评论内容" class="neirong">
+        <div class="kl1" style=""><input type="text" placeholder="请输入评论内容" class="neirong">
             <button class="fb1" onclick="objClass.publishComment()">发布</button>
         </div>
 
-        <!--<div style="z-index: 99999;height: 800px;width: 100%;background: red;position: fixed;top:20px;overflow-y: auto">
-            <div style="height: 20000px;width: 100%;background: #0FD6DD;">
-                adssfasdnflaksnd <br/>
-
-
-                adssfasdnflaksnd <br/>
-                adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>adssfasdnflaksnd <br/>
-
-            </div>
-        </div>-->
 
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -434,7 +425,6 @@
         publishComment:function(){
             var content = $('.neirong').val();
             $('.neirong').focus();
-
             if(this.publishCommentConf.loading){
                 return false;
             }
@@ -451,7 +441,8 @@
                     objClass.publishCommentConf.loading = false;
                     if (res.code == 200) {
                         $('.neirong').val('');
-                        $('.kl1').hide();
+                        $('.wx-foot').show();
+                         $('.xpq1').focus();
                         redream.showTip('发布成功');
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
@@ -516,7 +507,9 @@
 
 <script type="text/javascript">
     $(".xpq1").click(function () {
-        $('.kl1').show();
+
+        $('.wx-foot').hide()
+                $('.kl1').show();
         $('.neirong').focus();
     });
 
