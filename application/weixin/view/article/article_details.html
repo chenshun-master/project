@@ -38,7 +38,7 @@
 
 <body style="background:#ffffff;">
 <div class="con">
-    <div class="ding"><p>详情页</p></div>
+    <div class="ding" onclick="javascript:history.back(-1)"><p>详情页</p></div>
     <div class="wx-top">
         <p class="top1">{$article_info['title']}</p>
         <div class="wx-name">
@@ -55,7 +55,7 @@
         </div>
         <div style="margin-left: 33px;font-size: 0.34rem;" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="margin-top: 30px;">
-            <button style="margin-left: 20px;" id="cus-click-fabulous" data-fabulous="{$isFabulous? '2' : '1'}"
+            <button style="margin-left: 20px;" id="cus-click-fabulous"    class="<?php if($isFabulous == 2):?>wx-fabulous-yes<?php endif;?>"     data-fabulous="{$isFabulous? '2' : '1'}"
                     onclick="objClass.clickFabulous()">{$article_info['like']}
             </button>
             <button>分享朋友圈</button>
@@ -193,10 +193,13 @@
                     objClass.oneLoading = false;
                 },
                 success: function (res) {
-                    // console.log(res);
-
                     if (res.code == 200) {
-                        $('#cus-click-fabulous').data('fabulous', 2)
+                        if(type == 1){
+                            $('#cus-click-fabulous').data('fabulous', 2).text(parseInt($('#cus-click-fabulous').text()) + 1).addClass('wx-fabulous-yes');
+                        }else{
+                            $('#cus-click-fabulous').data('fabulous', 1).text(parseInt($('#cus-click-fabulous').text()) - 1).removeClass('wx-fabulous-yes');
+                        }
+
                     } else if (res.code == 401) {
                         alert('请登录后操作');
                         return false;
