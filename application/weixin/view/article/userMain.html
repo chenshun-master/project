@@ -18,7 +18,7 @@
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
-<body>
+<body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
         <img src="/static/image/user/default-head.png" alt="" class="wx-img"/>
@@ -119,7 +119,7 @@
             ini:false,
             page:0,
             page_total:1,
-            page_size:10,
+            page_size:15,
             template:function(data,obj){
 				return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;">'+
 						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" /class="wx-tou">'+
@@ -158,7 +158,7 @@
                         '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>'+
                        ' <li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>'+
                    ' </ul>'+
-                   
+
                ' </div>';
                },
 			template2: function(data) {
@@ -176,26 +176,8 @@
 								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>' +
 								'<li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>' +
 								'</ul>' +
-								' </div>'},
-//			template3: function(data) {
-//							return '  <div class="one-1">' +
-//								'<div class="wx-name">' +
-//								'<img src="'+data.portrait+'" alt="" /class="wx-tou">' +
-//								' <dl class="wx-yh">' +
-//								'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>' +
-//								'  <dd style="font-size:0.24rem;color: #898989;">'+data.published_time+'</dd>' +
-//								'</dl>' +
-//								' </div>' +
-//								' <p class="on1">'+data.title+'</p>' +
-//								' <video src="" controls="controls" class="wx-video"></video>' +
-//								
-//								' <ul class="wx-fen">' +
-//							' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
-//								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>' +
-//							'<li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>' +
-//							'</ul>' +
-//							' </div>'+' </div>' 
-//						}
+								' </div>'
+            },
 		},//相关推荐数据加载
         loadList:function(me){
             if(this.listData.loading){
@@ -205,8 +187,7 @@
             this.listData.page++;
             if(this.listData.ini == true){
                 if(this.listData.page > this.listData.page_total){
-                    redream.showTip('已加载所有数据');
-                    
+                    me.resetload();
                     return false;
                 }
             }
@@ -227,14 +208,9 @@
                         	$('#wl-article').html('');
                             objClass.listData.ini = true;
                             objClass.listData.page_total = res.data.page_total;
-                        	me.isLockUp = false;
-					        me.isLockDown = false;
-					        me.isData = true;
                         }
-
-                        $.each(res.data.rows,function(k,val){                     
+                        $.each(res.data.rows,function(k,val){
                                 var html = '';
-                                
                                 if(val.thumbnail != '' && val.thumbnail != null){
                                 	var obj = $.parseJSON(val.thumbnail);
 									var arr = Object.keys(obj);
@@ -246,57 +222,61 @@
                                 }else {
                                 	html = objClass.listData.template2(val);
                                 }
-                                
-                                
-				            	
 				            	$('#wl-article').append(html);
-
                         });
-                        
-                        
                         if(objClass.listData.page >= objClass.listData.page_total){
-                        	me.lock();
-		                    // 无数据
 		                    me.noData();
                         }
-                        
                     }
-                    
                     me.resetload();
                 }
             });
         },
     };
 
+ 	$('.content').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+        	objClass.listData.loading = false;
+        	objClass.listData.ini = false;
+        	objClass.listData.page = 0;
+        	objClass.listData.page_total = 1;
+        	objClass.loadList(me);
+        },
+        loadDownFn : function(me){
+            objClass.loadList(me);
+        }
+    });
+
     //视频加载
- var objClass1 = {
+    var objClass1 = {
         user_id:{$user_info['id']},
         listData:{
             loading:false,
             ini:false,
             page:0,
             page_total:1,
-            page_size:10,
-			template2: function(data) {
-							return '  <div class="one-1">' +
-								'<div class="wx-name">' +
-								'<img src="'+data.portrait+'" alt="" /class="wx-tou">' +
-								' <dl class="wx-yh">' +
-								'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>' +
-								'  <dd style="font-size:0.24rem;color: #898989;">'+data.published_time+'</dd>' +
-								'</dl>' +
-								' </div>' +
-								' <p class="on1">'+data.title+'</p>' +
-								' <video src="" controls="controls" class="wx-video"></video>' +
-								
-								' <ul class="wx-fen">' +
-								' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
-								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>' +
-								'<li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>' +
-								'</ul>' +
-								' </div>'+' </div>' 
-						}
-		},//相关推荐数据加载
+            page_size:15,
+            template2: function(data) {
+                return '  <div class="one-1">' +
+                    '<div class="wx-name">' +
+                    '<img src="'+data.portrait+'" alt="" /class="wx-tou">' +
+                    ' <dl class="wx-yh">' +
+                    '<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>' +
+                    '  <dd style="font-size:0.24rem;color: #898989;">'+data.published_time+'</dd>' +
+                    '</dl>' +
+                    ' </div>' +
+                    ' <p class="on1">'+data.title+'</p>' +
+                    ' <video src="" controls="controls" class="wx-video"></video>' +
+
+                    ' <ul class="wx-fen">' +
+                    ' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
+                    '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>' +
+                    '<li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>' +
+                    '</ul>' +
+                    ' </div>'+' </div>'
+            }
+        },//相关推荐数据加载
         loadList:function(me){
             if(this.listData.loading){
                 return false;
@@ -305,8 +285,7 @@
             this.listData.page++;
             if(this.listData.ini == true){
                 if(this.listData.page > this.listData.page_total){
-                    redream.showTip('已加载所有数据');
-                    
+                    me.resetload();
                     return false;
                 }
             }
@@ -325,83 +304,39 @@
                 success:function(res){
                     if(res.code == 200){
                         if(objClass1.listData.ini == false){
-                        	$('#wl-video').html('');
+                            $('#wl-video').html('');
                             objClass1.listData.ini = true;
                             objClass1.listData.page_total = res.data.page_total;
-                        	me.isLockUp = false;
-					        me.isLockDown = false;
-					        me.isData = true;
                         }
 
-                        $.each(res.data.rows,function(k,val){                     
-                                var html = '';          
-                                html = objClass1.listData.template2(val);
-//                              if(val.thumbnail != '' && val.thumbnail != null){
-//                              	var obj = $.parseJSON(val.thumbnail);
-//									var arr = Object.keys(obj);
-//					            	if(arr.length == 1){
-//					            		html = objClass.listData.template(val,obj);
-//					            	}else {
-//					            		html = objClass.listData.template1(val,obj);
-//					            	}
-//                              }else {
-//                              	html = objClass.listData.template2(val);
-//                              }
-                                
-                                
-				            	
-				            	$('#wl-video').append(html);
-
+                        $.each(res.data.rows,function(k,val){
+                            var html = objClass1.listData.template2(val);
+                            $('#wl-video').append(html);
                         });
-                        
-                        
+
                         if(objClass1.listData.page >= objClass1.listData.page_total){
-                        	me.lock();
-		                    // 无数据
-		                    me.noData();
+                            me.noData();
                         }
-                        
                     }
-                    
+
                     me.resetload();
                 }
             });
         },
     };
- 	$('.content').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-        	objClass.listData.loading = false;
-        	objClass.listData.ini = false;
-        	objClass.listData.page = 0;
-        	objClass.listData.page_total = 1;       
-        	objClass.loadList(me);
-        },
-        loadDownFn : function(me){
-            objClass.loadList(me);
-        }
-
-        
-    });
-    
     $('.content2').dropload({
         scrollArea : window,
         loadUpFn:function(me){
         	objClass1.listData.loading = false;
         	objClass1.listData.ini = false;
         	objClass1.listData.page = 0;
-        	objClass1.listData.page_total = 1;       
+        	objClass1.listData.page_total = 0;
         	objClass1.loadList(me);
         },
         loadDownFn : function(me){
             objClass1.loadList(me);
         }
-
-        
     });
-    
-    
-    
 </script>
 <script type="text/javascript">
     $(function () {
@@ -438,6 +373,4 @@
         })
     });
 </script>
-
-
 </html>

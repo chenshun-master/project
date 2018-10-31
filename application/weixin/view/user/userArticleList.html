@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/home_page.css"/>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_890503_bqq4ljep3ij.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <title>用户中心</title>
     <style>
         .wkf{
@@ -36,13 +37,13 @@
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
-<body>
+<body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
         <a href="javascript:history.go(-1)" class="tb"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
     </div>
     <div class="wx-t1">
-        <img src=""/>
+        <img src="{$user_info['portrait']}"/>
         <div class="wx-wen">
             <dl>
                 <dt>{$publishStatistics['type_1']['total']}</dt>
@@ -77,16 +78,18 @@
     </div>
 
     <div id="cus-container">
-
+        <div id="cus-container-list"></div>
     </div>
-    <p onclick="objClass.loadList()" style="font-size: 28px;text-align: center;line-height: 60px;">加载更多...</p>
-			<div class="zwnr" >
-				暂无文章内容
-			</div>
+    <!--<p onclick="objClass.loadList()" style="font-size: 28px;text-align: center;line-height: 60px;">加载更多...</p>-->
+    <!--<div class="zwnr" >-->
+        <!--暂无文章内容-->
+    <!--</div>-->
 </div>
 
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var objClass = {
         listData:{
@@ -94,11 +97,11 @@
             ini:false,
             page:0,
             page_total:1,
-            page_size:10,
+            page_size:20,
         },
 
         //相关推荐数据加载
-        loadList:function(){
+        loadList:function(me){
             if(this.listData.loading){
                 return false;
             }
@@ -106,7 +109,6 @@
             this.listData.page++;
             if(this.listData.ini == true){
                 if(this.listData.page > this.listData.page_total){
-                    redream.showTip('已加载所有数据');
                     return false;
                 }
             }
@@ -123,13 +125,25 @@
                 },
                 success:function(res){
                     if(res.code == 200){
+
                         if(objClass.listData.ini == false){
                             objClass.listData.ini = true;
                             objClass.listData.page_total = res.data.page_total;
+                            me.isLockUp = false;
+                            me.isLockDown = false;
+                            me.isData = true;
+                            $('#cus-container-list').html('');
                         }
 
-                        $('#cus-container').append(res.data.htmlContent);
+                        $('#cus-container-list').append(res.data.htmlContent);
+
+                        if(objClass.listData.page >= objClass.listData.page_total){
+                            me.lock();
+                            me.noData();
+                        }
                     }
+
+                    me.resetload();
                 }
             });
         },
@@ -168,15 +182,27 @@
         },
     };
 
-    setTimeout(function(){
-        objClass.loadList();
+    $('#cus-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            objClass.listData.loading = false;
+            objClass.listData.ini = false;
+            objClass.listData.page = 0;
+            objClass.listData.page_total = 0;
+            objClass.loadList(me);
+        },
+        loadDownFn : function(me){
+            objClass.loadList(me);
+        }
+    });
 
-        $(document).on('click','.cus-article-fabulous',function(event){
-            objClass.clickFabulous($(this));
 
-            event.stopPropagation();
-        });
-    },1000);
+
+    $(document).on('click','.cus-article-fabulous',function(event){
+        objClass.clickFabulous($(this));
+
+        event.stopPropagation();
+    });
 
     $(document).on('click','.cus-article-href',function(){
         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
@@ -185,8 +211,6 @@
     $(document).on('click','.cus-article-href2',function(){
         window.location.href = '/weixin/article/userMain/id'+ $(this).data('uid');
     });
-
-
 
     $(function () {
         $(window).scroll(function () {
