@@ -232,9 +232,9 @@
 
 
                 if (data.reply_count == 0 || data.reply_count == null) {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  >回复</button>';
+                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="0">回复</button>';
                 } else {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '" >' + data.reply_count + ' 回复</button>';
+                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="'+ data.reply_count +'"  >' + data.reply_count + ' 回复</button>';
                 }
 
                 var html = '<div class="pl">' +
@@ -345,7 +345,7 @@
             ini: false,
             page: 0,
             page_total: 1,
-            page_size: 10,
+            page_size: 1000,
             template: function (data) {
                 var css = (data.isZan != 0) ? ' icon-appreciate_fill_light cus-blue ' : 'icon-appreciate_light';
                 return '<div class="wz1">' +
@@ -481,7 +481,12 @@
         });
 
         $(document).on('click', '.cus-reply-btn', function () {
-            objClass.replyComment($(this));
+            var num = parseInt($(this).data('replynum'));
+            if(num == 0 || num == ''){
+                
+            }else{
+                objClass.replyComment($(this));
+            }
         });
 
 
