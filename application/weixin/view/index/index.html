@@ -30,9 +30,14 @@
 </head>
 <body style="background: #ffffff;">
 <div class="con" >
+
+    <?php if(!is_weixin()):?>
     <div class="wx-top">
         <a href="/weixin/user/main" class="topa"></a>
     </div>
+    <?php endif;?>
+
+
     <ul class="biao">
         <li style="margin-left: 50px;"><a href="">推荐</a></li>
         <li><a href="">文章</a></li>
