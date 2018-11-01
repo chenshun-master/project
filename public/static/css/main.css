@@ -228,7 +228,7 @@ position: relative;
 }
 .you1{
 width: 100%;
-height: 148px;#7DB0E8
+height: 148px;
 background: red;
 position: absolute;
 top: 52px;
@@ -284,11 +284,22 @@ border-radius: 10px;
 	height: 88px;
 	background: white;
 }
-.oner .one-1{
+.oner>.one-1{
 	height: 750px;
 	border-bottom: 10px solid #F4F5F6;
 }
 #ttb{
 	font-size: 40px;
 	color: #999999;
+}
+
+.wl-jianj {
+	font-size: 0.2rem;
+	color: #F1F0F0;
+	margin-top: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 580px;
+	margin: 0 auto
 }
