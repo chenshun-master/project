@@ -3,15 +3,17 @@
 <head>
     <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta content="telephone=no" name="format-detection" />
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
-        <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" href="/static/css/iconfont.css">
     <title>主页</title>
     <style>
-        .wkf{
+        .wkf {
             display: none;
             position: fixed;
             top: 565px;
@@ -22,14 +24,14 @@
             text-align: center;
             background: #0FD6DD;
             color: #FFFFFF;
-            font-size:0.28rem;
-            border-radius:10px ;
+            font-size: 0.28rem;
+            border-radius: 10px;
         }
     </style>
 
 </head>
 <body style="background: #ffffff;">
-<div class="con" >
+<div class="con">
 
     <?php if(!is_weixin()):?>
     <div class="wx-top">
@@ -48,12 +50,31 @@
     </ul>
 
 
-			<div id="cus-container" style="min-height: 300px;">
-				<div id="wx-wz">
-			
-				</div>
-			</div>
-<!--    <div  onclick="objClass.loadList()" style="font-size: 34px;text-align: center;height: 50px;line-height: 50px;"> 加载更多</div>-->
+    <div id="cus-container" style="min-height: 300px;">
+        <div id="wx-wz">
+
+        </div>
+    </div>
+    <div style="height: 100px"></div>
+    <!--    <div  onclick="objClass.loadList()" style="font-size: 34px;text-align: center;height: 50px;line-height: 50px;"> 加载更多</div>-->
+    <div class="wl-foot">
+        <dl>
+            <dd> <i class="iconfont icon-home_fill_light" style="font-size: 50px;color: #7DB0E8"></i></dd>
+            <dt style="color:   #7DB0E8">首页</dt>
+        </dl>
+        <dl>
+            <dd><i class="iconfont icon-news_hot_light" style="font-size: 50px"></i></dd>
+            <dt>文章</dt>
+        </dl>
+        <dl>
+            <dd><i class="iconfont icon-video_light" style="font-size: 50px"></i></dd>
+            <dt>视频</dt>
+        </dl>
+        <dl>
+            <dd><i class="iconfont icon-my_light" style="font-size: 50px"></i></dd>
+            <dt>我的</dt>
+        </dl>
+    </div>
 </div>
 </body>
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -62,48 +83,48 @@
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var objClass = {
-        listData:{
-            loading:false,
-            ini:false,
-            page:0,
-            page_total:1,
-            page_size:15,
+        listData: {
+            loading: false,
+            ini: false,
+            page: 0,
+            page_total: 1,
+            page_size: 15,
         },
 
         //相关推荐数据加载
-        loadList:function(me){
-            if(this.listData.loading){
+        loadList: function (me) {
+            if (this.listData.loading) {
                 return false;
             }
 
             this.listData.page++;
-            if(this.listData.ini == true){
-                if(this.listData.page > this.listData.page_total){
+            if (this.listData.ini == true) {
+                if (this.listData.page > this.listData.page_total) {
                     me.resetload();
                     return false;
                 }
             }
             $.ajax({
-                url:"/weixin/index/getArticleList",
-                type:'post',
-                data:{type:0,page:this.listData.page,page_size:this.listData.page_size},
-                dataType:'json',
-                beforeSend:function(){
+                url: "/weixin/index/getArticleList",
+                type: 'post',
+                data: {type: 0, page: this.listData.page, page_size: this.listData.page_size},
+                dataType: 'json',
+                beforeSend: function () {
                     objClass.listData.loading = true;
                 },
-                complete:function(){
+                complete: function () {
                     objClass.listData.loading = false;
                 },
-                success:function(res){
-                    if(res.code == 200){
-                        if(objClass.listData.ini == false){
+                success: function (res) {
+                    if (res.code == 200) {
+                        if (objClass.listData.ini == false) {
                             objClass.listData.ini = true;
                             objClass.listData.page_total = res.data.page_total;
                             $('#wx-wz').html('');
                         }
                         $('#wx-wz').append(res.data.conetnt);
-                        if(objClass.listData.page >= objClass.listData.page_total){
-		                    me.noData();
+                        if (objClass.listData.page >= objClass.listData.page_total) {
+                            me.noData();
                         }
                     }
                     me.resetload();
@@ -112,25 +133,25 @@
         },
 
     };
-    
-    
- 	$('#cus-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-        	objClass.listData.loading = false;
-        	objClass.listData.ini = false;
-        	objClass.listData.page = 0;
-        	objClass.listData.page_total = 1;       
-        	objClass.loadList(me);
+
+
+    $('#cus-container').dropload({
+        scrollArea: window,
+        loadUpFn: function (me) {
+            objClass.listData.loading = false;
+            objClass.listData.ini = false;
+            objClass.listData.page = 0;
+            objClass.listData.page_total = 1;
+            objClass.loadList(me);
         },
-        loadDownFn : function(me){
+        loadDownFn: function (me) {
             objClass.loadList(me);
         }
     });
-    
-//  setTimeout(function(me){
-//      objClass.loadList(me);
-//  },500);
+
+    //  setTimeout(function(me){
+    //      objClass.loadList(me);
+    //  },500);
 
     // $(document).on('click','.cus-article-href',function(){
     //     if($(this).data('type') == 1){
@@ -138,8 +159,8 @@
     //     }
     // });
 
-    function clickHref(id){
-        window.location.href = '/weixin/article/articleDetails/id/'+ id;
+    function clickHref(id) {
+        window.location.href = '/weixin/article/articleDetails/id/' + id;
     }
 </script>
 
