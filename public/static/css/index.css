@@ -100,7 +100,7 @@ a {
 
 .wx-n1 {
     width: 680px;
-    height: 175px;
+    min-height: 175px;
     border-bottom: 1px solid #F1F1F1;
     margin: 0 auto;
 
@@ -118,7 +118,7 @@ a {
 }
 
 .wx-n3 {
-    height: 28px;
+    height: 30px;
     margin-top: 30px;
 }
 
@@ -163,12 +163,12 @@ a {
 
 .pl {
     width: 102px;
-    height: 26px;
+    height: 30px;
     color: #898989;
     font-size: 0.24rem;
     padding-left: 50px;
     margin-left: 25px;
-    background: url(../image/index/pl.png) no-repeat 10px 5px;
+    background: url(../image/index/pl.png) no-repeat 10px 6px;
     background-size: 25px;
     margin-top: 2px;
 }
@@ -211,7 +211,7 @@ a {
 
 .wx-b3 {
     width: 680px;
-    min-height: 225px;
+    min-height: 220px;
     margin: 0 auto;
     border-bottom: 1px solid #F1F1F1;
     font-size: 0.38rem;
@@ -227,6 +227,7 @@ a {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    margin-bottom: 3px;
 }
 
 .wx-b3 img {
