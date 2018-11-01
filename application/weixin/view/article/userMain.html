@@ -17,14 +17,18 @@
     <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
-
+<style>
+    .souBak{
+        color: #7DB0E8 !important;
+    }
+</style>
 <body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
         <img src="/static/image/user/default-head.png" alt="" class="wx-img"/>
         <div class="wx-con">
             <h3 style="font-size:0.34rem;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
-            <p style="font-size: 0.2rem;color: #F1F0F0;margin-top: 10px;">{$user_info['profile']}</p>
+            <p class="wl-jianj">{$user_info['profile']}</p>
             <button>私信</button>
             <button style="margin-left: 40px;">加好友</button>
         </div>
@@ -130,10 +134,10 @@
                            ' <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;">'+data.title+'</dt>'+
                             '<dd>'+'<img src="'+obj.img_1 +'" alt="图片"/>'+'</dd>'+
                        ' </dl>'+'  </div>'+
-                                          ' <ul class="wx-fen">'+
+                          ' <ul class="wx-fen">'+
                   '      <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>'+
-                        '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>'+
-                       ' <li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">'+data.isZan+'</span></li>'+
+                        '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>'+
+                       ' <li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
                    ' </ul>'
 				'</div>';
             },
@@ -155,8 +159,8 @@
                    ' </div>'+
                    ' <ul class="wx-fen">'+
                   '      <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>'+
-                        '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>'+
-                       ' <li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>'+
+                        '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>'+
+                       '<li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
                    ' </ul>'+
 
                ' </div>';
@@ -173,12 +177,13 @@
 								' <p class="on1">' + data.title + '</p>' +
 								' <ul class="wx-fen">' +
 								' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
-								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>' +
-								'<li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>' +
+								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>' +
+								'<li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>' +
 								'</ul>' +
 								' </div>'
             },
-		},//相关推荐数据加载
+		},
+        //相关推荐数据加载
         loadList:function(me){
             if(this.listData.loading){
                 return false;
@@ -271,8 +276,8 @@
 
                     ' <ul class="wx-fen">' +
                     ' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
-                    '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;">34</span></li>' +
-                    '<li><i class="iconfont icon-appreciate_light" id="ttb"></i><span style="margin-left: 15px;">44</span></li>' +
+                    '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>' +
+                    '<li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>' +
                     '</ul>' +
                     ' </div>'+' </div>'
             }
@@ -337,6 +342,42 @@
             objClass1.loadList(me);
         }
     });
+    //用户点赞操作
+       clickFabulous:function(obj){
+           var id = obj.data('id');
+           var type = obj.data('click') == 1 ?2:1;
+           $.ajax({
+               url:"/weixin/article/clickZan",
+               type:'post',
+               data:{id:id,type:type,},
+               dataType:'json',
+               beforeSend:function(){
+                   objClass.oneLoading = true;
+               },
+               complete:function(){
+                   objClass.oneLoading = false;
+               },
+               success:function(res){
+                   if(res.code == 200){
+                       if(type == 1){
+                           obj.data('click',1);
+                           obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) + 1);
+                           obj.find('.cus-tubiao').removeClass('icon-appreciate_light').addClass('icon-appreciate_fill_light').addClass('souBak');
+      
+      
+                       }else{
+                           obj.data('click',0);
+                           obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) -1);
+                           obj.find('.cus-tubiao').removeClass('icon-appreciate_fill_light').removeClass('souBak').addClass('icon-appreciate_light');
+                       }
+                   }
+               }
+           });
+       }
+       $(document).on('click','.cus-article-fabulous',function(event){
+           objClass.clickFabulous($(this));
+           event.stopPropagation();
+       });
 </script>
 <script type="text/javascript">
     $(function () {

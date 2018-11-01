@@ -12,7 +12,7 @@
                                     </p>
                                     <p class="wx-n3" >
                                         <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
-                                        <!--<span class="ck">999+</span>-->
+                                        <span class="ck">{$val['hits']}+</span>
                                         <span class="pl">
                                             <?php if($val['comment_count'] == 0):?>
                                             <?php elseif($val['comment_count'] >= 1000 ):?>
@@ -31,7 +31,7 @@
                                     </div>
                                     <p class="wx-n3" >
                                         <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
-                                        <!--<span class="ck">999+</span>-->
+                                        <span class="ck">{$val['hits']}+</span>
                                         <span class="pl">
                                             <?php if($val['comment_count'] == 0):?>
                                             <?php elseif($val['comment_count'] >= 1000 ):?>
@@ -49,7 +49,7 @@
                                 <p class="wx-n3">
                                     <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                     <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
-                                    <!--<span class="ck">999+</span>-->
+                                    <span class="ck">{$val['hits']}+</span>
                                     <span class="pl">
                                         <?php if($val['comment_count'] == 0):?>
                                         <?php elseif($val['comment_count'] >= 1000 ):?>
@@ -66,7 +66,7 @@
                             <p class="wx-n2">{$val['title']}</p>
                             <video src="{$val['video_url']}" controls="controls"  poster="{$thumbnail['img_1']}"></video>
                             <p class="wx-n3"><span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
-                                <!--<span class="ck">999+</span>-->
+                                <span class="ck">{$val['hits']}+</span>
                                 <span class="pl">
                                     <?php if($val['comment_count'] == 0):?>
                                     <?php elseif($val['comment_count'] >= 1000 ):?>
