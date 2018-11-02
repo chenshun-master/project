@@ -246,13 +246,14 @@ a {
     background: white;
 }
 .wl-foot dl{
-    margin-top: -20px;
+    margin-top: -10px;
     width: 25%;
     height: 98px;
     text-align: center;
     float: left;
 }
 .wl-foot dt{
+    margin-top: -5px;
     font-size: 22px;
     color: #000000;
 
