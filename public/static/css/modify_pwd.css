@@ -35,18 +35,19 @@ a{text-decoration: none;color: #221815;display: block;}
 	border-bottom: 1px solid #F1F1F1;
 }
 .xgma span{
-	width: 110px;
-	height: 30px;
+	width: 150px;
+	height: 40px;
 	color: #000000;
-	font-size:0.28rem;
+	font-size: 0.30rem;
 	margin-left: 30px;
+	float: left;
+	margin-top: 16px;
 }
 .xgma input{
 	width: 300px;
 	height: 50px;
 	color: #A0A0A0;
-	font-size: 0.24rem;
-	margin-left: 30px;
+	font-size: 0.26rem;
 }
 #btn{
 	width: 680px;

@@ -17,7 +17,7 @@ class Index extends CController
      */
     public function index()
     {
-        return '<h1 style="color: red;font-size: 20px;">PC端首页</h1>';
+        return $this->fetch('user/main');
     }
 
     /**
