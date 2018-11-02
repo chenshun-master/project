@@ -18,11 +18,15 @@ class Index extends CController
     public function index()
     {
 
+        return $this->fetch('user/main');
+
+
         if(is_weixin()){
             return $this->redirect('/weixin/index/index');
         }
 
         return '<h1 style="color: red;font-size: 20px;">微琳医美</h1>';
+
     }
 
     /**
