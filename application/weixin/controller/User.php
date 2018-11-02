@@ -32,6 +32,7 @@ class User extends BaseController
 
         $user_info = $this->getUserInfo();  //dump($user_info);exit;
 
+
         $this->_publishTotal($user_info['id']);
 
         $this->assign([
