@@ -137,12 +137,12 @@
                     src = thumbnailObj.img_1;
                 }
 
-                var html = '<div class="wzxq cus-recommend-href" data-id="' + data.id + '" >' +
+                var html = '<div class="wzxq "  >' +
                     '<div class="wx-x">' +
-                    '<h3>' + data.title + '</h3>' +
-                    '<p style="margin-top: -20px;"><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
-                    '</div>' +
-                    '<img src="' + src + '" alt=""/>' +
+                        '<h3   onclick="objClass.hrefDetails('+ data.id +')"  >' + data.title + '</h3>' +
+                        '<p style="margin-top: -20px;"><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
+                        '</div>' +
+                        '<img src="' + src + '" alt="" class="cus-recommend-href"  data-id="' + data.id + '"  />' +
                     '</div>';
                 return html;
             }
@@ -474,7 +474,11 @@
                     }
                 }
             });
-        }
+        },
+
+        hrefDetails:function(id){
+            window.location.href = '/weixin/article/articleDetails/id/' + id;
+        },
     };
 
     setTimeout(function () {
@@ -540,8 +544,8 @@
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
     });
 </script>
-
 <script type="text/javascript">
+
     $(".xpq1").click(function () {
         $('.wx-foot').hide();
         $('.kl1').show();
@@ -560,22 +564,18 @@
             }
         });
     });
-    function getClientHeight()
-{
-  var clientHeight=0;
-  if(document.body.clientHeight&&document.documentElement.clientHeight)
-  {
-  var clientHeight = (document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
-  }
-  else
-  {
-  var clientHeight = (document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
-  }
-  return clientHeight;
-}
-</script>
 
-<script type="text/javascript">
+    function getClientHeight(){
+        var clientHeight=0;
+        if(document.body.clientHeight&&document.documentElement.clientHeight){
+            var clientHeight = (document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+        }else{
+            var clientHeight = (document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+        }
+
+        return clientHeight;
+    }
+
     $(document).ready(function() {
         $(".xpq1").click(function(event) {
             event.stopPropagation(); //停止事件冒泡
@@ -591,9 +591,12 @@
             if(!_con.is(event.target) && _con.has(event.target).length == 0) {
                 $('.wl-zhez').hide(); //淡出消失
                 $('.wx-foot').show();
+                $('.neirong').val("");
+                $('#cus-comment-pid').val('');
+
+                $('.neirong').attr('placeholder','请输入评论内容');
             }
-            $('.neirong').val("");
-            $('#cus-comment-pid').val('');
+
         });
 
     });
