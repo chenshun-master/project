@@ -103,65 +103,41 @@ a {
     color: white;
 }
 
-.clear {
-    clear: both;
+.tab-box{
+    width: 1200px;
+    height: 930px;
 }
-
-.main-page {
-    margin-left: 360px;
-    width: 700px;
-    height: 300px;
-}
-
-.main-page .left, .main-page .right {
+.tab-box ul {
+    width: 180px;
+    height: 400px;
     float: left;
 }
 
-.main-page .nav-back {
+.tab-box li {
     width: 180px;
-    height: 300px;
-    background: #000;
-    opacity: .3;
-    filter: alpha(opacity=30);
-    margin-top: 20px;
-}
-
-.main-page .nav {
-    position: relative;
-    margin-top: -300px;
+    height: 60px;
+    background: #ccc;
+    color: #09F;
+    line-height: 60px;
     text-align: center;
-    font-size: 14px;
-    font-family: "微软雅黑";
-    color: #fff;
+    cursor: pointer;
+}
+.tab-box li.active {
+    background: #999;
+    color: #F0F;
 }
 
-.main-page .nav div {
-    height: 32px;
-    line-height: 28px;
+.tab-content div {
+
+    width: 400px;
+    height: 500px;
+    padding: 15px 5px;
+    color: #000;
+    clear: left;
+    display: none;
+    background: #999;
 }
 
-.main-page .nav div.on {
-    background: #7DB0E8;
-}
-
-
-.main-page .content {
-    position: relative;
-    width: 1000px;
-    height: 930px;
-    margin-top: -192px;
-    margin-left: 200px;
-    overflow: hidden;
-
-}
-
-.main-page .content div {
-
-    width: 1000px;
-    height: 930px;
-    margin-bottom: 10px;
-    background: #fff;
-}
-.tab-box{
-    margin-left: 300px;
+.tab-box div.active-txt {
+    display: block;
 }
