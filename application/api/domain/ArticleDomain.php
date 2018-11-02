@@ -220,9 +220,10 @@ class ArticleDomain
         $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
         $obj->order('article.is_top', 'desc');
         $obj->order('article.published_time', 'desc');
+        $obj->leftJoin('wl_user user','article.user_id = user.id');
         $total = $obj->count();
 
-        $obj->leftJoin('wl_user user','article.user_id = user.id');
+
         $obj->field('article.*,user.nickname,INSERT(user.mobile,4,4,\'****\') as mobile');
 
         $rows = $obj->page($page,$page_size)->select();
@@ -314,9 +315,10 @@ class ArticleDomain
         }
 
         $obj->order('article.published_time', 'desc');
-        $total = $obj->count();
+
 
         $obj->join('wl_user user','article.user_id = user.id');
+        $total = $obj->count();
 
         if($uid){
             $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$uid} AND wl_user_like.object_id = article.id) as isZan");
@@ -365,9 +367,8 @@ class ArticleDomain
         });
         $obj->where('article.type', 'in', [1,2,3]);
 
-        $total = $obj->count();
-
         $obj->join('wl_user user','article.user_id = user.id');
+        $total = $obj->count();
         $obj->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
 
         $rows = $obj->page($page,$page_size)->select();

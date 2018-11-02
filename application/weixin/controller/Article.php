@@ -147,7 +147,9 @@ class Article extends BaseController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-        $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size);
+        $uid = $this->getUserId();
+
+        $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size,false,$uid);
         return $this->returnData($data,'',200);
     }
 

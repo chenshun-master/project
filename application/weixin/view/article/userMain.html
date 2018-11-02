@@ -126,23 +126,35 @@
             page_total:1,
             page_size:15,
             template:function(data,obj){
+                if(data.isZan == 1){
+                    var css = 'icon-appreciate_fill_light souBak';
+                }else{
+                    var css = 'icon-appreciate_light';
+                }
+
 				return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;">'+
 						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" /class="wx-tou">'+
-                        '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+data.published_time+'</dd>'+
+                        '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+ redream.beautifyTime(data.published_time) +'</dd>'+
                        ' </dl>'+'</div>'+
                          ' <div class="wx-nei1">'+
                        ' <dl>'+
-                           ' <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;">'+data.title+'</dt>'+
-                            '<dd>'+'<img src="'+obj.img_1 +'" alt="图片"/>'+'</dd>'+
+                           ' <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;"  class="cus-article-href" data-id="'+ data.id +'"  >'+data.title+'</dt>'+
+                            '<dd class="cus-article-href" data-id="'+ data.id +'" >'+'<img src="'+obj.img_1 +'" alt="图片"/>'+'</dd>'+
                        ' </dl>'+'  </div>'+
                           ' <ul class="wx-fen">'+
                   '      <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>'+
                         '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>'+
-                       ' <li><span class="cus-article-fabulous"  data-id="'+ data.id +'"  data-click="'+ data.isZan +'"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
+                       ' <li><span class="cus-article-fabulous"  data-id="'+ data.id +'"  data-click="'+ data.isZan +'"><i class="iconfont cus-tubiao '+ css +'" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num">'+ data.like +'</span></span></li>'+
                    ' </ul>'
 				'</div>';
             },
             template1:function(data,obj){
+                if(data.isZan == 1){
+                    var css = 'icon-appreciate_fill_light souBak';
+                }else{
+                    var css = 'icon-appreciate_light';
+                }
+
             	var src_img = '';
             	$.each(obj, function(k,v) {
             		src_img +='<img src="'+v +'" alt="" style="margin-right: 4px;"/>';
@@ -152,34 +164,40 @@
                        ' <img src="'+data.portrait+'" alt="" class="wx-tou">'+
                       '  <dl class="wx-yh">'+
                           '  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>'+
-                          '  <dd style="font-size:0.24rem;color: #898989;">'+data.published_time+'</dd>'+
+                          '  <dd style="font-size:0.24rem;color: #898989;">'+ redream.beautifyTime(data.published_time) +'</dd>'+
                        ' </dl>'+
                   '  </div>'+
-                   ' <p class="on1">'+data.title+'</p>'+
-                    '<div class="on1-img">'+ src_img +
+                   ' <p class="on1 cus-article-href" data-id="'+ data.id +'" >'+data.title+'</p>'+
+                    '<div class="on1-img cus-article-href" data-id="'+ data.id +'">'+ src_img +
                    ' </div>'+
                    ' <ul class="wx-fen">'+
                   '      <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>'+
                         '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>'+
-                       '<li><span class="cus-article-fabulous"  data-id="'+ data.id +'"  data-click="'+ data.isZan +'" ><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
+                       '<li><span class="cus-article-fabulous"  data-id="'+ data.id +'"  data-click="'+ data.isZan +'" ><i class="iconfont cus-tubiao '+ css+'" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num">'+ data.like +'</span></span></li>'+
                    ' </ul>'+
 
                ' </div>';
                },
 			template2: function(data) {
+                        if(data.isZan == 1){
+                            var css = 'icon-appreciate_fill_light souBak';
+                        }else{
+                            var css = 'icon-appreciate_light';
+                        }
+
 						return	' <div class="ont-3" style="height: 350px;padding-top:20px;border-bottom: 10px solid #EEEEEE;">' +
 							' <div class="wx-name">' +
 							'   <img src="' + data.portrait + '" alt="" /class="wx-tou">' +
 								'<dl class="wx-yh">' +
 								'  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">' + data.nickname + '</dt>' +
-								'<dd style="font-size:0.24rem;color: #898989;">' + data.published_time + '</dd>' +
+								'<dd style="font-size:0.24rem;color: #898989;">' + redream.beautifyTime(data.published_time) + '</dd>' +
 								' </dl>' +
 								'</div>' +
-								' <p class="on1">' + data.title + '</p>' +
+								' <p class="on1 cus-article-href" data-id="'+ data.id +'">' + data.title + '</p>' +
 								' <ul class="wx-fen">' +
 								' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
 								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>' +
-								'<li><span class="cus-article-fabulous" data-id="'+ data.id +'"  data-click="'+ data.isZan +'" ><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>' +
+								'<li><span class="cus-article-fabulous" data-id="'+ data.id +'"  data-click="'+ data.isZan +'" ><i class="iconfont cus-tubiao '+ css +'" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num">'+ data.like +'</span></span></li>' +
 								'</ul>' +
 								' </div>'
             },
@@ -379,6 +397,11 @@
            objClass1.clickFabulous($(this));
            // event.stopPropagation();
        });
+
+
+    $(document).on('click','.cus-article-href',function(){
+        window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
+    });
 </script>
 <script type="text/javascript">
     $(function () {

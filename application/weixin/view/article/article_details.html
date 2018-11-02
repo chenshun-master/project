@@ -132,7 +132,7 @@
             page_size: 3,
             template: function (data) {
                 var src = '';
-                if (data.thumbnail != '') {
+                if (data.thumbnail != '' && data.thumbnail !=null) {
                     var thumbnailObj = $.parseJSON(data.thumbnail);
                     src = thumbnailObj.img_1;
                 }
