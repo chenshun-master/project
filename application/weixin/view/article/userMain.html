@@ -112,6 +112,7 @@
             </div>
         </div>
     </div>
+
 </body>
 
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -137,7 +138,7 @@
                           ' <ul class="wx-fen">'+
                   '      <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>'+
                         '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>'+
-                       ' <li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
+                       ' <li><span class="cus-article-fabulous"  data-id="'+ data.id +'"  data-click="'+ data.isZan +'"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
                    ' </ul>'
 				'</div>';
             },
@@ -160,7 +161,7 @@
                    ' <ul class="wx-fen">'+
                   '      <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>'+
                         '<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>'+
-                       '<li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
+                       '<li><span class="cus-article-fabulous"  data-id="'+ data.id +'"  data-click="'+ data.isZan +'" ><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>'+
                    ' </ul>'+
 
                ' </div>';
@@ -178,7 +179,7 @@
 								' <ul class="wx-fen">' +
 								' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
 								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>' +
-								'<li><span class="cus-article-fabulous"><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>' +
+								'<li><span class="cus-article-fabulous" data-id="'+ data.id +'"  data-click="'+ data.isZan +'" ><i class="iconfont icon-appreciate_light cus-tubiao" id="ttb"></i><span style="margin-left: 15px;" class="cus-article-like-num"></span></span></li>' +
 								'</ul>' +
 								' </div>'
             },
@@ -328,6 +329,37 @@
                 }
             });
         },
+        clickFabulous:function(obj){
+            var id = obj.data('id');
+            var type = obj.data('click') == 1 ?2:1;
+            $.ajax({
+                url:"/weixin/article/clickZan",
+                type:'post',
+                data:{id:id,type:type},
+                dataType:'json',
+                beforeSend:function(){
+                    objClass.oneLoading = true;
+                },
+                complete:function(){
+                    objClass.oneLoading = false;
+                },
+                success:function(res){
+                    if(res.code == 200){
+                        if(type == 1){
+                            obj.data('click',1);
+                            obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) + 1);
+                            obj.find('.cus-tubiao').removeClass('icon-appreciate_light').addClass('icon-appreciate_fill_light').addClass('souBak');
+                        }else{
+                            obj.data('click',0);
+                            obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) -1);
+                            obj.find('.cus-tubiao').removeClass('icon-appreciate_fill_light').removeClass('souBak').addClass('icon-appreciate_light');
+                        }
+                    }else if(res.code == 401){
+                        alert('请先进行登录');
+                    }
+                }
+            });
+        },
     };
     $('.content2').dropload({
         scrollArea : window,
@@ -342,41 +374,10 @@
             objClass1.loadList(me);
         }
     });
-    //用户点赞操作
-       clickFabulous:function(obj){
-           var id = obj.data('id');
-           var type = obj.data('click') == 1 ?2:1;
-           $.ajax({
-               url:"/weixin/article/clickZan",
-               type:'post',
-               data:{id:id,type:type,},
-               dataType:'json',
-               beforeSend:function(){
-                   objClass.oneLoading = true;
-               },
-               complete:function(){
-                   objClass.oneLoading = false;
-               },
-               success:function(res){
-                   if(res.code == 200){
-                       if(type == 1){
-                           obj.data('click',1);
-                           obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) + 1);
-                           obj.find('.cus-tubiao').removeClass('icon-appreciate_light').addClass('icon-appreciate_fill_light').addClass('souBak');
-      
-      
-                       }else{
-                           obj.data('click',0);
-                           obj.find('.cus-article-like-num').text(parseInt(obj.find('.cus-article-like-num').text()) -1);
-                           obj.find('.cus-tubiao').removeClass('icon-appreciate_fill_light').removeClass('souBak').addClass('icon-appreciate_light');
-                       }
-                   }
-               }
-           });
-       }
+
        $(document).on('click','.cus-article-fabulous',function(event){
-           objClass.clickFabulous($(this));
-           event.stopPropagation();
+           objClass1.clickFabulous($(this));
+           // event.stopPropagation();
        });
 </script>
 <script type="text/javascript">
