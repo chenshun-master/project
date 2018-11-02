@@ -219,7 +219,7 @@ class Index extends BaseController
     public function sendOtherLoginSmsCode(Request $request){
 
         $mobile    = $request->param('mobile','');
-        $id    = $request->param('id','');
+        $id    = (int)$request->param('id','');
         if(empty($mobile) || !checkMobile($mobile)){
             return $this->returnData([],'请求参数不符合规范',301);
         }

@@ -33,8 +33,9 @@ class BaseController extends Controller
                 '/weixin/index/bindingMobileHandle'
             ];
 
+
             if(!in_array($path,$urlArr)){
-                return $this->redirect('weixin/index/otherLogin?platform=weixin');
+//                return $this->redirect('weixin/index/otherLogin?platform=weixin');
             }
         }
     }

@@ -475,6 +475,10 @@
                         $('.neirong').val('');
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
+                    }else if (res.code == 403){
+                        redream.showTip('您还没有未授权');
+                    }else{
+                        redream.showTip('评论失败');
                     }
                 }
             });
