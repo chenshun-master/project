@@ -23,7 +23,8 @@ a{text-decoration: none;color: #221815;display: block;}
 	border-radius: 50%;
 	margin-top: 50px;
 	margin-left: 36px;
-		float: left;
+	float: left;
+	background: url("/static/image/user/tou.png")no-repeat center;
 }
 .wx-top p{
 	width: 500px;

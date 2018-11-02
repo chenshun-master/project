@@ -35,6 +35,12 @@ class Index extends CController
     public function login(){
         return $this->fetch('index/login');
     }
+    /**
+     * 用户发布文章认证页面
+     */
+    public function release(){
+        return $this->fetch('index/release');
+    }
 
     /**
      * 账号密码登录页面

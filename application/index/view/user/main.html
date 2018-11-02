@@ -1,62 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/pc/css/main.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
-
-<body  style="background: #F8F8F8">
-<div class="wl-con">
-<div class="wl-top">
-<div class="wl-top-user">
-    <span></span><span>用户名称</span><i class="iconfont icon-triangledownfill wl-xl" style="font-size: 20px"></i>
-</div>
-</div>
-    <div class="main-page">
-        <div class="left">
-            <div class="nav-back"></div>
-            <div class="nav">
-                <div class="on">发表文章</div>
-                <div>实名认证</div>
-                <div>个人认证</div>
-                <div>医生认证</div>
-                <div>医院认证</div>
-                <div>官方认证</div>
-            </div>
-        </div>
-        <div class="right">
-            <div class="content-back"></div>
-            <div class="content">
-                <div>导航1</div>
-                <div>新闻2</div>
-                <div>世界杯3</div>
-                <div>音乐4</div>
-                <div>彩票5</div>
-                <div>彩票法法师的5</div>
-
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
+<body>
+<h1>这里是主页</h1>
 </body>
-<script src="/static/js/jquery.min.js"></script>
-<script type="text/javascript">
-    $(".main-page .nav div").mouseenter(function () {
-        var $this = $(this);
-        var index = $this.index();
-    }).mouseleave(function () {
-        var $this = $(this);
-        var index = $this.index();
-    }).click(function () {
-        var $this = $(this);
-        var index = $this.index();
-        var l = -(index * 290);
-        $(".main-page .nav div").removeClass("on");
-        $(".main-page .nav div").eq(index).addClass("on");
-        $(".main-page .content div:eq(0)").stop().animate({ "margin-top": l }, 500);
-    });
-</script>
 </html>
