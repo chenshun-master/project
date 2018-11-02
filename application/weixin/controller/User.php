@@ -30,9 +30,7 @@ class User extends BaseController
             return redirect('/weixin/index/login');
         }
 
-        $user_info = $this->getUserInfo();  //dump($user_info);exit;
-
-
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
         $this->_publishTotal($user_info['id']);
 
         $this->assign([
