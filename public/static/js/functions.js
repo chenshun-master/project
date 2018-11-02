@@ -100,6 +100,7 @@
             }else if(date.getFullYear()==date_arr[0] && date.getMonth()==date_arr[1]-1 ){
                 return (date.getMonth()+1)+"月"+  date_arr[2]+"日 "+date_arr[3]+':'+date_arr[4];
             }else {
+                return date_str;
                 return this.dateFormat('yyyy年MM月dd日',new Date(date_str));
             }
         },

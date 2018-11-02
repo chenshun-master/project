@@ -21,6 +21,15 @@
     .souBak{
         color: #7DB0E8 !important;
     }
+    i{
+        cursor:pointer;
+    }
+
+    .cus-article-href{
+        cursor:pointer;
+    }
+
+
 </style>
 <body style="background: #ffffff;">
 <div class="con">
@@ -133,12 +142,12 @@
                 }
 
 				return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;">'+
-						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" /class="wx-tou">'+
-                        '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+ redream.beautifyTime(data.published_time) +'</dd>'+
+						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" class="wx-tou">'+
+                        '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+ data.published_time +'</dd>'+
                        ' </dl>'+'</div>'+
                          ' <div class="wx-nei1">'+
                        ' <dl>'+
-                           ' <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;"  class="cus-article-href" data-id="'+ data.id +'"  >'+data.title+'</dt>'+
+                           ' <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;cursor: pointer;"  class="cus-article-href" data-id="'+ data.id +'"  >'+data.title+'</dt>'+
                             '<dd class="cus-article-href" data-id="'+ data.id +'" >'+'<img src="'+obj.img_1 +'" alt="图片"/>'+'</dd>'+
                        ' </dl>'+'  </div>'+
                           ' <ul class="wx-fen">'+
@@ -164,10 +173,10 @@
                        ' <img src="'+data.portrait+'" alt="" class="wx-tou">'+
                       '  <dl class="wx-yh">'+
                           '  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>'+
-                          '  <dd style="font-size:0.24rem;color: #898989;">'+ redream.beautifyTime(data.published_time) +'</dd>'+
+                          '  <dd style="font-size:0.24rem;color: #898989;">'+ data.published_time +'</dd>'+
                        ' </dl>'+
                   '  </div>'+
-                   ' <p class="on1 cus-article-href" data-id="'+ data.id +'" >'+data.title+'</p>'+
+                   ' <p class="on1 cus-article-href" data-id="'+ data.id +'"  style="cursor: pointer;" >'+data.title+'</p>'+
                     '<div class="on1-img cus-article-href" data-id="'+ data.id +'">'+ src_img +
                    ' </div>'+
                    ' <ul class="wx-fen">'+
@@ -190,10 +199,10 @@
 							'   <img src="' + data.portrait + '" alt="" /class="wx-tou">' +
 								'<dl class="wx-yh">' +
 								'  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">' + data.nickname + '</dt>' +
-								'<dd style="font-size:0.24rem;color: #898989;">' + redream.beautifyTime(data.published_time) + '</dd>' +
+								'<dd style="font-size:0.24rem;color: #898989;">' + data.published_time + '</dd>' +
 								' </dl>' +
 								'</div>' +
-								' <p class="on1 cus-article-href" data-id="'+ data.id +'">' + data.title + '</p>' +
+								' <p class="on1 cus-article-href" data-id="'+ data.id +'"  >' + data.title + '</p>' +
 								' <ul class="wx-fen">' +
 								' <li><i class="iconfont icon-share_light" id="ttb"></i><span></span></li>' +
 								'<li><i class="iconfont icon-comment_light" id="ttb"></i><span style="margin-left: 15px;"></span></li>' +

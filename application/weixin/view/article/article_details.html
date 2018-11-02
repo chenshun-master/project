@@ -43,6 +43,10 @@
 				background: rgba(0, 0, 0, .1);
 				z-index: 10;
 			}
+
+        .cus-reply-btn,.cus-comment-fabulous,.cus-pinglun-click,.cus-recommend-href{
+            cursor: pointer;
+        }
     </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
@@ -246,7 +250,7 @@
                     '<p class="xm"><span style="float:left">' + data.nickname + '</span> <span style="float:right" class="cus-comment-fabulous" data-id="' + data.id + '" data-click="' + data.isZan + '" >' + data.like_count + '</span></p>' +
                     '<p class="wx-p">' + data.content + '</p>' +
                     '<p class="wx-hf">' +
-                    '<span class="hf-sj">' + redream.beautifyTime(data.created_time) + '</span>' +
+                    '<span class="hf-sj">' + data.created_time + '</span>' +
                     button_html +
                     '</p>' +
                     '</div>' +
@@ -363,7 +367,7 @@
                     '<div class="wz4">' +
                     '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;float: left;margin-top: 20px;margin-left: 11px;">' + data.parent.nickname + '</span></p>' +
                     '<p>' + data.parent.content + '</p>\n' +
-                    '<p style="font-size:0.2rem;color: #888888;margin-top: 10px;margin-left:10px">' + redream.beautifyTime(data.parent.created_time) + '</p>' +
+                    '<p style="font-size:0.2rem;color: #888888;margin-top: 10px;margin-left:10px">' + data.parent.created_time + '</p>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -491,6 +495,7 @@
         $(document).on('click', '.cus-comment-fabulous', function () {
             objClass.clickCommentFabulous($(this), 1);
         });
+
 
         $(document).on('click', '.cus-reply-btn', function () {
             var num = parseInt($(this).data('replynum'));
