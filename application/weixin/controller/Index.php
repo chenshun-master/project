@@ -60,10 +60,7 @@ class Index extends BaseController
             return redirect('/weixin/user/main');
         }
 
-         #判断是否为微信浏览器
-         if(is_weixin() && config('conf.weixin_automatic_logon')){
-             return $this->redirect('weixin/index/otherLogin?platform=weixin');
-         }
+
 
         return $this->fetch('index/login');
     }
@@ -290,8 +287,8 @@ class Index extends BaseController
      * 第三方登录绑定手机号页面
      */
     public function otherLoginBindingMobile(Request $request){
-        $id    = $request->param('id','');
-
+        $id    = (int)$request->param('id',0);
+        $this->assign('id',$id);
         return $this->fetch('index/otherLoginBindingMobile');
     }
 
@@ -316,7 +313,7 @@ class Index extends BaseController
 
         if($isTrue){
             $userDomain = new UserDomain();
-            $info = $userDomain->login($res['mobile'],'',true);
+            $info = $userDomain->login($mobile,'',true);
             $this->saveUserLogin($info);
             return $this->returnData([],'绑定成功',200);
         }

@@ -150,6 +150,14 @@ class Article extends BaseController
         $uid = $this->getUserId();
 
         $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size,false,$uid);
+
+
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                $time = strtotime($v['published_time']);
+                $data['rows'][$k]['published_time'] = formatTime($time);
+            }
+        }
         return $this->returnData($data,'',200);
     }
 
@@ -259,6 +267,14 @@ class Article extends BaseController
         }
 
         $data = $this->articleDomain->getFirstComment($id,$page,$page_size,$user_id);
+
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                $time = strtotime($v['created_time']);
+                $data['rows'][$k]['created_time'] = formatTime($time);
+            }
+        }
+
         return $this->returnData($data,'',200);
     }
 
@@ -281,6 +297,18 @@ class Article extends BaseController
         }
 
         $data = $this->articleDomain->getSecondComment($id,$comment_id,$page,$page_size,$user_id);
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                $time1= strtotime($v['created_time']);
+                $data['rows'][$k]['created_time'] = formatTime($time1);
+
+                $time = strtotime($v['parent']['created_time']);
+                $data['rows'][$k]['parent']['created_time'] = formatTime($time);
+            }
+        }
+
+//        halt($data);
+
         return $this->returnData($data,'',200);
     }
 

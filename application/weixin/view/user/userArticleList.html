@@ -32,6 +32,9 @@
         .souBak{
             color: #7DB0E8 !important;
         }
+        .cus-article-fabulous,.cus-article-href{
+            cursor: pointer;
+        }
     </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
@@ -40,10 +43,10 @@
 <body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
-        <a href="javascript:history.go(-1)" class="tb"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
+        <a href="javascript:history.back(-1)" class="tb"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
     </div>
     <div class="wx-t1">
-        <img src="{$user_info['portrait']}"/>
+        <img src="{$user_info['portrait']}"  onclick="redream.href('/weixin/user/main')"  />
         <div class="wx-wen">
             <dl>
                 <dt>{$publishStatistics['type_1']['total']}</dt>

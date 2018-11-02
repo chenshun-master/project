@@ -32,10 +32,12 @@ class User extends BaseController
 
         $user_info = $this->getUserInfo();  //dump($user_info);exit;
 
+
         $this->_publishTotal($user_info['id']);
 
         $this->assign([
-            'user_info'=>$user_info
+            'user_info'=>$user_info,
+            'contactMobile'=>config('conf.website.mobile')
         ]);
         return $this->fetch('user/main');
     }

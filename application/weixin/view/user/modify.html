@@ -86,6 +86,8 @@
     $(document).ready(function () {
         //上传头像
         $(".tkyy").click(function (event) {
+            redream.showTip('此功能尚未开放');
+            return false;
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
         });
