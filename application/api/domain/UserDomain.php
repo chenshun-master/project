@@ -27,6 +27,7 @@ class UserDomain
 
         $data = [
             'mobile'        =>$params['mobile'],
+            'nickname'      =>mobileFilter($params['mobile']),
             'password'      =>encryptPwd($params['password']),
             'type'          =>1,
             'created_time'  =>date('Y-m-d H:i:s')
@@ -166,6 +167,7 @@ class UserDomain
         $pwd = 'wl'.substr($mobile,5,6);
         $data = [
             'mobile'        =>$mobile,
+            'nickname'      =>mobileFilter($mobile),
             'password'      =>encryptPwd($pwd),
             'type'          =>1,
             'created_time'  =>date('Y-m-d H:i:s')
