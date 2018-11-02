@@ -206,7 +206,7 @@ margin-top: 20px;
 
 .pl {
 	width: 680px;
-	height: 270px;
+	min-height: 270px;
 	margin: 0 auto;
 	padding: 20px 0px;
 }
@@ -276,7 +276,7 @@ margin-top: 20px;
 .hf-sj {
 	display: block;
 	min-width: 100px;
-	max-width: 200px;
+	max-width: 250px;
 	height: 46px;
 	line-height: 46px;
 	font-size: 0.24rem;
