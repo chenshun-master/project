@@ -7,8 +7,10 @@
     <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection" />
-    <link rel="stylesheet" type="text/css" href="/static/css/reg.css" />
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
+    <title>账号找回</title>
     <style>
         .code-hui{
             color: #cccccc !important;
@@ -17,19 +19,22 @@
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body style="background: #ffffff;">
-    <div class="con">
-        <div class="wx-top">
-            <div class="wx-reg">
-                <h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">绑定手机号</h3>
-                <p style="margin-top: 40px;"><input id="mobile" type="text"  placeholder="请输入你的手机号" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
-                <p style="margin-top: 40px;"><input id="sms_code" type="text" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')""></p>
-                <input type="hidden" value="{$id}" id="fr-id">
-                <button id="btn" style="margin-top: 40px;" onclick="objClass.submit()">完成绑定</button>
-            </div>
+
+<body style="background-color: #fff;">
+<div class="con">
+    <div class="wx-top">
+        <a href="login.html"  class="iconfont icon-back_light" style="font-size: 40px;padding-top: 10px;margin-left: 25px;"></a>
+        <div class="wx-reg">
+            <h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">绑定手机号</h3>
+            <p style="margin-top: 40px;"><input id="mobile" type="text"  placeholder="请输入你的手机号" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
+            <p style="margin-top: 40px;"><input id="sms_code" type="text" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
+            <input type="hidden" value="{$id}" id="fr-id">
+            <button id="btn" style="margin-top: 100px;" onclick="objClass.submit()">完成绑定</button>
         </div>
     </div>
+</div>
 </body>
+<script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
@@ -48,13 +53,12 @@
             var id = $('#fr-id').val();
 
             if(!this.checkMobile(mobile)){
-                alert('手机号格式不正确！');
                 layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
                 return false;
             }
 
             if(sms_code == ''){
-                alert('请填写验证码！');
+                layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
                 return false;
             }
             if(!this.loading){
@@ -92,16 +96,16 @@
         },
         sendSms:function(){
             var mobile = $('#mobile').val();
+            var id = $('#fr-id').val();
             if(!this.checkMobile(mobile)){
-                alert('手机号格式不正确');
+                layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
                 return false;
             }
             if(!this.sendSmsCode){
-                var id = $('#fr-id').val();
                 $.ajax({
                     url:"/weixin/index/sendOtherLoginSmsCode",
                     type:'post',
-                    data:{mobile:mobile,sms_code: sms_code,id:id},
+                    data:{mobile:mobile,id:id},
                     dataType:'json',
                     beforeSend:function(){
                         objClass.sendSmsCode = true;
@@ -129,17 +133,14 @@
             }
         }
     };
-
-
     $(function(){
         $('.wx-reg input').on('.wx-reg input ',function(){
-            if(($.trim($('#mobile').val())!=="") && ($.trim($('#sms_code').val())!=="")){
+            if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")){
                 $('#btn').css({'background':'#0fd6dd'});
             }else{
                 $('#btn').css({'background':'#EBEBEB'});
             }
         });
     });
-
 </script>
 </html>
