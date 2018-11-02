@@ -111,3 +111,6 @@ z-index: 1;
 	float: right;
 	margin-right: 36px;
 }
+.wl-href{
+	contain: paint;
+}

@@ -89,3 +89,6 @@ border-radius: 10px;
 text-overflow:ellipsis;
 white-space: nowrap;
 }
+.wl-href{
+	contain: paint;
+}

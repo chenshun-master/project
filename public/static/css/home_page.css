@@ -225,3 +225,6 @@ background: gray;
 	text-align: center;
 	background: #FFFFFF;
 }
+.wl-href{
+	contain: paint;
+}

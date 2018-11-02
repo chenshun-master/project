@@ -159,3 +159,6 @@ margin-right: 42px;
 	display: block;
 	float: right;
 }
+.wl-href{
+	contain: paint;
+}

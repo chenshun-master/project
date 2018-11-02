@@ -126,3 +126,6 @@ z-index: 1;
 	right: 0;
 	line-height: 70px;
 }
+.wl-href{
+	contain: paint;
+}
