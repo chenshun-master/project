@@ -322,3 +322,6 @@ li {
 	bottom: 0;
 	position: absolute
 }
+.wl-href{
+	contain: paint;
+}

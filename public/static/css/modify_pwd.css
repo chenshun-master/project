@@ -61,3 +61,6 @@ a{text-decoration: none;color: #221815;display: block;}
 	margin: 0 auto;
 	margin-top: 50%;
 }
+.wl-href{
+	contain: paint;
+}

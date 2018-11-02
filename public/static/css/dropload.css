@@ -49,3 +49,6 @@
         transform: rotate(360deg);
     }
 }
+.wl-href{
+    contain: paint;
+}
