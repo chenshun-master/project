@@ -5,6 +5,7 @@ use think\App;
 use think\Request;
 use app\api\model\UserModel;
 use anerg\OAuth2\OAuth;
+use think\Db;
 class Index extends BaseController
 {
 
@@ -429,4 +430,31 @@ class Index extends BaseController
         echo '500 错误页面';
     }
 
+
+    public function test(){
+
+        Db::startTrans();
+        try {
+            $num = Db::name('goods')->where('id',1)->setDec('num');
+            if($num < 0){
+                Db::rollback();
+            }
+            
+//            $res = Db::name('goods')->where('id',1)->find();
+//            if($res && $res['num'] > 0){
+//                $res2 = Db::name('goods')->where('id',$res['id'])->dec('num')->update();
+//                $order_no = uniqid().date('YmdHis');
+//                if($res2){
+//                    $res3 = Db::name('goods2')->insert(['order_no'=>$order_no,'created_time'=>date('Y-m-d H:i:s')]);
+//                    if(!$res3){
+//                        Db::rollback();
+//                    }
+//                }
+//            }
+            Db::commit();
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+        }
+    }
 }
