@@ -36,7 +36,8 @@ class User extends BaseController
         $this->_publishTotal($user_info['id']);
 
         $this->assign([
-            'user_info'=>$user_info
+            'user_info'=>$user_info,
+            'contactMobile'=>config('conf.website.mobile')
         ]);
         return $this->fetch('user/main');
     }

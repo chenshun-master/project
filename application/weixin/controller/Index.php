@@ -60,10 +60,7 @@ class Index extends BaseController
             return redirect('/weixin/user/main');
         }
 
-         #判断是否为微信浏览器
-         if(is_weixin() && config('conf.weixin_automatic_logon')){
-             return $this->redirect('weixin/index/otherLogin?platform=weixin');
-         }
+
 
         return $this->fetch('index/login');
     }

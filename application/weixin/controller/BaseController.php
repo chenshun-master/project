@@ -5,6 +5,7 @@ use think\App;
 use think\Controller;
 use think\facade\Session;
 use think\route\dispatch\Redirect;
+use think\facade\Request;
 
 /**
  * 微信端基类控制器
@@ -20,6 +21,22 @@ class BaseController extends Controller
 
         #配置Session作用域
         Session::prefix('weixin');
+
+        #判断是否为微信浏览器 如果是浏览器强制登录
+        if(is_weixin() && config('conf.weixin_automatic_logon') && !$this->checkLogin()){
+            $path = Request::url();
+            $urlArr = [
+                '/weixin/index/otherLogin',
+                '/weixin/index/sendOtherLoginSmsCode',
+                '/weixin/index/otherLoginCallback',
+                '/weixin/index/otherLoginBindingMobile',
+                '/weixin/index/bindingMobileHandle'
+            ];
+
+            if(!in_array($path,$urlArr)){
+                return $this->redirect('weixin/index/otherLogin?platform=weixin');
+            }
+        }
     }
 
     /**
