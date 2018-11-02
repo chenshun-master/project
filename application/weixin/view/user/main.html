@@ -15,11 +15,11 @@
 	<body style="background: #ffffff;">
 		<div class="con">
 			<div class="wx-top">
-				<img src="{$user_info['portrait']}" alt="" style="border: #ffffff !important;" />
+				<img src="{$user_info['portrait']}" alt="" onerror='this.src="/static/image/user/tou.png"' />
 				<dl >
 					<dt>{$user_info['nickname']? $user_info['nickname'] : $user_info['mobile']|mobileFilter}</dt>
 					<?php if($user_info['type'] == 1):?>
-						<dd>申请认证</dd>
+						<dd  onclick="redream.showTip('此功能尚未开放')" >申请认证</dd>
 					<?php elseif($user_info['type'] == 2):?>
 						<dd>认证用户</dd>
 					<?php elseif($user_info['type'] == 3):?>
