@@ -61,14 +61,15 @@ a {
     width: 100%;
     height: 1080px;
     border: 1px solid yellow;
+    position: relative;
 }
 
 .wl-top {
     width: 100%;
     height: 120px;
     background: url("/pc/image/bg-top.png")no-repeat center;
-    position: relative;
     background-size: 100%;
+    /*overflow: hidden*/
 
 }
 
@@ -79,20 +80,9 @@ a {
     right: 390px;
 }
 
-.wl-top-user span:nth-child(1) {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-top: 30px;
-    display: block;
-    background: url("/pc/image/my_fill.png") no-repeat center white;
-    float: left;
-}
-
-.wl-top-user span:nth-child(2) {
+.wl-she{
     margin-top: 52px;
     float: left;
-    color: #FFFFFF;
     font-size: 18px;
     margin-left: 10px;
 }
@@ -112,14 +102,25 @@ a {
     height: 930px;
     margin: 0 auto;
     margin-top: 30px;
+    z-index: 1;
 }
 .tab-box ul {
     width: 180px;
     height: auto;
     float: left;
-    background: white;
+    margin-top: 120px;
+    background: white;position: relative;
 }
-
+.wl-shimin{
+    width: 180px;
+    height: 60px;
+    color: #333333;
+    display: block;
+    line-height: 60px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
 .tab-box li {
     width: 180px;
     height: 60px;
@@ -157,6 +158,33 @@ a {
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
+.wl-geren1 p:nth-child(1){
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: #333333;
+    font-size: 20px;
+    border-bottom: 1px solid #F1F1F1;
+    padding-left: 60px;
+}
+.wl-geren3 p:nth-child(1){
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: #333333;
+    font-size: 20px;
+    border-bottom: 1px solid #F1F1F1;
+    padding-left: 60px;
+}
+.wl-geren2 p:nth-child(1){
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: #333333;
+    font-size: 20px;
+    border-bottom: 1px solid #F1F1F1;
+    padding-left: 60px;
+}
 .wl-zhen{
     width: 100%;
     height: 80px;
@@ -166,7 +194,74 @@ a {
     padding-left: 60px;
     margin-top: 15px;
 }
+
+.wl-zhen1{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: #333333;
+    font-size: 20px;
+    padding-left: 60px;
+    margin-top: 12px;
+}
+.wl-zhen2{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: #333333;
+    font-size: 20px;
+    padding-left: 60px;
+    margin-top: 12px;
+}
+.wl-zhen3{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: #333333;
+    font-size: 20px;
+    padding-left: 60px;
+    margin-top: 12px;
+}
+.wl-geren{
+    position: relative;
+}
+.wl-geren1{
+    position: relative;
+}
+.wl-geren2{
+    position: relative;
+}
+.wl-geren3{
+    position: relative;
+}
 .wl-zhen input{
+    width: 680px;
+    height: 60px;
+    border: 1px solid #F1F1F1;
+    color: #888888;
+    font-size: 18px;
+    padding-left: 30px;
+    margin-left: 30px;
+}
+.wl-zhen1 input{
+    width: 680px;
+    height: 60px;
+    border: 1px solid #F1F1F1;
+    color: #888888;
+    font-size: 18px;
+    padding-left: 30px;
+    margin-left: 30px;
+}
+.wl-zhen2 input{
+     width: 680px;
+     height: 60px;
+     border: 1px solid #F1F1F1;
+     color: #888888;
+     font-size: 18px;
+     padding-left: 30px;
+     margin-left: 30px;
+ }
+.wl-zhen3 input{
     width: 680px;
     height: 60px;
     border: 1px solid #F1F1F1;
@@ -178,18 +273,34 @@ a {
 .wl-shangc{
     width: 170px;
     height: 170px;
-    border: 2px dashed #F1F1F1;
+    border: 3px dashed #cdcdcd;
+    border-radius: 25px;
+    float: left;
+    margin-left: 60px;
+    font-size: 80px;
+    z-index: 999999;
+}
+.wl-shangc1{
+    width: 170px;
+    height: 170px;
+    border: 3px dashed #cdcdcd;
     border-radius: 25px;
     float: left;
     margin-left: 60px;
 }
-
 #xiangji{
     position: absolute;
     top: 27px;
     left: 93px;
     font-size: 100px;
-    color: #F1F1F1;
+    color: #cdcdcd;
+}
+#xiangji2{
+    position: absolute;
+    top: 10px;
+    left: 94px;
+    font-size: 100px;
+    color: #cdcdcd;
 }
 
 #xiangji1{
@@ -197,6 +308,152 @@ a {
     top: 27px;
     left:325px;
     font-size: 100px;
-    color: #F1F1F1;
+    color: #cdcdcd;
 }
-
+ .wl-btn{
+    width: 100%;
+    height: 88px;
+    border-top: 2px solid #F1F1F1;
+    position: absolute;bottom: 0;
+}
+.wl-btn button{
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    background:#7DB0E8;
+    color: #FFfFFF;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 100px;
+}
+.wl-zhao1{
+    font-size: 30px;
+    color: #cdcdcd;
+    position: absolute;
+    top: 95px;
+    left: 85px;
+}
+.wl-zhao2{
+    font-size: 30px;
+    color: #cdcdcd;
+    position: absolute;
+    top: 95px;
+    left: 85px;
+}
+.wl-zhao3{
+    font-size: 30px;
+    color: #cdcdcd;
+    position: absolute;
+    top: 95px;
+    left: 85px;
+}
+.wl-btn1{
+    width: 100%;
+    height: 88px;
+    border-top: 2px solid #F1F1F1;
+    position: absolute;bottom: 0;
+}
+.wl-btn1 button{
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    background:#7DB0E8;
+    color: #FFfFFF;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 100px;
+}
+.wl-sc-js{
+    color: #AAAAAA;
+    font-size: 18px;
+    margin-top: 60px;
+    margin-left: 28px;
+    float: left;
+}
+.wl-btn2{
+    width: 100%;
+    height: 88px;
+    border-top: 2px solid #F1F1F1;
+    position: absolute;bottom: 0;
+}
+.wl-btn2 button{
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    background:#7DB0E8;
+    color: #FFfFFF;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 100px;
+}
+.wl-btn3{
+    width: 100%;
+    height: 88px;
+    border-top: 2px solid #F1F1F1;
+    position: absolute;bottom: 0;
+}
+.wl-btn3 button{
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    background:#7DB0E8;
+    color: #FFfFFF;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 100px;
+}
+.wl-huoqu{
+    width: 164px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #FC7D7D;
+    font-size: 18px;
+    border: 1px solid  #F1F1F1;
+    float: right;
+    margin-right: 210px;
+    margin-top: 12px;
+}
+.wl-sxia{
+    position: absolute;
+    top: 19px;
+    right: 26px;
+    color: #999999;
+}
+.wl-xz{
+    position: absolute;
+    top: 2px;
+    left: 14px;
+}
+.wl-yonghu{
+    width: 100px;
+    height: 30px;
+    color: #FFFFFF;
+    font-size: 18px;
+    position: absolute;
+    top: 50px;
+    right: 117px;
+}
+.wl-zhanghao{
+    width: 188px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.wl-zhanghao p{
+    width: 188px;
+    height: 60px;
+}

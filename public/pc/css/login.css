@@ -55,19 +55,17 @@ a {
 }
 
 #wl-con {
-
     width: 100%;
     height: 1080px;
     position: fixed;
     background: url("/pc/image/bg-1.png") no-repeat center center;
-
-    background-size: cover;
+    background-size: 100% auto;
 
 }
 
 #wl-neirong {
-    width: 1284px;
-    height: 512px;
+    width: 1050px;
+    height: 420px;
     background: #7DB0E8;
     margin: 0 auto;
     position: absolute;
@@ -77,8 +75,8 @@ a {
     box-shadow: 2px 2px 1px #868686;
 }
 #wl-neirong1 {
-     width: 1284px;
-     height: 512px;
+    width: 1050px;
+    height: 420px;
      background: #7DB0E8;
      margin: 0 auto;
      position: absolute;
@@ -88,8 +86,8 @@ a {
      box-shadow: 2px 2px 1px #868686;
  }
 #wl-neirong2 {
-    width: 1284px;
-    height: 512px;
+    width: 1050px;
+    height: 420px;
     background: #7DB0E8;
     margin: 0 auto;
     position: absolute;
@@ -111,12 +109,12 @@ a {
 }
 .wl-left dl {
     color: #FFFFFF;
-    font-size: 32px;
-    margin-top: 120px;
+    font-size: 26px;
+    margin-top: 108px;
 }
 .wl-left1 dl {
     color: #FFFFFF;
-    font-size: 32px;
+    font-size: 26px;
     margin-top: 120px;
 }
 
@@ -135,26 +133,26 @@ a {
 
 .wl-left dd {
     color: #FFFFFF;
-    font-size: 32px;
-    margin-top: 30px;
+    font-size: 26px;
+    margin-top: 24px;
 }
 
 .wl-left dt {
     color: #FFFFFF;
-    font-size: 20px;
-    margin-top: 38px;
+    font-size: 16px;
+    margin-top: 30px;
 }
 
 .wl-zc {
-     width: 108px;
-     height: 54px;
-     line-height: 54px;
+     width: 88px;
+     height: 44px;
+     line-height: 44px;
      text-align: center;
      background: #7DB0E8;
      border: 1px solid white;
      color: #FFFFFF;
      font-size: 22px;
-     margin-top: 46px;
+     margin-top: 38px;
  }
 .wl-zc1 {
     width: 108px;
@@ -169,8 +167,8 @@ a {
 }
 
 .wl-right {
-    width: 598px;
-    height: 598px;
+    width: 490px;
+    height: 490px;
     background: white;
     position: absolute;
     right: 70px;
@@ -214,7 +212,7 @@ a {
     min-width: 120px;
     height: auto;
     color: #7DB0E8;
-    font-size: 28px;
+    font-size: 24px;
     float: left;
     margin-left: 64px;
     margin-top: 78px;
