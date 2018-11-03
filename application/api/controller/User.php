@@ -1,5 +1,6 @@
 <?php
 namespace app\api\controller;
+use app\api\domain\AuthDomain;
 use think\Request;
 use app\api\domain\UserDomain;
 use app\api\model\UserModel;
@@ -17,6 +18,7 @@ class User extends BaseController
         parent::__construct($request);
 
         $this->userDomain = new UserDomain();
+        $this->authDomain = new AuthDomain();
     }
 
     /**
@@ -251,8 +253,7 @@ class User extends BaseController
             $data['type']     = 4;
         }
 
-
-        $isTrue = $this->userDomain->addAuthentication($data);
+        $isTrue = $this->authDomain->addAuthentication($data);
         if(!$isTrue){
             return $this->returnData([],'认证申请提交失败',305);
         }

@@ -188,11 +188,8 @@ class Article extends BaseController
         $user_info = $this->userDomain->getArticleUserInfo($user_id);
         $is_friend = false;
         if($this->checkLogin()){
-            $user_info2 = $this->getUserInfo();
-//            $is_friend = $this->userDomain->checkFriend($user_info2['id'],$user_id);
-       
+//            $user_info2 = $this->getUserInfo();
         }
-
 
         $this->assign([
             'statistics'=>$data,

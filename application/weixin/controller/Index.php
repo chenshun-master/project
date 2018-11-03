@@ -411,8 +411,7 @@ class Index extends BaseController
         }
         return $this->returnData([],'密码重置成功',200);
     }
-
-
+    
     /**
      * 404错误页面
      */
@@ -432,26 +431,27 @@ class Index extends BaseController
 
         Db::startTrans();
         try {
-            $num = Db::name('goods')->where('id',1)->setDec('num');
-            if($num < 0){
-                Db::rollback();
+            $res = Db::name('goods')->where('id',1)->lock(true)->find();
+            if($res && $res['num'] > 0){
+                $res2 = Db::name('goods')->where('id',$res['id'])->dec('num')->update();
+                $order_no = uniqid().date('YmdHis');
+                if($res2){
+                    $res3 = Db::name('goods2')->insert(['order_no'=>$order_no,'created_time'=>date('Y-m-d H:i:s')]);
+                    if(!$res3){
+                        Db::rollback();
+                    }
+                }
             }
-            
-//            $res = Db::name('goods')->where('id',1)->find();
-//            if($res && $res['num'] > 0){
-//                $res2 = Db::name('goods')->where('id',$res['id'])->dec('num')->update();
-//                $order_no = uniqid().date('YmdHis');
-//                if($res2){
-//                    $res3 = Db::name('goods2')->insert(['order_no'=>$order_no,'created_time'=>date('Y-m-d H:i:s')]);
-//                    if(!$res3){
-//                        Db::rollback();
-//                    }
-//                }
-//            }
             Db::commit();
         } catch (\Exception $e) {
             // 回滚事务
             Db::rollback();
         }
+    }
+
+    public function test2(){
+        $model = new \app\api\domain\UserFriendDomain();
+
+        halt($model->getFriendList(4));
     }
 }

@@ -24,16 +24,16 @@
 <body style="background: #ffffff;overflow:auto">
 <div class="con">
     <div class="wx-top tkyy">
-        <img src="{$user_info['portrait']}"  alt="" style="border: #ffffff !important;"/ >
+        <img src="{$user_info['portrait']}"  alt="" onerror='this.src="/static/image/user/tou.png"' />
         <p>修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
     </div>
     <div class="wx-con">
-        <p><span style="margin-left: 36px;">昵称</span><input style="margin-left: 60px;" placeholder="请输入昵称" class="ln1"
-                                                            maxlength="20" id="fr-nickname"
-                                                            value="{$user_info['nickname']}"/></p>
+        <p>
+            <span style="margin-left: 36px;">昵称</span>
+            <input style="margin-left: 60px;" placeholder="请输入昵称" class="ln1" maxlength="20" id="fr-nickname" value="{$user_info['nickname']}"/>
+        </p>
         <p class="xb">
-            <span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;" id="fr-sex"
-                                                            data-sex="{$user_info['sex']}">
+            <span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;" id="fr-sex" data-sex="{$user_info['sex']}">
                 {switch name="user_info.sex"}
                     {case value="1"}男{/case}
                     {case value="2"}女{/case}
