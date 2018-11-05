@@ -2,20 +2,18 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="description" content>
 		<title>登录页</title>
 		<link rel="stylesheet" href="/pc/css/login.css">
-		<link rel="stylesheet" href="/pc/css/bootstrap.min.css">
+
 		<link rel="stylesheet" href="/static/css/iconfont.css">
 
 	</head>
-	<body>
-	<div class="container" id="wl-con">
+	<body style="overflow-y:hidden" >
+	<div  id="wl-con">
         <!--登录页-->
-		<div class="row" id="wl-neirong" >
+		<div id="wl-neirong" >
 			<div class="wl-left">
+                <img src="/pc/image/zhulogo.png" alt="" style="margin-top: 30px">
 				<dl>还没有账号？</dl>
 				<dd>立即免费注册！</dd>
 				<dt>现在注册，遇见不一样的自己</dt>
@@ -26,16 +24,17 @@
 				<div class="wl-ma"></div>
 				<div class="wl-ma-dun"><span style="  margin-top: -10px"> <img src="/pc/image/bg-dun.png" alt="" width="35px" height="35px" style="margin-top: 4px;margin-left: 8px"><span class="wl-sao-zi">扫码登录更安全</span></span></div>
 			<div class="wl-shuru">
-               <p><input type="text" placeholder="请输入你的手机号" class="wl-input"><i class="iconfont icon-my_light" style="font-size: 36px;color: #A9A9A9"></i></p>
-                <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 36px;color: #A9A9A9"></i></p>
-                <button href="" style="color: #A9A9A9;font-size: 20px;margin-top: 36px;background: white" onclick="zhuce2()">忘记密码？</button>
+               <p><input type="text" placeholder="请输入你的手机号" class="wl-input"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
+                <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
+                <button href="" style="color: #A9A9A9;font-size: 20px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
                 <button class="btn">登录</button>
             </div>
             </div>
 		</div>
         <!--修改密码页面-->
-        <div class="row" id="wl-neirong1" style="display: none">
+        <div  id="wl-neirong1" style="display: none">
             <div class="wl-left">
+                <img src="/pc/image/zhulogo.png" alt="" style="margin-top: 30px">
                 <dl>还没有账号？</dl>
                 <dd>立即免费注册！</dd>
                 <dt>现在注册，遇见不一样的自己</dt>
@@ -44,7 +43,7 @@
             <div class="wl-right">
                 <span class="wl-tub1">重置密码</span>
                 <div class="wl-shuru1">
-                    <p><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 350px"><a href="" style="color: #7DB0E8;font-size: 20px;float: right;margin-top: 13px">获取验证码</a></p>
+                    <p style="margin-top: 40px"><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 290px"><a href="" style="color: #7DB0E8;font-size: 16px;float: right;margin-top: 13px">获取验证码</a></p>
                     <p ><input type="text" placeholder="请输入你收到的验证码" class="wl-input"></p>
                     <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 36px;color: #A9A9A9"></i></p>
                     <button>完成</button>
@@ -52,21 +51,22 @@
             </div>
         </div>
         <!--注册页-->
-        <div class="row" id="wl-neirong2" style="display: none" >
+        <div id="wl-neirong2" style="display: none" >
             <div class="wl-left1">
-                <dl>还没有账号？</dl>
-                <dd>立即免费注册！</dd>
-                <dt>现在注册，遇见不一样的自己</dt>
+                <img src="/pc/image/zhulogo.png" alt="" style="margin-top: 30px">
+                <dl>已有账号？</dl>
+                <dd>立即登录！</dd>
+                <dt>现在登录，遇见不一样的自己</dt>
                 <button class="wl-zc1" onclick="zhuce1()">登录  </button>
             </div>
             <div class="wl-right1">
-                <p style="    border-bottom: 1px solid #A5A5A5;margin-top: 20px;    padding-bottom: 5px; "><i class="iconfont icon-shouji" style="font-size: 50px;margin-left: 50px"></i><span style="color: #262626;font-size:20px;float: right;margin-right: 390px;margin-top: 10px;">用手机注册</span></p>
+                <p style=" height: 70px;line-height: 70px;border-bottom: 1px solid #A5A5A5; "><i class="iconfont icon-shouji" style="font-size: 50px;margin-left: 50px"></i><span style="    color: #262626;font-size: 16px;float: right;margin-right: 305px;">用手机注册</span></p>
                 <span class="wl-tub2">注册</span>
-                <div class="wl-shuru1">
-                    <p><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 350px"><a href="" style="color: #7DB0E8;font-size: 20px;float: right;margin-top: 13px">获取验证码</a></p>
+                <div class="wl-shuru1" style="margin-top: 10px">
+                    <p><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 300px"><a href="" style="color: #7DB0E8;font-size: 16px;float: right;margin-top: 13px">获取验证码</a></p>
                     <p ><input type="text" placeholder="请输入你收到的验证码" class="wl-input"></p>
-                    <p ><input type="text" placeholder="6~16个字符，区分大小写" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 36px;color: #A9A9A9"></i></p>
-                    <button>完成</button>
+                    <p ><input type="text" placeholder="6~16个字符，区分大小写" class="wl-input" style="width: 320px"><i class="iconfont icon-yanjing" style="font-size: 36px;color: #A9A9A9"></i></p>
+                    <button>立即注册</button>
                 </div>
             </div>
         </div>

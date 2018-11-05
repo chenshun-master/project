@@ -57,9 +57,8 @@ a {
 #wl-con {
     width: 100%;
     height: 1080px;
-    position: fixed;
-    background: url("/pc/image/bg-1.png") no-repeat center center;
-    background-size: 100% auto;
+    background: url("/pc/image/bg-1.png") no-repeat center;
+    background-size: cover;
 
 }
 
@@ -69,7 +68,7 @@ a {
     background: #7DB0E8;
     margin: 0 auto;
     position: absolute;
-    top: 196px;
+    top: 300px;
     left: 0;
     right: 0;
     box-shadow: 2px 2px 1px #868686;
@@ -80,7 +79,7 @@ a {
      background: #7DB0E8;
      margin: 0 auto;
      position: absolute;
-     top: 196px;
+    top: 300px;
      left: 0;
      right: 0;
      box-shadow: 2px 2px 1px #868686;
@@ -91,7 +90,7 @@ a {
     background: #7DB0E8;
     margin: 0 auto;
     position: absolute;
-    top: 196px;
+    top: 300px;
     left: 0;
     right: 0;
     box-shadow: 2px 2px 1px #868686;
@@ -100,47 +99,53 @@ a {
     width: 280px;
     height: auto;
     float: right;
-    margin-right: 200px;
+    margin-right: 100px;
 }
 .wl-left {
     width: 280px;
     height: auto;
-    margin-left: 156px;
+    margin-left: 126px;
 }
 .wl-left dl {
     color: #FFFFFF;
-    font-size: 26px;
-    margin-top: 108px;
+    font-size: 22px;
+    margin-top: 55px;
+    padding-left: 10px;
 }
 .wl-left1 dl {
     color: #FFFFFF;
-    font-size: 26px;
-    margin-top: 120px;
+    font-size: 22px;
+    margin-top: 55px;
+    padding-left: 15px;
 }
 
 .wl-left1 dd {
     color: #FFFFFF;
-    font-size: 32px;
-    margin-top: 30px;
+    font-size: 22px;
+    margin-top: 24px;
+    padding-left: 15px;
 }
 
 .wl-left1 dt {
     color: #FFFFFF;
-    font-size: 20px;
-    margin-top: 38px;
+    font-size:14px;
+    margin-top: 30px;
+    padding-left: 15px;
 }
 
 
 .wl-left dd {
     color: #FFFFFF;
-    font-size: 26px;
+    font-size: 22px;
     margin-top: 24px;
+    padding-left: 10px;
 }
 
 .wl-left dt {
     color: #FFFFFF;
     font-size: 16px;
     margin-top: 30px;
+    padding-left: 10px;
 }
 
 .wl-zc {
@@ -148,22 +153,24 @@ a {
      height: 44px;
      line-height: 44px;
      text-align: center;
-     background: #7DB0E8;
+    background: white;
      border: 1px solid white;
-     color: #FFFFFF;
-     font-size: 22px;
+     color: #7DB0E8;
+     font-size: 18px;
      margin-top: 38px;
+    margin-left: 15px;
  }
 .wl-zc1 {
-    width: 108px;
-    height: 54px;
-    line-height: 54px;
+    width: 88px;
+    height: 44px;
+    line-height: 44px;
     text-align: center;
-    background: #7DB0E8;
     border: 1px solid white;
-    color: #FFFFFF;
-    font-size: 22px;
-    margin-top: 46px;
+    color: #7DB0E8;
+    font-size: 18px;
+    margin-top: 38px;
+    background: white;
+    margin-left: 15px;
 }
 
 .wl-right {
@@ -175,12 +182,12 @@ a {
     top: -40px;
 }
 .wl-right1 {
-    width: 598px;
-    height: 598px;
+    width: 490px;
+    height: 490px;
     background: white;
     position: absolute;
-    left: 70px;
-    top: -40px;
+    left: 62px;
+    top: -33px;
 }
 
 .wl-ma {
@@ -188,15 +195,15 @@ a {
     height: 100px;
     background: black;
     float: right;
-    margin-top: 24px;
-    margin-right: 20px;
+    margin-top: 20px;
+    margin-right: 16px;
 }
 
 .wl-ma-dun {
     width: 180px;
     height: 50px;
     float: right;
-    margin-top: 24px;
+    margin-top: 20px;
     /* margin-right: 50px; */
     background: url(/pc/image/bg-kuang.png) no-repeat -6px -3px;
 }
@@ -214,8 +221,8 @@ a {
     color: #7DB0E8;
     font-size: 24px;
     float: left;
-    margin-left: 64px;
-    margin-top: 78px;
+    margin-left: 52px;
+    margin-top: 63px;
 }
 .wl-tub1{
     min-width: 120px;
@@ -223,73 +230,83 @@ a {
     color: #7DB0E8;
     font-size: 28px;
     float: left;
-    margin-left: 64px;
-    margin-top: 78px;
+    margin-left: 53px;
+    margin-top: 50px;
 }
 .wl-tub2{
     min-width: 120px;
     height: auto;
     color: #333333;
-    font-size: 28px;
+    font-size: 24px;
     float: left;
-    margin-left: 64px;
-    margin-top: 50px;
+    margin-left: 52px;
+    margin-top: 30px;
 }
 .wl-shuru{
     width: 468px;
     height: 400px;
     margin: 0 auto;
-    margin-top: 190px;
+    margin-top: 150px;
 }
 .wl-input{
-    width: 430px;
+    width: 320px;
     height: 55px;
     color: #A9A9A9;
-    font-size: 20px;
+    font-size: 16px;
     border: none;
 }
 .wl-shuru p{
-    width: 468px;
+    width: 382px;
     margin: 0 auto;
     border-bottom: 1px solid #A5A5A5;
 }
 .wl-shuru p:nth-child(2){
-    margin-top: 55px;
+    margin-top: 25px;
 }
 .btn{
-    width: 468px;
-    height: 54px;
+    width: 383px;
+    height: 44px;
     background: #7DB0E8;
     font-size: 20px;
     text-align: center;
-    line-height: 54px;
+    line-height: 44px;
     color: #FFFEFE;
     margin-top: 65px;
+    margin-left: 43px;
 }
+.wl-shuru1{
+     width: 468px;
+     height: 400px;
+     margin-top: 130px;
+     margin-left: 8px;
+ }
 .wl-shuru1{
     width: 468px;
     height: 400px;
-    margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 130px;
+    margin-left: 8px;
 }
 .wl-shuru1 p{
-    width: 468px;
+    width: 381px;
     margin: 0 auto;
     border-bottom: 1px solid #A5A5A5;
+
 }
 .wl-shuru1 p:nth-child(2){
-    margin-top: 40px;
+    margin-top:20px;
 }
 .wl-shuru1 p:nth-child(3){
-    margin-top: 40px;
+    margin-top: 30px;
 }
 .wl-shuru1 button{
-    width: 468px;
-    height: 54px;
+    width: 384px;
+    height: 44px;
     background: #7DB0E8;
     font-size: 20px;
     text-align: center;
     line-height: 54px;
     color: #FFFEFE;
+display: block;
+    margin: 0 auto  ;
     margin-top: 45px;
 }
