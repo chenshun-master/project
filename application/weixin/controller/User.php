@@ -321,4 +321,16 @@ class User extends BaseController
         return $this->returnData([],'修改成功',200);
     }
 
+    public function getCommentArticle(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+
+        $data = $this->_articleDomain->getCommentArticle($this->getUserId(),$page,$page_size);
+    }
+
 }

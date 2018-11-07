@@ -144,7 +144,7 @@ function getPageTotal(int $total,int $page_size){
         return 0;
     }
 
-    return ceil((int)$total/(int)$page_size);
+    return (int)ceil((int)$total/(int)$page_size);
 }
 
 

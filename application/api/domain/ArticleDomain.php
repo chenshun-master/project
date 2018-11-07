@@ -34,15 +34,6 @@ class ArticleDomain
 
     /**
      * 添加文章评论
-     * @param $data    待添加数据
-     * @return bool
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-
-    /**
-     * 添加文章评论
      * @param $data        待添加数据
      * @param string $tablename    评论所对应的表名
      * @return bool
@@ -348,40 +339,13 @@ class ArticleDomain
     }
 
     /**
-     * 获取指定用户点赞过的相关文章列表
-     * @param $user_id         用户id
-     * @param $page            获取第几页数据
-     * @param $page_size       分页大小
-     * @return array
+     * 判断文章是否点赞过
+     * @param $user_id         用户ID
+     * @param $article_id      文章ID
+     * @return bool
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     */
-    public function getArticleLikeData($user_id,$page,$page_size){
-        $obj = Db::table('wl_article')->alias('article');
-        $obj->where('article.status', 1);
-        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
-        $obj->order('article.published_time', 'desc');
-        $obj->where('article.id', 'IN', function ($query) use ($user_id)  {
-            $query->table('wl_user_like')->where('user_id', $user_id)->where('table_name','article')->field('object_id');
-        });
-        $obj->where('article.type', 'in', [1,2,3]);
-
-        $obj->join('wl_user user','article.user_id = user.id');
-        $total = $obj->count();
-        $obj->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile');
-
-        $rows = $obj->page($page,$page_size)->select();
-        return [
-            'rows'          =>$rows,
-            'page'          =>$page,
-            'page_total'    =>getPageTotal($total,$page_size),
-            'total'         =>$total
-        ];
-    }
-
-    /**
-     * 判断文章是否点赞过
      */
     public function checkFabulous($user_id,$article_id){
         $res = Db::name('user_like')
@@ -396,7 +360,7 @@ class ArticleDomain
 
 
     /**
-     * 获取一级评论
+     * 获取一级评论列表
      */
     public function getFirstComment($article_id,$page,$page_size,$user_id=0){
         $obj = Db::name('comment');
@@ -465,6 +429,76 @@ class ArticleDomain
             }
         }
 
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取指定用户点赞过的相关文章列表
+     * @param $user_id         用户id
+     * @param $page            获取第几页数据
+     * @param $page_size       分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getArticleLikeData($user_id,$page,$page_size){
+        $obj = Db::table('wl_article')->alias('article');
+        $obj->where('article.status', 1);
+        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
+        $obj->order('article.published_time', 'desc');
+        $obj->where('article.id', 'IN', function ($query) use ($user_id)  {
+            $query->table('wl_user_like')->where('user_id', $user_id)->where('table_name','article')->field('object_id');
+        });
+
+        $obj->where('article.type', 'in', [1,2]);
+
+        $obj->leftJoin('wl_user user','article.user_id = user.id');
+        $total = $obj->count();
+        $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile");
+
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取用户评论过的文章
+     * @param $user_id          用户id
+     * @param int $page         当前分页
+     * @param int $page_size    分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getCommentArticle($user_id,$page=1,$page_size=15){
+        $obj = Db::name('comment')->alias('comment');
+        $obj->where('comment.user_id',$user_id);
+
+        $obj->leftJoin('wl_article article','comment.object_id = article.id');
+        $obj->leftJoin('wl_user user','article.user_id = user.id');
+        $obj->leftJoin('wl_comment comment2','comment2.id = comment.parent_id');
+        $obj->leftJoin('wl_user user2','comment2.user_id = user2.id');
+
+        $obj->where('article.type','in',[1,2]);
+
+        $obj->group('comment.object_id');
+        $obj->order('comment.created_time desc');
+
+        $total = $obj->count();
+        $obj->field('article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id');
+
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,
