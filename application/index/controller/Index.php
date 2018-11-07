@@ -4,6 +4,7 @@ namespace app\index\controller;
 use think\Request;
 use app\api\domain\UserDomain;
 use app\api\model\UserModel;
+
 /**
  * Class Index
  * @package app\index\controller
@@ -23,13 +24,13 @@ class Index extends CController
         if(is_weixin()){
             return $this->redirect('/weixin/index/index');
         }
-
         return '<h1 style="color: red;font-size: 20px;">微琳医美</h1>';
-
     }
 
     /**
      * 用户登录页面
+     * @route('/login','get')
+     * @return false|string
      */
     public function login(){
         return $this->fetch('index/login');
