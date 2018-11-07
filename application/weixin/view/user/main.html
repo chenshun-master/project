@@ -8,11 +8,35 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta content="telephone=no" name="format-detection" />
 		<link rel="stylesheet" type="text/css" href="/static/css/pwesonal.css" />
+		<link rel="stylesheet" href="/static/css/iconfont.css">
 		<title>用户中心</title>
 		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.se{
+				color: red;
+			}
+		</style>
 	</head>
 	<body style="background: #ffffff;">
+	<div class="wl-foot">
+		<dl onclick="redream.href('/weixin/index/index')">
+			<dd> <i class="iconfont icon-home_light" style="font-size: 50px;"></i></dd>
+			<dt >首页</dt>
+		</dl>
+		<dl >
+			<dd><i class="iconfont icon-news_hot_light" style="font-size: 50px"></i></dd>
+			<dt >文章</dt >
+		</dl>
+		<dl >
+			<dd><i class="iconfont icon-video_light" style="font-size: 50px"></i></dd>
+			<dt >视频</dt >
+		</dl>
+		<dl onclick="redream.href('/weixin/user/main')" >
+			<dd><i class="iconfont icon-my_fill_light" style="font-size: 50px;color: #7DB0E8"></i></dd>
+			<dt style="color:   #7DB0E8">我的</dt >
+		</dl>
+	</div>
 		<div class="con">
 			<div class="wx-top">
 				<img src="{$user_info['portrait']}" alt="" onerror='this.src="/static/image/user/tou.png"' />
@@ -123,6 +147,15 @@
 				$(".quxiao").click(function(){
 					$('.marsk-container').hide(); //淡出消失
 				})
-			});
+
+        });
+        $(function(){
+            $("span").eq(0).addClass("se");
+            $(".top span").click(function(){
+                index=$(this).index();
+                $(" .top span").eq(index).addClass("se").siblings().removeClass("se");
+            })
+        })
+
 </script>
 </html>

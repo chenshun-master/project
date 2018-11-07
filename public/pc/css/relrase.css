@@ -13,14 +13,14 @@
     box-sizing: border-box;
     border: 0px;
     outline:none;
-    cursor: pointer;
+
 }
 
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font: inherit;
+    /*font: inherit;*/
     vertical-align: baseline;
 }
 
@@ -38,7 +38,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 
 body {
-    font-family: "思源黑体 CN";
+    font-family: "微软雅黑 CN";
     color: #221815;
     background: white;
 }
@@ -60,13 +60,12 @@ a {
 .wl-con {
     width: 100%;
     height: 1080px;
-    border: 1px solid yellow;
     position: relative;
 }
 
 .wl-top {
     width: 100%;
-    height: 120px;
+    height: 80px;
     background: #7DB0E8;
 }
 
@@ -94,7 +93,7 @@ a {
     height: 930px;
     margin: 0 auto;
     margin-top: 30px;
-    z-index: 1;
+    z-index: 10;
 }
 .renzheng{
     width: 180px;
@@ -109,7 +108,7 @@ a {
     color: #333333;
     display: block;
     line-height: 60px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     cursor: pointer;
 }
@@ -118,19 +117,19 @@ a {
     height: 60px;
     color: #333333;
     line-height: 60px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     cursor: pointer;
 }
 .tab-box li.active {
     background:#7DB0E8;
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .tab-content div {
     float: left;
-    width: 1065px;
+    width: 1000px;
     height: 930px;
     color: #000;
     display: none;
@@ -146,7 +145,7 @@ a {
     height: 80px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 18px;
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
@@ -155,7 +154,7 @@ a {
     height: 80px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 18px;
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
@@ -164,55 +163,52 @@ a {
     height: 80px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 18px;
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
 .wl-geren2 p:nth-child(1){
     width: 100%;
-    height: 80px;
+    height: 68px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 18px;
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
 .wl-zhen{
     width: 100%;
-    height: 80px;
+    height: 75px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 16px;
     padding-left: 60px;
-    margin-top: 15px;
 }
 
 .wl-zhen1{
     width: 100%;
-    height: 80px;
-    line-height: 80px;
+    height: 60px;
+    line-height: 70px;
     color: #333333;
-    font-size: 20px;
+    font-size: 16px;
     padding-left: 60px;
     margin-top: 12px;
 }
 .wl-zhen2{
     width: 100%;
-    height: 80px;
+    height: 70px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 16px;
     padding-left: 60px;
-    margin-top: 12px;
 }
 .wl-zhen3{
     width: 100%;
-    height: 80px;
+    height: 70px;
     line-height: 80px;
     color: #333333;
-    font-size: 20px;
+    font-size: 16px;
     padding-left: 60px;
-    margin-top: 12px;
 }
 .wl-geren{
     position: relative;
@@ -228,143 +224,143 @@ a {
 }
 .wl-zhen input{
     width: 680px;
-    height: 60px;
+    height: 40px;
     border: 1px solid #F1F1F1;
-    color: #888888;
-    font-size: 18px;
+    font-size: 14px;
     padding-left: 30px;
     margin-left: 30px;
 }
 .wl-zhen1 input{
     width: 680px;
-    height: 60px;
+    height: 40px;
     border: 1px solid #F1F1F1;
     color: #888888;
-    font-size: 18px;
+    font-size: 14px;
     padding-left: 30px;
     margin-left: 30px;
 }
 .wl-zhen2 input{
      width: 680px;
-     height: 60px;
+     height: 40px;
      border: 1px solid #F1F1F1;
      color: #888888;
-     font-size: 18px;
+     font-size: 14px;
      padding-left: 30px;
      margin-left: 30px;
  }
 .wl-zhen3 input{
     width: 680px;
-    height: 60px;
+    height: 40px;
     border: 1px solid #F1F1F1;
     color: #888888;
-    font-size: 18px;
+    font-size: 14px;
     padding-left: 30px;
     margin-left: 30px;
 }
 .wl-shangc{
-    width: 170px;
-    height: 170px;
-    border: 3px dashed #cdcdcd;
+    width: 138px;
+    height: 138px;
+    border: 2px dashed #cdcdcd;
     border-radius: 25px;
     float: left;
     margin-left: 60px;
-    font-size: 80px;
-    z-index: 999999;
+    margin-top: 25px;
+    z-index: 999;
 }
 .wl-shangc1{
-    width: 170px;
-    height: 170px;
-    border: 3px dashed #cdcdcd;
+    width: 138px;
+    height: 138px;
+    border: 2px dashed #cdcdcd;
     border-radius: 25px;
     float: left;
     margin-left: 60px;
+    margin-top: 25px;
 }
 #xiangji{
     position: absolute;
-    top: 27px;
+    top: 53px;
     left: 93px;
-    font-size: 100px;
+    font-size: 70px;
     color: #cdcdcd;
 }
 #xiangji2{
     position: absolute;
-    top: 10px;
+    top: 40px;
     left: 94px;
-    font-size: 100px;
+    font-size: 70px;
     color: #cdcdcd;
 }
 
 #xiangji1{
     position: absolute;
-    top: 27px;
-    left:325px;
-    font-size: 100px;
+    top: 53px;
+    left: 291px;
+    font-size: 68px;
     color: #cdcdcd;
 }
  .wl-btn{
     width: 100%;
     height: 88px;
     border-top: 2px solid #F1F1F1;
-    position: absolute;bottom: 0;
+    position: absolute;bottom: 110px;
 }
 .wl-btn button{
-    width: 140px;
-    height: 50px;
-    line-height: 50px;
+    width: 130px;
+    height: 45px;
+    line-height: 45px;
     background:#7DB0E8;
     color: #FFfFFF;
     font-size: 20px;
     text-align: center;
     border-radius: 10px;
     float: right;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 100px;
 }
 .wl-zhao1{
-    font-size: 30px;
+    font-size: 14px;
     color: #cdcdcd;
     position: absolute;
-    top: 95px;
-    left: 85px;
+    top: 109px;
+    left: 101px;
 }
 .wl-zhao2{
-    font-size: 30px;
+    font-size: 14px;
     color: #cdcdcd;
     position: absolute;
-    top: 95px;
-    left: 85px;
+    top: 109px;
+    left: 101px;
 }
 .wl-zhao3{
-    font-size: 30px;
+    font-size: 14px;
     color: #cdcdcd;
     position: absolute;
-    top: 95px;
-    left: 85px;
+    top: 108px;
+    left: 101px;
 }
 .wl-btn1{
     width: 100%;
     height: 88px;
     border-top: 2px solid #F1F1F1;
-    position: absolute;bottom: 0;
+    position: absolute;bottom: 60px;
 }
 .wl-btn1 button{
-    width: 140px;
-    height: 50px;
-    line-height: 50px;
-    background:#7DB0E8;
+    width: 130px;
+    height: 45px;
+    line-height: 45px;
+    background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     border-radius: 10px;
     float: right;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 100px;
 }
 .wl-sc-js{
     color: #AAAAAA;
-    font-size: 18px;
-    margin-top: 60px;
+    font-size: 14px;
+    margin-top: 72px;
     margin-left: 28px;
     float: left;
 }
@@ -372,48 +368,48 @@ a {
     width: 100%;
     height: 88px;
     border-top: 2px solid #F1F1F1;
-    position: absolute;bottom: 0;
+    position: absolute;bottom: 62px;
 }
 .wl-btn2 button{
-    width: 140px;
-    height: 50px;
-    line-height: 50px;
-    background:#7DB0E8;
+    width: 130px;
+    height: 45px;
+    line-height: 45px;
+    background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     border-radius: 10px;
     float: right;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 100px;
 }
 .wl-btn3{
     width: 100%;
     height: 88px;
     border-top: 2px solid #F1F1F1;
-    position: absolute;bottom: 0;
+    position: absolute;bottom: 60px;
 }
 .wl-btn3 button{
-    width: 140px;
-    height: 50px;
-    line-height: 50px;
-    background:#7DB0E8;
+    width: 130px;
+    height: 45px;
+    line-height: 45px;
+    background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     border-radius: 10px;
     float: right;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 100px;
 }
 .wl-huoqu{
     width: 164px;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     color: #FC7D7D;
-    font-size: 18px;
-    border: 1px solid  #F1F1F1;
+    font-size: 14px;
+    border: 1px solid #F1F1F1;
     float: right;
     margin-right: 210px;
     margin-top: 12px;
@@ -448,12 +444,12 @@ a {
 }
 .wl-zhanghao p{
     text-align: center;
-    width: 188px;
+    width: 164px;
     height: 60px;
     line-height: 60px;
-    font-size: 18px;
+    font-size: 16px;
     color: #333333;
-    padding-left: 20px;
+    padding-left: 8px;
     background: white;
 
 }
@@ -465,10 +461,10 @@ a {
     background: #F1F1F1;
 }
 .wl-toux{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background: url("/pc/image/my_fill.png") no-repeat 10px 10px white;
+    background: url(/pc/image/my_fill.png) no-repeat 6px 5px white;
     position: absolute;
     top: 15px;
     left: 0;
@@ -482,9 +478,9 @@ a {
 }
 .wl-qiehuan .top{
     width: 100%;
-    height: 80px;
-    line-height: 80px;
-    font-size: 20px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
     border-bottom: 2px solid  #F1F1F1;
 }
 .wl-qiehuan .xia{
@@ -493,7 +489,7 @@ a {
 }
 .one-1{
     width: 100%;
-    height: 180px;
+    height: 150px;
     border-bottom: 2px solid  #F1F1F1;
     position: relative;
 }
@@ -510,29 +506,29 @@ a {
     display: inline-block;
 }
 .one-1 img{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     float: left;
-    margin-top: 20px;
+    margin-top: 28px;
 }
 .one-1 dt{
     color: #333333;
-    font-size: 24px;
+    font-size: 20px;
     position: absolute;
     top: 38px;
     left: 115px;
 }
 .one-1 dd{
     color: #333333;
-    font-size: 16px;
+    font-size: 14px;
     position: absolute;
-    top: 82px;
+    top: 72px;
     left: 115px;
 }
 .one-1 button{
-    width: 124px;
-    height: 44px;
-    font-size: 20px;
+    width: 115px;
+    height: 40px;
+    font-size: 14px;
     color: #333333;
     border-radius: 10px;
 }
@@ -544,13 +540,14 @@ a {
     height: 666px;
     float: left
 }
+
 .wl-grxx div{
     width: 100%;
-    height: 86px;
-    line-height: 86px;
+    height: 80px;
+    line-height: 80px;
     border-bottom: 1px solid #F1F1F1;
     color: #333333;
-    font-size: 18px;
+    font-size: 16px;
     padding-left: 10px;
     float: left;
 }
@@ -566,4 +563,173 @@ a {
     float: left;
     text-align: left;
     margin-left: 80px;
+}
+.two-1{
+    width: 839px;
+    height: 260px;
+    margin: 0 auto;
+    border-bottom: 2px solid #F1F1F1;
+    position: relative;
+}
+.two{
+    background: white;
+}
+.two-1 img{
+    width: 138px;
+    height: 170px;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15%;
+
+}
+.two-2{
+    width: 720px;
+    height: 172px;
+    margin: 0 auto;
+}
+.two-2 div{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    border-bottom: 2px solid #F8F8F8 ;
+    font-size: 16px;
+    color: #333333;
+}
+.wl-zhez {
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .3);
+    z-index: 99999;
+}
+.wl-zl{
+    width: 576px;
+    height: 320px;
+    background: white;
+    margin: 0 auto;
+    margin-top: 200px;
+    position:relative;
+}
+.wl-zl div:nth-child(1){
+    width: 100%;
+    height: 54px;
+    line-height: 54px;
+    background: #f7f7f7;
+    color: #333333;
+    font-size: 18px;
+    padding-left: 40px;
+}
+.wl-zheh{
+    width: 100%;
+    height: 60px;
+    line-height: 73px;
+}
+
+.wl-zheh span{
+    width: 100px;
+    color: #333333;
+    font-size: 16px;
+    margin-left: 77px;
+}
+.wl-zheh input {
+    width: 200px;
+    height: 38px;
+    border:1px solid #EEEEEE;
+    margin-left: 40px;
+    padding-left: 12px;
+    color: #888888;
+    font-size: 14px;
+}
+.wl-zheh button{
+    width: 110px;
+    height: 38px;
+    background: #FAFAFA;
+    color: #333333;
+    font-size: 14px;
+    border:1px solid #EEEEEE;
+    margin-left: 27px;
+    margin-top: 5px;
+}
+
+.wl-zheque{
+    width: 100%;
+    height: 83px;
+    border-top:2px solid #f7f7f7;
+    position: absolute;bottom: 0px;
+}
+.wl-zheque button{
+    width: 125px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    background: #DDDDDD;
+    color: #FFFFFF;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 19px;
+
+}
+.wl-yzmcw{
+     width: 190px;
+     height: 38px;
+     background: #7DB0E8;
+     border: 1px solid #EEEEEE;
+     text-align: center;
+     line-height: 38px;
+     font-size: 16px;
+     color: #FFFFFF;
+     margin: 0 auto;
+     border-radius: 5px;
+     display: none;
+    margin-top: 10px;
+ }
+.wl-yzcg{
+    width: 170px;
+    height: 34px;
+    background: #7DB0E8;
+    border: 1px solid #EEEEEE;
+    text-align: center;
+    line-height: 34px;
+    font-size: 14px;
+    color: #FFFFFF;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.wl-zhez1{
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .3);
+    z-index: 99999;
+}
+.wl-zl1{
+    width: 576px;
+    height: 320px;
+    background: white;
+    margin: 0 auto;
+    margin-top: 200px;
+    position:relative;
+}
+.wl-zl1 div:nth-child(1){
+    width: 100%;
+    height: 54px;
+    line-height: 54px;
+    background: #f7f7f7;
+    color: #333333;
+    font-size: 18px;
+    padding-left: 40px;
 }

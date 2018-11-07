@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <title>薇琳医美</title>
     <meta content="telephone=no" name="format-detection" />
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
-    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
 
     <style>
         .wkf {
@@ -61,19 +59,19 @@
     <div style="height: 100px"></div>
     <!--    <div  onclick="objClass.loadList()" style="font-size: 34px;text-align: center;height: 50px;line-height: 50px;"> 加载更多</div>-->
     <div class="wl-foot">
-        <dl>
-            <dd> <i class="iconfont icon-home_fill_light" style="font-size: 50px;color: #7DB0E8"></i></dd>
-            <dt style="color:   #7DB0E8">首页</dt>
+        <dl onclick="redream.href('/weixin/index/index')" class="dianji">
+            <dd> <i class="iconfont icon-home_fill_light" style="font-size: 50px;color:#7DB0E8"></i></dd>
+            <dt style="color:#7DB0E8">首页</dt>
         </dl>
-        <dl>
-            <dd><i class="iconfont icon-news_hot_light" style="font-size: 50px"></i></dd>
+        <dl class="dianji">
+            <dd><i class="iconfont icon-home_light" style="font-size: 50px"></i></dd>
             <dt>文章</dt>
         </dl>
-        <dl>
+        <dl class="dianji">
             <dd><i class="iconfont icon-video_light" style="font-size: 50px"></i></dd>
             <dt>视频</dt>
         </dl>
-        <dl onclick="redream.href('/weixin/user/main')">
+        <dl onclick="redream.href('/weixin/user/main')" class="dianji">
             <dd><i class="iconfont icon-my_light" style="font-size: 50px"></i></dd>
             <dt>我的</dt>
         </dl>
