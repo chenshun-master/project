@@ -19,7 +19,7 @@
 		</style>
 		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
-	
+
 	</head>
 
 	<body style="background-color: #fff;">
@@ -74,9 +74,9 @@
 
                 if(!this.loading){
                     $.ajax({
-                        url:"/weixin/index/codeLogin",
+                        url:"/weixin/index/postReister",
                         type:'post',
-                        data:{mobile:mobile,sms_code:sms_code},
+                        data:{mobile:mobile,sms_code:sms_code,password:password},
                         dataType:'json',
                         beforeSend:function(){
                             objClass.loading = true;
@@ -86,9 +86,10 @@
                         },
                         success:function(res){
                             if(res.code == 200){
-                                layer.open({content: '登录成功',skin: 'msg',time: 2});
-                                window.location.href = '/weixin/index/login';
-                                return false;
+                                layer.open({content: '注册成功',skin: 'msg',time: 2});
+                                setTimeout(function(){
+                                    window.location.href = '/weixin/index/login';
+                                },3000);
                             }else if(res.code == 301){
                                 layer.open({content: '请求参数错误',skin: 'msg',time: 2});
                                 return false;
@@ -163,7 +164,7 @@
 					 $(".yan").prop("type","password");
 					$("#xian img").attr("src","/static/image/reg/zy.png")
 				}
-			
+
 			  });
 			})
 			$(function(){
