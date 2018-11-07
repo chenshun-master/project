@@ -24,10 +24,10 @@
 				<!--<div class="wl-ma"></div>-->
 				<!--<div class="wl-ma-dun"><span style="  margin-top: -10px"> <img src="/pc/image/bg-dun.png" alt="" width="35px" height="35px" style="margin-top: 4px;margin-left: 8px"><span class="wl-sao-zi">扫码登录更安全</span></span></div>-->
 			<div class="wl-shuru">
-               <p><input type="text" placeholder="请输入你的手机号" class="wl-input"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
-                <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
+               <p><input type="text" id="mobile1" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
+                <p ><input type="password" id="password1" placeholder="请输入密码" maxlength="18" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
                 <button href="" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
-                <button class="btn">登录</button>
+                <button class="btn" onclick="objClass.submitOne()">登录</button>
             </div>
             </div>
 		</div>
@@ -43,7 +43,7 @@
             <div class="wl-right">
                 <span class="wl-tub1">重置密码</span>
                 <div class="wl-shuru1">
-                    <p style="margin-top: 40px"><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 290px"><a href="" style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px">获取验证码</a></p>
+                    <p style="margin-top: 40px"><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 290px"><a style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px">获取验证码</a></p>
                     <p ><input type="text" placeholder="请输入你收到的验证码" class="wl-input"></p>
                     <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
                     <button>完成</button>
@@ -63,17 +63,19 @@
                 <p style=" height: 70px;line-height: 70px;border-bottom: 1px solid #A5A5A5; "><i class="iconfont icon-shouji" style="font-size: 40px;margin-left: 50px"></i><span style="    color: #262626;font-size: 14px;float: right;margin-right: 337px;">用手机注册</span></p>
                 <span class="wl-tub2">注册</span>
                 <div class="wl-shuru1" style="margin-top: 10px">
-                    <p ><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 300px"><a href="" style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px">获取验证码</a></p>
-                    <p ><input type="text" placeholder="请输入你收到的验证码" class="wl-input"></p>
-                    <p ><input type="text" placeholder="6~16个字符，区分大小写" class="wl-input" style="width: 320px"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
-                    <button>立即注册</button>
+                    <p ><input type="text" id="mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 300px"><a style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px" onclick="objClass.sendSms()">获取验证码</a></p>
+                    <p ><input type="text" id="sms_code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
+                    <p ><input type="password" id="password" placeholder="6~16个字符，区分大小写" class="wl-input yan" style="width: 320px" ><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9" id="xian"></i></p>
+                    <button id="btn" style="margin-top: 25px;" onclick="objClass.submit()">立即注册</button>
                 </div>
             </div>
         </div>
 	</div>
 	</body>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="/pc/js/bootstrap.min.js"></script>
+    <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="/pc/js/bootstrap.min.js"></script>-->
     <script src="/static/js/jquery.min.js"></script>
     <script>
         function zhuce(){
@@ -94,18 +96,18 @@
 
         var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
         codeObj.run();
-
+        //注册
         var  objClass = {
-            oneLoading:false,
-            twoLoading:false,
+            loading:false,
             sendSmsCode:false,
             checkMobile:function(mobile){
                 var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
                 return reg_phone.test(mobile);
             },
-            submitOne:function(){
-                var mobile = $('#mobile1').val();
+            submit:function(){
+                var mobile = $('#mobile').val();
                 var sms_code = $('#sms_code').val();
+                var password = $('#password').val();
 
                 if(!this.checkMobile(mobile)){
                     layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
@@ -117,25 +119,29 @@
                     return false;
                 }
 
-                if(!this.oneLoading){
+                if(password == ''){
+                    layer.open({content: '密码格式错误',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(!this.loading){
                     $.ajax({
-                        url:"/weixin/index/codeLogin",
+                        url:"/index/index/postRegister",
                         type:'post',
-                        data:{mobile:mobile,sms_code:sms_code},
+                        data:{mobile:mobile,sms_code:sms_code,password:password},
                         dataType:'json',
                         beforeSend:function(){
-                            objClass.oneLoading = true;
+                            objClass.loading = true;
                         },
                         complete:function(){
-                            objClass.oneLoading = false;
+                            objClass.loading = false;
                         },
                         success:function(res){
                             if(res.code == 200){
-                                layer.open({type: 2,content: '登录中...',time:4});
+                                layer.open({content: '注册成功',skin: 'msg',time: 2});
                                 setTimeout(function(){
-                                    window.location.href = '/weixin/user/main';
-                                },2000);
-                                return false;
+                                    window.location.href = '/index/index/login';
+                                },3000);
                             }else if(res.code == 301){
                                 layer.open({content: '请求参数错误',skin: 'msg',time: 2});
                                 return false;
@@ -156,51 +162,8 @@
                     });
                 }
             },
-            submitTwo:function(){
-                var mobile = $('#mobile2').val();
-                var password = $('#password').val();
-                if(!this.checkMobile(mobile)){
-                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
-                    return false;
-                }
-                if(!objClass.twoLoading){
-                    $.ajax({
-                        url:"/weixin/index/postLogin",
-                        type:'post',
-                        data:{mobile:mobile,password:password},
-                        dataType:'json',
-                        beforeSend:function(){
-                            objClass.twoLoading = true;
-                        },
-                        complete:function(){
-                            objClass.twoLoading = false;
-                        },
-                        success:function(res){
-                            if(res.code == 200){
-                                layer.open({type: 2,content: '登录中...',time:4});
-                                setTimeout(function(){
-                                    window.location.href = '/weixin/user/main';
-                                },2000)
-                                return false;
-                            }else if(res.code == 301){
-                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                                return false;
-                            }else if(res.code == 302){
-                                layer.open({content: '用户不存在',skin: 'msg',time: 2});
-                                return false;
-                            }else if(res.code == 303){
-                                layer.open({content: '用户密码填写错误',skin: 'msg',time: 2});
-                                return false;
-                            }else{
-                                layer.open({content: '登录失败',skin: 'msg',time: 2});
-                                return false;
-                            }
-                        }
-                    });
-                }
-            },
             sendSms:function(){
-                var mobile = $('#mobile1').val();
+                var mobile = $('#mobile').val();
                 if(!this.checkMobile(mobile)){
                     layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
                     return false;
@@ -212,9 +175,9 @@
 
                 if(!this.sendSmsCode){
                     $.ajax({
-                        url:"/weixin/index/sendQuickLoginSmsCode",
+                        url:"/index/index/sendSmsCode",
                         type:'post',
-                        data:{mobile:mobile},
+                        data:{mobile:mobile,type:1},
                         dataType:'json',
                         beforeSend:function(){
                             objClass.sendSmsCode = true;
@@ -231,7 +194,10 @@
                                 layer.open({content: '请求参数错误',skin: 'msg',time: 2});
                                 return false;
                             }else if(res.code == 302){
-                                layer.open({content: '该手机号未注册',skin: 'msg',time: 2});
+                                layer.open({content: '该用户已被使用',skin: 'msg',time: 2});
+                                return false;
+                            }else{
+                                layer.open({content: '发送失败',skin: 'msg',time: 2});
                                 return false;
                             }
                         }
@@ -239,5 +205,28 @@
                 }
             }
         };
+
+
+        $(function(){
+            $("#xian").click(function(){
+                if($(".yan").prop("type")=="password"){
+                    $(".yan").prop("type","text");
+                    $("#xian img").attr("src","/static/image/reg/by.png")
+                }else{
+                    $(".yan").prop("type","password");
+                    $("#xian img").attr("src","/static/image/reg/zy.png")
+                }
+
+            });
+        })
+        $(function(){
+            $('.wx-reg input').on('.wx-reg input ',function(){
+                if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")&&($.trim($('#password').val())!=="")){
+                    $('#btn').css({'background':'#7DB0E8'});
+                }else{
+                    $('#btn').css({'background':'#EBEBEB'});
+                }
+            });
+        });
     </script>
 </html>

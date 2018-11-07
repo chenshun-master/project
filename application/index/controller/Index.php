@@ -155,7 +155,7 @@ class Index extends CController
      * @param  string  mobile  手机号
      * @param  int     type    验证码用途(1:注册;2:重置密码;3:手机号快捷登录;4:第三方手机号绑定;5:修改密码 6:修改手机号)
      * @param Request $request
-     * @route('sendSmsCode','post')
+     * @route('/index/index/sendSmsCode','post')
      * @return false|string
      */
     public function sendSmsCode(Request $request){
