@@ -187,6 +187,35 @@ class UserDomain
     }
 
     /**
+     * 修改用户手机号
+     * @param $user_id         用户ID
+     * @param $old_mobile      用户旧手机号
+     * @param $new_mobile      用户新手机号
+     * @param $sms_code        用户手机号验证码
+     * @return bool|int
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
+    public function changeMobile($user_id,$old_mobile,$new_mobile,$sms_code){
+        $smsObj = new \app\api\domain\SendSms();
+        $res = $smsObj->checkSmsCode($old_mobile,6,$sms_code);
+        if($res === 0){
+            return 1;
+        }else if($res === 2){
+            return 2;
+        }
+
+        $isTrue = Db::name('user')->where('id',$user_id)->where('mobile',$old_mobile)->update(['mobile'=>$new_mobile]);
+        if($isTrue){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 获取文章发布者信息
      */
     public function getArticleUserInfo($user_id){
