@@ -29,6 +29,9 @@
             font-size: 0.28rem;
             border-radius: 10px;
         }
+        .se{
+            color: #7DB0E8;
+        }
     </style>
 </head>
 <body style="background: #ffffff;">
@@ -42,12 +45,12 @@
 
 
     <ul class="biao">
-        <li style="margin-left: 50px;"><a href="">推荐</a></li>
-        <li><a href="">文章</a></li>
-        <li><a href="">视频</a></li>
-        <li><a href="">案例</a></li>
-        <li><a href="">问答</a></li>
-        <li style="margin-right: 36px;"><a href="">其它</a></li>
+        <li style="margin-left: 50px;" >推荐</li>
+        <li >文章</li>
+        <li>视频</li>
+        <li>案例</li>
+        <li>问答</li>
+        <li style="margin-right: 36px;" >其它</li>
     </ul>
 
 
@@ -64,7 +67,7 @@
             <dt style="color:#7DB0E8">首页</dt>
         </dl>
         <dl class="dianji">
-            <dd><i class="iconfont icon-home_light" style="font-size: 50px"></i></dd>
+            <dd><i class="iconfont icon-news_hot_light" style="font-size: 50px"></i></dd>
             <dt>文章</dt>
         </dl>
         <dl class="dianji">
@@ -163,6 +166,15 @@
     function clickHref(id) {
         window.location.href = '/weixin/article/articleDetails/id/' + id;
     }
-</script>
 
+</script>
+<script>
+    $(function(){
+        $(".biao li").eq(0).addClass("se");
+        $(".biao li").click(function(){
+            index=$(this).index();
+            $(".biao li").eq(index).addClass("se").siblings().removeClass("se");
+        })
+    })
+</script>
 </html>

@@ -73,13 +73,13 @@
                 </div>
                 <div class="wl-geren3">
                     <p>官方企业认证</p>
-                    <p class="wl-zhen3" style="margin-top: 15px">企业名称 <input type="text" placeholder="请输入营业执照上的全称"></p>
-                    <p class="wl-zhen3">营业执照注册号  <input type="text" placeholder="请输入15位营业执照或18位统一社会信用代码"style="width:620px"></p>
-                    <p class="wl-zhen3">运营者姓名  <input type="text" placeholder="请输入运营者姓名"style="width: 660px"></p>
-                    <p class="wl-zhen3">运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 440px"><span class="wl-huoqu">获取验证码</span></p>
-                    <p class="wl-zhen3">短信验证码  <input type="text" placeholder="请输入你收到的6位验证码"style="width: 440px"></p>
-                    <p class="wl-zhen3">上传企业工商营业执照</p>
-                    <p style="position: relative"><input type="text" class="wl-shangc"><i class="wl-zhao3">添加照片</i><span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span><span class="iconfont icon-xiangji " id="xiangji2"></span></p>
+                    <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请输入营业执照上的全称" style="margin-left: 77px"></p>
+                    <p class="wl-zhen3" >营业执照注册号  <input type="text" placeholder="请输入15位营业执照或18位统一社会信用代码"style="width:679px"></p>
+                    <p class="wl-zhen3" >运营者姓名  <input type="text" placeholder="请输入运营者姓名"style="width: 679px;margin-left: 61px" ></p>
+                    <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;"><span class="wl-huoqu">获取验证码</span></p>
+                    <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码"style="width: 495px ;margin-left: 62px"></p>
+                    <p class="wl-zhen3" >上传企业工商营业执照</p>
+                    <p style="position: relative"><input type="file" class="wl-shangc"><i class="wl-zhao3">添加照片</i><span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span><span class="iconfont icon-xiangji " id="xiangji2"></span></p>
                     <p class="wl-btn3"><button>完成</button></p>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                        <div class="one-1"><img src="/pc/image/tou.png" alt="">
                                <dt>用户名称</dt>
                                <dd>简介简介简介简介简介简介建将建将</dd>
-                           <button style="float: right;margin-top: 48px">修改信息</button>
+                           <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
                        </div>
                         <div style="width: 100px;height: 666px;float: left;color:#333333;font-size: 16px; ">
                             <dl style="margin-top:31px;">账号信息</dl>
@@ -139,11 +139,37 @@
     <div class="wl-zhez1">
         <div class="wl-zl1" >
             <div>密码修改</div>
-            <div class="">通过已绑定手机 <span>176****2595</span> 进行验证</div>
+            <div class="wl-yibang">通过已绑定手机 <span>176****2595</span> 进行验证</div>
+            <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码"><button>发送验证码</button></div>
+            <div class="wl-zhes"><span>设置新密码</span><input type="text"placeholder="请输入新密码"></div>
+            <div class="wl-zhes"><span>确认新密码</span><input type="text" placeholder="再次输入新密码" style="z-index: 1;"></div>
+            <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button>确定</button> </div>
+        </div>
+        <div class="wl-yzcg1">
+            <div>修改个人信息</div>
         </div>
     </div>
+    <div class="wl-zhez2">
+        <div class="wl-zl2">
+            <div class="wl-gexx">修改个人信息</div>
+            <div class="wl-gerenl">
+                <div class="cd">
+                    <img src="/pc/image/tou.png" width="73px" height="73px"/>
+                    <div class="dd">
+                        更换头像
+                    </div>
+                </div>
+                <div class="wl-ri">
+                    <input type="text" placeholder="用户名称">
+                    <p>2-10个汉字，请勿使用包含特殊符号</p>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <p>30个汉字，无特殊符号</p>
+                    <button class="wl-que1">确认</button> <button  class="wl-que2">取消</button>
+                </div>
+            </div>
         </div>
-
+    </div>
+</div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -156,7 +182,6 @@
                 $(".tab-content div").eq(index).addClass("active-txt");
             });
         });
-
 
 
         $('.nav-item>a').on('click',function(){
@@ -239,6 +264,21 @@ $("#wl-anquan").click(function () {
             var _con = $('.wl-zl1'); // 设置目标区域
             if(!_con.is(event.target) && _con.has(event.target).length == 0) {
                 $('.wl-zhez1').hide(); //淡出消失
+            }
+        });
+
+    });
+    // 修改信息遮罩层
+    $(document).ready(function() {
+        $(".wl-xgxx").click(function(event) {
+            event.stopPropagation(); //停止事件冒泡
+            $(".wl-zhez2").toggle();
+        });
+        //点击空白处隐藏弹出层
+        $(".wl-zhez2").click(function(event) {
+            var _con = $('.wl-zl2'); // 设置目标区域
+            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+                $('.wl-zhez2').hide(); //淡出消失
             }
         });
 

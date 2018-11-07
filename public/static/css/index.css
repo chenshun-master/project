@@ -92,8 +92,7 @@ a {
     margin-right: 42px;
 }
 
-.biao a {
-    color: #1F1F1F;
+.biao li {
     font-size: 0.34rem;
     /*font-weight: bold;*/
 }
@@ -256,7 +255,6 @@ a {
     margin-top: -5px;
     font-size: 22px;
     color: #000000;
-
 }
 .wl-href{
     contain: paint;

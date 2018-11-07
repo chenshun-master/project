@@ -411,7 +411,7 @@ a {
     font-size: 14px;
     border: 1px solid #F1F1F1;
     float: right;
-    margin-right: 210px;
+    margin-right: 115px;
     margin-top: 12px;
 }
 .wl-sxia{
@@ -436,7 +436,7 @@ a {
 }
 .wl-zhanghao{
     width: 188px;
-    height: 300px;
+    min-height: 200px;
     position: absolute;
     top: 0;
     right: 500px;
@@ -631,6 +631,14 @@ a {
     height: 60px;
     line-height: 73px;
 }
+.wl-zhes{
+    width: 100%;
+    height: 47px;
+    line-height: 55px;
+    line-height: 55px;
+    z-index: 1;
+
+}
 
 .wl-zheh span{
     width: 100px;
@@ -638,7 +646,22 @@ a {
     font-size: 16px;
     margin-left: 77px;
 }
+.wl-zhes span{
+    width: 100px;
+    color: #333333;
+    font-size: 16px;
+    margin-left: 77px;
+}
 .wl-zheh input {
+    width: 200px;
+    height: 38px;
+    border:1px solid #EEEEEE;
+    margin-left: 40px;
+    padding-left: 12px;
+    color: #888888;
+    font-size: 14px;
+}
+.wl-zhes input {
     width: 200px;
     height: 38px;
     border:1px solid #EEEEEE;
@@ -656,6 +679,18 @@ a {
     border:1px solid #EEEEEE;
     margin-left: 27px;
     margin-top: 5px;
+    border-radius: 5px;
+}
+.wl-zhes button{
+    width: 110px;
+    height: 38px;
+    background: #FAFAFA;
+    color: #333333;
+    font-size: 14px;
+    border:1px solid #EEEEEE;
+    margin-left: 27px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
 .wl-zheque{
@@ -663,6 +698,7 @@ a {
     height: 83px;
     border-top:2px solid #f7f7f7;
     position: absolute;bottom: 0px;
+    border-radius: 5px;
 }
 .wl-zheque button{
     width: 125px;
@@ -732,4 +768,124 @@ a {
     color: #333333;
     font-size: 18px;
     padding-left: 40px;
+}
+.wl-yibang{
+    width: 250px;
+    height: 20px;
+    margin: 0 auto;
+    font-size: 14px;
+    color:#888888;
+    margin-top: 10px;
+}
+.wl-yzcg1{
+    position: relative;
+    width: 180px;
+    height: 34px;
+    background: #7DB0E8;
+    border: 1px solid #EEEEEE;
+    text-align: center;
+    line-height: 34px;
+    font-size: 14px;
+    color: #FFFFFF;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: -140px;
+    z-index: 99999;
+}
+.wl-zhez2{
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .3);
+    z-index: 99999;
+}
+.wl-zl2{
+    width: 576px;
+    height: 320px;
+    background: white;
+    margin: 0 auto;
+    margin-top: 200px;
+    position:relative;
+}
+.wl-gexx{
+    width: 100%;
+    height: 54px;
+    line-height: 54px;
+    background: #f7f7f7;
+    color: #333333;
+    font-size: 18px;
+    padding-left: 40px;
+}
+.wl-gerenl{
+    width: 173px;
+    height: 260px;
+}
+.cd{
+    width: 73px;
+    height: 73px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin-left: 62px;
+    margin-top: 20px;
+}
+.dd{
+    width:73px;
+    height:23px;
+    background: black;
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 11px;
+    bottom: 0;
+    text-align: center;
+    opacity: 0.3;
+}
+.wl-ri{
+    width: 300px;
+    height: 215px;
+    position: absolute;
+    right: 70px;
+    top: 80px;
+}
+.wl-ri input{
+    width: 300px;
+    height: 38px;
+    border: 1px solid #EEEEEE;
+    color: #888888;
+}
+.wl-ri p{
+    color: #999999;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.wl-ri textarea{
+    width: 300px;
+    height: 70px;
+    border: 1px solid #EEEEEE;
+    margin-top: 15px;
+    color: #888888;
+}
+.wl-que1{
+    width: 83px;
+    height: 30px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #7DB0E8;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.wl-que2{
+    width: 83px;
+    height: 30px;
+    font-size: 14px;
+    color:#888888;
+    background: #EEEEEE;
+    border-radius: 5px;
+    margin-left: 30px;
+
 }

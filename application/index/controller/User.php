@@ -24,6 +24,13 @@ class User extends CController
 
         return $this->fetch('user/main');
     }
+    /**
+     * 404错误
+     */
+    public function loss(){
+
+        return $this->fetch('user/loss');
+    }
 
     /**
      * 用户上传认证图片接口
