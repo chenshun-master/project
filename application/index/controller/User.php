@@ -68,8 +68,6 @@ class User extends CController
             return $this->returnData([],'用户未登录',401);
         }
 
-        $data = [];
-
         $type = $request->post('type',0);
         if(!in_array($type,[1,2,3,4])){
             return $this->returnData([],'参数不符合规范',301);
@@ -80,29 +78,32 @@ class User extends CController
             return $this->returnData([],$validate->getError(),301);
         }
 
-        $username = $request->post('username');
-        $idcard = $request->post('idcard');
-        $card_img1 = $request->post('card_img1');
-        $card_img2 = $request->post('card_img2');
-        $qualification = $request->post('qualification');
+        $username           = $request->post('username');
+        $idcard             = $request->post('idcard');
+        $card_img1          = $request->post('card_img1');
+        $card_img2          = $request->post('card_img2');
+        $qualification      = $request->post('qualification');
         $practice_certificate = $request->post('practice_certificate');
-        $name = $request->post('name');
-        $business_licence = $request->post('business_licence');
+        $name               = $request->post('name');
+        $business_licence   = $request->post('business_licence');
 
-        $data['username'] =  $username;
-        $data['idcard'] =  $idcard;
-        $data['card_img1'] =  $card_img1;
-        $data['card_img2'] =  $card_img2;
+        $data = [];
+        $data['type']       =  $type;
+        $data['user_id']    =  $this->getUserInfo()['id'];
+        $data['user_id']    = 4;
+        $data['username']   =  $username;
+        $data['idcard']     =  $idcard;
+        $data['card_img1']  =  $card_img1;
+        $data['card_img2']  =  $card_img2;
         if($type == 2){
-            $data['username']
-        }else if($type == 3){
-
-        }else if($type == 4){
-
+            $data['qualification']          = $qualification;
+            $data['practice_certificate']   = $practice_certificate;
+        }else if($type == 3 || $type == 4){
+            $data['name']               = $name;
+            $data['business_licence']   = $business_licence;
         }
 
-
-        $isTrue = $this->userDomain->addAuthentication($data);
+        $isTrue = (new \app\api\domain\AuthDomain())->addAuthentication($data);
         if(!$isTrue){
             return $this->returnData([],'认证申请提交失败',305);
         }

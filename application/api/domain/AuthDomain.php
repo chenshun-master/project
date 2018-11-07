@@ -57,21 +57,37 @@ class AuthDomain
         return $isTrue ? true : false;
     }
 
-
     /**
      * 后台认证审核接口
+     * @param $id               认证ID
+     * @param $status           审核状态
+     * @param $audit_remark     审核备注
+     * @return bool
      */
     public function authVerify($id,$status,$audit_remark){
-        $isTrue  = Db::name('auth')->where('id', $id)->data([
-            'status'        =>$status,
-            'audit_time'    =>date('Y-m-d H:i:s'),
-            'audit_remark'  =>$audit_remark
-        ])->update();
+        Db::startTrans();
+        try {
+            if((int)$status === 2){
+                $auth_info = Db::name('auth')->find($id);
+                $isTrue1  = Db::name('user')->where('id', $auth_info['id'])->data(['type'=>$auth_info['type']])->update();
+                if(!$isTrue1){
+                    Db::rollback();return false;
+                }
+            }
 
-        if($isTrue === true){
-            return true;
+            $isTrue2  = Db::name('auth')->where('id', $id)->data([
+                'status'        =>$status,
+                'audit_time'    =>date('Y-m-d H:i:s'),
+                'audit_remark'  =>$audit_remark
+            ])->update();
+            if(!$isTrue2){
+                Db::rollback();return false;
+            }
+
+            Db::commit();
+        } catch (\Exception $e) {
+            Db::rollback();
+            return false;
         }
-
-        return false;
     }
 }
