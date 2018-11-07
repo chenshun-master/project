@@ -122,4 +122,7 @@ class User extends CController
 
         return $this->returnData([],'认证申请提交成功',200);
     }
+
+
+
 }
