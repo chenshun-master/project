@@ -4,6 +4,7 @@ namespace app\index\controller;
 use think\Request;
 use app\api\domain\UserDomain;
 use app\api\model\UserModel;
+
 /**
  * Class Index
  * @package app\index\controller
@@ -17,29 +18,24 @@ class Index extends CController
      */
     public function index()
     {
-
-        return $this->fetch('user/main');
-
         if(is_weixin()){
             return $this->redirect('/weixin/index/index');
         }
 
-        return '<h1 style="color: red;font-size: 20px;">微琳医美</h1>';
+        return $this->redirect('user/main');
 
+        return '<h1 style="color: red;font-size: 20px;">微琳医美</h1>';
     }
 
     /**
      * 用户登录页面
+     * @route('/login','get')
+     * @return false|string
      */
     public function login(){
         return $this->fetch('index/login');
     }
-    /**
-     * 用户发布文章认证页面
-     */
-    public function release(){
-        return $this->fetch('index/release');
-    }
+
 
     /**
      * 账号密码登录页面
@@ -157,7 +153,7 @@ class Index extends CController
     /**
      * 发送短信验证码
      * @param  string  mobile  手机号
-     * @param  int     type    验证码用途(1:注册;2:重置密码;3:手机号快捷登录;4:第三方手机号绑定)
+     * @param  int     type    验证码用途(1:注册;2:重置密码;3:手机号快捷登录;4:第三方手机号绑定;5:修改密码 6:修改手机号)
      * @param Request $request
      * @route('sendSmsCode','post')
      * @return false|string
@@ -195,6 +191,10 @@ class Index extends CController
 
         if($type == 0){
             return $this->returnData([],'发送失败',305);
+        }else if(in_array($type,[5,6])){
+            if(!$this->checkLogin()){
+                return $this->returnData([],'发送失败',305);
+            }
         }
 
         $smsObject = new \app\api\domain\SendSms();
@@ -204,5 +204,12 @@ class Index extends CController
         }
 
         return $this->returnData([],'发送成功',200);
+    }
+
+    /**
+     * 404错误
+     */
+    public function error404(){
+        return $this->fetch('error/loss');
     }
 }
