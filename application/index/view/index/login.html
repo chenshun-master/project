@@ -91,5 +91,153 @@
             $('#wl-neirong').hide();
             $('#wl-neirong2').hide();
         }
+
+        var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
+        codeObj.run();
+
+        var  objClass = {
+            oneLoading:false,
+            twoLoading:false,
+            sendSmsCode:false,
+            checkMobile:function(mobile){
+                var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+                return reg_phone.test(mobile);
+            },
+            submitOne:function(){
+                var mobile = $('#mobile1').val();
+                var sms_code = $('#sms_code').val();
+
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(sms_code == ''){
+                    layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(!this.oneLoading){
+                    $.ajax({
+                        url:"/weixin/index/codeLogin",
+                        type:'post',
+                        data:{mobile:mobile,sms_code:sms_code},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.oneLoading = true;
+                        },
+                        complete:function(){
+                            objClass.oneLoading = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({type: 2,content: '登录中...',time:4});
+                                setTimeout(function(){
+                                    window.location.href = '/weixin/user/main';
+                                },2000);
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 303){
+                                layer.open({content: '验证码已过期',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 304){
+                                layer.open({content: '用户不存在',skin: 'msg',time: 2});
+                                return false;
+                            }else {
+                                layer.open({content: '登录失败',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            },
+            submitTwo:function(){
+                var mobile = $('#mobile2').val();
+                var password = $('#password').val();
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+                if(!objClass.twoLoading){
+                    $.ajax({
+                        url:"/weixin/index/postLogin",
+                        type:'post',
+                        data:{mobile:mobile,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.twoLoading = true;
+                        },
+                        complete:function(){
+                            objClass.twoLoading = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({type: 2,content: '登录中...',time:4});
+                                setTimeout(function(){
+                                    window.location.href = '/weixin/user/main';
+                                },2000)
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '用户不存在',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 303){
+                                layer.open({content: '用户密码填写错误',skin: 'msg',time: 2});
+                                return false;
+                            }else{
+                                layer.open({content: '登录失败',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            },
+            sendSms:function(){
+                var mobile = $('#mobile1').val();
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(codeObj.checkTime()){
+                    return false;
+                }
+
+                if(!this.sendSmsCode){
+                    $.ajax({
+                        url:"/weixin/index/sendQuickLoginSmsCode",
+                        type:'post',
+                        data:{mobile:mobile},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.sendSmsCode = true;
+                        },
+                        complete:function(){
+                            objClass.sendSmsCode = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({content: '发送成功',skin: 'msg',time: 2});
+                                codeObj.sendSmsCode();
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '该手机号未注册',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            }
+        };
     </script>
 </html>
