@@ -37,7 +37,7 @@
                 <dl>还没有账号？</dl>
                 <dd>立即免费注册！</dd>
                 <dt>现在注册，遇见不一样的自己</dt>
-                <button href="" class="wl-zc1" onclick="zhuce()">注册</button>
+                <button class="wl-zc1" onclick="zhuce()" style="cursor: pointer">注册</button>
             </div>
             <div class="wl-right">
                 <span class="wl-tub1">重置密码</span>
@@ -81,6 +81,7 @@
     <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 	<!--<script src="/pc/js/bootstrap.min.js"></script>-->
     <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
     <script>
         function zhuce(){
             $('#wl-neirong2').show();
@@ -97,6 +98,7 @@
             $('#wl-neirong').hide();
             $('#wl-neirong2').hide();
         }
+
         //注册获取验证码
         var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
         codeObj.run();
@@ -352,7 +354,38 @@
                 }
             }
         }
+        
 
+            $("#xian").click(function(){
+                if($("#pwd").prop("type")=="password"){
+                    $("#pwd").prop("type","text");
+
+                    $("#xian i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#pwd").prop("type","password");
+                    $("#xian i").attr("class","iconfont icon-yanjing")
+                }
+            })
+            $("#xian1").click(function(){
+                if($("#pwd1").prop("type")=="password"){
+                    $("#pwd1").prop("type","text");
+
+                    $("#xian1 i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#pwd1").prop("type","password");
+                    $("#xian1 i").attr("class","iconfont icon-yanjing")
+                }
+            })
+            $("#xian2").click(function(){
+                if($("#pwd2").prop("type")=="password"){
+                    $("#pwd2").prop("type","text");
+
+                    $("#xian2 i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#pwd2").prop("type","password");
+                    $("#xian2 i").attr("class","iconfont icon-yanjing")
+                }
+            })
 
     </script>
 </html>
