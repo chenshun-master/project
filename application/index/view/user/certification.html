@@ -38,19 +38,38 @@
                 <li>官方认证</li>
             </div>
         </ul>
-        <div class="tab-content" style="position: relative;" >
+        <div class="tab-content" style="position: relative;display: none" >
             <div class="active-txt wl-geren">
                 <p>身份证认证</p>
                 <p class="wl-zhen" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名"></p>
                 <p class="wl-zhen">身份证号  <input type="text" placeholder="请输入真实身份证号"></p>
                 <p class="wl-zhen">所在行业  <input type="text" placeholder="请输入所在行业"></p>
                 <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
-                <p style="position: relative" class="wl-shangc1"><input type="file"style="width: 130px;height: 130px;opacity: 0;cursor: pointer"></p>
-                <dl  style="position: absolute;bottom: 378px;left: 80px;" ><dt class="iconfont icon-xiangji " style="font-size: 50px;color:#cdcdcd; margin-left: 22px;"></dt>
-                    <dt style="color:#cdcdcd ;font-size: 14px">上传身份证正面</dt></dl>
-                <p style="position: relative" class="wl-shangc1"><input type="file" style="width: 130px;height: 130px;opacity: 0;cursor: pointer" ></p>
-                <dl  style="position: absolute;bottom: 378px;left: 278px;" ><dt class="iconfont icon-xiangji " style="font-size: 50px;color:#cdcdcd; margin-left: 22px;"></dt>
-                    <dt style="color:#cdcdcd ;font-size: 14px">上传身份证反面</dt></dl>
+                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
+                    <dt style="float: left;width: 87%;margin-left: 47px;" id="ccc">
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  id="ttttt">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 11px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                            </dl>
+                                <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                    </dt>
+                </dl>
+
+                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: -196px;left: 235px;">
+                    <dt style="float: left;width: 87%;margin-left: 47px;" id="ccc">
+                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  id="ttttt">
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 11px;">
+                            <!--padding-left: 30px;padding-top: 20px;-->
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
+                        </dl>
+                        <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                    </dt>
+                    </dt>
+                </dl>
 
                 <p class="wl-btn"><button>完成</button></p>
             </div>
@@ -62,10 +81,21 @@
                 <p class="wl-zhen1">医师职称  <input type="text" placeholder="请输入最高职称"></p>
                 <p class="wl-zhen1">手机号码  <input type="text" placeholder="请输入手机号码"></p>
                 <p class="wl-zhen1">上传资质证件</p>
-                <p style="position: relative" class="wl-shangc1"><input type="file" style="width: 130px;height: 130px;opacity: 0;cursor: pointer" ></p>
-                <dl  style="position: absolute;bottom: 295px;left: 105px;" ><dt class="iconfont icon-xiangji " style="font-size: 50px;color:#cdcdcd; "></dt>
-                    <dt style="color:#cdcdcd ;font-size: 14px">添加照片</dt></dl>
-                <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
+                    <dt style="float: left;width: 87%;margin-left: 47px;" id="ccc">
+                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  id="ttttt">
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px;">
+                            <!--padding-left: 30px;padding-top: 20px;-->
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                        </dl>
+                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                    </dt>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                    </dt>
+                </dl>
+
+
                 <p class="wl-btn1"><button>完成</button></p>
             </div>
             <div class="wl-geren2">
@@ -76,10 +106,19 @@
                 <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区"></p>
                 <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目"></p>
                 <p class="wl-zhen2">上传医院营业证件</p>
-                <p style="position: relative" class="wl-shangc1"><input type="file" style="width: 130px;height: 130px;opacity: 0;cursor: pointer" ></p>
-                <dl  style="position: absolute;bottom: 303px;left: 105px;" >
-                <dt class="iconfont icon-xiangji " style="font-size: 50px;color:#cdcdcd; "></dt><dt style="color:#cdcdcd ;font-size: 14px">添加照片</dt></dl>
-                <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
+                    <dt style="float: left;width: 87%;margin-left: 47px;" id="ccc">
+                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px;">
+                            <!--padding-left: 30px;padding-top: 20px;-->
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                        </dl>
+                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                    </dt>
+                    </dt>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                </dl>
                 <p class="wl-btn2"><button>完成</button></p>
             </div>
             <div class="wl-geren3">
@@ -90,14 +129,27 @@
                 <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;"><span class="wl-huoqu">获取验证码</span></p>
                 <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码"style="width: 495px ;margin-left: 62px"></p>
                 <p class="wl-zhen3" >上传企业工商营业执照</p>
-                <p style="position: relative" class="wl-shangc1"><input type="file" style="width: 130px;height: 130px;opacity: 0;cursor: pointer" ></p>
-                <dl  style="position: absolute;bottom: 293px;left: 105px;" ><dt class="iconfont icon-xiangji " style="font-size: 50px;color:#cdcdcd; "></dt>
-                    <dt style="color:#cdcdcd ;font-size: 14px">添加照片</dt></dl>
-                <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
+                    <dt style="float: left;width: 87%;margin-left: 47px;" id="ccc">
+                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px">
+                            <!--padding-left: 30px;padding-top: 20px;-->
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                        </dl>
+                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                    </dt>
+                    </dt>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                </dl>
+
+
                 <p class="wl-btn3"><button>完成</button></p>
             </div>
         </div>
-
+        <div class="wl-liucheng">
+            <div></div>
+        </div>
     </div>
 </div>
 </body>
