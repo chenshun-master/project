@@ -3,54 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/pc/css/relrase.css">
+    <link rel="stylesheet" href="/pc/css/test.css">
+    <link rel="stylesheet" href="/static/css/iconfont.css">
 </head>
 <body>
-        <div style="margin: 0 auto;margin-top: 10px;min-height:500px;width: 80%;border: 1px solid #cccccc; ">
-            <div style="height: 50px;line-height: 50px;padding-left: 10px;">
-                <div style="float: left;width: 7%;"> 标题 </div>
-                <div style="float: left;width: 90%;"><input type="text" value="" id="fr-title" style="width: 100%;"></div>
+<div class="wl-con" style="background: #F8F8F8">
+    <div class="wl-top">
+        <div style="position:relative;width:1265px;margin:0 auto;top:17px;left: 10px">
+            <img src="/pc/image/logo1.png" alt="">
+        </div>
+    </div>
+    <div class="wl-zhanghao-box"
+         style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
+        <div class="wl-zhanghao" style="right:0;">
+            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"><span class="wl-toux"></span><span
+                    style="color: white;margin-left: 48px;float: left;margin-top: -1px;">用户名称</span><i
+                    class="iconfont icon-triangledownfill" style="color: white;"></i></p>
+            <div class="wl-cang" style="display: none">
+                <p class="wl-xiany" id="wl-anquan" onclick="redream.href('/index/user/main')"><i
+                        class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
+                <p class="wl-xiany"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录
+                </p>
             </div>
-            <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;">
-                <div style="float: left;width: 7%;"> 摘要 </div>
-                <div style="float: left;width: 90%;"><input type="text" value="" id="fr-zaiyao" style="width: 100%;"></div>
+        </div>
+    </div>
+    <div class="tab-box" style="position: relative">
+        <div class="wl-fabiao3" style="cursor: pointer">发表文章</div>
+        <ul class="renzheng">
+            <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
+                <span class="wl-renzhengs"><i class="iconfont icon-medal_light wl-xz"
+                                              style="font-size: 30px"></i>实名认证</span></i>
             </div>
-            <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;">
-                <div style="float: left;width: 7%;"> 标签 </div>
-                <div style="float: left;width: 90%;"><input type="text" value="" id="fr-tag" style="width: 100%;"></div>
+
+        </ul>
+        <div class="wl-fabu">
+            <p>发表文章</p>
+            <div style="height: 60px;line-height: 60px;padding-left: 10px;margin-top: 20px">
+                <div style="float: left;width: 7%;margin-left: 52px;"> 标题</div>
+                <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入文章标题"
+                                                            style="width: 93%;height: 36px;text-indent: 10px"></div>
             </div>
-            <div style="clear: both;min-height: 200px;padding-left: 10px;">
-                <div style="float: left;width: 7%;"> 缩略图 </div>
-                <div style="float: left;width: 90%;" id="ccc">
-                    <div style="width: 126px;height: 126px;border: 1px solid #cccccc;float: left;" id="ttttt">
+            <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;">
+                <div style="float: left;width: 7%; margin-left: 52px;"> 摘要</div>
+                <div style="float: left;width: 87%;"><input type="text" value="" id="fr-zaiyao" placeholder="请输入文章摘要"
+                                                            style="width: 93%;height: 36px;text-indent: 10px"></div>
+            </div>
+            <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;">
+                <div style="float: left;width: 7%;margin-left: 52px;"> 标签</div>
+                <div style="float: left;width: 87%;"><input type="text" value="" id="fr-tag" placeholder="请输入文章标签"
+                                                            style="width: 93%;height: 36px;text-indent: 10px"></div>
+            </div>
+
+            <div style="clear: both;padding-left: 10px;">
+                <div style="float: left;width: 90%;margin-top: 35px; margin-left: 44px;">
+                    <textarea id="editor_id" name="content"
+                              style="width:99% !important;height:300px;background: white"></textarea>
+                </div>
+            </div>
+            <div style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative">
+                <div style="float: left;width: 87%;margin-left: 47px;" id="ccc">
+                    <div style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  id="ttttt">
+                        <div style="position: absolute;width: 134px;height: 134px;cursor: pointer;padding-left: 33px;padding-top: 20px;">
+                            <div class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 5px;z-index: 2"></div>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加缩略图</dt>
+                        </div>
+
                         <form id="infoLogoForm" enctype='multipart/form-data'>
-                        <input type="file"  name="img"  accept="image/*" id="btn-input-file" style="position: relative;width: 120px;height: 120px;opacity: 0" />
+                            <input type="file" name="img" accept="image/*" id="btn-input-file"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                         </form>
                     </div>
                 </div>
             </div>
-            <div style="clear: both;padding-left: 10px;">
-                <div style="float: left;width: 7%;"> 文章内容 </div>
-                <div style="float: left;width: 90%;">
-                        <textarea id="editor_id" name="content" style="width:100% !important;height:300px;"></textarea>
-                </div>
-            </div>
+
             <div style="clear: both;height: 50px;line-height: 50px;padding-left: 10px;text-align: center">
-                <button onclick="objClass.submit()">提交</button>
+                <button onclick="objClass.submit()" class="wl-tijiao">发表</button>
             </div>
         </div>
+
+    </div>
+</div>
+
 </body>
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
 <script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    KindEditor.ready(function(K) {
-        window.editor = K.create('#editor_id',{
-            cssPath : '/static/plugin/kindeditor/plugins/code/prettify.css',
-            uploadJson : '../php/upload_json.php',
-            fileManagerJson : '../php/file_manager_json.php',
-            allowFileManager : true,
-            afterCreate : function() {
+    KindEditor.ready(function (K) {
+        window.editor = K.create('#editor_id', {
+            cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
+            uploadJson: '../php/upload_json.php',
+            fileManagerJson: '../php/file_manager_json.php',
+            allowFileManager: true,
+            afterCreate: function () {
                 var self = this;
                 self.sync();
             }
@@ -61,36 +108,36 @@
 
 
     var objClass = {
-        loading:false,
-        submit:function(){
+        loading: false,
+        submit: function () {
             window.editor.sync();
             var content = $.trim($('#editor_id').val());
             var title = $.trim($('#fr-title').val());
             var zaiyao = $('#fr-zaiyao').val();
             var tag = $('#fr-tag').val();
 
-            if(title == ''){
+            if (title == '') {
                 redream.showTip('标题不能为空');
                 return false;
             }
 
-            if(this.loading){
+            if (this.loading) {
                 return false;
             }
 
             $.ajax({
-                url:"/index/article/releaseArticle",
-                type:'post',
-                data:{title:title,tag:tag,centent:content,excerpt:zaiyao},
-                dataType:'json',
-                beforeSend:function(){
+                url: "/index/article/releaseArticle",
+                type: 'post',
+                data: {title: title, tag: tag, centent: content, excerpt: zaiyao},
+                dataType: 'json',
+                beforeSend: function () {
                     objClass.oneLoading = true;
                 },
-                complete:function(){
+                complete: function () {
                     objClass.oneLoading = false;
                 },
-                success:function(res){
-                    if(res.code == 200){
+                success: function (res) {
+                    if (res.code == 200) {
                         redream.showTip('发布成功');
                         $('#editor_id').val('');
                         $('#fr-title').val('');
@@ -104,7 +151,7 @@
     };
 
 
-    $("#btn-input-file").on("change", function(){
+    $("#btn-input-file").on("change", function () {
         $.ajax({
             url: '/index/article/uploadThumbnailImg',
             type: 'POST',
@@ -112,18 +159,36 @@
             data: new FormData($('#infoLogoForm')[0]),
             processData: false,
             contentType: false,
-            dataType:"json",
-            beforeSend: function(){
+            dataType: "json",
+            beforeSend: function () {
 
             },
-            success : function(data) {
-                if(data.code == 200){
-                    var html = '<div style="width: 124px;height: 124px;border: 2px solid #cccccc;float: left;margin-right: 3px;"><img src="'+data.data.image_url+'" alt="" width="120" height="120"></div>';
+            success: function (data) {
+                if (data.code == 200) {
+                    var html = '<div style="width: 124px;height: 124px;border: 2px solid #cccccc;float: left;margin-right: 3px;"><img src="' + data.data.image_url + '" alt="" width="120" height="120"></div>';
                     $('#ccc').prepend(html);
                 }
             }
         });
     });
 </script>
+<script type="text/javascript">
 
+    $(".tab-box li").each(function (index) {
+        $(this).click(function () {
+            $("li.active").removeClass("active"); //注意这里
+            $(this).addClass("active");
+            $(".tab-content div.active-txt").removeClass("active-txt");
+            $(".tab-content div").eq(index).addClass("active-txt");
+        });
+    });
+    $(".wl-xian").click(function () {
+        $(".wl-cang").toggle();
+    })
+
+    $(".wl-shimin").click(function () {
+        $(".wl-cang1").toggle();
+    })
+
+</script>
 </html>

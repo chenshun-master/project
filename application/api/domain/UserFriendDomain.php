@@ -16,10 +16,11 @@ class UserFriendDomain
      * @return bool
      */
     public function checkFriend($user_id,$friend_id){
-        $sql = "SELECT id from wl_user_friends where status = 2  AND  user_id = {$user_id} and friend_id = {$friend_id}
+        $sql = "SELECT id from wl_user_friends where status = 2  AND  user_id = {$user_id} and friend_id = {$friend_id} limit 1
                 union all
-                SELECT id from wl_user_friends where status = 2  AND  user_id = {$friend_id} and friend_id = {$user_id}";
+                SELECT id from wl_user_friends where status = 2  AND  user_id = {$friend_id} and friend_id = {$user_id} limit 1";
         $res = Db::query($sql);
+
         return $res ? true : false;
     }
 

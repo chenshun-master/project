@@ -9,13 +9,11 @@ use think\Db;
 class Index extends BaseController
 {
 
-
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->articleDomain = new \app\api\domain\ArticleDomain();
     }
-
 
     /**
      * 网站首页
