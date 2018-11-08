@@ -24,7 +24,7 @@
 				<!--<div class="wl-ma-dun"><span style="  margin-top: -10px"> <img src="/pc/image/bg-dun.png" alt="" width="35px" height="35px" style="margin-top: 4px;margin-left: 8px"><span class="wl-sao-zi">扫码登录更安全</span></span></div>-->
 			<div class="wl-shuru">
                <p><input type="text" id="mobile1" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
-                <p ><input type="password" id="password1" placeholder="请输入密码" maxlength="18" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
+                <p ><input type="password" id="password1" placeholder="请输入密码" maxlength="18" class="wl-input"><span id="xian"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
                 <button href="" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
                 <button class="btn" id="btn1" onclick="objClass.login()">登录</button>
             </div>
@@ -44,7 +44,7 @@
                 <div class="wl-shuru1">
                     <p style="margin-top: 40px"><input type="text" id="mobile2" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px" id="code-btn1" onclick="objClass1.sendSms1()">获取验证码</a></p>
                     <p ><input type="text" id="sms_code2" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
-                    <p ><input type="password" id="password2" placeholder="请输入密码" maxlength="18" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
+                    <p ><input type="password" id="password2" placeholder="请输入密码" maxlength="18" class="wl-input"><span id="xian1"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
                     <button onclick="objClass1.submit1()">完成</button>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="wl-shuru1" style="margin-top: 10px">
                     <p ><input type="text" id="mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px" id="code-btn" onclick="objClass.sendSms()">获取验证码</a></p>
                     <p ><input type="text" id="sms_code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
-                    <p ><input type="password" id="password" placeholder="6~16个字符，区分大小写" class="wl-input yan" style="width: 320px" ><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9" id="xian"></i></p>
+                    <p ><input type="password" id="password" placeholder="6~16个字符，区分大小写" class="wl-input yan" style="width: 320px" ><span class="xian2"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9" ></i></span></p>
                     <button id="btn" style="margin-top: 25px;" onclick="objClass.submit()">立即注册</button>
                 </div>
             </div>
@@ -357,32 +357,32 @@
         
 
             $("#xian").click(function(){
-                if($("#pwd").prop("type")=="password"){
-                    $("#pwd").prop("type","text");
+                if($("#password1").prop("type")=="password"){
+                    $("#password1").prop("type","text");
 
                     $("#xian i").attr("class","iconfont icon-yanjing1")
                 }else{
-                    $("#pwd").prop("type","password");
+                    $("#password1").prop("type","password");
                     $("#xian i").attr("class","iconfont icon-yanjing")
                 }
             })
             $("#xian1").click(function(){
-                if($("#pwd1").prop("type")=="password"){
-                    $("#pwd1").prop("type","text");
+                if($("#password2").prop("type")=="password"){
+                    $("#password2").prop("type","text");
 
                     $("#xian1 i").attr("class","iconfont icon-yanjing1")
                 }else{
-                    $("#pwd1").prop("type","password");
+                    $("#password2").prop("type","password");
                     $("#xian1 i").attr("class","iconfont icon-yanjing")
                 }
             })
             $("#xian2").click(function(){
-                if($("#pwd2").prop("type")=="password"){
-                    $("#pwd2").prop("type","text");
+                if($("#password").prop("type")=="password"){
+                    $("#password").prop("type","text");
 
                     $("#xian2 i").attr("class","iconfont icon-yanjing1")
                 }else{
-                    $("#pwd2").prop("type","password");
+                    $("#password").prop("type","password");
                     $("#xian2 i").attr("class","iconfont icon-yanjing")
                 }
             })
