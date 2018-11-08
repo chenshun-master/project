@@ -19,7 +19,7 @@ class User extends CController
      */
     public function main(){
         if(!$this->checkLogin()){
-            return redirect('/login');
+//            return redirect('/login');
         }
 
         return $this->fetch('user/main');
