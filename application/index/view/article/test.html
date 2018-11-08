@@ -55,8 +55,13 @@
                     <div style="float: left;width: 87%;margin-left: 47px;" id="ccc">
                         <div style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" id="ttttt">
                             <form id="infoLogoForm" enctype='multipart/form-data'>
-                                <input type="file"  name="img"  accept="image/*" id="btn-input-file" style="width: 120px;height: 120px;opacity: 0;z-index: 99999;cursor: pointer" />
-                                <div style="position: absolute;top: 26px;left: 35px"><dl class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 5px "></dl><dt style="color: #cdcdcd;margin-right: 10px">添加照片</dt></div>
+
+                                <div style="position: absolute;top: 26px;left: 35px;z-index: 1;">
+                                    <div class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 5px;z-index: 2"></div>
+                                    <!--<dl class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 5px "></dl>-->
+                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                                </div>
+                                <input type="file"  name="img"  accept="image/*" id="btn-input-file" style="width: 120px;height: 120px;opacity: 0;z-index: 3;cursor: pointer" />
                             </form>
                         </div>
                     </div>

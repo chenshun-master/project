@@ -115,6 +115,8 @@ a {
     font-size: 18px;
     text-align: center;
     border-radius: 10px;
+    float: right;
+    margin-right: 84px;
 }
 input::-webkit-input-placeholder {
                color: #cdcdcd;
