@@ -6,7 +6,6 @@
 		<link rel="stylesheet" href="/pc/css/login.css">
 
 		<link rel="stylesheet" href="/static/css/iconfont.css">
-
 	</head>
 	<body >
 	<div  id="wl-con">
@@ -24,10 +23,10 @@
 				<!--<div class="wl-ma"></div>-->
 				<!--<div class="wl-ma-dun"><span style="  margin-top: -10px"> <img src="/pc/image/bg-dun.png" alt="" width="35px" height="35px" style="margin-top: 4px;margin-left: 8px"><span class="wl-sao-zi">扫码登录更安全</span></span></div>-->
 			<div class="wl-shuru">
-               <p><input type="text" placeholder="请输入你的手机号" class="wl-input"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
-                <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
+               <p><input type="text" id="mobile1" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
+                <p ><input type="password" id="password1" placeholder="请输入密码" maxlength="18" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
                 <button href="" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
-                <button class="btn">登录</button>
+                <button class="btn" id="btn1" onclick="objClass.login()">登录</button>
             </div>
             </div>
 		</div>
@@ -38,15 +37,15 @@
                 <dl>还没有账号？</dl>
                 <dd>立即免费注册！</dd>
                 <dt>现在注册，遇见不一样的自己</dt>
-                <button href="" class="wl-zc1" onclick="zhuce()">注册</button>
+                <button class="wl-zc1" onclick="zhuce()" style="cursor: pointer">注册</button>
             </div>
             <div class="wl-right">
                 <span class="wl-tub1">重置密码</span>
                 <div class="wl-shuru1">
-                    <p style="margin-top: 40px"><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 290px"><a href="" style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px">获取验证码</a></p>
-                    <p ><input type="text" placeholder="请输入你收到的验证码" class="wl-input"></p>
-                    <p ><input type="text" placeholder="请输入密码" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
-                    <button>完成</button>
+                    <p style="margin-top: 40px"><input type="text" id="mobile2" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px" id="code-btn1" onclick="objClass1.sendSms1()">获取验证码</a></p>
+                    <p ><input type="text" id="sms_code2" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
+                    <p ><input type="password" id="password2" placeholder="请输入密码" maxlength="18" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
+                    <button onclick="objClass1.submit1()">完成</button>
                 </div>
             </div>
         </div>
@@ -59,22 +58,30 @@
                 <dt>现在登录，遇见不一样的自己</dt>
                 <button class="wl-zc1" onclick="zhuce1()">登录  </button>
             </div>
+            <style>
+                .code-hui{
+                    color: #cccccc !important;
+                }
+            </style>
             <div class="wl-right1">
                 <p style=" height: 70px;line-height: 70px;border-bottom: 1px solid #A5A5A5; "><i class="iconfont icon-shouji" style="font-size: 40px;margin-left: 50px"></i><span style="    color: #262626;font-size: 14px;float: right;margin-right: 337px;">用手机注册</span></p>
                 <span class="wl-tub2">注册</span>
                 <div class="wl-shuru1" style="margin-top: 10px">
-                    <p ><input type="text" placeholder="请输入你的手机号" class="wl-input" style="width: 300px"><a href="" style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px">获取验证码</a></p>
-                    <p ><input type="text" placeholder="请输入你收到的验证码" class="wl-input"></p>
-                    <p ><input type="text" placeholder="6~16个字符，区分大小写" class="wl-input" style="width: 320px"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
-                    <button>立即注册</button>
+                    <p ><input type="text" id="mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px" id="code-btn" onclick="objClass.sendSms()">获取验证码</a></p>
+                    <p ><input type="text" id="sms_code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
+                    <p ><input type="password" id="password" placeholder="6~16个字符，区分大小写" class="wl-input yan" style="width: 320px" ><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9" id="xian"></i></p>
+                    <button id="btn" style="margin-top: 25px;" onclick="objClass.submit()">立即注册</button>
                 </div>
             </div>
         </div>
 	</div>
 	</body>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="/pc/js/bootstrap.min.js"></script>
+    <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="/pc/js/bootstrap.min.js"></script>-->
     <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
     <script>
         function zhuce(){
             $('#wl-neirong2').show();
@@ -91,5 +98,294 @@
             $('#wl-neirong').hide();
             $('#wl-neirong2').hide();
         }
+
+        //注册获取验证码
+        var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
+        codeObj.run();
+
+        var  objClass = {
+            loading:false,
+            sendSmsCode:false,
+            checkMobile:function(mobile){
+                var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+                return reg_phone.test(mobile);
+            },
+            //注册
+            submit:function(){
+                var mobile = $('#mobile').val();
+                var sms_code = $('#sms_code').val();
+                var password = $('#password').val();
+
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(sms_code == ''){
+                    layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(password == ''){
+                    layer.open({content: '密码格式错误',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(!this.loading){
+                    $.ajax({
+                        url:"/index/index/postRegister",
+                        type:'post',
+                        data:{mobile:mobile,sms_code:sms_code,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.loading = true;
+                        },
+                        complete:function(){
+                            objClass.loading = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({content: '注册成功',skin: 'msg',time: 2});
+                                setTimeout(function(){
+                                    window.location.href = '/index/index/login';
+                                },3000);
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 303){
+                                layer.open({content: '验证码已过期',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 304){
+                                layer.open({content: '用户不存在',skin: 'msg',time: 2});
+                                return false;
+                            }else {
+                                layer.open({content: '登录失败',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            },
+            //发送短信验证码
+            sendSms:function(){
+                var mobile = $('#mobile').val();
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(codeObj.checkTime()){
+                    return false;
+                }
+
+                if(!this.sendSmsCode){
+                    $.ajax({
+                        url:"/index/index/sendSmsCode",
+                        type:'post',
+                        data:{mobile:mobile,type:1},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.sendSmsCode = true;
+                        },
+                        complete:function(){
+                            objClass.sendSmsCode = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({content: '发送成功',skin: 'msg',time: 2});
+                                codeObj.sendSmsCode();
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '该用户已被使用',skin: 'msg',time: 2});
+                                return false;
+                            }else{
+                                layer.open({content: '发送失败',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            },
+            //登陆
+            login:function(){
+                var mobile = $('#mobile1').val();
+                var password = $('#password1').val();
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+                if(!objClass.twoLoading){
+                    $.ajax({
+                        url:"/index/index/postLogin",
+                        type:'post',
+                        data:{mobile:mobile,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.twoLoading = true;
+                        },
+                        complete:function(){
+                            objClass.twoLoading = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({type: 2,content: '登录中...',time:4});
+                                setTimeout(function(){
+                                    window.location.href = '/index/user/main';
+                                },2000)
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请输入您的密码',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '用户不存在,请先注册',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 303){
+                                layer.open({content: '用户密码填写错误',skin: 'msg',time: 2});
+                                return false;
+                            }else{
+                                layer.open({content: '登录失败',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            },
+        };
+
+        //修改密码获取验证码
+        var codeObj1 = new VerificationCode('code-btn1','获取验证码','code-hui');
+        codeObj1.run();
+        //忘记密码
+        var  objClass1 = {
+            loading:false,
+            sendSmsCode:false,
+            checkMobile:function(mobile){
+                var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+                return reg_phone.test(mobile);
+            },
+            submit1:function(){
+                var mobile = $('#mobile2').val();
+                var sms_code = $('#sms_code2').val();
+                var password = $('#password2').val();
+
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+
+                if(sms_code == ''){
+                    layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
+                    return false;
+                }
+                if(!this.loading){
+                    $.ajax({
+                        url:"/index/index/postResetPassword",
+                        type:'post',
+                        data:{mobile:mobile,sms_code:sms_code,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass1.loading = true;
+                        },
+                        complete:function(){
+                            objClass1.loading = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                window.location.href = '/index/index/rePwd?mobile='+res.data.mobile+'&sms_code='+ encodeURIComponent(res.data.sms_code);
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 303){
+                                layer.open({content: '验证码已过期',skin: 'msg',time: 2});
+                                return false;
+                            }else {
+                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            },
+            sendSms1:function(){
+                var mobile = $('#mobile2').val();
+                if(!this.checkMobile(mobile)){
+                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    return false;
+                }
+                if(!this.sendSmsCode){
+                    $.ajax({
+                        url:"/index/index/sendSmsCode",
+                        type:'post',
+                        data:{mobile:mobile,type:2},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass1.sendSmsCode = true;
+                        },
+                        complete:function(){
+                            objClass1.sendSmsCode = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                layer.open({content: '发送成功',skin: 'msg',time: 2});
+                                codeObj1.sendSmsCode();
+                                return false;
+                            }else if(res.code == 301){
+                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                return false;
+                            }else if(res.code == 302){
+                                layer.open({content: '该用户未被使用',skin: 'msg',time: 2});
+                                return false;
+                            }else{
+                                layer.open({content: '发送失败',skin: 'msg',time: 2});
+                                return false;
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        
+
+            $("#xian").click(function(){
+                if($("#pwd").prop("type")=="password"){
+                    $("#pwd").prop("type","text");
+
+                    $("#xian i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#pwd").prop("type","password");
+                    $("#xian i").attr("class","iconfont icon-yanjing")
+                }
+            })
+            $("#xian1").click(function(){
+                if($("#pwd1").prop("type")=="password"){
+                    $("#pwd1").prop("type","text");
+
+                    $("#xian1 i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#pwd1").prop("type","password");
+                    $("#xian1 i").attr("class","iconfont icon-yanjing")
+                }
+            })
+            $("#xian2").click(function(){
+                if($("#pwd2").prop("type")=="password"){
+                    $("#pwd2").prop("type","text");
+
+                    $("#xian2 i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#pwd2").prop("type","password");
+                    $("#xian2 i").attr("class","iconfont icon-yanjing")
+                }
+            })
+
     </script>
 </html>
