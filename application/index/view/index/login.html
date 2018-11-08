@@ -26,7 +26,7 @@
                <p><input type="text" id="mobile1" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
                 <p ><input type="password" id="password1" placeholder="请输入密码" maxlength="18" class="wl-input"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></p>
                 <button href="" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
-                <button class="btn" id="btn1" onclick="objClass.Login()">登录</button>
+                <button class="btn" id="btn1" onclick="objClass.login()">登录</button>
             </div>
             </div>
 		</div>
@@ -211,7 +211,7 @@
                 }
             },
             //登陆
-            Login:function(){
+            login:function(){
                 var mobile = $('#mobile1').val();
                 var password = $('#password1').val();
                 if(!this.checkMobile(mobile)){
