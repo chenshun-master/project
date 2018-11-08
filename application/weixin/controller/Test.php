@@ -42,5 +42,9 @@ class Test  extends Controller
 
 //        $list = $model->getUserMailList(10);
 //        halt($list);
+
+
+        $model = new UserFriendDomain();
+        $model->checkFriend(4,5);
     }
 }
