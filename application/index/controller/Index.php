@@ -202,6 +202,7 @@ class Index extends CController
                 break;
             case 3:
             case 4:
+            case 7:
                 break;
             case 5:
                 $userModel = new UserModel();
@@ -222,7 +223,7 @@ class Index extends CController
 
         if($type == 0){
             return $this->returnData([],'发送失败',305);
-        }else if(in_array($type,[5,6])){
+        }else if(in_array($type,[5,6,7])){
             if(!$this->checkLogin()){
                 return $this->returnData([],'发送失败',305);
             }

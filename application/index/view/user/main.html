@@ -52,9 +52,10 @@
             </div>
             <div class="xia">
                 <div class="one">
-                    <div class="one-1"><img src="/pc/image/tou.png" alt="">
-                        <dt>用户名称</dt>
-                        <dd>简介简介简介简介简介简介建将建将</dd>
+                    <div class="one-1">
+                        <img src="/pc/image/tou.png"  onerror="/pc/image/tou.png" >
+                        <dt>{$user_info['nickname']}</dt>
+                        <dd>{$user_info['profile']}</dd>
                         <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
                     </div>
                     <div style="width: 100px;height: 666px;float: left;color:#333333;font-size: 16px; ">
@@ -63,9 +64,24 @@
                         <dl style="margin-top:60px;">运营人信息</dl>
                     </div>
                     <div class="wl-grxx">
-                        <div> <span>用户类型</span> <span>个人</span> </div>
-                        <div><span>用户账号</span>  <span>820361933</span></div>
-                        <div> <span>绑定手机</span> <span>18329289659</span><span style="float: right">如需更换,<i style="color: #FD7D7D">请前往"安全中心"</i></span></div>
+                        <div>
+                            <span>用户类型</span>
+                            <span>
+                                <?php if($user_info['type'] == 1):?>
+                                申请认证
+                                <?php elseif($user_info['type'] == 2):?>
+                                    认证会员
+                                <?php elseif($user_info['type'] == 3):?>
+                                    认证医生
+                                <?php elseif($user_info['type'] == 4):?>
+                                    认证医院
+                                <?php elseif($user_info['type'] == 5):?>
+                                    官方团队
+                                <?php endif;?>
+                            </span>
+                        </div>
+                        <div><span>用户账号</span>  <span>{$user_info['mobile']}</span></div>
+                        <div> <span>绑定手机</span> <span>{$user_info['mobile']}</span><span style="float: right">如需更换,<i style="color: #FD7D7D">请前往"安全中心"</i></span></div>
                         <div> <span>运营人</span> <span>打个粉丝</span></div>
                         <div><span>联系邮箱</span>  <span>无</span></div>
                         <div><span>所在地</span>  <span>无</span></div>
@@ -87,40 +103,40 @@
     <div class="wl-zhez">
         <div class="wl-zl" >
             <div>手机号修改</div>
-            <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text"placeholder="请输入手机号"></div>
-            <div class="wl-zheh" ><span>手机验证码</span><input type="text"placeholder="请输入短信验证码"><button>发送验证码</button></div>
-            <div class="wl-yzmcw" >验证码错误</div>
-            <div class="wl-yzcg"  >验证成功</div>
+            <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
+            <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  /><button>发送验证码</button></div>
+            <!--<div class="wl-yzmcw" >验证码错误</div>-->
+            <!--<div class="wl-yzcg"  >验证成功</div>-->
             <div class="wl-zheque"><button>确定</button> </div>
         </div>
     </div>
     <div class="wl-zhez1">
         <div class="wl-zl1" >
             <div>密码修改</div>
-            <div class="wl-yibang">通过已绑定手机 <span>176****2595</span> 进行验证</div>
+            <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
             <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码"><button>发送验证码</button></div>
             <div class="wl-zhes"><span>设置新密码</span><input type="text"placeholder="请输入新密码"></div>
             <div class="wl-zhes"><span>确认新密码</span><input type="text" placeholder="再次输入新密码" style="z-index: 1;"></div>
             <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button>确定</button> </div>
         </div>
-        <div class="wl-yzcg1">
-            <div>修改个人信息</div>
-        </div>
+        <!--<div class="wl-yzcg1">-->
+            <!--<div>修改个人信息</div>-->
+        <!--</div>-->
     </div>
     <div class="wl-zhez2">
         <div class="wl-zl2">
             <div class="wl-gexx">修改个人信息</div>
             <div class="wl-gerenl">
                 <div class="cd">
-                    <img src="/pc/image/tou.png" width="73px" height="73px"/>
+                    <img src="{$user_info['portrait']}"  onerror="/pc/image/tou.png"    width="73px" height="73px" />
                     <div class="dd">
                         更换头像
                     </div>
                 </div>
                 <div class="wl-ri">
-                    <input type="text" placeholder="用户名称">
+                    <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}">
                     <p>2-10个汉字，请勿使用包含特殊符号</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" style="text-indent: 5px;">{$user_info['profile']}</textarea>
                     <p>30个汉字，无特殊符号</p>
                     <button class="wl-que1">确认</button> <button  class="wl-que2">取消</button>
                 </div>
@@ -142,7 +158,6 @@
             $(".tab-content div").eq(index).addClass("active-txt");
         });
     });
-
 
     $('.nav-item>a').on('click',function(){
         if (!$('.nav').hasClass('nav-mini')) {

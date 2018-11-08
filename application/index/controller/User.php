@@ -17,10 +17,14 @@ class User extends CController
     /**
      * 用户个人中心主页
      */
-    public function main(){
+    public function main(Request $request){
         if(!$this->checkLogin()){
-//            return redirect('/login');
+            return redirect('/login');
         }
+
+        $user_info = $this->userDomain->getUserInfo($this->getUserInfo()['id']);
+
+        $this->assign('user_info',$user_info);
 
         return $this->fetch('user/main');
     }
@@ -29,9 +33,9 @@ class User extends CController
      * 用户认证页面
      */
     public function certification(){
-//        if(!$this->checkLogin()){
-//            return redirect('/login');
-//        }
+        if(!$this->checkLogin()){
+            return redirect('/login');
+        }
 
         return $this->fetch('user/certification');
     }
@@ -85,7 +89,7 @@ class User extends CController
         }
 
         $validate = new \app\index\validate\addAuth();
-        if(!$validate->scene('auth'.$type)->check($request->get())){
+        if(!$validate->scene('auth'.$type)->check($request->post())){
             return $this->returnData([],$validate->getError(),301);
         }
 

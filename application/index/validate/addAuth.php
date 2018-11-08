@@ -11,13 +11,13 @@ class addAuth extends Validate
         'card_img2'             =>'require|url',
         'qualification'         =>'require|url',
         'practice_certificate'  =>'require|url',
-        'name'                  =>'require|max:100',
+        'enterprise_name'                  =>'require|max:100',
         'business_licence'      =>'require|url'
     ];
 
     protected $message  =   [
-        'name.require'          => '组织名称不能为空',
-        'name.max'              => '组织名称不能合法',
+        'enterprise_name.require'          => '组织名称不能为空',
+        'enterprise_name.max'              => '组织名称不能合法',
 
         'username.require'      => '身份证名不能为空',
         'username.max'          => '身份证名不能合法',
@@ -41,7 +41,7 @@ class addAuth extends Validate
     protected $scene = [
         'auth1'  =>  ['username','idcard','card_img1','card_img2'],
         'auth2'  =>  ['username','idcard','card_img1','card_img2','qualification','practice_certificate'],
-        'auth3'  =>  ['username','idcard','card_img1','card_img2','name','business_licence'],
-        'auth4'  =>  ['username','idcard','card_img1','card_img2','name','business_licence'],
+        'auth3'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence'],
+        'auth4'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence'],
     ];
 }
