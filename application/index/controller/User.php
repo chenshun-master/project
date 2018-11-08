@@ -27,6 +27,17 @@ class User extends CController
 
 
     /**
+     * 用户认证页面
+     */
+    public function certification(){
+//        if(!$this->checkLogin()){
+//            return redirect('/login');
+//        }
+
+        return $this->fetch('user/certification');
+    }
+
+    /**
      * 用户上传认证图片接口
      */
     public function uploadAuthImg(Request $request){
