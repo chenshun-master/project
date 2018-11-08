@@ -79,7 +79,7 @@
             </div>
 
             <div style="height: 100px;border-top: 1px solid #EEEEEE">
-                <button onclick="objClass.submit()" class="wl-tijiao">发表</button>
+                <button onclick="objClass.submit()" class="wl-tijiao" style="cursor: pointer">发表</button>
             </div>
         </div>
 
@@ -95,7 +95,6 @@
 <script>
     KindEditor.ready(function (K) {
         // https://blog.csdn.net/qxl2012/article/details/78052128
-
         K.allowImageRemote = false;
         window.editor = K.create('#editor_id', {
             cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
@@ -135,7 +134,7 @@
             var tag = $('#fr-tag').val();
 
             if (title == '') {
-                redream.showTip('标题不能为空');
+                alert('标题不能为空');
                 return false;
             }
 
@@ -156,11 +155,12 @@
                 },
                 success: function (res) {
                     if (res.code == 200) {
-                        redream.showTip('发布成功');
+                        alert('发布成功');
                         $('#editor_id').val('');
                         $('#fr-title').val('');
                         $('#fr-zaiyao').val('');
                         $('#fr-tag').val('');
+                        window.editor.html('');
                     }
                 }
             });
