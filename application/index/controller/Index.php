@@ -184,6 +184,18 @@ class Index extends CController
             case 3:
             case 4:
                 break;
+            case 5:
+                $userModel = new UserModel();
+                if(!$userModel->findMobileExists($mobile)){
+                    return $this->returnData([],'该用户未被使用',302);
+                }
+                break;
+            case 6:
+                $userModel = new UserModel();
+                if($userModel->findMobileExists($mobile)){
+                    return $this->returnData([],'该用户已被使用',302);
+                }
+                break;
             default :
                 $type = 0;
                 break;

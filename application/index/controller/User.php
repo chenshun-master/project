@@ -18,13 +18,12 @@ class User extends CController
      * 用户个人中心主页
      */
     public function main(){
-//        if(!$this->checkLogin()){
+        if(!$this->checkLogin()){
 //            return redirect('/login');
-//        }
+        }
 
         return $this->fetch('user/main');
     }
-
 
     /**
      * 用户认证页面
@@ -76,64 +75,49 @@ class User extends CController
      * 用户添加认证申请接口
      */
     public function addAuth(Request $request){
-        $type                                   = $request->param('type','');
-        $username                               = $request->param('username','');
-        $idcard                                 = $request->param('idcard','');
-        $p_qualification                        = $request->param('p_qualification','');
-        $p_practice_certificate                 = $request->param('p_practice_certificate','');
-        $business_licence                       = $request->param('business_licence','');
-
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
 
-        if(empty($username) || empty($idcard)){
-            return $this->returnData([],'请求参数不符合规范',301);
+        $type = $request->post('type',0);
+        if(!in_array($type,[1,2,3,4])){
+            return $this->returnData([],'参数不符合规范',301);
         }
 
-        if(!checkIdCard($idcard)){
-            return $this->returnData([],'身份证号不合法',301);
+        $validate = new \app\index\validate\addAuth();
+        if(!$validate->scene('auth'.$type)->check($request->get())){
+            return $this->returnData([],$validate->getError(),301);
         }
 
-        $user_info = $this->getUserInfo();
+        $username           = $request->post('username');
+        $idcard             = $request->post('idcard');
+        $card_img1          = $request->post('card_img1');
+        $card_img2          = $request->post('card_img2');
+        $qualification      = $request->post('qualification');
+        $practice_certificate = $request->post('practice_certificate');
+        $name               = $request->post('name');
+        $business_licence   = $request->post('business_licence');
 
         $data = [];
-        $data['user_id'] = $user_info['id'];
-        $data['username'] = $username;
-        $data['idcard']   = $idcard;
-
-        if($type == 1){             #个人认证
-            $data['type']     = 1;
-        }else if($type == 2){      #医生认证
-            $data['type']     = 2;
-            if(empty($p_qualification)){
-                return $this->returnData([],'医师资格证书不能为空',301);
-            }
-            if(empty($p_practice_certificate)){
-                return $this->returnData([],'医师执业证书不能为空',301);
-            }
-
-            $data['physician_qualification']            = $p_qualification;
-            $data['physician_practice_certificate']     = $p_practice_certificate;
-        }else if($type == 3){      #医院认证
-            $data['type']     = 3;
-            if(empty($business_licence)){
-                return $this->returnData([],'医院营业执照不能为空',301);
-            }
-            $data['business_licence']     = $business_licence;
-
-        }else if($type == 4){      #官方认证
-            $data['type']     = 4;
+        $data['type']       =  $type;
+        $data['user_id']    =  $this->getUserInfo()['id'];
+        $data['user_id']    = 4;
+        $data['username']   =  $username;
+        $data['idcard']     =  $idcard;
+        $data['card_img1']  =  $card_img1;
+        $data['card_img2']  =  $card_img2;
+        if($type == 2){
+            $data['qualification']          = $qualification;
+            $data['practice_certificate']   = $practice_certificate;
+        }else if($type == 3 || $type == 4){
+            $data['name']               = $name;
+            $data['business_licence']   = $business_licence;
         }
 
-        $isTrue = $this->userDomain->addAuthentication($data);
+        $isTrue = (new \app\api\domain\AuthDomain())->addAuthentication($data);
         if(!$isTrue){
             return $this->returnData([],'认证申请提交失败',305);
         }
-
         return $this->returnData([],'认证申请提交成功',200);
     }
-
-
-
 }
