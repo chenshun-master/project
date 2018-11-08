@@ -29,24 +29,28 @@ class Index extends CController
 
     /**
      * 用户登录页面
-     * @route('/login','get')
+     * @route('/index/index/login','get')
      * @return false|string
      */
     public function login(){
+//        if(!$this->checkLogin()){
+//            return redirect('/index/user/main');
+//        }
+
         return $this->fetch('index/login');
     }
 
 
     /**
      * 账号密码登录页面
-     * @route('postLogin','post')
+     * @route('index/index/postLogin','post')
      * @param Request $request
      * @return false|string
      */
     public function postLogin(Request $request){
-        if($this->checkLogin()){
-            return $this->returnData([],'登录成功',200);
-        }
+//        if($this->checkLogin()){
+//            return $this->returnData([],'登录成功',200);
+//        }
 
         $mobile    = $request->post('mobile','');
         $password  = $request->post('password','');
@@ -73,16 +77,16 @@ class Index extends CController
     /**
      * 手机帐注册接口提交接口
      * @param Request $request
-     * @route('postRegister','post')
+     * @route('/index/index/postRegister','post')
      * @return false|string
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
     public function postRegister(Request $request){
-        if($this->checkLogin()){
-            return $this->returnData([],'已登录不能注册',306);
-        }
+//        if($this->checkLogin()){
+//            return $this->returnData([],'已登录不能注册',306);
+//        }
 
         $mobile    = $request->post('mobile','');
         $password  = $request->post('password','');
@@ -115,7 +119,7 @@ class Index extends CController
     /**
      * 手机号重置密码接口
      * @param Request $request
-     * @route('postResetPassword','post')
+     * @route('/index/index/postResetPassword','post')
      * @return false|string
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
@@ -148,6 +152,21 @@ class Index extends CController
         }
 
         return $this->returnData([],'密码重置成功',200);
+    }
+
+    /**
+     * 用户重置密码页面
+     * @param Request $request
+     * @return mixed
+     */
+    public function rePwd(Request $request){
+        $this->assign([
+            'mobile'        =>$request->param('mobile'),
+            'sms_code'   =>$request->param('sms_code'),
+            'password'   =>$request->param('password')
+        ]);
+
+        return $this->fetch('index/login');
     }
 
     /**

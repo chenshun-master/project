@@ -19,7 +19,7 @@ class User extends CController
      */
     public function main(){
         if(!$this->checkLogin()){
-            return redirect('/login');
+            return redirect('/index/index/login');
         }
 
         return $this->fetch('user/main');
@@ -94,7 +94,7 @@ class User extends CController
         $data['card_img1'] =  $card_img1;
         $data['card_img2'] =  $card_img2;
         if($type == 2){
-            $data['username']
+            $data['username'];
         }else if($type == 3){
 
         }else if($type == 4){
