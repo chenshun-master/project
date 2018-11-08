@@ -45,7 +45,7 @@ KindEditor.plugin('image', function(K) {
 			//url
 			'<div class="ke-dialog-row">',
 			'<label for="remoteUrl" style="width:60px;">' + lang.remoteUrl + '</label>',
-			'<input type="text" id="remoteUrl" class="ke-input-text" name="url" value="" style="width:200px;" /> &nbsp;',
+			'<input type="text" id="remoteUrl" class="ke-input-text" name="url" value="" style="width:200px;ime-mode: disabled;" disabled="true"　readOnly="true"   /> &nbsp;',
 			'<span class="ke-button-common ke-button-outer">',
 			'<input type="button" class="ke-button-common ke-button" name="viewServer" value="' + lang.viewServer + '" />',
 			'</span>',
@@ -150,6 +150,8 @@ KindEditor.plugin('image', function(K) {
 				refreshBtn.unbind();
 			}
 		}),
+
+
 		div = dialog.div;
 
 		var urlBox = K('[name="url"]', div),
@@ -202,6 +204,7 @@ KindEditor.plugin('image', function(K) {
 						clickFn.call(self, url, data.title, data.width, data.height, data.border, data.align);
 					} else {
 						K(".ke-dialog-row #remoteUrl", div).val(url);
+						K('#remoteUrl').prop("readonly","readonly");
 						K(".ke-tabs-li", div)[0].click();
 						K(".ke-refresh-btn", div).click();
 					}

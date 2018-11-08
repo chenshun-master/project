@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="/pc/css/relrase.css">
     <link rel="stylesheet" href="/pc/css/test.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <style>
+        #remoteUrl{ime-mode: disabled !important;background-color: #cccccc;}
+    </style>
 </head>
 <body>
 <div class="wl-con" style="background: #F8F8F8">
@@ -92,20 +95,36 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script>
     KindEditor.ready(function (K) {
+        // https://blog.csdn.net/qxl2012/article/details/78052128
+
+        K.allowImageRemote = false;
         window.editor = K.create('#editor_id', {
             cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
-            uploadJson: '../php/upload_json.php',
-            fileManagerJson: '../php/file_manager_json.php',
-            allowFileManager: true,
+            resizeMode : 1,
+            items : [
+                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'pagebreak',
+                'anchor', 'link', 'unlink'
+            ],
+            uploadJson: '/index/upload/uploadfile',
+            allowFileManager: false,
+            allowImageRemote:true,
             afterCreate: function () {
                 var self = this;
                 self.sync();
             }
         });
-
         window.editor.sync();
     });
 
+    $(document).on('focus','#remoteUrl',function(){
+        $(this).prop("readonly","readonly");
+        $(this).parent().hide();
+    });
 
     var objClass = {
         loading: false,
@@ -189,6 +208,9 @@
     $(".wl-shimin").click(function () {
         $(".wl-cang1").toggle();
     })
+
+
+
 
 </script>
 </html>
