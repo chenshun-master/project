@@ -7,12 +7,12 @@ class Upload extends CController
     /**
      * 编辑器上传文件
      */
-    public function uploadFile(){
+    public function uploadImgFile(){
         $file = request()->file("imgFile");
 
         $img_domain = config('conf.file_save_domain');
         if(!$this->checkLogin()){
-//            return json(array('error' => 1, 'message' =>'未授予上传权限'));
+            return json(array('error' => 1, 'message' =>'未授予上传权限'));
         }
 
         #文件上传类型
