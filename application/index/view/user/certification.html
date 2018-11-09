@@ -50,66 +50,104 @@
                 <p>个人认证</p>
                 <p class="wl-zhen" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
                 <p class="wl-zhen">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
-                <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
-                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
-                    <dt style="float: left;width: 87%;margin-left: 47px;" >
-                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  >
-                            <form id="fr1-from" enctype='multipart/form-data'>
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 11px;">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
-                                </dl>
-                                <input type="file" name="imgFile"  id="fr1-file-btn"  data-type="1" data-frname="fr1-from"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                            </form>
+                <dl style="position: relative">
+                    <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                         </dt>
-                    </dt>
-                </dl>
-                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: -196px;left: 235px;">
-                    <dt style="float: left;width: 87%;margin-left: 47px;" >
-                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 11px;">
-                            <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
-                        </dl>
-                        <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                    </dt>
-                    </dt>
+                        </dt>
+                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                    </dl>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
                 </dl>
                 <p class="wl-btn"><button onclick="objClass.submit1()">提交申请</button></p>
             </div>
             <!--医生认证页面-->
-            <div class="wl-geren1">
+            <div class="wl-geren1" style="height: 1200px">
                 <p>医生认证</p>
                 <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
                 <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard"></p>
                 <p class="wl-zhen1">医师职称  <input type="text" placeholder="请输入最高职称" id="fr2-academic-title"></p>
                 <p class="wl-zhen1">所在地区  <input type="text" placeholder="请输入户籍所在地" id="fr2-address"></p>
-                <p class="wl-zhen1">上传资质证件</p>
-                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
-                    <dt style="float: left;width: 87%;margin-left: 47px;" >
-                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传资质证书</dt>
-                        </dl>
-                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                    </dt>
-                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;margin-left: 35px"  >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传执业证书</dt>
-                        </dl>
-                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                    </dt>
-                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
-                    </dt>
+                <dl style="position: relative;height: 300px" >
+                    <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
+                <dl style="position: relative;height: 300px">
+                    <p class="wl-zhen" style="margin-top: 35px">上传资质证明</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 30px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加资质证明</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                </dl>
+
                 <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
             </div>
             <!--医院机构认证页面-->
-            <div class="wl-geren2" style="height: 1000px">
+            <div class="wl-geren2" style="height: 1400px">
                 <p>医院/机构认证</p>
                 <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致"  style="margin-left: 75px"></p>
                 <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
@@ -119,43 +157,103 @@
                 <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
                 <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目" id="fr3-good-project" style="margin-left: 78px"></p>
 
-                <p class="wl-zhen2">上传医院营业证件</p>
-                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
-                    <dt style="float: left;width: 87%;margin-left: 47px;" >
-                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
-                            <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 23px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传营业执照</dt>
-                        </dl>
-                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                    </dt>
-                    </dt>
-                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                <dl style="position: relative;height: 300px" >
+                    <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                </dl>
+                <dl style="position: relative;height: 300px" >
+                    <p class="wl-zhen" style="margin-top: 35px">上传医院营业证件</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 20px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
                 <p class="wl-btn2"><button>提交申请</button></p>
             </div>
             <!--官方企业认证页面-->
-            <div class="wl-geren3">
+            <div class="wl-geren3" style="height: 1250px" >
                 <p>官方企业认证</p>
                 <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" style="margin-left: 77px"></p>
                 <p class="wl-zhen3" >运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
                 <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px"/ ></p>
                 <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
                 <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
-                <p class="wl-zhen3" >上传企业工商营业执照</p>
-                <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
-                    <dt style="float: left;width: 87%;margin-left: 47px;" >
-                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px">
-                            <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 23px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传营业执照</dt>
-                        </dl>
-                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                    </dt>
-                    </dt>
-                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。<br>最多可上传5张。</span></p>
+                <dl style="position: relative;height: 300px" >
+                    <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                </dl>
+                <dl style="position: relative;height: 300px" >
+                    <p class="wl-zhen" style="margin-top: 35px">上传企业工商营业执照</p>
+                    <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
+                        <dt style="float: left;width: 87%;margin-left: 47px;" >
+                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 19px;">
+                                <!--padding-left: 30px;padding-top: 20px;-->
+                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
+                            </dl>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        </dt>
+                        </dt>
+                    </dl>
+                    <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
                 <p class="wl-btn3"><button>提交申请</button></p>
             </div>
