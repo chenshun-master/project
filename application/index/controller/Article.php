@@ -15,46 +15,6 @@ class Article extends CController
     }
 
     /**
-     * 上传文章缩略图
-     */
-    public function uploadThumbnailImg(Request $request){
-//        if(!$this->checkLogin()){
-//            return $this->returnData([],'用户未登录',401);
-//        }
-//        $user_info = $this->getUserInfo();
-//
-//        if(!checkUserAuth($user_info['type'],7)){
-//            return $this->returnData([],'未授权操作',403);
-//        }
-
-        $file = request()->file("img");
-        $img_domain = config('conf.file_save_domain');
-
-        #文件上传类型
-        $fileExt   = ['jpg','jpeg','png'];
-        if($file){
-            $size = 1024*1024*3;                                                    #单位字节
-            if(!$file->checkSize($size)){
-                return $this->returnData([],'上传图片大小不能超过3M',302);
-            }
-
-            if(!$file->checkExt($fileExt)){
-                return $this->returnData([],'文件格式错误只支持jpg,jpeg及png格式的图片',303);
-            }
-
-            $info = $file->move( 'uploads/article');
-            if($info){
-                $path_dir = $img_domain.'/uploads/article/'.str_replace("\\","/",$info->getSaveName());
-                return $this->returnData([
-                    'image_url'=>$path_dir
-                ],'图片上传成功',200);
-            }else{
-                return $this->returnData([],$file->getError(),305);
-            }
-        }
-    }
-
-    /**
      * 编辑器上传接口
      */
     public function editUpload(){
@@ -156,8 +116,8 @@ class Article extends CController
         }
     }
 
-    public function test(){
-        return $this->fetch('article/test');
+    public function article(){
+        return $this->fetch('article/article_release');
     }
 
 }
