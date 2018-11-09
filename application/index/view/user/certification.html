@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +14,8 @@
         .cus-icon-tip{color: red;display: none;}
         .cus-input-err-tip{border: 1px solid red !important;}
         .code-hui{color: #cccccc;}
+
+        .clo{border-radius: 20px !important;}
     </style>
 </head>
 <body  style="background: #F8F8F8"   >
@@ -55,12 +58,13 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait" class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                        <input type="file" name="img" class="file"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  onchange="showPreview(this)"/>
                         </dt>
                         </dt>
                         <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
@@ -68,12 +72,13 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt1">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait1" class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPreview1(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -92,24 +97,26 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"  class="wl-dt3">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait3"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview3(this)" />
                         </dt>
                         </dt>
                     </dl>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt4">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait4"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPreview4(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -120,24 +127,26 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 30px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 30px; " class="wl-dt5">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait5"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview5(this)"/>
                         </dt>
                         </dt>
                     </dl>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 13px;"class="wl-dt6">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加资质证明</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait6"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview6(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -162,24 +171,26 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"class="wl-dt7">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait7"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview7(this)"/>
                         </dt>
                         </dt>
                     </dl>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"class="wl-dt8">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait8"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview8(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -190,12 +201,13 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 20px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 20px;"class="wl-dt9">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrait9"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview9(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -208,7 +220,7 @@
                 <p>官方企业认证</p>
                 <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" style="margin-left: 77px"></p>
                 <p class="wl-zhen3" >运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
-                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px"/ ></p>
+                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" ></p>
                 <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
                 <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
                 <dl style="position: relative;height: 300px" >
@@ -216,24 +228,26 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-d1">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrai1"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPrevi(this)"/>
                         </dt>
                         </dt>
                     </dl>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-d2">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrai2"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPrevi1(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -244,12 +258,13 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 19px;">
+                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 19px;"  class="wl-d3">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
                             </dl>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                        <img id="portrai3"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPrevi2(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -613,5 +628,7 @@
             }
         });
     });
+
 </script>
+<script src="/static/js/portrait.js"></script>
 </html>
