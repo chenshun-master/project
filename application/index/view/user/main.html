@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content>
-    <title>Title</title>
+    <title>微琳医美 - 用户中心</title>
     <link rel="stylesheet" href="/pc/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <style>
-        button {
-            cursor: pointer
+        button {cursor: pointer}
+        .wl-main-bg-color {background:#7db0e8 !important;}
+        .code-hui{
+            color: #cccccc !important;
+        }
+        .wl-zheque{
+            color: #cccccc !important;
         }
     </style>
 </head>
@@ -26,25 +31,17 @@
             <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"><span class="wl-toux"></span><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">用户名称</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
                 <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
-                <p class="wl-xiany"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</p>
+                <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
             </div>
         </div>
     </div>
     <div class="tab-box" >
         <div class="wl-fabiao" style="cursor: pointer" ><a href="/index/article/article">发表文章</a></div>
         <ul class="renzheng">
-
             <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
                 <span class="wl-shimin1"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span></i>
             </div>
-            <!--<div class="wl-cang1"  >-->
-                <!--<li class="active">个人认证</li>-->
-                <!--<li>医生认证</li>-->
-                <!--<li>医院认证</li>-->
-                <!--<li>官方认证</li>-->
-            <!--</div>-->
         </ul>
-        <!--style="display: none"-->
         <div class="wl-qiehuan" >
             <div class="top" style="cursor: pointer">
                 <span class="wl-anquan">账号信息</span>
@@ -53,9 +50,9 @@
             <div class="xia">
                 <div class="one">
                     <div class="one-1">
-                        <img src="/pc/image/tou.png"  onerror="/pc/image/tou.png" >
-                        <dt>{$user_info['nickname']}</dt>
-                        <dd>{$user_info['profile']}</dd>
+                        <img src="{$user_info['portrait']}"  onerror="/pc/image/tou.png" >
+                        <dt id="cus-nickname">{$user_info['nickname']}</dt>
+                        <dd id="cus-profile">{$user_info['profile']}</dd>
                         <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
                     </div>
                     <div style="width: 100px;height: 666px;float: left;color:#333333;font-size: 16px; ">
@@ -99,53 +96,41 @@
             </div>
         </div>
 
-        <style>
-            .code-hui{
-                color: #cccccc !important;
-            }
-            .wl-zheque{
-                color: #cccccc !important;
-            }
-        </style>
+
     <div class="wl-zhez">
-        <div class="wl-zl" >
+        <div class="wl-zl" id="cus-from-box1">
             <div>手机号修改</div>
-            <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号" id="mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
-            <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="sma_code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  /><button id="code-btn" onclick="objClass.sendSms()" >发送验证码</button></div>
-            <div class="wl-yzmcw"><span>验证码错误</span></div>
-            <!--<div class="wl-yzcg"  >验证成功</div>-->
-            <div class="wl-zheque"><button  onclick="objClass.submit()">确定</button></div>
+            <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
+            <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()" >发送验证码</button></div>
+            <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
+            <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
         </div>
     </div>
     <div class="wl-zhez1">
-        <div class="wl-zl1" >
+        <div class="wl-zl1"  id="cus-from-box2" >
             <div>密码修改</div>
             <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
-            <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="sma_code1" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms1()">发送验证码</button></div>
-            <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="password" maxlength="18"></div>
-            <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="password1" maxlength="18" style="z-index: 1;"></div>
-            <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit1()">确定</button> </div>
+            <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
+            <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()">发送验证码</button></div>
+            <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
+            <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
+            <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn">立即修改</button> </div>
         </div>
-        <!--<div class="wl-yzcg1">-->
-            <!--<div>修改个人信息</div>-->
-        <!--</div>-->
     </div>
     <div class="wl-zhez2">
         <div class="wl-zl2">
             <div class="wl-gexx">修改个人信息</div>
             <div class="wl-gerenl">
-                <div class="cd">
-                    <img src="{$user_info['portrait']}"  onerror="/pc/image/tou.png"    width="73px" height="73px" />
-                    <div class="dd">
-                        更换头像
-                    </div>
+                <div class="cd" style="cursor: pointer">
+                    <img src="{$user_info['portrait']}"  width="73px"  height="73px" />
+                    <div class="dd">更换头像</div>
                 </div>
                 <div class="wl-ri">
-                    <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}">
+                    <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
                     <p>2-10个汉字，请勿使用包含特殊符号</p>
-                    <textarea name="" id="" cols="30" rows="10" style="text-indent: 5px;">{$user_info['profile']}</textarea>
+                    <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none" id="fr-box2-profile" >{$user_info['profile']}</textarea>
                     <p>30个汉字，无特殊符号</p>
-                    <button class="wl-que1">确认</button> <button  class="wl-que2">取消</button>
+                    <button class="wl-que1"  onclick="editProfile.submit()" >确认</button> <button  class="wl-que2">取消</button>
                 </div>
             </div>
         </div>
@@ -153,7 +138,6 @@
 </div>
 </div>
 </body>
-<script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -161,6 +145,7 @@
     //获取修改手机号验证码
     var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
     codeObj.run();
+
     var codeObj1 = new VerificationCode('code-btn1','获取验证码','code-hui');
     codeObj1.run();
     var objClass = {
@@ -171,19 +156,18 @@
             return reg_phone.test(mobile);
         },
         submit:function () {
-            var mobile = $('#mobile').val();
-            var sms_code = $('#sms_code').val();
+            var mobile = $.trim($('#fr-box-mobile').val());
+            var sms_code = $.trim($('#fr-box-sms-code').val());
+            $('#cus-from-box1-err').html('');
             if(!this.checkMobile(mobile)){
-                layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                $('#cus-from-box1-err').html('手机号格式不正确');
+                return false;
+            }else if(sms_code == ''){
+                $('#cus-from-box1-err').html('验证码错误');
                 return false;
             }
-            if(sms_code == '')
-            {
-                layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
-                return false;
-            }
-            if(!this.loading)
-            {
+
+            if(!this.loading){
                 $.ajax({
                     url:"/index/user/modifyMobile",
                     type:'post',
@@ -191,27 +175,24 @@
                     dataType:'json',
                     beforeSend:function(){
                         objClass.loading = true;
+                        $('#fr-box-btn').text('修改中...');
                     },
                     complete:function(){
                         objClass.loading = false;
+                        $('#fr-box-btn').text('立即修改');
                     },
                     success:function(res){
                         if(res.code == 200){
-                            layer.open({content: '修改成功',skin: 'msg',time: 2});
+                            objClass.loading = true;
+                            $('#fr-box-btn').text('修改成功');
                             setTimeout(function(){
-                                window.location.href = '/index/user/main';
+                                window.location.reload();
                             },3000);
-                        }else if(res.code == 301){
-                            layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                            return false;
                         }else if(res.code == 302){
-                            layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                            $('#cus-from-box1-err').html('验证码错误');
                             return false;
                         }else if(res.code == 303){
-                            layer.open({content: '验证码已过期',skin: 'msg',time: 2});
-                            return false;
-                        }else {
-                            layer.open({content: '修改失败',skin: 'msg',time: 2});
+                            $('#cus-from-box1-err').html('验证码已过期');
                             return false;
                         }
                     }
@@ -219,16 +200,14 @@
             }
         },
         sendSms:function () {
-            var mobile = $('#mobile').val();
+            var mobile = $.trim($('#fr-box-mobile').val());
             if(!this.checkMobile(mobile)){
-                layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                $('#cus-from-box1-err').html('请正确填写手机号');
                 return false;
             }
+            $('#cus-from-box1-err').html('');
 
-            if(codeObj.checkTime()){
-                return false;
-            }
-
+            if(codeObj.checkTime()){return false;}
             if(!this.sendSmsCode){
                 $.ajax({
                     url:"/index/index/sendSmsCode",
@@ -237,24 +216,103 @@
                     dataType:'json',
                     beforeSend:function(){
                         objClass.sendSmsCode = true;
+
                     },
                     complete:function(){
+
                         objClass.sendSmsCode = false;
                     },
                     success:function(res){
                         if(res.code == 200){
-                            layer.open({content: '发送成功',skin: 'msg',time: 2});
                             codeObj.sendSmsCode();
-                            return false;
                         }else if(res.code == 301){
-                            layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                            return false;
+                            alert('请求参数错误');
                         }else if(res.code == 302){
-                            layer.open({content: '该用户已被使用',skin: 'msg',time: 2});
-                            return false;
+                            alert('该用户已被使用');
                         }else{
-                            layer.open({content: '发送失败',skin: 'msg',time: 2});
-                            return false;
+                            alert('发送失败');
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+    var objClass1 = {
+        loading:false,
+        sendSmsCode:false,
+        submit:function () {
+            var sms_code  = $('#fr-box1-sms-code').val();
+            var password  = $('#fr-box1-password').val();
+            var password1 = $('#fr-box1-password2').val();
+            if(password == ''){
+                alert('请输入新密码！');return false;
+            }
+
+            if(password1 == ''){
+                alert('请输入确认新密码！');return false;
+            }
+
+            if(password != password1){
+                alert('两次密码输入不一致！');return false;
+            }
+
+            if(this.loading){
+                return false;
+            }
+
+            $.ajax({
+                url:"/index/user/modifyPassword",
+                type:'post',
+                data:{password:password,sms_code:sms_code},
+                dataType:'json',
+                beforeSend:function(){
+                    objClass1.loading = true;
+                    $('#fr-box2-btn').text('修改中...');
+                },
+                complete:function(){
+                    objClass1.loading = false;
+                    $('#fr-box2-btn').text('立即修改');
+                },
+                success:function(res){
+                    if(res.code == 200){
+                        objClass1.loading = true;
+                        alert('asdfasdf');
+                    }else if(res.code == 302){
+                        return false;
+                    }else if(res.code == 303){
+                        return false;
+                    }
+                }
+            })
+
+        },
+        sendSms:function(){
+            var mobile = $('#fr-box1-mobile').val();
+            if(!objClass.checkMobile(mobile)){
+                console.log(mobile);
+                return false;
+            }
+
+            if(codeObj1.checkTime()){return false;}
+
+            if(!this.sendSmsCode){
+                $.ajax({
+                    url:"/index/index/sendSmsCode",
+                    type:'post',
+                    data:{mobile:mobile,type:5},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass1.sendSmsCode = true;
+                    },
+                    complete:function(){
+                        objClass1.sendSmsCode = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            codeObj1.sendSmsCode();
+                        }else{
+                            alert('发送失败');
                         }
                     }
                 });
@@ -262,28 +320,44 @@
         }
     }
 
-    var objClass1 = {
-        submit1:function () {
-            var password = $('#password').val();
-            var password1 = $('#password1').val();
-            if(password == '')
-            {
-                layer.open({content: '请输入新密码！',skin: 'msg',time: 2});
-                return false;
-            }
-            if(password1 == '')
-            {
-                layer.open({content: '请输入确认新密码！',skin: 'msg',time: 2});
-                return false;
-            }
-            if(password != password1)
-            {
-                layer.open({content: '两次输入的密码不一致！',skin: 'msg',time: 2});
+    var editProfile ={
+        loading:false,
+        submit:function(){
+            var nickname = $.trim($('#fr-box2-nickname').val());
+            var profile = $.trim($('#fr-box2-profile').val());
+
+            if(nickname == ''){
+                alert('昵称不能为空');
                 return false;
             }
 
+            console.log(profile);
+            if(!this.loading){
+                $.ajax({
+                    url:"/index/user/editProfile",
+                    type:'post',
+                    data:{nickname:nickname,profile:profile},
+                    dataType:'json',
+                    beforeSend:function(){
+                        editProfile.loading = true;
+                    },
+                    complete:function(){
+                        editProfile.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            $('#cus-nickname').html(nickname);
+                            $('#cus-profile').html(profile);
+                            $(".wl-zhez2").hide();
+                            alert('修改成功');
+                        }else {
+                            alert('修改失败');
+                        }
+                    }
+                })
+            }
         }
-    }
+    };
 
     $(".tab-box li").each(function(index) {
         $(this).click(function() {
@@ -302,7 +376,6 @@
                 $(this).next('ul').slideDown(300);
                 $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
             }else{
-
                 $(this).next('ul').slideUp(300);
                 $('.nav-item.nav-show').removeClass('nav-show');
             }
@@ -311,19 +384,40 @@
 
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
-    })
+    });
+
     $(".wl-xian1").click(function () {
         $(".wl-cang1").toggle();
-    })
+    });
 
+    $('#cus-from-box1 input').on('input',function(){
+        var mobile = $.trim($('#fr-box-mobile').val());
+        var sms_code = $.trim($('#fr-box-sms-code').val());
+        if(mobile != '' && sms_code != ''){
+            $('#fr-box-btn').addClass('wl-main-bg-color').prop('disabled',false);
+        }else{
+            $('#fr-box-btn').removeClass('wl-main-bg-color').prop('disabled',true);
+        }
+        $('#cus-from-box1-err').html('');
+    });
+
+    $('#cus-from-box2 input').on('input',function(){
+        var sms_code = $.trim($('#fr-box1-sms-code').val());
+        var password = $.trim($('#fr-box1-password').val());
+        var password2 = $.trim($('#fr-box1-password2').val());
+
+        if(sms_code != '' && password != '' && password2 != ''){
+            $('#fr-box2-btn').addClass('wl-main-bg-color').prop('disabled',false);
+        }else{
+            $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
+        }
+    });
 </script>
 <script type="text/javascript">
     $(function(){
         $(".one").show();
         $(".top span").eq(0).addClass("se");
-        var a;
-        var b;
-        var index=0;
+        var a,b,index=0;
         $(".top span").click(function(){
             index=$(this).index();
             $(".one,.two").eq(index).show().siblings().hide();
@@ -334,11 +428,11 @@
             if(index==1){
                 b=1
             }
-            if(a==1&&b==1){
+            if(a==1 && b==1){
                 $("#xiao").hide();
             }
-        })
-    })
+        });
+    });
 
     $("#wl-anquan").click(function () {
         $(".wl-qiehuan").show();
@@ -351,6 +445,7 @@
     $(".wl-que2").click(function () {
         $(".wl-zhez2").hide();
     })
+
     // 更换手机遮罩层
     $(document).ready(function() {
         $(".wl-hf").click(function(event) {
@@ -364,8 +459,8 @@
                 $('.wl-zhez').hide(); //淡出消失
             }
         });
-
     });
+
     // 修改密码遮罩层
     $(document).ready(function() {
         $(".wl-xgmm").click(function(event) {
@@ -379,8 +474,8 @@
                 $('.wl-zhez1').hide(); //淡出消失
             }
         });
-
     });
+
     // 修改信息遮罩层
     $(document).ready(function() {
         $(".wl-xgxx").click(function(event) {
@@ -394,7 +489,6 @@
                 $('.wl-zhez2').hide(); //淡出消失
             }
         });
-
     });
 </script>
 </html>

@@ -47,9 +47,9 @@ class Index extends CController
      * @return false|string
      */
     public function postLogin(Request $request){
-//        if($this->checkLogin()){
-//            return $this->returnData([],'登录成功',200);
-//        }
+        if($this->checkLogin()){
+            return $this->returnData([],'登录成功',200);
+        }
 
         $mobile    = $request->post('mobile','');
         $password  = $request->post('password','');
@@ -83,9 +83,9 @@ class Index extends CController
      * @throws \think\exception\DbException
      */
     public function postRegister(Request $request){
-//        if($this->checkLogin()){
-//            return $this->returnData([],'已登录不能注册',306);
-//        }
+        if($this->checkLogin()){
+            return $this->returnData([],'已登录不能注册',306);
+        }
 
         $mobile    = $request->post('mobile','');
         $password  = $request->post('password','');

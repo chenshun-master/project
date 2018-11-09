@@ -59,14 +59,16 @@ class User extends CController
 
         $userDomain = new UserDomain();
         $oldMobile = $this->_userModel->getMobile($user_id);
+
         if(empty($mobile) || empty($sms_code)  || !checkMobile($mobile)){
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
         $result = $userDomain->changeMobile($user_id,$oldMobile,$mobile,$sms_code);
-        if($result == 1){
+
+        if($result === 1){
             return $this->returnData([],'验证码错误',302);
-        }else if($result == 2){
+        }else if($result === 2){
             return $this->returnData([],'验证码已过期',303);
         }
 
@@ -78,38 +80,36 @@ class User extends CController
     }
 
     /**
-     * 用户上传认证图片接口
+     * 短信修改密码
      */
-    public function uploadAuthImg(Request $request){
+    public function modifyPassword(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
 
-        $file = request()->file("image");
-        $img_domain = config('conf.file_save_domain');
+        $password    = $request->post('password','');
+        $sms_code    = $request->post('sms_code','');
 
-        #文件上传类型
-        $fileExt   = ['jpg','jpeg','png'];
-        if($file){
-            $size = 1024*1024*3;              #单位字节
-            if(!$file->checkSize($size)){
-                return $this->returnData([],'上传图片大小不能超过3M',302);
-            }
-
-            if(!$file->checkExt($fileExt)){
-                return $this->returnData([],'文件格式错误只支持jpg,jpeg及png格式的图片',303);
-            }
-
-            $info = $file->move( 'uploads/auth');
-            if($info){
-                $path_dir = $img_domain.'/uploads/auth/'.str_replace("\\","/",$info->getSaveName());
-                return $this->returnData([
-                    'image_url'=>$path_dir
-                ],'图片上传成功',200);
-            }else{
-                return $this->returnData([],$file->getError(),305);
-            }
+        $userDomain = new UserDomain();
+        if(empty($password) || empty($sms_code)){
+            return $this->returnData([],'请求参数不符合规范',301);
         }
+
+        $mobile = $this->_userModel->getMobile($this->getUserId());
+        $smsObj = new \app\api\domain\SendSms();
+        $res = $smsObj->checkSmsCode($mobile,5,$sms_code);
+        if($res === 0){
+            return $this->returnData([],'验证码错误',302);
+        }else if($res === 2){
+            return $this->returnData([],'验证码已过期',303);
+        }
+
+        $result = $userDomain->resetPassword($mobile,$password);
+        if(!$result){
+            return $this->returnData([],'修改失败',305);
+        }
+
+        return $this->returnData([],'修改成功',200);
     }
 
     /**
@@ -160,5 +160,42 @@ class User extends CController
             return $this->returnData([],'认证申请提交失败',305);
         }
         return $this->returnData([],'认证申请提交成功',200);
+    }
+
+
+    /**
+     * 退出登录
+     */
+    public function signOut(){
+        $this->clearUserLogin();
+        return redirect('/index/index/login');
+    }
+
+    /**
+    * 提交修改信息页面
+    */
+    public function editProfile(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $nickname   = $request->post('nickname','');
+        $profile    = $request->post('profile','');
+        if(empty($nickname)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+
+
+        $res = $this->userDomain->editProfile($this->getUserId(),[
+            'nickname'      =>$nickname,
+            'profile'       =>$profile
+        ]);
+
+        if(!$res){
+            return $this->returnData([],'修改失败',305);
+        }
+
+        return $this->returnData([],'修改成功',200);
     }
 }
