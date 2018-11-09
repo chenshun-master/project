@@ -239,6 +239,7 @@ a {
 }
 .wl-geren2{
     position: relative;
+    min-height: 800px;
 }
 .wl-geren3{
     position: relative;
@@ -933,4 +934,59 @@ width: 100%;
     line-height: 70px;
     border-bottom: 1px solid #EEEEEE;
 
+}
+.wl-jieguo{
+    width: 530px;
+    height: 410px;
+    margin: 0 auto;
+    margin-top: 134px;
+    text-align: center;
+}
+.wl-jieguo button{
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    background: #7DB0E8;
+    color: white;
+    border-radius:5px ;
+    font-size: 18px;
+    margin-top: 150px;
+}
+.wl-jieguo1{
+     width: 530px;
+     height: 430px;
+     margin: 0 auto;
+     margin-top: 134px;
+     color: #333333;
+
+ }
+.wl-jieguo2{
+    width: 530px;
+    height: 430px;
+    margin: 0 auto;
+    margin-top: 134px;
+    color: #333333;
+    text-align: center;
+}
+.wl-jieguo2 button{
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    background: #7DB0E8;
+    color: white;
+    border-radius:5px ;
+    font-size: 18px;
+    margin-top: 150px;
+}
+.wl-jieguo1 button{
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    background: #7DB0E8;
+    color: white;
+    border-radius:5px ;
+    font-size: 18px;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-left: 145px;
 }

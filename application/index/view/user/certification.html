@@ -45,6 +45,7 @@
             </div>
         </ul>
         <div class="tab-content" style="position: relative;" >
+            <!--个人认证页面-->
             <div class="active-txt wl-geren">
                 <p>个人认证</p>
                 <p class="wl-zhen" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
@@ -76,6 +77,7 @@
                 </dl>
                 <p class="wl-btn"><button onclick="objClass.submit1()">提交申请</button></p>
             </div>
+            <!--医生认证页面-->
             <div class="wl-geren1">
                 <p>医生认证</p>
                 <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
@@ -86,9 +88,16 @@
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                     <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px;">
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传资质证书</dt>
+                        </dl>
+                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                    </dt>
+                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;margin-left: 35px"  >
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传执业证书</dt>
                         </dl>
                         <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                     </dt>
@@ -97,25 +106,25 @@
                 </dl>
                 <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
             </div>
-            <div class="wl-geren2">
+            <!--医院机构认证页面-->
+            <div class="wl-geren2" style="height: 1000px">
                 <p>医院/机构认证</p>
-                <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></p>
-
-                <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username"></p>
-                <p class="wl-zhen2">运营者身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"></p>
-                <p class="wl-zhen3">运营者手机号  <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
+                <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致"  style="margin-left: 75px"></p>
+                <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
+                <p class="wl-zhen2">运营者身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard" ></p>
+                <p class="wl-zhen3">运营者手机号  <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
                 <p class="wl-zhen3">短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
-                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" ></p>
-                <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目" id="fr3-good-project" ></p>
+                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
+                <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目" id="fr3-good-project" style="margin-left: 78px"></p>
 
                 <p class="wl-zhen2">上传医院营业证件</p>
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                     <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px;">
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
                             <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 23px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传营业执照</dt>
                         </dl>
                         <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                     </dt>
@@ -124,21 +133,22 @@
                 </dl>
                 <p class="wl-btn2"><button>提交申请</button></p>
             </div>
+            <!--官方企业认证页面-->
             <div class="wl-geren3">
                 <p>官方企业认证</p>
                 <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" style="margin-left: 77px"></p>
                 <p class="wl-zhen3" >运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
-                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" /></p>
+                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px"/ ></p>
                 <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
                 <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
                 <p class="wl-zhen3" >上传企业工商营业执照</p>
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                     <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px">
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px">
                             <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 23px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传营业执照</dt>
                         </dl>
                         <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                     </dt>
@@ -148,12 +158,50 @@
                 <p class="wl-btn3"><button>提交申请</button></p>
             </div>
         </div>
-        <div class="wl-liucheng" style="display: none;">
-            <span class="wl-jindu">
-               <span style="float: left;margin-top: -5px;margin-left: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-              <span style="float: left;margin-top: -5px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-               <span style="float: left;margin-top: -5px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8"></span>认证结果发布</span>
-            </span>
+        <!--等待审核信息页面-->
+        <div class="wl-liucheng" style="display: none">
+            <div class="wl-jindu">
+               <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+              <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+               <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8"></span>认证结果发布</span>
+            </div>
+            <div class="wl-jieguo">
+                <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
+                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请你发送邮件至</dd>
+                <dt style="font-size: 16px;color: #999999;margin-top: 20px"><span style="color:#F24F4F">820361933@qq.com</span>&nbsp;与我们取得联系</dt>
+            <button>刷新</button>
+            </div>
+        </div>
+        <!--认证信息失败页面-->
+        <div class="wl-liucheng"  style="display: none">
+            <div class="wl-jindu">
+                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8"></span>认证结果发布</span>
+            </div>
+            <div class="wl-jieguo1">
+                <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
+                <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
+                <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
+                <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
+                <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
+                <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
+                <button>重新申请认证</button>
+            </div>
+        </div>
+        <!--认证信息通过页面-->
+        <div class="wl-liucheng"  style="display: none" >
+            <div class="wl-jindu">
+                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8"></span>认证结果发布</span>
+            </div>
+            <div class="wl-jieguo2">
+                <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
+                <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
+                <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
+                <button>知道了</button>
+            </div>
         </div>
     </div>
 </div>
