@@ -57,15 +57,17 @@
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
-                        <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt">
-                                <!--padding-left: 30px;padding-top: 20px;-->
-                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
-                            </dl>
-                        <img id="portrait" class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                        <input type="file" name="img" class="file"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  onchange="showPreview(this)"/>
-                        </dt>
+                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px;cursor: pointer ">
+                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt">
+                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                                </dl>
+
+                                <img id="portrait" class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+                                <form id="fr1-from" enctype='multipart/form-data'>
+                                    <input type="file"  id="fr1-file-btn"   name="imgFile" class="file"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
+                                </form>
+                            </dt>
                         </dt>
                         <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                     </dl>
@@ -73,12 +75,12 @@
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
                             <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt1">
-                                <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
-                        <img id="portrait1" class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPreview1(this)"/>
+
+                            <img id="portrait1" class="clo"  width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <input type="file" name="img1"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPreview1(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -103,7 +105,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
                         <img id="portrait3"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview3(this)" />
+                            <input type="file" name="img2" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview3(this)" />
                         </dt>
                         </dt>
                     </dl>
@@ -116,7 +118,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
                         <img id="portrait4"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPreview4(this)"/>
+                            <input type="file" name="img3" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer" onchange="showPreview4(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -133,7 +135,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
                             </dl>
                         <img id="portrait5"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview5(this)"/>
+                            <input type="file" name="img4" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview5(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -146,7 +148,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加资质证明</dt>
                             </dl>
                         <img id="portrait6"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview6(this)"/>
+                            <input type="file" name="img5" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview6(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -176,8 +178,10 @@
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
-                        <img id="portrait7"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview7(this)"/>
+                            <img id="portrait7"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
+
+                                <input type="file" name="img6" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview7(this)"/>
+
                         </dt>
                         </dt>
                     </dl>
@@ -190,7 +194,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
                         <img id="portrait8"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview8(this)"/>
+                            <input type="file" name="img7" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview8(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -207,7 +211,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
                             </dl>
                         <img id="portrait9"class="clo" src="" style="display:none;" width="134"height="134" style="border-radius: 10px;width: 134px;height: 134px"/>
-                            <input type="file" name="img" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview9(this)"/>
+                            <input type="file" name="img8" a  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"onchange="showPreview9(this)"/>
                         </dt>
                         </dt>
                     </dl>
@@ -624,7 +628,10 @@
             contentType: false,
             dataType: "json",
             success: function (res) {
-                alert(res);
+                if(res.code == 200){
+                    $('#portrait').attr('src',res.data.url).css("opacity",1).show();
+                    $('#portrait').prev().hide();
+                }
             }
         });
     });
