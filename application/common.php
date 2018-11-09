@@ -262,3 +262,24 @@ function is_weixin(){
 function mobileFilter($mobile){
     return substr_replace($mobile,'****',3,4);
 }
+
+/**
+ * 从HTML文本中提取所有图片
+ * @param $content
+ * @return array
+ */
+function get_html_images($content){
+    $pattern="/<img.*?src=[\'|\"](.*?)[\'|\"].*?[\/]?>/";
+    preg_match_all($pattern,htmlspecialchars_decode($content),$match);
+    $data = [];
+    if(!empty($match[1])){
+        foreach ($match[1] as $img){
+            if(!empty($img)){
+                $data[] = $img;
+            }
+        }
+        return $data;
+    }
+
+    return $data;
+}

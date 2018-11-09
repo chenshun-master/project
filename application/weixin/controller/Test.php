@@ -35,7 +35,7 @@ class Test  extends Controller
 
 
 
-        $model =  new MessageDomain();
+//        $model =  new MessageDomain();
 //        $res = $model->pushGroupMsg(0,'各家医院你好？','罚款羧甲asdasdff淀粉钠fa sdfasdf你卡就是你，那就看你卡就sdfasd是当年按揭房你是客服金卡是的呢',3);
 //        halt($res);
 
@@ -44,7 +44,8 @@ class Test  extends Controller
 //        halt($list);
 
 
-        $model = new UserFriendDomain();
-        $model->checkFriend(4,5);
+//        $model = new UserFriendDomain();
+//        $model->checkFriend(4,5);
+
     }
 }
