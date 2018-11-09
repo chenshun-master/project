@@ -18,12 +18,13 @@ class ArticleDomain
      * @return bool
      */
     public function createArticle($data){
-        if(isset($data['thumbnailImg']) && count($data['thumbnailImg']) > 0){
-            $data['thumbnailImg'] = handleThumbnailData($data['thumbnailImg']);
+        if(isset($data['thumbnail']) && count($data['thumbnail']) > 0){
+            $data['thumbnail'] = handleThumbnailData($data['thumbnail']);
         }
 
-        $data['status'] = 1;
-        $date['comment_status'] = 1;
+        $data['status']             = 1;
+        $data['comment_status']     = 1;
+        $data['updated_time'] = $data['created_time'] = $data['published_time'] = date('Y-m-d H:i:s');
 
         $res = ArticleModel::create($data);
 

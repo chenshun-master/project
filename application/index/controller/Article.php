@@ -86,14 +86,14 @@ class Article extends CController
      * 发布文章接口
      */
     public function releaseArticle(Request $request){
-//        if(!$this->checkLogin()){
-//            return $this->returnData([],'请先进行登录',401);
-//        }
+        if(!$this->checkLogin()){
+            return $this->returnData([],'请先进行登录',401);
+        }
 
-//        $user_info = $this->getUserInfo();
-//        if(!checkUserAuth($user_info['type'],7)){
-//            return $this->returnData([],'未授权操作',403);
-//        }
+        $user_info = $this->getUserInfo();
+        if(!checkUserAuth($user_info['type'],7)){
+            return $this->returnData([],'未授权操作',403);
+        }
 
         $title = $request->param('title','');
         $tag = $request->param('tag','');
@@ -106,17 +106,20 @@ class Article extends CController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
+        $imgs = get_html_images($content);
+        $thumbnailImg = array_slice(array_merge($thumbnailImg,$imgs),0,3);
+
         $data = [
-//            'user_id'=>$user_info['id'],
-            'user_id'=>8,
+            'user_id'=>$user_info['id'],
             'type'=>1,
             'title'=>$title,
             'tag'=>$tag,
             'excerpt'=>'',
             'content'=>$content,
             'published_time'=>$published_time,
-            'thumbnailImg'=>$thumbnailImg
+            'thumbnail'=>$thumbnailImg
         ];
+
 
         $isTrue = $this->_articleDomain->createArticle($data);
         if(!$isTrue){
