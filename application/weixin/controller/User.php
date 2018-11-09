@@ -55,6 +55,14 @@ class User extends BaseController
         $this->assign('user_info',$user_info);
         return $this->fetch('user/modify');
     }
+   /**
+     * 我的收藏页面
+     * @return mixed
+     */
+    public function collection()
+    {
+        return $this->fetch('user/collection');
+    }
 
     /**
      * 上传用户头像接口
