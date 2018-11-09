@@ -29,13 +29,13 @@ class Index extends CController
 
     /**
      * 用户登录页面
-     * @route('/index/index/login','get')
+     * @route('/login','get')
      * @return false|string
      */
     public function login(){
-//        if(!$this->checkLogin()){
-//            return redirect('/index/user/main');
-//        }
+        if($this->checkLogin()){
+            return redirect('/index/user/main');
+        }
 
         return $this->fetch('index/login');
     }
