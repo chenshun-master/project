@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="/pc/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <style>
-        button {
-            cursor: pointer
-        }
+        button {cursor: pointer}
+        .wl-main-bg-color {background:#7db0e8 !important;}
     </style>
 </head>
 <body  style="background: #F8F8F8"   >
@@ -108,13 +107,12 @@
             }
         </style>
     <div class="wl-zhez">
-        <div class="wl-zl" >
+        <div class="wl-zl" id="cus-from-box1">
             <div>手机号修改</div>
-            <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号" id="mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
-            <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="sma_code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  /><button id="code-btn" onclick="objClass.sendSms()" >发送验证码</button></div>
-            <div class="wl-yzmcw"><span>验证码错误</span></div>
-            <!--<div class="wl-yzcg"  >验证成功</div>-->
-            <div class="wl-zheque"><button  onclick="objClass.submit()">确定</button></div>
+            <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
+            <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()" >发送验证码</button></div>
+            <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
+            <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
         </div>
     </div>
     <div class="wl-zhez1">
@@ -135,7 +133,7 @@
             <div class="wl-gexx">修改个人信息</div>
             <div class="wl-gerenl">
                 <div class="cd">
-                    <img src="{$user_info['portrait']}"  onerror="/pc/image/tou.png"    width="73px" height="73px" />
+                    <img src="{$user_info['portrait']}"      width="73px"  height="73px" />
                     <div class="dd">
                         更换头像
                     </div>
@@ -153,7 +151,6 @@
 </div>
 </div>
 </body>
-<script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -161,6 +158,7 @@
     //获取修改手机号验证码
     var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
     codeObj.run();
+
     var codeObj1 = new VerificationCode('code-btn1','获取验证码','code-hui');
     codeObj1.run();
     var objClass = {
@@ -171,19 +169,18 @@
             return reg_phone.test(mobile);
         },
         submit:function () {
-            var mobile = $('#mobile').val();
-            var sms_code = $('#sms_code').val();
+            var mobile = $.trim($('#fr-box-mobile').val());
+            var sms_code = $.trim($('#fr-box-sms-code').val());
+            $('#cus-from-box1-err').html('');
             if(!this.checkMobile(mobile)){
-                layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                $('#cus-from-box1-err').html('手机号格式不正确');
+                return false;
+            }else if(sms_code == ''){
+                $('#cus-from-box1-err').html('验证码错误');
                 return false;
             }
-            if(sms_code == '')
-            {
-                layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
-                return false;
-            }
-            if(!this.loading)
-            {
+
+            if(!this.loading){
                 $.ajax({
                     url:"/index/user/modifyMobile",
                     type:'post',
@@ -191,27 +188,20 @@
                     dataType:'json',
                     beforeSend:function(){
                         objClass.loading = true;
+                        $('#fr-box-btn').text('修改中...');
                     },
                     complete:function(){
                         objClass.loading = false;
+                        $('#fr-box-btn').text('立即修改');
                     },
                     success:function(res){
                         if(res.code == 200){
-                            layer.open({content: '修改成功',skin: 'msg',time: 2});
-                            setTimeout(function(){
-                                window.location.href = '/index/user/main';
-                            },3000);
-                        }else if(res.code == 301){
-                            layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                            return false;
+                            alert('修改成功');
                         }else if(res.code == 302){
-                            layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                            $('#cus-from-box1-err').html('验证码错误');
                             return false;
                         }else if(res.code == 303){
-                            layer.open({content: '验证码已过期',skin: 'msg',time: 2});
-                            return false;
-                        }else {
-                            layer.open({content: '修改失败',skin: 'msg',time: 2});
+                            $('#cus-from-box1-err').html('验证码已过期');
                             return false;
                         }
                     }
@@ -219,16 +209,14 @@
             }
         },
         sendSms:function () {
-            var mobile = $('#mobile').val();
+            var mobile = $.trim($('#fr-box-mobile').val());
             if(!this.checkMobile(mobile)){
-                layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                $('#cus-from-box1-err').html('请正确填写手机号');
                 return false;
             }
+            $('#cus-from-box1-err').html('');
 
-            if(codeObj.checkTime()){
-                return false;
-            }
-
+            if(codeObj.checkTime()){return false;}
             if(!this.sendSmsCode){
                 $.ajax({
                     url:"/index/index/sendSmsCode",
@@ -237,48 +225,43 @@
                     dataType:'json',
                     beforeSend:function(){
                         objClass.sendSmsCode = true;
+
                     },
                     complete:function(){
+
                         objClass.sendSmsCode = false;
                     },
                     success:function(res){
                         if(res.code == 200){
-                            layer.open({content: '发送成功',skin: 'msg',time: 2});
                             codeObj.sendSmsCode();
-                            return false;
                         }else if(res.code == 301){
-                            layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                            return false;
+                            alert('请求参数错误');
                         }else if(res.code == 302){
-                            layer.open({content: '该用户已被使用',skin: 'msg',time: 2});
-                            return false;
+                            alert('该用户已被使用');
                         }else{
-                            layer.open({content: '发送失败',skin: 'msg',time: 2});
-                            return false;
+                            alert('发送失败');
                         }
                     }
                 });
             }
         }
-    }
+    };
 
     var objClass1 = {
         submit1:function () {
             var password = $('#password').val();
             var password1 = $('#password1').val();
-            if(password == '')
-            {
-                layer.open({content: '请输入新密码！',skin: 'msg',time: 2});
+            if(password == ''){
+                alert('请输入新密码！');
                 return false;
             }
-            if(password1 == '')
-            {
-                layer.open({content: '请输入确认新密码！',skin: 'msg',time: 2});
+            if(password1 == ''){
+                alert('请输入确认新密码！');
                 return false;
             }
-            if(password != password1)
-            {
-                layer.open({content: '两次输入的密码不一致！',skin: 'msg',time: 2});
+
+            if(password != password1){
+                alert('请输入确认新密码！');
                 return false;
             }
 
@@ -311,19 +294,28 @@
 
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
-    })
+    });
+
     $(".wl-xian1").click(function () {
         $(".wl-cang1").toggle();
-    })
+    });
 
+    $('#cus-from-box1 input').on('input',function(){
+        var mobile = $.trim($('#fr-box-mobile').val());
+        var sms_code = $.trim($('#fr-box-sms-code').val());
+        if(mobile != '' && sms_code != ''){
+            $('#fr-box-btn').addClass('wl-main-bg-color').prop('disabled',false);
+        }else{
+            $('#fr-box-btn').removeClass('wl-main-bg-color').prop('disabled',true);
+        }
+        $('#cus-from-box1-err').html('');
+    });
 </script>
 <script type="text/javascript">
     $(function(){
         $(".one").show();
         $(".top span").eq(0).addClass("se");
-        var a;
-        var b;
-        var index=0;
+        var a,b,index=0;
         $(".top span").click(function(){
             index=$(this).index();
             $(".one,.two").eq(index).show().siblings().hide();
@@ -334,11 +326,11 @@
             if(index==1){
                 b=1
             }
-            if(a==1&&b==1){
+            if(a==1 && b==1){
                 $("#xiao").hide();
             }
-        })
-    })
+        });
+    });
 
     $("#wl-anquan").click(function () {
         $(".wl-qiehuan").show();
@@ -351,6 +343,7 @@
     $(".wl-que2").click(function () {
         $(".wl-zhez2").hide();
     })
+
     // 更换手机遮罩层
     $(document).ready(function() {
         $(".wl-hf").click(function(event) {
@@ -364,8 +357,8 @@
                 $('.wl-zhez').hide(); //淡出消失
             }
         });
-
     });
+
     // 修改密码遮罩层
     $(document).ready(function() {
         $(".wl-xgmm").click(function(event) {
@@ -379,8 +372,8 @@
                 $('.wl-zhez1').hide(); //淡出消失
             }
         });
-
     });
+
     // 修改信息遮罩层
     $(document).ready(function() {
         $(".wl-xgxx").click(function(event) {
@@ -394,7 +387,6 @@
                 $('.wl-zhez2').hide(); //淡出消失
             }
         });
-
     });
 </script>
 </html>
