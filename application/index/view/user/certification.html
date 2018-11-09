@@ -86,9 +86,16 @@
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                     <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px;">
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传资质证书</dt>
+                        </dl>
+                        <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                    </dt>
+                    <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;margin-left: 35px"  >
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传执业证书</dt>
                         </dl>
                         <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                     </dt>
@@ -97,25 +104,24 @@
                 </dl>
                 <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
             </div>
-            <div class="wl-geren2">
+            <div class="wl-geren2" style="height: 1000px">
                 <p>医院/机构认证</p>
-                <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></p>
-
-                <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username"></p>
-                <p class="wl-zhen2">运营者身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"></p>
-                <p class="wl-zhen3">运营者手机号  <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
+                <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致"  style="margin-left: 75px"></p>
+                <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
+                <p class="wl-zhen2">运营者身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard" ></p>
+                <p class="wl-zhen3">运营者手机号  <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
                 <p class="wl-zhen3">短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
-                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" ></p>
-                <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目" id="fr3-good-project" ></p>
+                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
+                <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目" id="fr3-good-project" style="margin-left: 78px"></p>
 
                 <p class="wl-zhen2">上传医院营业证件</p>
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                     <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px;">
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px;">
                             <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 23px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传营业执照</dt>
                         </dl>
                         <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                     </dt>
@@ -128,17 +134,17 @@
                 <p>官方企业认证</p>
                 <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" style="margin-left: 77px"></p>
                 <p class="wl-zhen3" >运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
-                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" /></p>
+                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px"/ ></p>
                 <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
                 <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
                 <p class="wl-zhen3" >上传企业工商营业执照</p>
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                     <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;" >
-                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 35px">
+                        <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 20px">
                             <!--padding-left: 30px;padding-top: 20px;-->
-                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 2px;z-index: 2"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加照片</dt>
+                            <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 23px;z-index: 2"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">上传营业执照</dt>
                         </dl>
                         <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
                     </dt>

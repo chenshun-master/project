@@ -239,6 +239,7 @@ a {
 }
 .wl-geren2{
     position: relative;
+    min-height: 800px;
 }
 .wl-geren3{
     position: relative;
