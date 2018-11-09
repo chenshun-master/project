@@ -41,6 +41,17 @@ class CController extends Controller
     }
 
     /**
+     * 获取登陆用户id
+     */
+    protected function getUserId(){
+        $info = Session::get('user_info');
+        if($info){
+            return $info['id'];
+        }
+        return false;
+    }
+
+    /**
      * 用户信息
      * @param $data
      * @return bool

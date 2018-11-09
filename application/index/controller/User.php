@@ -1,17 +1,22 @@
 <?php
 namespace app\index\controller;
+use app\api\domain\UserDomain;
 use think\App;
 use think\Request;
+use app\api\model\UserModel;
 
 class User extends CController
 {
     private $userDomain;
+    private $_userModel;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->userDomain  = new \app\api\domain\UserDomain();
+
+        $this->_userModel = new UserModel();
     }
 
     /**
@@ -38,6 +43,38 @@ class User extends CController
         }
 
         return $this->fetch('user/certification');
+    }
+
+    /**
+     * 修改手机号接口
+     */
+    public function modifyMobile(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+        $mobile      = $request->post('mobile','');
+        $sms_code    = $request->post('sms_code','');
+        $user_id     = $this->getUserId();
+
+
+        $userDomain = new UserDomain();
+        $oldMobile = $this->_userModel->getMobile($user_id);
+        if(empty($mobile) || empty($sms_code)  || !checkMobile($mobile)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $result = $userDomain->changeMobile($user_id,$oldMobile,$mobile,$sms_code);
+        if($result == 1){
+            return $this->returnData([],'验证码错误',302);
+        }else if($result == 2){
+            return $this->returnData([],'验证码已过期',303);
+        }
+
+        if(!$result){
+            return $this->returnData([],'修改手机号失败',305);
+        }
+
+        return $this->returnData([],'修改手机号成功',200);
     }
 
     /**

@@ -22,4 +22,8 @@ class UserModel extends Model
     }
 
 
+    public function getMobile($user_id){
+        return  self::where('id',$user_id)->value('mobile');
+    }
+
 }
