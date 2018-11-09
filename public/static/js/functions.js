@@ -42,7 +42,7 @@
         msg:function(message,time){
             var time = time || 2000;
             var idSelector = this.randomString(20)+ new Date().getTime();
-            $('body').append('<div class="wkf" id="'+ idSelector+'" style="display: block">'+message+'</div>');
+            $('body').append('<div class="wl-msg" id="'+ idSelector+'" style="display: block">'+message+'</div>');
             $('#'+ idSelector).show().delay(time).fadeOut();
             (function(id,tt){
                 setTimeout(function(){

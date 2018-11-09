@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="tab-box" >
-        <div class="wl-fabiao" style="cursor: pointer" ><a href="/index/article/article">发表文章</a></div>
+        <div class="wl-fabiao" style="cursor: pointer" ><a href="/index/article/article" style="color: #333333">发表文章</a></div>
         <ul class="renzheng">
             <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
                 <span class="wl-shimin1"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span></i>
@@ -50,7 +50,7 @@
             <div class="xia">
                 <div class="one">
                     <div class="one-1">
-                        <img src="{$user_info['portrait']}"  onerror="/pc/image/tou.png" >
+                        <img src="{$user_info['portrait']}"  onerror="this.src='/pc/image/tou.png'" >
                         <dt id="cus-nickname">{$user_info['nickname']}</dt>
                         <dd id="cus-profile">{$user_info['profile']}</dd>
                         <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
