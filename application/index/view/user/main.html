@@ -98,12 +98,19 @@
 
 
     <div class="wl-zhez">
-        <div class="wl-zl" id="cus-from-box1">
+        <div class="wl-zl" id="cus-from-box1" >
             <div>手机号修改</div>
             <div class="wl-zheh"><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
             <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()" >发送验证码</button></div>
             <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
             <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
+        </div>
+        <div class="wl-zl" >
+            <div>手机号修改</div>
+            <div style="text-align: center;"style="display: none">
+                <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
+                <p style="color: #333333;font-size: 18px;margin-top: 20px">新手机修改成功</p>
+            </div>
         </div>
     </div>
     <div class="wl-zhez1">
@@ -115,6 +122,13 @@
             <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
             <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
             <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn">立即修改</button> </div>
+        </div>
+        <div class="wl-zl" style="display: none" >
+            <div>密码修改</div>
+            <div style="text-align: center;">
+                <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
+                <p style="color: #333333;font-size: 18px;margin-top: 20px">新密码修改成功</p>
+            </div>
         </div>
     </div>
     <div class="wl-zhez2">
