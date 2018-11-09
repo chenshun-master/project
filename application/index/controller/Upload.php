@@ -82,11 +82,11 @@ class Upload extends CController
         if($file){
             $size = 1024*1024*5;              #单位字节
             if(!$file->checkSize($size)){
-                return json(['error' => 1, 'message' =>'上传图片大小不能超过5M']);
+                return $this->returnData([],'上传图片大小不能超过5M',305);
             }
 
             if(!$file->checkExt($fileExt)){
-                return json(['error' => 1, 'message' =>'文件格式错误只支持gif,jpg,jpeg及png格式的图片']);
+                return $this->returnData([],'文件格式错误只支持gif,jpg,jpeg及png格式的图片',305);
             }
 
             $info = $file->move( 'uploads/');
@@ -94,14 +94,13 @@ class Upload extends CController
                 $path_dir = $img_domain.'/uploads/'.str_replace("\\","/",$info->getSaveName());
                 $id = $this->_pictureLibraryDomain->create($type,$path_dir);
                 if($id){
-                    return json(array('error' => 0, 'url' => $path_dir));
+                    return $this->returnData(['url'=>$path_dir],'',200);
                 }else{
-                    return json(array('error' => 1, 'message' => '上传失败'));
+                    return $this->returnData([],'上传失败',305);
                 }
             }else{
-                return json(array('error' => 1, 'message' => $file->getError()));
+                return $this->returnData([],$file->getError(),305);
             }
         }
     }
-
 }

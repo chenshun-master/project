@@ -54,12 +54,14 @@
                 <dl style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative;top: 4px;left: 52px">
                     <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  >
-                            <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 11px;">
-                                <!--padding-left: 30px;padding-top: 20px;-->
-                                <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
-                            </dl>
-                                <input type="file" name="img"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                            <form id="fr1-from" enctype='multipart/form-data'>
+                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 11px;">
+                                    <!--padding-left: 30px;padding-top: 20px;-->
+                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
+                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
+                                </dl>
+                                <input type="file" name="imgFile"  id="fr1-file-btn"  data-type="1" data-frname="fr1-from"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                            </form>
                         </dt>
                     </dt>
                 </dl>
@@ -205,6 +207,7 @@
         </div>
     </div>
 </div>
+
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -495,5 +498,22 @@
             }
         }
     };
+
+    $("#fr1-file-btn").on("change", function () {
+        var formData = new FormData($('#fr1-from')[0]);
+        formData.append('type',2);
+        $.ajax({
+            url: '/index/Upload/uploadImgFile',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (res) {
+                alert(res);
+            }
+        });
+    });
 </script>
 </html>
