@@ -12,6 +12,7 @@ function showPreview(source) {
         $(".wl-dt").css("opacity","0");
     }
 }
+
 function showPreview1(source) {
     var file = source.files[0];
     if(window.FileReader) {
