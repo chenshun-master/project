@@ -168,7 +168,7 @@ class User extends CController
      */
     public function signOut(){
         $this->clearUserLogin();
-        return redirect('/index/index/login');
+        return redirect('/login');
     }
 
     /**
