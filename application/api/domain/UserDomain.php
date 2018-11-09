@@ -201,18 +201,19 @@ class UserDomain
      */
     public function changeMobile($user_id,$old_mobile,$new_mobile,$sms_code){
         $smsObj = new \app\api\domain\SendSms();
-        $res = $smsObj->checkSmsCode($old_mobile,6,$sms_code);
-        if($res === 0){
+        $res = $smsObj->checkSmsCode($new_mobile,6,$sms_code);
+        if($res == 0){
             return 1;
-        }else if($res === 2){
+        }else if($res == 2){
             return 2;
         }
 
         $isTrue = Db::name('user')->where('id',$user_id)->where('mobile',$old_mobile)->update(['mobile'=>$new_mobile]);
-        if($isTrue){
-            return true;
+        if($isTrue === false){
+            return false;
         }
-        return false;
+
+        return true;
     }
 
     /**
