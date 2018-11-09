@@ -206,6 +206,7 @@ a {
     height: 148px;
     background-color: gainsboro;
     float: left;
+    margin-right: 5px;
 }
 
 .wx-b3 {
@@ -231,7 +232,7 @@ a {
 
 .wx-b3 img {
     width: 216px;
-    min-height:160px;
+    height:160px;
     display: block;
     float: right;
 }

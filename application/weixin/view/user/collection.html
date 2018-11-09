@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/collection.css"/>
+    <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <title>用户中心</title>
+</head>
+<style>
+
+</style>
+<body style="background: #ffffff;">
+<div class="wl-con">
+<div class="wl-daohang">
+    <ul id="ul" >
+        <li class="song"><span>收藏</span></li>
+        <li><span>评论</span></li>
+        <li><span>点赞</span></li>
+    </ul>
+</div>
+
+<div>
+    <ol id="ol">
+        <li  class="xian">35435434</li>
+        <li >12312</li>
+        <li >3123</li>
+        <li >3123434</li>
+    </ol>
+</div>
+</div>
+</body>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        $("ul>li").click(function(){
+            var index=$(this).index();
+            $("ul li span").eq(index).addClass("song").siblings().removeClass("song")
+            $("ol>li").eq(index).addClass("xian").siblings().removeClass("xian")
+        })
+    })
+
+    $(function(){
+        $(window).scroll(function(){
+            if($(window).scrollTop()>0){
+                $("#ul").addClass("ul")
+            }else if($(window).scrollTop()<=0){
+                $("#ul").removeClass("ul")
+            }
+        })
+    })
+</script>
+</html>

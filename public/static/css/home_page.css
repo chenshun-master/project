@@ -113,8 +113,14 @@ a{text-decoration: none;color: #221815;display: block;}
 width: 100%;
 height: 72px;
 margin-top: 25px;
-
 position: relative;
+}
+.wx-nei1 img{
+	width: 220px;
+	height: 148px;
+	background-color: gainsboro;
+	float: left;
+	margin-right: 5px;
 }
 .wx-tou{
 width: 72px;
@@ -190,15 +196,16 @@ overflow: hidden;
 }
 .on1-img{
 width: 100%;
-height: 750px;
+height:auto;
 margin-top: 30px;
 }
 .on1-img img{
-width: 246px;
-height: 246px;
+width: 245px;
+height: 245px;
 display: block;
 float: left;
 background: gray;
+	margin-right: 4px;
 }
 #cc{
 	font-size: 40px;

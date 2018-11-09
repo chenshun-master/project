@@ -168,6 +168,11 @@
     }
 
 </script>
+<style>
+    .xian{
+        color: red;
+    }
+</style>
 <script>
     $(function(){
         $(".biao li").eq(0).addClass("se");
@@ -176,5 +181,9 @@
             $(".biao li").eq(index).addClass("se").siblings().removeClass("se");
         })
     })
+$(".biao li").click(function () {
+    var index=$(this).index();
+    $(".biao li").eq(index).addClass("xian").siblings().removeClass("xian")
+})
 </script>
 </html>

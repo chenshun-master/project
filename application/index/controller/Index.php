@@ -40,7 +40,6 @@ class Index extends CController
         return $this->fetch('index/login');
     }
 
-
     /**
      * 账号密码登录页面
      * @route('index/index/postLogin','post')

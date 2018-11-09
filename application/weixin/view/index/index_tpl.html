@@ -11,6 +11,7 @@
                                         <?php endforeach;?>
                                     </p>
                                     <p class="wx-n3" >
+                                        <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                         <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                         <span class="ck">{$val['hits']}+</span>
                                         <span class="pl">
@@ -30,6 +31,7 @@
                                         <img src="{$thumbnail['img_1']}" onclick="clickHref({$val['id']})" />
                                     </div>
                                     <p class="wx-n3" >
+                                        <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                         <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                         <span class="ck">{$val['hits']}+</span>
                                         <span class="pl">
