@@ -4,7 +4,6 @@
 		<meta charset="UTF-8">
 		<title>登录页</title>
 		<link rel="stylesheet" href="/pc/css/login.css">
-
 		<link rel="stylesheet" href="/static/css/iconfont.css">
 	</head>
 	<body >
@@ -26,7 +25,7 @@
                <p><input type="text" id="mobile1" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
                 <p ><input type="password" id="password1" placeholder="请输入密码" maxlength="18" class="wl-input"><span id="xian"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
                 <button href="" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
-                <button class="btn" id="btn1" onclick="objClass.login()">登录</button>
+                <button class="btn" id="btn1" onclick="objClass.login()" style="cursor: pointer">登录</button>
             </div>
             </div>
 		</div>
@@ -56,7 +55,7 @@
                 <dl>已有账号？</dl>
                 <dd>立即登录！</dd>
                 <dt>现在登录，遇见不一样的自己</dt>
-                <button class="wl-zc1" onclick="zhuce1()">登录  </button>
+                <button class="wl-zc1" onclick="zhuce1()" style="cursor: pointer">登录  </button>
             </div>
             <style>
                 .code-hui{
@@ -147,7 +146,7 @@
                             if(res.code == 200){
                                 layer.open({content: '注册成功',skin: 'msg',time: 2});
                                 setTimeout(function(){
-                                    window.location.href = '/index/index/login';
+                                    window.location.href = '/login';
                                 },3000);
                             }else if(res.code == 301){
                                 layer.open({content: '请求参数错误',skin: 'msg',time: 2});
@@ -365,7 +364,8 @@
                     $("#password1").prop("type","password");
                     $("#xian i").attr("class","iconfont icon-yanjing")
                 }
-            })
+            });
+
             $("#xian1").click(function(){
                 if($("#password2").prop("type")=="password"){
                     $("#password2").prop("type","text");
@@ -375,7 +375,8 @@
                     $("#password2").prop("type","password");
                     $("#xian1 i").attr("class","iconfont icon-yanjing")
                 }
-            })
+            });
+
             $("#xian2").click(function(){
                 if($("#password").prop("type")=="password"){
                     $("#password").prop("type","text");

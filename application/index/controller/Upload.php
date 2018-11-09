@@ -70,11 +70,11 @@ class Upload extends CController
 
         $img_domain = config('conf.file_save_domain');
         if(!$this->checkLogin()){
-            return json(array('error' => 1, 'message' =>'未授予上传权限'));
+            return $this->returnData([],'未授予上传权限',401);
         }
 
         if($type == 0){
-            return json(array('error' => 1, 'message' =>'请求参数不符合规范'));
+            return $this->returnData([],'请求参数不符合规范',301);
         }
 
         #文件上传类型
