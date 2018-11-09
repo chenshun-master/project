@@ -35,6 +35,23 @@
         },
 
         /**
+         * 消息提示框
+         * @param message   提示内容
+         * @param time      消息自动消失时间 (默认 2 秒)
+         */
+        msg:function(message,time){
+            var time = time || 2000;
+            var idSelector = this.randomString(20)+ new Date().getTime();
+            $('body').append('<div class="wkf" id="'+ idSelector+'" style="display: block">'+message+'</div>');
+            $('#'+ idSelector).show().delay(time).fadeOut();
+            (function(id,tt){
+                setTimeout(function(){
+                    $('#'+ id).remove();
+                },tt);
+            })(idSelector,time);
+        },
+
+        /**
          * 验证手机号格式
          * @param mobile
          * @returns {boolean}
