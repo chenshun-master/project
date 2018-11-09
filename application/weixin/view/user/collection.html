@@ -8,85 +8,53 @@
     <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
-    <title>用户中心</title>
-    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/collection.css"/>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <title>用户中心</title>
 </head>
 <style>
 
 </style>
 <body style="background: #ffffff;">
-<div class="con">
-    <div class="wx-boy">
-        <ul class="wx-lie">
-            <li style="	border-right: 1px solid gray;">文章<span></span></li>
-            <li style="border-right: 1px solid gray;">视频<span></span></li>
-            <li style="border-right: 1px solid gray;">案例<span></span></li>
-            <li>问答<span></span></li>
-        </ul>
-    </div>
-    <div class="wx-content">
-        <div class="top">
-            <div id="ul" style="border-bottom: 1px solid #EEEEEE;border-top: 10px solid #EEEEEE;">
-                <span id="one" style="margin-left: 207px;">文章</span>
-                <span id="two">视频</span>
-                <span id="three">粉丝</span>
-            </div>
+<div class="wl-con">
+<div class="wl-daohang">
+    <ul id="ul" >
+        <li class="song"><span>收藏</span></li>
+        <li><span>评论</span></li>
+        <li><span>点赞</span></li>
+    </ul>
+</div>
 
-        </div>
-        <div class="xia">
-            <div class="one ones content" >
-后是否会
-            <div class="one oner content2" style="display: none;">
-HDFSHDFS
-            <div class="one" style="display: none;">
-身份
-            </div>
-        </div>
-    </div>
-
+<div>
+    <ol id="ol">
+        <li  class="xian">35435434</li>
+        <li >12312</li>
+        <li >3123</li>
+        <li >3123434</li>
+    </ol>
+</div>
+</div>
 </body>
-
+<script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<
 <script type="text/javascript">
-    $(function () {
-        $(".ones").show();
-        $(".top span").eq(0).addClass("se");
-        var a,b,c,index = 0;
-        $(".top span").click(function () {
-            index = $(this).index();
-            $(".xia .one").eq(index).show().siblings().hide();
-            $(".top span").eq(index).addClass("se").siblings().removeClass("se");
-            if (index == 0) {
-                a = 1;
-            }
-            if (index == 1) {
-                b = 1;
-            }
-            if (index == 2) {
-                c = 1;
-            }
-            if (a == 1 && b == 1 && c == 1) {
-                $("#xiao").hide();
-            }
+    $(function(){
+        $("ul>li").click(function(){
+            var index=$(this).index();
+            $("ul li span").eq(index).addClass("song").siblings().removeClass("song")
+            $("ol>li").eq(index).addClass("xian").siblings().removeClass("xian")
         })
-    });
+    })
 
-    $(function () {
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 526) {
-                $("#ul").addClass("ul");
-            } else if ($(window).scrollTop() <= 526) {
-                $("#ul").removeClass("ul");
-                $("#ul").addClass("cc");
+    $(function(){
+        $(window).scroll(function(){
+            if($(window).scrollTop()>0){
+                $("#ul").addClass("ul")
+            }else if($(window).scrollTop()<=0){
+                $("#ul").removeClass("ul")
             }
         })
-    });
+    })
 </script>
 </html>
