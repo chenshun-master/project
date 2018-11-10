@@ -2,7 +2,6 @@
 namespace app\api\controller;
 use think\Request;
 
-
 class Article extends BaseController
 {
     private $articleDomain;

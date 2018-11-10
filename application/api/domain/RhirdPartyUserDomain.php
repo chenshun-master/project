@@ -5,6 +5,7 @@ use think\Db;
 
 class RhirdPartyUserDomain
 {
+
     /**
      * 返回第三方登录结果
      * @param $user_info

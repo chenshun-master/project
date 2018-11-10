@@ -411,7 +411,7 @@ class Index extends BaseController
         }
         return $this->returnData([],'密码重置成功',200);
     }
-    
+
     /**
      * 404错误页面
      */
@@ -450,8 +450,6 @@ class Index extends BaseController
     }
 
     public function test2(){
-        $model = new \app\api\domain\UserFriendDomain();
 
-        halt($model->getFriendList(4));
     }
 }

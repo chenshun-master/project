@@ -74,14 +74,29 @@ class UserFriendDomain
      * @return mixed
      */
     public function getFriendList($user_id){
-        $sql = "SELECT friend_id AS friends, user_group AS my_group FROM wl_users_friends WHERE user_id = {$user_id} AND  status = 2  UNION ALL SELECT user_id AS friends, friend_group AS my_group FROM wl_users_friends WHERE friend_id ={$user_id} AND  status = 2 ";
+        $sql = "SELECT friend_id AS friends, user_group AS my_group FROM wl_users_friends WHERE user_id = {$user_id} AND  status = 2  
+                UNION ALL 
+                SELECT user_id AS friends, friend_group AS my_group FROM wl_users_friends WHERE friend_id ={$user_id} AND  status = 2 ";
         return Db::query($sql);
     }
 
     /**
-     * 添加好友信息
+     * 添加好友私信
      */
-    public function createFriendMsg($data){
+    public function createFriendMsg($send_user,$receive_user,$content,$type = 1){
+        $data = [
+            'send_user_id'      =>$send_user,
+            'receive_user_id'   =>$receive_user,
+            'is_read'           =>1,
+            'created_time'      =>date('Y-m-d H:i:s')
+        ];
+
+        if($type == 1){
+            $data['content']  = $content;
+        }else{
+            $data['image']   = $content;
+        }
+
         $isTrue = Db::name('chat_record')->insertGetId($data);
         return $isTrue ? true : false;
     }
