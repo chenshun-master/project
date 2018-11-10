@@ -25,8 +25,6 @@ class User extends CController
         return $this->fetch('user/main');
     }
 
-
-
     /**
      * 用户上传认证图片接口
      */

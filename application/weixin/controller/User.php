@@ -199,14 +199,7 @@ class User extends BaseController
 
         return $this->fetch('user/userArticleList');
     }
-    /**
-     * 404文件丟失
-     */
-    public function loss(){
-        if(!$this->checkLogin()){
-            return redirect('/weixin/user/loss');
-        }
-    }
+
     /**
      * 用户视频列表页面
      */

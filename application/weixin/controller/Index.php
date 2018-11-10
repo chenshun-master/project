@@ -416,7 +416,7 @@ class Index extends BaseController
      * 404错误页面
      */
     public function error404(){
-        echo '404 错误页面';
+        return $this->fetch('error/loss');
     }
 
     /**

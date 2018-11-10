@@ -20,7 +20,6 @@ class Index extends CController
 
         return $this->fetch('user/main');
 
-
         if(is_weixin()){
             return $this->redirect('/weixin/index/index');
         }
