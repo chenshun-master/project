@@ -98,7 +98,8 @@
 
 
     <div class="wl-zhez">
-        <div class="wl-zl" id="cus-from-box1" >
+        <div class="wl-zl" id="cus-from-box1" style="position: relative" >
+            <!--<p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;border-top: 2px solid red;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #d4a6a6;">手机号不能为空</p>-->
             <div class="wl-title">手机号修改</div>
             <div class="cus-from-box1-1">
                 <div class="wl-zheh " ><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
@@ -147,7 +148,7 @@
                 <div class="wl-ri">
                     <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
                     <p>2-10个汉字，请勿使用包含特殊符号</p>
-                    <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none" id="fr-box2-profile" >{$user_info['profile']}</textarea>
+                    <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none;padding: 5px;" id="fr-box2-profile" >{$user_info['profile']}</textarea>
                     <p>30个汉字，无特殊符号</p>
                     <button class="wl-que1"  onclick="editProfile.submit()" >确认</button> <button  class="wl-que2">取消</button>
                 </div>
@@ -156,6 +157,7 @@
     </div>
 </div>
 </div>
+
 </body>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/jquery.min.js"></script>
@@ -372,12 +374,11 @@
                             $('#cus-nickname').html(nickname);
                             $('#cus-profile').html(profile);
                             $(".wl-zhez2").hide();
-                            alert('修改成功');
                         }else {
                             alert('修改失败');
                         }
                     }
-                })
+                });
             }
         }
     };
@@ -435,6 +436,8 @@
             $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
         }
     });
+
+
 </script>
 <script type="text/javascript">
     $(function(){

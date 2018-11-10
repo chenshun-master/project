@@ -53,8 +53,8 @@
                 <div class="wl-shuru1" style="margin-top: 145px">
                     <p style="margin-top: 40px"><input type="text" id="fr-reset-mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px;cursor: pointer" id="code-btn1" onclick="objClass.sendResetPwdSms()">获取验证码</a></p>
                     <p ><input type="text" id="fr-reset-sms-code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
-                    <p ><input type="password" id="fr-reset-password" placeholder="设置新密码" maxlength="18" class="wl-input"><span id="xian1"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
-                    <button id="fr-reset-btn"   onclick="objClass.resetPwd()">完成</button>
+                    <p ><input type="password" id="fr-reset-password" placeholder="设置新密码" maxlength="16" class="wl-input"><span id="xian1"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
+                    <button id="fr-reset-btn"   onclick="objClass.resetPwd()">立即重置</button>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                 <div class="wl-shuru1" >
                     <p style="margin-top: 30px"><input type="text" id="fr-reg-mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px;cursor: pointer" id="code-btn" onclick="objClass.sendRegSms()">获取验证码</a></p>
                     <p ><input type="text" id="fr-reg-sms-code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
-                    <p ><input type="password" id="fr-reg-password" placeholder="6~16个字符，区分大小写" class="wl-input yan"  style="width: 320px"  maxlength="16"  ><span id="xian2"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9;cursor: pointer" ></i></span></p>
+                    <p ><input type="password" id="fr-reg-password" placeholder="8~16位数字加字母" class="wl-input yan"  style="width: 320px"  maxlength="16"  ><span id="xian2"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9;cursor: pointer" ></i></span></p>
                     <button id="fr-reg-btn" style="margin-top: 25px;cursor: pointer" onclick="objClass.register()">立即注册</button>
                 </div>
             </div>
@@ -128,8 +128,11 @@
                 }else if(sms_code == ''){
                     $('#cus-reg-from-err').html('请填写验证码！').fadeIn().delay(3000).fadeOut();return false;
                 }else if(password == ''){
+                    $('#cus-reg-from-err').html('密码不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(!redream.checkPassword(password)){
                     $('#cus-reg-from-err').html('密码格式错误！').fadeIn().delay(3000).fadeOut();return false;
                 }
+
                 if(!this.registerLoading){
                     $.ajax({
                         url:"/index/index/postRegister",
@@ -214,9 +217,13 @@
                             objClass.loginLoading = true;
                             $('#fr-login-btn').text('登录中...');
                         },
-                        complete:function(){
+                        complete:function(res){
                             objClass.loginLoading = false;
-                            $('#fr-login-btn').text('登录');
+                            if(res.responseJSON.code == 200){
+                                $('#fr-login-btn').text('登录成功,页面跳转中...');
+                            }else{
+                                $('#fr-login-btn').text('登录');
+                            }
                         },
                         success:function(res){
                             if(res.code == 200){
@@ -240,7 +247,12 @@
                     $('#cus-reset-from-err').html('手机号格式不正确！').fadeIn().delay(3000).fadeOut();return false;
                 }else if(sms_code == ''){
                     $('#cus-reset-from-err').html('请填写验证码！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(password == ''){
+                    $('#cus-reset-from-err').html('密码不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(!redream.checkPassword(password)){
+                    $('#cus-reset-from-err').html('密码格式错误！').fadeIn().delay(3000).fadeOut();return false;
                 }
+
                 if(!this.resetLoading){
                     $.ajax({
                         url:"/index/index/postResetPassword",
@@ -253,6 +265,7 @@
                         },
                         complete:function(){
                             objClass.resetLoading = false;
+                            $('#fr-reset-btn').html('立即重置');
                         },
                         success:function(res){
                             if(res.code == 200){

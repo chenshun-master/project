@@ -103,4 +103,19 @@ class Upload extends CController
             }
         }
     }
+
+
+    /**
+     * 上传视频接口
+     */
+    public function uploadVideo(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+        $user_info = $this->getUserInfo();
+
+        if(!checkUserAuth($user_info['type'],7)){
+            return $this->returnData([],'未授权操作',403);
+        }
+    }
 }

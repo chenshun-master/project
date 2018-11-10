@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +21,7 @@
             top: 0px;
         }
 
+        .wl-hidden{display: none !important;}
     </style>
 </head>
 <body  style="background: #F8F8F8"   >
@@ -53,12 +53,17 @@
                 <li>官方认证</li>
             </div>
         </ul>
-        <div class="tab-content" style="position: relative;display: none;" >
+        <div class="tab-content <?php if(count($authResult) > 0 && $recertification != 1):?>wl-hidden<?php endif;?>" style="position: relative;" >
+            <p id="fr-error-box"  style="position: absolute;width: 462px;height: 38px;left: 469px;z-index: 2;line-height: 38px;text-align: center;border-top: 2px solid red;background-color: #fff1f1;border-radius: 0 0 5px 5px;color: #d4a6a6;display: none">
+                <span class="fr-error-box-text">真实姓名不能为空</span>
+                <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
+            </p>
+
             <!--个人认证页面-->
             <div class="active-txt wl-geren">
                 <p>个人认证</p>
-                <p class="wl-zhen" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
-                <p class="wl-zhen">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
+                <p class="wl-zhen" style="margin-top: 15px">真实姓名* <input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
+                <p class="wl-zhen">身份证号*  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"  maxlength="18" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
                 <dl style="position: relative">
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
@@ -69,7 +74,7 @@
                                     <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                                 </dl>
 
-                                <img id="fr1-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                                <img id="fr1-img" class="clo"  width="134" height="134" style="border-radius: 10px !important;width: 134px;height: 134px;display:none;"/>
                                 <form id="fr1-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr1-file-btn"  data-frid="1" name="imgFile" class="file  fr-file-btn-list"   style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
@@ -97,13 +102,12 @@
                 </dl>
                 <p class="wl-btn"><button onclick="objClass.submit1()">提交申请</button></p>
             </div>
+
             <!--医生认证页面-->
-            <div class="wl-geren1" style="height: 1200px">
+            <div class="wl-geren1" style="min-height: 1200px">
                 <p>医生认证</p>
                 <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
-                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard"></p>
-                <p class="wl-zhen1">医师职称  <input type="text" placeholder="请输入最高职称" id="fr2-academic-title"></p>
-                <p class="wl-zhen1">所在地区  <input type="text" placeholder="请输入户籍所在地" id="fr2-address"></p>
+                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" ></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
@@ -114,7 +118,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
 
-                            <img id="fr3-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr3-img" class="clo"  width="134" height="134" style="border-radius: 10px ;width: 134px;height: 134px;display:none;"/>
 
                             <form id="fr3-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr3-file-btn" data-frid="3"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer;position: absolute"  />
@@ -141,14 +145,14 @@
                     <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
                 <dl style="position: relative;height: 300px">
-                    <p class="wl-zhen" style="margin-top: 35px">上传资质证明</p>
+                    <p class="wl-zhen" style="margin-top: 35px">上传医生资质证明</p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
                             <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 30px; " class="wl-dt5">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
-                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
+                                <dt style="color: #cdcdcd;margin-right: 8px;cursor: pointer">添加资格证</dt>
                             </dl>
 
                             <img id="fr5-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
@@ -166,7 +170,7 @@
                             <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 13px;"class="wl-dt6">
                                 <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加资质证明</dt>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
                             </dl>
 
                             <img id="fr6-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
@@ -182,24 +186,22 @@
 
                 <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
             </div>
-            <!--医院机构认证页面-->
-            <div class="wl-geren2" style="height: 1400px">
-                <p>医院/机构认证</p>
-                <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致"  style="margin-left: 75px"></p>
-                <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
-                <p class="wl-zhen2">运营者身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard" ></p>
-                <p class="wl-zhen3">运营者手机号  <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
-                <p class="wl-zhen3">短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
-                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
-                <p class="wl-zhen2">擅长项目  <input type="text" placeholder="请输入医院/机构擅长项目" id="fr3-good-project" style="margin-left: 78px"></p>
 
+            <!--医院机构认证页面-->
+            <div class="wl-geren2" style="min-height: 1400px">
+                <p>医院/机构认证</p>
+                <p class="wl-zhen2" style="margin-top: 15px">医院名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
+                <p class="wl-zhen2">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
+                <p class="wl-zhen2">运营者身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" ></p>
+                <p class="wl-zhen3">运营者手机号  <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
+                <p class="wl-zhen3">短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
+                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                         <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
                             <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"class="wl-dt7">
-                                <!--padding-left: 30px;padding-top: 20px;-->
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
@@ -250,16 +252,18 @@
                     </dl>
                     <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
-                <p class="wl-btn2"><button>提交申请</button></p>
+                <p class="wl-btn2"><button onclick="objClass.submit3()">提交申请</button></p>
             </div>
+
             <!--官方企业认证页面-->
-            <div class="wl-geren3" style="height: 1250px" >
+            <div class="wl-geren3" style="min-height: 1250px" >
                 <p>官方企业认证</p>
-                <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" style="margin-left: 77px"></p>
-                <p class="wl-zhen3" >运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
-                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" ></p>
-                <p class="wl-zhen3" >运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
-                <p class="wl-zhen3" > 短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-smd-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
+                <p class="wl-zhen3" style="margin-top: 15px;">企业名称 <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 77px"></p>
+                <p class="wl-zhen3">运营者姓名  <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
+                <p class="wl-zhen1">身份证号  <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" ></p>
+                <p class="wl-zhen3">运营者手机号码  <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
+                <p class="wl-zhen3">短信验证码  <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
+                <p class="wl-zhen2">所在地区  <input type="text" placeholder="请输入医院/机构所在地区" id="fr4-address" style="margin-left: 78px"></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片</p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
@@ -317,65 +321,72 @@
                     </dl>
                     <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
-                <p class="wl-btn3"><button>提交申请</button></p>
+                <p class="wl-btn3"><button onclick="objClass.submit4()">提交申请</button></p>
             </div>
         </div>
-        <!--等待审核信息页面-->
-        <div class="wl-liucheng" style="display: none">
-            <div class="wl-jindu">
-               <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-              <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-               <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8"></span>认证结果发布</span>
-            </div>
-            <div class="wl-jieguo">
-                <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
-                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请你发送邮件至</dd>
-                <dt style="font-size: 16px;color: #999999;margin-top: 20px"><span style="color:#F24F4F">820361933@qq.com</span>&nbsp;与我们取得联系</dt>
-            <button>刷新</button>
-            </div>
-        </div>
-        <!--认证信息失败页面-->
-        <div class="wl-liucheng"  style="display: none">
-            <div class="wl-jindu">
-                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8"></span>认证结果发布</span>
-            </div>
-            <div class="wl-jieguo1">
-                <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
-                <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
-                <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
-                <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
-                <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
-                <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
-                <button>重新申请认证</button>
-            </div>
-        </div>
-        <!--认证信息通过页面-->
-        <div class="wl-liucheng"  style="display: block" >
-            <div class="wl-jindu">
-                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8"></span>认证结果发布</span>
-            </div>
-            <div class="wl-jieguo2">
-                <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
-                <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
-                <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
-                <button>知道了</button>
-            </div>
-        </div>
+
+        <?php if(count($authResult) > 0 && $recertification === 0):?>
+            {switch name="authResult.status" }
+                {case value="1"}
+                        <!--等待审核信息页面-->
+                        <div class="wl-liucheng" >
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8"></span>认证结果发布</span>
+                            </div>
+                            <div class="wl-jieguo">
+                                <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
+                                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请你发送邮件至</dd>
+                                <dt style="font-size: 16px;color: #999999;margin-top: 20px"><span style="color:#F24F4F">820361933@qq.com</span>&nbsp;与我们取得联系</dt>
+                                <button onclick="window.location.reload()">刷新</button>
+                            </div>
+                        </div>
+                    {/case}
+                {case value="2"}
+                        <!--认证信息失败页面-->
+                        <div class="wl-liucheng" >
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8"></span>认证结果发布</span>
+                            </div>
+                            <div class="wl-jieguo1">
+                                <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
+                                <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
+                                <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
+                                <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
+                                <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
+                                <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
+                                <button ><a href="/index/user/certification?recertification=1" style="color: #ffffff">重新申请认证</a></button>
+                            </div>
+                        </div>
+                    {/case}
+                {case value="3"}
+                        <!--认证信息通过页面-->
+                        <div class="wl-liucheng" >
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px"></span>提交认证信息</span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px "></span>等待审核结果</span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8"></span>认证结果发布</span>
+                            </div>
+                            <div class="wl-jieguo2">
+                                <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
+                                <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
+                                <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
+                                <button>知道了</button>
+                            </div>
+                        </div>
+                    {/case}
+            {/switch}
+        <?php endif;?>
     </div>
 </div>
-
 </body>
-<link rel="stylesheet" href="/static/css/function.css">
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/functions.js"></script>
 <script type="text/javascript">
-    redream.msg('广东佛山');
     var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
     codeObj.run();
 
@@ -384,7 +395,7 @@
 
     $(".tab-box li").each(function(index) {
         $(this).click(function() {
-            $("li.active").removeClass("active"); //注意这里
+            $("li.active").removeClass("active");
             $(this).addClass("active");
             $(".tab-content div.active-txt").removeClass("active-txt");
             $(".tab-content div").eq(index).addClass("active-txt");
@@ -402,181 +413,121 @@
     var objClass = {
         loading:false,
         sendSmsCode:false,
-        checkMobile:function(mobile){
-            var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
-            return reg_phone.test(mobile);
+        showError:function(msg){
+            $('#fr-error-box').fadeIn("slow").delay(3000).fadeOut();
+            $('#fr-error-box').find('.fr-error-box-text').text(msg);
         },
         submit1:function(){
             var username  = $.trim($('#fr1-username').val());
             var idcard    = $.trim($('#fr1-idcard').val());
-            var card_img1 = '';
-            var card_img2 = '';
-
+            var card_img1 = $('#fr1-img').attr("src");
+            var card_img2 = $('#fr2-img').attr("src");
             if(username == ''){
-                $('#fr1-username').addClass('cus-input-err-tip').next().show();
-                return false;
-            }else{
-                $('#fr1-username').removeClass('cus-input-err-tip').next().hide();
-            }
-
-            if(idcard == ''){
-                $('#fr1-idcard').addClass('cus-input-err-tip').next().show();
-                return false;
-            }else{
-                $('#fr1-idcard').removeClass('cus-input-err-tip').next().hide();
-            }
-
-            if(card_img1 == ''){
-                alert('请上传身份证正面照');
-                return false;
-            }
-
-            if(card_img2 == ''){
-                alert('请上传身份证反面照');
-                return false;
-            }
-
-            if(!this.loading){
+                this.showError('身份证姓名不能为空');return false;
+            }else if(idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(card_img1 == '' || card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(card_img2 == '' || card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(!this.loading){
                 this.ajax({type:1,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2});
             }
         },
         submit2:function(){
             var username  = $.trim($('#fr2-username').val());
             var idcard    = $.trim($('#fr2-idcard').val());
-            var card_img1 = '';
-            var card_img2 = '';
-            var address = $.trim($('#fr2-address').val());
-            var academic_title = $.trim($('#fr2-academic-title').val());
-            var qualification = '';
-
+            var card_img1 = $('#fr3-img').attr("src");
+            var card_img2 = $('#fr4-img').attr("src");
+            var qualification = $('#fr5-img').attr("src");
+            var practice_certificate = $('#fr6-img').attr("src");
             if(username == ''){
-                return false;
-            }
-
-            if(idcard == ''){
-                return false;
-            }
-
-
-            if(card_img1 == ''){
-                return false;
-            }
-
-            if(card_img2 == ''){
-                return false;
-            }
-
-            if(address == ''){
-                return false;
-            }
-
-            if(qualification == ''){
-                return false;
-            }
-
-            var practice_certificate = '';
-            if(practice_certificate == ''){
-                return false;
-            }
-            if(!this.loading){
-                this.ajax({type:2,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,qualification:qualification,practice_certificate:practice_certificate,address:address,academic_title:academic_title});
+                this.showError('身份证姓名不能为空');return false;
+            }else if(idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(!redream.checkMobile(mobile)){
+                this.showError('手机号格式错误');return false;
+            }else if(card_img1 == '' || card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(card_img2 == '' || card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(qualification == '' || qualification == undefined){
+                this.showError('请上传医师资格证书图片');return false;
+            }else if(practice_certificate == '' || practice_certificate == undefined){
+                this.showError('请上传医师执业证书图片');return false;
+            }else if(!this.loading){
+                this.ajax({type:2,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,qualification:qualification,practice_certificate:practice_certificate});
             }
         },
         submit3:function(){
-            var username  = $.trim($('#fr3-username').val());
-            var idcard    = $.trim($('#fr3-idcard').val());
-            var card_img1 = '';
-            var card_img2 = '';
-            var enterprise_name = '';
-            var business_licence = '';
-            var sms_code = $.trim($('#fr3-sms-code').val());
-            var mobile = $('#fr3-mobile').val();
-            var address = $.trim($('#fr3-address').val());
-
-
-            if(username == ''){
-                return false;
-            }
-
-            if(idcard == ''){
-                return false;
-            }
-
-
-            if(card_img1 == ''){
-                return false;
-            }
-
-            if(card_img2 == ''){
-                return false;
-            }
-
-            if(address == ''){
-                return false;
-            }
-
+            var username            = $.trim($('#fr3-username').val());
+            var idcard              = $.trim($('#fr3-idcard').val());
+            var card_img1           = $('#fr7-img').attr("src");
+            var card_img2           = $('#fr8-img').attr("src");
+            var enterprise_name     = $.trim($('#fr3-enterprise-name').val());
+            var business_licence    = $('#fr9-img').attr("src");
+            var mobile              = $('#fr3-mobile').val();
+            var sms_code            = $.trim($('#fr3-sms-code').val());
+            var address             = $.trim($('#fr3-address').val());
             if(enterprise_name == ''){
-                return false;
-            }
-
-            if(address == ''){
-                return false;
-            }
-
-            if(mobile == ''){
-                return false;
-            }
-            if(sms_code == ''){
-                return false;
-            }
-
-            if(!this.loading){
-                this.ajax({type:3,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,enterprise_name:enterprise_name,business_licence:business_licence,sms_code:sms_code,mobile:mobile});
+                this.showError('医院名称不能为空');return false;
+            }else if(username == ''){
+                this.showError('身份证姓名不能为空');return false;
+            }else if(idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(!redream.checkMobile(mobile)){
+                this.showError('手机号格式错误');return false;
+            }else if(sms_code == ''){
+                this.showError('手机验证码不能为空');return false;
+            }else if(card_img1 == '' || card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(card_img2 == '' || card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(business_licence == '' || business_licence == undefined){
+                this.showError('请上传医院营业执照');return false;
+            }else if(!this.loading){
+                this.ajax({type:3,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,enterprise_name:enterprise_name,business_licence:business_licence,sms_code:sms_code,mobile:mobile,address:address});
             }
         },
         submit4:function(){
-            var username  = $.trim($('#fr4-username').val());
-            var idcard    = $.trim($('#fr4-idcard').val());
-            var card_img1 = '';
-            var card_img2 = '';
-            var enterprise_name = '';
-            var business_licence = '';
-            var sms_code = $.trim($('#fr4-sms-code').val());
-            var mobile = $('#fr4-mobile').val();
-
+            var enterprise_name         = $.trim($('#fr4-enterprise-name').val());
+            var username                = $.trim($('#fr4-username').val());
+            var idcard                  = $.trim($('#fr4-idcard').val());
+            var card_img1               = $('#fr10-img').attr("src");
+            var card_img2               = $('#fr11-img').attr("src");
+            var mobile                  = $('#fr4-mobile').val();
+            var sms_code                = $.trim($('#fr4-sms-code').val());
+            var business_licence        = $('#fr12-img').attr("src");
+            var address                 = $.trim($('#fr4-address').val());
             if(enterprise_name == ''){
-                return false;
-            }
-
-            if(username == ''){
-                return false;
-            }
-
-            if(idcard == ''){
-                return false;
-            }
-
-            if(mobile == ''){
-                return false;
-            }
-
-            if(sms_code == ''){
-                return false;
-            }
-
-            if(card_img1 == ''){
-                return false;
-            }
-
-            if(card_img2 == ''){
-                return false;
-            }
-
-            if(!this.loading){
-                this.ajax({type:4,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,enterprise_name:enterprise_name,business_licence:business_licence,sms_code:sms_code,mobile:mobile});
+                this.showError('企业名称不能为空');return false;
+            }else if(username == ''){
+                this.showError('运营者姓名不能为空');return false;
+            }else if(idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(!redream.checkMobile(mobile)) {
+                this.showError('手机号格式错误');return false;
+            }else if(sms_code == ''){
+                this.showError('手机验证码不能为空');return false;
+            }else if(card_img1 == '' || card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(card_img2 == '' || card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(business_licence == '' || business_licence == undefined){
+                this.showError('请上传医院营业执照');return false;
+            }else if(!this.loading){
+                this.ajax({type:4,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,enterprise_name:enterprise_name,business_licence:business_licence,sms_code:sms_code,mobile:mobile,address:address});
             }
         },
-        ajax:function(type,data){
+        ajax:function(data){
             $.ajax({
                 url:"/index/user/addAuth",
                 type:'post',
@@ -590,23 +541,28 @@
                 },
                 success:function(res){
                     if(res.code == 200){
+                        objClass.loading = true;
                         objClass.submitSuccess();
                     }else{
-                        alert(res.msg);
+                        objClass.showError(res.msg);
                     }
                 }
             });
         },
         submitSuccess:function(){
-            alert('提交申请成功');
+            this.showError('申请提交成功，请耐心等待审核...');
+            setTimeout(function(){
+                window.location.reload();
+            },2000);
         },
         sendSms1:function(){
             var mobile = $('#fr3-mobile').val();
-            if(!this.checkMobile(mobile)){
-                alert('手机号格式不正确');
-                return false;
+            if(!redream.checkMobile(mobile)){
+                this.showError('手机号格式不正确');return false;
             }
             if(codeObj.checkTime()){
+                console.log(window.name);
+                console.log('倒计时中1');
                 return false;
             }
             if(!this.sendSmsCode){
@@ -632,11 +588,12 @@
         },
         sendSms2:function(){
             var mobile = $('#fr4-mobile').val();
-            if(!this.checkMobile(mobile)){
-                alert('手机号格式不正确');
-                return false;
+            if(!redream.checkMobile(mobile)){
+                this.showError('手机号格式不正确');return false;
             }
-            if(codeObj.checkTime()){
+            if(codeObj2.checkTime()){
+                console.log(window.name);
+                console.log('倒计时中2');
                 return false;
             }
             if(!this.sendSmsCode){
@@ -659,32 +616,33 @@
                     }
                 });
             }
+        },
+        ajaxUploadImg(imname,formData){
+            $.ajax({
+                url: '/index/Upload/uploadImgFile',
+                type: 'POST',
+                cache: false,
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                success: function (res) {
+                    if(res.code == 200){
+                        $(imname).attr('src',res.data.url).css("opacity",1).show().prev().hide();
+                    }else{
+                        objClass.showError(res.msg);
+                    }
+                }
+            });
         }
     };
 
+    //ajax 上传图片
     $(".fr-file-btn-list").on("change", function () {
         var frid = $(this).data('frid');
-        var fromname = '#fr'+frid+'-from';
-        var imname  = '#fr'+frid+'-img';
-        var formData = new FormData($(fromname)[0]);
+        var formData = new FormData($('#fr'+frid+'-from')[0]);
         formData.append('type',2);
-        $.ajax({
-            url: '/index/Upload/uploadImgFile',
-            type: 'POST',
-            cache: false,
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: "json",
-            success: function (res) {
-                if(res.code == 200){
-                    $(imname).attr('src',res.data.url).css("opacity",1).show().prev().hide();
-                }else{
-                    alert(res.msg);
-                }
-            }
-        });
+        objClass.ajaxUploadImg('#fr'+frid+'-img',formData);
     });
 </script>
-<script src="/static/js/portrait.js"></script>
 </html>

@@ -15,34 +15,6 @@ class Article extends CController
     }
 
     /**
-     * 编辑器上传接口
-     */
-    public function editUpload(){
-        if(!$this->checkLogin()){
-            return $this->returnData([],'用户未登录',401);
-        }
-        $user_info = $this->getUserInfo();
-
-        if(!checkUserAuth($user_info['type'],7)){
-            return $this->returnData([],'未授权操作',403);
-        }
-    }
-
-    /**
-     * 上传视频接口
-     */
-    public function uploadVideo(){
-        if(!$this->checkLogin()){
-            return $this->returnData([],'用户未登录',401);
-        }
-        $user_info = $this->getUserInfo();
-
-        if(!checkUserAuth($user_info['type'],7)){
-            return $this->returnData([],'未授权操作',403);
-        }
-    }
-
-    /**
      * 发布文章接口
      */
     public function releaseArticle(Request $request){
@@ -100,6 +72,8 @@ class Article extends CController
         if(!checkUserAuth($user_info['type'],7)){
             return $this->returnData([],'未授权操作',403);
         }
+
+
     }
 
     /**
@@ -114,10 +88,15 @@ class Article extends CController
         if(!checkUserAuth($user_info['type'],8)){
             return $this->returnData([],'未授权操作',403);
         }
+
+
     }
 
+    /**
+     * 文章发布页面
+     * @return mixed
+     */
     public function article(){
         return $this->fetch('article/article_release');
     }
-
 }

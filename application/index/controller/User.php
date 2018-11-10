@@ -7,14 +7,17 @@ use app\api\model\UserModel;
 
 class User extends CController
 {
-    private $userDomain;
+    private $_userDomain;
     private $_userModel;
+    private $_authDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
-        $this->userDomain  = new \app\api\domain\UserDomain();
+        $this->_userDomain  = new \app\api\domain\UserDomain();
+
+        $this->_authDomain  = new \app\api\domain\AuthDomain();
 
         $this->_userModel = new UserModel();
     }
@@ -27,7 +30,7 @@ class User extends CController
             return redirect('/login');
         }
 
-        $user_info = $this->userDomain->getUserInfo($this->getUserInfo()['id']);
+        $user_info = $this->_userDomain->getUserInfo($this->getUserInfo()['id']);
 
         $this->assign('user_info',$user_info);
 
@@ -37,11 +40,20 @@ class User extends CController
     /**
      * 用户认证页面
      */
-    public function certification(){
+    public function certification(Request $request){
         if(!$this->checkLogin()){
             return redirect('/login');
         }
 
+        $authResult = $this->_authDomain->findAuthResult($this->getUserId());
+
+
+        $recertification = (int)$request->get('recertification',0);
+
+        $this->assign('recertification',$recertification);
+
+
+        $this->assign('authResult',$authResult);
         return $this->fetch('user/certification');
     }
 
@@ -136,13 +148,15 @@ class User extends CController
         $card_img2          = $request->post('card_img2');
         $qualification      = $request->post('qualification');
         $practice_certificate = $request->post('practice_certificate');
-        $name               = $request->post('name');
+        $enterprise_name    = $request->post('enterprise_name');
         $business_licence   = $request->post('business_licence');
+        $mobile             = $request->post('mobile');
+        $sms_code           = $request->post('sms_code');
+        $address            = $request->post('address');
 
         $data = [];
         $data['type']       =  $type;
-        $data['user_id']    =  $this->getUserInfo()['id'];
-        $data['user_id']    = 4;
+        $data['user_id']    =  $this->getUserId();
         $data['username']   =  $username;
         $data['idcard']     =  $idcard;
         $data['card_img1']  =  $card_img1;
@@ -151,17 +165,28 @@ class User extends CController
             $data['qualification']          = $qualification;
             $data['practice_certificate']   = $practice_certificate;
         }else if($type == 3 || $type == 4){
-            $data['name']               = $name;
+            $data['enterprise_name']    = $enterprise_name;
             $data['business_licence']   = $business_licence;
+
+            $smsObj = new \app\api\domain\SendSms();
+            $res = $smsObj->checkSmsCode($mobile,7,$sms_code);
+            if($res === 0 || $res === 2){
+                return $this->returnData([],'验证码错误',302);
+            }
+
+            $data['phone']          = $mobile;
+            $data['address']         = $address;
         }
 
-        $isTrue = (new \app\api\domain\AuthDomain())->addAuthentication($data);
+
+
+        $isTrue = $this->_authDomain->addAuthentication($data);
         if(!$isTrue){
             return $this->returnData([],'认证申请提交失败',305);
         }
+
         return $this->returnData([],'认证申请提交成功',200);
     }
-
 
     /**
      * 退出登录
@@ -185,9 +210,7 @@ class User extends CController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-
-
-        $res = $this->userDomain->editProfile($this->getUserId(),[
+        $res = $this->_userDomain->editProfile($this->getUserId(),[
             'nickname'      =>$nickname,
             'profile'       =>$profile
         ]);
@@ -198,4 +221,5 @@ class User extends CController
 
         return $this->returnData([],'修改成功',200);
     }
+
 }

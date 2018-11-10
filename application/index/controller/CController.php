@@ -20,6 +20,11 @@ class CController extends Controller
         #配置Session作用域
         Session::prefix('PC');
 
+        //设置跨域请求
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, Cookie,Host");
+        header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS,PATCH');
+
     }
 
     /**

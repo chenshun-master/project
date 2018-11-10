@@ -33,11 +33,9 @@ class AuthDomain
         $authModel = new AuthModel();
         $res = Db::name('auth')->where('user_id',$params['user_id'])->field('id,user_id,status,idcard,type')->find();
         $res1 = $authModel->findIdCard($params['idcard']);
-
         try {
             if(!$res){
                 if($res1){return 1;}
-
                 $isTrue  = Db::name('auth')->insert($params);
             }else if($res['status'] != 3){
                 if($res1 !== $res['user_id']){
@@ -89,5 +87,17 @@ class AuthDomain
             Db::rollback();
             return false;
         }
+    }
+
+
+    /**
+     * 获取用户申请记录
+     * @param $user_id   用户ID
+     */
+    public function findAuthResult($user_id){
+        $res = Db::name('auth')->where('user_id',$user_id)->find();
+
+
+        return $res ? :[];
     }
 }

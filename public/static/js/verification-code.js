@@ -56,7 +56,7 @@
                 document.getElementById(_this.idSelector).innerHTML = '('+ seconds + "s)重新获取";
                 document.getElementById(_this.idSelector).classList.add(_this.btnClass);
 
-                document.getElementById(_this.idSelector).disabled = true;
+                // document.getElementById(_this.idSelector).disabled = true;
                 --maxtime;
                 window.name = maxtime;
             }
@@ -64,7 +64,7 @@
                 clearInterval(timer);
                 document.getElementById(_this.idSelector).innerHTML = _this.characters;
                 document.getElementById(_this.idSelector).classList.remove(_this.btnClass);
-                document.getElementById(_this.idSelector).disabled = false;
+                // document.getElementById(_this.idSelector).disabled = false;
                 window.name = '';
             }
         }
