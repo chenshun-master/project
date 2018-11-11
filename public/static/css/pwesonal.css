@@ -302,3 +302,24 @@ a{text-decoration: none;color: #221815;display: block;}
 .wl-href{
 	contain: paint;
 }
+.wl-foot {
+	width: 100%;
+	height: 98px;
+	border-top: 1px solid #CACACA;
+	position: fixed;
+	bottom: 0;
+	background: white;
+}
+.wl-foot dl{
+	margin-top: -10px;
+	width: 25%;
+	height: 98px;
+	text-align: center;
+	float: left;
+}
+.wl-foot dt{
+	margin-top: -5px;
+	font-size: 22px;
+	color: #000000;
+
+}
