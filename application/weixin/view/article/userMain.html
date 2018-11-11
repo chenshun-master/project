@@ -34,7 +34,7 @@
 <body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
-        <img src="{$user_info['portrait']}" alt="" class="wx-img"/>
+        <img src="{$user_info['portrait']}" alt="" class="wx-img" onerror="this.src='/static/image/user/tou.png '" />
         <div class="wx-con">
             <h3 style="font-size:0.34rem;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
             <p class="wl-jianj">{$user_info['profile']}</p>
@@ -102,7 +102,7 @@
                 }
 
 				return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;">'+
-						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" class="wx-tou">'+
+						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" class="wx-tou"  onerror="this.src=\'/static/image/user/tou.png \'" >'+
                         '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+ data.published_time +'</dd>'+
                        ' </dl>'+'</div>'+
                          ' <div class="wx-nei1">'+
@@ -126,7 +126,7 @@
 
             	var src_img = '';
             	$.each(obj, function(k,v) {
-            		src_img +='<img src="'+v +'" alt="" style="margin-right: 4px;"/>';
+            		src_img +='<img src="'+v +'" alt="" style="margin-right: 4px;"  onerror="this.src=\'/static/image/user/tou.png \'" />';
             	});
             	return '  <div class="one-2" style="padding-top:20px;height: 1130px;border-bottom: 10px solid #EEEEEE;">'+
                    ' <div class="wx-name">'+
@@ -156,7 +156,7 @@
 
 						return	' <div class="ont-3" style="height: 350px;padding-top:20px;border-bottom: 10px solid #EEEEEE;">' +
 							' <div class="wx-name">' +
-							'   <img src="' + data.portrait + '" alt="" /class="wx-tou">' +
+							'   <img src="' + data.portrait + '" alt="" class="wx-tou"  onerror="this.src=\'/static/image/user/tou.png \'" >' +
 								'<dl class="wx-yh">' +
 								'  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">' + data.nickname + '</dt>' +
 								'<dd style="font-size:0.24rem;color: #898989;">' + data.published_time + '</dd>' +
