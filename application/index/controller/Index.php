@@ -12,6 +12,7 @@ use app\api\model\UserModel;
  */
 class Index extends CController
 {
+
     /**
      * 网站首页
      * @return string
@@ -23,8 +24,6 @@ class Index extends CController
         }
 
         return $this->redirect('user/main');
-
-        return '<h1 style="color: red;font-size: 20px;">微琳医美</h1>';
     }
 
     /**

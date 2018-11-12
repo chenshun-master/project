@@ -651,4 +651,29 @@
 
     });
 </script>
+
+
+<script type="text/javascript">
+
+    function callbacks(){
+        var shareMessage = {
+            title: '有一句话想对你说',
+            desc: '我的爱人，我会牵着你的手，走到满头白发的那一天，我会守护你生命里的精彩，并陪伴你一路精彩下去。',
+            link: 'http://xmp.sh-jinger.com/weixin/love/xiajinyan',
+            imgUrl: 'http://xmp.sh-jinger.com/upload/head-portrait/zkraWQHF5b7694a575435172557.png',
+        };
+
+        var wxCallback = {
+            success:function(){},
+            cancel:function(){},
+            fail:function(){},
+            complete:function(){}
+        };
+
+        weixinObj.onMenuShareTimeline(shareMessage,wxCallback);
+        weixinObj.onMenuShareAppMessage(shareMessage,wxCallback);
+    }
+
+    // var weixinObj = new WechatSdkModel(config,callbacks);
+</script>
 </html>
