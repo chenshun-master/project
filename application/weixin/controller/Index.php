@@ -57,8 +57,10 @@ class Index extends BaseController
          if($this->checkLogin()){
              return redirect('/weixin/user/main');
          }else if(is_weixin() && config('conf.weixin_automatic_logon')){
-             return $this->redirect('weixin/index/otherLogin?platform=weixin');
+//             return $this->redirect('weixin/index/otherLogin?platform=weixin');
          }
+
+         $this->wxAuthorize();
 
          return $this->fetch('index/login');
     }
@@ -425,7 +427,6 @@ class Index extends BaseController
         echo '500 错误页面';
     }
 
-
     public function test(){
 
         Db::startTrans();
@@ -449,6 +450,5 @@ class Index extends BaseController
     }
 
     public function test2(){
-
     }
 }
