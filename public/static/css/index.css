@@ -117,8 +117,8 @@ a {
 }
 
 .wx-n3 {
-    height: 30px;
-    margin-top: 30px;
+    height: 55px;
+    margin-top: 40px;
 }
 
 .wx-n3 span {
@@ -189,7 +189,7 @@ a {
 
 .wx-b2 {
     width: 680px;
-    height: 364px;
+    min-height: 310px;
     margin: 0 auto;
     border-bottom: 1px solid #F1F1F1;
 }
@@ -211,7 +211,7 @@ a {
 
 .wx-b3 {
     width: 680px;
-    min-height: 220px;
+    min-height: 240px;
     margin: 0 auto;
     border-bottom: 1px solid #F1F1F1;
     font-size: 0.38rem;
