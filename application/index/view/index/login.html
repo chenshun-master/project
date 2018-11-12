@@ -32,7 +32,7 @@
 			<div class="wl-shuru">
                 <p><input type="text" id="fr-login-mobile" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
                 <p ><input type="password" id="fr-login-password" placeholder="请输入密码" maxlength="18" class="wl-input"><span id="xian"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9;cursor: pointer"></i></span></p>
-                <button href="" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</button>
+                <a href="#wl-neirong1" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px" onclick="zhuce2()">忘记密码？</a>
                 <button class="btn" id="fr-login-btn" onclick="objClass.login()" style="cursor: pointer">登录</button>
             </div>
             </div>
@@ -315,36 +315,36 @@
                 }
             }
         };
-
+        //登录页密码显示隐藏
         $("#xian").click(function(){
-            if($("#password1").prop("type")=="password"){
-                $("#password1").prop("type","text");
+            if($("#fr-login-password").prop("type")=="password"){
+                $("#fr-login-password").prop("type","text");
 
                 $("#xian i").attr("class","iconfont icon-yanjing1")
             }else{
-                $("#password1").prop("type","password");
+                $("#fr-login-password").prop("type","password");
                 $("#xian i").attr("class","iconfont icon-yanjing")
             }
         });
-
+        //修改密码显示隐藏
         $("#xian1").click(function(){
-            if($("#password2").prop("type")=="password"){
-                $("#password2").prop("type","text");
+            if($("#fr-reset-password").prop("type")=="password"){
+                $("#fr-reset-password").prop("type","text");
 
                 $("#xian1 i").attr("class","iconfont icon-yanjing1")
             }else{
-                $("#password2").prop("type","password");
+                $("#fr-reset-password").prop("type","password");
                 $("#xian1 i").attr("class","iconfont icon-yanjing")
             }
         });
 
         $("#xian2").click(function(){
-                if($("#password").prop("type")=="password"){
-                    $("#password").prop("type","text");
+                if($("#fr-reg-password").prop("type")=="password"){
+                    $("#fr-reg-password").prop("type","text");
 
                     $("#xian2 i").attr("class","iconfont icon-yanjing1")
                 }else{
-                    $("#password").prop("type","password");
+                    $("#fr-reg-password").prop("type","password");
                     $("#xian2 i").attr("class","iconfont icon-yanjing")
                 }
             })
