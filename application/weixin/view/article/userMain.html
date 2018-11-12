@@ -101,7 +101,7 @@
                     var css = 'icon-appreciate_light';
                 }
 
-				return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;">'+
+				return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;position: relative">'+
 						' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" class="wx-tou"  onerror="this.src=\'/static/image/user/tou.png \'" >'+
                         '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+ data.published_time +'</dd>'+
                        ' </dl>'+'</div>'+
@@ -128,7 +128,7 @@
             	$.each(obj, function(k,v) {
             		src_img +='<img src="'+v +'" alt="" style="margin-right: 4px;"  onerror="this.src=\'/static/image/user/tou.png \'" />';
             	});
-            	return '  <div class="one-2" style="padding-top:20px;height: 1130px;border-bottom: 10px solid #EEEEEE;">'+
+            	return '  <div class="one-2" style="padding-top:20px;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relative">'+
                    ' <div class="wx-name">'+
                        ' <img src="'+data.portrait+'" alt="" class="wx-tou">'+
                       '  <dl class="wx-yh">'+
@@ -154,7 +154,7 @@
                             var css = 'icon-appreciate_light';
                         }
 
-						return	' <div class="ont-3" style="height: 350px;padding-top:20px;border-bottom: 10px solid #EEEEEE;">' +
+						return	' <div class="ont-3" style="min-height: 320px;padding-top:20px;border-bottom: 10px solid #EEEEEE;position: relative">' +
 							' <div class="wx-name">' +
 							'   <img src="' + data.portrait + '" alt="" class="wx-tou"  onerror="this.src=\'/static/image/user/tou.png \'" >' +
 								'<dl class="wx-yh">' +

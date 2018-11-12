@@ -109,10 +109,12 @@ a{text-decoration: none;color: #221815;display: block;}
 	width: 145px;
 	height: 80px;
 	float: left;
+	margin-left: 27px;
 	text-align: center;
 	margin-top: 15px;
+}
 
-}.wx-sc dt{
+.wx-sc dt{
 	width: 170px;
 	height: 60px;
 	float: left;

@@ -4,7 +4,6 @@
     <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/article_details.css"/>
@@ -67,9 +66,9 @@
             </dl>
             <button class="wx-rig">加好友</button>
         </div>
-        <div style="margin-left: 10px;font-size: 0.32rem;padding: 5px 15px" class="mp"><?php echo $article_info['content'] ?></div>
-        <p class="wx-fx" style="min-height: 50px;">
-            <button style="margin-left: 33px;" id="cus-click-fabulous"    class="<?php if($isFabulous == 2):?>wx-fabulous-yes<?php endif;?>"     data-fabulous="{$isFabulous? '2' : '1'}"
+        <div style="   font-size: 0.32rem;padding: 5px 15px" class="mp"><?php echo $article_info['content'] ?></div>
+        <p class="wx-fx" style="min-height: 50px;margin-top: 20px;">
+            <button style="margin-left: 20px;" id="cus-click-fabulous"    class="<?php if($isFabulous == 2):?>wx-fabulous-yes<?php endif;?>"     data-fabulous="{$isFabulous? '2' : '1'}"
                     onclick="objClass.clickFabulous()">{$article_info['like']}
             </button>
             <button onclick="myShare.wechatTimeline()">分享朋友圈</button>
@@ -89,7 +88,7 @@
             <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
         </div>
 
-        <div class="" style="height: 120px;">
+        <div class="" style="height: 85px;width: 100%">
         	
         </div>
 
@@ -106,7 +105,6 @@
 
             </div>
         </div>
-
         <div class="wx-foot">
             <input type="text" placeholder="写评论..." class="xpq1"/>
             <dl></dl>
@@ -153,7 +151,7 @@
                 var html = '<div class="wzxq "  >' +
                     '<div class="wx-x">' +
                         '<h3   onclick="objClass.hrefDetails('+ data.id +')"  >' + data.title + '</h3>' +
-                        '<p style="margin-top: -20px;"><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
+                        '<p><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
                         '</div>' +
                         '<img src="' + src + '" alt="" class="cus-recommend-href"  data-id="' + data.id + '"  />' +
                     '</div>';
