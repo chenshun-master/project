@@ -114,7 +114,8 @@
         </div>
     </div>
     <div class="wl-zhez1">
-        <div class="wl-zl1"  id="cus-from-box2" >
+        <div class="wl-zl1"  id="cus-from-box2" style="position: relative">
+            <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-changepwd-err-tip"></p>
             <div class="wl-title1">密码修改</div>
             <div class="cus-from-box2-1">
                 <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
@@ -122,7 +123,7 @@
                 <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()" style="color: #7DB0E8">发送验证码</button></div>
                 <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
                 <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
-                <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn">立即修改</button> </div>
+                <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn" disabled>立即修改</button> </div>
             </div>
 
             <div class="cus-from-box2-2" style="display: none;">
@@ -250,66 +251,60 @@
     var objClass1 = {
         loading:false,
         sendSmsCode:false,
+        errr:function(msg){
+            $('#cus-changepwd-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
+        },
         submit:function () {
             var sms_code  = $('#fr-box1-sms-code').val();
             var password  = $('#fr-box1-password').val();
             var password1 = $('#fr-box1-password2').val();
             if(password == ''){
-                alert('请输入新密码！');return false;
-            }
-
-            if(password1 == ''){
-                alert('请输入确认新密码！');return false;
-            }
-
-            if(password != password1){
-                alert('两次密码输入不一致！');return false;
-            }
-
-            if(this.loading){
-                return false;
-            }
-
-            $.ajax({
-                url:"/index/user/modifyPassword",
-                type:'post',
-                data:{password:password,sms_code:sms_code},
-                dataType:'json',
-                beforeSend:function(){
-                    objClass1.loading = true;
-                    $('#fr-box2-btn').text('修改中...');
-                },
-                complete:function(){
-                    objClass1.loading = false;
-                    $('#fr-box2-btn').text('立即修改');
-                },
-                success:function(res){
-                    if(res.code == 200){
+                this.errr('请输入新密码！');return false;
+            }else if(password1 == ''){
+                this.errr('请输入确认新密码！');return false;
+            }else if(password != password1){
+                this.errr('两次密码输入不一致！');return false;
+            }else if(!this.loading){
+                $.ajax({
+                    url:"/index/user/modifyPassword",
+                    type:'post',
+                    data:{password:password,sms_code:sms_code},
+                    dataType:'json',
+                    beforeSend:function(){
                         objClass1.loading = true;
-                        $('.cus-from-box2-1').hide();
-                        $('.cus-from-box2-2').show();
+                        $('#fr-box2-btn').text('修改中...');
+                    },
+                    complete:function(){
+                        objClass1.loading = false;
+                        $('#fr-box2-btn').text('立即修改');
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            objClass1.loading = true;
+                            $('.cus-from-box2-1').hide();
+                            $('.cus-from-box2-2').show();
 
-                        $('#fr-box1-sms-code').val('');
-                        $('#fr-box1-password').val('');
-                        $('#fr-box1-password2').val('');
-                    }else if(res.code == 302){
-                        return false;
-                    }else if(res.code == 303){
-                        return false;
+                            $('#fr-box1-sms-code').val('');
+                            $('#fr-box1-password').val('');
+                            $('#fr-box1-password2').val('');
+                            $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
+                        }else if(res.code == 302){
+                            return false;
+                        }else if(res.code == 303){
+                            return false;
+                        }
                     }
-                }
-            });
+                });
+            }
         },
         sendSms:function(){
             var mobile = $('#fr-box1-mobile').val();
-            if(!objClass.checkMobile(mobile)){
-                console.log(mobile);
+            if(!redream.checkMobile(mobile)){
+                this.errr('手机号格式错误！');return false;
                 return false;
-            }
-
-            if(codeObj1.checkTime()){return false;}
-
-            if(!this.sendSmsCode){
+            }else if(codeObj1.checkTime()){
+                return false;
+            }else if(!this.sendSmsCode){
                 $.ajax({
                     url:"/index/index/sendSmsCode",
                     type:'post',
@@ -324,8 +319,9 @@
                     success:function(res){
                         if(res.code == 200){
                             codeObj1.sendSmsCode();
+                            objClass1.errr('验证码发送成功！');
                         }else{
-                            alert('发送失败');
+                            objClass1.errr('验证码发送失败！');
                         }
                     }
                 });
@@ -338,13 +334,10 @@
         submit:function(){
             var nickname = $.trim($('#fr-box2-nickname').val());
             var profile = $.trim($('#fr-box2-profile').val());
-
             if(nickname == ''){
                 alert('昵称不能为空');
                 return false;
-            }
-
-            if(!this.loading){
+            }else if(!this.loading){
                 $.ajax({
                     url:"/index/user/editProfile",
                     type:'post',
@@ -423,8 +416,6 @@
             $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
         }
     });
-
-
 </script>
 <script type="text/javascript">
     $(function(){
