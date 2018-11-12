@@ -54,13 +54,13 @@ class Index extends BaseController
 	 * 用戶登录页
      */
 	 public function login(){
-        if($this->checkLogin()){
-            return redirect('/weixin/user/main');
-        }
+         if($this->checkLogin()){
+             return redirect('/weixin/user/main');
+         }else if(is_weixin() && config('conf.weixin_automatic_logon')){
+             return $this->redirect('weixin/index/otherLogin?platform=weixin');
+         }
 
-
-
-        return $this->fetch('index/login');
+         return $this->fetch('index/login');
     }
 
     /**
@@ -246,6 +246,7 @@ class Index extends BaseController
 
         //设置回跳地址
         $confData['callback'] = 'https://weixin.alimx.cn/weixin/index/otherLoginCallback?platform='.$platform;
+
 
         /**
          * 对于微博，如果登录界面要适用于手机，则需要设定->setDisplay('mobile')

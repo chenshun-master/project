@@ -58,7 +58,6 @@ class WeChatApi{
      * @return string access_token
      */
     public function getAccessToken() {
-        $access_token = '';
         $res = $this->wxTokenModel->findAccessToekn($this->appId);
         if($res && $res['expiry_time'] > date('Y-m-d H:i:s')){
             $access_token = $res['access_token'];
@@ -67,9 +66,8 @@ class WeChatApi{
             $res = $this->httpGet($url);
             $resarr = json_decode($res, true);
             if(!$this->CheckError($resarr)){
-                $time = time();
                 $expiry_time = date('Y-m-d H:i:s',(time() + $resarr['expires_in'] - 100));
-                $createRes = $this->wxTokenModel->createToken([
+                $this->wxTokenModel->createToken([
                     'app_id'        =>  $this->appId,
                     'access_token'  =>  $resarr['access_token'],
                     'expiry_time'   =>  $expiry_time,
