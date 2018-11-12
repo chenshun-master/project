@@ -22,7 +22,7 @@
 <body  style="background: #F8F8F8"   >
 <div class="wl-con" >
     <div class="wl-top" >
-        <div style="position:relative;width:1265px;margin:0 auto;top:17px;left: 10px">
+        <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
             <img src="/pc/image/logo1.png" alt="" >
         </div>
     </div>
@@ -78,7 +78,7 @@
                             </span>
                         </div>
                         <div><span>用户账号</span>  <span>{$user_info['mobile']}</span></div>
-                        <div> <span>绑定手机</span> <span>{$user_info['mobile']}</span><span style="float: right">如需更换,<i style="color: #FD7D7D">请前往"安全中心"</i></span></div>
+                        <div> <span>绑定手机</span> <span>{$user_info['mobile']}</span><span style="float: right">如需更换,<i style="color: #FD7D7D;cursor: pointer" onclick="deme()" >请前往"安全中心"</i></span></div>
                         <div> <span>运营人</span> <span>打个粉丝</span></div>
                         <div><span>联系邮箱</span>  <span>无</span></div>
                         <div><span>所在地</span>  <span>无</span></div>
@@ -157,7 +157,7 @@
     </div>
 </div>
 </div>
-
+<footer class="wl-foot" style="bottom: -100px;">Copyright © 2018 薇琳医美 - 沪ICP备18005435号-1</footer>
 </body>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/jquery.min.js"></script>
@@ -507,5 +507,10 @@
             }
         });
     });
+    function deme() {
+        $(".one").hide();
+        $(".two").show();
+        $(".top span").eq(index).addClass("se").siblings().removeClass("se");
+    }
 </script>
 </html>
