@@ -15,7 +15,6 @@ class Index extends BaseController
     public function message(){
         $this->weChatApiClass   = new \wechat\WeChatApi();
 
-        Log::record('测试按会计师带你飞 卡十多年放假 开讲啦是的那就发');
         if(isset($_GET["echostr"])){
             $this->weChatApiClass->valid();
         }else if($this->weChatApiClass->checkSignature()){

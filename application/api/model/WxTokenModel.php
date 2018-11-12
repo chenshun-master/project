@@ -22,9 +22,9 @@ class WxTokenModel extends Model
      * @return type
      */
     public function findAccessToekn($appid){
-        $res = self::where('app_id',$appid)->orderBy('created_at', 'desc')->first();
+        $res = self::where('app_id',$appid)->order('created_at', 'desc')->find();
         if($res){
-            return $res->toarray();
+            return $res;
         }
         return [];
     }

@@ -54,13 +54,15 @@ class Index extends BaseController
 	 * 用戶登录页
      */
 	 public function login(){
-        if($this->checkLogin()){
-            return redirect('/weixin/user/main');
-        }
+         if($this->checkLogin()){
+             return redirect('/weixin/user/main');
+         }else if(is_weixin() && config('conf.weixin_automatic_logon')){
+//             return $this->redirect('weixin/index/otherLogin?platform=weixin');
+         }
 
+         $this->wxAuthorize();
 
-
-        return $this->fetch('index/login');
+         return $this->fetch('index/login');
     }
 
     /**
@@ -247,6 +249,7 @@ class Index extends BaseController
         //设置回跳地址
         $confData['callback'] = 'https://weixin.alimx.cn/weixin/index/otherLoginCallback?platform='.$platform;
 
+
         /**
          * 对于微博，如果登录界面要适用于手机，则需要设定->setDisplay('mobile')
          * 对于微信，如果是公众号登录，则需要设定->setDisplay('mobile')，否则是WEB网站扫码登录
@@ -424,7 +427,6 @@ class Index extends BaseController
         echo '500 错误页面';
     }
 
-
     public function test(){
 
         Db::startTrans();
@@ -448,6 +450,5 @@ class Index extends BaseController
     }
 
     public function test2(){
-
     }
 }

@@ -4,6 +4,7 @@ namespace app\weixin\controller;
 use think\App;
 use think\Controller;
 use think\facade\Session;
+use think\facade\Url;
 use think\route\dispatch\Redirect;
 use think\facade\Request;
 
@@ -15,29 +16,13 @@ use think\facade\Request;
 class BaseController extends Controller
 {
 
+    public $weChatApiClass;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         #配置Session作用域
         Session::prefix('weixin');
-
-        #判断是否为微信浏览器 如果是浏览器强制登录
-        if(is_weixin() && config('conf.weixin_automatic_logon') && !$this->checkLogin()){
-            $path = Request::url();
-            $urlArr = [
-                '/weixin/index/otherLogin',
-                '/weixin/index/sendOtherLoginSmsCode',
-                '/weixin/index/otherLoginCallback',
-                '/weixin/index/otherLoginBindingMobile',
-                '/weixin/index/bindingMobileHandle'
-            ];
-
-
-            if(!in_array($path,$urlArr)){
-//                return $this->redirect('weixin/index/otherLogin?platform=weixin');
-            }
-        }
     }
 
     /**
@@ -101,5 +86,59 @@ class BaseController extends Controller
             'msg'  =>$msg,
             'data' =>$data
         ],$httpCode);
+    }
+
+    /**
+     * 微信授权登录
+     * @return type
+     */
+    public function wxAuthorize($snsapi_userinfo = false){
+        $this->weChatApiClass = new \wechat\WeChatApi();
+
+        //获取当前页面
+        $redirect = Request::url(true);
+
+        //微信授权回调地址
+        $url = Url('/weixin/index/authCallback','','',true);
+        if(Session::has('wxAuthorize')){
+            $wxAuthorize = Session::get('wxAuthorize');
+            if($snsapi_userinfo === true && $wxAuthorize['scope'] != 'snsapi_userinfo'){
+                $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redirect,$snsapi_userinfo);
+                $this->weChatApiClass->redirect($redirect);exit;
+            }else{
+                #1.检验用户网页授权凭证（access_token）是否有效
+                $valid_result = $this->weChatApiClass->getUserAuthorizeAccessTokenValid($wxAuthorize['access_token'],$wxAuthorize['openid']);
+                if(!$valid_result){
+                    #2.刷新user access token  ||　refresh user access token还失效 重新获取授权
+                    $res = $this->weChatApiClass->refreshUserAuthorizeAccessToken($wxAuthorize['refresh_token']);
+                    if(!isset($res['errcode'])){
+                        $res['expires_time'] = time() + $res['expires_in'];
+                        $res['userinfo'] = [];
+                        Session::set('wxAuthorize',$res);
+                    }
+                }
+            }
+
+            return true;
+        }else{
+            $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redirect,$snsapi_userinfo);
+            $this->weChatApiClass->redirect($redirect);exit;
+        }
+    }
+
+    /**
+     * 微信授权回调地址
+     */
+    public function authCallback(Request $request){
+        $code   = $_GET['code'];
+        $state  = $_GET['state'];
+
+        $res = (new \wechat\WeChatApi())->getUserAuthorizeAccessToken($code);
+        if(!isset($res['errcode'])){
+            $res['expires_time'] = time() + $res['expires_in'];
+            $res['userinfo'] = [];
+            $request->session()->put('wxAuthorize', $res);
+            return redirect()->to($state);
+        }
     }
 }
