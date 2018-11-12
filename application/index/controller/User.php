@@ -37,6 +37,7 @@ class User extends CController
         return $this->fetch('user/main');
     }
 
+
     /**
      * 用户认证页面
      */

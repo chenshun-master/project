@@ -63,7 +63,14 @@ class User extends BaseController
     {
         return $this->fetch('user/collection');
     }
+    /**
+     * 修改手机号
+     */
+    public function replacephone(){
 
+
+        return $this->fetch('user/replace_phone');
+    }
     /**
      * 上传用户头像接口
      */

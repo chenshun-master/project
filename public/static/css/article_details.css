@@ -20,10 +20,11 @@ html,body{ height:100%;overflow:visible }
 }
 .ding {
 	width: 100%;
-	height: 82px;
+	height: 50px;
 	line-height: 82px;
-	background: url(../image/reg/zj.png)no-repeat 36px 26px;
-	background-size: 40px 40px;
+	background: url(../image/reg/zj.png)no-repeat 15px 11px;
+	background-size: 25px 25px;
+	border-bottom:1px solid #F1F1F1 ;
 }
 
 .ding p {
@@ -40,10 +41,17 @@ html,body{ height:100%;overflow:visible }
 }
 
 .top1 {
-	width: 670px;
+	width: 100%;
 	height: auto;
 	margin: 0 auto;
+	margin-top: 20px;
+	padding-left: 20px;
 	font-size: 0.35rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+
 }
 
 .top2 {
@@ -63,32 +71,32 @@ html,body{ height:100%;overflow:visible }
 }
 
 .wx-tou {
-	width: 72px;
-	height: 72px;
+	width: 60px;
+	height: 60px;
 	display: block;
 	border-radius: 50%;
 	background: khaki;
 	position: absolute;
 	top: 0;
-	left: 34px;
+	left: 25px;
 }
 
 .wx-yh {
 	position: absolute;
-	top: 0px;
-	left: 124px;
+	top: 4px;
+	left: 96px;
 }
 
 .wx-rig {
-	width: 140px;
-	height: 56px;
+	width: 90px;
+	height: 35px;
 	background: #7DB0E8;
 	color: #FFFFFF;
-	font-size:0.26rem;
+	font-size: 0.26rem;
 	position: absolute;
-	right: 36px;
-	top: 8px;
-	border-radius: 10px;
+	right: 23px;
+	top: 5px;
+	border-radius: 5px;
 }
 
 .wx-img {
@@ -100,38 +108,39 @@ html,body{ height:100%;overflow:visible }
 }
 
 .wx-fx button {
-	width: 218px;
-	height: 72px;
-	line-height: 72px;
+	width: 110px;
+	height: 36px;
+	line-height: 36px;
 	border: 1px solid #E0E0E0;
 	border-radius: 10px;
 	color: #1D1D1D;
 	font-size: 0.24rem;
 	background: white;
+
 }
 
 .wx-fx button:nth-child(1) {
-	background: url(../image/user/dz.png)no-repeat 35px 10px;
-	background-size: 40px 40px;
+	background: url(../image/user/dz.png)no-repeat 12px 7px;
+	background-size: 20px 20px;
 }
 
 
 
 .wx-fabulous-yes{
     background: url(../image/index/dz.png)no-repeat 35px 10px !important;
-    background-size: 30px;
+	background-size: 20px 20px;
 }
 
 .wx-fx button:nth-child(2) {
 	padding-left: 38px;
-	background: url(../image/user/pyq.png)no-repeat 25px 16px;
-	background-size: 35px 37px;
+	background: url(../image/user/pyq.png)no-repeat 10px 8px;
+	background-size: 20px 20px;
 }
 
 .wx-fx button:nth-child(3) {
 	padding-left: 33px;
-	background: url(../image/user/wx.png)no-repeat 33px 19px;
-	background-size: 37px 33px;
+	background: url(../image/user/wx.png)no-repeat 10px 9px;
+	background-size: 20px 20px;
 }
 
 .wx-xg {
@@ -145,20 +154,19 @@ html,body{ height:100%;overflow:visible }
 }
 
 .wzxq {
-	width: 680px;
-	height: 128px;
+	width: 90%;
+	height: 100px;
 	margin: 0 auto;
-	margin-top: 40px;
+	margin-top: 20px;
 	margin-left: 10px;
-	;
 	position: relative;
 }
 
 .wx-x {
-	width: 406px;
-	height: 72px;
+	width: 180px;
+	min-height: 70px;
 	position: absolute;
-	left: 36px;
+	left: 15px;
 }
 
 .wx-x h3 {
@@ -187,17 +195,18 @@ margin-top: 20px;
 }
 
 .wzxq img {
-	width: 226px;
-	height: 128px;
+	width: 150px;
+	height: 90px;
 	display: block;
 	float: right;
+	/* margin-right: 10px; */
 	background: gray;
 }
 
 .ckgd {
 	width: 100%;
-	height: 106px;
-	line-height: 106px;
+	height: 70px;
+	line-height: 70px;
 	text-align: center;
 	color: #222222;
 	font-size: 0.28rem;
@@ -309,7 +318,7 @@ margin-top: 20px;
 .wx-foot {
 	display: block;
     width: 100%;
-    height: 100px;
+    height: 60px;
     position: fixed;
     bottom: 0px;
     background: white;
@@ -319,17 +328,17 @@ margin-top: 20px;
 }
 
 .wx-foot input {
-	width: 420px;
-	height: 64px;
-	border-radius: 10px;
-	padding-left: 50px;
+	width: 250px;
+	height: 35px;
+	border-radius: 25px;
+	padding-left: 41px;
 	color: #040404;
 	font-size: 0.26rem;
 	background: url(../image/user/xpl.png)no-repeat 9px 9px;
-	background-size: 40px;
+	background-size: 20px;
 	background-color: #F4F5F6;
 	float: left;
-	margin-left: 40px;
+	margin-left: 10px;
 }
 
 .wx-foot dl {
@@ -337,9 +346,9 @@ margin-top: 20px;
 	height: 50px;
 	display: block;
 	float: left;
-	margin-left: 52px;
 	background: url(../image/user/ly.png)no-repeat 10px 10px;
-	background-size: 40px;
+	background-size: 20px;
+	margin-left: 15px;
 }
 
 .wx-foot dt {
@@ -348,9 +357,9 @@ margin-top: 20px;
 	display: block;
 	background: gold;
 	float: left;
-	margin-left: 55px;
+
 	background: url(../image/user/sc.png)no-repeat 10px 10px;
-	background-size: 40px;
+	background-size: 20px;
 }
 
 .marsk-container {
@@ -489,28 +498,29 @@ margin-top: -30px;
 }
 .kl1 {
 	width: 100%;
-	height: 100px;
+	height: 60px;
 	position: fixed;
 	bottom: 0;
 	border-top: 1px solid #E5E5E5;
 	background: white;
 }
-.kl1>input{margin-top: 20px;
+.kl1>input{
+	margin-top: 10px;
 	border-radius: 50px;
-	margin-left: 36px;
-	width: 594px;
-	height: 60px;
+	margin-left: 10px;
+	width: 315px;
+	height: 35px;
 	background: #E5E5E5;
 	color: #888888;
 	font-size: 0.32rem;
 	padding-left: 22px;
 }
 .kl1>button{
-
 	line-height: 30px;
 	color: #888888;
 	font-size: 0.32rem;
 	background: white;
+	margin-left:15px;
 }
 .ovfHiden{overflow: hidden;height: 100%;}
 .wl-href{
@@ -549,4 +559,10 @@ margin-top: -30px;
 	float: left;
 	width: 99%;
 	min-height: 400px;
+}
+.mp img{
+	width: 100%;
+	min-height: 150px;
+	float:left;
+	margin:0 auto;
 }
