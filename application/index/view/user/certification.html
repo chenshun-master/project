@@ -21,7 +21,7 @@
             top: 0px;
         }
 
-        .wl-hidden{display: none !important;}
+        .wl-hidden{display: none !important;};
         .xian{
             color: #7DB0E8;
         }
@@ -32,6 +32,9 @@
         }
         .wl-xin{
             color: #FD7D7D;
+        }
+        .se{
+            color: #7DB0E8;
         }
     </style>
 </head>
@@ -57,7 +60,7 @@
             <div class="wl-xian1">
                 <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;"></i>实名认证</span><i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px"></i>
             </div>
-            <div class="wl-cang1" >
+            <div class="wl-cang1" style="display: none">
                 <li class="active">个人认证</li>
                 <li>医生认证</li>
                 <li>医院认证</li>
@@ -80,12 +83,12 @@
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
                             <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px;cursor: pointer ">
-                                <dl style="position: absolute;width: 120px;height: 120px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt">
+                                <dl style="position: absolute;width: 123px;height: 120px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt">
                                     <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                     <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面 </dt>
                                 </dl>
 
-                                <img id="fr1-img" class="clo"  width="134" height="134" style="border-radius: 10px !important;width: 134px;height: 134px;display:none;"/>
+                                <img id="fr1-img" class="clo"  width="125" height="125" id="wl-nui"/>
                                 <form id="fr1-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr1-file-btn"  data-frid="1" name="imgFile" class="file  fr-file-btn-list"   style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
@@ -102,7 +105,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
 
-                            <img id="fr2-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr2-img" class="clo"   width="125" height="125"class="wl-nui"/>
                             <form id="fr2-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr2-file-btn"  data-frid="2"    name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -129,7 +132,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
 
-                            <img id="fr3-img" class="clo"  width="134" height="134" style="border-radius: 10px ;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr3-img" class="clo"   width="125" height="125"class="wl-nui"/>
 
                             <form id="fr3-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr3-file-btn" data-frid="3"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer;position: absolute"  />
@@ -146,7 +149,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
 
-                            <img id="fr4-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr4-img" class="clo"  width="125" height="125"class="wl-nui"/>
                             <form id="fr4-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr4-file-btn" data-frid="4"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -166,7 +169,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 8px;cursor: pointer">添加资格证</dt>
                             </dl>
 
-                            <img id="fr5-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr5-img" class="clo"  width="125" height="125"class="wl-nui"/>
                             <form id="fr5-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr5-file-btn"  data-frid="5" name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -184,7 +187,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
                             </dl>
 
-                            <img id="fr6-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr6-img" class="clo"   width="125" height="125"class="wl-nui"/>
                             <form id="fr6-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr6-file-btn"  data-frid="6" name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -217,7 +220,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
 
-                            <img id="fr7-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr7-img" class="clo"  width="125" height="125"class="wl-nui"/>
                             <form id="fr7-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr7-file-btn" data-frid="7"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -233,7 +236,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
 
-                            <img id="fr8-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr8-img" class="clo"   width="125" height="125"class="wl-nui"/>
 
                             <form id="fr8-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr8-file-btn" data-frid="8"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
@@ -254,7 +257,7 @@
                             </dl>
 
 
-                            <img id="fr9-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr9-img" class="clo"  width="125" height="125"class="wl-nui"/>
                             <form id="fr9-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr9-file-btn" data-frid="9"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -286,7 +289,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
 
-                            <img id="fr10-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr10-img" class="clo"   width="125" height="125"class="wl-nui"/>
                             <form id="fr10-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr10-file-btn" data-frid="10"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -302,7 +305,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
                             </dl>
 
-                            <img id="fr11-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr11-img" class="clo"  width="125" height="125"class="wl-nui"/>
                             <form id="fr11-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr11-file-btn"  data-frid="11" name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -323,7 +326,7 @@
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
                             </dl>
 
-                            <img id="fr12-img" class="clo"  width="134" height="134" style="border-radius: 10px;width: 134px;height: 134px;display:none;"/>
+                            <img id="fr12-img" class="clo"   width="125" height="125"class="wl-nui"/>
                             <form id="fr12-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr12-file-btn" data-frid="12"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                             </form>
@@ -647,7 +650,6 @@
             });
         }
     };
-
     //ajax 上传图片
     $(".fr-file-btn-list").on("change", function () {
         var frid = $(this).data('frid');
@@ -655,13 +657,9 @@
         formData.append('type',2);
         objClass.ajaxUploadImg('#fr'+frid+'-img',formData);
     });
-    $(".wl-shimin ").click(function(){
-        if($(this).hasClass("xian")){
-            $(this).removeClass("xian");
-        }else{
-            $(this).addClass("xian");
-        }
-    });
+    $('.wl-shimin').click(function () {
+        $(this).toggleClass('se');
+    })
 
 </script>
 </html>
