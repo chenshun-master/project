@@ -144,7 +144,7 @@ a {
 .tab-content div {
     float: left;
     width: 1000px;
-    min-height:865px;
+    min-height:815px;
     color: #000;
     display: none;
     background: #FFFFFF;
@@ -325,7 +325,7 @@ a {
     width: 100%;
     height: 88px;
     border-top: 2px solid #F1F1F1;
-    position: absolute;bottom: 110px;
+    position: absolute;bottom: 90px;
 }
 .wl-btn button{
     width: 130px;
@@ -365,7 +365,7 @@ a {
     width: 100%;
     height: 88px;
     border-top: 2px solid #F1F1F1;
-    position: absolute;bottom: 35px;
+    position: absolute;bottom: 65px;
 }
 .wl-btn1 button{
     width: 130px;
@@ -1005,4 +1005,15 @@ width: 100%;
     margin: 4px;
     border: 0;
    border-radius:25px;
+}
+.wl-foot{
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    position: absolute;
+    bottom: -100px;
+    margin: 0 auto;
+    text-align: center;
+    color: #999999;
+    font-size: 14px;
 }
