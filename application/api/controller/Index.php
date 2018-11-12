@@ -1,15 +1,22 @@
 <?php
 namespace app\api\controller;
 
+use think\Request;
+
 class Index extends BaseController
 {
-    public function index()
-    {
-        return '接口文档';
-    }
+    /**
+     * 微信公众号消息推送接口
+     * @return mixed
+     */
+    public function message(){
+        $this->weChatApiClass 	= new \wechat\WeChatApi();
 
-    public function hello($name = 'ThinkPHP5')
-    {
-        return 'hello,' . $name;
+        if(isset($_GET["echostr"])){
+            $this->weChatApiClass->valid();
+        }else if($this->weChatApiClass->checkSignature()){
+            $content = Request::getContent();
+            return $this->weChatApiClass->responseMsg();
+        }
     }
 }

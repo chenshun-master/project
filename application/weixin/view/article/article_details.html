@@ -650,21 +650,7 @@
 
 
 <script type="text/javascript">
-    var config = {
-        debug:false,
-        appId: '{{$weixin_config["appId"]}}',
-        timestamp: '{{$weixin_config["timestamp"]}}',
-        nonceStr: '{{$weixin_config["nonceStr"]}}',
-        signature: '{{$weixin_config["signature"]}}',
-        jsApiList: [
-            'checkJsApi',
-            "onMenuShareTimeline",              //分享给好友
-            "onMenuShareAppMessage",            //分享到朋友圈
-            "onMenuShareQQ",                    //分享到QQ
-            "onMenuShareWeibo",                 //分享到微博
-            "checkJsApi","scanQRCode",          //如果需要调扫码  侧加入至列表
-        ]
-    };
+
     function callbacks(){
         var shareMessage = {
             title: '有一句话想对你说',
@@ -684,6 +670,6 @@
         weixinObj.onMenuShareAppMessage(shareMessage,wxCallback);
     }
 
-    var weixinObj = new WechatSdkModel(config,callbacks);
+    // var weixinObj = new WechatSdkModel(config,callbacks);
 </script>
 </html>
