@@ -34,25 +34,26 @@ class AuthDomain
         $res = Db::name('auth')->where('user_id',$params['user_id'])->field('id,user_id,status,idcard,type')->find();
         $res1 = $authModel->findIdCard($params['idcard']);
         try {
+            $isTrue = false;
             if(!$res){
-                if($res1){return 1;}
+                if($res1){
+                    return 1;
+                }
                 $isTrue  = Db::name('auth')->insert($params);
             }else if($res['status'] != 3){
                 if($res1 !== $res['user_id']){
                     return 1;
-                }
-
-                if(intval($params['type']) != intval($res['type'])){
+                }else if(intval($params['type']) != intval($res['type'])){
                     return 2;
                 }
 
                 $isTrue  = Db::name('auth')->where('id', $res['id'])->data($params)->update();
             }
+
+            return $isTrue ? true : false;
         } catch (\Exception $e) {
             return false;
         }
-
-        return $isTrue ? true : false;
     }
 
     /**
@@ -89,14 +90,16 @@ class AuthDomain
         }
     }
 
-
     /**
      * 获取用户申请记录
-     * @param $user_id   用户ID
+     * @param $user_id        用户ID
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function findAuthResult($user_id){
         $res = Db::name('auth')->where('user_id',$user_id)->find();
-
 
         return $res ? :[];
     }

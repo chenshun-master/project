@@ -52,7 +52,6 @@ class Article extends CController
             'thumbnail'=>$thumbnailImg
         ];
 
-
         $isTrue = $this->_articleDomain->createArticle($data);
         if(!$isTrue){
             return $this->returnData([],'发布失败',305);
@@ -67,13 +66,11 @@ class Article extends CController
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
-        $user_info = $this->getUserInfo();
 
+        $user_info = $this->getUserInfo();
         if(!checkUserAuth($user_info['type'],7)){
             return $this->returnData([],'未授权操作',403);
         }
-
-
     }
 
     /**

@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <title>薇琳医美</title>
     <meta content="telephone=no" name="format-detection" />
-
     <style>
         .wkf {
             display: none;
@@ -32,6 +31,9 @@
         .se{
             color: #7DB0E8;
         }
+        .xian{
+            color: #7DB0E8 ;
+        }
     </style>
 </head>
 <body style="background: #ffffff;">
@@ -43,7 +45,6 @@
     </div>
     <?php endif;?>
 
-
     <ul class="biao">
         <li style="margin-left: 50px;" >推荐</li>
         <li >文章</li>
@@ -53,14 +54,12 @@
         <li style="margin-right: 36px;" >其它</li>
     </ul>
 
-
     <div id="cus-container" style="min-height: 300px;">
         <div id="wx-wz">
 
         </div>
     </div>
     <div style="height: 100px"></div>
-    <!--    <div  onclick="objClass.loadList()" style="font-size: 34px;text-align: center;height: 50px;line-height: 50px;"> 加载更多</div>-->
     <div class="wl-foot">
         <dl onclick="redream.href('/weixin/index/index')" class="dianji">
             <dd> <i class="iconfont icon-home_fill_light" style="font-size: 50px;color:#7DB0E8"></i></dd>
@@ -153,26 +152,10 @@
         }
     });
 
-    //  setTimeout(function(me){
-    //      objClass.loadList(me);
-    //  },500);
-
-    // $(document).on('click','.cus-article-href',function(){
-    //     if($(this).data('type') == 1){
-    //         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
-    //     }
-    // });
-
     function clickHref(id) {
         window.location.href = '/weixin/article/articleDetails/id/' + id;
     }
-
 </script>
-<style>
-    .xian{
-        color: #7DB0E8 ;
-    }
-</style>
 <script>
     $(function(){
         $(".biao li").eq(0).addClass("se");
@@ -180,10 +163,10 @@
             index=$(this).index();
             $(".biao li").eq(index).addClass("se").siblings().removeClass("se");
         })
+    });
+    $(".biao li").click(function () {
+        var index=$(this).index();
+        $(".biao li").eq(index).addClass("xian").siblings().removeClass("xian")
     })
-$(".biao li").click(function () {
-    var index=$(this).index();
-    $(".biao li").eq(index).addClass("xian").siblings().removeClass("xian")
-})
 </script>
 </html>

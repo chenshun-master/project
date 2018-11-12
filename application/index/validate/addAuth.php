@@ -39,11 +39,11 @@ class addAuth extends Validate
         'practice_certificate.require'     => '请上传医师执业证书',
         'practice_certificate.url'         => '医师执业证书格式错误',
 
-        'mobile.require'                  => '手机号不能为空',
-        'mobile.mobile'                   => '手机号格式错误',
+        'mobile.require'                   => '手机号不能为空',
+        'mobile.mobile'                    => '手机号格式错误',
 
-        'sms_code.require'                => '验证码不能为空',
-        'sms_code.mobile'                 => '验证码格式错误',
+        'sms_code.require'                 => '验证码不能为空',
+        'sms_code.mobile'                  => '验证码格式错误',
     ];
 
     protected $scene = [

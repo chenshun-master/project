@@ -99,11 +99,11 @@
 
     <div class="wl-zhez">
         <div class="wl-zl" id="cus-from-box1" style="position: relative" >
-            <!--<p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;border-top: 2px solid red;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #d4a6a6;">手机号不能为空</p>-->
+            <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-change-err-tip"></p>
             <div class="wl-title">手机号修改</div>
             <div class="cus-from-box1-1">
                 <div class="wl-zheh " ><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
-                <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()" >发送验证码</button></div>
+                <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()"  style="color: #7DB0E8">发送验证码</button></div>
                 <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
                 <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
             </div>
@@ -121,7 +121,7 @@
             <div class="cus-from-box2-1">
                 <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
                 <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
-                <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()">发送验证码</button></div>
+                <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()" style="color: #7DB0E8">发送验证码</button></div>
                 <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
                 <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
                 <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn">立即修改</button> </div>
@@ -172,23 +172,18 @@
     var objClass = {
         loading:false,
         sendSmsCode:false,
-        checkMobile:function(mobile){
-            var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
-            return reg_phone.test(mobile);
+        errr1:function(msg){
+            $('#cus-change-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
         },
         submit:function () {
             var mobile = $.trim($('#fr-box-mobile').val());
             var sms_code = $.trim($('#fr-box-sms-code').val());
             $('#cus-from-box1-err').html('');
-            if(!this.checkMobile(mobile)){
-                $('#cus-from-box1-err').html('手机号格式不正确');
-                return false;
+            if(!redream.checkMobile(mobile)){
+                this.errr1('手机号格式不正确');return false;
             }else if(sms_code == ''){
-                $('#cus-from-box1-err').html('验证码错误');
-                return false;
-            }
-
-            if(!this.loading){
+                this.errr1('验证码不能为空！');return false;
+            }else if(!this.loading){
                 $.ajax({
                     url:"/index/user/modifyMobile",
                     type:'post',
@@ -211,26 +206,21 @@
                                 window.location.reload();
                             },5000);
                         }else if(res.code == 302){
-                            $('#cus-from-box1-err').html('验证码错误');
-                            return false;
+                            objClass.errr1('验证码错误！');return false;
                         }else if(res.code == 303){
-                            $('#cus-from-box1-err').html('验证码已过期');
-                            return false;
+                            objClass.errr1('验证码已过期！');return false;
                         }
                     }
-                })
+                });
             }
         },
         sendSms:function () {
             var mobile = $.trim($('#fr-box-mobile').val());
-            if(!this.checkMobile(mobile)){
-                $('#cus-from-box1-err').html('请正确填写手机号');
+            if(codeObj.checkTime()){
                 return false;
-            }
-            $('#cus-from-box1-err').html('');
-
-            if(codeObj.checkTime()){return false;}
-            if(!this.sendSmsCode){
+            }else if(!redream.checkMobile(mobile)){
+                this.errr1('请正确填写手机号！');return false;
+            }else if(!this.sendSmsCode){
                 $.ajax({
                     url:"/index/index/sendSmsCode",
                     type:'post',
@@ -238,21 +228,20 @@
                     dataType:'json',
                     beforeSend:function(){
                         objClass.sendSmsCode = true;
-
                     },
                     complete:function(){
-
                         objClass.sendSmsCode = false;
                     },
                     success:function(res){
                         if(res.code == 200){
                             codeObj.sendSmsCode();
+                            objClass.errr1('验证码发送成功！');
                         }else if(res.code == 301){
-                            alert('请求参数错误');
+                            objClass.errr1('请求参数错误！');
                         }else if(res.code == 302){
-                            alert('该用户已被使用');
+                            objClass.errr1('手机号已被他人使用！');
                         }else{
-                            alert('发送失败');
+                            objClass.errr1('验证码发送失败！');
                         }
                     }
                 });
@@ -344,7 +333,7 @@
                 });
             }
         }
-    }
+    };
 
     var editProfile ={
         loading:false,

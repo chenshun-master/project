@@ -157,19 +157,22 @@
             return fmt;
         },
 
-        /**禁用滚动条**/
+        /**
+         * 禁用滚动条
+         */
         unScroll:function() {
             var top = $(document).scrollTop();
             $(document).on('scroll.unable',function (e) {
                 $(document).scrollTop(top);
             })
         },
-        /**启用滚动条**/
 
+        /**
+         * 启用滚动条
+         */
         removeUnScroll:function() {
             $(document).unbind("scroll.unable");
         },
-
 
         /**
          * js 页面跳转
@@ -177,6 +180,19 @@
          */
         href:function(href){
             window.location.href = href;
+        },
+
+        /**
+         * 判断是否是微信浏览器的函数
+         * @returns {boolean}
+         */
+        isWeiXin:function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
         }
 }
 })(window,jQuery);
