@@ -157,20 +157,21 @@
                     },
                     success: function (res) {
                         if (res.code == 200) {
-                            alert('发布成功');
                             $('#editor_id').val('');
                             $('#fr-title').val('');
                             $('#fr-zaiyao').val('');
                             $('#fr-tag').val('');
                             window.editor.html('');
                             $('.cus-remove-img-list').remove();
+                            alert('发布成功');
+                        }else{
+                            alert(res.msg);
                         }
                     }
                 });
             }
         }
     };
-
 
     $("#btn-input-file").on("change", function () {
         var formData = new FormData($('#infoLogoForm')[0]);

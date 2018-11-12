@@ -178,14 +178,14 @@ class User extends CController
             $data['address']         = $address;
         }
 
-
-
         $isTrue = $this->_authDomain->addAuthentication($data);
-        if(!$isTrue){
+        if($isTrue === true){
+            return $this->returnData([],'认证申请提交成功',200);
+        }else if($isTrue === 1){
+            return $this->returnData([],'身份证号已被使用',303);
+        }else{
             return $this->returnData([],'认证申请提交失败',305);
         }
-
-        return $this->returnData([],'认证申请提交成功',200);
     }
 
     /**
