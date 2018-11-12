@@ -460,8 +460,6 @@
                 this.showError('身份证号不能为空');return false;
             }else if(!redream.checkIdcard(idcard)){
                 this.showError('身份证号格式不正确');return false;
-            }else if(!redream.checkMobile(mobile)){
-                this.showError('手机号格式错误');return false;
             }else if(card_img1 == '' || card_img1 == undefined){
                 this.showError('请上传身份证正面照');return false;
             }else if(card_img2 == '' || card_img2 == undefined){
