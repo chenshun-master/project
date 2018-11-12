@@ -148,7 +148,7 @@
                 <div class="wl-ri">
                     <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
                     <p>2-10个汉字，请勿使用包含特殊符号</p>
-                    <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none;padding: 5px;" id="fr-box2-profile" >{$user_info['profile']}</textarea>
+                    <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none;padding: 5px;" id="fr-box2-profile" maxlength="10">{$user_info['profile']}</textarea>
                     <p>30个汉字，无特殊符号</p>
                     <button class="wl-que1"  onclick="editProfile.submit()" >确认</button> <button  class="wl-que2">取消</button>
                 </div>
