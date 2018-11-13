@@ -507,4 +507,14 @@ class ArticleDomain
             'total'         =>$total
         ];
     }
+
+    /**
+     * 获取用户收藏文章
+     * @param $user_id          用户id
+     * @param int $page         当前分页
+     * @param int $page_size    分页大小
+     */
+    public function getFavoriteArticle($user_id,$page=1,$page_size=15){
+        Db::name('user_favorite')->where('table_name','article');
+    }
 }
