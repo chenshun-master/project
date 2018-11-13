@@ -220,10 +220,11 @@ margin-top: 20px;
 
 .pl {
 	width: 100%;
-	min-height: 100px;
+	min-height: 110px;
 	margin: 0 auto;
 	padding: 20px 0px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	position: relative;
 }
 
 .pl img {
@@ -233,15 +234,16 @@ margin-top: 20px;
 	background: gray;
 	display: block;
 	z-index: 999;
-	float: left;
-	margin-left: 10px;
+	position: absolute;
+	left: 10px;
+	top: 20px;
+	z-index: 1;
 }
 
 .pin {
 	width: 70%;
-	min-height: 150px;
+	min-height: 130px;
 	float: right;
-
 	margin-right: 40px;
 
 }
@@ -284,9 +286,8 @@ margin-top: 20px;
 
 
 .wx-hf {
-	width: 576px;
+	width: 100%;
 	height: 46px;
-	margin-top: 15px;
 }
 
 .hf-sj {
@@ -302,8 +303,8 @@ margin-top: 20px;
 }
 
 .wx-hf button {
-	width: 13%;
-	height: 25px;
+	width: 16%;
+	height: 20px;
 	border-radius: 25px;
 	background: gainsboro;
 	color: #222222;
@@ -330,7 +331,7 @@ margin-top: 20px;
     background: white;
     padding-top: 10px;
     border-top: 1px solid rgb(242, 242, 242);
-    z-index: 2;
+    z-index: 99999;
 }
 
 .wx-foot input {
@@ -508,6 +509,7 @@ margin-top: -30px;
 	bottom: 0;
 	border-top: 1px solid #E5E5E5;
 	background: white;
+	z-index: 99999;
 }
 .kl1>input{
 	margin-top: 10px;

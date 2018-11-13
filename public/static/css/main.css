@@ -234,24 +234,27 @@ position: absolute;
 }
 
 .wx-fen li:nth-child(1) {
+
     margin-left: 50px;
     background-size: 32px 32px;
 }
 
 .wx-fen li:nth-child(2) {
+    width: 160px;
     margin-left: 180px;;
     background-size: 32px 32px;
 }
 
 .wx-fen li:nth-child(3) {
-    margin-left: 170px;
+    width: 160px;
+    margin-left: 105px;
     background-size: 32px 32px;
 }
 
 .wx-fen li span {
+    width: 100px;
     color: #333333;
     font-size: 0.26rem;
-    float: left;
 }
 
 .on1 {
@@ -355,7 +358,7 @@ position: absolute;
 
 .cc {
     width: 750px;
-    height: 100px;
+    height: 95px;
     background: white;
 }
 
