@@ -370,6 +370,8 @@ position: absolute;
 #ttb {
     font-size: 40px;
     color: #999999;
+    margin-top: -1px;
+    float: left;
 }
 
 .wl-jianj {
