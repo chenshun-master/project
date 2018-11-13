@@ -1,0 +1,90 @@
+{if condition="count($rows) > 0"}
+    {foreach $rows as $vo}
+        {php}
+            $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
+        {/php}
+
+        {switch $vo.type}
+            {case 1}
+                {if condition="count($thumbnail) > 1"}
+                    <div  class="w-video">
+                        <div class="wx-name9 neme2" >
+                            <div style="position:absolute;">
+                                <img src="{$vo['portrait']}" alt="" class="wx-tou" onerror='this.src="/static/image/user/tou.png"' >
+                                <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
+                                    <dd>{$vo['published_time']|strtotime|formatTime} </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="wl-jh">
+                            {$vo['title']}
+                        </div>
+                        <div class="wl-img" data-id="">
+                            {foreach $thumbnail as $k=>$v}
+                                <dd ><img src="{$v}" alt="图片"/></dd>
+                            {/foreach}
+                        </div>
+                        <div style="height: 80px">
+                            <ul class="wx-fen " style="bottom: 38px">
+                                <li><i class="iconfont icon-share_light" ></i><span></span></li>
+                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
+                                <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >{$vo['like']}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                {else /}
+                    <div class="wl-one1-1">
+                        <div class="wx-name9 name1">
+                            <div class="wl-one1-2">
+                                <img src="{$vo['portrait']}" alt="" class="wx-tou" onerror='this.src="/static/image/user/tou.png"' >
+                                <dl class="wx-yh wl-on1-3"><dt >{$vo['nickname']}</dt>
+                                    <dd>{$vo['published_time']|strtotime|formatTime} </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="wx-nei1">
+                            <dl class="wl-teo1">
+                                <dt  >{$vo['title']}</dt>
+                                <dd ><img src="{$thumbnail['img_1']}" alt="图片"/></dd>
+                            </dl>
+                        </div>
+                        <div style="position: relative">
+                            <ul class="wx-fen" style="position:relative;bottom: -15px">
+                                <li><i class="iconfont icon-share_light" ></i><span></span></li>
+                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
+                                <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >{$vo['like']}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                {/if}
+            {/case}
+
+            {case 2}
+                <div style="width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relative">
+                    <div class="wx-name9 neme2" >
+                        <div class="name2-1" >
+                            <img src="{$vo['portrait']}" alt="" class="wx-tou"  onerror='this.src="/static/image/user/tou.png"' >
+                            <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
+                                <dd>{$vo['published_time']|strtotime|formatTime} </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="wl-jh">
+                        {$vo['title']}
+                    </div>
+                    <div class="wx-video">
+                        <video src="{$vo['video_url']}" controls="controls" width="100%" height="420px"/>
+                    </div>
+                    <div style="height: 80px">
+                        <ul class="wx-fen"style="bottom: 38px">
+                            <li><i class="iconfont icon-share_light" ></i><span></span></li>
+                            <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
+                            <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >{$vo['like']}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            {/case}
+        {/switch}
+    {/foreach}
+
+{/if}

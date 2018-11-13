@@ -385,7 +385,15 @@ class User extends BaseController
         return $this->returnData([],'修改成功',200);
     }
 
-    public function getCommentArticle(){
+    /**
+     * 用户用户评论过的文章列表
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getCommentArticleList(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
@@ -395,6 +403,58 @@ class User extends BaseController
 
 
         $data = $this->_articleDomain->getCommentArticle($this->getUserId(),$page,$page_size);
+
+
+        $this->assign($data);
+        $data['html'] = $this->fetch('user/collection/comment_tpl');
+
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取用户收藏列表
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getFavoriteArticleList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+        $data = $this->_articleDomain->getFavoriteArticle($this->getUserId(),$page,$page_size);
+
+        $this->assign($data);
+        $data['html'] = $this->fetch('user/collection/favorite_tpl');
+
+
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取点赞列表
+     * @param Request $request
+     */
+    public function getLikeArticleList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+        $data = $this->_articleDomain->getArticleLikeData($this->getUserId(),$page,$page_size);
+
+        $this->assign($data);
+        $data['html'] = $this->fetch('user/collection/like_tpl');
+
+
+        return $this->returnData($data,'',200);
     }
 
 }
