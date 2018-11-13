@@ -12,12 +12,18 @@ use think\Request;
 class User extends BaseController
 {
     private $_userDomain;
+    private $_articleDomain;
+    private $_userModel;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->_userDomain = new \app\api\domain\UserDomain();
+
         $this->_articleDomain = new \app\api\domain\ArticleDomain();
+
+        $this->_userModel = new \app\api\model\UserModel();
+
     }
 
     /**
@@ -65,14 +71,21 @@ class User extends BaseController
     {
         return $this->fetch('user/collection');
     }
+
     /**
      * 修改手机号
      */
     public function replacephone(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
 
+        $mobile = $this->_userModel->getMobile($this->getUserId());
 
+        $this->assign('mobile',$mobile);
         return $this->fetch('user/replace_phone');
     }
+
     /**
      * 上传用户头像接口
      */
