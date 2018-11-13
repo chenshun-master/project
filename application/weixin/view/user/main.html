@@ -85,8 +85,8 @@
 				<dl onclick="redream.href('/weixin/user/collection')">
 				   	<dt class="pl"></dt>
 					<dd>我的评论</dd>
-				</dl onclick="redream.href('/weixin/user/collection')">
-					<dl>
+				</dl >
+                <dl onclick="redream.href('/weixin/user/collection')">
 				   	<dt class="dz"></dt>
 					<dd>我的点赞</dd>
 				</dl>
@@ -114,8 +114,9 @@
 			</div>
 
             <?php if(!is_weixin()):?>
-            <button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
+
             <?php endif;?>
+            <button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
 
 			<div class="wkf">此功能尚未开发</div>
 			<div class="marsk-container">
