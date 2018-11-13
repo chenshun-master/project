@@ -670,17 +670,15 @@
             "onMenuShareAppMessage",            //分享到朋友圈
             "onMenuShareQQ",                    //分享到QQ
             "onMenuShareWeibo",                 //分享到微博
-            "checkJsApi",
-            "scanQRCode",          //如果需要调扫码  侧加入至列表
         ]
     };
 
     function callbacks(){
         var shareMessage = {
-            title: '有一句话想对你说',
-            desc: '我的爱人，我会牵着你的手，走到满头白发的那一天，我会守护你生命里的精彩，并陪伴你一路精彩下去。',
-            link: 'https://weixin.alimx.cn/weixin/article/articleDetails/id/38',
-            imgUrl: 'http://xmp.sh-jinger.com/upload/head-portrait/zkraWQHF5b7694a575435172557.png',
+            title: "{$article_info['title']}",
+            desc: "{$article_info['excerpt']}",
+            link: window.location.href,
+            imgUrl: '{$shareImg}',
         };
 
         var wxCallback = {

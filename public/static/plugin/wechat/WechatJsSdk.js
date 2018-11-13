@@ -14,14 +14,7 @@ WechatSdkModel = (function(){
             timestamp: this.wx_config.timestamp,
             nonceStr: this.wx_config.nonceStr,
             signature: this.wx_config.signature,
-            jsApiList: [
-                'checkJsApi',
-                "onMenuShareTimeline",              //分享给好友
-                "onMenuShareAppMessage",            //分享到朋友圈
-                "onMenuShareQQ",                    //分享到QQ
-                "onMenuShareWeibo",                 //分享到微博
-                "checkJsApi"          //如果需要调扫码  侧加入至列表
-            ]
+            jsApiList: this.wx_config.jsApiList
         });
 
         wx.ready(function(){
@@ -36,7 +29,7 @@ WechatSdkModel = (function(){
             //config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，
             //也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 
-            alert(res);
+            console.log(res);
         });
     };
 
