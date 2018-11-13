@@ -79,12 +79,13 @@ ul li{
     width: 100%;
     min-height: 80px;
     overflow: hidden;
-    margin-top: 15px;
+    margin-top: 25px;
     text-overflow: ellipsis;
     display:-webkit-box;
 -webkit-box-orient:vertical;
 -webkit-line-clamp:2;
-    padding: 20px;
+    padding: 0 20px 0 20px;
+
 }
 .wx-name{
     min-height: 80px;
@@ -108,7 +109,7 @@ ul li{
     display: block;
     float: left;
     background: gray;
-    margin-right: 5px;
+    margin: 0 5px 0 5px;
 }
 .wl-foot {
     width: 100%;

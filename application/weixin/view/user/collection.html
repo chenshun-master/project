@@ -13,6 +13,10 @@
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <style>
+        .cus-click-href,.cus-article-href2,.cus-article-fabulous{cursor: pointer;}
+        .cus-blue{color: #2e6da4}
+    </style>
 </head>
 <style>
 
@@ -244,7 +248,43 @@
                     }
                 });
             },
-        }
+        },
+        //用户点赞操作
+
+        isZanLoadind:false,
+        clickFabulous:function(obj){
+            var id = obj.data('id');
+            var type = obj.data('click') == 1 ?2:1;
+            if(!myObj.isZanLoadind){
+                $.ajax({
+                    url:"/weixin/article/clickZan",
+                    type:'post',
+                    data:{id:id,type:type},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.isZanLoadind = true;
+                    },
+                    complete:function(){
+                        myObj.isZanLoadind = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            var num = parseInt(obj.find('span').text());
+                            if(type == 1){
+                                obj.data('click',1);
+                                obj.find('span').text(num + 1);
+                                obj.find('i').removeClass('icon-dianzan').addClass('icon-dianzan1').addClass('cus-blue');
+                            }else{
+                                obj.data('click',0);
+                                obj.find('span').text(num - 1);
+                                obj.find('i').removeClass('icon-dianzan1').removeClass('cus-blue').addClass('icon-dianzan');
+                            }
+                        }
+                    }
+                });
+            }
+
+        },
     };
 
     $('#cus-favorite-container').dropload({
@@ -287,6 +327,22 @@
         loadDownFn : function(me){
             myObj.like.loadList(me);
         }
+    });
+
+
+    $(document).on('click','.cus-click-href',function(){
+        if($(this).data('type') == 1){
+            window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
+        }
+    });
+
+    $(document).on('click','.cus-article-href2',function(){
+        window.location.href = '/weixin/article/userMain/id/'+ $(this).data('user_id');
+    });
+
+    $(document).on('click','.cus-article-fabulous',function(event){
+        myObj.clickFabulous($(this));
+        event.stopPropagation();
     });
 </script>
 
