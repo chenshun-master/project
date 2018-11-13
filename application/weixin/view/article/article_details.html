@@ -68,9 +68,9 @@
         </div>
         <div style="   font-size: 0.32rem;padding: 5px 15px" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="min-height: 50px;margin-top: 20px;position: relative">
-            <button style="margin-left: 15px;" id="cus-click-fabulous"    class=""     data-fabulous="{$isFabulous? '2' : '1'}"
-                    onclick="objClass.clickFabulous()">
-                <i class="iconfont <?php if($isFabulous !== 1 ):?> icon-dianzan<?php endif;?> <?php if($isFabulous == 1):?> icon-dianzan1 cus-blue<?php endif;?>" ></i>{$article_info['like']}
+            <button style="margin-left: 15px;" id="cus-click-fabulous"    class=""     data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()">
+                <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" ></i>
+                <span>{$article_info['like']}</span>
             </button>
             <button onclick="myShare.wechatTimeline()">分享朋友圈</button>
             <button onclick="myShare.wechatFriend()">分享微信</button>
@@ -222,12 +222,17 @@
                 },
                 success: function (res) {
                     if (res.code == 200) {
+                        var num = parseInt($('#cus-click-fabulous').find('span').text());
                         if(type == 1){
-                            $('#cus-click-fabulous').data('fabulous', 2).text(parseInt($('#cus-click-fabulous').text()) + 1).addClass("icon-dianzan1");
-                        }else{
-                            $('#cus-click-fabulous').data('fabulous', 1).text(parseInt($('#cus-click-fabulous').text()) - 1).removeClass('icon-dianzan').addClass("icon-dianzan");
-                        }
+                            $('#cus-click-fabulous').data('fabulous', 2);
 
+                            $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
+                            $('#cus-click-fabulous').find('span').text( num + 1);
+                        }else{
+                            $('#cus-click-fabulous').data('fabulous', 1);
+                            $('#cus-click-fabulous').find('i').removeClass('cus-blue').removeClass('icon-dianzan1').removeClass('icon-dianzan1').addClass("icon-dianzan");
+                            $('#cus-click-fabulous').find('span').text( num - 1);
+                        }
                     } else if (res.code == 401) {
                         alert('请登录后操作');
                         return false;

@@ -240,12 +240,13 @@ class Article extends BaseController
         }
 
         $config = config('conf.sns_login.weixin');
-        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
-        $res = $wechatJsSdk->getSignPackage();
+//        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+//        $res = $wechatJsSdk->getSignPackage();
+
 
         $this->assign($data);
-        $this->assign('isFabulous',$isFabulous);
-        $this->assign('weixin_config',$res);
+        $this->assign('isFabulous',$isFabulous === false ? 1 :2);
+        $this->assign('weixin_config',['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>'']);
 
         return $this->fetch('article/article_details');
     }
