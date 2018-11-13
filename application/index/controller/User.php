@@ -83,9 +83,7 @@ class User extends CController
             return $this->returnData([],'验证码错误',302);
         }else if($result === 2){
             return $this->returnData([],'验证码已过期',303);
-        }
-
-        if(!$result){
+        }else if(!$result){
             return $this->returnData([],'修改手机号失败',305);
         }
 

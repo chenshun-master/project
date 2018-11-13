@@ -87,6 +87,33 @@ class User extends BaseController
     }
 
     /**
+     * 手机号修改提交处理页面
+     */
+    public function changeMobile(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $mobile    = $request->post('mobile','');
+        $sms_code  = $request->post('sms_code','');
+        if(empty($mobile) || !checkMobile($mobile) || empty($sms_code)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $oldMobile = $this->_userModel->getMobile($this->getUserId());
+        $result = $this->_userDomain->changeMobile($this->getUserId(),$oldMobile,$mobile,$sms_code);
+        if($result === 1){
+            return $this->returnData([],'验证码错误',302);
+        }else if($result === 2){
+            return $this->returnData([],'验证码已过期',303);
+        }else if(!$result){
+            return $this->returnData([],'修改手机号失败',305);
+        }
+
+        return $this->returnData([],'修改手机号成功',200);
+    }
+
+    /**
      * 上传用户头像接口
      */
     public function uploadHeadImg(Request $request){
@@ -155,7 +182,6 @@ class User extends BaseController
 
         return $this->fetch('user/modify_pwd');
     }
-
 
     /**
      * 添加好友申请

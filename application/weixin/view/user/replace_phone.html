@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/replace_phone.css"/>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
     <style>
         .code-hui{color: #CCCCCC}
     </style>
@@ -48,9 +49,9 @@
             <p style=" border-bottom: 1px solid #DFDFDF;">
                 <input type="text" id="fr2-new-mobile" readonly ><span id="fr2-sms-code-btn" onclick="myObj.sendSms()">获取验证码</span>
             </p>
-            <p><input type="text" placeholder="请输入验证码" maxlength="6" ></p>
+            <p><input type="text" placeholder="请输入验证码" maxlength="6" id="fr2-sms-code" ></p>
         </div>
-        <button class="wl-btn">立即修改</button>
+        <button class="wl-btn" onclick="myObj.submit()">立即修改</button>
     </div>
 </div>
 </body>
@@ -61,7 +62,7 @@
     var codeObj = new VerificationCode('fr2-sms-code-btn','获取验证码','code-hui');
     codeObj.run();
 
-    $('.wl-xsj input').on('.one keyup',function(){
+    $('#cus-box input').on('.one keyup',function(){
         var mobile = $.trim($('#fr-new-mobile').val());
         if(mobile != '' && redream.checkMobile(mobile)){
             $('.wl-btn').css({'background':'#7DB0E8'}).prop('disabled',false);
@@ -72,6 +73,8 @@
 
     var myObj = {
         oldMobile:"{$mobile}",
+        smsloading:false,
+        loading:false,
         nextStep:function(){
             var newMobile = $.trim($('#fr-new-mobile').val());
             if(newMobile == this.oldMobile){
@@ -83,10 +86,59 @@
             }
         },
         sendSms:function(){
+            var newMobile = $.trim($('#fr2-new-mobile').val());
             if(codeObj.checkTime()){
                 return false;
-            }else{
-                codeObj.sendSmsCode();
+            }else if(!this.smsloading){
+                $.ajax({
+                    url:"/weixin/index/sendSmsCode",
+                    type:'post',
+                    data:{mobile:newMobile,type:6},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.smsloading = true;
+                    },
+                    complete:function(){
+                        myObj.smsloading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            codeObj.sendSmsCode();
+                        }
+                    }
+                });
+            }
+        },
+        submit:function(){
+            var newMobile = $.trim($('#fr2-new-mobile').val());
+            var sms_code  = $.trim($('#fr2-sms-code').val());
+            if(!redream.checkMobile(newMobile) || sms_code == ''){
+                return false;
+            }else if(!this.loading){
+                $.ajax({
+                    url:"/weixin/user/changeMobile",
+                    type:'post',
+                    data:{mobile:newMobile,sms_code:sms_code},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.smsloading = true;
+                    },
+                    complete:function(){
+                        myObj.smsloading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            redream.showTip('修改成功');
+                            setTimeout(function(){
+                                window.location.href = '/weixin/user/main';
+                            },2000);
+                        }else if(res.code == 302 || res.code == 303){
+                            redream.showTip('验证码错误');
+                        }else{
+                            redream.showTip('修改失败');
+                        }
+                    }
+                });
             }
         }
     };

@@ -456,4 +456,73 @@ class Index extends BaseController
 
     public function test2(){
     }
+
+    /**
+     * 发送短信验证码
+     * @param  string  mobile  手机号
+     * @param  int     type    验证码用途(1:注册;2:重置密码;3:手机号快捷登录;4:第三方手机号绑定;5:修改密码 6:修改手机号)
+     * @param Request $request
+     * @return false|string
+     */
+    public function sendSmsCode(Request $request){
+        $mobile    = $request->post('mobile','');
+        $type      = $request->post('type','');
+        if(empty($mobile) || !checkMobile($mobile)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $sign = 9715;
+        $template_id = 12318;
+
+        switch ($type){
+            case 1:
+                $userModel = new UserModel();
+                if($userModel->findMobileExists($mobile)){
+                    return $this->returnData([],'该用户已被使用',302);
+                }
+                break;
+            case 2:
+                $userModel = new UserModel();
+                if(!$userModel->findMobileExists($mobile)){
+                    return $this->returnData([],'该用户未被使用',302);
+                }
+                break;
+            case 3:
+            case 4:
+            case 7:
+                break;
+            case 5:
+                $userModel = new UserModel();
+                if(!$userModel->findMobileExists($mobile)){
+                    return $this->returnData([],'该用户未被使用',302);
+                }
+                break;
+            case 6:
+                $userModel = new UserModel();
+                if($userModel->findMobileExists($mobile)){
+                    return $this->returnData([],'该用户已被使用',302);
+                }
+                break;
+            default :
+                $type = 0;
+                break;
+        }
+
+        if($type == 0){
+            return $this->returnData([],'发送失败',305);
+        }else if(in_array($type,[5,6,7])){
+            if(!$this->checkLogin()){
+                return $this->returnData([],'发送失败',305);
+            }
+        }
+
+        $smsObject = new \app\api\domain\SendSms();
+        $isTrue = $smsObject->sendCode($mobile,$type,$sign,$template_id);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
+
+        return $this->returnData([],'发送成功',200);
+    }
+
 }
