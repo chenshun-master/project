@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
@@ -9,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/replace_phone.css"/>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-
+    <style>
+        .code-hui{color: #CCCCCC}
+    </style>
 </head>
 <style>
 
@@ -17,43 +18,77 @@
 <body style="background: #F2F2F2;">
 <div class="wl-con">
     <div class="wl-top">
-         <div><span class="iconfont  icon-back_light" style="font-size: 40px;float: left"></span><span style="float: left;font-size: 0.34rem;color: #1B1B1B;margin-left: 245px">更换手机号</span></div>
+         <div>
+             <span class="iconfont  icon-back_light" style="font-size: 40px;float: left"></span>
+             <span style="float: left;font-size: 0.34rem;color: #1B1B1B;margin-left: 245px">更换手机号</span>
+         </div>
     </div>
-    <div >
+    <div id="cus-box">
         <dl class="wl-jie">
             <dd>更换绑定的手机号</dd>
             <dt>之后可以用新手机号及当前密码登录</dt>
         </dl>
         <div class="wl-xsj">
-            <p style="border-bottom: 1px solid #DFDFDF;"><input type="text" placeholder="请输入当前绑定的手机号" id="phone"></p>
-            <p><input type="text" placeholder="请输入新手机号" id="newphone"></p>
+            <p style="border-bottom: 1px solid #DFDFDF;">
+                <input type="text" placeholder="请输入当前绑定的手机号" id="fr-old-mobile" value="{$mobile|mobileFilter}" readonly>
+            </p>
+            <p>
+                <input type="text" placeholder="请输入新手机号" id="fr-new-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')">
+            </p>
         </div>
-        <button class="wl-btn">下一步</button>
+        <button class="wl-btn" disabled onclick="myObj.nextStep()">下一步</button>
     </div>
-    <div style="display: none">
+
+    <div id="cus-box1" style="display: none;">
         <dl class="wl-jie ">
             <dd>更换绑定的手机号</dd>
             <dt>之后可以用新手机号及当前密码登录</dt>
         </dl>
         <div class="wl-xsj">
-            <p style=" border-bottom: 1px solid #DFDFDF;"><input type="text" placeholder="请输入当前绑定的手机号"><span >获取验证码</span></p>
-            <p><input type="text" placeholder="请输入新手机号"></p>
+            <p style=" border-bottom: 1px solid #DFDFDF;">
+                <input type="text" id="fr2-new-mobile" readonly ><span id="fr2-sms-code-btn" onclick="myObj.sendSms()">获取验证码</span>
+            </p>
+            <p><input type="text" placeholder="请输入验证码" maxlength="6" ></p>
         </div>
-        <button class="wl-btn">下一步</button>
+        <button class="wl-btn">立即修改</button>
     </div>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    $(function(){
-        $('.wl-xsj input').on('.one input ',function(){
-            if(($.trim($('#phone').val())!=="")&&($.trim($('#newphone').val())!=="")){
-                $('.wl-btn').css({'background':'#7DB0E8'});
-            }else{
-                $('.wl-btn').css({'background':'#C8C8C8'});
-            }
-        });
+<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var codeObj = new VerificationCode('fr2-sms-code-btn','获取验证码','code-hui');
+    codeObj.run();
+
+    $('.wl-xsj input').on('.one keyup',function(){
+        var mobile = $.trim($('#fr-new-mobile').val());
+        if(mobile != '' && redream.checkMobile(mobile)){
+            $('.wl-btn').css({'background':'#7DB0E8'}).prop('disabled',false);
+        }else{
+            $('.wl-btn').css({'background':'#C8C8C8'}).prop('disabled',true);
+        }
     });
+
+    var myObj = {
+        oldMobile:"{$mobile}",
+        nextStep:function(){
+            var newMobile = $.trim($('#fr-new-mobile').val());
+            if(newMobile == this.oldMobile){
+                alert('新手机号不能与当前手机号一致');
+            }else{
+                $('#fr2-new-mobile').val(newMobile);
+                $('#cus-box').hide();
+                $('#cus-box1').show();
+            }
+        },
+        sendSms:function(){
+            if(codeObj.checkTime()){
+                return false;
+            }else{
+                codeObj.sendSmsCode();
+            }
+        }
+    };
 </script>
 </html>
