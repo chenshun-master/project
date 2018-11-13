@@ -65,7 +65,7 @@
                             <span>用户类型</span>
                             <span>
                                 <?php if($user_info['type'] == 1):?>
-                                申请认证
+                                <a href="/index/user/certification" style="color:#7DB0E8">申请认证</a>
                                 <?php elseif($user_info['type'] == 2):?>
                                     认证会员
                                 <?php elseif($user_info['type'] == 3):?>
@@ -77,11 +77,17 @@
                                 <?php endif;?>
                             </span>
                         </div>
-                        <div><span>用户账号</span>  <span>{$user_info['mobile']}</span></div>
-                        <div> <span>绑定手机</span> <span>{$user_info['mobile']}</span><span style="float: right">如需更换,<i style="color: #FD7D7D;cursor: pointer" onclick="deme()" >请前往"安全中心"</i></span></div>
-                        <div> <span>运营人</span> <span>打个粉丝</span></div>
-                        <div><span>联系邮箱</span>  <span>无</span></div>
-                        <div><span>所在地</span>  <span>无</span></div>
+                        <div><span>用户账号</span> <span>{$user_info['mobile']}</span></div>
+                        <div><span>绑定手机</span> <span>{$user_info['mobile']}</span><span style="float: right">如需更换,<i style="color: #FD7D7D;cursor: pointer" onclick="deme()" >请前往"安全中心"</i></span></div>
+                        <div><span>运营人</span>
+                            {if condition="count($auth_info) > 0 && $auth_info['status'] == 3"}
+                                <span>{$auth_info['username']}</span>
+                            {else /}
+                                <span>-</span>
+                            {/if}
+                        </div>
+                        <div><span>联系邮箱</span> <span>-</span></div>
+                        <div><span>所在地</span>   <span>-</span></div>
                     </div>
                 </div>
                 <div class="two">

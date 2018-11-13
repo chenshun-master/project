@@ -31,7 +31,8 @@ class User extends BaseController
         }
 
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
-        $this->_publishTotal($user_info['id']);
+
+        $this->_publishTotal($this->getUserId());
 
         $this->assign([
             'user_info'=>$user_info,
@@ -55,6 +56,7 @@ class User extends BaseController
         $this->assign('user_info',$user_info);
         return $this->fetch('user/modify');
     }
+
    /**
      * 我的收藏页面
      * @return mixed
@@ -208,7 +210,7 @@ class User extends BaseController
         }
 
         $user_info = $this->getUserInfo();
-        $this->_publishTotal($user_info['id']);
+        $this->_publishTotal($this->getUserId());
 
         $this->assign('user_info',$user_info);
 
@@ -225,7 +227,7 @@ class User extends BaseController
 
         $user_info = $this->getUserInfo();
 
-        $this->_publishTotal($user_info['id']);
+        $this->_publishTotal($this->getUserId());
     }
 
     /**
@@ -238,7 +240,7 @@ class User extends BaseController
 
         $user_info = $this->getUserInfo();
 
-        $this->_publishTotal($user_info['id']);
+        $this->_publishTotal($this->getUserId());
     }
 
     /**
@@ -251,7 +253,7 @@ class User extends BaseController
 
         $user_info = $this->getUserInfo();
 
-        $this->_publishTotal($user_info['id']);
+        $this->_publishTotal($this->getUserId());
     }
 
     private function _publishTotal($user_id){

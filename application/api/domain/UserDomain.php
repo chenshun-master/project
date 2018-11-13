@@ -51,6 +51,15 @@ class UserDomain
     }
 
     /**
+     * 获取用户认证信息
+     */
+    public function getAuthInfo($user_id){
+        $authInfo = Db::name('auth')->where('user_id',$user_id)->find();
+
+        return $authInfo ?: [];
+    }
+
+    /**
      * 登录操作
      * @param $mobile
      * @param $password

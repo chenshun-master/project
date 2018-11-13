@@ -30,13 +30,13 @@ class User extends CController
             return redirect('/login');
         }
 
-        $user_info = $this->_userDomain->getUserInfo($this->getUserInfo()['id']);
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+        $authInfo = $this->_userDomain->getAuthInfo($this->getUserId());
 
         $this->assign('user_info',$user_info);
-
+        $this->assign('auth_info',$authInfo);
         return $this->fetch('user/main');
     }
-
 
     /**
      * 用户认证页面
