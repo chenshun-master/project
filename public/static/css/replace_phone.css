@@ -20,8 +20,8 @@ a{text-decoration: none;color: #221815;display: block;}
     background:#FFFFFF;
 }
 .wl-jie{
-    width: 385px;
-    height: 62px;
+    width: 450px;
+    min-height: 62px;
     text-align: center;
     color: #C8C8C8;
     font-size: 0.28rem;
@@ -29,20 +29,25 @@ a{text-decoration: none;color: #221815;display: block;}
     margin-top: 30px;
 }
 .wl-xsj{
-    width: 645px;
+    width: 680px;
     margin: 0 auto;
-    border: 1px solid #666666;
+    border: 1px solid #DFDFDF;
     margin-top: 100px
 }
-.wl-xsj input{
-    width: 640px;
+.wl-xsj p{
+    width: 680px;
     height: 64px;
-    margin: 0 auto;
-    display: block;
+    line-height: 40px;
+    background: #FFFFFF;
+}
+.wl-xsj input{
+    width: 70%;
+    height: 32px;
+    border-left: 1px solid #DFDFDF;
     color: #666666;
     font-size: 0.26rem;
-    padding-left: 80px;
-
+    margin-left: 50px;
+    padding-left: 20px;
 }
 .wl-btn{
     width: 680px;
