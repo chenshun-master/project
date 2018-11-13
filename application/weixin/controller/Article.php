@@ -20,6 +20,8 @@ class Article extends BaseController
 
         $this->articleDomain = new \app\api\domain\ArticleDomain();
         $this->userDomain    = new \app\api\domain\UserDomain();
+
+        $this->wechatJssdk = new \wechat\WeChatJsSDK;
     }
 
     /**
@@ -237,9 +239,14 @@ class Article extends BaseController
             $isFabulous = $this->articleDomain->checkFabulous($user_info['id'],$id);
         }
 
-//        halt($data);
+        $config = config('conf.sns_login.weixin');
+//        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+//        $res = $wechatJsSdk->getSignPackage();
+
+
         $this->assign($data);
-        $this->assign('isFabulous',$isFabulous);
+        $this->assign('isFabulous',$isFabulous === false ? 1 :2);
+        $this->assign('weixin_config',['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>'']);
 
         return $this->fetch('article/article_details');
     }
