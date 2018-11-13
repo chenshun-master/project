@@ -26,7 +26,7 @@ a{text-decoration: none;color: #221815;display: block;}
     color: #C8C8C8;
     font-size: 0.28rem;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 .wl-xsj{
     width: 680px;
@@ -48,6 +48,12 @@ a{text-decoration: none;color: #221815;display: block;}
     font-size: 0.26rem;
     margin-left: 50px;
     padding-left: 20px;
+}
+.wl-xsj span{
+    width: 100px;
+    height: auto;
+    color: #7DB0E8;
+    font-size: 0.26rem;
 }
 .wl-btn{
     width: 680px;
