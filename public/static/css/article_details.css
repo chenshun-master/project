@@ -480,7 +480,7 @@ margin-top: -30px;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 3;
+	-webkit-line-clamp: 2;
 }
 .wz2 p:nth-child(3) {
 	width: 578px;
@@ -489,7 +489,7 @@ margin-top: -30px;
 	height: auto;
 }
 .wz3{
-	min-height: 110px;
+	min-height: 95px !important;
 	background: #F0F0F0;
 }
 .mp{
