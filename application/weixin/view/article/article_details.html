@@ -67,9 +67,10 @@
             <button class="wx-rig">加好友</button>
         </div>
         <div style="   font-size: 0.32rem;padding: 5px 15px" class="mp"><?php echo $article_info['content'] ?></div>
-        <p class="wx-fx" style="min-height: 50px;margin-top: 20px;">
-            <button style="margin-left: 20px;" id="cus-click-fabulous"    class="<?php if($isFabulous == 2):?>wx-fabulous-yes<?php endif;?>"     data-fabulous="{$isFabulous? '2' : '1'}"
-                    onclick="objClass.clickFabulous()">{$article_info['like']}
+        <p class="wx-fx" style="min-height: 50px;margin-top: 20px;position: relative">
+            <button style="margin-left: 15px;" id="cus-click-fabulous"    class=""     data-fabulous="{$isFabulous? '2' : '1'}"
+                    onclick="objClass.clickFabulous()">
+                <i class="iconfont <?php if($isFabulous !== 1 ):?> icon-dianzan<?php endif;?> <?php if($isFabulous == 1):?> icon-dianzan1 cus-blue<?php endif;?>" ></i>{$article_info['like']}
             </button>
             <button onclick="myShare.wechatTimeline()">分享朋友圈</button>
             <button onclick="myShare.wechatFriend()">分享微信</button>
@@ -222,9 +223,9 @@
                 success: function (res) {
                     if (res.code == 200) {
                         if(type == 1){
-                            $('#cus-click-fabulous').data('fabulous', 2).text(parseInt($('#cus-click-fabulous').text()) + 1).addClass('wx-fabulous-yes');
+                            $('#cus-click-fabulous').data('fabulous', 2).text(parseInt($('#cus-click-fabulous').text()) + 1).addClass("icon-dianzan1");
                         }else{
-                            $('#cus-click-fabulous').data('fabulous', 1).text(parseInt($('#cus-click-fabulous').text()) - 1).removeClass('wx-fabulous-yes');
+                            $('#cus-click-fabulous').data('fabulous', 1).text(parseInt($('#cus-click-fabulous').text()) - 1).removeClass('icon-dianzan').addClass("icon-dianzan");
                         }
 
                     } else if (res.code == 401) {
