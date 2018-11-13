@@ -30,24 +30,24 @@
             color: #7DB0E8 !important;
         }
         .wl-zhez {
-				background: #FFFFFF;
-				display: none;
-				position: absolute;
-				position: fixed;
-				top: 0;
-				right: 0;
-				left: 0;
-				bottom: 0px;
-				background: rgba(0, 0, 0, .1);
-				z-index: 10;
-			}
+            background: #FFFFFF;
+            display: none;
+            position: absolute;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0px;
+            background: rgba(0, 0, 0, .1);
+            z-index: 10;
+        }
 
         .cus-reply-btn,.cus-comment-fabulous,.cus-pinglun-click,.cus-recommend-href{
             cursor: pointer;
         }
     </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body style="background:#ffffff;">
@@ -89,7 +89,7 @@
         </div>
 
         <div class="" style="height: 85px;width: 100%">
-        	
+
         </div>
 
         <div class="marsk-container">
@@ -123,11 +123,11 @@
 
 
 <div id="cus-myshare-box" style="display: none" >
-<div class="wl-fenxiang">
-    <img src="/static/image/index/fenxiang.png" alt="">
-    <p >点击右上角 <br>将它分享好友或分享朋友圈</p>
-    <img src="/static/image/index/zhidao.png "  alt=""style="  position: absolute;right: 260px; top:600px;">
-</div>
+    <div class="wl-fenxiang">
+        <img src="/static/image/index/fenxiang.png" alt="">
+        <p >点击右上角 <br>将它分享好友或分享朋友圈</p>
+        <img src="/static/image/index/zhidao.png "  alt=""style="  position: absolute;right: 260px; top:600px;">
+    </div>
 </div>
 
 </body>
@@ -150,10 +150,10 @@
 
                 var html = '<div class="wzxq "  >' +
                     '<div class="wx-x">' +
-                        '<h3   onclick="objClass.hrefDetails('+ data.id +')"  >' + data.title + '</h3>' +
-                        '<p><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
-                        '</div>' +
-                        '<img src="' + src + '" alt="" class="cus-recommend-href"  data-id="' + data.id + '"  />' +
+                    '<h3   onclick="objClass.hrefDetails('+ data.id +')"  >' + data.title + '</h3>' +
+                    '<p><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
+                    '</div>' +
+                    '<img src="' + src + '" alt="" class="cus-recommend-href"  data-id="' + data.id + '"  />' +
                     '</div>';
                 return html;
             }
@@ -437,7 +437,7 @@
             $('#cus-subreview-container').html('');
             var h = getClientHeight();
             $('.marsk-container').css('height',h + 'px').show();
-			var h2 = h - 82;
+            var h2 = h - 82;
             $('#cus-subreview-container').css('height',h2 + 'px');
             this.loadSubreviewList();
         },
@@ -478,7 +478,7 @@
                         objClass.commentData.ini= false;
                         objClass.commentData.page= 0;
                         objClass.commentData.page_total= 0;
-                       objClass.loadCommentList();
+                        objClass.loadCommentList();
                         $('.neirong').val('');
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
@@ -551,8 +551,8 @@
             $('.marsk-container').hide(); //淡出消失
         })
         $('.cus-reply-btn').click(function(){
-        $('html,body').addClass('ovfHiden'); //使网页不可滚动
-   			$(".tkyy_con").show();
+            $('html,body').addClass('ovfHiden'); //使网页不可滚动
+            $(".tkyy_con").show();
         })
     });
 
@@ -569,7 +569,7 @@
     var myShare = {
         showShareBox:function(){
             if(redream.isWeiXin()){
-                  $('#cus-myshare-box').show();
+                $('#cus-myshare-box').show();
                 return true;
             }
             return false;
@@ -649,15 +649,31 @@
 
     });
 </script>
-
-
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/static/plugin/wechat/WechatJsSdk.js"></script>
 <script type="text/javascript">
+    var config = {
+        debug:false,
+        appId: '{$weixin_config["appId"]}',
+        timestamp: '{$weixin_config["timestamp"]}',
+        nonceStr: '{$weixin_config["nonceStr"]}',
+        signature: '{$weixin_config["signature"]}',
+        jsApiList: [
+            'checkJsApi',
+            "onMenuShareTimeline",              //分享给好友
+            "onMenuShareAppMessage",            //分享到朋友圈
+            "onMenuShareQQ",                    //分享到QQ
+            "onMenuShareWeibo",                 //分享到微博
+            "checkJsApi",
+            "scanQRCode",          //如果需要调扫码  侧加入至列表
+        ]
+    };
 
     function callbacks(){
         var shareMessage = {
             title: '有一句话想对你说',
             desc: '我的爱人，我会牵着你的手，走到满头白发的那一天，我会守护你生命里的精彩，并陪伴你一路精彩下去。',
-            link: 'http://xmp.sh-jinger.com/weixin/love/xiajinyan',
+            link: 'https://weixin.alimx.cn/weixin/article/articleDetails/id/38',
             imgUrl: 'http://xmp.sh-jinger.com/upload/head-portrait/zkraWQHF5b7694a575435172557.png',
         };
 
@@ -672,6 +688,6 @@
         weixinObj.onMenuShareAppMessage(shareMessage,wxCallback);
     }
 
-    // var weixinObj = new WechatSdkModel(config,callbacks);
+    var weixinObj = new WechatSdkModel(config,callbacks);
 </script>
 </html>
