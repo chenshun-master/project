@@ -230,7 +230,6 @@ position: absolute;
     width: 60px;
     height: 40px;
     float: left;
-
     padding-left: 40px;
 }
 
@@ -245,18 +244,18 @@ position: absolute;
 }
 
 .wx-fen li:nth-child(3) {
-    margin-left: 188px;
-
+    margin-left: 170px;
     background-size: 32px 32px;
 }
 
 .wx-fen li span {
     color: #333333;
     font-size: 0.26rem;
+    float: left;
 }
 
 .on1 {
-    width: 644px;
+    width: 90%;
     height: auto;
     margin: 0 auto;
     margin-top: 20px;

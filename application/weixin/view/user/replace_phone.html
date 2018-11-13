@@ -25,8 +25,8 @@
             <dt>之后可以用新手机号及当前密码登录</dt>
         </dl>
         <div class="wl-xsj">
-            <p style="    border-bottom: 1px solid #DFDFDF;"><input type="text" placeholder="请输入当前绑定的手机号"></p>
-            <p><input type="text" placeholder="请输入新手机号"></p>
+            <p style="border-bottom: 1px solid #DFDFDF;"><input type="text" placeholder="请输入当前绑定的手机号" id="phone"></p>
+            <p><input type="text" placeholder="请输入新手机号" id="newphone"></p>
         </div>
         <button class="wl-btn">下一步</button>
     </div>
@@ -46,6 +46,14 @@
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script>
-
+    $(function(){
+        $('.wl-xsj input').on('.one input ',function(){
+            if(($.trim($('#phone').val())!=="")&&($.trim($('#newphone').val())!=="")){
+                $('.wl-btn').css({'background':'#7DB0E8'});
+            }else{
+                $('.wl-btn').css({'background':'#C8C8C8'});
+            }
+        });
+    });
 </script>
 </html>
