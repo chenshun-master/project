@@ -71,6 +71,14 @@ class User extends BaseController
     {
         return $this->fetch('user/collection');
     }
+   /**
+     * 消息通知页面
+     * @return mixed
+     */
+    public function notice()
+    {
+        return $this->fetch('user/notice');
+    }
 
     /**
      * 修改手机号
