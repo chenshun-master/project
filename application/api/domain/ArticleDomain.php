@@ -458,6 +458,7 @@ class ArticleDomain
         });
 
         $obj->where('article.type', 'in', [1,2]);
+        $obj->where('article.status',1);
 
         $obj->leftJoin('wl_user user','article.user_id = user.id');
         $total = $obj->count();
@@ -492,12 +493,13 @@ class ArticleDomain
         $obj->leftJoin('wl_user user2','comment2.user_id = user2.id');
 
         $obj->where('article.type','in',[1,2]);
+        $obj->where('article.status',1);
 
         $obj->group('comment.object_id');
         $obj->order('comment.created_time desc');
 
         $total = $obj->count();
-        $obj->field('article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id');
+        $obj->field('article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id');
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [
@@ -515,6 +517,30 @@ class ArticleDomain
      * @param int $page_size    分页大小
      */
     public function getFavoriteArticle($user_id,$page=1,$page_size=15){
-        Db::name('user_favorite')->where('table_name','article');
+        $obj = Db::name('user_favorite')->alias('favorite');
+        $obj->where('table_name','article');
+
+
+        $obj->join('wl_article article','favorite.object_id = article.id');
+        $obj->leftJoin('wl_user user','article.user_id = user.id');
+
+
+        $obj->where('article.type','in',[1,2]);
+        $obj->where('article.status',1);
+
+        $obj->order('favorite.created_time desc');
+
+
+        $total = $obj->count();
+
+        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.nickname,user.portrait");
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }

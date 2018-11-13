@@ -395,12 +395,21 @@ class User extends BaseController
 
 
         $data = $this->_articleDomain->getCommentArticle($this->getUserId(),$page,$page_size);
+
+
+        $this->assign($data);
+        $data['html'] = $this->fetch('user/collection/comment_tpl');
+
         return $this->returnData($data,'',200);
     }
 
     /**
      * 获取用户收藏列表
      * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getFavoriteArticleList(Request $request){
         if(!$this->checkLogin()){
@@ -410,16 +419,34 @@ class User extends BaseController
         $page       = (int)$request->param('page',1);
         $page_size  = (int)$request->param('page_size',15);
 
-        $data = $this->_articleDomain->getCommentArticle($this->getUserId(),$page,$page_size);
+        $data = $this->_articleDomain->getFavoriteArticle($this->getUserId(),$page,$page_size);
+
+        $this->assign($data);
+        $data['html'] = $this->fetch('user/collection/favorite_tpl');
+
+
         return $this->returnData($data,'',200);
     }
 
+    /**
+     * 获取点赞列表
+     * @param Request $request
+     */
+    public function getLikeArticleList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+        $data = $this->_articleDomain->getArticleLikeData($this->getUserId(),$page,$page_size);
+
+        $this->assign($data);
+        $data['html'] = $this->fetch('user/collection/like_tpl');
 
 
-    public function test(){
-
-        $data = $this->_articleDomain->getFavoriteArticle($this->getUserId(),1,15);
-
+        return $this->returnData($data,'',200);
     }
 
 }
