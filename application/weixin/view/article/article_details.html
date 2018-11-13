@@ -352,8 +352,10 @@
                                 obj.pxoveClass('cus-blue').pxoveClass('icon-appreciate_fill_light').addClass('icon-appreciate_light');
                             }
                         }
-                    }else{
+                    }else if(res.code == 401){
                         redream.showTip('请先进行登录');
+                    }else if(res.code == 403){
+                        redream.showTip('您还没有该权限');
                     }
                 }
             });
