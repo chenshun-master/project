@@ -86,7 +86,7 @@ html,body{ height:100%;overflow:visible }
 
 .wx-yh {
 	position: absolute;
-	top: 4px;
+	top: 12px;
 	left: 96px;
 }
 
@@ -173,6 +173,7 @@ html,body{ height:100%;overflow:visible }
 }
 
 .wx-x h3 {
+	min-height: 42px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -218,29 +219,30 @@ margin-top: 20px;
 }
 
 .pl {
-	width: 680px;
-	min-height: 270px;
+	width: 100%;
+	min-height: 100px;
 	margin: 0 auto;
 	padding: 20px 0px;
+	margin-bottom: 20px;
 }
 
 .pl img {
-	width: 72px;
-	height: 72px;
+	width: 55px;
+	height: 55px;
 	border-radius: 50%;
 	background: gray;
 	display: block;
 	z-index: 999;
-	margin-top: 56px;
 	float: left;
+	margin-left: 10px;
 }
 
 .pin {
-	width: 576px;
-	height: auto;
+	width: 70%;
+	min-height: 150px;
 	float: right;
-	margin-top: 50px;
-	margin-right: 10px;
+
+	margin-right: 40px;
 
 }
 
@@ -261,24 +263,25 @@ margin-top: 20px;
 	color: #1D1D1D;
 	font-size: 0.24rem;
 	background: gainsboro;
-	padding-left: 45px;
-	background: url(../image/user/dz.png)no-repeat 0px 2px;
-	background-size: 35px;
+	padding-left: 80px;
+	background: url(../image/user/dz.png)no-repeat 53px 2px;
+	background-size: 20px;
 	padding-top: 5px;
 }
 
 .wx-p {
-	width: 576px;
-	height: auto;
+	width: 90%;
+	min-height: 20px;
 	font-size: 0.3rem;
 	color: #1F1F1F;
-	margin-top: 50px;;
+	margin-top: 27px;
+}
 	/*overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;*/
-}
+
 
 .wx-hf {
 	width: 576px;
@@ -299,14 +302,14 @@ margin-top: 20px;
 }
 
 .wx-hf button {
-	width: 122px;
-	height: 46px;
-	border-radius: 10px;
+	width: 13%;
+	height: 25px;
+	border-radius: 25px;
 	background: gainsboro;
 	color: #222222;
 	font-size: 0.24rem;
 	float: left;
-	margin-left: 15px;
+	margin: 12px 0 0 -30px;
 }
 
 .xs {

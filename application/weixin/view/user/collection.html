@@ -9,6 +9,7 @@
     <meta content="telephone=no" name="format-detection"/>
     <title>微琳医美</title>
     <link rel="stylesheet" type="text/css" href="/static/css/collection.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
 
@@ -18,43 +19,86 @@
 </style>
 <body style="background: #ffffff;">
 <div class="wl-con">
-<div class="wl-daohang">
-    <ul id="ul" >
-        <li class="song"><span>收藏</span></li>
-        <li><span>评论</span></li>
-        <li><span>点赞</span></li>
-    </ul>
-</div>
+    <div class="wx-content">
+        <div class="top">
+            <div id="ul" style="border-bottom: 1px solid #EEEEEE;border-top: 10px solid #EEEEEE;">
+                <span id="one" style="margin-left: 207px;">文章</span>
+                <span id="two">视频</span>
+                <span id="three">粉丝</span>
+            </div>
 
-<div>
-    <ol id="ol">
-        <li  class="xian">35435434</li>
-        <li >12312</li>
-        <li >3123</li>
-        <li >3123434</li>
-    </ol>
-</div>
+        </div>
+        <div class="xia">
+            <div class="one ones content" >
+                <div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;position: relative">
+                    <div>
+                        <div class="wx-name" style="border:none;position: relative">
+                            <div style="position:absolute;top: 20px;">
+                                <img src="" alt="" class="wx-tou"  >
+                                <dl class="wx-yh"><dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">bdfs</dt>
+                                    <dd style="font-size:0.24rem;color: #898989;">gdsa </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="wx-nei1">
+                            <dl>
+                                <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;cursor: pointer;"  class="cus-article-href"  >我是内容内容内容我是内容内容内容我是内容
+                                    内容内容我是内容内容内容我是内容内容内容 </dt>
+                                <dd ><img src="" alt="图片"/></dd>
+                            </dl>
+                        </div>
+                        <ul class="wx-fen" style="bottom: 40px">
+                            <li><i class="iconfont icon-share_light" ></i><span></span></li>
+                            <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">6</span></li>
+                            <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >6</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="wx-name" style="border:none;position: relative">
+                            <div style="position:absolute;top: 20px;">
+                                <img src="" alt="" class="wx-tou"  >
+                                <dl class="wx-yh"><dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">bdfs</dt>
+                                    <dd style="font-size:0.24rem;color: #898989;">gdsa </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="one " style="display: none;">
+g ad
+            </div>
+            <div class="one" style="display: none;">
+                a s
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    $(function(){
-        $("ul>li").click(function(){
-            var index=$(this).index();
-            $("ul li span").eq(index).addClass("song").siblings().removeClass("song")
-            $("ol>li").eq(index).addClass("xian").siblings().removeClass("xian")
-        })
-    })
-
-    $(function(){
-        $(window).scroll(function(){
-            if($(window).scrollTop()>0){
-                $("#ul").addClass("ul")
-            }else if($(window).scrollTop()<=0){
-                $("#ul").removeClass("ul")
+    $(function () {
+        $(".ones").show();
+        $(".top span").eq(0).addClass("se");
+        var a,b,c,index = 0;
+        $(".top span").click(function () {
+            index = $(this).index();
+            $(".xia .one").eq(index).show().siblings().hide();
+            $(".top span").eq(index).addClass("se").siblings().removeClass("se");
+            if (index == 0) {
+                a = 1;
+            }
+            if (index == 1) {
+                b = 1;
+            }
+            if (index == 2) {
+                c = 1;
+            }
+            if (a == 1 && b == 1 && c == 1) {
+                $("#xiao").hide();
             }
         })
-    })
+    });
 </script>
 </html>

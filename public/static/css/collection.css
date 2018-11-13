@@ -18,31 +18,55 @@ ul li{
     line-height: 87px;
     font-size: 0.28rem;
 }
-
 .wl-con{
     width: 100%;
     min-height: 900px;
 }
-.wl-daohang{
-    font-size: 0.28rem;
-    border-bottom: 1px solid #F1F1F1;
+.top{
+    position: fixed;
+    top: 0;
+    background: #FFFFFF;
 }
-.wl-daohang span{
-    width: 50px;
-    height: 50px;
-
-}
-ul li:hover{
-    cursor: pointer;
-}
-ol li{
+.xia{
     width: 100%;
-    height: 800px;
-    display: none;
+    min-height: 400px;
+
+    margin-top: 70px;
 }
-.xian{
-    display: block;
+.wl-yonghu{
+    width: 100%;
+    height: 117px;
+    border: 1px solid red;
+    position: relative;
+    top: 0px;
 }
-.song{
-    color: #7DB0E8;
+.wl-yonghu img{
+    width: 72px;
+    height: 72px;
+    position: absolute;
+    top: 18px;
+    left: 34px;
+}
+.wl-yonghu dl{
+    position: absolute;
+    top: 18px;
+    left: 130px;
+}
+.wl-neirong{
+    width: 100%;
+    min-height: 180px;
+}
+.wl-wenzhang {
+    width: 400px;
+    min-height: 135px;
+    color: #1F1F1F;
+    font-size: 0.34rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+}
+.wx-fen i{
+    font-size: 35px;
+
 }
