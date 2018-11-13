@@ -6,6 +6,8 @@ use think\Request;
 use app\api\model\UserModel;
 use anerg\OAuth2\OAuth;
 use think\Db;
+
+use think\facade\Session;
 class Index extends BaseController
 {
 
@@ -50,27 +52,27 @@ class Index extends BaseController
         return $this->fetch('index/loginReister');
     }
 
-	/**
-	 * 用戶登录页
+    /**
+     * 用戶登录页
      */
-	 public function login(){
-         if($this->checkLogin()){
-             return redirect('/weixin/user/main');
-         }else if(is_weixin() && config('conf.weixin_automatic_logon')){
-//             return $this->redirect('weixin/index/otherLogin?platform=weixin');
-         }
+    public function login(){
+        if($this->checkLogin()){
+            return redirect('/weixin/user/main');
+        }else if(is_weixin() && config('conf.weixin_automatic_logon')){
+            // return $this->redirect('weixin/index/otherLogin?platform=weixin');
+            Session::delete('wxAuthorize');
+            $this->wxAuthorize(true);
+        }
 
-         $this->wxAuthorize();
-
-         return $this->fetch('index/login');
+        return $this->fetch('index/login');
     }
 
     /**
-	 * 找回密码页
+     * 找回密码页
      */
-	 public function backpwd(){
+    public function backpwd(){
         return $this->fetch('index/backpwd');
-     }
+    }
 
     /**
      * 用户密码登录提交处理控制器
@@ -279,6 +281,9 @@ class Index extends BaseController
             ##登录成功跳转到登录页面
             return redirect('/weixin/user/main');
         }
+
+
+
 
         ##第三方登录未绑定手机号跳转到绑定手机号页面
         return redirect('/weixin/index/otherLoginBindingMobile')->params(['id'=>$res['id']]);

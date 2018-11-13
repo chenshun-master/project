@@ -97,6 +97,8 @@ class BaseController extends Controller
 
         //获取当前页面
         $redirect = Request::url(true);
+        Session::set('previous_page',$redirect);
+
 
         //微信授权回调地址
         $url = Url('/weixin/index/authCallback','','',true);
@@ -114,6 +116,10 @@ class BaseController extends Controller
                     if(!isset($res['errcode'])){
                         $res['expires_time'] = time() + $res['expires_in'];
                         $res['userinfo'] = [];
+                        if($res['scope'] == 'snsapi_userinfo'){
+                            $res['userinfo'] = $this->weChatApiClass->getUserAuthorizedUserInfo($res['access_token'],$res['openid']);
+                        }
+
                         Session::set('wxAuthorize',$res);
                     }
                 }
@@ -121,7 +127,7 @@ class BaseController extends Controller
 
             return true;
         }else{
-            $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redirect,$snsapi_userinfo);
+            $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redirect,true);
             $this->weChatApiClass->redirect($redirect);exit;
         }
     }
@@ -130,15 +136,44 @@ class BaseController extends Controller
      * 微信授权回调地址
      */
     public function authCallback(Request $request){
+        $this->weChatApiClass = new \wechat\WeChatApi();
+
         $code   = $_GET['code'];
         $state  = $_GET['state'];
 
-        $res = (new \wechat\WeChatApi())->getUserAuthorizeAccessToken($code);
+        $res = $this->weChatApiClass->getUserAuthorizeAccessToken($code);
         if(!isset($res['errcode'])){
             $res['expires_time'] = time() + $res['expires_in'];
             $res['userinfo'] = [];
-            $request->session()->put('wxAuthorize', $res);
-            return redirect()->to($state);
+            if($res['scope'] == 'snsapi_userinfo'){
+                $res['userinfo'] = $this->weChatApiClass->getUserAuthorizedUserInfo($res['access_token'],$res['openid']);
+            }
+
+            Session::set('wxAuthorize',$res);
+            if($res['userinfo']){
+                $obj = new \app\api\domain\RhirdPartyUserDomain();
+                $user_info = [
+                    'openid'=>$res['userinfo']['openid'],
+                    'nick'=>$res['userinfo']['nickname']
+                ];
+
+                $myUserInfo = $obj->userHandle($user_info,'weixin');
+
+                #判断第三方账号是否绑定手机号
+                if($myUserInfo['binding'] === 1){
+                    $userDomain = new \app\api\domain\UserDomain();
+                    $info = $userDomain->login($myUserInfo['mobile'],'',true);
+                    $this->saveUserLogin($info);
+
+                    ##登录成功跳转到登录页面
+                    return redirect(Session::get('previous_page'));
+                }else{
+                    ##第三方登录未绑定手机号跳转到绑定手机号页面
+                    return redirect('/weixin/index/otherLoginBindingMobile')->params(['id'=>$myUserInfo['id']]);
+                }
+            }
+
+            return redirect(Session::get('previous_page'));
         }
     }
 }
