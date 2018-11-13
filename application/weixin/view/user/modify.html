@@ -83,10 +83,12 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+
+
     $(document).ready(function () {
         //上传头像
         $(".tkyy").click(function (event) {
-            redream.showTip('此功能尚未开放');
+            // redream.showTip('此功能尚未开放');
             return false;
             event.stopPropagation(); //停止事件冒泡
             $(".marsk-container").toggle();
@@ -145,39 +147,38 @@
     var objClass = {
         loading: false,
         submit: function () {
-            var nickname = $.trim($('#fr-nickname').val());
-            var sex = $('#fr-sex').data('sex');
-            var profile = $('#fr-profile').val();
-            var birthday_date = $('#fr-birthday-date').val();
-            if (this.loading) {
-                return false;
-            }
+            var data  = {
+                nickname: $.trim($('#fr-nickname').val()),
+                sex: $('#fr-sex').data('sex'),
+                profile: $('#fr-profile').val(),
+                birthday_date: $('#fr-birthday-date').val()
+            };
 
-            if (nickname == '') {
-                redream.showTip('昵称不能为空');
-                return false;
-            }
-
-            $.ajax({
-                url: "/weixin/user/editProfile",
-                type: 'post',
-                data: {nickname: nickname, sex: sex, profile: profile, birthday_date: birthday_date},
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.loading = true;
-                },
-                complete: function () {
-                    objClass.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        redream.showTip('修改成功');
-                    } else {
-                        redream.showTip('修改失败');
-                        return false;
+            if (redream.isEmptyStr(data.nickname)) {
+                redream.showTip('昵称不能为空');return false;
+            }else if(redream.strlen(data.nickname) > 15){
+                redream.showTip('昵称过于太长');return false;
+            }else if(!this.loading){
+                $.ajax({
+                    url: "/weixin/user/editProfile",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.loading = true;
+                    },
+                    complete: function () {
+                        objClass.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            redream.showTip('修改成功');
+                        } else {
+                            redream.showTip('修改失败');
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     };
 
