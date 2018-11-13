@@ -33,7 +33,7 @@
                 <input type="text" placeholder="请输入当前绑定的手机号" id="fr-old-mobile" value="{$mobile|mobileFilter}" readonly>
             </p>
             <p>
-                <input type="text" placeholder="请输入新手机号" id="fr-new-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')">
+                <input type="text" placeholder="请输入新手机号" id="fr-new-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" />
             </p>
         </div>
         <button class="wl-btn" disabled onclick="myObj.nextStep()">下一步</button>

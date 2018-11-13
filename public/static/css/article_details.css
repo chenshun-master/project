@@ -74,31 +74,31 @@ html,body{ height:100%;overflow:visible }
 }
 
 .wx-tou {
-	width: 60px;
-	height: 60px;
+	width: 45px;
+	height: 45px;
 	display: block;
 	border-radius: 50%;
 	background: khaki;
 	position: absolute;
-	top: 0;
-	left: 25px;
+	top: 6px;
+	left: 30px;
 }
 
 .wx-yh {
 	position: absolute;
 	top: 12px;
-	left: 96px;
+	left: 90px;
 }
 
 .wx-rig {
-	width: 90px;
-	height: 35px;
+	width: 80px;
+	height: 30px;
 	background: #7DB0E8;
 	color: #FFFFFF;
 	font-size: 0.26rem;
 	position: absolute;
-	right: 23px;
-	top: 5px;
+	right: 35px;
+	top: 12px;
 	border-radius: 5px;
 }
 
@@ -220,29 +220,28 @@ margin-top: 20px;
 
 .pl {
 	width: 100%;
-	min-height: 110px;
+	min-height: 130px;
 	margin: 0 auto;
 	padding: 20px 0px;
-	margin-bottom: 30px;
 	position: relative;
 }
 
 .pl img {
-	width: 55px;
-	height: 55px;
+	width: 35px;
+	height: 35px;
 	border-radius: 50%;
 	background: gray;
 	display: block;
 	z-index: 999;
 	position: absolute;
-	left: 10px;
-	top: 20px;
+	left: 20px;
+	top: 23px;
 	z-index: 1;
 }
 
 .pin {
 	width: 70%;
-	min-height: 130px;
+	min-height: 100px;
 	float: right;
 	margin-right: 40px;
 
@@ -254,8 +253,7 @@ margin-top: 20px;
 	color: #7DB0E8;
 	font-size: 0.3rem;
 	display: block;
-	float: left;
-	padding-top: -3px;
+	margin-top: 10px;
 }
 
 .xm span:nth-child(2) {
@@ -273,16 +271,16 @@ margin-top: 20px;
 
 .wx-p {
 	width: 90%;
-	min-height: 20px;
+	min-height: 30px;
 	font-size: 0.3rem;
 	color: #1F1F1F;
-	margin-top: 27px;
-}
-	/*overflow: hidden;
+	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;*/
+	-webkit-line-clamp: 2;
+}
+
 
 
 .wx-hf {
@@ -393,8 +391,8 @@ margin-top: 20px;
 
 .z-top {
 	width: 100%;
-	height: 82px;
-	line-height: 82px;
+	height: 45px;
+	line-height: 45px;
 	color: #858585;
 	font-size: 0.34rem;
 	text-align: center;
@@ -409,8 +407,8 @@ margin-top: 20px;
 }
 
 .wz1 img {
-	width: 72px;
-	height: 72px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	margin-top: 30px;
 	margin-left: 60px;
@@ -421,8 +419,8 @@ margin-top: 20px;
 	background: darkgray;
 }
 .wz2 img {
-	width: 56px;
-	height: 56px;
+	width:25px;
+	height: 25px;
 	border-radius: 50%;
 	margin-top: 14px;
 	margin-left: 10px;
@@ -431,11 +429,12 @@ margin-top: 20px;
 }
 
 .wz2 {
-	width: 535px;
+	width: 70%;
 	height: 400px;
-	float: right;
-	margin-top: 36px;
-	margin-right: 36px;
+	float: left;
+	margin-top: -13px;
+	margin-left: 111px;
+
 }
 
 .wz2 p:nth-child(1) {
@@ -458,29 +457,30 @@ margin-top: -30px;
 }
 
 .wz2 p:nth-child(2) {
-	width: 560px;
+	width: 100%;
 	color: #1F1F1F;
 	font-size: 0.32rem;
 	margin-top: 10px;
 	height: auto;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	display: -webkit-box; //作为弹性伸缩盒子模型显示。
-	-webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-	-webkit-line-clamp: 3; //显示的行
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
 }
 .wz4 p:nth-child(2) {
-	width: 530px;
+	width: 73%;
 	color: #1F1F1F;
-	font-size:0.25rem;
-	margin-top: 10px;
+	font-size: 0.25rem;
 	height: auto;
+	float: left;
+	margin-top: -13px;
 	overflow: hidden;
 	padding: 10px 10px 0px 10px;
 	text-overflow: ellipsis;
-	display: -webkit-box; //作为弹性伸缩盒子模型显示。
-	-webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-	-webkit-line-clamp: 3; //显示的行
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
 }
 .wz2 p:nth-child(3) {
 	width: 578px;
@@ -489,7 +489,7 @@ margin-top: -30px;
 	height: auto;
 }
 .wz3{
-	height: auto;
+	min-height: 110px;
 	background: #F0F0F0;
 }
 .mp{

@@ -66,7 +66,7 @@
             </dl>
             <button class="wx-rig">加好友</button>
         </div>
-        <div style="   font-size: 0.32rem;padding: 5px 15px" class="mp"><?php echo $article_info['content'] ?></div>
+        <div style="   font-size: 0.32rem;padding: 0 15px" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="min-height: 50px;margin-top: 20px;position: relative">
             <button style="margin-left: 15px;" id="cus-click-fabulous"    class=""     data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()">
                 <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" ></i>
@@ -374,12 +374,12 @@
                     '<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">' + data.nickname + '</span><span style="float: right;color: #999999;font-size: 0.24rem;"><i class="iconfont cus-pinglun-click ' + css + '" data-id="' + data.id + '" data-click="' + data.isZan + '" ></i><span class="cus-pinglun-text">' + data.like_count + '</span></span></p>' +
                     '<p>' + data.content + '</p>' +
                     '<p>' + redream.beautifyTime(data.created_time) + '</p>' +
-                    '<div class="wz3" style="margin-top: 20px;">' +
+                    '<div class="wz3" style="margin-top: 10px;">' +
                     '<img src="'+ data.parent.portrait +'"  onerror="this.src=\'/static/image/user/tou.png \'"  />' +
-                    '<div class="wz4">' +
-                    '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;float: left;margin-top: 20px;margin-left: 11px;">' + data.parent.nickname + '</span></p>' +
+                    '<div class="wz4" style="position: relative">' +
+                    '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;float: left;margin-top: 13px;margin-left: 11px;">' + data.parent.nickname + '</span></p>' +
                     '<p>' + data.parent.content + '</p>\n' +
-                    '<p style="font-size:0.2rem;color: #888888;margin-top: 10px;margin-left:10px">' + data.parent.created_time + '</p>' +
+                    '<p style="font-size:0.2rem;color: #888888;margin-top: 10px;margin-left: 45px ;   float: left">' + data.parent.created_time + '</p>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +

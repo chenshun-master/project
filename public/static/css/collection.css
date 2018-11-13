@@ -18,6 +18,13 @@ ul li{
     line-height: 87px;
     font-size: 0.28rem;
 }
+#top{
+    margin-top: 0px;
+    background:white !important;
+}
+.ul{
+    background:white; filter:alpha(opacity:30);
+}
 .wl-con{
     width: 100%;
     min-height: 900px;
@@ -25,7 +32,8 @@ ul li{
 .top{
     position: fixed;
     top: 0;
-    background: #FFFFFF;
+    background: white;
+
 }
 .xia{
     width: 100%;
@@ -83,9 +91,21 @@ ul li{
 .wx-fen i{
     font-size: 35px;
 }
-.wx-nei1 video{
+.wx-video{
     width: 100%;
     height: 420px;
-    background: yellow;
     margin-top: 20px;
+}
+.wl-img{
+    width: 100%;
+    min-height: 740px;
+    margin-top: 30px;
+}
+.wl-img img{
+    width: 32%;
+    height: 245px;
+    display: block;
+    float: left;
+    background: gray;
+    margin-right: 5px;
 }

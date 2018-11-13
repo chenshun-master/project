@@ -89,11 +89,7 @@ z-index: 1;
 	float: right;font-size: 0.24rem;color: #fff;
 	background: url(../image/reg/yj.png)no-repeat  10px 21px;
 }
-.zj{
-	width: 100px;
-	height: 100px;
-	background: red;
-}
+
 .weixin{
 	width: 350px;
 	height: 80px;
