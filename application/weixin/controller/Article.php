@@ -244,7 +244,12 @@ class Article extends BaseController
 //        $res = $wechatJsSdk->getSignPackage();
 
 
+
+        $thumbnail = empty($data['article_info']['thumbnail']) ?[] : json_decode($data['article_info']['thumbnail'],true) ;
+        $shareImg = count($thumbnail) > 0 ? $thumbnail['img_1'] : '';
+
         $this->assign($data);
+        $this->assign('shareImg',$shareImg);
         $this->assign('isFabulous',$isFabulous === false ? 1 :2);
         $this->assign('weixin_config',['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>'']);
 
