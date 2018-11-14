@@ -42,10 +42,11 @@ html,body{ height:100%;overflow:visible }
 
 .top1 {
 	width: 100%;
-	min-height: 40px;
+	min-height: 30px;
+	line-height: 30px;
 	margin: 0 auto;
 	margin-top: 20px;
-	padding-left: 20px;
+	padding: 0 20px 0 20px;
 	font-size: 0.35rem;
 	overflow:hidden;
 	text-overflow:ellipsis;
@@ -215,7 +216,7 @@ margin-top: 20px;
 
 .pl {
 	width: 100%;
-	min-height: 110px;
+	min-height: 115px;
 	margin: 0 auto;
 	padding: 20px 0px;
 	position: relative;
@@ -248,7 +249,7 @@ margin-top: 20px;
 	color: #7DB0E8;
 	font-size: 0.3rem;
 	display: block;
-	margin-top: 5px;
+	margin-top: 2px;
 }
 
 .xm span:nth-child(2) {
@@ -275,7 +276,7 @@ margin-top: 20px;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	position: absolute;
-	top: 50px;
+	top: 47px;
 }
 
 
@@ -296,7 +297,7 @@ margin-top: 20px;
 	float: left;
 	padding-right: 20px;
 	position: absolute;
-	top: 94px;
+	top: 97px;
 }
 
 .cus-reply-btn{
@@ -307,7 +308,7 @@ margin-top: 20px;
 	color: #222222;
 	font-size: 0.24rem;
 	float: left;
-	margin: 33px 0 0 88px;
+	margin: 35px 0 0 88px;
 }
 
 .xs {
