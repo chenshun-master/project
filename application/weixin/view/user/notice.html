@@ -16,8 +16,8 @@
 <header>
     <div class="top" style="position: relative">
         <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;" onclick="redream.href('/weixin/user/main')"></i>
-        <span>通知</span>
-        <span>消息</span>
+        <span id="one">通知</span>
+        <span id="two">消息</span>
     </div>
 </header>
 <content>
@@ -38,8 +38,6 @@
                 {/foreach}
             </div>
             {/if}
-
-
 
             <p class="wl-hy1">系统通知</p>
             <div class="wl-nei1">
@@ -147,11 +145,17 @@
             if (index==1){
                 $(".one").show();
                 $(".two").hide();
+                $("#one").addClass("se")&&$("#two").removeClass("se");
+               ;
+
             } else if (index==2){
                 $(".one").hide();
                 $(".two").show();
+                $("#two").addClass("se")&&$("#one").removeClass("se");
+            ;
+
             }
-            $(".top span").eq(index).addClass("se").siblings().removeClass("se")
+
         })
     })
 </script>
