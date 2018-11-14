@@ -10,14 +10,14 @@
                     <div class="wl-fas">
                         <div class="wx-name9 wl-mnb" >
                             <div class="wl-one1-2" >
-                                <img src="{$vo['portrait']}" alt="" class="wx-tou" onerror='this.src="/static/image/user/tou.png"' >
+                                <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2" onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
                                 <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
                                     <dd>{$vo['published_time']|strtotime|formatTime} </dd>
                                 </dl>
                             </div>
                         </div>
                         <div  class="wl-neirong-8" > {$vo['comment_content']}</div>
-                        <dl class="wl-dasiu" >
+                        <dl class="wl-dasiu  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
                             <div class="wl-dasda" > {$vo['title']}</div>
                             <div class="wl-img" >
                                 {foreach $thumbnail as $k=>$v}
@@ -29,7 +29,10 @@
                             <ul class="wx-fen" style="position:absolute;bottom: 0px">
                                 <li><i class="iconfont icon-share_light" ></i><span></span></li>
                                 <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
-                                <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >{$vo['like']}</span></li>
+                                <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
+                                    <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
+                                    <span style="margin-left: 15px;" >{$vo['like']}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -37,14 +40,14 @@
                     <div class="w-one3-1">
                         <div class="wx-name9 name1">
                             <div class="wl-one1-2" >
-                                <img src="{$vo['portrait']}" alt="" class="wx-tou" onerror='this.src="/static/image/user/tou.png"' >
+                                <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2" onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
                                 <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
                                     <dd>{$vo['published_time']|strtotime|formatTime} </dd>
                                 </dl>
                             </div>
                         </div>
                         <div class="w-zhuij"> {$vo['comment_content']}</div>
-                        <div class="wx-nei1 w-onr4" >
+                        <div class="wx-nei1 w-onr4  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}" >
                             <dl class="w-oea">
                                 <dt  >{$vo['title']}</dt>
                                 <dd style="top: 6px"><img src="" alt="图片" /></dd>
@@ -54,7 +57,10 @@
                             <ul class="wx-fen " style="bottom: -35px" >
                                 <li><i class="iconfont icon-share_light" ></i><span></span></li>
                                 <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
-                                <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >{$vo['like']}</span></li>
+                                <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
+                                    <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
+                                    <span style="margin-left: 15px;" >{$vo['like']}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -65,7 +71,7 @@
                 <div class="wo-ju" >
                     <div class="wx-name9 wl-mnb">
                         <div class="wl-one1-2">
-                            <img src="{$vo['portrait']}" alt="" class="wx-tou" onerror='this.src="/static/image/user/tou.png"' >
+                            <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2" onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
                             <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
                                 <dd>{$vo['published_time']|strtotime|formatTime} </dd>
                             </dl>
@@ -74,7 +80,7 @@
                     <div class="w-zhuij" > {$vo['comment_content']}</div>
                     <div class="wx-nei1 w-onr4">
                         <dl>
-                            <div  class="wl-neirong-8" > {$vo['title']}</div>
+                            <div  class="wl-neirong-8  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}"> {$vo['title']}</div>
                             <div class="wx-video">
                                 <video src="" controls="controls" width="100%" height="420px"/>
                             </div>
@@ -84,7 +90,10 @@
                         <ul class="wx-fen " style="bottom: -9px">
                             <li><i class="iconfont icon-share_light" ></i><span></span></li>
                             <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
-                            <li><i class="iconfont icon-dianzan"></i><span style="margin-left: 15px;" >{$vo['like']}</span></li>
+                            <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
+                                <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
+                                <span style="margin-left: 15px;" >{$vo['like']}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

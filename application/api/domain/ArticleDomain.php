@@ -462,7 +462,7 @@ class ArticleDomain
 
         $obj->leftJoin('wl_user user','article.user_id = user.id');
         $total = $obj->count();
-        $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile");
+        $obj->field("article.*,user.id as user_id,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
 
         $rows = $obj->page($page,$page_size)->select();
         return [
@@ -499,7 +499,7 @@ class ArticleDomain
         $obj->order('comment.created_time desc');
 
         $total = $obj->count();
-        $obj->field('article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id');
+        $obj->field("article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [
@@ -533,7 +533,7 @@ class ArticleDomain
 
         $total = $obj->count();
 
-        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.nickname,user.portrait");
+        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
 
         return [
