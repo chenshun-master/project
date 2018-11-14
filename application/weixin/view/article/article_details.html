@@ -81,7 +81,7 @@
             <button onclick="myShare.wechatTimeline()">分享朋友圈</button>
             <button onclick="myShare.wechatFriend()" ><i class="iconfont icon-weixin1" style="font-size: 25px;color: #0dc323;float: left;margin-left: 13%"></i>
                 <span style="float: left;margin-left: 10%">分享微信</span></button>
-        <div style="border-bottom: 10px solid #F2F2F2;display: none;" id="cus-recommend">
+        <div style="display: none;" id="cus-recommend">
             <p class="wx-xg" style="padding-top:8px;">相关推荐</p>
             <div id="cus-recommend-content"></div>
             <p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>
@@ -89,12 +89,93 @@
 
         <div id="cus-comment" style="display: block;">
             <div id="cus-comment-content">
+                <p class="wx-xg" style="padding-top:8px;">相关评论</p>
+                <div class="wl-xiang">
+                 <div  style="float: left;"> <img src="/static/image/user/pyq.png" alt="" width="30"height="30" ></div>
+                    <div class="wl-xiaa1" style="float: right;">
+                        <div class="wl-uh">
+                            <div class="wl-das1">半顆心</div><div  class="wl-das2"><i class="iconfont icon-appreciate_light" style="font-size: 22px"></i><span>99</span></div>
+                        </div>
+                        <div class="wl-neirnga">
+                            广东省高是广东三大歌
 
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                        </div>
+                        <div class="wl-neiha">
+                            <div class="wl-pji">13小时前</div><div class="wl-mjs">3回复</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wl-xiang">
+                    <div  style="float: left;"> <img src="/static/image/user/pyq.png" alt="" width="30"height="30" ></div>
+                    <div class="wl-xiaa1" style="float: right;">
+                        <div class="wl-uh">
+                            <div class="wl-das1">半顆心</div><div  class="wl-das2"><i class="iconfont icon-appreciate_light" style="font-size: 22px"></i><span>99</span></div>
+                        </div>
+                        <div class="wl-neirnga">
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+                        </div>
+                        <div class="wl-neiha">
+                            <div class="wl-pji">13小时前</div><div class="wl-mjs">3回复</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wl-xiang">
+                    <div  style="float: left;"> <img src="/static/image/user/pyq.png" alt="" width="30"height="30" ></div>
+                    <div class="wl-xiaa1" style="float: right;">
+                        <div class="wl-uh">
+                            <div class="wl-das1">半顆心</div><div  class="wl-das2"><i class="iconfont icon-appreciate_light" style="font-size: 22px"></i><span>99</span></div>
+                        </div>
+                        <div class="wl-neirnga">
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                            广东省高是广东三大歌
+
+                        </div>
+                        <div class="wl-neiha">
+                            <div class="wl-pji">13小时前</div><div class="wl-mjs">3回复</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
         </div>
 
-        <div class="" style="height: 85px;width: 100%">
+        <div class="" style="height: 100px;width: 100%;float: left">
 
         </div>
 
@@ -146,7 +227,6 @@
         </div>
     </div>
 </div>
-
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
@@ -277,7 +357,8 @@
                 var html = '<div class="pl">' +
                     '<img src="' + src + '" alt=""    onerror="this.src=\'/static/image/user/tou.png \'"     />' +
                     '<div class="pin">' +
-                    '<p class="xm"><span style="float:left">' + data.nickname + '</span> <span style="float:right" class="cus-comment-fabulous" data-id="' + data.id + '" data-click="' + data.isZan + '" >' + data.like_count + '</span></p>' +
+                    '<p class="xm"><span style="float:left">' + data.nickname + '</span>' +
+                    ' <span style="float:right" class="cus-comment-fabulous" data-id="' + data.id + '" data-click="' + data.isZan + '" >' + data.like_count + '</span></p>' +
                     '<p class="wx-p">' + data.content + '</p>' +
                     '<div style="position: relative"><p class="wx-hf"></div>' +
                     '<span class="hf-sj">' + data.created_time + '</span>' +
@@ -389,20 +470,16 @@
             template: function (data) {
                 var css = (data.isZan != 0) ? ' icon-appreciate_fill_light cus-blue ' : 'icon-appreciate_light';
                 return '<div class="wz1">' +
-                    '<img src="' + data.portrait + '"  onerror="this.src=\'/static/image/user/tou.png \'"  />' +
-                    '<div class="wz2">' +
-                    '<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">' + data.nickname + '</span><span style="float: right;color: #999999;font-size: 0.24rem;"><i class="iconfont cus-pinglun-click ' + css + '" data-id="' + data.id + '" data-click="' + data.isZan + '" ></i><span class="cus-pinglun-text">' + data.like_count + '</span></span></p>' +
-                    '<p>' + data.content + '</p>' +
-                    '<p>' + redream.beautifyTime(data.created_time) + '</p>' +
-                    '<div class="wz3" style="margin-top: 10px;">' +
-                    '<img src="'+ data.parent.portrait +'"  onerror="this.src=\'/static/image/user/tou.png \'"  />' +
-                    '<div class="wz4" style="position: relative">' +
-                    '<p><span style="color: #7DB0E8;font-size: 0.22rem;line-height: 20px;height: 20px;float: left;margin-top: 13px;margin-left: 11px;">' + data.parent.nickname + '</span></p>' +
-                    '<p>' + data.parent.content + '</p>\n' +
-                    '<p style="font-size:0.2rem;color: #888888;margin-top: 10px;margin-left: 45px ;   float: left">' + data.parent.created_time + '</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
+                        '<img src="' + data.portrait + '"  onerror="this.src=\'/static/image/user/tou.png \'"  />' +
+                        '<div class="wz2">' +
+                            '<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">' + data.nickname + '</span><span style="float: right;color: #999999;font-size: 0.24rem;"><i class="iconfont cus-pinglun-click ' + css + '" data-id="' + data.id + '" data-click="' + data.isZan + '" ></i><span class="cus-pinglun-text">' + data.like_count + '</span></span></p>' +
+                            '<p>' + data.content + '</p>' +
+                            '<p>' + redream.beautifyTime(data.created_time) + '</p>' +
+                            '<div class="wz3" style="margin-top: 10px;">' +
+                                '<div><span class="wl-namep"><span class="wl-namei">'+ data.parent.nickname +'</span>:'+ data.parent.content +'</span>' +
+                                '<p  class="wl-timeh" style="font-size: 0.2rem;color: #b3b3b3;margin-top: 13px">' + data.parent.created_time  +'</p>'+
+                            '</div>' +
+                        '</div>' +
                     '</div>';
             }
         },
@@ -567,7 +644,7 @@
     }, 500);
 
     setTimeout(function () {
-        objClass.loadCommentList();
+        // objClass.loadCommentList();
 
         $(document).on('click', '.cus-comment-fabulous', function () {
             objClass.clickCommentFabulous($(this), 1);
