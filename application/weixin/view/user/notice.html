@@ -23,10 +23,9 @@
 </header>
 <content>
     <div class="xia">
-        <div class="san" id="cus-notice-container">
+        <div class="san" id="cus-notice-container" >
             <p class="wl-hy1">网站公告</p>
-            <div id="cus-notice-container-list">
-
+            <div id="cus-notice-container-list" style="min-height: 300px;">
             </div>
         </div>
 
@@ -114,9 +113,9 @@
             },
             template:function(data){
                 return '<div class="wl-nei1">' +
-                            '<img src="/static/image/user/tou.png" alt="">' +
+                            '<img src="/static/image/user/rederam.png" alt="">' +
                             '<div class="wl-nei2">' +
-                                '<dl>微琳医美</dl>' +
+                                '<dl>'+ data.title +'</dl>' +
                                 '<dt>'+ data.content +'</dt>' +
                                 '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
                             '</div>' +
