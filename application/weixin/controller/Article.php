@@ -13,6 +13,8 @@ class Article extends BaseController
 {
     private $articleDomain;
     private $userDomain;
+    private $_userFriendDomain;
+    private $wechatJssdk;
 
     public function __construct(App $app = null)
     {
@@ -22,6 +24,8 @@ class Article extends BaseController
         $this->userDomain    = new \app\api\domain\UserDomain();
 
         $this->wechatJssdk = new \wechat\WeChatJsSDK;
+        $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
+
     }
 
     /**
@@ -231,7 +235,6 @@ class Article extends BaseController
      */
     public function articleDetails(Request $request){
         $id = $request->param('id',0);
-
         $data = $this->articleDomain->getArticleInfo($id,$this->getUserId());
 
         $config = config('conf.sns_login.weixin');
@@ -241,7 +244,18 @@ class Article extends BaseController
         $thumbnail = empty($data['article_info']['thumbnail']) ?[] : json_decode($data['article_info']['thumbnail'],true) ;
         $shareImg = count($thumbnail) > 0 ? $thumbnail['img_1'] : '';
 
+        $isFriend = false;
+        if($this->checkLogin()){
+            if($data['article_info']['user_id'] == $this->getUserId()){
+                $isFriend = 2;
+            }else{
+                $isFriend = $this->_userFriendDomain->checkFriend($data['article_info']['user_id'],$this->getUserId());
+            }
+
+        }
+
         $this->assign($data);
+        $this->assign('isFriend',$isFriend);
         $this->assign('shareImg',$shareImg);
         $this->assign('isFabulous',$data['article_info']['isZan'] == 0 ? 1 :2);
         $this->assign('weixin_config',['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>'']);
