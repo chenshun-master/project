@@ -107,9 +107,9 @@ a {
 
 .wx-n2 {
     margin-top: 25px;
-    height: auto;
+    min-height: 40px;
     color: #1F1F1F;
-    font-size: 0.32rem;
+    font-size: 0.34rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -220,16 +220,17 @@ a {
 }
 
 .wx-bn1 {
-    width: 414px;
-    min-height:155px;
+    width: 65%;
+    min-height: 138px;
     color: #1F1F1F;
-    font-size: 0.38rem;
+    font-size: 0.34rem;
     float: left;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
     margin-bottom: 3px;
+    padding-top: 7px;
 }
 
 .wx-b3 img {
