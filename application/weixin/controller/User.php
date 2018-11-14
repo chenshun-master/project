@@ -69,22 +69,38 @@ class User extends BaseController
      */
     public function collection()
     {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
         return $this->fetch('user/collection');
     }
-       /**
-         * 对话页面
-         * @return mixed
-         */
-        public function dialogue()
-        {
-            return $this->fetch('user/dialogue');
+
+   /**
+     * 对话页面
+     * @return mixed
+     */
+    public function dialogue(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
         }
+
+        return $this->fetch('user/dialogue');
+    }
+
    /**
      * 消息通知页面
      * @return mixed
      */
     public function notice()
     {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $model = new \app\api\domain\UserFriendDomain();
+        $res = $model->getFriendsApplyList($this->getUserId());
+//        halt($res);
         return $this->fetch('user/notice');
     }
 
@@ -311,6 +327,10 @@ class User extends BaseController
         $this->_publishTotal($this->getUserId());
     }
 
+    /**
+     * 获取用户统计数据
+     * @param $user_id
+     */
     private function _publishTotal($user_id){
         $res = $this->_articleDomain->getArticleStatisticsData($user_id);
 
@@ -364,6 +384,10 @@ class User extends BaseController
 
     /**
      * 提交修改信息页面
+     * @param Request $request
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function editProfile(Request $request){
         if(!$this->checkLogin()){
@@ -445,8 +469,12 @@ class User extends BaseController
     }
 
     /**
-     * 获取点赞列表
+     * 获取用户点赞列表
      * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getLikeArticleList(Request $request){
         if(!$this->checkLogin()){
@@ -464,5 +492,4 @@ class User extends BaseController
 
         return $this->returnData($data,'',200);
     }
-
 }

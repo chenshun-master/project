@@ -15,9 +15,9 @@
 <body style="background: #ffffff;">
 <header>
     <div class="top" style="position: relative">
-        <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;"></i>
-            <span>通知</span>
-            <span>消息</span>
+        <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;" onclick="redream.href('/weixin/user/main')"></i>
+        <span>通知</span>
+        <span>消息</span>
     </div>
 </header>
 <content>
@@ -139,18 +139,19 @@
 <script type="text/javascript">
     $(function(){
         $(".xia .one").show();
-        $(".top span").eq(0).addClass("se")
+        $(".top span").eq(0).addClass("se");
         var index=0;
+
         $(".top span").click(function(){
             index=$(this).index();
-            if (index==0){
+            console.log(index);
+            if (index==1){
                 $(".one").show();
                 $(".two").hide();
-            } else{
+            } else if (index==2){
                 $(".one").hide();
                 $(".two").show();
             }
-
             $(".top span").eq(index).addClass("se").siblings().removeClass("se")
         })
     })

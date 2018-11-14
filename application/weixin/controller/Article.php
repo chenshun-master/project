@@ -231,26 +231,19 @@ class Article extends BaseController
      */
     public function articleDetails(Request $request){
         $id = $request->param('id',0);
-        $data = $this->articleDomain->getArticleInfo($id);
 
-        $isFabulous = false;
-        if($this->checkLogin()){
-            $user_info = $this->getUserInfo();
-            $isFabulous = $this->articleDomain->checkFabulous($user_info['id'],$id);
-        }
+        $data = $this->articleDomain->getArticleInfo($id,$this->getUserId());
 
         $config = config('conf.sns_login.weixin');
 //        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
 //        $res = $wechatJsSdk->getSignPackage();
-
-
 
         $thumbnail = empty($data['article_info']['thumbnail']) ?[] : json_decode($data['article_info']['thumbnail'],true) ;
         $shareImg = count($thumbnail) > 0 ? $thumbnail['img_1'] : '';
 
         $this->assign($data);
         $this->assign('shareImg',$shareImg);
-        $this->assign('isFabulous',$isFabulous === false ? 1 :2);
+        $this->assign('isFabulous',$data['article_info']['isZan'] == 0 ? 1 :2);
         $this->assign('weixin_config',['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>'']);
 
         return $this->fetch('article/article_details');
