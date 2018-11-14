@@ -170,4 +170,13 @@ class UserFriendDomain
 
         return $isTrue ? true : false;
     }
+
+    public function getPrivateLetterList($user_id,$page,$page_size){
+        return [
+            'rows'          =>0,
+            'page'          =>1,
+            'page_total'    =>1,
+            'total'         =>0
+        ];
+    }
 }
