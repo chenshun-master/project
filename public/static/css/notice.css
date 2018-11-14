@@ -103,7 +103,7 @@ a{text-decoration: none;color: #221815;display: block;}
     width: 100%;
     height: 130px;
 }
-.wl-zhez {
+.wl-zhezhao {
     background: #FFFFFF;
     display: none;
     position: absolute;
@@ -115,7 +115,7 @@ a{text-decoration: none;color: #221815;display: block;}
     background: rgba(0, 0, 0, .8);
     z-index: 10;
 }
-.wl-zl{
+.wl-zhe1{
     width: 80%;
     height: 415px;
     background: white;
