@@ -135,4 +135,17 @@ class UserFriendDomain
         $isTrue = Db::name('chat_record')->where('id','in',$ids)->update(['is_read'=>2]);
         return $isTrue === false ? false : true;
     }
+
+    /**
+     * 获取好友申请列表
+     * @param $user_id    用户ID
+     * @return mixed
+     */
+    public function getFriendsApplyList($user_id){
+        $sql = "SELECT friend_id AS friends FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 1 and applicant_id != {$user_id}
+                UNION ALL 
+                SELECT user_id AS friends FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 1 and applicant_id != {$user_id}";
+
+        return Db::query($sql);
+    }
 }

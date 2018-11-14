@@ -32,18 +32,18 @@ class Test  extends Controller
 //
 //        halt($res);
 
-        $model =  new MessageDomain();
-//        $res = $model->pushGroupMsg(0,'各家会员您好？','罚款羧甲asdasdff淀粉钠fa sdfasdf你卡就是你，那就看你卡就sdfasd是当年按揭房你是客服金卡是的呢',2);
-        halt($model->getMsgDetail(2));
+//        $model =  new MessageDomain();
+////        $res = $model->pushGroupMsg(0,'各家会员您好？','罚款羧甲asdasdff淀粉钠fa sdfasdf你卡就是你，那就看你卡就sdfasd是当年按揭房你是客服金卡是的呢',2);
+//        halt($model->getMsgDetail(2));
 
 
 //        $list = $model->getUserMailList(10);
 //        halt($list);
 
 
-//        $model = new UserFriendDomain();
-//        $model->checkFriend(4,5);
-
+        $model = new UserFriendDomain();
+        $res = $model->getFriendsApplyList(17);
+        halt($res);
     }
 
     public function wxTest(){
