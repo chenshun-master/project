@@ -140,11 +140,6 @@ html,body{ height:100%;overflow:visible }
 	background-size: 20px 20px;
 }
 
-.wx-fx button:nth-child(3) {
-	padding-left: 15px;
-	background: url(../image/user/wx.png)no-repeat 10px 6px;
-	background-size: 20px 20px;
-}
 
 .wx-xg {
 	width: 100%;
