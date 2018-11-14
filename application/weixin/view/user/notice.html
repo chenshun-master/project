@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
 </head>
 <style>
-
+    .cus-click-usermian{cursor: pointer;}
 </style>
 <body style="background: #ffffff;">
 <header>
@@ -41,7 +41,7 @@
                 <p class="wl-hy1">好友申请</p>
                 {foreach $applyList as $vo}
                 <div class="wl-nei1">
-                    <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'">
+                    <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'" class="cus-click-usermian" data-user_id="{$vo['friends_id']}">
                     <div class="wl-nei2 cus-agreeapply-parent-{$vo['id']}" data-id="{$vo['id']}"  data-remarks="{$vo['remarks']}" style="border-bottom: 1px solid #EEEEEE;">
                         <dl class="cus-show-box">{$vo['nickname']}</dl>
                         <dt class="cus-show-box">{$vo['remarks']}</dt>
@@ -334,6 +334,10 @@
     $(document).on('click','#cus-apply-agree',function(){
         $('.wl-zhezhao').hide(); //淡出消失
         myObj.agreeApply();
+    });
+
+    $(document).on('click','.cus-click-usermian',function(){
+        window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
     });
 
     $(".cus-show-box").click(function(event) {
