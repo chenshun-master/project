@@ -16,12 +16,41 @@
 <header>
     <div class="top" style="position: relative">
         <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;" onclick="redream.href('/weixin/user/main')"></i>
+        <span id="san">公告</span>
         <span id="one">通知</span>
         <span id="two">私信</span>
+
     </div>
 </header>
 <content>
     <div class="xia">
+        <div class="san">
+            {if condition="count($applyList) > 0"}
+            <div class="wl-haoyou">
+                <p class="wl-hy1">好友申请</p>
+                {foreach $applyList as $vo}
+                <div class="wl-nei1">
+                    <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'">
+                    <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
+                        <dl>{$vo['nickname']}</dl>
+                        <dt>{$vo['remarks']}</dt>
+                        <button class="wl-tian"> 同意</button>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+            {/if}
+
+            <p class="wl-hy1">最新消息</p>
+            <div class="wl-nei1">
+                <img src="/static/image/user/tou.png" alt="">
+                <div class="wl-nei2">
+                    <dl>用户名称1</dl>
+                    <dt>消息内消息内容消息内容消息内容容</dt>
+                    <dd class="wl-tian1">12:02</dd>
+                </div>
+            </div>
+        </div>
         <div class="one">
             <p class="wl-hy1">系统通知</p>
             <div class="wl-nei1">
@@ -32,7 +61,6 @@
                     <dd class="wl-tian1">12:02</dd>
                 </div>
             </div>
-        </div>
         </div>
         <div class="two">
             {if condition="count($applyList) > 0"}
@@ -68,25 +96,28 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(function(){
-        $(".xia .one").show();
+        $(".xia .san").show();
         $(".top span").eq(0).addClass("se");
         var index=0;
-
         $(".top span").click(function(){
             index=$(this).index();
             console.log(index);
             if (index==1){
-                $(".one").show();
+                $(".san").show();
+                $(".one").hide();
                 $(".two").hide();
-                $("#one").addClass("se")&&$("#two").removeClass("se");
-               ;
+                $("#san").addClass("se")&&$("#one").removeClass("se")&&$("#two").removeClass("se");
 
             } else if (index==2){
-                $(".one").hide();
+                $(".one").show();
+                $(".two").hide();
+                $(".san").hide();
+                $("#one").addClass("se")&&$("#san").removeClass("se")&&$("#two").removeClass("se");
+            }else if (index==3){
                 $(".two").show();
-                $("#two").addClass("se")&&$("#one").removeClass("se");
-            ;
-
+                $(".one").hide();
+                $(".san").hide();
+                $("#two").addClass("se")&&$("#one").removeClass("se")&&$("#san").removeClass("se");
             }
 
         })
