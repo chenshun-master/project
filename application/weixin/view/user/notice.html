@@ -23,25 +23,24 @@
 <content>
     <div class="xia">
         <div class="one">
+            {if condition="count($applyList) > 0"}
             <div class="wl-haoyou">
                 <p class="wl-hy1">好友申请</p>
+                {foreach $applyList as $vo}
                 <div class="wl-nei1">
-                    <img src="/static/image/user/tou.png" alt="">
+                    <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'">
                     <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
-                        <dl>用户名称1</dl>
-                        <dt>消息内消息内容消息内容消息内容容</dt>
+                        <dl>{$vo['nickname']}</dl>
+                        <dt>{$vo['remarks']}</dt>
                         <button class="wl-tian"> 添加</button>
                     </div>
                 </div>
-                <div class="wl-nei1">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <div class="wl-nei2" style="border-bottom: none">
-                        <dl>用户名称1</dl>
-                        <dt>消息内消息内容消息内容消息内容容</dt>
-                        <dd class="wl-tian1">已添加</dd>
-                    </div>
-                </div>
+                {/foreach}
             </div>
+            {/if}
+
+
+
             <p class="wl-hy1">系统通知</p>
             <div class="wl-nei1">
                 <img src="/static/image/user/tou.png" alt="">

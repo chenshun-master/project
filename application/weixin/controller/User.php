@@ -99,8 +99,9 @@ class User extends BaseController
         }
 
         $model = new \app\api\domain\UserFriendDomain();
-        $res = $model->getFriendsApplyList($this->getUserId());
-//        halt($res);
+        $applyList = $model->getFriendsApplyList($this->getUserId());
+        $this->assign('applyList',$applyList);
+
         return $this->fetch('user/notice');
     }
 

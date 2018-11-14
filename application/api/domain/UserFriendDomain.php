@@ -142,9 +142,13 @@ class UserFriendDomain
      * @return mixed
      */
     public function getFriendsApplyList($user_id){
-        $sql = "SELECT friend_id AS friends_id,remarks FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 1 and applicant_id != {$user_id}
-                UNION ALL 
-                SELECT user_id AS friends_id,remarks FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 1 and applicant_id != {$user_id}";
+        $sql = "SELECT tmp_table.*,wl_user.nickname,wl_user.portrait
+                from (
+                    SELECT id,friend_id AS friends_id,remarks FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 1 and applicant_id != {$user_id}
+                    UNION ALL 
+                    SELECT id,user_id AS friends_id,remarks FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 1 and applicant_id != {$user_id}
+                ) tmp_table
+                INNER JOIN wl_user  on wl_user.id = tmp_table.friends_id";
 
         return Db::query($sql);
     }
