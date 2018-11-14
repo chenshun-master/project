@@ -14,6 +14,7 @@ class User extends BaseController
     private $_userDomain;
     private $_articleDomain;
     private $_userModel;
+    private $_userFriendDomain;
 
     public function __construct(App $app = null)
     {
@@ -23,7 +24,7 @@ class User extends BaseController
         $this->_articleDomain = new \app\api\domain\ArticleDomain();
 
         $this->_userModel = new \app\api\model\UserModel();
-
+        $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
     }
 
     /**
@@ -233,19 +234,20 @@ class User extends BaseController
      * @throws \think\Exception
      * @throws \think\exception\PDOException
      */
-    public function addFriend(){
+    public function addFriend(Request $request){
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
 
-        $friend_id  = $request->param('friend_id',0);
+        $friend_id  = $request->post('friend_id',0);
+        $remarks  = $request->post('remarks','');
         $isTrue = \Validate::checkRule($friend_id,'number');
-        if($isTrue || $friend_id == ''){
+
+        if(!$isTrue || $friend_id == 0){
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-        $user_info = $this->getUserInfo();
-        $res = $this->_userDomain->addFriend($user_info['id'],$friend_id);
+        $res = $this->_userFriendDomain->createFriend($this->getUserId(),$friend_id,$remarks);
         if(!$res){
             return $this->returnData([],'添加好友申请失败',305);
         }

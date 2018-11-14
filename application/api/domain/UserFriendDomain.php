@@ -50,7 +50,7 @@ class UserFriendDomain
      * @param $friend_id   用户ID2
      * @return bool
      */
-    public function createFriend($user_id,$friend_id){
+    public function createFriend($user_id,$friend_id,$remarks=''){
         $user_id = (int)$user_id;
         $friend_id = (int)$friend_id;
 
@@ -61,7 +61,7 @@ class UserFriendDomain
         $sql = "SELECT id from wl_user_friends where user_id = {$user_id} and friend_id = {$friend_id} limit 1  union all  SELECT id from wl_user_friends where user_id = {$friend_id} and friend_id = {$user_id} limit 1";
         $isTrue = Db::query($sql);
         if($isTrue){
-            return false;
+            return true;
         }
 
         $data = [
@@ -70,6 +70,7 @@ class UserFriendDomain
             'user_group'     =>0,
             'friend_group'   =>0,
             'status'         =>1,
+            'remarks'        =>htmlspecialchars($remarks),
             'create_time'    =>date('Y-m-d H:i:s')
         ];
 

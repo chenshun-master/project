@@ -65,7 +65,12 @@
                 <dd style="font-size:0.24rem;color: #898989;">{$article_info['published_time']|strtotime|formatTime|}
                 </dd>
             </dl>
-            <button class="wx-rig">加好友</button>
+            <?php if($isFriend === true):?>
+                <button class="wx-rig" onclick="redream.showTip('该功能暂未开放...')">私信</button>
+            <?php elseif($isFriend === false):?>
+                <button class="wx-rig" onclick="objClass.showAddFriend()">加好友</button>
+            <?php else:?>
+            <?php endif;?>
         </div>
         <div style="   font-size: 0.32rem;padding: 0 15px" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="min-height: 50px;margin-top: 20px;position: relative">
@@ -129,24 +134,25 @@
         <img src="/static/image/index/zhidao.png " width="200" height="70" alt=""style="position: absolute;right: 140px; top:400px;">
     </div>
 </div>
-<!--添加好友弹出页-->
+
+
 <div class="wl-zhezhao">
     <div class="wl-zhe1">
         <p class="wl-renzh">申请备注</p>
         <div class="wl-neie1">
             <p>你需要发送验证申请，等待对方通过</p>
-            <textarea class="wl-neie2">
-我是名爱国好阿尼散发啊我是名爱国好阿尼散发啊我是名爱
-</textarea>
-            <button class="wl-btn">发送</button>
+            <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
+            <button class="wl-btn" onclick="objClass.submitFriendApply()">发送</button>
         </div>
     </div>
 </div>
+
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var objClass = {
         article_id: {$article_info['id']},
+        u_id: {$article_info['user_id']},
         recommendData: {
             loading: false,
             ini: false,
@@ -405,7 +411,6 @@
             if (this.subreviewConf.loading) {
                 return false;
             }
-
             this.subreviewConf.page++;
             if (this.subreviewConf.ini == true) {
                 if (this.subreviewConf.page > this.subreviewConf.page_total) {
@@ -502,7 +507,7 @@
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
                     }else if (res.code == 403){
-                        redream.showTip('您还没有未授权');
+                        redream.showTip('您还没有授权');
                     }else{
                         redream.showTip('评论失败');
                     }
@@ -513,6 +518,48 @@
         hrefDetails:function(id){
             window.location.href = '/weixin/article/articleDetails/id/' + id;
         },
+
+        isAdd:false,
+        addFriendLoading:false,
+        showAddFriend:function(){
+            if(!this.isAdd){
+                $(".wl-zhezhao").toggle();
+            }else{
+                redream.showTip('不能重复申请...');
+            }
+        },
+        submitFriendApply:function(){
+            var remarks = $.trim($('#fr-friend-remarks').val());
+            if(redream.isEmptyStr(remarks)){
+                redream.showTip('申请备注不能为空...');
+                return false;
+            }else if(!this.addFriendLoading){
+                $.ajax({
+                    url: "/weixin/user/addFriend",
+                    type: 'post',
+                    data: {friend_id: objClass.u_id,remarks:remarks},
+                    dataType: 'json',
+                    beforeSend:function(){
+                        objClass.addFriendLoading = true;
+                    },
+                    complete:function(){
+                        objClass.addFriendLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            objClass.isAdd = true;
+                            $(".wl-zhezhao").toggle();
+                        }else if (res.code == 401){
+                            redream.showTip('请先进行登录');
+                        }else if (res.code == 403){
+                            redream.showTip('您还没有授权');
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        }
     };
 
     setTimeout(function () {
@@ -704,12 +751,7 @@
 
     var weixinObj = new WechatSdkModel(config,callbacks);
 </script>
-<script>
-
-    $(".wx-rig").click(function(event) {
-        event.stopPropagation(); //停止事件冒泡
-        $(".wl-zhezhao").toggle();
-    });
+<script type="text/javascript">
 
     //点击空白处隐藏弹出层
     $(".wl-zhezhao").click(function(event) {
