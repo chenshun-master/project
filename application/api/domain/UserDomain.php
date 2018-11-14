@@ -79,6 +79,8 @@ class UserDomain
             }
         }
 
+        //登录用户读取属于自己的消息通知(后期会加入异步队列处理)
+        (new \app\api\domain\MessageDomain())->readMsg($info['id']);
         return $info;
     }
 

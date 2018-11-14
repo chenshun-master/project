@@ -100,30 +100,39 @@ class MessageDomain
      * @throws \think\exception\DbException
      */
     public function readMsg($user_id){
-        $user_info = Db::name('user')->where('id',$user_id)->field('id,type')->find();
+        $user_info = Db::name('user')->where('id',$user_id)->field('id,type,created_time')->find();
 
         $start_time = date('Y-m-d 00:00:00',strtotime('-6 day'));
         $end_time   = date('Y-m-d H:i:s');
-        $msgArr = Db::name('message')->where('type','in',[0,$user_info['type']])->where('created_time', 'between time', [$start_time, $end_time])->column('id');
-        if($msgArr){
-            $msgArr2 = Db::name('message_read')->where('message_id','in',$msgArr)->where('receive_user_id',$user_id)->column('message_id');
 
+        if(strtotime($user_info['created_time']) > strtotime($start_time)){
+            $start_time = $user_info['created_time'];
+        }
+
+        $msgArr = Db::name('message')
+            ->where('type','in',[0,$user_info['type']])
+            ->where('id', 'NOT IN', function ($query) use($user_id) {
+                $query->name('message_read')->where('receive_user_id', $user_id)->field('message_id');
+            })
+            ->where('created_time', 'between time', [$start_time, $end_time])
+            ->column('id');
+
+        if($msgArr){
             $data = [];
             foreach ($msgArr as $val){
-                if(!in_array($val,$msgArr2)){
-                    $data[] = [
-                        'message_id'            =>$val,
-                        'receive_user_id'       =>$user_id,
-                        'is_read'               =>0,
-                        'created_time'          =>date('Y-m-d H:i:s'),
-                    ];
-                }
+                $data[] = [
+                    'message_id'            =>$val,
+                    'receive_user_id'       =>$user_id,
+                    'is_read'               =>0,
+                    'created_time'          =>date('Y-m-d H:i:s'),
+                ];
             }
 
             if(count($data) > 0){
                 Db::name('message_read')->insertAll($data);
             }
         }
+
         return true;
     }
 
@@ -135,7 +144,7 @@ class MessageDomain
      * @throws \think\exception\PDOException
      */
     public function updateReadStatus($message_read_id){
-        Db::name('message_read')->where('id',$message_read_id)->update(['is_read'=>1]);
+
         return true;
     }
 
@@ -189,5 +198,24 @@ class MessageDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+
+    /**
+     * 获取消息详情
+     */
+    public function getMsgDetail($msg_id){
+        $res = Db::name('message')
+            ->alias('msg')
+            ->leftJoin('wl_message_read msg_read','msg.id = msg_read.message_id')
+            ->where('msg.id',$msg_id)
+            ->field('msg.*,msg_read.id as msg_read_id,msg_read.is_read')
+            ->find();
+
+        if($res && !empty($res['msg_read_id']) && $res['is_read'] == 0){
+            Db::name('message_read')->where('id',$res['msg_read_id'])->update(['is_read'=>1]);
+        }
+
+        return $res;
     }
 }

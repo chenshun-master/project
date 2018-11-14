@@ -88,29 +88,32 @@ class ArticleDomain
         }
     }
 
+
     /**
-     * 获取手机端文章详情页
-     * @param $id      文章id
+     * @param $id
+     * @param int $user_id
      * @return array
-     * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * @throws \think\exception\PDOException
      */
-    public function getArticleInfo($id){
-        $data = ['article_info'=>[],'comment_infos'=>[]];
+    public function getArticleInfo($id,$user_id=0){
+        $data = ['article_info'=>[]];
 
-        $articleRes = Db::name('article')
-            ->alias('article')
-            ->where('article.id',$id)
-            ->join('wl_user user','article.user_id = user.id')
-            ->field('article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,\'****\') as mobile')
-            ->find();
+        $obj = Db::name('article')->alias('article');
+        $obj->where('article.id',$id);
+        $obj->join('wl_user user','article.user_id = user.id');
 
+        if($user_id > 0){
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,(SELECT count(1) from wl_user_favorite where wl_user_favorite.table_name ='article' AND wl_user_favorite.user_id ={$user_id} AND wl_user_favorite.object_id = article.id) as isFavorites");
+        }else{
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,0 as isZan,0 as isFavorites");
+        }
+
+        $articleRes = $obj->find();
         if($articleRes){
             $data['article_info'] = $articleRes;
-            Db::name('article')->where('id',$id)->inc('hits')->update();
+            Db::name('article')->where('id',$id)->inc('hits');
         }
 
         return $data;
