@@ -493,7 +493,6 @@ class User extends BaseController
         $this->assign($data);
         $data['html'] = $this->fetch('user/collection/like_tpl');
 
-
         return $this->returnData($data,'',200);
     }
 
@@ -516,6 +515,35 @@ class User extends BaseController
                 $data['rows'][$k]['created_time']  = date('Y-m-d',strtotime($val['created_time']));
             }
         }
+
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取网站通知列表
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserMailList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+        $messageDomain = new \app\api\domain\MessageDomain();
+        $data = $messageDomain->getUserMailList($this->getUserId(),$page,$page_size);
+
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as $k=>$val){
+                $data['rows'][$k]['created_time']  = date('Y-m-d',strtotime($val['created_time']));
+            }
+        }
+
         return $this->returnData($data,'',200);
     }
 }

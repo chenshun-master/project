@@ -153,7 +153,7 @@ class MessageDomain
         $obj->order('msg_read.created_time desc');
 
         $total = $obj->count();
-        $obj->field('msg_read.message_id,msg.type,msg.title,msg_read.is_read,msg_read.created_time');
+        $obj->field('msg_read.message_id,msg.type,msg.title,msg.content,msg_read.is_read,msg_read.created_time');
         $rows = $obj->page($page,$page_size)->select();
 
         return [
