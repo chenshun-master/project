@@ -510,6 +510,12 @@ class User extends BaseController
 
         $messageDomain = new \app\api\domain\MessageDomain();
         $data = $messageDomain->getNoticeMsgList($page,$page_size);
+
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as $k=>$val){
+                $data['rows'][$k]['created_time']  = date('Y-m-d',strtotime($val['created_time']));
+            }
+        }
         return $this->returnData($data,'',200);
     }
 }
