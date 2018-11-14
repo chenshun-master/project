@@ -92,8 +92,7 @@ class User extends BaseController
      * 消息通知页面
      * @return mixed
      */
-    public function notice()
-    {
+    public function notice(){
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
@@ -208,6 +207,10 @@ class User extends BaseController
         return $this->returnData([],'密码修改失败',305);
     }
 
+    /**
+     * 修改密码页面
+     * @return mixed|\think\response\Redirect
+     */
     public function modifypwd(){
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
@@ -491,6 +494,22 @@ class User extends BaseController
         $data['html'] = $this->fetch('user/collection/like_tpl');
 
 
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取网站通知列表
+     */
+    public function getNoticeList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+        $messageDomain = new \app\api\domain\MessageDomain();
+        $data = $messageDomain->getNoticeMsgList($page,$page_size);
         return $this->returnData($data,'',200);
     }
 }

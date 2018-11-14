@@ -137,18 +137,6 @@ class MessageDomain
     }
 
     /**
-     * 更新站内信阅读状态
-     * @param $message_read_id
-     * @return bool
-     * @throws \think\Exception
-     * @throws \think\exception\PDOException
-     */
-    public function updateReadStatus($message_read_id){
-
-        return true;
-    }
-
-    /**
      * 获取用户站内列表
      * @param $user_id               用户ID
      * @param int $page              第几页

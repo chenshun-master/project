@@ -17,12 +17,24 @@
     <div class="top" style="position: relative">
         <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;" onclick="redream.href('/weixin/user/main')"></i>
         <span id="one">通知</span>
-        <span id="two">消息</span>
+        <span id="two">私信</span>
     </div>
 </header>
 <content>
     <div class="xia">
         <div class="one">
+            <p class="wl-hy1">系统通知</p>
+            <div class="wl-nei1">
+                <img src="/static/image/user/tou.png" alt="">
+                <div class="wl-nei2">
+                    <dl>用户名称1</dl>
+                    <dt>消息内消息内容消息内容消息内容容</dt>
+                    <dd class="wl-tian1">12:02</dd>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="two">
             {if condition="count($applyList) > 0"}
             <div class="wl-haoyou">
                 <p class="wl-hy1">好友申请</p>
@@ -32,99 +44,20 @@
                     <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
                         <dl>{$vo['nickname']}</dl>
                         <dt>{$vo['remarks']}</dt>
-                        <button class="wl-tian"> 添加</button>
+                        <button class="wl-tian"> 同意</button>
                     </div>
                 </div>
                 {/foreach}
             </div>
             {/if}
 
-            <p class="wl-hy1">系统通知</p>
+            <p class="wl-hy1">最新消息</p>
             <div class="wl-nei1">
                 <img src="/static/image/user/tou.png" alt="">
                 <div class="wl-nei2">
                     <dl>用户名称1</dl>
                     <dt>消息内消息内容消息内容消息内容容</dt>
                     <dd class="wl-tian1">12:02</dd>
-                </div>
-            </div>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">18:09</dd>
-                </div>
-            </div>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">18:09</dd>
-                </div>
-            </div>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">18:09</dd>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="two">
-            <div class="wl-haoyou">
-                <p class="wl-hy1">最新消息</p>
-                <div class="wl-nei1">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
-                        <dl>用户名称1</dl>
-                        <dt>消息内消息内容消息内容消息内容容</dt>
-                        <dd class="wl-tian1"> 12:5</dd>
-                    </div>
-                </div>
-                <div class="wl-nei1">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <div class="wl-nei2" style="border-bottom: none">
-                        <dl>用户名称1</dl>
-                        <dt>消息内消息内容消息内容消息内容容</dt>
-                        <dd class="wl-tian1">已添加</dd>
-                    </div>
-                </div>
-            </div>
-            <p class="wl-hy1">系统通知</p>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">12:02</dd>
-                </div>
-            </div>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">18:09</dd>
-                </div>
-            </div>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">18:09</dd>
-                </div>
-            </div>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">18:09</dd>
                 </div>
             </div>
         </div>
