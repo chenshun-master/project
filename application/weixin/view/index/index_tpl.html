@@ -12,6 +12,7 @@
                                     </p>
                                     <p class="wx-n3" >
                                         <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
+                                        <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
                                         <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                         <span class="ck">{$val['hits']}+</span>
                                         <span class="pl">
@@ -25,33 +26,56 @@
                                     </p>
                                 </div>
                             <?php else:?>
-
-
-                                <div class="wx-b3 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}">
-                                    <div style="height: 140px;margin-top: 20px;">
-                                        <p class="wx-bn1" onclick="clickHref({$val['id']})">{$val['title']}</p>
-                                        <img src="{$thumbnail['img_1']}" onclick="clickHref({$val['id']})" />
+                                <?php if($val['is_top'] == 1 || $val['recommended'] == 1):?>
+                                    <div class="wx-b2 cus-article-href" data-id="10" data-type="1" style="margin-bottom: 50px">
+                                        <p class="wx-n2" onclick="clickHref({$val['id']})">第一批出家的90后，已经拥有了自己的寺庙</p>
+                                        <p class="wl-img" onclick="clickHref({$val['id']})">
+                                            <img src="{$thumbnail['img_1']}" alt="" width="100%" height="300px">
+                                        </p>
+                                        <p class="wx-zhid">
+                                            <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
+                                            <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
+                                            <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                                            <span class="ck">{$val['hits']}+</span>
+                                            <span class="pl">
+                                                <?php if($val['comment_count'] == 0):?>
+                                                <?php elseif($val['comment_count'] >= 1000 ):?>
+                                                    999+
+                                                <?php else:?>
+                                                {$val['comment_count']}
+                                                <?php endif;?>
+                                            </span>
+                                        </p>
                                     </div>
-                                    <p class="wx-n3" >
-                                        <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
-                                        <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
-                                        <span class="ck">{$val['hits']}+</span>
-                                        <span class="pl">
-                                            <?php if($val['comment_count'] == 0):?>
-                                            <?php elseif($val['comment_count'] >= 1000 ):?>
-                                                999+
-                                            <?php else:?>
-                                            {$val['comment_count']}
-                                            <?php endif;?>
-                                        </span>
-                                    </p>
-                                </div>
+                                <?php else:?>
+                                    <div class="wx-b3 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}">
+                                        <div style="height: 140px;margin-top: 20px;">
+                                            <p class="wx-bn1" onclick="clickHref({$val['id']})">{$val['title']}</p>
+                                            <img src="{$thumbnail['img_1']}" onclick="clickHref({$val['id']})" />
+                                        </div>
+                                        <p class="wx-n3" >
+                                            <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
+                                            <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
+                                            <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                                            <span class="ck">{$val['hits']}+</span>
+                                            <span class="pl">
+                                                <?php if($val['comment_count'] == 0):?>
+                                                <?php elseif($val['comment_count'] >= 1000 ):?>
+                                                    999+
+                                                <?php else:?>
+                                                {$val['comment_count']}
+                                                <?php endif;?>
+                                            </span>
+                                        </p>
+                                    </div>
+                                <?php endif;?>
                             <?php endif;?>
                         <?php else:?>
                             <div class="wx-n1 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}" onclick="clickHref({$val['id']})" >
                                 <p class="wx-n2">{$val['title']}</p>
                                 <p class="wx-n3">
                                     <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
+                                    <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
                                     <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                     <span class="ck">{$val['hits']}+</span>
                                     <span class="pl">

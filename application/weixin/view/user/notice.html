@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
-  <title>微琳医美</title>
+    <title>微琳医美</title>
     <link rel="stylesheet" type="text/css" href="/static/css/notice.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
 </head>
 <style>
 
@@ -19,38 +19,16 @@
         <span id="san">公告</span>
         <span id="one">通知</span>
         <span id="two">私信</span>
-
     </div>
 </header>
 <content>
     <div class="xia">
-        <div class="san">
-            {if condition="count($applyList) > 0"}
-            <div class="wl-haoyou">
-                <p class="wl-hy1">好友申请</p>
-                {foreach $applyList as $vo}
-                <div class="wl-nei1">
-                    <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'">
-                    <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
-                        <dl>{$vo['nickname']}</dl>
-                        <dt>{$vo['remarks']}</dt>
-                        <button class="wl-tian"> 同意</button>
-                    </div>
-                </div>
-                {/foreach}
-            </div>
-            {/if}
-
-            <p class="wl-hy1">最新消息</p>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">12:02</dd>
-                </div>
+        <div class="san" id="cus-notice-container" >
+            <p class="wl-hy1">网站公告</p>
+            <div id="cus-notice-container-list" style="min-height: 300px;">
             </div>
         </div>
+
         <div class="one">
             <p class="wl-hy1">系统通知</p>
             <div class="wl-nei1">
@@ -62,6 +40,7 @@
                 </div>
             </div>
         </div>
+
         <div class="two">
             {if condition="count($applyList) > 0"}
             <div class="wl-haoyou">
@@ -94,6 +73,8 @@
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(function(){
         $(".xia .san").show();
@@ -101,13 +82,11 @@
         var index=0;
         $(".top span").click(function(){
             index=$(this).index();
-            console.log(index);
             if (index==1){
                 $(".san").show();
                 $(".one").hide();
                 $(".two").hide();
                 $("#san").addClass("se")&&$("#one").removeClass("se")&&$("#two").removeClass("se");
-
             } else if (index==2){
                 $(".one").show();
                 $(".two").hide();
@@ -119,8 +98,90 @@
                 $(".san").hide();
                 $("#two").addClass("se")&&$("#one").removeClass("se")&&$("#san").removeClass("se");
             }
-
         })
     })
+</script>
+<script type="text/javascript">
+    var myObj = {
+        notice:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            template:function(data){
+                return '<div class="wl-nei1">' +
+                            '<img src="/static/image/user/rederam.png" alt="">' +
+                            '<div class="wl-nei2">' +
+                                '<dl>'+ data.title +'</dl>' +
+                                '<dt>'+ data.content +'</dt>' +
+                                '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+                            '</div>' +
+                        '</div>';
+            },
+            loadList:function(me){
+                if(myObj.notice.listData.loading){
+                    return false;
+                }
+
+                myObj.notice.listData.page++;
+                if(myObj.notice.listData.ini == true){
+                    if(myObj.notice.listData.page > myObj.notice.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/user/getNoticeList",
+                    type:'post',
+                    data:{page:myObj.notice.listData.page,page_size:myObj.notice.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.notice.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.notice.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.notice.listData.ini == false){
+                                myObj.notice.listData.ini = true;
+                                myObj.notice.listData.page_total = res.data.page_total;
+                                $('#cus-notice-container-list').html('');
+                            }
+
+                            $.each(res.data.rows,function(key,val){
+                                console.log(val);
+                                $('#cus-notice-container-list').append(myObj.notice.template(val));
+                            });
+
+
+
+                            if(myObj.notice.listData.page >= myObj.notice.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+    };
+
+    $('#cus-notice-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            myObj.notice.listData.loading = false;
+            myObj.notice.listData.ini = false;
+            myObj.notice.listData.page = 0;
+            myObj.notice.listData.page_total = 0;
+            myObj.notice.loadList(me);
+        },
+        loadDownFn : function(me){
+            myObj.notice.loadList(me);
+        }
+    });
 </script>
 </html>
