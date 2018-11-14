@@ -54,6 +54,7 @@ a{text-decoration: none;color: #221815;display: block;}
     font-size: 35px;
 }
 .wl-nei2 dt{
+    width: 73%;
     color: #898989;
     font-size: 28px;
     margin-top: 7px;
@@ -80,12 +81,12 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-tian{
     float: right;
-    width: 90px;
-    height: 40px;
-    margin-top: -60px;
+    width: 100px;
+    height: 50px;
+    margin-top: -65px;
     margin-right: 10px;
     background: #7DB0E8;
-    color:#FFFFFF;
+    color: #FFFFFF;
     font-size: 24px;
     border-radius: 5px;
 }
