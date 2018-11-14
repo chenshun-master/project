@@ -4,7 +4,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 ol, ul { list-style: none; }
 body{position:relative;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
-body { font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
+body { font-family: "思源黑体 CN";color:#221815;font-size: 40px;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}

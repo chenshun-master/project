@@ -87,6 +87,14 @@ class User extends BaseController
 
         return $this->fetch('user/dialogue');
     }
+   /**
+     * 申请认证页面
+     * @return mixed
+     */
+    public function certification(){
+
+        return $this->fetch('user/certification');
+    }
 
    /**
      * 消息通知页面
