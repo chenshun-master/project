@@ -556,11 +556,6 @@ class User extends BaseController
     }
 
     /**
-     * 好友申请处理
-     * @param Request $request
-     */
-
-    /**
      * @param Request $request
      * @return false|string
      * @throws \think\Exception
@@ -579,5 +574,23 @@ class User extends BaseController
             return $this->returnData([],'操作失败',305);
         }
         return $this->returnData([],'操作成功',200);
+    }
+
+    /**
+     * 获取用户私信列表
+     * @param Request $request
+     * @return false|string
+     */
+    public function getPrivateLetterList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page       = (int)$request->param('page',1);
+        $page_size  = (int)$request->param('page_size',15);
+
+        $userFriendDomain = new \app\api\domain\UserFriendDomain();
+        $data = $userFriendDomain->getPrivateLetterList($this->getUserId(),$page,$page_size);
+        return $this->returnData($data,'',200);
     }
 }
