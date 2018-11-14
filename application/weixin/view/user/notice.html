@@ -16,30 +16,30 @@
 <header>
     <div class="top" style="position: relative">
         <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;" onclick="redream.href('/weixin/user/main')"></i>
-        <span>通知</span>
-        <span>消息</span>
+        <span id="one">通知</span>
+        <span id="two">消息</span>
     </div>
 </header>
 <content>
     <div class="xia">
         <div class="one">
             {if condition="count($applyList) > 0"}
-                <div class="wl-haoyou">
-                    <p class="wl-hy1">好友申请</p>
-                    {foreach $applyList as $vo}
-                    <div class="wl-nei1">
-                        <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'">
-                        <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
-                            <dl>{$vo['nickname']}</dl>
-                            <dt>{$vo['remarks']}</dt>
-                            <button class="wl-tian"> 添加</button>
-                        </div>
+            <div class="wl-haoyou">
+                <p class="wl-hy1">好友申请</p>
+                {foreach $applyList as $vo}
+                <div class="wl-nei1">
+                    <img src="{$vo['portrait']}"  onerror="this.src='/static/image/user/tou.png'">
+                    <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
+                        <dl>{$vo['nickname']}</dl>
+                        <dt>{$vo['remarks']}</dt>
+                        <button class="wl-tian"> 添加</button>
                     </div>
-                    {/foreach}
                 </div>
+                {/foreach}
+            </div>
             {/if}
 
-            <p class="wl-hy1">网站公告</p>
+            <p class="wl-hy1">系统通知</p>
             <div class="wl-nei1">
                 <img src="/static/image/user/tou.png" alt="">
                 <div class="wl-nei2">
@@ -145,11 +145,17 @@
             if (index==1){
                 $(".one").show();
                 $(".two").hide();
+                $("#one").addClass("se")&&$("#two").removeClass("se");
+               ;
+
             } else if (index==2){
                 $(".one").hide();
                 $(".two").show();
+                $("#two").addClass("se")&&$("#one").removeClass("se");
+            ;
+
             }
-            $(".top span").eq(index).addClass("se").siblings().removeClass("se")
+
         })
     })
 </script>
