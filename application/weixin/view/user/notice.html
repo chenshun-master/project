@@ -29,21 +29,15 @@
             </div>
         </div>
 
-        <div class="one">
+        <div class="one" id="cus-noticetwo-container">
             <p class="wl-hy1">系统通知</p>
-            <div class="wl-nei1">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">12:02</dd>
-                </div>
+            <div class="wl-nei1" id="cus-noticetwo-container-list" style="min-height: 300px;">
             </div>
         </div>
 
-        <div class="two">
+        <div class="two" id="cus-notice-three-container">
             {if condition="count($applyList) > 0"}
-            <div class="wl-haoyou">
+            <div class="wl-haoyou" id="cus-haoyou-box">
                 <p class="wl-hy1">好友申请</p>
                 {foreach $applyList as $vo}
                 <div class="wl-nei1">
@@ -58,8 +52,8 @@
             </div>
             {/if}
 
-            <p class="wl-hy1">最新消息</p>
-            <div class="wl-nei1">
+            <p class="wl-hy1">私信消息</p>
+            <div class="wl-nei1" id="cus-notice-three-container-list">
                 <img src="/static/image/user/tou.png" alt="">
                 <div class="wl-nei2">
                     <dl>用户名称1</dl>
@@ -151,15 +145,130 @@
                                 myObj.notice.listData.page_total = res.data.page_total;
                                 $('#cus-notice-container-list').html('');
                             }
-
                             $.each(res.data.rows,function(key,val){
-                                console.log(val);
                                 $('#cus-notice-container-list').append(myObj.notice.template(val));
                             });
-
-
-
                             if(myObj.notice.listData.page >= myObj.notice.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        noticeTwo:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            template:function(data){
+                return '<div class="wl-nei1">' +
+                    '<img src="/static/image/user/rederam.png" alt="">' +
+                    '<div class="wl-nei2">' +
+                    '<dl>'+ data.title +'</dl>' +
+                    '<dt>'+ data.content +'</dt>' +
+                    '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+                    '</div>' +
+                    '</div>';
+            },
+            loadList:function(me){
+                if(myObj.noticeTwo.listData.loading){
+                    return false;
+                }
+
+                myObj.noticeTwo.listData.page++;
+                if(myObj.noticeTwo.listData.ini == true){
+                    if(myObj.noticeTwo.listData.page > myObj.noticeTwo.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/user/getUserMailList",
+                    type:'post',
+                    data:{page:myObj.noticeTwo.listData.page,page_size:myObj.noticeTwo.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.noticeTwo.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.noticeTwo.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.noticeTwo.listData.ini == false){
+                                myObj.noticeTwo.listData.ini = true;
+                                myObj.noticeTwo.listData.page_total = res.data.page_total;
+                                $('#cus-noticetwo-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#cus-noticetwo-container-list').append(myObj.noticeTwo.template(val));
+                            });
+                            if(myObj.noticeTwo.listData.page >= myObj.noticeTwo.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        noticeThree:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            template:function(data){
+                return '<div class="wl-nei1">' +
+                    '<img src="/static/image/user/rederam.png" alt="">' +
+                    '<div class="wl-nei2">' +
+                    '<dl>'+ data.title +'</dl>' +
+                    '<dt>'+ data.content +'</dt>' +
+                    '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+                    '</div>' +
+                    '</div>';
+            },
+            loadList:function(me){
+                if(myObj.noticeThree.listData.loading){
+                    return false;
+                }
+
+                myObj.noticeThree.listData.page++;
+                if(myObj.noticeThree.listData.ini == true){
+                    if(myObj.noticeThree.listData.page > myObj.noticeThree.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/user/getUserMailList",
+                    type:'post',
+                    data:{page:myObj.noticeThree.listData.page,page_size:myObj.noticeThree.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.noticeThree.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.noticeThree.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.noticeThree.listData.ini == false){
+                                myObj.noticeThree.listData.ini = true;
+                                myObj.noticeThree.listData.page_total = res.data.page_total;
+                                $('#cus-notice-three-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#cus-notice-three-container-list').append(myObj.noticeThree.template(val));
+                            });
+                            if(myObj.noticeThree.listData.page >= myObj.noticeThree.listData.page_total){
                                 me.noData();
                             }
                         }
@@ -182,6 +291,39 @@
         loadDownFn : function(me){
             myObj.notice.loadList(me);
         }
+    });
+
+    $('#cus-noticetwo-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            myObj.noticeTwo.listData.loading = false;
+            myObj.noticeTwo.listData.ini = false;
+            myObj.noticeTwo.listData.page = 0;
+            myObj.noticeTwo.listData.page_total = 0;
+            myObj.noticeTwo.loadList(me);
+        },
+        loadDownFn : function(me){
+            myObj.noticeTwo.loadList(me);
+        }
+    });
+
+    $('#cus-notice-three-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            myObj.noticeThree.listData.loading = false;
+            myObj.noticeThree.listData.ini = false;
+            myObj.noticeThree.listData.page = 0;
+            myObj.noticeThree.listData.page_total = 0;
+            myObj.noticeThree.loadList(me);
+        },
+        loadDownFn : function(me){
+            myObj.noticeThree.loadList(me);
+        }
+    });
+
+    $(function(){
+        var h = $(window).height() - 200;
+        $("#cus-notice-container-list,#cus-noticetwo-container-list,#cus-notice-three-container-list").css('minHeight',h + 'px');
     });
 </script>
 </html>
