@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/article_details.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/zhezhao.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <title>{$article_info['title']}</title>
     <style>
@@ -128,7 +129,19 @@
         <img src="/static/image/index/zhidao.png " width="200" height="70" alt=""style="position: absolute;right: 140px; top:400px;">
     </div>
 </div>
-
+<!--添加好友弹出页-->
+<div class="wl-zhezhao">
+    <div class="wl-zhe1">
+        <p class="wl-renzh">申请备注</p>
+        <div class="wl-neie1">
+            <p>你需要发送验证申请，等待对方通过</p>
+            <textarea class="wl-neie2">
+我是名爱国好阿尼散发啊我是名爱国好阿尼散发啊我是名爱
+</textarea>
+            <button class="wl-btn">发送</button>
+        </div>
+    </div>
+</div>
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
@@ -690,5 +703,20 @@
     }
 
     var weixinObj = new WechatSdkModel(config,callbacks);
+</script>
+<script>
+
+    $(".wx-rig").click(function(event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".wl-zhezhao").toggle();
+    });
+
+    //点击空白处隐藏弹出层
+    $(".wl-zhezhao").click(function(event) {
+        var _con = $('.wl-zhe1'); // 设置目标区域
+        if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhezhao').hide(); //淡出消失
+        }
+    });
 </script>
 </html>
