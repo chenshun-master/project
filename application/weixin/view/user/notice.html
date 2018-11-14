@@ -45,7 +45,7 @@
                     <div class="wl-nei2" style="border-bottom: 1px solid #EEEEEE;">
                         <dl>{$vo['nickname']}</dl>
                         <dt>{$vo['remarks']}</dt>
-                        <button class="wl-tian"> 同意</button>
+                        <button class="wl-tian cus-click-agreeapply" data-id="{$vo['id']}"> 同意</button>
                     </div>
                 </div>
                 {/foreach}
@@ -54,12 +54,6 @@
 
             <p class="wl-hy1">私信消息</p>
             <div class="wl-nei1" id="cus-notice-three-container-list">
-                <img src="/static/image/user/tou.png" alt="">
-                <div class="wl-nei2">
-                    <dl>用户名称1</dl>
-                    <dt>消息内消息内容消息内容消息内容容</dt>
-                    <dd class="wl-tian1">12:02</dd>
-                </div>
             </div>
         </div>
     </div>
@@ -277,7 +271,16 @@
                 });
             },
         },
+        agreeApply:function(){
+
+        },
     };
+
+    $(document).on('click','.cus-click-agreeapply',function(){
+        console.log($(this).data('id'));
+
+        $(this).text('已同意');
+    });
 
     $('#cus-notice-container').dropload({
         scrollArea : window,

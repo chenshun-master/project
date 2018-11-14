@@ -152,4 +152,22 @@ class UserFriendDomain
 
         return Db::query($sql);
     }
+
+    /**
+     * 处理好友申请状态
+     * @param $user_id
+     * @param $id            申请记录ID
+     * @param $status
+     * @return bool
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function handleFriendsApply(int $user_id,$id,int $status){
+        $isTrue = Db::name('user_friends')
+            ->where('id', $id)
+            ->where("user_id = {$user_id} OR friend_id={$user_id}")
+            ->update(['status' =>$status]);
+
+        return $isTrue ? true : false;
+    }
 }

@@ -554,4 +554,30 @@ class User extends BaseController
 
         return $this->returnData($data,'',200);
     }
+
+    /**
+     * 好友申请处理
+     * @param Request $request
+     */
+
+    /**
+     * @param Request $request
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function agreeFriendsApply(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $id = (int)$request->param('id',0);
+        $userFriendDomain = new \app\api\domain\UserFriendDomain();
+        $isTrue = $userFriendDomain->handleFriendsApply($this->getUserId(),$id,2);
+
+        if(!$isTrue){
+            return $this->returnData([],'操作失败',305);
+        }
+        return $this->returnData([],'操作成功',200);
+    }
 }
