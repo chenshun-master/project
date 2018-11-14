@@ -57,7 +57,7 @@ class ArticleDomain
         if($data['parent_id'] !== 0){
             $commentModel = new CommentModel();
             $commentRes = $commentModel->findId($data['parent_id']);
-            if(!$commentRes || $commentRes['object_id'] != $data['object_id'] || $data['table_name'] != $commentRes['table_name'] || $commentRes['user_id'] == $data['user_id']){
+            if(!$commentRes || $commentRes['object_id'] != $data['object_id'] || $data['table_name'] != $commentRes['table_name']){
                 return false;
             }
         }
