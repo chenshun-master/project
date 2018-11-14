@@ -69,6 +69,10 @@ class User extends BaseController
      */
     public function collection()
     {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
         return $this->fetch('user/collection');
     }
 
@@ -77,6 +81,10 @@ class User extends BaseController
      * @return mixed
      */
     public function dialogue(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
         return $this->fetch('user/dialogue');
     }
 
@@ -86,6 +94,13 @@ class User extends BaseController
      */
     public function notice()
     {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+        $model = new \app\api\domain\UserFriendDomain();
+        $res = $model->getFriendsApplyList($this->getUserId());
+//        halt($res);
         return $this->fetch('user/notice');
     }
 

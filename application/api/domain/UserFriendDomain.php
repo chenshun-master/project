@@ -142,9 +142,9 @@ class UserFriendDomain
      * @return mixed
      */
     public function getFriendsApplyList($user_id){
-        $sql = "SELECT friend_id AS friends FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 1 and applicant_id != {$user_id}
+        $sql = "SELECT friend_id AS friends_id,remarks FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 1 and applicant_id != {$user_id}
                 UNION ALL 
-                SELECT user_id AS friends FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 1 and applicant_id != {$user_id}";
+                SELECT user_id AS friends_id,remarks FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 1 and applicant_id != {$user_id}";
 
         return Db::query($sql);
     }
