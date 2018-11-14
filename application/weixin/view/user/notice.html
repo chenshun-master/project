@@ -64,6 +64,22 @@
         </div>
     </div>
 </content>
+<footer>
+    <div class="wl-zhez">
+        <div class="wl-zl">
+            <p class="wl-renzh">好友认证</p>
+            <div class="wl-neie1">
+                <p>对方通过发送验证申请，等待添加好友</p>
+                <textarea class="wl-neie2" readonly="readonly">
+                    我是名爱国好阿尼散发啊我是名爱国好阿尼散发啊我是名爱
+                    国好阿尼散发啊我是名爱国好阿尼散发啊我是名爱国好阿尼
+                    散发啊我是名爱国好阿尼散发啊我是阿尼散发啊我是名爱国好阿尼散发啊我是名爱
+                </textarea>
+                <button class="wl-btn">同意</button>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -324,6 +340,22 @@
     $(function(){
         var h = $(window).height() - 200;
         $("#cus-notice-container-list,#cus-noticetwo-container-list,#cus-notice-three-container-list").css('minHeight',h + 'px');
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".wl-nei1").click(function(event) {
+            event.stopPropagation(); //停止事件冒泡
+            $(".wl-zhez").toggle();
+        });
+        //点击空白处隐藏弹出层
+        $(".wl-zhez").click(function(event) {
+            var _con = $('.wl-zl'); // 设置目标区域
+            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+                $('.wl-zhez').hide(); //淡出消失
+            }
+        });
+
     });
 </script>
 </html>
