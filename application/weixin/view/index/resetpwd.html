@@ -80,5 +80,14 @@
                 }
             }
         };
+        $(function(){
+            $('.wx-reg input').on('.wx-reg input ',function(){
+                if(($.trim($('#password1').val())!=="")&&($.trim($('#password2').val())!=="")){
+                    $('#btn').css({'background':'#7DB0E8'});
+                }else{
+                    $('#btn').css({'background':'#EBEBEB'});
+                }
+            });
+        });
 	</script>
 </html>

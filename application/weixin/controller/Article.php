@@ -255,7 +255,12 @@ class Article extends BaseController
     public function articleVideo(){
         return $this->fetch('article/article_video');
     }
-
+    /**
+     * 个人文章详情
+     */
+    public function userRelease(){
+        return $this->fetch('article/user_release');
+    }
     /**
      * 获取文章评论信息
      */
