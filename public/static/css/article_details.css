@@ -407,7 +407,7 @@ margin-top: 20px;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	margin-top: 30px;
+	margin-top: 0px;
 	margin-left: 60px;
 	display: block;
 	float: left;
@@ -415,6 +415,8 @@ margin-top: 20px;
 	background-size: 25px;
 	background: darkgray;
 }
+
+
 .wz2 img {
 	width:25px;
 	height: 25px;
@@ -481,8 +483,7 @@ margin-top: -30px;
 }
 .wz3{
 	width: 100%;
-	min-height: 80px;
-	height: auto;
+	min-height: 50px;
 	background: #F0F0F0;
 	padding: 5px;
 }
