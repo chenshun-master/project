@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
         <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/reg.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/function.css" />
 		<title>注册用户</title>
 		<style>
 			.code-hui{
@@ -40,6 +41,7 @@
 	</body>
 <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
         var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
@@ -58,17 +60,17 @@
                 var password = $('#password').val();
 
                 if(!this.checkMobile(mobile)){
-                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    redream.showTip('手机号格式不正确！');
                     return false;
                 }
 
                 if(sms_code == ''){
-                    layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
+                    redream.showTip('请填写验证码！');
                     return false;
                 }
 
                 if(password == ''){
-                    layer.open({content: '密码格式错误',skin: 'msg',time: 2});
+                    redream.showTip('请填写验证码！');
                     return false;
                 }
 
@@ -91,19 +93,19 @@
                                     window.location.href = '/weixin/index/login';
                                 },3000);
                             }else if(res.code == 301){
-                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                redream.showTip('请求参数错误！');
                                 return false;
                             }else if(res.code == 302){
-                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
+                                redream.showTip('验证码错误！');
                                 return false;
                             }else if(res.code == 303){
-                                layer.open({content: '验证码已过期',skin: 'msg',time: 2});
+                                redream.showTip('验证码已过期！');
                                 return false;
                             }else if(res.code == 304){
-                                layer.open({content: '用户不存在',skin: 'msg',time: 2});
+                                redream.showTip('用户不存在！');
                                 return false;
                             }else {
-                                layer.open({content: '登录失败',skin: 'msg',time: 2});
+                                redream.showTip('登录失败！');
                                 return false;
                             }
                         }
@@ -113,7 +115,7 @@
             sendSms:function(){
                 var mobile = $('#mobile').val();
                 if(!this.checkMobile(mobile)){
-                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    redream.showTip('手机号格式不正确！');
                     return false;
                 }
 
@@ -135,17 +137,17 @@
                         },
                         success:function(res){
                             if(res.code == 200){
-                                layer.open({content: '发送成功',skin: 'msg',time: 2});
+                                redream.showTip('发送成功！');
                                 codeObj.sendSmsCode();
                                 return false;
                             }else if(res.code == 301){
-                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                redream.showTip('请求参数错误！');
                                 return false;
                             }else if(res.code == 302){
-                                layer.open({content: '该用户已被使用',skin: 'msg',time: 2});
+                                redream.showTip('该用户已被使用！');
                                 return false;
                             }else{
-                                layer.open({content: '发送失败',skin: 'msg',time: 2});
+                                redream.showTip('发送失败！');
                                 return false;
                             }
                         }

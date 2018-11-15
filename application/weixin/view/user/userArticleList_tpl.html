@@ -2,7 +2,7 @@
 <?php if(count($rows) > 0):?>
     <?php foreach($rows as $val):?>
         <?php if(empty($val['thumbnail'])):?>
-            <div class="ont-3" data-id="{$val['id']}"  style="height: 360px;padding-top:20px;border-bottom: 10px solid #EEEEEE;">
+            <div class="ont-3" data-id="{$val['id']}"  style="height: 360px;padding-top:20px;border-bottom: 10px solid #EEEEEE;position: relative;">
                 <div class="wx-name">
                     <img src="{$val['nickname']?$val['portrait']:''}" alt="" class="wx-tou cus-article-href2" data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"'>
                     <dl class="wx-yh">

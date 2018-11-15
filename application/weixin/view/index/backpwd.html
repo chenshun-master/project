@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
         <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/function.css" />
 		<title>账号找回</title>
         <style>
             .code-hui{
@@ -37,6 +38,7 @@
 	</body>
     <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
         var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
         codeObj.run();
@@ -53,12 +55,12 @@
                 var sms_code = $('#sms_code').val();
 
                 if(!this.checkMobile(mobile)){
-                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    redream.showTip('手机号格式不正确！');
                     return false;
                 }
 
                 if(sms_code == ''){
-                    layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
+                    redream.showTip('请填写验证码！');
                     return false;
                 }
                 if(!this.loading){
@@ -78,17 +80,13 @@
                                 window.location.href = '/weixin/index/rePwd?mobile='+res.data.mobile+'&verify_code='+ encodeURIComponent(res.data.verify_code);
                                 return false;
                             }else if(res.code == 301){
-                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('请求参数错误！');
                             }else if(res.code == 302){
-                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('验证码错误！');
                             }else if(res.code == 303){
-                                layer.open({content: '验证码已过期',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('验证码已过期！');
                             }else {
-                                layer.open({content: '验证码错误',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('验证码错误！');
                             }
                         }
                     });
@@ -97,10 +95,11 @@
             sendSms:function(){
                 var mobile = $('#mobile').val();
                 if(!this.checkMobile(mobile)){
-                    layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+                    redream.showTip('手机号格式不正确！');
                     return false;
-                }
-                if(!this.sendSmsCode){
+                }else if(codeObj.checkTime()){
+                    return false;
+                }else if(!this.sendSmsCode){
                     $.ajax({
                         url:"/weixin/index/sendResetPwdSmsCode",
                         type:'post',
@@ -114,32 +113,29 @@
                         },
                         success:function(res){
                             if(res.code == 200){
-                                layer.open({content: '发送成功',skin: 'msg',time: 2});
+                                redream.showTip('发送成功！');
                                 codeObj.sendSmsCode();
-                                return false;
                             }else if(res.code == 301){
-                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('请求参数错误！');
                             }else if(res.code == 302){
-                                layer.open({content: '该用户未被使用',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('该用户未被使用！');
                             }else{
-                                layer.open({content: '发送失败',skin: 'msg',time: 2});
-                                return false;
+                                redream.showTip('发送失败！');
                             }
                         }
                     });
                 }
             }
         };
-        			$(function(){
-			    $('.wx-reg input').on('.wx-reg input ',function(){
-			        if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")){
-			        $('#btn').css({'background':'#7DB0E8'});
-			    }else{
-			        $('#btn').css({'background':'#EBEBEB'});
-			         }
-			    });
+
+		$(function(){
+			$('.wx-reg input').on('.wx-reg input ',function(){
+				if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")){
+				$('#btn').css({'background':'#7DB0E8'});
+			}else{
+				$('#btn').css({'background':'#EBEBEB'});
+				 }
 			});
+		});
 	</script>
 </html>

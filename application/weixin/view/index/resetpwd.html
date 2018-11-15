@@ -9,6 +9,7 @@
 		<meta content="telephone=no" name="format-detection" />
 		<link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/function.css" />
 		<title>Title</title>
 		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
@@ -29,6 +30,7 @@
 		</div>
 	</body>
 	<script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
         var  objClass = {
             loading:false,
@@ -39,12 +41,12 @@
                 var verify_code = $('#verify_code').val();
 
 				if(password1 == ''){
-                    layer.open({content: '请填写新的密码',skin: 'msg',time: 2});
+                    redream.showTip('请填写新的密码！');
                     return false;
 				}
 
                 if(password1 != password2){
-                    layer.open({content: '两次密码不一致',skin: 'msg',time: 2});
+                    redream.showTip('两次密码不一致！');
                     return false;
                 }
 
@@ -62,17 +64,17 @@
                         },
                         success:function(res){
                             if(res.code == 200){
-                                layer.open({content: '重置成功',skin: 'msg',time: 2});
+                                redream.showTip('重置成功！');
                                 window.location.href = '/weixin/index/login';
                                 return false;
                             }else if(res.code == 301){
-                                layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                                redream.showTip('请求参数错误！');
                                 return false;
                             }else if(res.code == 302){
-                                layer.open({content: '两次密码不一致',skin: 'msg',time: 2});
+                                redream.showTip('两次密码不一致！');
                                 return false;
                             }else {
-                                layer.open({content: '密码重置失败',skin: 'msg',time: 2});
+                                redream.showTip('密码重置失败！');
                                 return false;
                             }
                         }

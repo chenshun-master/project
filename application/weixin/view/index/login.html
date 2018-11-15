@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/login.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/css/function.css" />
         <style>
             .code-hui{
                 color: #cccccc !important;
@@ -49,7 +50,7 @@
 	</body>
 <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
 codeObj.run();
@@ -67,12 +68,12 @@ var  objClass = {
         var sms_code = $('#sms_code').val();
 
         if(!this.checkMobile(mobile)){
-            layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+            redream.showTip('手机号格式不正确！');
             return false;
         }
 
         if(sms_code == ''){
-            layer.open({content: '请填写验证码！',skin: 'msg',time: 2});
+            redream.showTip('请填写验证码！');
             return false;
         }
 
@@ -119,7 +120,7 @@ var  objClass = {
         var mobile = $('#mobile2').val();
         var password = $('#password').val();
         if(!this.checkMobile(mobile)){
-            layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+            redream.showTip('请填写验证码！');
             return false;
         }
         if(!objClass.twoLoading){
@@ -142,16 +143,16 @@ var  objClass = {
                         },2000)
                         return false;
                     }else if(res.code == 301){
-                        layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                        redream.showTip('请求参数错误！');
                         return false;
                     }else if(res.code == 302){
-                        layer.open({content: '用户不存在',skin: 'msg',time: 2});
+                        redream.showTip('用户不存在！');
                         return false;
                     }else if(res.code == 303){
-                        layer.open({content: '用户密码填写错误',skin: 'msg',time: 2});
+                        redream.showTip('用户密码填写错误！');
                         return false;
                     }else{
-                        layer.open({content: '登录失败',skin: 'msg',time: 2});
+                        redream.showTip('登录失败！');
                         return false;
                     }
                 }
@@ -161,7 +162,7 @@ var  objClass = {
     sendSms:function(){
         var mobile = $('#mobile1').val();
         if(!this.checkMobile(mobile)){
-            layer.open({content: '手机号格式不正确！',skin: 'msg',time: 2});
+            redream.showTip('手机号格式不正确！');
             return false;
         }
 
@@ -183,14 +184,14 @@ var  objClass = {
                 },
                 success:function(res){
                     if(res.code == 200){
-                        layer.open({content: '发送成功',skin: 'msg',time: 2});
+                        redream.showTip('发送成功！');
                         codeObj.sendSmsCode();
                         return false;
                     }else if(res.code == 301){
-                        layer.open({content: '请求参数错误',skin: 'msg',time: 2});
+                        redream.showTip('请求参数错误！');
                         return false;
                     }else if(res.code == 302){
-                        layer.open({content: '该手机号未注册',skin: 'msg',time: 2});
+                        redream.showTip('该手机号未注册！');
                         return false;
                     }
                 }
