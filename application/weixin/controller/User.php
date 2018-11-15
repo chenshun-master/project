@@ -80,10 +80,20 @@ class User extends BaseController
      * 对话页面
      * @return mixed
      */
-    public function dialogue(){
+    public function dialogue(Request $request){
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
+
+        $id =  $request->param('id',0);
+        $messageDomain = new \app\api\domain\MessageDomain();
+        $data = $messageDomain->getMsgDetail($id);
+
+        if(!$data){
+            return redirect('index/error404');
+        }
+
+        $this->assign('msg',$data);
 
         return $this->fetch('user/dialogue');
     }

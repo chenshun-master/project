@@ -131,7 +131,7 @@
             template:function(data){
                 return '<div class="wl-nei1">' +
                             '<img src="/static/image/user/rederam.png" alt="">' +
-                            '<div class="wl-nei2">' +
+                            '<div class="wl-nei2 cus-to-detail" data-id="'+data.id+'"  >' +
                                 '<dl>'+ data.title +'</dl>' +
                                 '<dt>'+ data.content +'</dt>' +
                                 '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
@@ -191,7 +191,7 @@
             template:function(data){
                 return '<div class="wl-nei1">' +
                     '<img src="/static/image/user/rederam.png" alt="">' +
-                    '<div class="wl-nei2">' +
+                    '<div class="wl-nei2 cus-to-detail" data-id="'+data.message_id+'">' +
                     '<dl>'+ data.title +'</dl>' +
                     '<dt>'+ data.content +'</dt>' +
                     '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
@@ -341,6 +341,10 @@
 
     $(document).on('click','.cus-click-usermian',function(){
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
+    });
+
+    $(document).on('click','.cus-to-detail',function(){
+        window.location.href = '/weixin/user/dialogue/id/' + $(this).data('id');
     });
 
     $(".cus-show-box").click(function(event) {
