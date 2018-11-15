@@ -6,7 +6,7 @@
 
         {switch $vo.type}
             {case 1}
-                {if condition="count($thumbnail) > 1"}
+                {if condition="count($thumbnail) >= 3"}
                     <div class="wl-fas">
                         <div class="wx-name9 wl-mnb" >
                             <div class="wl-one1-2" >
@@ -16,7 +16,7 @@
                                 </dl>
                             </div>
                         </div>
-                        <div  class="wl-neirong-8" > {$vo['comment_content']}</div>
+                        <div  class="wl-neirong-8" > <span style="color: #7DB0E8">{$vo['huifu_nickname']?'@'.$vo['huifu_nickname']:''}</span> {$vo['comment_content']}</div>
                         <dl class="wl-dasiu  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
                             <div class="wl-dasda" > {$vo['title']}</div>
                             <div class="wl-img" >
@@ -46,7 +46,7 @@
                                 </dl>
                             </div>
                         </div>
-                        <div class="w-zhuij"> {$vo['comment_content']}</div>
+                        <div class="w-zhuij"> <span style="color: #7DB0E8">{$vo['huifu_nickname']?'@'.$vo['huifu_nickname']:''}</span> {$vo['comment_content']}</div>
                         <div class="wx-nei1 w-onr4  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}" >
                             <dl class="w-oea">
                                 <dt  >{$vo['title']}</dt>
@@ -78,7 +78,7 @@
                             </dl>
                         </div>
                     </div>
-                    <div class="w-zhuij" > {$vo['comment_content']}</div>
+                    <div class="w-zhuij" ><span style="color: #7DB0E8">{$vo['huifu_nickname']?'@'.$vo['huifu_nickname']:''}</span> {$vo['comment_content']}</div>
                     <div class="wx-nei1 w-onr4">
                         <dl>
                             <div  class="wl-neirong-8  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}"> {$vo['title']}</div>
