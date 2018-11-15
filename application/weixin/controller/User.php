@@ -88,12 +88,14 @@ class User extends BaseController
         return $this->fetch('user/dialogue');
     }
 
-   /**
+    /**
      * 申请认证页面
-     * @return mixed
+     * @return mixed|\think\response\Redirect
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function certification(){
-
         if(!$this->checkLogin()){
             return redirect('index/login');
         }
@@ -600,4 +602,5 @@ class User extends BaseController
         $data = $userFriendDomain->getPrivateLetterList($this->getUserId(),$page,$page_size);
         return $this->returnData($data,'',200);
     }
+
 }

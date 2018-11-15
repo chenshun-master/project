@@ -340,9 +340,33 @@ class Article extends BaseController
                 $data['rows'][$k]['parent']['created_time'] = formatTime($time);
             }
         }
-
-//        halt($data);
-
         return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 添加收藏
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function addFavorite(Request $request){
+        $id = (int)$request->param('id',0);
+
+        if(!$this->checkLogin()){
+            return $this->returnData([],'请登录后再进行操作',401);
+        }
+
+        if($id == 0){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $res = (new \app\api\domain\ArticleDomain())->createFavoriteArticle($this->getUserId(),$id);
+        if(!$res){
+            return $this->returnData([],'操作失败',200);
+        }
+
+        return $this->returnData([],'操作成功',200);
     }
 }
