@@ -100,15 +100,26 @@
         <span style="position: absolute;top: 0;left: 70%;">认证结果发布</span>
     </div>
 
-    <div class="wl-nei2">
-        <dl style="font-size: 32px;color: #333333">恭喜，您的认证已通过审核</dl>
-        <div class="wl-dab">
-            <dl>认证身份:<span>个人</span></dl>
-            <dt>真实姓名:<span>姓名</span></dt>
-            <dd>证件号码:<span>612325199710071816</span></dd>
-            <dd>证件图片:<span>已做隐私处理，不显示具体内容</span></dd>
+    <div class="wl-nei2" >
+        <!--//认证成功页面-->
+        <div>
+            <dl style="font-size: 32px;color: #333333">恭喜，您的认证已通过审核</dl>
+            <div class="wl-dab" >
+                <dl>认证身份:<span>个人</span></dl>
+                <dt>真实姓名:<span>姓名</span></dt>
+                <dd>证件号码:<span>612325199710071816</span></dd>
+                <dd>证件图片:<span>已做隐私处理，不显示具体内容</span></dd>
+                <button class="wl-btn">知道了</button>
+            </div>
         </div>
-        <button class="wl-btn">知道了</button>
+        <!--//认证失败页面-->
+        <div class="wl-nei2" style="display: none">
+            <dl style="font-size: 32px;color: #333333">对不起，您的认证未通过审核</dl>
+            <dt style="color:#999999;font-size: 20px;margin-top: 60px">如在2-5个工作日未得到认证结果，请您发送邮件至</dt>
+            <dd style="color:#999999;font-size: 20px;margin-top: 10px"><span style="color: #F24F4F;">weixin.alimx.cn</span>完成认证</dd>
+            <button class="wl-btn">知道了</button>
+        </div>
+
     </div>
 </content>
 </body>
