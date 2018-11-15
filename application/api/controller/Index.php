@@ -24,4 +24,17 @@ class Index extends BaseController
             return $this->weChatApiClass->responseMsg();
         }
     }
+
+
+    /**
+     * 图片动态加载处理
+     */
+    public function imgLoading(){
+        $img = 'http://172.16.100.85/uploads/20181115/0877abd1182aade65258c892a8f2f4b7.jpg';
+
+        $image = \think\Image::open($img);
+    }
+
+
+
 }
