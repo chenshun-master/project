@@ -175,8 +175,15 @@ class Article extends BaseController
     public function userMain(Request $request)
     {
         $user_id = (int)$request->param('id',0);
-        $res = $this->articleDomain->getArticleStatisticsData($user_id);
+        $user_info = $this->userDomain->getArticleUserInfo($user_id);
+        if(!$user_info){
+            return redirect('index/error404');
+        }
 
+
+
+
+        $res = $this->articleDomain->getArticleStatisticsData($user_id);
         $data = [
             'type_1'=>['type'=>1,'total'=>0],
             'type_2'=>['type'=>2,'total'=>0],
@@ -191,16 +198,20 @@ class Article extends BaseController
             }
         }
 
-        $user_info = $this->userDomain->getArticleUserInfo($user_id);
         $is_friend = false;
-        if($this->checkLogin()){
-//            $user_info2 = $this->getUserInfo();
+        if($this->checkLogin() && $user_info){
+            if($user_info['id'] == $this->getUserId()){
+                $is_friend = 2;
+            }else{
+                $is_friend = $this->_userFriendDomain->checkFriend($user_id,$this->getUserId());
+            }
         }
 
         $this->assign([
             'statistics'=>$data,
             'user_info' =>$user_info,
             'is_friend' =>$is_friend,
+            'uid'       =>$user_info['id'],
         ]);
         return $this->fetch('article/userMain');
     }
@@ -240,8 +251,6 @@ class Article extends BaseController
             return redirect('/weixin');
         }
 
-
-
         $config = config('conf.sns_login.weixin');
 //        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
 //        $res = $wechatJsSdk->getSignPackage();
@@ -256,7 +265,6 @@ class Article extends BaseController
             }else{
                 $isFriend = $this->_userFriendDomain->checkFriend($data['article_info']['user_id'],$this->getUserId());
             }
-
         }
 
         $this->assign($data);
@@ -336,22 +344,5 @@ class Article extends BaseController
 //        halt($data);
 
         return $this->returnData($data,'',200);
-    }
-
-    public function test(){
-        $data = $this->articleDomain->getSecondComment(6,64,1,15,0);
-        halt($data);
-
-//        for($i=0;$i<=30;$i++){
-//            $data = [
-//                'user_id'      =>7,
-//                'parent_id'    =>312,
-//                'object_id'    =>6,
-//                'content'      =>'四级评论-'.$i.'fasdnfjaksnksdmfa asdjkf 安师大 暗示你  那可就  健康法南京南京看你家开发商能尽快 卡死',
-//                'created_time' =>date('Y-m-d H:i:s')
-//            ];
-//
-//            $this->articleDomain->createComment($data,'article');
-//        }
     }
 }

@@ -113,7 +113,7 @@ class ArticleDomain
         $articleRes = $obj->find();
         if($articleRes){
             $data['article_info'] = $articleRes;
-            Db::name('article')->where('id',$id)->inc('hits');
+            Db::name('article')->where('id',$id)->inc('hits')->update();
         }
 
         return $data;
@@ -498,7 +498,7 @@ class ArticleDomain
         $obj->where('article.type','in',[1,2]);
         $obj->where('article.status',1);
 
-        $obj->group('comment.object_id');
+//        $obj->group('comment.object_id');
         $obj->order('comment.created_time desc');
 
         $total = $obj->count();

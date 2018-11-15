@@ -136,7 +136,6 @@
     </div>
 </div>
 
-
 <div class="wl-zhezhao">
     <div class="wl-zhe1">
         <p class="wl-renzh">申请备注</p>
@@ -559,43 +558,41 @@
         }
     };
 
+    $('.mp img').removeAttr('style');
+
     setTimeout(function () {
         objClass.loadRecommendList();
     }, 500);
 
     setTimeout(function () {
         objClass.loadCommentList();
-
-        $(document).on('click', '.cus-comment-fabulous', function () {
-            objClass.clickCommentFabulous($(this), 1);
-        });
-
-
-        $(document).on('click', '.cus-reply-btn', function () {
-            var num = parseInt($(this).data('replynum'));
-
-            console.log(num);
-            if(num == 0 || num == ''){
-                var name = $(this).data('name');
-                $('#cus-comment-pid').val($(this).data('commentid'));
-                $('.neirong').attr('placeholder','回复 '+ name);
-                $('.wx-foot').hide();
-                $('.kl1').show();
-                $('.wl-zhez').show();
-                $('.fb1').css('color','#ccc');
-            }else{
-                objClass.replyComment($(this));
-            }
-        });
-
-
-        $(document).on('click', '.cus-pinglun-click', function () {
-            objClass.clickCommentFabulous($(this), 2);
-        });
     }, 1000);
 
     $(document).on('click', '.cus-recommend-href', function () {
         window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
+    });
+
+    $(document).on('click', '.cus-comment-fabulous', function () {
+        objClass.clickCommentFabulous($(this), 1);
+    });
+
+    $(document).on('click', '.cus-reply-btn', function () {
+        var num = parseInt($(this).data('replynum'));
+        if(num == 0 || num == ''){
+            var name = $(this).data('name');
+            $('#cus-comment-pid').val($(this).data('commentid'));
+            $('.neirong').attr('placeholder','回复 '+ name);
+            $('.wx-foot').hide();
+            $('.kl1').show();
+            $('.wl-zhez').show();
+            $('.fb1').css('color','#ccc');
+        }else{
+            objClass.replyComment($(this));
+        }
+    });
+
+    $(document).on('click', '.cus-pinglun-click', function () {
+        objClass.clickCommentFabulous($(this), 2);
     });
 
     $(document).ready(function () {

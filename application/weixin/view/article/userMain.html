@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/zheazhao.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
     <title>用户中心</title>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
@@ -22,15 +23,9 @@
     .souBak{
         color: #7DB0E8 !important;
     }
-    i{
+    i,.cus-article-href{
         cursor:pointer;
     }
-
-    .cus-article-href{
-        cursor:pointer;
-    }
-
-
 </style>
 <body style="background: #ffffff;">
 <div class="con">
@@ -39,8 +34,11 @@
         <div class="wx-con">
             <h3 style="font-size:0.34rem;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
             <p class="wl-jianj">{$user_info['profile']}</p>
-            <button>私信</button>
-            <button style="margin-left: 40px;" class="wl-haoyou">加好友</button>
+            <?php if($is_friend === true):?>
+                <button onclick="redream.showTip('此功能暂未开放...')">私信</button>
+            <?php elseif($is_friend === false):?>
+                <button style="margin-left: 40px;" class="wl-haoyou" onclick="myObj.showAddFriend()">加好友</button>
+            <?php endif;?>
         </div>
     </div>
     <div class="wx-boy">
@@ -58,7 +56,6 @@
                 <span id="two">视频</span>
                 <span id="three">粉丝</span>
             </div>
-
         </div>
         <div class="xia">
             <div class="one ones content" >
@@ -66,7 +63,6 @@
             </div>
             <div class="one oner content2" style="display: none;">
 				<div id="wl-video"></div>
-
             </div>
             <div class="one" style="display: none;">
                 <!--<div class="wx-you">-->
@@ -83,13 +79,14 @@
         </div>
     </div>
 </div>
+
 <div class="wl-zhezhao">
     <div class="wl-zhe1">
         <p class="wl-renzh">申请备注</p>
         <div class="wl-neie1">
             <p>你需要发送验证申请，等待对方通过</p>
             <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
-            <button class="wl-btn" onclick="objClass.submitFriendApply()">发送</button>
+            <button class="wl-btn" onclick="myObj.submitFriendApply()">发送</button>
         </div>
     </div>
 </div>
@@ -186,7 +183,6 @@
             if(this.listData.loading){
                 return false;
             }
-
             this.listData.page++;
             if(this.listData.ini == true){
                 if(this.listData.page > this.listData.page_total){
@@ -372,11 +368,9 @@
         }
     });
 
-       $(document).on('click','.cus-article-fabulous',function(event){
-           objClass1.clickFabulous($(this));
-           // event.stopPropagation();
-       });
-
+    $(document).on('click','.cus-article-fabulous',function(event){
+       objClass1.clickFabulous($(this));
+    });
 
     $(document).on('click','.cus-article-href',function(){
         window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
@@ -416,21 +410,57 @@
             }
         })
     });
-    $(document).ready(function() {
-        $(".wl-haoyou").click(function(event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".wl-zhezhao").toggle();
-
-        });
-
-        //点击空白处隐藏弹出层
-        $(".wl-zhezhao").click(function(event) {
-            var _con = $('.wl-zhe1'); // 设置目标区域
-            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.wl-zhezhao').hide(); //淡出消失
-            }
-        });
-
+</script>
+<script type="text/javascript">
+    $(".wl-zhezhao").click(function(event) {
+        var _con = $('.wl-zhe1'); // 设置目标区域
+        if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhezhao').hide(); //淡出消失
+        }
     });
+
+    var myObj = {
+        isAdd:false,
+        addFriendLoading:false,
+        showAddFriend:function(){
+            if(!this.isAdd){
+                $(".wl-zhezhao").toggle();
+            }else{
+                redream.showTip('不能重复申请...');
+            }
+        },
+        submitFriendApply:function(){
+            var remarks = $.trim($('#fr-friend-remarks').val());
+            if(redream.isEmptyStr(remarks)){
+                redream.showTip('申请备注不能为空...');
+                return false;
+            }else if(!this.addFriendLoading){
+                $.ajax({
+                    url: "/weixin/user/addFriend",
+                    type: 'post',
+                    data: {friend_id:{$uid},remarks:remarks},
+                    dataType: 'json',
+                    beforeSend:function(){
+                        myObj.addFriendLoading = true;
+                    },
+                    complete:function(){
+                        myObj.addFriendLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            myObj.isAdd = true;
+                            $(".wl-zhezhao").toggle();
+                        }else if (res.code == 401){
+                            redream.showTip('请先进行登录');
+                        }else if (res.code == 403){
+                            redream.showTip('您还没有授权');
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        }
+    }
 </script>
 </html>
