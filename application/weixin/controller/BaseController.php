@@ -176,4 +176,15 @@ class BaseController extends Controller
             return redirect(Session::get('previous_page'));
         }
     }
+
+    /**
+     * 重定向到用户登录页面
+     * @param $redir          登录后跳转地址
+     * @return \think\response\Redirect
+     */
+    public function toLogin($redir = ''){
+        #记录跳转路径
+
+        return redirect('index/login');
+    }
 }
