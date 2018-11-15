@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/zheazhao.css"/>
     <title>用户中心</title>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
@@ -39,7 +40,7 @@
             <h3 style="font-size:0.34rem;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
             <p class="wl-jianj">{$user_info['profile']}</p>
             <button>私信</button>
-            <button style="margin-left: 40px;">加好友</button>
+            <button style="margin-left: 40px;" class="wl-haoyou">加好友</button>
         </div>
     </div>
     <div class="wx-boy">
@@ -79,6 +80,16 @@
                     <!--</div>-->
                 <!--</div>-->
             </div>
+        </div>
+    </div>
+</div>
+<div class="wl-zhezhao">
+    <div class="wl-zhe1">
+        <p class="wl-renzh">申请备注</p>
+        <div class="wl-neie1">
+            <p>你需要发送验证申请，等待对方通过</p>
+            <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
+            <button class="wl-btn" onclick="objClass.submitFriendApply()">发送</button>
         </div>
     </div>
 </div>
@@ -404,6 +415,22 @@
                 $("#ul").addClass("cc");
             }
         })
+    });
+    $(document).ready(function() {
+        $(".wl-haoyou").click(function(event) {
+            event.stopPropagation(); //停止事件冒泡
+            $(".wl-zhezhao").toggle();
+
+        });
+
+        //点击空白处隐藏弹出层
+        $(".wl-zhezhao").click(function(event) {
+            var _con = $('.wl-zhe1'); // 设置目标区域
+            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+                $('.wl-zhezhao').hide(); //淡出消失
+            }
+        });
+
     });
 </script>
 </html>

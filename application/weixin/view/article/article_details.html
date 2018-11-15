@@ -72,7 +72,7 @@
             <?php else:?>
             <?php endif;?>
         </div>
-        <div style="   font-size: 0.32rem;padding: 0 15px" class="mp"><?php echo $article_info['content'] ?></div>
+        <div style="   font-size: 0.32rem;padding: 0 15px;overflow-x: hidden;" class="mp"><?php echo $article_info['content'] ?></div>
         <p class="wx-fx" style="min-height: 50px;margin-top: 20px;position: relative">
             <button style="margin-left: 15px;" id="cus-click-fabulous"    class=""     data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()">
                 <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" ></i>

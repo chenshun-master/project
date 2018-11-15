@@ -70,7 +70,7 @@ html,body{ height:100%;overflow:visible }
 .wx-name {
 	width: 100%;
 	height: 60px;
-	margin-top: 20px;
+	margin-top: 10px;
 	position: relative;
 }
 
@@ -489,12 +489,8 @@ margin-top: -30px;
 }
 .mp{
 	text-indent:30px;
-	padding: 0 10px;
-	padding-bottom: 20px;
 	min-height: 300px;
-/*	height: auto;*/
-	margin-top: 20px;
-	font-size:200%;
+	margin-top: 10px;
 	width: 100%;
 }
 .kl1 {
