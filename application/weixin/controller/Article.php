@@ -247,7 +247,7 @@ class Article extends BaseController
     public function articleDetails(Request $request){
         $id = $request->param('id',0);
         $data = $this->articleDomain->getArticleInfo($id,$this->getUserId());
-        if(!$data){
+        if(count($data['article_info']) == 0){
             return redirect('/weixin');
         }
 

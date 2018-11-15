@@ -20,22 +20,20 @@
 <body style="background: white">
 <header>
     <div class="wl-top" style="position: relative">
-        <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;left: 18px;top: 0px;"></i> 用户名称1
+        <a href="/weixin/user/notice"><i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;left: 6px;top: 0px;"></i></a> 消息内容
     </div>
 </header>
-<content style="padding-bottom: 50px">
+<content style="margiin-bottom: 50px">
     <div class="wl-neirong">
         <div class="wl-neia1" >
-            我是标题我是标题我是标题我是标题我是标题我是是标题</div>
+            {$msg['title']}
+        </div>
     </div>
     <div class="wl-adi1">
-        我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标
-        题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题
+        {$msg['content']}
+        <div class="wl-shijian">{$msg['created_time']}</div>
     </div>
-    <div class="wl-shijian">5小时前</div>
+
 </content>
 </body>
-<script src="/static/js/jquery.min.js"></script>
-
-
 </html>
