@@ -571,7 +571,19 @@ class ArticleDomain
             return false;
         }
 
-        $user = new UserFavoriteModel;
-        return $user->save(['user_id' => $user_id, 'table_name' => $table_name, 'object_id' => $object_id,'created_time'=>date('Y-m-d H:i:s')]);
+        Db::startTrans();
+        try {
+            $res = Db::name('user_favorite')->insertGetId(['user_id' => $user_id, 'table_name' => $table_name, 'object_id' => $object_id,'created_time'=>date('Y-m-d H:i:s')]);
+            if($table_name == 'article'){
+                Db::name('article')->where('id',$object_id)->inc('favorites')->update();
+                if(!$res){
+                    Db::rollback();return false;
+                }
+            }
+
+            Db::commit();return true;
+        } catch (\Exception $e) {
+            Db::rollback();return false;
+        }
     }
 }

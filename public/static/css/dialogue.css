@@ -14,21 +14,30 @@ a{text-decoration: none;color: #221815;display: block;}
     height: 80px;
     line-height: 80px;
     color: #1B1B1B;
-    font-size: 32px;
+    font-size: 34px;
     text-align: center;
     border-bottom: 1px solid #DFDFDF;
     background: #FFFFFF;
 }
 .wl-neirong{
     width: 100%;
-    min-height: 220px;
+    min-height: 155px;
 }
-
 .wl-neia1{
-    width: 100%;min-height: 200px;border-bottom: 1px solid #DFDFDF;color: #1D1D1D;font-size: 28px;padding: 20px
+    width: 100%;
+    min-height: 140px;
+    border-bottom: 1px solid #DFDFDF;
+    color: #1D1D1D;
+    font-size: 28px;
+    padding: 20px;
 }
 .wl-adi1{
-    width: 100%;min-height: 500px;border-bottom: 1px solid red;color: #1D1D1D;font-size: 28px;padding: 20px 20px 200px 20px
+    width: 100%;
+    min-height: 500px;
+    border-bottom: 1px solid red;
+    color: #666666;
+    font-size: 20px;
+    padding: 10px 20px 200px 20px;
 }
 .wl-db{width:100%;height: 340px;border: 1px solid red;margin-top: 20px}
 .wl-shijian{
