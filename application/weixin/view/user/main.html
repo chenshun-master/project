@@ -114,9 +114,9 @@
 			</div>
 
             <?php if(!is_weixin()):?>
-
+				<button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
             <?php endif;?>
-            <button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
+
 
 			<div class="wkf">此功能尚未开发</div>
 			<div class="marsk-container">
@@ -144,7 +144,6 @@
 				$(".quxiao").click(function(){
 					$('.marsk-container').hide(); //淡出消失
 				})
-
         });
         $(function(){
             $("span").eq(0).addClass("se");

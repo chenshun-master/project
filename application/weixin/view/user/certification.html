@@ -24,7 +24,7 @@
 </header>
 
 {if condition="count($authRes) == 0"}
-    <content style="display: none" >
+    <content >
         <div class="wl-neirong" style="position: relative">
             <img src="/static/image/user/dunpai.png" alt="" width="280"  height="292">
         </div>
@@ -32,7 +32,7 @@
             <dl style="font-size: 35px;color: #7DB0E8">温馨提示</dl>
             <dt style="color:#333333;font-size: 32px;margin-top: 60px">申请认证请前往薇琳医美官方网站</dt>
             <dd style="color:#333333;font-size: 32px;margin-top: 30px"><span style="color: #7db0e8;">weixin.alimx.cn</span>完成认证</dd>
-            <button class="wl-btn">知道了</button>
+            <button class="wl-btn"><a href="/weixin/user/main" style="color: #ffffff">知道了</a></button>
         </div>
     </content>
 {else /}

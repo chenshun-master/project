@@ -454,22 +454,26 @@ class ArticleDomain
      * @throws \think\exception\DbException
      */
     public function getArticleLikeData($user_id,$page,$page_size){
-        $obj = Db::table('wl_article')->alias('article');
-        $obj->where('article.status', 1);
-        $obj->where('article.published_time', '<= time', date('Y-m-d H:i:s'));
-        $obj->order('article.published_time', 'desc');
-        $obj->where('article.id', 'IN', function ($query) use ($user_id)  {
-            $query->table('wl_user_like')->where('user_id', $user_id)->where('table_name','article')->field('object_id');
-        });
+        $obj = Db::name('user_like')->alias('user_like');
+        $obj->where('table_name','article');
 
-        $obj->where('article.type', 'in', [1,2]);
-        $obj->where('article.status',1);
 
+        $obj->join('wl_article article','user_like.object_id = article.id');
         $obj->leftJoin('wl_user user','article.user_id = user.id');
+
+
+        $obj->where('article.type','in',[1,2]);
+        $obj->where('article.status',1);
+        $obj->where('user_like.user_id',$user_id);
+        $obj->order('user_like.created_time desc');
+
+
         $total = $obj->count();
+
         $obj->field("article.*,user.id as user_id,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
 
-        $rows = $obj->page($page,$page_size)->select();
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -499,8 +503,6 @@ class ArticleDomain
 
         $obj->where('article.type','in',[1,2]);
         $obj->where('article.status',1);
-
-//        $obj->group('comment.object_id');
         $obj->order('comment.created_time desc');
 
         $total = $obj->count();
@@ -536,7 +538,7 @@ class ArticleDomain
 
         $obj->where('article.type','in',[1,2]);
         $obj->where('article.status',1);
-
+        $obj->where('favorite.user_id',$user_id);
         $obj->order('favorite.created_time desc');
 
 
