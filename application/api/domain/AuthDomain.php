@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 2018/11/2
- * Time: 18:04
- */
-
 namespace app\api\domain;
 
 use app\api\model\AuthModel;

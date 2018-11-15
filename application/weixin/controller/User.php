@@ -94,6 +94,15 @@ class User extends BaseController
      */
     public function certification(){
 
+        if(!$this->checkLogin()){
+            return redirect('index/login');
+        }
+
+        $authDomain = new \app\api\domain\AuthDomain();
+        $authRes = $authDomain->findAuthResult($this->getUserId());
+
+        $this->assign('authRes',$authRes);
+
         return $this->fetch('user/certification');
     }
 
