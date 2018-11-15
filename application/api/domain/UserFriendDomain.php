@@ -67,6 +67,7 @@ class UserFriendDomain
         $data = [
             'user_id'        =>$user_id > $friend_id ? $friend_id : $user_id,
             'friend_id'      =>$user_id > $friend_id ? $user_id : $friend_id,
+            'applicant_id'   =>$user_id,
             'user_group'     =>0,
             'friend_group'   =>0,
             'status'         =>1,

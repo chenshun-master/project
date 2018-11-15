@@ -88,89 +88,9 @@
         </div>
 
         <div id="cus-comment" style="display: block;">
+            <p class="wx-xg" style="padding-top:8px;">相关评论</p>
             <div id="cus-comment-content">
-                <p class="wx-xg" style="padding-top:8px;">相关评论</p>
-                <div class="wl-xiang">
-                 <div  style="float: left;"> <img src="/static/image/user/pyq.png" alt="" width="30"height="30" ></div>
-                    <div class="wl-xiaa1" style="float: right;">
-                        <div class="wl-uh">
-                            <div class="wl-das1">半顆心</div><div  class="wl-das2"><i class="iconfont icon-appreciate_light" style="font-size: 22px"></i><span>99</span></div>
-                        </div>
-                        <div class="wl-neirnga">
-                            广东省高是广东三大歌
 
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                        </div>
-                        <div class="wl-neiha">
-                            <div class="wl-pji">13小时前</div><div class="wl-mjs">3回复</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wl-xiang">
-                    <div  style="float: left;"> <img src="/static/image/user/pyq.png" alt="" width="30"height="30" ></div>
-                    <div class="wl-xiaa1" style="float: right;">
-                        <div class="wl-uh">
-                            <div class="wl-das1">半顆心</div><div  class="wl-das2"><i class="iconfont icon-appreciate_light" style="font-size: 22px"></i><span>99</span></div>
-                        </div>
-                        <div class="wl-neirnga">
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-                        </div>
-                        <div class="wl-neiha">
-                            <div class="wl-pji">13小时前</div><div class="wl-mjs">3回复</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wl-xiang">
-                    <div  style="float: left;"> <img src="/static/image/user/pyq.png" alt="" width="30"height="30" ></div>
-                    <div class="wl-xiaa1" style="float: right;">
-                        <div class="wl-uh">
-                            <div class="wl-das1">半顆心</div><div  class="wl-das2"><i class="iconfont icon-appreciate_light" style="font-size: 22px"></i><span>99</span></div>
-                        </div>
-                        <div class="wl-neirnga">
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                            广东省高是广东三大歌
-
-                        </div>
-                        <div class="wl-neiha">
-                            <div class="wl-pji">13小时前</div><div class="wl-mjs">3回复</div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
         </div>
@@ -345,28 +265,22 @@
             page_total: 1,
             page_size: 15,
             template: function (data) {
-                var src = (data.portrait == '' || data.portrait == null) ? '' : data.portrait;
 
+                var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
 
-                if (data.reply_count == 0 || data.reply_count == null) {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="0" data-name="@' + data.nickname + '" >回复</button>';
-                } else {
-                    var button_html = '<button class="cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="'+ data.reply_count +'"  >' + data.reply_count + ' 回复</button>';
-                }
-
-                var html = '<div class="pl">' +
-                    '<img src="' + src + '" alt=""    onerror="this.src=\'/static/image/user/tou.png \'"     />' +
-                    '<div class="pin">' +
-                    '<p class="xm"><span style="float:left">' + data.nickname + '</span>' +
-                    ' <span style="float:right" class="cus-comment-fabulous" data-id="' + data.id + '" data-click="' + data.isZan + '" >' + data.like_count + '</span></p>' +
-                    '<p class="wx-p">' + data.content + '</p>' +
-                    '<div style="position: relative"><p class="wx-hf"></div>' +
-                    '<span class="hf-sj">' + data.created_time + '</span>' +
-                    button_html +
-                    '</p>' +
-                    '</div>' +
-                    '</div>';
-                return html;
+                return '<div class="wl-xiang">\n' +
+                    '                 <div  style="float: left;"> <img src="'+ data.portrait+'" onerror="this.src=\'/static/image/user/tou.png\'" width="30"height="30" ></div>' +
+                    '                    <div class="wl-xiaa1" style="float: right;">' +
+                    '                        <div class="wl-uh">' +
+                    '                            <div class="wl-das1">'+ data.nickname +'</div><div  class="wl-das2 cus-comment-fabulous"  data-id="' + data.id + '" data-click="' + data.isZan + '"><i class="iconfont '+css +'" style="font-size: 18px"></i><span>'+data.like_count+'</span></div>' +
+                    '                        </div>' +
+                    '                        <div class="wl-neirnga">' + data.content +
+                    '                        </div>' +
+                    '                        <div class="wl-neiha">' +
+                    '                            <div class="wl-pji">'+ data.created_time +'</div><div class="wl-mjs cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="'+data.reply_count+'" data-name="@' + data.nickname + '">'+data.reply_count +'回复</div>' +
+                    '                        </div>' +
+                    '                    </div>' +
+                    '                </div>';
             }
         },
         loadCommentList: function () {
@@ -415,49 +329,55 @@
         },
 
         //评论点赞方法
+        clickCommentFabulousLading:false,
         clickCommentFabulous: function (obj, flag) {
             var id = obj.data('id');
             var type = obj.data('click') == 1 ? 2 : 1;
-            $.ajax({
-                url: "/weixin/article/commentClickZan",
-                type: 'post',
-                data: {id: id, type: type},
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.oneLoading = true;
-                },
-                complete: function () {
-                    objClass.oneLoading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if (flag == 1) {
-                            if (type == 1) {
-                                obj.data('click', 1);
-                                obj.text(parseInt(obj.text()) + 1);
-
+            if(type == 2){
+                return false;
+            }else if(!objClass.clickCommentFabulousLading){
+                $.ajax({
+                    url: "/weixin/article/commentClickZan",
+                    type: 'post',
+                    data: {id: id, type: type},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.clickCommentFabulousLading = true;
+                    },
+                    complete: function () {
+                        objClass.clickCommentFabulousLading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (flag == 1) {
+                                var num = parseInt(obj.find('span').text());
+                                if (type == 1) {
+                                    obj.data('click', 1);
+                                    obj.find('span').text(num + 1);
+                                    obj.find('i').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
+                                } else {
+                                    obj.data('click', 0);
+                                    obj.find('span').text(num - 1);
+                                }
                             } else {
-                                obj.data('click', 0);
-                                obj.text(parseInt(obj.text()) - 1);
+                                if (type == 1) {
+                                    obj.data('click', 1);
+                                    obj.next().text(parseInt(obj.next().text()) + 1);
+                                    obj.removeClass('icon-appreciate_light').addClass('cus-blue').addClass('icon-appreciate_fill_light');
+                                } else {
+                                    obj.data('click', 0);
+                                    obj.next().text(parseInt(obj.next().text()) - 1);
+                                    obj.removeClass('cus-blue').removeClass('icon-appreciate_fill_light').addClass('icon-appreciate_light');
+                                }
                             }
-                        } else {
-                            if (type == 1) {
-                                obj.data('click', 1);
-                                obj.next().text(parseInt(obj.next().text()) + 1);
-                                obj.pxoveClass('icon-appreciate_light').addClass('cus-blue').addClass('icon-appreciate_fill_light');
-                            } else {
-                                obj.data('click', 0);
-                                obj.next().text(parseInt(obj.next().text()) - 1);
-                                obj.pxoveClass('cus-blue').pxoveClass('icon-appreciate_fill_light').addClass('icon-appreciate_light');
-                            }
+                        }else if(res.code == 401){
+                            redream.showTip('请先进行登录');
+                        }else if(res.code == 403){
+                            redream.showTip('您还没有该权限');
                         }
-                    }else if(res.code == 401){
-                        redream.showTip('请先进行登录');
-                    }else if(res.code == 403){
-                        redream.showTip('您还没有该权限');
                     }
-                }
-            });
+                });
+            }
         },
 
         //子评论配置信息
@@ -644,7 +564,7 @@
     }, 500);
 
     setTimeout(function () {
-        // objClass.loadCommentList();
+        objClass.loadCommentList();
 
         $(document).on('click', '.cus-comment-fabulous', function () {
             objClass.clickCommentFabulous($(this), 1);
@@ -653,6 +573,8 @@
 
         $(document).on('click', '.cus-reply-btn', function () {
             var num = parseInt($(this).data('replynum'));
+
+            console.log(num);
             if(num == 0 || num == ''){
                 var name = $(this).data('name');
                 $('#cus-comment-pid').val($(this).data('commentid'));

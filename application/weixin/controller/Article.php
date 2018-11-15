@@ -236,6 +236,11 @@ class Article extends BaseController
     public function articleDetails(Request $request){
         $id = $request->param('id',0);
         $data = $this->articleDomain->getArticleInfo($id,$this->getUserId());
+        if(!$data){
+            return redirect('/weixin');
+        }
+
+
 
         $config = config('conf.sns_login.weixin');
 //        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
