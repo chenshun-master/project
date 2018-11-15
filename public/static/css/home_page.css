@@ -116,8 +116,8 @@ margin-top: 25px;
 position: relative;
 }
 .wx-nei1 img{
-	width: 220px;
-	height: 148px;
+	width: 255px;
+	height: 180px;
 	background-color: gainsboro;
 	float: left;
 	margin-right: 5px;
@@ -149,16 +149,18 @@ background: url(../image/user/slh.png)no-repeat center;
 width: 100%;
 height: 180px;
 position: relative;
+	margin-bottom: 18px;
 }
 .wx-nei1 dt{
-width:402px ;
-height: auto;
-padding-top: 15px;
-margin: 26px 20px 22px 36px;
-display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 3;
-overflow: hidden;
+	width: 402px;
+	min-height: 100px;
+	padding-top: 15px;
+	margin: 15px 20px 22px 36px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+
 }
 .wx-nei1 dd{
 width: 256px;
@@ -172,40 +174,46 @@ margin-right: 36px;
 }
 .wx-fen{
 width: 100%;
-height: 40px;
-margin-top: 34px;
+min-height: 55px;
+	line-height: 55px;
+	position:absolute;
+	bottom: 10px;
 }
 .wx-fen li{
-	    width: 23%;
+	width: 23%;
 float: left;
 /*background: fuchsia;*/
 padding-left: 70px;
 }
 .on1{
-width: 644px;
-height: 55px;
-margin: 0 auto;
-margin-top: 44px;
-font-size: 0.34rem;
-color: #1F1F1F;
-margin-left: 36px;
-display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 2;
-overflow: hidden;
+	width: 87%;
+	min-height: 55px;
+	margin: 0 auto;
+	margin-top: 20px;
+	font-size: 0.32rem;
+	color: #1F1F1F;
+	margin-left: 36px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
 }
 .on1-img{
-width: 100%;
-height:auto;
-margin-top: 30px;
+	width: 90%;
+	min-height: 170px;
+	margin-top: 20px;
+	margin: 0 auto;
+	padding-top: 10px;
+
 }
 .on1-img img{
-width: 245px;
-height: 245px;
-display: block;
-float: left;
-background: gray;
-	margin-right: 4px;
+	width: 31.2%;
+	height: 148px;
+	display: block;
+	float: left;
+	background: gray;
+	margin: 0px 0px 0 7px;
+
 }
 #cc{
 	font-size: 40px;
