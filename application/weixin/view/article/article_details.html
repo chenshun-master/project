@@ -119,7 +119,7 @@
 
         <div class="wl-zhez">
             <div class="kl1 wl-zl" style="">
-                <input type="text" placeholder="请输入评论内容" class="neirong" >
+                <textarea type="text" placeholder="请输入评论内容" class="neirong" ></textarea>
                 <input type="hidden"  value="0" id="cus-comment-pid" >
                 <button class="fb1" onclick="objClass.publishComment()">发布</button>
             </div>
@@ -271,7 +271,7 @@
                     '                 <div  style="float: left;"> <img src="'+ data.portrait+'" onerror="this.src=\'/static/image/user/tou.png\'" width="30"height="30" ></div>' +
                     '                    <div class="wl-xiaa1" style="float: right;">' +
                     '                        <div class="wl-uh">' +
-                    '                            <div class="wl-das1">'+ data.nickname +'</div><div  class="wl-das2 cus-comment-fabulous"  data-id="' + data.id + '" data-click="' + data.isZan + '"><i class="iconfont '+css +'" style="font-size: 18px"></i><span>'+data.like_count+'</span></div>' +
+                    '                            <div class="wl-das1">'+ data.nickname +'</div><div  class="wl-das2 cus-comment-fabulous"  data-id="' + data.id + '" data-click="' + data.isZan + '"><i class="iconfont '+css +'" style="font-size: 18px"></i><span>     '+data.like_count+'</span></div>' +
                     '                        </div>' +
                     '                        <div class="wl-neirnga">' + data.content +
                     '                        </div>' +
@@ -662,7 +662,7 @@
     });
 
     $(function () {
-        $('.kl1 input').on('.kl1 input ', function () {
+        $('.kl1 textarea').on('.kl1 input ', function () {
             if (($.trim($('.neirong').val()) !== "")) {
                 $('.fb1').css({'color': '#7DB0E8'});
             } else {

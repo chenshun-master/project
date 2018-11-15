@@ -73,7 +73,6 @@ class User extends BaseController
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
-
         return $this->fetch('user/collection');
     }
 
@@ -88,11 +87,21 @@ class User extends BaseController
 
         return $this->fetch('user/dialogue');
     }
+
    /**
      * 申请认证页面
      * @return mixed
      */
     public function certification(){
+
+        if(!$this->checkLogin()){
+            return redirect('index/login');
+        }
+
+        $authDomain = new \app\api\domain\AuthDomain();
+        $authRes = $authDomain->findAuthResult($this->getUserId());
+
+        $this->assign('authRes',$authRes);
 
         return $this->fetch('user/certification');
     }
@@ -323,8 +332,6 @@ class User extends BaseController
             return redirect('/weixin/index/login');
         }
 
-        $user_info = $this->getUserInfo();
-
         $this->_publishTotal($this->getUserId());
     }
 
@@ -335,8 +342,6 @@ class User extends BaseController
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
-
-        $user_info = $this->getUserInfo();
 
         $this->_publishTotal($this->getUserId());
     }

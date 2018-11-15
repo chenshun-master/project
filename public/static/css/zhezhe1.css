@@ -26,17 +26,18 @@ a{text-decoration: none;color: #221815;display: block;}
     height: 270px;
     background: white;
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-top: 40%;
 }
 .wl-renzh{
     width: 100%;
     height: 70px;
     line-height: 70px;
-    font-size: 31px;
+    font-size: 35px;
     background: #EDEDED;
     color: #333333;
-    padding-left: 40px;
+    padding-left: 55px;
+    border-radius: 20px 20px 0 0;
 }
 .wl-neie1{
     width: 85%;
@@ -45,26 +46,26 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-neie1 p:nth-child(1){
     color: #888888;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 25px;
+    margin-top: 20px;
 }
 .wl-neie2{
     width: 100%;
-    height: 100px;
+    height: 200px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 30px;
     background: #EEEEEE;
-    font-size: 15px;
+    font-size: 30px;
     color: #000000;
     padding: 10px;
 }
 .wl-btn{
     width: 25%;
-    height: 45px;
-    line-height: 45px;
+    height: 60px;
+    line-height: 60px;
     background: #7DB0E8;
     color: #FFFFFF;
-    font-size: 23px;
+    font-size: 28px;
     border-radius: 5px;
     display: block;
     margin: 0 auto;
