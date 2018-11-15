@@ -113,7 +113,7 @@ class ArticleDomain
         $articleRes = $obj->find();
         if($articleRes){
             $data['article_info'] = $articleRes;
-            Db::name('article')->where('id',$id)->inc('hits');
+            Db::name('article')->where('id',$id)->inc('hits')->update();
         }
 
         return $data;
