@@ -394,7 +394,6 @@ class User extends BaseController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-
         $data = $this->_articleDomain->getUserPublishArticle($this->getUserId(),$type,$page,$page_size,true,$this->getUserId());
 
         $this->assign($data);
@@ -603,5 +602,4 @@ class User extends BaseController
         $data = $userFriendDomain->getPrivateLetterList($this->getUserId(),$page,$page_size);
         return $this->returnData($data,'',200);
     }
-
 }

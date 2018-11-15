@@ -66,7 +66,7 @@
             </dl>
             <button id="btn">
                 <?php if($user_info['type'] == 1):?>
-                申请认证
+                <a href="/weixin/user/certification" style="color: #ffffff">申请认证</a>
                 <?php elseif($user_info['type'] == 2):?>
                 认证用户
                 <?php elseif($user_info['type'] == 3):?>
@@ -85,8 +85,6 @@
 
         </div>
     </div>
-
-
 </div>
 
 </body>

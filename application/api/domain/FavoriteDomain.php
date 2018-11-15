@@ -33,6 +33,7 @@ class FavoriteDomain
 
         $res = Db::name('user_favorite')->insertGetId($data);
         if(!$res){
+
             return false;
         }
         return true;
