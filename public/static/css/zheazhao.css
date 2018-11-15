@@ -23,7 +23,7 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-zhe1{
     width: 80%;
-    height:360px;
+    height: 270px;
     background: white;
     margin: 0 auto;
     border-radius: 10px;
@@ -31,13 +31,12 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-renzh{
     width: 100%;
-    height: 60px;
-    line-height: 60px;
-    font-size: 27px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 31px;
     background: #EDEDED;
     color: #333333;
-    padding-left: 25px;
-    border-radius: 10px 10px 0 0;
+    padding-left: 40px;
 }
 .wl-neie1{
     width: 85%;
@@ -51,11 +50,11 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-neie2{
     width: 100%;
-    height: 130px;
+    height: 100px;
     margin: 0 auto;
     margin-top: 20px;
     background: #EEEEEE;
-    font-size: 20px;
+    font-size: 15px;
     color: #000000;
     padding: 10px;
 }
