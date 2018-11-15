@@ -283,3 +283,21 @@ function get_html_images($content){
 
     return $data;
 }
+
+/**
+ * 用户名脱敏
+ */
+function userNameTuoming($username){
+    $str = mb_substr($username, 0, 1, 'utf-8');
+    for ($i = 1;$i < mb_strlen($username);$i++ ){
+        $str .= '*';
+    }
+    return $str;
+}
+
+/**
+ * 身份证脱敏
+ */
+function idcardTuoming($iccrad){
+    return substr($iccrad,0,6).'******'.substr($iccrad,-4);
+}
