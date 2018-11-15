@@ -461,7 +461,7 @@ margin-top: -30px;
 .wz2 p:nth-child(2) {
 	width: 100%;
 	color: #1F1F1F;
-	font-size: 0.32rem;
+	font-size: 0.27rem;
 	height: auto;
 }
 .wz4 p:nth-child(2) {
@@ -514,7 +514,7 @@ margin-top: -30px;
 	height: 35px;
 	background: #E5E5E5;
 	color: #888888;
-	font-size: 0.32rem;
+	font-size: 0.28rem;
 	padding-left: 22px;
 }
 .kl1>button{
@@ -594,7 +594,8 @@ margin-top: -30px;
 	font-size: 0.23rem;
 	color: #8a8a8a;
 	display: inline-block;
-
+	width: 100%;
+	float: left;
 }
 .wl-timeh{
 	text-align: right;
