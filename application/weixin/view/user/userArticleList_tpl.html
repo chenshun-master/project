@@ -33,7 +33,7 @@
         <?php else:?>
             <?php
                $thumbnail = json_decode($val['thumbnail'],true);
-               if(count($thumbnail) == 1):
+               if(count($thumbnail) < 3):
             ?>
                     <div class="one-1" data-id="{$val['id']}" style="min-height: 360px;border-bottom: 10px solid #EEEEEE;position: relative">
                         <div class="wx-name" style="border:none;">

@@ -213,7 +213,7 @@
                                 if(val.thumbnail != '' && val.thumbnail != null){
                                 	var obj = $.parseJSON(val.thumbnail);
 									var arr = Object.keys(obj);
-					            	if(arr.length == 1){
+					            	if(arr.length < 3){
 					            		html = objClass.listData.template(val,obj);
 					            	}else {
 					            		html = objClass.listData.template1(val,obj);

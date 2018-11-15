@@ -14,6 +14,11 @@ class Test  extends Controller
         halt($res->createFriend(6,5));**/
 
 
+        $obj = new ArticleDomain();
+//        dump($obj->getArticleLikeData(17,1,15));
+        halt($obj->getNewArticleLikeData(17,1,15));
+
+
 
 //        $model = new FavoriteDomain();
 ////        $ss = $model->create([
