@@ -265,6 +265,7 @@ class ArticleDomain
         $like_sql = '';
         foreach ($arr as $val){
             if(!empty($val)){
+                $val = addslashes($val);
                 $like_sql .= "OR `article`.`tag` LIKE '%{$val}%' ";
             }
         }

@@ -28,7 +28,7 @@
                         <div style="position: relative;top:50px;">
                             <ul class="wx-fen" style="position:absolute;bottom: 15px;">
                                 <li><i class="iconfont icon-share_light" ></i><span></span></li>
-                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
+                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
                                 <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
                                     <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"style=" font-size: 30px;"></i>
                                     <span>{$vo['like']}</span>
@@ -51,13 +51,21 @@
                             <dl class="w-oea">
                                 <dt class="wl-daa" style=" width: 60%;margin: 10px 0px 0px 15px;">{$vo['title']}</dt>
                                 <dd  style="width: 256px; height: 180px;float: right; position: absolute;top: 2px; right: -5px; margin: 5px;">
-                                    <img src="{$thumbnail['img_1']}" alt="图片" style="width: 247px;height: 162px"/></dd>
+
+
+                                    <?php if(count($thumbnail) > 0):?>
+                                        <img src="{$thumbnail['img_1']}" alt="图片" style="width: 247px;height: 162px"/>
+                                    <?php else:?>
+                                        <img src="" alt="图片" style="width: 247px;height: 162px"/>
+                                    <?php endif;?>
+
+                                </dd>
                             </dl>
                         </div>
                         <div style="position: relative">
                             <ul class="wx-fen " style="bottom: -40px" >
                                 <li><i class="iconfont icon-share_light" ></i><span></span></li>
-                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
+                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
                                 <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
                                     <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"style=" font-size: 30px;"></i>
                                     <span>{$vo['like']}</span>
@@ -90,7 +98,7 @@
                     <div class="wl-dya">
                         <ul class="wx-fen " style="bottom: -9px">
                             <li><i class="iconfont icon-share_light" ></i><span></span></li>
-                            <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 15px;">{$vo['comment_count']}</span></li>
+                            <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
                             <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
                                 <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"style=" font-size: 30px;"></i>
                                 <span  >{$vo['like']}</span>
