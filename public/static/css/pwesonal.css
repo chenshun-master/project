@@ -19,14 +19,14 @@ a{text-decoration: none;color: #221815;display: block;}
 	position: relative;
 }
 .wx-top img{
-	width: 160px;
-	height: 160px;
+	width: 140px;
+	height: 140px;
 	background: gray;
 	border-radius: 50%;
 	display: block;
 	float: left;
-	margin-left: 36px;
-	background: url("/static/image/user/tou.png")no-repeat center;
+	margin-left: 50px;
+	background: url(/static/image/user/tou.png)no-repeat center;
 }
 .wx-top dl {
 	width: 550px;
