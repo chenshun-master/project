@@ -24,8 +24,7 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-neirong1{
     width: 100%;
-    min-height: 300px;
-    border: 1px solid red;
+    min-height: 115px;
     margin-top: 100px;
 }
 .wl-neirong img{
@@ -45,7 +44,7 @@ a{text-decoration: none;color: #221815;display: block;}
     width: 100%;
     min-height: 300px;
     text-align: center;
-    margin-top: 110px;
+    margin-top: 180px;
 }
 .wl-btn{
     width: 90%;
@@ -59,10 +58,15 @@ a{text-decoration: none;color: #221815;display: block;}
 margin-top: 110px;
 }
 .wl-yanzheng{
-    width: 18%;
+    width: 15%;
     height: 100px;
     text-align: center;
-    border: 1px solid red;
     font-size: 26px;
     float: left;
+}
+.wl-jgh{
+    width: 100%;
+    min-height: 50px;
+    font-size: 24px;
+    color: #7DB0E8;
 }
