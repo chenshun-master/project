@@ -102,10 +102,12 @@ a {
     min-height: 175px;
     border-bottom: 1px solid #F1F1F1;
     margin: 0 auto;
+    position: relative;
 
 }
 
 .wx-n2 {
+    width: 100%;
     margin-top: 25px;
     min-height: 40px;
     color: #1F1F1F;
@@ -119,6 +121,8 @@ a {
 .wx-n3 {
     height: 55px;
     margin-top: 40px;
+    position: absolute;
+    bottom: -5px;
 }
 
 .wx-n3 span {
@@ -217,6 +221,7 @@ a {
     margin: 0 auto;
     border-bottom: 1px solid #F1F1F1;
     font-size: 0.38rem;
+    position: relative;
 }
 
 .wx-bn1 {
@@ -230,7 +235,7 @@ a {
     -webkit-line-clamp: 3;
     overflow: hidden;
     margin-bottom: 3px;
-    padding-top: 7px;
+    padding-top: 20px;
 }
 
 .wx-b3 img {

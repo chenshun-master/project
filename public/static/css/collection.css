@@ -195,7 +195,7 @@ width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relati
 }
 .w-onr4{
   min-height: 195px;
-    border: 1px solid #c1c1c1;
+    border: 1px solid #eaeaea;
 }
 .w-oea dt{
     font-size: 0.29rem;color: #1F1F1F;margin-left: 36px;cursor: pointer;
@@ -227,9 +227,9 @@ width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relati
 .wl-dasiu{
     width: 90%;
     margin: 0 auto;
-    border: 1px solid #c1c1c1;
+    border: 1px solid #eaeaea;
     min-height: 285px;
-    margin-top: 10px;
+    margin-top: 13px;
 }
 .wl-dasda{
     width: 100%;

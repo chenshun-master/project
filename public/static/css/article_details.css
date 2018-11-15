@@ -163,6 +163,7 @@ html,body{ height:100%;overflow:visible }
 	margin: 0 auto;
 	margin-left: 10px;
 	position: relative;
+	top: 10px;
 }
 
 .wx-x {
@@ -174,25 +175,25 @@ html,body{ height:100%;overflow:visible }
 }
 
 .wx-x h3 {
-	min-height: 42px;
+	min-height: 40px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 3;
 	color: #1F1F1F;
 	font-size: 0.3rem;
 }
 
 .wx-x p span:nth-child(1) {
-	margin-top: 20px;
+	margin-top: 10px;
 	float: left;
 	font-size: 0.22rem;
 	color: #898989;
 }
 
 .wx-x p span:nth-child(2) {
-margin-top: 20px;
+margin-top: 10px;
     float: right;
     margin-right: 30px;
     font-size: 0.22rem;
@@ -489,7 +490,7 @@ margin-top: -30px;
 }
 .mp{
 	text-indent:30px;
-	min-height: 300px;
+	min-height: 200px;
 	margin-top: 10px;
 	width: 100%;
 }
