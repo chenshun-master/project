@@ -3,6 +3,7 @@ namespace app\api\domain;
 
 use app\api\model\ArticleModel;
 use app\api\model\CommentModel;
+use app\api\model\UserFavoriteModel;
 use think\Db;
 
 /**
@@ -88,14 +89,16 @@ class ArticleDomain
         }
     }
 
-
     /**
-     * @param $id
-     * @param int $user_id
+     * 获取文章详情信息
+     * @param $id               文章ID
+     * @param int $user_id      用户ID
      * @return array
+     * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
      */
     public function getArticleInfo($id,$user_id=0){
         $data = ['article_info'=>[]];
@@ -362,7 +365,6 @@ class ArticleDomain
         return $res ? true :false;
     }
 
-
     /**
      * 获取一级评论列表
      */
@@ -518,6 +520,10 @@ class ArticleDomain
      * @param $user_id          用户id
      * @param int $page         当前分页
      * @param int $page_size    分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getFavoriteArticle($user_id,$page=1,$page_size=15){
         $obj = Db::name('user_favorite')->alias('favorite');
@@ -545,5 +551,25 @@ class ArticleDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+    /**
+     * 添加文章收藏
+     * @param $user_id               用户ID
+     * @param $object_id             收藏文章ID
+     * @param string $table_name     文章ID所在表名
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function createFavoriteArticle($user_id,$object_id,$table_name = 'article'){
+        $res = Db::name('user_favorite')->where('user_id',$user_id)->where('table_name',$table_name)->where('object_id',$object_id)->find();
+        if($res){
+            return false;
+        }
+
+        $user = new UserFavoriteModel;
+        return $user->save(['user_id' => $user_id, 'table_name' => $table_name, 'object_id' => $object_id,'created_time'=>date('Y-m-d H:i:s')]);
     }
 }
