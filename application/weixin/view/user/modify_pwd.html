@@ -36,7 +36,13 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-
+    $('.con input').on('.con input ',function(){
+        if(($.trim($('#old-passwrod').val())!=="")&&($.trim($('#passwrod').val())!=="")&&($.trim($('#new-password').val())!=="")){
+            $('#btn').css({'background':'#7DB0E8'});
+        }else{
+            $('#btn').css({'background':'#EBEBEB'});
+        }
+    });
     var objClass ={
         loading:false,
         submit:function(){
