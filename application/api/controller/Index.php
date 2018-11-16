@@ -35,22 +35,50 @@ class Index extends BaseController
 //        $image = \think\Image::open($img);
 
         $this->showImg($img);
+
     }
 
     function showImg($img){
         $info = getimagesize($img);
+        list($fw, $fh, $tmp) = getimagesize($img);
+
         $imgExt = image_type_to_extension($info[2], false); //获取文件后缀
+
         $fun = "imagecreatefrom{$imgExt}";
+
         $imgInfo = $fun($img);         //1.由文件或 URL 创建一个新图象。如:imagecreatefrompng ( string $filename )
-        //$mime = $info['mime'];
-//        $mime = image_type_to_mime_type(exif_imagetype($img)); //获取图片的 MIME 类型
-        header("Content-type: image/jpeg");
-        $quality = 100;
-        if($imgExt == 'png') $quality = 9;   //输出质量,JPEG格式(0-100),PNG格式(0-9)
-        $getImgInfo = "image{$imgExt}";
-        $getImgInfo($imgInfo, null, $quality); //2.将图像输出到浏览器或文件。如: imagepng ( resource $image )
-        imagedestroy($imgInfo);
+//
+//        header("Content-type: {$info['mime']}");
+//
+//        $quality = 100;
+//        if($imgExt == 'png') $quality = 9;   //输出质量,JPEG格式(0-100),PNG格式(0-9)
+//
+//        $getImgInfo = "image{$imgExt}";
+//
+//
+//        $timg = imagecreatetruecolor(50, 50);
+//
+//        imagecopyresampled($timg, $imgInfo, 0,0, 0,0, 50,50, $fw,$fh);
+//
+//
+//        $getImgInfo($imgInfo, null, $quality);
+//        imagedestroy($imgInfo);
+
+
+        $targ_w = $targ_h = 150; // 设置目标宽度与高度
+        $jpeg_quality = 100;  // 图片质量90，满分为100
+
+        $src = $img; // 被处理的图片
+        $img_r = imagecreatefromjpeg($src); // 获取原图
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h ); // 获取新图
+
+        imagecopyresampled($imgInfo,$img_r,0,0,100,50,$targ_w,$targ_h,100,50);
+        // 目标图 源图 目标X坐标点 目标Y坐标点 源的X坐标点 源的Y坐标点 目标宽度 目标高度 源图宽度 源图高度
+        header('Content-type: image/jpeg');
+        imagejpeg($imgInfo,null,$jpeg_quality); // 输出图象到浏览器或文件
     }
+
+
 
 
 

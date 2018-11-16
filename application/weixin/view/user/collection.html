@@ -93,7 +93,18 @@
             if (a == 1 && b == 1 && c == 1) {
                 $("#xiao").hide();
             }
-        })
+        });
+
+
+        var url = window.location.toString();
+        var maodian = url.split('#')[1];
+        if(maodian == 'favorite'){
+            $('#one').trigger('click');
+        }else if(maodian == 'comment'){
+            $('#two').trigger('click');
+        }else if(maodian == 'like'){
+            $('#three').trigger('click');
+        }
     });
 </script>
 
