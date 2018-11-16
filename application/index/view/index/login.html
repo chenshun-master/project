@@ -56,7 +56,7 @@
                 <div class="wl-shuru1" style="margin-top: 145px">
                     <p style="margin-top: 40px"><input type="text" id="fr-reset-mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px;cursor: pointer" id="code-btn1" onclick="objClass.sendResetPwdSms()">获取验证码</a></p>
                     <p ><input type="text" id="fr-reset-sms-code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
-                    <p ><input type="password" id="fr-reset-password" placeholder="设置新密码" maxlength="16" class="wl-input"><span id="xian1"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
+                    <p ><input type="password" id="fr-reset-password" placeholder="设置新密码(格式为8~16位字母+数字)" maxlength="16" class="wl-input"><span id="xian1"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
                     <button id="fr-reset-btn"   onclick="objClass.resetPwd()">立即重置</button>
                 </div>
             </div>
