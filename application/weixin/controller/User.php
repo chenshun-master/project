@@ -613,4 +613,6 @@ class User extends BaseController
         $data = $userFriendDomain->getPrivateLetterList($this->getUserId(),$page,$page_size);
         return $this->returnData($data,'',200);
     }
+
+
 }

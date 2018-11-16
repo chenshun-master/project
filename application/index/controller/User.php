@@ -228,4 +228,19 @@ class User extends CController
         return $this->returnData([],'修改成功',200);
     }
 
+    /**
+     *
+     */
+    public function uploadHead(Request $request){
+//        $img = $request->post('img');
+//        $img = str_replace('data:image/png;base64,', '', $img);
+//        $img = str_replace(' ', '+', $img);
+//        $data = base64_decode($img);
+
+        halt($request->rootPath);
+
+
+        return $this->returnData([],'修改成功',200);
+    }
+
 }

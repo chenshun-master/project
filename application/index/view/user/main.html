@@ -640,14 +640,12 @@
         data.img = src;
         data.jid = $('#jid').val();
         $.ajax({
-            url: "upload-logo.php",
+            url: "/index/user/uploadHead",
             data: data,
             type: "POST",
             dataType: 'json',
             success: function(re) {
-                if(re.status == '1') {
-                    $('.user_pic img').attr('src',src );
-                }
+                console.log(re);
             }
         });
     }
