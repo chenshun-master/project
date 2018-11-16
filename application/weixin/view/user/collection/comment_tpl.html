@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 {elseif condition="count($thumbnail)  == 0"/}
-                    <div style="width: 100%;min-height: 290px">
+                    <div style="width: 100%;min-height: 300px">
                         <div class="wx-name9 name1">
                             <div class="wl-one1-2">
                                 <img src="{$vo['portrait']}" alt="" class="wx-tou cus-article-href2"
@@ -48,11 +48,10 @@
                                 </dl>
                             </div>
                         </div>
-                        <div class="wx-moban">
+                        <div class="wx-moban" style="min-height: 300px">
                             <div class="wx-nei1 cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
                                 <div class="wl-mo1">{$vo['title']}</div>
-
-                                <div class="wx-nei1 w-onr4  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}" style=" top: 5px;width: 90%;margin: 0 auto">
+                                <div class="wx-nei1 w-onr4  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}"style=" top: 5px;width: 95%;margin: 0 auto;min-height: 100px;">
                                     <dl class="w-oea">
                                         {$vo['comment_content']}
                                     </dl>
@@ -86,7 +85,7 @@
                         <div class="w-zhuij"> <span style="color: #7DB0E8">{$vo['huifu_nickname']?'@'.$vo['huifu_nickname']:''}</span> {$vo['comment_content']}</div>
                         <div class="wx-nei1 w-onr4  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}" style=" top: 5px;width: 90%;margin: 0 auto">
                             <dl class="w-oea">
-                                <dt class="wl-daa" style=" width: 60%;margin: 10px 0px 0px 15px;">{$vo['title']}</dt>
+                                <dt class="wl-daa" style="width: 58.1%;margin: 10px 0px 0px 15px;">{$vo['title']}</dt>
                                 <dd  style="width: 256px; height: 180px;float: right; position: absolute;top: 2px; right: -5px; margin: 5px;">
                                     
                                     <?php if(count($thumbnail) > 0):?>
