@@ -10,7 +10,7 @@
                                             <img src="{$_v}" alt=""/>
                                         <?php endforeach;?>
                                     </p>
-                                    <p class="wx-n3" >
+                                    <p class="wx-n3" style="bottom: 2px" >
                                         <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                         <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
                                         <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
@@ -73,7 +73,7 @@
                         <?php else:?>
                             <div class="wx-n1 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}" onclick="clickHref({$val['id']})" >
                                 <p class="wx-n2">{$val['title']}</p>
-                                <p class="wx-n3">
+                                <p class="wx-n3" style="bottom: 5px">
                                     <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                     <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
                                     <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
