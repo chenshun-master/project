@@ -8,23 +8,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection"/>
     <link rel="stylesheet" type="text/css" href="/static/css/modify_pwd.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
     <title>修改密码</title>
-    <style>
-        .wkf{
-            display: none;
-            position: fixed;
-            top: 565px;
-            left: 256px;
-            width: 240px;
-            height: 56px;
-            line-height: 56px;
-            text-align: center;
-            background: #7DB0E8;
-            color: #FFFFFF;
-            font-size:0.28rem;
-            border-radius:10px ;
-        }
-    </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -51,7 +36,13 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-
+    $('.con input').on('.con input ',function(){
+        if(($.trim($('#old-passwrod').val())!=="")&&($.trim($('#passwrod').val())!=="")&&($.trim($('#new-password').val())!=="")){
+            $('#btn').css({'background':'#7DB0E8'});
+        }else{
+            $('#btn').css({'background':'#EBEBEB'});
+        }
+    });
     var objClass ={
         loading:false,
         submit:function(){
