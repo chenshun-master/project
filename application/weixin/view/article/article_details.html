@@ -741,9 +741,10 @@
     };
 
     function callbacks(){
+        var desc = "{$article_info['excerpt']}";
         var shareMessage = {
             title: "{$article_info['title']}",
-            desc: "{$article_info['excerpt']}",
+            desc: (desc == '')? window.location.href :desc,
             link: window.location.href,
             imgUrl: '{$shareImg}',
         };
@@ -760,7 +761,6 @@
     }
 
     var weixinObj = new WechatSdkModel(config,callbacks);
-
 
     //我的分享
     var myShare = {
@@ -785,7 +785,7 @@
                 return false;
             }
 
-            alert('自定义分享给微信好友');
+            // alert('自定义分享给微信好友');
         },
     };
 </script>

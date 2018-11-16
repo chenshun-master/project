@@ -51,6 +51,16 @@ class UserDomain
     }
 
     /**
+     * 获取用户类型
+     * @param $user_id
+     * @return int
+     */
+    public function getUserType($user_id){
+        $res = $this->userModel->where('id',$user_id)->value('type');
+        return $res?:0;
+    }
+
+    /**
      * 获取用户认证信息
      */
     public function getAuthInfo($user_id){
