@@ -247,8 +247,9 @@ a{text-decoration: none;color: #221815;display: block;}
 .jianj{
 	width: 100%;
 	height: 245px;
-	border-bottom: 10px solid #F1F1F1;
+	/*border-bottom: 10px solid #F1F1F1;*/
 	position: relative;
+	top: 15px;
 }
 .jianj span{
 	width: 100px;
@@ -279,6 +280,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	position: absolute;
 	top:20px;
 	right: 30px;
+	border: 1px solid #eaeaea;
 }
 .con-q1{
 	height: 40px;
