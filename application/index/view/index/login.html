@@ -25,7 +25,7 @@
 				<dl>还没有账号？</dl>
 				<dd>立即免费注册！</dd>
 				<dt>现在注册，遇见不一样的自己</dt>
-               <button class="wl-zc" onclick="zhuce()" style="cursor: pointer">注册</button>
+               <a href="#" class="wl-zc" onclick="zhuce()" style="cursor: pointer" id="fr-to-register">注册</a>
 			</div>
 			<div class="wl-right">
                <span class="wl-tub">登录</span>
@@ -48,7 +48,7 @@
                 <dl>还没有账号？</dl>
                 <dd>立即免费注册！</dd>
                 <dt>现在注册，遇见不一样的自己</dt>
-                <button class="wl-zc1" onclick="zhuce()" style="cursor: pointer">注册</button>
+                <a class="wl-zc1" onclick="zhuce()" style="cursor: pointer" id="fr-to-register1">注册</a>
             </div>
             <div class="wl-right">
                 <span class="wl-tub1">重置密码</span>
@@ -69,7 +69,7 @@
                 <dl>已有账号？</dl>
                 <dd>立即登录！</dd>
                 <dt>现在登录，遇见不一样的自己</dt>
-                <button class="wl-zc1" onclick="zhuce1()" style="cursor: pointer">登录  </button>
+                <a class="wl-zc1" onclick="zhuce1()" style="cursor: pointer">登录  </a>
             </div>
             <div class="wl-right1">
                 <p style=" height: 70px;line-height: 70px;border-bottom: 1px solid #A5A5A5; "><i class="iconfont icon-shouji" style="font-size: 40px;margin-left: 50px"></i><span style="    color: #262626;font-size: 14px;float: right;margin-right: 337px;">用手机注册</span></p>
@@ -351,5 +351,18 @@
                     $("#xian2 i").attr("class","iconfont icon-yanjing")
                 }
             })
+
+
+
+        var url = window.location.toString();
+        var maodian = url.split('#')[1];
+        if(maodian == 'register'){
+            $('#fr-to-register').trigger('click');
+        }else if(maodian == 'register'){
+             $('#fr-to-register1').trigger('click');
+         }else if(maodian == 'like'){
+             $('#three').trigger('click');
+         }
+
     </script>
 </html>
