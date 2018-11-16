@@ -78,8 +78,7 @@ class Article extends BaseController
             return $this->returnData([],'请登录后再进行操作',401);
         }
 
-        $user_info  = $this->getUserInfo();
-        if(!checkUserAuth($user_info['type'],7)){
+        if(!checkUserAuth($this->userDomain->getUserType($this->getUserId()),7)){
             return $this->returnData([],'未授权操作',403);
         }
 
@@ -92,10 +91,10 @@ class Article extends BaseController
         }
 
         $data = [
-            'user_id'      =>$user_info['id'],
+            'user_id'      =>$this->getUserId(),
             'parent_id'    =>$parent_id,
             'object_id'    =>$object_id,
-            'content'      =>$content,
+            'content'      =>htmlspecialchars($content),
             'created_time' =>date('Y-m-d H:i:s')
         ];
 
@@ -156,14 +155,13 @@ class Article extends BaseController
         $uid = $this->getUserId();
 
         $data = $this->articleDomain->getUserPublishArticle($user_id,$type,$page,$page_size,false,$uid);
-
-
         if(count($data['rows']) > 0){
             foreach ($data['rows'] as  $k=>$v){
                 $time = strtotime($v['published_time']);
                 $data['rows'][$k]['published_time'] = formatTime($time);
             }
         }
+
         return $this->returnData($data,'',200);
     }
 
@@ -179,9 +177,6 @@ class Article extends BaseController
         if(!$user_info){
             return redirect('index/error404');
         }
-
-
-
 
         $res = $this->articleDomain->getArticleStatisticsData($user_id);
         $data = [
