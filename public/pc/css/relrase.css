@@ -178,6 +178,7 @@ a {
     font-size: 18px;
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
+
 }
 .wl-geren3 p:nth-child(1){
     width: 100%;
@@ -533,6 +534,7 @@ a {
     height: 80px;
     float: left;
     margin-top: 28px;
+    border-radius: 50%;
 }
 .one-1 dt{
     color: #333333;
