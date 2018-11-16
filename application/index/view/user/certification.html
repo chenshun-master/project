@@ -67,7 +67,7 @@
         </ul>
         <div class="tab-content <?php if(count($authResult) > 0 && $recertification != 1):?>wl-hidden<?php endif;?>" style="position: relative;" >
             <p id="fr-error-box"  style="position: absolute;width: 462px;height: 38px;left: 469px;z-index: 2;line-height: 38px;text-align: center;border-top: 2px solid red;background-color: #fff1f1;border-radius: 0 0 5px 5px;color: #d4a6a6;display: none">
-                <span class="fr-error-box-text">真实姓名不能为空</span>
+                <span class="fr-error-box-text"></span>
                 <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
             </p>
 
@@ -115,7 +115,7 @@
                 <p class="wl-btn"><button onclick="objClass.submit1()">提交申请</button></p>
 
 
-                <p class="wl-foot">Copyright © 2018 薇琳医美 - 沪ICP备18005435号-1</p>
+                <p class="wl-foot">{:config('conf.copyright')}</p>
             </div>
 
             <!--医生认证页面-->
@@ -200,7 +200,7 @@
                 </dl>
 
                 <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
-                <p class="wl-foot">Copyright © 2018 薇琳医美 - 沪ICP备18005435号-1</p>
+                <p class="wl-foot">{:config('conf.copyright')}</p>
             </div>
 
             <!--医院机构认证页面-->
@@ -269,7 +269,7 @@
                     <span class="wl-sc-js" style=" left: 243px;">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
                 <p class="wl-btn2"><button onclick="objClass.submit3()">提交申请</button></p>
-                <p class="wl-foot">Copyright © 2018 薇琳医美 - 沪ICP备18005435号-1</p>
+                <p class="wl-foot">{:config('conf.copyright')}</p>
             </div>
 
             <!--官方企业认证页面-->
@@ -339,7 +339,7 @@
                     <span class="wl-sc-js" style="left: 243px">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
                 <p class="wl-btn3"><button onclick="objClass.submit4()">提交申请</button></p>
-                <p class="wl-foot">Copyright © 2018 薇琳医美 - 沪ICP备18005435号-1</p>
+                <p class="wl-foot">{:config('conf.copyright')}</p>
             </div>
         </div>
 
@@ -355,8 +355,8 @@
                             </div>
                             <div class="wl-jieguo">
                                 <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
-                                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请你发送邮件至</dd>
-                                <dt style="font-size: 16px;color: #999999;margin-top: 20px"><span style="color:#F24F4F">820361933@qq.com</span>&nbsp;与我们取得联系</dt>
+                                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请联系客服</dd>
+                                <dt style="font-size: 16px;color: #999999;margin-top: 20px">与我们取得联系。</dt>
                                 <button onclick="window.location.reload()">刷新</button>
                             </div>
                         </div>
@@ -399,7 +399,6 @@
             {/switch}
         <?php endif;?>
     </div>
-
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
@@ -430,6 +429,7 @@
     });
 
     var objClass = {
+        type:{$type},
         loading:false,
         sendSmsCode:false,
         showError:function(msg){
@@ -651,8 +651,10 @@
                     }
                 }
             });
-        }
+        },
+
     };
+
     //ajax 上传图片
     $(".fr-file-btn-list").on("change", function () {
         var frid = $(this).data('frid');
@@ -660,9 +662,11 @@
         formData.append('type',2);
         objClass.ajaxUploadImg('#fr'+frid+'-img',formData);
     });
+
     $('.wl-shimin').click(function () {
         $(this).toggleClass('se');
-    })
+    });
+
     $('.tab-box').on('click',function(){
         $(".wl-cang").hide();
     });

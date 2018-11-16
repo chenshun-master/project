@@ -40,6 +40,11 @@ class User extends CController
 
     /**
      * 用户认证页面
+     * @param Request $request
+     * @return mixed|\think\response\Redirect
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function certification(Request $request){
         if(!$this->checkLogin()){
@@ -53,8 +58,10 @@ class User extends CController
 
         $this->assign('recertification',$recertification);
 
-
         $this->assign('authResult',$authResult);
+
+        $this->assign('type',isset($authResult['type'])? $authResult['type'] :0);
+
         return $this->fetch('user/certification');
     }
 
