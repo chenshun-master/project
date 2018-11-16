@@ -30,11 +30,11 @@ class Index extends BaseController
      * 图片动态加载处理
      */
     public function imgLoading(){
-        $img = 'http://172.16.100.85/uploads/20181115/0877abd1182aade65258c892a8f2f4b7.jpg';
-
-//        $image = \think\Image::open($img);
-
-        $this->showImg($img);
+//        $img = 'http://172.16.100.85/uploads/20181115/0877abd1182aade65258c892a8f2f4b7.jpg';
+//
+//        $image = \think\Image::open('D:\phpStudy\PHPTutorial\WWW\wl_project\public\uploads\20181116\2adbe7e8c1e572e80dbc1fd68201c969.jpg');
+//        $image->thumb(300,148,1);
+//        response()->data($image->save(null,null,90));
 
     }
 
@@ -65,21 +65,19 @@ class Index extends BaseController
 //        imagedestroy($imgInfo);
 
 
-        $targ_w = $targ_h = 150; // 设置目标宽度与高度
-        $jpeg_quality = 100;  // 图片质量90，满分为100
+//        $targ_w = $targ_h = 150; // 设置目标宽度与高度
+//        $jpeg_quality = 100;  // 图片质量90，满分为100
+//
+//        $src = $img; // 被处理的图片
+//        $img_r = imagecreatefromjpeg($src); // 获取原图
+//        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h ); // 获取新图
+//
+//        imagecopyresampled($imgInfo,$img_r,0,0,100,50,$targ_w,$targ_h,100,50);
+//        // 目标图 源图 目标X坐标点 目标Y坐标点 源的X坐标点 源的Y坐标点 目标宽度 目标高度 源图宽度 源图高度
+//        header('Content-type: image/jpeg');
+//        imagejpeg($imgInfo,null,$jpeg_quality); // 输出图象到浏览器或文件
 
-        $src = $img; // 被处理的图片
-        $img_r = imagecreatefromjpeg($src); // 获取原图
-        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h ); // 获取新图
 
-        imagecopyresampled($imgInfo,$img_r,0,0,100,50,$targ_w,$targ_h,100,50);
-        // 目标图 源图 目标X坐标点 目标Y坐标点 源的X坐标点 源的Y坐标点 目标宽度 目标高度 源图宽度 源图高度
-        header('Content-type: image/jpeg');
-        imagejpeg($imgInfo,null,$jpeg_quality); // 输出图象到浏览器或文件
     }
-
-
-
-
 
 }
