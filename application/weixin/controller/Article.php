@@ -248,16 +248,11 @@ class Article extends BaseController
         $id = $request->param('id',0);
         $data = $this->articleDomain->getArticleInfo($id,$this->getUserId());
         if(count($data['article_info']) == 0){
-            return redirect('/weixin');
+            return redirect('index/error404');
         }
-
-        $config = config('conf.sns_login.weixin');
-//        $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
-//        $res = $wechatJsSdk->getSignPackage();
 
         $thumbnail = empty($data['article_info']['thumbnail']) ?[] : json_decode($data['article_info']['thumbnail'],true) ;
         $shareImg = count($thumbnail) > 0 ? $thumbnail['img_1'] : '';
-
         $isFriend = false;
         if($this->checkLogin()){
             if($data['article_info']['user_id'] == $this->getUserId()){
@@ -271,8 +266,18 @@ class Article extends BaseController
         $this->assign('isFriend',$isFriend);
         $this->assign('shareImg',$shareImg);
         $this->assign('isFabulous',$data['article_info']['isZan'] == 0 ? 1 :2);
-        $this->assign('weixin_config',['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>'']);
 
+
+        $is_localhost = config('conf.is_localhost');
+        if($is_localhost){
+            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
+        }else{
+            $config = config('conf.sns_login.weixin');
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $weixin_config = $wechatJsSdk->getSignPackage();
+        }
+
+        $this->assign('weixin_config',$weixin_config);
         return $this->fetch('article/article_details');
     }
 

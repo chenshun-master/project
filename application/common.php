@@ -177,28 +177,31 @@ function checkUserAuth($type,$authType){
  * @return false|string
  */
 function formatTime($time){
-    $stime = $time;
-    $htime = date("H:i",$time);
-    $time = time() - $time;
-    if ($time < 60){
-        $str = '刚刚';
-    }elseif($time < 60 * 60){
-        $min = floor($time/60);
-        $str = $min.'分钟前';
-    }elseif($time < 60 * 60 * 4) {
-        $h = floor($time / (60 * 60));
-        $str = $h . '小时前';
-    }else if($time < 60 * 60 * 24){
-        $str = '今天 '.$htime.'分';
-    }elseif($time < 60 * 60 * 24 * 3){
-        $d = floor($time/(60*60*24));
-        if($d==1){
-            $str = '昨天 '.$htime.'分';
+    $current_day = date('d');
+    $day = date('d',$time);
+    $str = '';
+    if($current_day == $day){
+        $htime = date("H:i",$time);
+        $time = time() - $time;
+        if ($time < 60){
+            $str = '刚刚';
+        }elseif($time < 60 * 60){
+            $min = floor($time/60);
+            $str = $min.'分钟前';
+        }elseif($time < 60 * 60 * 4) {
+            $h = floor($time / (60 * 60));
+            $str = $h . '小时前';
         }else{
-            $str = '前天 '.$htime.'分';
+            $str = '今天 '.$htime.'分';
         }
     }else{
-        $str =date('Y年m月d日',$stime);
+        if(date('Y-m-d',strtotime('-1 day')) == date('Y-m-d',$time)){
+            $str = '昨天 '.date("H:i",$time).'分';
+        }else if(date('Y-m-d',strtotime('-2 day')) == date('Y-m-d',$time)){
+            $str = '前天 '.date("H:i",$time).'分';
+        }else{
+            $str =date('Y年m月d日',$time);
+        }
     }
 
     return $str;
@@ -300,4 +303,25 @@ function userNameTuoming($username){
  */
 function idcardTuoming($iccrad){
     return substr($iccrad,0,6).'******'.substr($iccrad,-4);
+}
+
+/**
+ * 求两个日期之间相差的天数
+ * (针对1970年1月1日之后，求之前可以采用泰勒公式)
+ * @param string $day1
+ * @param string $day2
+ * @return number
+ */
+function diffBetweenTwoDays ($day1, $day2){
+
+    $second1 = strtotime(date('Y-m-d',strtotime($day1)));
+    $second2 = strtotime(date('Y-m-d',strtotime($day2)));
+
+    if ($second1 < $second2) {
+        $tmp = $second2;
+        $second2 = $second1;
+        $second1 = $tmp;
+    }
+
+    return round(($second1 - $second2) / 86400);
 }
