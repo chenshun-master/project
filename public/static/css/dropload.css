@@ -9,11 +9,13 @@
 }
 .dropload-down{
     height: 50px;
+    color: #656565;
 }
 .dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
     height: 50px;
     line-height: 50px;
     text-align: center;
+    color: #656565;
 }
 .dropload-load .loading{
     display: inline-block;
