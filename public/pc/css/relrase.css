@@ -464,7 +464,7 @@ a {
     position: absolute;
     top: 0;
     right: 500px;
-    z-index: 9999;
+    z-index: 99;
 }
 .wl-zhanghao p{
     text-align: center;
@@ -475,6 +475,7 @@ a {
     color: #333333;
     padding-left: 8px;
     background: white;
+    margin: 0;
 
 }
 
@@ -706,6 +707,7 @@ a {
 .wl-zheh button{
     width: 110px;
     height: 38px;
+    line-height: 38px;
     background: #FAFAFA;
     color: #333333;
     font-size: 14px;
@@ -717,6 +719,7 @@ a {
 .wl-zhes button{
     width: 110px;
     height: 38px;
+    line-height: 38px;
     background: #FAFAFA;
     color: #333333;
     font-size: 14px;
@@ -839,7 +842,7 @@ a {
 }
 .wl-zl2{
     width: 576px;
-    height: 320px;
+    height: 340px;
     background: white;
     margin: 0 auto;
     margin-top: 200px;
@@ -868,155 +871,179 @@ a {
     margin-top: 20px;
 }
 .dd{
-    width:73px;
-    height:23px;
-    background: black;
+    width: 73px;
+    height: 23px;
+    background: #7DB0E8;
     position: absolute;
     color: #FFFFFF;
-    font-size: 11px;
-    bottom: 0;
+    font-size: 10px;
+    bottom: 0px;
+    padding-top: 4px;
     text-align: center;
-    opacity: 0.3;
+
 }
 .wl-ri{
-    width: 300px;
-    height: 215px;
-    position: absolute;
-    right: 70px;
-    top: 80px;
+width: 300px;
+height: 215px;
+position: absolute;
+right: 70px;
+top: 80px;
 }
 .wl-ri input{
-    width: 300px;
-    height: 38px;
-    border: 1px solid #EEEEEE;
-    color: #888888;
+width: 300px;
+height: 38px;
+border: 1px solid #EEEEEE;
+color: #888888;
 }
 .wl-ri p{
-    color: #999999;
-    font-size: 12px;
-    margin-top: 10px;
+color: #999999;
+font-size: 12px;
+margin-top: 10px;
 }
 .wl-ri textarea{
-    width: 300px;
-    height: 70px;
-    border: 1px solid #EEEEEE;
-    margin-top: 15px;
-    color: #888888;
+width: 300px;
+height: 70px;
+border: 1px solid #EEEEEE;
+margin-top: 15px;
+color: #888888;
 }
 .wl-que1{
-    width: 83px;
-    height: 30px;
-    font-size: 14px;
-    color: #FFFFFF;
-    background-color: #7DB0E8;
-    border-radius: 5px;
-    margin-top: 10px;
+width: 83px;
+height: 30px;
+font-size: 14px;
+color: #FFFFFF;
+background-color: #7DB0E8;
+border-radius: 5px;
+margin-top: 10px;
 }
 .wl-que2{
-    width: 83px;
-    height: 30px;
-    font-size: 14px;
-    color:#888888;
-    background: #EEEEEE;
-    border-radius: 5px;
-    margin-left: 30px;
+width: 83px;
+height: 30px;
+font-size: 14px;
+color:#888888;
+background: #EEEEEE;
+border-radius: 5px;
+margin-left: 30px;
 
 }
 .wl-fabiao{
-    width: 180px;
-    height: 60px;
-    color: #333333;
-    background: #ffffff;
-    text-align: center;
-    line-height: 60px;
-    font-size: 18px;
-    position: absolute;
-    top: 111px;
+width: 180px;
+height: 60px;
+color: #333333;
+background: #ffffff;
+text-align: center;
+line-height: 60px;
+font-size: 18px;
+position: absolute;
+top: 111px;
 }
 .wl-liucheng{
-    width: 1000px;
-    height: 930px;
-    background: #FFFFFF;
+width: 1000px;
+height: 930px;
+background: #FFFFFF;
 }
 .wl-jindu{
 width: 100%;
-    height: 70px;
-    line-height: 70px;
-    border-bottom: 1px solid #EEEEEE;
+height: 70px;
+line-height: 70px;
+border-bottom: 1px solid #EEEEEE;
 
 }
 .wl-jieguo{
-    width: 530px;
-    height: 410px;
-    margin: 0 auto;
-    margin-top: 134px;
-    text-align: center;
+width: 530px;
+height: 410px;
+margin: 0 auto;
+margin-top: 134px;
+text-align: center;
 }
 .wl-jieguo button{
-    width: 180px;
-    height: 45px;
-    line-height: 45px;
-    background: #7DB0E8;
-    color: white;
-    border-radius:5px ;
-    font-size: 18px;
-    margin-top: 150px;
+width: 180px;
+height: 45px;
+line-height: 45px;
+background: #7DB0E8;
+color: white;
+border-radius:5px ;
+font-size: 18px;
+margin-top: 150px;
 }
 .wl-jieguo1{
-     width: 530px;
-     height: 430px;
-     margin: 0 auto;
-     margin-top: 134px;
-     color: #333333;
+ width: 530px;
+ height: 430px;
+ margin: 0 auto;
+ margin-top: 134px;
+ color: #333333;
 
- }
+}
 .wl-jieguo2{
-    width: 530px;
-    height: 430px;
-    margin: 0 auto;
-    margin-top: 134px;
-    color: #333333;
-    text-align: center;
+width: 530px;
+height: 430px;
+margin: 0 auto;
+margin-top: 134px;
+color: #333333;
+text-align: center;
 }
 .wl-jieguo2 button{
-    width: 180px;
-    height: 45px;
-    line-height: 45px;
-    background: #7DB0E8;
-    color: white;
-    border-radius:5px ;
-    font-size: 18px;
-    margin-top: 150px;
+width: 180px;
+height: 45px;
+line-height: 45px;
+background: #7DB0E8;
+color: white;
+border-radius:5px ;
+font-size: 18px;
+margin-top: 150px;
 }
 .wl-jieguo1 button{
-    width: 180px;
-    height: 45px;
-    line-height: 45px;
-    background: #7DB0E8;
-    color: white;
-    border-radius:5px ;
-    font-size: 18px;
-    margin: 0 auto;
-    margin-top: 100px;
-    margin-left: 145px;
+width: 180px;
+height: 45px;
+line-height: 45px;
+background: #7DB0E8;
+color: white;
+border-radius:5px ;
+font-size: 18px;
+margin: 0 auto;
+margin-top: 100px;
+margin-left: 145px;
 
 }
 .wl-nui{
-    width: 125px;
-    height: 125px;
-    opacity: 0;
-    margin: 4px;
-    border: 0;
-   border-radius:25px;
+width: 125px;
+height: 125px;
+opacity: 0;
+margin: 4px;
+border: 0;
+border-radius:25px;
 }
 .wl-foot{
-    width: 100%;
-    height: 100px;
-    line-height: 100px;
-    position: absolute;
-    bottom: -100px;
-    margin: 0 auto;
-    text-align: center;
-    color: #999999;
-    font-size: 14px;
+width: 100%;
+height: 100px;
+line-height: 100px;
+position: absolute;
+bottom: -100px;
+margin: 0 auto;
+text-align: center;
+color: #999999;
+font-size: 14px;
+}
+.modal-open .modal{
+position: fixed;
+top: 190px;
+}
+/*.modal-body button{*/
+    /*background: #7DB0E8;*/
+    /*border:1px solid #7DB0E8 ;*/
+/*}*/
+/*.modal-body button:hover{*/
+    /*background: #7DB0E8;*/
+    /*border:1px solid #7DB0E8 ;*/
+/*}*/
+.btn-danger{
+    background: #7DB0E8!important;
+    border:1px solid #7DB0E8 !important;
+}
+.modal-header{
+    background: #f7f7f7 !important;
+}
+.modal-content{
+    border: 0 !important;
+    border-radius: 0 !important;
 }
