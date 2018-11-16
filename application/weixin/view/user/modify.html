@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/modify.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <script src="/static/js/datePicker.js" type="text/javascript" charset="utf-8"></script>
     <title>我的资料</title>
     <style>
@@ -23,7 +24,7 @@
 
 <body style="background: #ffffff;overflow:auto">
 <div class="con">
-    <div class="wx-top tkyy">
+    <div class="wx-top tkyy" >
         <img src="{$user_info['portrait']}"  alt="" onerror='this.src="/static/image/user/tou.png"' />
         <p>修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
     </div>
@@ -173,7 +174,8 @@
                     success: function (res) {
                         if (res.code == 200) {
                             redream.showTip('修改成功');
-                        } else {
+                            setTimeout(function(){ history.back(); }, 2000);
+                        }else {
                             redream.showTip('修改失败');
                         }
                     }
