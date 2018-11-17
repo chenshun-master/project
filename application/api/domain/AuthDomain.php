@@ -26,6 +26,7 @@ class AuthDomain
         $authModel = new AuthModel();
         $res = Db::name('auth')->where('user_id',$params['user_id'])->field('id,user_id,status,idcard,type')->find();
         $res1 = $authModel->findIdCard($params['idcard']);
+
         try {
             $isTrue = false;
             if(!$res){
@@ -34,7 +35,7 @@ class AuthDomain
                 }
                 $isTrue  = Db::name('auth')->insert($params);
             }else if($res['status'] != 3){
-                if($res1 !== $res['user_id']){
+                if($res1 !== false && $res1 !== $res['user_id']){
                     return 1;
                 }else if(intval($params['type']) != intval($res['type'])){
                     return 2;
