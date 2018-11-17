@@ -5,11 +5,11 @@ use think\App;
 use think\Request;
 use app\api\model\UserModel;
 use anerg\OAuth2\OAuth;
-use think\Db;
 
 use think\facade\Session;
 class Index extends BaseController
 {
+    private $articleDomain;
 
     public function __construct(App $app = null)
     {
@@ -191,6 +191,9 @@ class Index extends BaseController
         $smsObject = new \app\api\domain\SendSms();
         $isTrue = $smsObject->sendCode($mobile,1,9715,12318);
 
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
 
         return $this->returnData([],'发送成功',200);
     }
@@ -210,7 +213,11 @@ class Index extends BaseController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $smsObject->sendCode($mobile,3,9715,12318);
+        $isTrue = $smsObject->sendCode($mobile,3,9715,12318);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
+
         return $this->returnData([],'发送成功',200);
     }
 
@@ -233,8 +240,10 @@ class Index extends BaseController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $smsObject->sendCode($mobile,4,9715,12318);
-
+        $isTrue = $smsObject->sendCode($mobile,4,9715,12318);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
         return $this->returnData([],'发送成功',200);
     }
 
@@ -280,9 +289,6 @@ class Index extends BaseController
             ##登录成功跳转到登录页面
             return redirect('/weixin/user/main');
         }
-
-
-
 
         ##第三方登录未绑定手机号跳转到绑定手机号页面
         return redirect('/weixin/index/otherLoginBindingMobile')->params(['id'=>$res['id']]);
@@ -342,7 +348,9 @@ class Index extends BaseController
 
         $smsObject = new \app\api\domain\SendSms();
         $isTrue = $smsObject->sendCode($mobile,2,9715,12318);
-
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
         return $this->returnData([],'发送成功',200);
     }
 
@@ -423,38 +431,6 @@ class Index extends BaseController
     }
 
     /**
-     * 404错误页面
-     */
-    public function error500(){
-        echo '500 错误页面';
-    }
-
-    public function test(){
-
-        Db::startTrans();
-        try {
-            $res = Db::name('goods')->where('id',1)->lock(true)->find();
-            if($res && $res['num'] > 0){
-                $res2 = Db::name('goods')->where('id',$res['id'])->dec('num')->update();
-                $order_no = uniqid().date('YmdHis');
-                if($res2){
-                    $res3 = Db::name('goods2')->insert(['order_no'=>$order_no,'created_time'=>date('Y-m-d H:i:s')]);
-                    if(!$res3){
-                        Db::rollback();
-                    }
-                }
-            }
-            Db::commit();
-        } catch (\Exception $e) {
-            // 回滚事务
-            Db::rollback();
-        }
-    }
-
-    public function test2(){
-    }
-
-    /**
      * 发送短信验证码
      * @param  string  mobile  手机号
      * @param  int     type    验证码用途(1:注册;2:重置密码;3:手机号快捷登录;4:第三方手机号绑定;5:修改密码 6:修改手机号)
@@ -514,9 +490,11 @@ class Index extends BaseController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $smsObject->sendCode($mobile,$type,$sign,$template_id);
+        $isTrue = $smsObject->sendCode($mobile,$type,$sign,$template_id);
+        if(!$isTrue){
+            return $this->returnData([],'发送失败',305);
+        }
 
         return $this->returnData([],'发送成功',200);
     }
-
 }

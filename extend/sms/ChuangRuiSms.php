@@ -84,10 +84,11 @@ class ChuangRuiSms
             return false;
         }
 
-        Log::info("短信发送日志==========》{$result}");
+        $requestData = json_encode($body);
+
+        Log::info("短信发送日志==========》{$result}   请求数据{$requestData}");
 
         $arr = json_decode($result,true);
-
         if($arr['code'] !== 0 || $arr['code'] !== '0'){
             return false;
         }
