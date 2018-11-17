@@ -190,9 +190,8 @@ class Index extends BaseController
 
         $smsObject = new \app\api\domain\SendSms();
         $isTrue = $smsObject->sendCode($mobile,1,9715,12318);
-        if(!$isTrue){
-            return $this->returnData([],'发送失败',305);
-        }
+
+
         return $this->returnData([],'发送成功',200);
     }
 
@@ -343,9 +342,7 @@ class Index extends BaseController
 
         $smsObject = new \app\api\domain\SendSms();
         $isTrue = $smsObject->sendCode($mobile,2,9715,12318);
-        if(!$isTrue){
-            return $this->returnData([],'发送失败',305);
-        }
+
         return $this->returnData([],'发送成功',200);
     }
 
@@ -517,10 +514,7 @@ class Index extends BaseController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $isTrue = $smsObject->sendCode($mobile,$type,$sign,$template_id);
-        if(!$isTrue){
-            return $this->returnData([],'发送失败',305);
-        }
+        $smsObject->sendCode($mobile,$type,$sign,$template_id);
 
         return $this->returnData([],'发送成功',200);
     }
