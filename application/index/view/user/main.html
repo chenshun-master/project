@@ -156,8 +156,7 @@
             <div class="wl-gexx">修改个人信息</div>
             <div class="wl-gerenl">
                 <div class="cd" style="cursor: pointer" >
-                    <img src=""  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  data-toggle="modal" data-target="#avatar-modal" id="wl-da"/>
-                    <!--<img src=""  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  />-->
+                    <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  data-toggle="modal" data-target="#avatar-modal" id="wl-da"/>
                     <div class="dd" >更换头像</div>
                 </div>
                 <div class="wl-ri">
@@ -645,8 +644,15 @@
             data: data,
             type: "POST",
             dataType: 'json',
-            success: function(re) {
-                console.log(re);
+            success: function(res) {
+                if(res.code == 200){
+                    redream.showTip('头像修改成功');
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
+                }else{
+                    redream.showTip('头像修改失败');
+                }
             }
         });
     }
