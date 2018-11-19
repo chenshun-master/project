@@ -228,10 +228,7 @@ class Index extends CController
         }
 
         $smsObject = new \app\api\domain\SendSms();
-        $isTrue = $smsObject->sendCode($mobile,$type,$sign,$template_id);
-        if(!$isTrue){
-            return $this->returnData([],'发送失败',305);
-        }
+        $smsObject->sendCode($mobile,$type,$sign,$template_id);
 
         return $this->returnData([],'发送成功',200);
     }

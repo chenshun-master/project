@@ -7,6 +7,7 @@ use app\api\domain\UserFriendDomain;
 use app\api\domain\FavoriteDomain;
 use app\api\domain\ArticleDomain;
 use app\api\domain\MessageDomain;
+
 class Test  extends Controller
 {
     public function test(){
@@ -16,7 +17,7 @@ class Test  extends Controller
 
         $obj = new ArticleDomain();
 //        dump($obj->getArticleLikeData(17,1,15));
-        halt($obj->getNewArticleLikeData(17,1,15));
+//        halt($obj->getNewArticleLikeData(17,1,15));
 
 
 
@@ -46,9 +47,16 @@ class Test  extends Controller
 //        halt($list);
 
 
-        $model = new UserFriendDomain();
-        $res = $model->getFriendsApplyList(17);
-        halt($res);
+//        $model = new UserFriendDomain();
+//        $res = $model->getFriendsApplyList(17);
+//        halt($res);
+
+//        halt(app()->rootPath);
+
+//        halt(__ROOT__);
+
+
+
     }
 
     public function wxTest(){

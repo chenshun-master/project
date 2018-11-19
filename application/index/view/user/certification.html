@@ -122,7 +122,7 @@
             <div class="{if($type == 2)} active-txt {/if} wl-geren1" style="min-height: 1120px">
                 <p>医生认证</p>
                 <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
-                <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" ></p>
+                <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18" ></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片 <span class="wl-xin">*</span></p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
@@ -206,7 +206,7 @@
                 <p>医院/机构认证</p>
                 <p class="wl-zhen2" style="margin-top: 15px">医院名称 <span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
                 <p class="wl-zhen2">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
-                <p class="wl-zhen2">运营者身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" ></p>
+                <p class="wl-zhen2">运营者身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" ></p>
                 <p class="wl-zhen3">运营者手机号 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
                 <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
                 <p class="wl-zhen2">所在地区 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
@@ -275,8 +275,8 @@
                 <p>官方企业认证</p>
                 <p class="wl-zhen3" style="margin-top: 15px;">企业名称<span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 77px"></p>
                 <p class="wl-zhen3">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
-                <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" ></p>
-                <p class="wl-zhen3">运营者手机号码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
+                <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18" ></p>
+                <p class="wl-zhen3">运营者手机号码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
                 <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
                 <p class="wl-zhen2">所在地区 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院/机构所在地区" id="fr4-address" style="margin-left: 78px"></p>
                 <dl style="position: relative;height: 300px" >

@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="/pc/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
 
-    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="/pc/dis/head/sitelogo.css" rel="stylesheet">
     <link href="/pc/dis/head/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/function.css">
 
     <style>
         button {cursor: pointer}
@@ -155,9 +156,9 @@
         <div class="wl-zl2">
             <div class="wl-gexx">修改个人信息</div>
             <div class="wl-gerenl">
-                <div class="cd" style="cursor: pointer">
-                    <img src="http://172.16.100.85/api/index/imgLoading"  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  data-toggle="modal" data-target="#avatar-modal" id="wl-da"/>
-                    <div class="dd">更换头像</div>
+                <div class="cd" style="cursor: pointer" >
+                    <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  data-toggle="modal" data-target="#avatar-modal" id="wl-da"/>
+                    <div class="dd" >更换头像</div>
                 </div>
                 <div class="wl-ri">
                     <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
@@ -533,14 +534,16 @@
     $("#wl-anquan").click(function () {
         $(".wl-qiehuan").show();
         $(".tab-content").hide();
-    })
+    });
+
     $(".renzheng").click(function () {
         $(".tab-content").show();
         $(".wl-qiehuan").hide();
-    })
+    });
+
     $(".wl-que2").click(function () {
         $(".wl-zhez2").hide();
-    })
+    });
 
     // 更换手机遮罩层
     $(document).ready(function() {
@@ -588,11 +591,10 @@
             }
         });
     });
+
     function deme() {
         $(".one").hide();
         $(".two").show();
-    ;
-      ;
     }
 </script>
 <script type="text/javascript">
@@ -633,7 +635,7 @@
                 imagesAjax(dataUrl)
             }
         });
-    })
+    });
 
     function imagesAjax(src) {
         var data = {};
@@ -644,13 +646,21 @@
             data: data,
             type: "POST",
             dataType: 'json',
-            success: function(re) {
-                console.log(re);
+            success: function(res) {
+                if(res.code == 200){
+                    redream.showTip('头像修改成功');
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
+                }else{
+                    redream.showTip('头像修改失败');
+                }
             }
         });
     }
+
     $("#wl-da").click(function () {
         $(".wl-zhez2").hide();
-    })
+    });
 </script>
 </html>

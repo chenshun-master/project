@@ -78,7 +78,7 @@
         nextStep:function(){
             var newMobile = $.trim($('#fr-new-mobile').val());
             if(newMobile == this.oldMobile){
-                alert('新手机号不能与当前手机号一致');
+                redream.showTip('新手机号不能与当前手机号一致');
             }else{
                 $('#fr2-new-mobile').val(newMobile);
                 $('#cus-box').hide();
@@ -104,6 +104,9 @@
                     success:function(res){
                         if(res.code == 200){
                             codeObj.sendSmsCode();
+                            redream.showTip('发送成功');
+                        }else{
+                            redream.showTip('发送失败');
                         }
                     }
                 });

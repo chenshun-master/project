@@ -1,5 +1,6 @@
 <?php
 namespace sms;
+use think\facade\Log;
 
 class ChuangRuiSms
 {
@@ -83,9 +84,12 @@ class ChuangRuiSms
             return false;
         }
 
-        $arr = json_decode($result,true);
+        $requestData = json_encode($body);
 
-        if($arr['code'] !== 0){
+        Log::info("短信发送日志==========》{$result}   请求数据{$requestData}");
+
+        $arr = json_decode($result,true);
+        if($arr['code'] !== 0 || $arr['code'] !== '0'){
             return false;
         }
 

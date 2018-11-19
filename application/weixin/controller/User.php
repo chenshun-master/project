@@ -37,7 +37,6 @@ class User extends BaseController
             return redirect('/weixin/index/login');
         }
 
-
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
 
         $this->_publishTotal($this->getUserId());
@@ -48,7 +47,7 @@ class User extends BaseController
         ]);
         return $this->fetch('user/main');
     }
-    
+
    /**
      * 修改资料页面
      * @return mixed
@@ -437,7 +436,7 @@ class User extends BaseController
 
         $res = $this->_userDomain->editProfile($this->getUserId(),[
             'nickname'      =>$nickname,
-            'sex'           =>$sex,
+            'sex'           =>(int)$sex,
             'profile'       =>$profile,
             'birthday_date' =>$birthday_date
         ]);

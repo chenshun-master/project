@@ -51,10 +51,10 @@ class SendSms
      */
     public function sendCode($mobile,$type,$sign,$template_id){
         #注册短信白名单检测(防止恶意发送短信)
-        $isTrue = $this->_whiteList($mobile,$type);
-        if($isTrue){
-            return false;
-        }
+//        $isTrue = $this->_whiteList($mobile,$type);
+//        if($isTrue){
+//            return false;
+//        }
 
         $result = $this->createSmsLog($mobile,$type);
         if(!$result){

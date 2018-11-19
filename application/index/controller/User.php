@@ -10,6 +10,7 @@ class User extends CController
     private $_userDomain;
     private $_userModel;
     private $_authDomain;
+    private $_pictureLibraryDomain;
 
     public function __construct(App $app = null)
     {
@@ -229,18 +230,21 @@ class User extends CController
     }
 
     /**
-     *
+     * 用户头像修改
      */
     public function uploadHead(Request $request){
-//        $img = $request->post('img');
-//        $img = str_replace('data:image/png;base64,', '', $img);
-//        $img = str_replace(' ', '+', $img);
-//        $data = base64_decode($img);
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
 
-        halt($request->rootPath);
+        $img = $request->post('img');
+        $data = base64_decode(str_replace(['data:image/jpeg;base64,',' '],['','+'],$img));
 
+        $img = $this->_userDomain->uploadHead($this->getUserId(),$data);
+        if($img === false){
+            return $this->returnData([],'上传失败',305);
+        }
 
-        return $this->returnData([],'修改成功',200);
+        return $this->returnData(['imgUrl' =>$img],'上传成功',200);
     }
-
 }
