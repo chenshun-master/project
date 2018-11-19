@@ -59,7 +59,7 @@
 <body style="background:#ffffff;">
 <div class="con">
     <div class="ding" onclick="javascript:history.back(-1)"><p></p></div>
-    <div class="wx-top">
+    <div class="wx-top"  style="position: relative">
         <p class="top1">{$article_info['title']}</p>
         <div class="wx-name">
             <img src="{$article_info['portrait']}" alt="" class="wx-tou cus-touser-main"   data-user_id="{$article_info['user_id']}" onerror='this.src="/static/image/user/tou.png"' >
@@ -104,6 +104,16 @@
 
         </div>
 
+    <div class="wx-foot"  id="ad">
+        <input type="text" placeholder="写评论..." class="xpq1"/>
+        <dl class="iconfont icon-comment_light" style="font-size: 23px"></dl>
+        <?php if($article_info['isFavorites'] == 1):?>
+        <dt class="iconfont icon-favor_fill_light cus-favorite"   style="font-size: 23px"></dt>
+        <?php else:?>
+        <dt class="iconfont icon-favor_light " id="cus-click-favorite"   style="font-size: 23px"></dt>
+        <?php endif;?>
+
+    </div>
         <div class="marsk-container">
             <div class="tkyy_con" style="border: none;">
                 <div class="z-top">
@@ -115,16 +125,6 @@
                 </div>
 
             </div>
-        </div>
-        <div class="wx-foot">
-            <input type="text" placeholder="写评论..." class="xpq1"/>
-            <dl class="iconfont icon-comment_light" style="font-size: 23px"></dl>
-            <?php if($article_info['isFavorites'] == 1):?>
-                    <dt class="iconfont icon-favor_fill_light cus-favorite"   style="font-size: 23px"></dt>
-            <?php else:?>
-                    <dt class="iconfont icon-favor_light " id="cus-click-favorite"   style="font-size: 23px"></dt>
-            <?php endif;?>
-
         </div>
 
         <div class="wl-zhez">
@@ -790,13 +790,12 @@
     };
 </script>
 <script type="text/javascript">
-
-    //点击空白处隐藏弹出层
-    $(".wl-zhezhao").click(function(event) {
-        var _con = $('.wl-zhe1'); // 设置目标区域
-        if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.wl-zhezhao').hide(); //淡出消失
-        }
+    //IOS input被输入法toolbar遮挡解决
+    $('input').on('click', function () {
+        var target = this;
+        setInterval(function () {
+            target.scrollIntoView(true);
+        },100);
     });
 </script>
 </html>
