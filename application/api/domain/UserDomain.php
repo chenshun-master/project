@@ -284,4 +284,42 @@ class UserDomain
 
         return $img_url;
     }
+
+    /**
+     * 获取医生列表
+     */
+    public function getDoctorList($page,$page_size=15){
+        $obj = Db::name('user')->alias('user');
+        $obj->where('user.type', 3);
+        $obj->order('user.created_time', 'desc');
+        $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
+        $total = $obj->count();
+        $obj->field("user.id,INSERT(user.mobile,4,4,'****') as mobile,user.nickname,user.profile,user.portrait,doctor.*,(SELECT count(1) from wl_article  where user.id = wl_article.user_id and wl_article.type = 1) as article_num");
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取医院列表
+     */
+    public function getHospitalList($page,$page_size=15){
+        $obj = Db::name('user')->alias('user');
+        $obj->where('user.type', 4);
+        $obj->order('user.created_time', 'desc');
+        $obj->leftJoin('wl_hospital hospital','user.id = hospital.user_id');
+        $total = $obj->count();
+        $obj->field("user.id,INSERT(user.mobile,4,4,'****') as mobile,user.nickname,user.profile,user.portrait,hospital.*");
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
 }
