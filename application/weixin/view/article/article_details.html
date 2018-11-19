@@ -724,6 +724,7 @@
 </script>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="/static/plugin/wechat/WechatJsSdk.js"></script>
+<script type="text/javascript" src="/static/plugin/nativeShare/NativeShare.js"></script>
 <script type="text/javascript">
     var config = {
         debug:false,
@@ -762,36 +763,51 @@
 
     var weixinObj = new WechatSdkModel(config,callbacks);
 
-    //我的分享
+    var nativeShare = new NativeShare();
+    var desc = "{$article_info['excerpt']}";
+    nativeShare.setShareData({
+        title: "{$article_info['title']}",
+        desc: (desc == '')? window.location.href :desc,
+        link: window.location.href,
+        icon: '{$shareImg}'
+    });
+
+    //自定义浏览器分享
     var myShare = {
         showShareBox:function(){
             if(redream.isWeiXin()){
                 $('#cus-myshare-box').show();
                 return true;
             }
-            return false;
+            this.call();
         },
-
         //分享到朋友圈
         wechatTimeline:function(){
             if(this.showShareBox()){
                 return false;
             }
+            this.call('wechatTimeline');
         },
-
         //分享给微信好友
         wechatFriend:function(){
             if(this.showShareBox()){
                 return false;
             }
-
-            // alert('自定义分享给微信好友');
+            this.call('wechatFriend');
         },
+        call:function(command){
+            try {
+                nativeShare.call(command)
+            } catch (err) {
+                // 如果不支持，你可以在这里做降级处理
+                // alert(err.message)
+                alert('浏览器不支持分享')
+            }
+        }
     };
 </script>
-<script type="text/javascript">
 
-    //点击空白处隐藏弹出层
+<script type="text/javascript">
     $(".wl-zhezhao").click(function(event) {
         var _con = $('.wl-zhe1'); // 设置目标区域
         if(!_con.is(event.target) && _con.has(event.target).length == 0) {

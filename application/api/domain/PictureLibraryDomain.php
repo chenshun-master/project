@@ -13,7 +13,8 @@ class PictureLibraryDomain
         return Db::name('picturelibrary')->insertGetId([
             'type'    =>$type,
             'img_url' =>$img_url,
-            'status'  =>1
+            'status'  =>1,
+            'created_time'=>date('Y-m-d H:i:s')
         ]);
     }
 }

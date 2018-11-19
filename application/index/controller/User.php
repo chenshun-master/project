@@ -232,15 +232,24 @@ class User extends CController
      *
      */
     public function uploadHead(Request $request){
-//        $img = $request->post('img');
-//        $img = str_replace('data:image/png;base64,', '', $img);
-//        $img = str_replace(' ', '+', $img);
-//        $data = base64_decode($img);
+        $img = $request->post('img');
+        $img = str_replace('data:image/jpeg;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
 
-        halt($request->rootPath);
+        $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/head/'.date('Ymd');
+        $filename = date('His').uniqid().uniqid().'.png';
+        if (!is_dir($path)) {
+            @mkdir($path, 0755, true);
+        }
 
+        $savePath = $path.'/'.$filename;
+        $file_res = file_put_contents($savePath, $data);
+        if(!$file_res){
+            return $this->returnData([],'上传失败',305);
+        }
 
-        return $this->returnData([],'修改成功',200);
+        return $this->returnData([],'上传成功',200);
     }
 
 }
