@@ -1,0 +1,134 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; border: 0; list-style: none; list-style-image: none; list-style-type: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video { margin: 0; padding: 0; border: 0; font: inherit; vertical-align: baseline; }
+ol, ul { list-style: none; }
+body{position:relative;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { font-family: "思源黑体 CN";color:#221815;}
+body{max-width:750px;margin:0 auto;min-width: 320px;}
+ul li{list-style-type: none;}
+a{text-decoration: none;color: #221815;display: block;}
+.wl-top{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #FFFFFF;
+    font-size: 17px;
+    color: #1B1B1B;
+    position: relative;
+    text-align: center
+}
+.wl-top i{
+    position: absolute;
+    left: 10px;
+    top: 0;
+    font-size: 25px;
+
+}
+.wl-conter{
+    width: 100%;
+    float: left;
+}
+.wl-time{
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    color: #1B1B1B;
+    font-size: 11px;
+    margin-top: 20px;
+}
+.dbubble {
+    opacity: 1;
+    float: left;
+    margin-left: 80px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    padding: 10px 15px;
+    z-index: 20;
+    border-radius: 8px;
+    width: 75%;
+
+}
+.dbubble-text {
+    min-height: 70px;
+    font-size: 14px;
+    color: #303030;
+    line-height: 1.6;
+    font-family: "微软雅黑";
+}
+.triangle-box {
+    position: absolute;
+}
+.triangle-box-left {
+    position: absolute;
+    top: 20px;
+    left: 72px;
+}
+.triangle-box-left .triangle {
+    transform: rotateZ(135deg);
+    -moz-transform: rotateZ(135deg);
+}
+.triangle {
+    width: 16px;
+    height: 16px;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    background-color: #fff;
+}
+
+.dbubble1{
+    opacity: 1;
+    float: right;
+    margin-right: 80px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    padding: 10px 15px;
+    z-index: 20;
+    border-radius: 8px;
+    width: 75%;
+}
+.triangle-box-right {
+    position: absolute;
+    top: 23px;
+    right: 72px;
+}
+.triangle-box-right .triangle {
+    transform: rotateZ(-45deg);
+    -moz-transform: rotateZ(-45deg);
+}
+.wl-foot{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+}
+.wl-foot textarea{
+    margin-top: 8px;
+    border-radius: 10px;
+    margin-left: 10px;
+    width: 78%;
+    height: 35px;
+    background-color: #F4F5F6;
+    color: #888888;
+    font-size:14px;
+    padding: 7px 15px 0 15px;
+    resize: none;text-indent: 2px;
+    outline: none;
+    float: left;
+}
+.wl-btn{
+    width: 15%;
+    min-height: 30px;
+    color: rgb(204, 204, 204);;
+    font-size: 15px;
+    border-radius: 20px;
+    float: left;
+    margin: 10px 0px 0 10px;
+    width: 13%;
+    background: white;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+    outline: none;
+}
