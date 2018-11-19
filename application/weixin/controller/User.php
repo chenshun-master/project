@@ -75,9 +75,17 @@ class User extends BaseController
         }
         return $this->fetch('user/collection');
     }
-
    /**
-     * 对话页面
+     * 我的对话页面
+     * @return mixed
+     */
+    public function userDialogue()
+    {
+
+        return $this->fetch('user/user_dialogue');
+    }
+   /**
+     * 消息通知页面
      * @return mixed
      */
     public function dialogue(Request $request){

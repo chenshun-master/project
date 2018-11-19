@@ -51,7 +51,6 @@ class Index extends BaseController
 
         return $this->fetch('index/loginReister');
     }
-
     /**
      * 用戶登录页
      */
