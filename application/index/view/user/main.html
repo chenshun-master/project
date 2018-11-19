@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="/pc/dis/head/sitelogo.css" rel="stylesheet">
     <link href="/pc/dis/head/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/function.css">
 
     <style>
         button {cursor: pointer}
@@ -533,14 +534,16 @@
     $("#wl-anquan").click(function () {
         $(".wl-qiehuan").show();
         $(".tab-content").hide();
-    })
+    });
+
     $(".renzheng").click(function () {
         $(".tab-content").show();
         $(".wl-qiehuan").hide();
-    })
+    });
+
     $(".wl-que2").click(function () {
         $(".wl-zhez2").hide();
-    })
+    });
 
     // 更换手机遮罩层
     $(document).ready(function() {
@@ -588,11 +591,10 @@
             }
         });
     });
+
     function deme() {
         $(".one").hide();
         $(".two").show();
-    ;
-      ;
     }
 </script>
 <script type="text/javascript">
@@ -656,6 +658,7 @@
             }
         });
     }
+
     $("#wl-da").click(function () {
         $(".wl-zhez2").hide();
     })

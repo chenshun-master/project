@@ -238,19 +238,13 @@ class User extends CController
         }
 
         $img = $request->post('img');
-        $img = str_replace('data:image/jpeg;base64,', '', $img);
-        $img = str_replace(' ', '+', $img);
-        $data = base64_decode($img);
+        $data = base64_decode(str_replace(['data:image/jpeg;base64,',' '],['','+'],$img));
 
         $img = $this->_userDomain->uploadHead($this->getUserId(),$data);
-
         if($img === false){
             return $this->returnData([],'上传失败',305);
         }
 
-        return $this->returnData([
-            'imgUrl' =>$img,
-        ],'上传成功',200);
+        return $this->returnData(['imgUrl' =>$img],'上传成功',200);
     }
-
 }
