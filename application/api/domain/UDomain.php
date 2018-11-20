@@ -22,13 +22,19 @@ class UDomain
         $obj->leftJoin('wl_doctor_hospital dh','doctor.id = dh.doctor_id');
         $obj->leftJoin('wl_hospital hospital','hospital.id = dh.hospital_id');
 
-        $obj->where('user.type', 3);
-        $obj->where('dh.status', 1);
+        $obj->where("user.type = '3' and IFNULL(dh.status,0) != 2");
         $obj->group('user.id');
         $obj->order('user.created_time', 'desc');
 
         $total = $obj->count();
-        $obj->field("user.id,user.portrait,doctor.*,hospital.hospital_name,(SELECT count(1) from wl_article  where user.id = wl_article.user_id and wl_article.type = 1) as article_num,0 as case_num");
+        $field = 'doctor.real_name,
+                  doctor.user_id,
+                  hospital.id as hospital_id,
+                  hospital.hospital_name,
+                  ( SELECT count( 1 ) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,
+                  0 AS case_num';
+
+        $obj->field($field);
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
 
         return [
