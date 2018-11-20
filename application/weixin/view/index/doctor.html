@@ -59,12 +59,13 @@
                 page_size: 15,
             },
             template:function(data){
-                var head_img =  (data.portrait == null) ? '':data.portrait;
+                var head_img      =  (data.portrait == null) ? '':data.portrait;
+                var hospital_name =  (data.hospital_name == null) ? '未加入医院机构':data.hospital_name;
                 return '<div class="wl-conter">' +
                     '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
                     '            <div class="wl-pingjia">' +
                     '                <dl>'+ data.real_name +'</dl>' +
-                    '                <dd>'+ data.hospital_name+'</dd>' +
+                    '                <dd>'+ hospital_name +'</dd>' +
                     '                <dt><i class="iconfont icon-xingji"></i>' +
                     '                    <i class="iconfont icon-xingji"></i>' +
                     '                    <i class="iconfont icon-xingji"></i>' +
