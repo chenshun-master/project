@@ -325,3 +325,8 @@ function diffBetweenTwoDays ($day1, $day2){
 
     return round(($second1 - $second2) / 86400);
 }
+
+
+function getHttpReferfer(){
+
+}

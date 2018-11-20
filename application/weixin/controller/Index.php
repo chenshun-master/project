@@ -21,7 +21,7 @@ class Index extends BaseController
      * 网站首页
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
         return $this->fetch('index/index');
     }
