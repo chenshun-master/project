@@ -130,29 +130,29 @@
 	</body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-		$(document).ready(function() {
-				$(".tkyy").click(function(event) {
-					event.stopPropagation(); //停止事件冒泡
-					$(".marsk-container").toggle();
-				});
-				//点击空白处隐藏弹出层
-				$(".marsk-container").click(function(event) {
-					var _con = $('.tkyy_con'); // 设置目标区域
-					if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-						$('.marsk-container').hide(); //淡出消失
-					}
-				});
-				$(".quxiao").click(function(){
-					$('.marsk-container').hide(); //淡出消失
-				})
-        });
-        $(function(){
-            $("span").eq(0).addClass("se");
-            $(".top span").click(function(){
-                index=$(this).index();
-                $(" .top span").eq(index).addClass("se").siblings().removeClass("se");
-            })
-        })
+$(document).ready(function() {
+	$(".tkyy").click(function(event) {
+		event.stopPropagation(); //停止事件冒泡
+		$(".marsk-container").toggle();
+	});
+	//点击空白处隐藏弹出层
+	$(".marsk-container").click(function(event) {
+		var _con = $('.tkyy_con'); // 设置目标区域
+		if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+			$('.marsk-container').hide(); //淡出消失
+		}
+	});
+	$(".quxiao").click(function(){
+		$('.marsk-container').hide(); //淡出消失
+	})
+});
 
+$(function(){
+	$("span").eq(0).addClass("se");
+	$(".top span").click(function(){
+	index=$(this).index();
+	$(" .top span").eq(index).addClass("se").siblings().removeClass("se");
+	})
+});
 </script>
 </html>

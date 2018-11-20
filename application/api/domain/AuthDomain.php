@@ -53,31 +53,52 @@ class AuthDomain
     /**
      * 后台认证审核接口
      * @param $id               认证ID
-     * @param $status           审核状态
+     * @param $status           审核状态(2:审核失败 3:审核成功)
      * @param $audit_remark     审核备注
      * @return bool
      */
     public function authVerify($id,$status,$audit_remark){
         Db::startTrans();
         try {
-            if((int)$status === 2){
-                $auth_info = Db::name('auth')->find($id);
-                $isTrue1  = Db::name('user')->where('id', $auth_info['id'])->data(['type'=>$auth_info['type']])->update();
-                if(!$isTrue1){
-                    Db::rollback();return false;
-                }
-            }
-
-            $isTrue2  = Db::name('auth')->where('id', $id)->data([
-                'status'        =>$status,
-                'audit_time'    =>date('Y-m-d H:i:s'),
-                'audit_remark'  =>$audit_remark
-            ])->update();
-            if(!$isTrue2){
+            $status = (int)$status;
+            if(!Db::name('auth')->where('id', $id)->data(['status'=>$status,'audit_time'=>date('Y-m-d H:i:s'),'audit_remark'=>htmlspecialchars($audit_remark)])->update()){
                 Db::rollback();return false;
             }
 
+            if($status === 3){#审核成功更新用户类型
+                $auth_info = Db::name('auth')->find($id);
+                $type = 1;
+                if($auth_info['type'] == 1){
+                    $type = 2;
+                }else if($auth_info['type'] == 2){
+                    $type = 3;
+                }else if($auth_info['type'] == 3){
+                    $type = 4;
+                }else if($auth_info['type'] == 4){
+                    $type = 5;
+                }
+
+                if(!Db::name('user')->where('id', $auth_info['user_id'])->data(['type'=>$type])->update()){
+                    Db::rollback();return false;
+                }else if($type == 3){
+                    $isTrue3  = Db::name('doctor')->insert([
+                        'auth_id'=>$auth_info['id'],'user_id'=>$auth_info['user_id'],'real_name'=>$auth_info['username'],'created_time'=>date('Y-m-d H:i:s')
+                    ]);
+                    if(!$isTrue3){
+                        Db::rollback();return false;
+                    }
+                }else if($type == 4){
+                    $isTrue4  = Db::name('hospital')->insert([
+                        'auth_id'=>$auth_info['id'],'user_id'=>$auth_info['user_id'],'hospital_name'=>$auth_info['enterprise_name'],'created_time'=>date('Y-m-d H:i:s')
+                    ]);
+                    if(!$isTrue4){
+                        Db::rollback();return false;
+                    }
+                }
+            }
+
             Db::commit();
+            return true;
         } catch (\Exception $e) {
             Db::rollback();
             return false;
@@ -94,7 +115,6 @@ class AuthDomain
      */
     public function findAuthResult($user_id){
         $res = Db::name('auth')->where('user_id',$user_id)->find();
-
         return $res ? :[];
     }
 }
