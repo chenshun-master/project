@@ -20,7 +20,7 @@
     用户名称
 </div>
 </header>
-<main >
+<main  id="wl-ele">
 <div class="wl-das">
     <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>
     <div class="wl-conter" style="position: relative">
@@ -273,6 +273,9 @@
             </div>
         </div>
     </div>
+    <div class="wl-demo">
+
+    </div>
 </main>
 
 <footer>
@@ -283,7 +286,7 @@
     </div>
 </footer>
 </body>
-<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     $(function () {
         $('.wl-foot textarea').on('.kl1 input ', function () {
@@ -295,6 +298,36 @@
             }
         });
     });
-    $("div[class=wl-conter]:last").css("padding-bottom","200px");
+    $("div[class=wl-demo]:last").css("padding-bottom","100px");
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        $ ('.wl-btn').click (function ()
+        {
+            var mobi = $(".neirong").val();
+            $('.wl-demo').append('    <div class="wl-das">\n' +
+                '        <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>\n' +
+                '        <div class="wl-conter"  style="position: relative">\n' +
+                '            <div style="    position: absolute;right: 17px;top: 4px;">\n' +
+                '                <img src="/static/image/user/tou.png" alt="" width="40" height="40">\n' +
+                '            </div>\n' +
+                '            <div class="dbubble1">\n' +
+                '                <div class="dbubble-text">'+mobi+'</div>\n' +
+                '                <div class=" triangle-box triangle-box-right">\n' +
+                '                    <div class="triangle"></div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '    </div>');
+
+            $('.neirong').val("");
+            // var ele = $('body')[0];
+            // console.log(ele);
+            // document..scrollTop = ele.scrollHeight;
+            $('html,body').animate({scrollTop:$(document).height() }, 10);
+        });
+
+    })
 </script>
 </html>
