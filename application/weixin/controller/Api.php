@@ -9,8 +9,6 @@ namespace app\weixin\controller;
 class Api extends BaseController
 {
 
-
-
     public function getAddressList(){
         $model = new \app\api\model\RegionsModel();
 
