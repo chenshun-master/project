@@ -31,7 +31,7 @@ class UDomain
                   doctor.user_id,
                   hospital.id as hospital_id,
                   hospital.hospital_name,
-                  ( SELECT count( 1 ) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,
+                  ( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,
                   0 AS case_num';
 
         $obj->field($field);
