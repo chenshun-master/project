@@ -79,13 +79,21 @@ class User extends BaseController
      * 我的对话页面
      * @return mixed
      */
-    public function userDialogue(){
+    public function userDialogue(Request $request){
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
 
+        $uid =  $request->param('uid/d',0);
 
+        $isFriend = $this->_userFriendDomain->checkFriend($uid,$this->getUserId());
 
+        if(!$isFriend){
+            halt('你们还不是好友还不能私信');
+        }
+
+        $this->assign('uid',$uid);
+        $this->assign('uInfo',$this->_userDomain->getUserInfo($uid));
         return $this->fetch('user/user_dialogue');
     }
    /**

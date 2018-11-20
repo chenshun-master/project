@@ -101,6 +101,7 @@ class UserFriendDomain
      */
     public function createFriendMsg($send_user,$receive_user,$content,$type = 1){
         $data = [
+            'type'              =>$type,
             'send_user_id'      =>$send_user,
             'receive_user_id'   =>$receive_user,
             'is_read'           =>1,
@@ -113,8 +114,14 @@ class UserFriendDomain
             $data['image']   = $content;
         }
 
-        $isTrue = Db::name('chat_record')->insertGetId($data);
-        return $isTrue ? true : false;
+        $id = Db::name('chat_record')->insertGetId($data);
+
+        if(!$id){
+            return false;
+        }
+
+        $data['id'] = $id;
+        return $data;
     }
 
     /**
@@ -180,7 +187,7 @@ class UserFriendDomain
 
         $where = '';
         $record_id = (int)$record_id;
-        if($record_id !== 0){
+        if($record_id != 0){
             $where = "  where tmp_tab.id < {$record_id} ";
         }
 
@@ -188,7 +195,7 @@ class UserFriendDomain
                     SELECT * from wl_chat_record where send_user_id = {$uid} and receive_user_id = {$uid2}
                     UNION all
                     SELECT * from wl_chat_record where send_user_id = {$uid2} and receive_user_id = {$uid}
-                ) tmp_tab {$where}  ORDER BY tmp_tab.id desc limit 15";
+                ) tmp_tab {$where}  ORDER BY tmp_tab.id desc limit 10";
 
         return [
             'rows'          =>Db::query($sql),

@@ -59,13 +59,27 @@ class Api extends BaseController
             return $this->returnData([],'用户未登录',401);
         }
 
-        $uid      = $request->get('uid/d',0);
-        $record   = $request->get('record/d',0);
+        $uid      = $request->param('uid',0);
+        $record   = $request->param('record_id',0);
+        $data = $this->_userFriendDomain->getPrivateLetterList(39,43,$record);
+        return $this->returnData($data,'',200);
+    }
 
+    public function sendDialogueContent(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
 
-        $res = $this->_userFriendDomain->getPrivateLetterList(39,43,0);
+        $uid      = $request->param('uid',0);
+        $record   = $request->param('record_id',0);
+        $content   = $request->param('content','');
 
+        $data = $this->_userFriendDomain->createFriendMsg($this->getUserId(),$uid,$content);
 
-        halt($res);
+        if(!$data){
+            return $this->returnData([],'',305);
+        }
+
+        return $this->returnData($data,'',200);
     }
 }
