@@ -17,7 +17,7 @@ a{text-decoration: none;color: #221815;display: block;}
     background: white;
 }
 .wl-foot dl {
-    margin-top: 4px;
+    margin-top:4px;
     width: 25%;
     height: 50px;
     text-align: center;
@@ -26,6 +26,7 @@ a{text-decoration: none;color: #221815;display: block;}
 .wl-foot dt {
     font-size: 11px;
     color: #000000;
+    margin-top: -2px;
 }
 .wl-conter{
     width: 100%;
@@ -74,4 +75,9 @@ color: #7DB0E8;
     margin-top: -50px;
     margin-right: 20px;
     color: #7DB0E8;
+}
+.wl-toux img{
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
 }
