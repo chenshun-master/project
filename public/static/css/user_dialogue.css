@@ -35,7 +35,6 @@ a{text-decoration: none;color: #221815;display: block;}
     text-align: center;
     color: #1B1B1B;
     font-size: 11px;
-    margin-top: 20px;
 }
 .dbubble {
     opacity: 1;
@@ -50,7 +49,6 @@ a{text-decoration: none;color: #221815;display: block;}
 
 }
 .dbubble-text {
-    min-height: 70px;
     font-size: 14px;
     color: #303030;
     line-height: 1.6;
@@ -61,7 +59,7 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .triangle-box-left {
     position: absolute;
-    top: 20px;
+    top: 13px;
     left: 72px;
 }
 .triangle-box-left .triangle {
@@ -86,10 +84,11 @@ a{text-decoration: none;color: #221815;display: block;}
     z-index: 20;
     border-radius: 8px;
     width: 75%;
+    min-height: 50px;
 }
 .triangle-box-right {
     position: absolute;
-    top: 23px;
+    top: 13px;
     right: 72px;
 }
 .triangle-box-right .triangle {
@@ -114,9 +113,11 @@ a{text-decoration: none;color: #221815;display: block;}
     color: #888888;
     font-size:14px;
     padding: 7px 15px 0 15px;
-    resize: none;text-indent: 2px;
-    outline: none;
+    text-indent: 2px;
     float: left;
+     resize:none;
+    outline: none;
+    overflow-y: hidden;
 }
 .wl-btn{
     width: 15%;
@@ -131,4 +132,8 @@ a{text-decoration: none;color: #221815;display: block;}
     border: 1px solid #EBEBEB;
     border-radius: 5px;
     outline: none;
+}
+.wl-das{
+    width: 100%;
+    min-height: 120px;
 }
