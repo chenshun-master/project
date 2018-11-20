@@ -15,7 +15,7 @@
     <style>
         .dropload-down{display: none;}
         .wl-das{min-height: 90px !important;}
-        .dbubble1,.dbubble{min-height: 40px !important;    padding: 7px 15px;min-width: 100px;max-width: 75%;overflow-x: auto !important;}
+        .dbubble1,.dbubble{min-height: 40px !important;    padding: 7px 15px;min-width: 50px;max-width: 75%;overflow-x: auto !important;}
     </style>
 </head>
 <body style="background: #F2F2F2;" >
@@ -130,6 +130,11 @@
                     },
                     success: function (res) {
                         if (res.code == 200) {
+                            var ini = true;
+
+                            if(myObj.dialogue.listData.record_id != 0){
+                                ini = false;
+                            }
                             $.each(res.data.rows,function(k,val){
                                 if(myObj.dialogue.listData.record_id > val.id){
                                     myObj.dialogue.listData.record_id = val.id;
@@ -143,6 +148,10 @@
                                     $('#wl-container-list').prepend(myObj.dialogue.templateRight(val));
                                 }
                             });
+
+                            if(ini){
+                                window.scrollTo(0, $(document).height());
+                            }
                         }
                         me.noData();
                         me.resetload();

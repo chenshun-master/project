@@ -45,8 +45,7 @@ a{text-decoration: none;color: #221815;display: block;}
     padding: 10px 15px;
     z-index: 20;
     border-radius: 8px;
-    width: 75%;
-
+    /*width: 75%;*/
 }
 .dbubble-text {
     font-size: 14px;
@@ -83,7 +82,7 @@ a{text-decoration: none;color: #221815;display: block;}
     padding: 10px 15px;
     z-index: 20;
     border-radius: 8px;
-    width: 75%;
+    /*width: 75%;*/
     min-height: 50px;
 }
 .triangle-box-right {
