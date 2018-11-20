@@ -114,9 +114,11 @@ a{text-decoration: none;color: #221815;display: block;}
     color: #888888;
     font-size:14px;
     padding: 7px 15px 0 15px;
-    resize: none;text-indent: 2px;
-    outline: none;
+    text-indent: 2px;
     float: left;
+     resize:none;
+    outline: none;
+    overflow-y: hidden;
 }
 .wl-btn{
     width: 15%;
@@ -131,4 +133,8 @@ a{text-decoration: none;color: #221815;display: block;}
     border: 1px solid #EBEBEB;
     border-radius: 5px;
     outline: none;
+}
+.wl-das{
+    width: 100%;
+    min-height: 120px;
 }
