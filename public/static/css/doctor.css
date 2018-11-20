@@ -1,0 +1,77 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; border: 0; list-style: none; list-style-image: none; list-style-type: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video { margin: 0; padding: 0; border: 0; font: inherit; vertical-align: baseline; }
+ol, ul { list-style: none; }
+body{position:relative;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { font-family: "思源黑体 CN";color:#221815;}
+body{max-width:750px;margin:0 auto;min-width: 320px;}
+ul li{list-style-type: none;}
+a{text-decoration: none;color: #221815;display: block;}
+.wl-foot {
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #CACACA;
+    position: fixed;
+    bottom: 0;
+    background: white;
+}
+.wl-foot dl {
+    margin-top: 4px;
+    width: 25%;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+.wl-foot dt {
+    font-size: 11px;
+    color: #000000;
+}
+.wl-conter{
+    width: 100%;
+    height: 87px;
+    background: #FFFFFF;
+    margin-bottom: 10px;
+}
+.wl-toux{
+    width: 12%;
+    float: left;
+    margin: 15px 0 0 15px;
+}
+.wl-pingjia{
+    width: 80%;
+    min-height: 70px;
+    margin: 10px 10px 0 0 ;
+    float: right;
+}
+.wl-pingjia dl{
+    color: #1D1D1D;
+    width: 50%;
+    font-size: 14px;
+}
+.wl-pingjia dd{
+    width: 70%;
+    color: #898989;
+    font-size: 11px;
+}
+ .wl-pingjia dt{
+    width: 90%;
+     height: 20px;
+     line-height: 20px;
+     margin-top: 8px;
+ }
+.wl-pingjia dt>i{
+color: #7DB0E8;
+    float: left;
+}
+.wl-pingjia dt>span{
+    color: #898989;
+    font-size: 11px;
+    float: left;
+}
+.wl-renzheng{
+    float: right;
+    margin-top: -50px;
+    margin-right: 20px;
+    color: #7DB0E8;
+}
