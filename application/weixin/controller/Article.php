@@ -364,7 +364,7 @@ class Article extends BaseController
 
         $res = (new \app\api\domain\ArticleDomain())->createFavoriteArticle($this->getUserId(),$id);
         if(!$res){
-            return $this->returnData([],'操作失败',200);
+            return $this->returnData([],'操作失败',305);
         }
 
         return $this->returnData([],'操作成功',200);

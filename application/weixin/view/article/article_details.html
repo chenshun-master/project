@@ -58,7 +58,7 @@
 
 <body style="background:#ffffff;">
 <div class="con">
-    <div class="ding" onclick="javascript:history.back(-1)"><p></p></div>
+    <div class="ding" onclick="redream.toReferer()" ><p></p></div>
     <div class="wx-top"  style="position: relative">
         <p class="top1">{$article_info['title']}</p>
         <div class="wx-name">
@@ -73,7 +73,7 @@
             <?php if($isFriend === true):?>
                 <button class="wx-rig" onclick="redream.showTip('该功能暂未开放...')">私信</button>
             <?php elseif($isFriend === false):?>
-                <button class="wx-rig" onclick="objClass.showAddFriend()">加好友</button>
+                <button class="wx-rig" onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
             <?php else:?>
             <?php endif;?>
         </div>
@@ -176,7 +176,7 @@
                 var html = '<div class="wzxq "  >' +
                     '<div class="wx-x">' +
                     '<h3   onclick="objClass.hrefDetails('+ data.id +')"  >' + data.title + '</h3>' +
-                    '<p><span>' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
+                    '<p><span class="cus-touser-main" data-user_id="'+ data.user_id +'" >' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
                     '</div>' +
                     '<img src="' + src + '" alt="" class="cus-recommend-href"  data-id="' + data.id + '"  />' +
                     '</div>';
@@ -276,10 +276,10 @@
                 var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
 
                 return '<div class="wl-xiang">\n' +
-                    '                 <div  style="float: left;"> <img src="'+ data.portrait+'" onerror="this.src=\'/static/image/user/tou.png\'" width="30"height="30" ></div>' +
+                    '                 <div  style="float: left;"> <img src="'+ data.portrait+'" onerror="this.src=\'/static/image/user/tou.png\'" width="30" height="30"  class="cus-touser-main" data-user_id="'+ data.user_id +'"  ></div>' +
                     '                    <div class="wl-xiaa1" style="float: right;">' +
                     '                        <div class="wl-uh">' +
-                    '                            <div class="wl-das1">'+ data.nickname +'</div><div  class="wl-das2 cus-comment-fabulous"  data-id="' + data.id + '" data-click="' + data.isZan + '"><i class="iconfont '+css +'" style="font-size: 18px"></i><span>     '+data.like_count+'</span></div>' +
+                    '                            <div class="wl-das1 cus-touser-main" data-user_id="'+ data.user_id +'">'+ data.nickname +'</div><div  class="wl-das2 cus-comment-fabulous"  data-id="' + data.id + '" data-click="' + data.isZan + '"><i class="iconfont '+css +'" style="font-size: 18px"></i><span>     '+data.like_count+'</span></div>' +
                     '                        </div>' +
                     '                        <div class="wl-neirnga">' + data.content +
                     '                        </div>' +
@@ -552,6 +552,8 @@
                     success: function (res) {
                         if (res.code == 200) {
                             objClass.isAdd = true;
+                            redream.showTip('申请提交成功...');
+                            $('#cus-add-friend').text('已申请');
                             $(".wl-zhezhao").toggle();
                         }else if (res.code == 401){
                             redream.showTip('请先进行登录');
@@ -579,14 +581,14 @@
                     beforeSend: function () {
                         objClass.myFavorite.loading = true;
                     },
-                    complete: function () {
-                        objClass.myFavorite.loading = false;
-                    },
                     success: function (res) {
+                        objClass.myFavorite.loading = false;
                         if (res.code == 200) {
                             $('#cus-click-favorite').removeClass('icon-favor_light').addClass('icon-favor_fill_light').addClass('cus-favorite');
                             objClass.myFavorite.loading = true;
+                            redream.showTip('收藏成功...');
                         }else if(res.code == 401){
+
                             redream.showTip('请登录后操作...');
                         }
                     }
@@ -654,7 +656,7 @@
         })
     });
 
-    $('.cus-touser-main').on('click', function () {
+    $(document).on('click','.cus-touser-main', function () {
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
     });
 
@@ -717,9 +719,7 @@
 
                 $('.neirong').attr('placeholder','请输入评论内容');
             }
-
         });
-
     });
 </script>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -806,14 +806,12 @@
         }
     };
 </script>
-
 <script type="text/javascript">
     $(".wl-zhezhao").click(function(event) {
         var _con = $('.wl-zhe1'); // 设置目标区域
         if(!_con.is(event.target) && _con.has(event.target).length == 0) {
             $('.wl-zhezhao').hide(); //淡出消失
         }
-
     });
 </script>
 </html>

@@ -208,6 +208,14 @@
                 }
             }
             return len;
-        }
+        },
+
+        toReferer(){
+            if(document.referrer == ''){
+                window.location.href = '/weixin';
+            }else{
+                history.go(-1);
+            }
+        },
 }
 })(window,jQuery);

@@ -13,7 +13,7 @@
                                     <p class="wx-n3" style="bottom: 2px" >
                                         <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                         <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
-                                        <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                                        <span class="yh cus-to-usermain"  data-uid="{$val['user_id']}" >{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                         <span class="ck">{$val['hits']}+</span>
                                         <span class="pl">
                                             <?php if($val['comment_count'] == 0):?>
@@ -35,7 +35,7 @@
                                         <p class="wx-zhid">
                                             <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                             <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
-                                            <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                                            <span class="yh cus-to-usermain"  data-uid="{$val['user_id']}">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                             <span class="ck">{$val['hits']}+</span>
                                             <span class="pl">
                                                 <?php if($val['comment_count'] == 0):?>
@@ -56,7 +56,7 @@
                                         <p class="wx-n3" >
                                             <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                             <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
-                                            <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                                            <span class="yh cus-to-usermain"  data-uid="{$val['user_id']}">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                             <span class="ck">{$val['hits']}+</span>
                                             <span class="pl">
                                                 <?php if($val['comment_count'] == 0):?>
@@ -76,7 +76,7 @@
                                 <p class="wx-n3" style="bottom: 5px">
                                     <?php if($val['is_top'] == 1):?><span class="zd">置顶</span><?php endif;?>
                                     <?php if($val['recommended'] == 1):?><span class="zd">推荐</span><?php endif;?>
-                                    <span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                                    <span class="yh cus-to-usermain"  data-uid="{$val['user_id']}">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                     <span class="ck">{$val['hits']}+</span>
                                     <span class="pl">
                                         <?php if($val['comment_count'] == 0):?>
@@ -93,7 +93,8 @@
                         <div class="wx-b1 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}" >
                             <p class="wx-n2">{$val['title']}</p>
                             <video src="{$val['video_url']}" controls="controls"  poster="{$thumbnail['img_1']}"></video>
-                            <p class="wx-n3"><span class="yh">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
+                            <p class="wx-n3">
+                                <span class="yh cus-to-usermain"  data-uid="{$val['user_id']}">{$val['nickname']? $val['nickname'] : $val['mobile']}</span>
                                 <span class="ck">{$val['hits']}+</span>
                                 <span class="pl">
                                     <?php if($val['comment_count'] == 0):?>

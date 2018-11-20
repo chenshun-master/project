@@ -32,7 +32,7 @@
         .souBak{
             color: #7DB0E8 !important;
         }
-        .cus-article-fabulous,.cus-article-href{
+        .href,.cus-article-fabulous,.cus-article-href{
             cursor: pointer;
         }
     </style>
@@ -43,7 +43,7 @@
 <body style="background: #ffffff;">
 <div class="con">
     <div class="wx-top">
-        <a href="javascript:history.back(-1)" class="tb"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
+        <a onclick="redream.toReferer()"  class="tb href"></a>{$user_info['nickname']?:$user_info['mobile']|mobileFilter}
     </div>
     <div class="wx-t1">
         <img src="{$user_info['portrait']}"  onclick="redream.href('/weixin/user/main')" onerror='this.src="/static/image/user/tou.png"' />
