@@ -24,11 +24,6 @@ class BaseController extends Controller
 
         #配置Session作用域
         Session::prefix('weixin');
-
-
-        if(Request::isGet() && !Request::isAjax()){
-            $this->setPreviousPage();
-        }
     }
 
     /**
@@ -191,10 +186,5 @@ class BaseController extends Controller
     public function toLogin($redir = ''){
         #记录跳转路径
         return redirect('index/login');
-    }
-
-    public function setPreviousPage(){
-        Session::set('http_referer',Request::url(true));
-        Session::set('http_referer',Request::url(true));
     }
 }

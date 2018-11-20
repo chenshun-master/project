@@ -52,12 +52,13 @@ class Index extends BaseController
         return $this->fetch('index/loginReister');
     }
 
-        /**
-         * 医生主页页面
-         */
-        public function doctor(){
-            return $this->fetch('index/doctor');
-        }
+    /**
+     * 医生主页页面
+     */
+    public function doctor(){
+        return $this->fetch('index/doctor');
+    }
+
     /**
      * 用戶登录页
      */
