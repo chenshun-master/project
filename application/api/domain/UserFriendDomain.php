@@ -173,12 +173,29 @@ class UserFriendDomain
         return $isTrue ? true : false;
     }
 
-    public function getPrivateLetterList($user_id,$page,$page_size){
+    /**
+     * 获取私信记录
+     */
+    public function getPrivateLetterList($uid,$uid2,$record_id = 0){
+
+        $where = '';
+        $record_id = (int)$record_id;
+        if($record_id !== 0){
+            $where = "  where tmp_tab.id < {$record_id} ";
+        }
+
+        $sql = "SELECT * from (
+                    SELECT * from wl_chat_record where send_user_id = {$uid} and receive_user_id = {$uid2}
+                    UNION all
+                    SELECT * from wl_chat_record where send_user_id = {$uid2} and receive_user_id = {$uid}
+                ) tmp_tab {$where}  ORDER BY tmp_tab.id desc limit 15";
+
         return [
-            'rows'          =>0,
+            'rows'          =>Db::query($sql),
             'page'          =>1,
             'page_total'    =>1,
-            'total'         =>0
+            'total'         =>1
         ];
     }
+
 }

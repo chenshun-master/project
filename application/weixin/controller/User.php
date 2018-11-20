@@ -79,8 +79,12 @@ class User extends BaseController
      * 我的对话页面
      * @return mixed
      */
-    public function userDialogue()
-    {
+    public function userDialogue(){
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
+
+
 
         return $this->fetch('user/user_dialogue');
     }

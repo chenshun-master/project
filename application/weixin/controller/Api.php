@@ -11,12 +11,15 @@ use think\Request;
 class Api extends BaseController
 {
     private  $_uDomain;
+    private $_userFriendDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_uDomain = new \app\api\domain\UDomain();
+
+        $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
     }
 
     /**
@@ -44,5 +47,25 @@ class Api extends BaseController
 
         $data = $this->_uDomain->getHospitalListData($page,$page_size);
         return $this->returnData($data,'',200);
+    }
+
+
+    /**
+     * 获取用户对话记录
+     */
+    public function getDialogueList(Request $request){
+
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $uid      = $request->get('uid/d',0);
+        $record   = $request->get('record/d',0);
+
+
+        $res = $this->_userFriendDomain->getPrivateLetterList(39,43,0);
+
+
+        halt($res);
     }
 }

@@ -10,6 +10,7 @@
     <meta name="applicable-device" content="pc,mobile">
     <link rel="stylesheet" href="/static/css/user_dialogue.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <link rel="stylesheet" href="/static/css/function.css" />
     <title>Title</title>
 </head>
 <body style="background: #F2F2F2">
@@ -21,49 +22,23 @@
 </div>
 </header>
 
-<main style="padding-bottom: 150px">
-<div>
-    <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>
-    <div class="wl-conter" style="position: relative">
-        <div style="    position: absolute;left: 17px;top: 4px;">
-            <img src="/static/image/user/tou.png" alt="" width="40" height="40">
-        </div>
-            <div class="dbubble ">
-                <div class="dbubble-text">最后也是 是现实世界中的所有法律法规仍然在这个世界中适用，每一个人都要为自己的行为负责。 </div>
-                <div class="triangle-box triangle-box-left">
-                    <div class="triangle"></div>
-                </div>
-            </div>
-    </div>
-</div>
-    <div>
-        <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>
-        <div class="wl-conter"  style="position: relative">
-            <div style="    position: absolute;right: 17px;top: 4px;">
-                <img src="/static/image/user/tou.png" alt="" width="40" height="40">
-            </div>
-            <div class="dbubble1">
-                <div class="dbubble-text">最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。 </div>
-                <div class=" triangle-box triangle-box-right">
-                    <div class="triangle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section style="min-height: 300px;">
+
     <div>
         <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>
         <div class="wl-conter" style="position: relative">
             <div style="    position: absolute;left: 17px;top: 4px;">
                 <img src="/static/image/user/tou.png" alt="" width="40" height="40">
             </div>
-            <div class="dbubble ">
-                <div class="dbubble-text">最后也是 是现实世界中的所有法律法规仍然在这个世界中适用，每一个人都要为自己的行为负责。 </div>
-                <div class="triangle-box triangle-box-left">
-                    <div class="triangle"></div>
+                <div class="dbubble ">
+                    <div class="dbubble-text">最后也是 是现实世界中的所有法律法规仍然在这个世界中适用，每一个人都要为自己的行为负责。 </div>
+                    <div class="triangle-box triangle-box-left">
+                        <div class="triangle"></div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
+
     <div>
         <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>
         <div class="wl-conter"  style="position: relative">
@@ -79,16 +54,31 @@
         </div>
     </div>
 
-</main>
+    <div>
+        <p class="wl-time">11-9&nbsp;&nbsp;17:27</p>
+        <div class="wl-conter"  style="position: relative">
+            <div style="    position: absolute;right: 17px;top: 4px;">
+                <img src="/static/image/user/tou.png" alt="" width="40" height="40">
+            </div>
+            <div class="dbubble1">
+                <div class="dbubble-text">最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。 最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。最后也是 是现实世界中的dsfd s适用，每一个人都要为自己的行为负责。</div>
+                <div class=" triangle-box triangle-box-right">
+                    <div class="triangle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<footer>
-    <div class="wl-foot">
+<footer >
+    <div class="wl-foot" style="max-width: 750px !important;">
         <textarea type="text" placeholder="请输入聊天内容"  class="neirong"></textarea>
         <button class="wl-btn">发送</button>
     </div>
 </footer>
 </body>
 <script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script>
     $(function () {
         $('.wl-foot textarea').on('.kl1 input ', function () {
@@ -100,5 +90,66 @@
             }
         });
     });
+</script>
+
+<script type="text/javascript" >
+        var myObj = {
+            dialogue:{
+                listData: {
+                    loading: false,
+                    ini: false,
+                    page: 0,
+                    page_total: 1,
+                    page_size: 15,
+                },
+                template:function(data){
+                    return '';
+                },
+                loadList: function (me) {
+                    if (myObj.dialogue.listData.loading) {
+                        return false;
+                    }
+
+                    myObj.dialogue.listData.page++;
+                    if (myObj.dialogue.listData.ini == true) {
+                        if (myObj.dialogue.listData.page > myObj.dialogue.listData.page_total) {
+                            me.resetload();
+                            return false;
+                        }
+                    }
+
+                    $.ajax({
+                        url: "/weixin/api/getDialogueList",
+                        type: 'post',
+                        data: {page: myObj.dialogue.listData.page, page_size: myObj.dialogue.listData.page_size},
+                        dataType: 'json',
+                        beforeSend: function () {
+                            myObj.dialogue.listData.loading = true;
+                        },
+                        complete: function () {
+                            myObj.dialogue.listData.loading = false;
+                        },
+                        success: function (res) {
+                            if (res.code == 200) {
+                                if ( myObj.dialogue.listData.ini == false) {
+                                    myObj.dialogue.listData.ini = true;
+                                    myObj.dialogue.listData.page_total = res.data.page_total;
+                                    $('#cus-container-list').html('');
+                                }
+
+                                $.each(res.data.rows,function(k,val){
+                                    $('#cus-container-list').append(myObj.dialogue.template(val));
+                                });
+
+                                if ( myObj.dialogue.listData.page >=  myObj.dialogue.listData.page_total) {
+                                    me.noData();
+                                }
+                            }
+                            me.resetload();
+                        }
+                    });
+                }
+            }
+        };
 </script>
 </html>
