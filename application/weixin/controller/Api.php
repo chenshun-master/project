@@ -50,6 +50,7 @@ class Api extends BaseController
         $page_size = $request->get('page_size/d',15);
 
         $data = $this->_uDomain->getHospitalListData($page,$page_size);
+
         return $this->returnData($data,'',200);
     }
 

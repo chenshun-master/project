@@ -49,15 +49,15 @@
                 </div>
             </div>
             <div class="wl-top-yishneg">
-                <dl onclick="redream.href('/weixin/index/hospitalDertificate')">
+                <dl data-href="/weixin/index/hospitalDertificate/uid/{$uid}" class="href cus-click-href">
                     <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
                     <dt>医疗营业证件</dt>
                 </dl>
-                <dl onclick="redream.href('/weixin/index/detailsHospital')">
+                <dl data-href="/weixin/index/detailsHospital/uid/{$uid}" class="href cus-click-href">
                     <dd class="iconfont icon-renzheng3" style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医院认证</dt>
                 </dl>
-                <dl onclick="redream.href('/weixin/index/hospitalHonor')">
+                <dl data-href="/weixin/index/hospitalHonor/uid/{$uid}" class="href cus-click-href">
                     <dd class="iconfont icon-rongyu" style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>荣誉展示</dt>
                 </dl>
@@ -125,7 +125,7 @@
             <dd><i class="iconfont icon-yishengtubiao" style="font-size: 25px;"></i></dd>
             <dt>医生</dt>
         </dl>
-        <dl class="dianji" onclick="redream.href('/weixin/user/hospital')">
+        <dl class="dianji" onclick="redream.href('/weixin/index/hospital')">
             <dd><i class="iconfont icon-chakanyiyuan" style="font-size: 25px;"></i></dd>
             <dt>医院</dt>
         </dl>

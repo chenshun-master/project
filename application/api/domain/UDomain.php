@@ -57,11 +57,11 @@ class UDomain
      */
     public function getHospitalListData($page=1,$page_size=15){
         $obj = Db::name('user')->alias('user');
+        $obj->leftJoin('wl_hospital hospital','hospital.user_id = user.id');
         $obj->where('user.type', 4);
-        $obj->order('user.created_time', 'desc');
-        $obj->leftJoin('wl_hospital hospital','user.id = hospital.user_id');
         $total = $obj->count();
-        $obj->field("user.id,INSERT(user.mobile,4,4,'****') as mobile,user.nickname,user.profile,user.portrait,hospital.*");
+
+        $obj->field("hospital.user_id,hospital.hospital_name,hospital.type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num");
         $rows = $obj->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
