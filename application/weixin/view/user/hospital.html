@@ -8,25 +8,136 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
     <meta name="applicable-device" content="pc,mobile">
-    <link rel="stylesheet" href="/static/css/hospital.css">
+    <link rel="stylesheet" href="/static/css/doctor.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/dropload1.css" />
+    <link rel="stylesheet" href="/static/css/function.css" />
+    <title>微琳医美 - 医生</title>
 </head>
-<body>
-<header>
-    <div class="wl-top">
-        <div class="wl-top-neirong">
-            <div class="wl-top-touxiang">
-                <img src="/static/image/user/tou.png" alt="" width="70" height="70">
-            </div>
-        </div>
+<body style="background: #EEEEEE">
+<main  id="cus-container">
+    <div id="cus-container-list">
+
     </div>
-</header>
-<main>
-
 </main>
-<footer>
 
+<footer>
+    <div class="wl-foot" style="max-width: 750px">
+        <dl onclick="redream.href('/weixin/index/index')" class="dianji">
+            <dd> <i class="iconfont icon-home_light" style="font-size: 25px"></i></dd>
+            <dt>首页</dt>
+        </dl>
+        <dl class="dianji"  onclick="redream.href('/weixin/index/doctor')">
+            <dd><i class="iconfont icon-yishengtubiao" style="font-size: 25px;"></i></dd>
+            <dt >医生</dt>
+        </dl>
+        <dl class="dianji" >
+            <dd><i class="iconfont icon-yiyuan3" style="font-size: 25px;color:#7DB0E8"></i></dd>
+            <dt style="color:#7DB0E8">医院</dt>
+        </dl>
+        <dl onclick="redream.href('/weixin/user/main')" class="dianji">
+            <dd><i class="iconfont icon-my_light" style="font-size: 25px"></i></dd>
+            <dt>我的</dt>
+        </dl>
+    </div>
 </footer>
 </body>
+
+<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    var myObj = {
+        doctor:{
+            listData: {
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 15,
+            },
+            template:function(data){
+                var head_img      =  (data.portrait == null) ? '':data.portrait;
+                var hospital_name =  (data.hospital_name == null) ? '未加入医院机构':data.hospital_name;
+                return '<div class="wl-conter"  onclick="redream.href(\'/weixin/user/hospitalDetails\')">' +
+                    '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
+                    '            <div class="wl-pingjia">' +
+                    '                <dl>'+ data.real_name +'</dl>' +
+                    '                <dd>'+ hospital_name +'</dd>' +
+                    '                <dt><i class="iconfont icon-xingji"></i>' +
+                    '                    <i class="iconfont icon-xingji"></i>' +
+                    '                    <i class="iconfont icon-xingji"></i>' +
+                    '                    <i class="iconfont icon-xingji"></i>' +
+                    '                    <i class="iconfont icon-xingji"></i>' +
+                    '                    <span style="margin-left: 8px">评价 <span style="padding: 0 3px 0 0px">|</span></span>' +
+                    '                    <span>'+ data.case_num +'案例<span style="padding: 0 3px 0 3px;">|</span></span>' +
+                    '                    <span style="margin-top: 1px">'+ data.article_num+'文章</span>' +
+                    '                </dt>' +
+                    '                <span class="iconfont icon-yishengrenzheng wl-renzheng"   style="font-size: 25px"></span>' +
+                    '            </div>' +
+                    '        </div>';
+            },
+            loadList: function (me) {
+                if (myObj.doctor.listData.loading) {
+                    return false;
+                }
+
+                myObj.doctor.listData.page++;
+                if (myObj.doctor.listData.ini == true) {
+                    if (myObj.doctor.listData.page > myObj.doctor.listData.page_total) {
+                        me.resetload();
+                        return false;
+                    }
+                }
+
+                $.ajax({
+                    url: "/weixin/api/getDoctorList",
+                    type: 'post',
+                    data: {page: myObj.doctor.listData.page, page_size: myObj.doctor.listData.page_size},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.doctor.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.doctor.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if ( myObj.doctor.listData.ini == false) {
+                                myObj.doctor.listData.ini = true;
+                                myObj.doctor.listData.page_total = res.data.page_total;
+                                $('#cus-container-list').html('');
+                            }
+
+                            $.each(res.data.rows,function(k,val){
+                                $('#cus-container-list').append(myObj.doctor.template(val));
+                            });
+
+                            if ( myObj.doctor.listData.page >=  myObj.doctor.listData.page_total) {
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            }
+        }
+    };
+
+    $('#cus-container').dropload({
+        scrollArea: window,
+        loadUpFn: function (me) {
+            myObj.doctor.listData.loading = false;
+            myObj.doctor.listData.ini = false;
+            myObj.doctor.listData.page = 0;
+            myObj.doctor.listData.page_total = 1;
+            myObj.doctor.loadList(me);
+        },
+        loadDownFn: function (me) {
+            myObj.doctor.loadList(me);
+        }
+    });
+</script>
 </html>
