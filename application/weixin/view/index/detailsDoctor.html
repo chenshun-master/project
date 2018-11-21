@@ -10,6 +10,7 @@
     <meta name="applicable-device" content="pc,mobile">
     <link rel="stylesheet" href="/static/css/detailsDoctor.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <link rel="stylesheet" href="/static/css/function.css">
     <title>Title</title>
 </head>
 <body style="background: white">
@@ -20,24 +21,14 @@
     </div>
 </header>
 <main>
-    <div class="wl-rongyu">名字: <span>金发少年</span></div>
-    <div class="wl-rongyu">职称: <span>主治医师</span></div>
-    <div class="wl-rongyu">擅长项目: <span>眼科整形</span></div>
+    <div class="wl-rongyu">名字: <span>{$info['doctor_info']['real_name']}</span></div>
+    <div class="wl-rongyu">职称: <span>{$info['doctor_info']['duties']}</span></div>
+    <div class="wl-rongyu">擅长项目: <span>{$info['doctor_info']['speciality']}</span></div>
     <div class="wl-yishenjian">医生简介：</div>
     <div class="wl-jianjie">
-        <div>医生荣誉医生荣誉医生荣誉医
-            生荣誉医生荣誉医生荣誉医生荣誉医生荣誉医生荣誉医生荣誉
-        </div>
-        <p style="margin-top: 20px">个人经历:</p>
-        <div style="margin-top: 5px">医生荣誉医生荣誉医生荣誉医
-            生荣誉医生荣誉医生荣誉医生荣誉医生荣誉医生荣誉医生荣誉生
-            荣誉医生荣誉医生荣誉医生荣誉医生荣誉医生荣誉医生荣誉
-        </div>
-        <p style="margin-top: 20px">擅长项目:</p>
-        <div style="margin-top: 5px">眼部整形、鼻部整形、胸部整形、眼部整形、鼻部整形
-        </div>
-    </div>
 
+        {$info['doctor_info']['doctor_profile']}
+    </div>
 </main>
 
 </body>

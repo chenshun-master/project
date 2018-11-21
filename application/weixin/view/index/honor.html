@@ -19,26 +19,25 @@
         荣誉证书
     </div>
 </header>
-<main >
-    <div class="wl-nei1">
-        <p >医生荣誉证件</p>
-        <div class="wl-tupian">
-            <img src="http://img21.mtime.cn/CMS/Gallery/2011/11/09/124534.19687965_900.jpg" alt="" width="100%" >
+{if ( count($info) == 0)  }
+    <main>
+        <div class="wl-norongy">
+            <p class="iconfont icon-zhengshu " style="font-size: 80px;color: #7DB0E8;margin-top: 80px"></p >
+            <p style="color: #999999;font-size: 12px;margin-top: 20px">该医生还没有上传荣誉证书哦！</p >
         </div>
-    </div>
-    <div class="wl-nei1">
-        <div class="wl-tupian">
-            <img src="http://img21.mtime.cn/CMS/Gallery/2011/11/09/124534.19687965_900.jpg" alt="" width="100%" >
+    </main>
+{else /}
+    <main>
+        {foreach $info as $vo }
+        <div class="wl-nei1">
+            <p >医生荣誉证件</p>
+            <div class="wl-tupian">
+                <img src="{$vo['img_url']}" alt="" width="100%" >
+            </div>
         </div>
-    </div>
-</main>
-<main style="display: none">
-<div class="wl-norongy">
-    <p class="iconfont icon-zhengshu " style="font-size: 80px;color: #7DB0E8;margin-top: 80px"></p>
-    <p style="color: #999999;font-size: 12px;margin-top: 20px">这位医生还没有上传荣誉证书哦！</p>
-</div>
-
-</main>
+        {/foreach}
+    </main>
+{/if}
 </body>
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>

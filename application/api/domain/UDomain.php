@@ -75,15 +75,38 @@ class UDomain
      * 获取医生相关信息
      */
     public function getDoctorInfo($user_id){
-        $info = [];
+        $data = [];
 
         $obj = Db::name('user')->alias('user')->where('user.type',3)->where('user.id',$user_id);
         $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
         $obj->field('user.id as uid,user.mobile,user.portrait,doctor.id as doctor_id,doctor.real_name,doctor.duties,doctor.speciality,doctor.profile as doctor_profile');
         $info = $obj->find();
 
-        halt($info);
+        if($info){
+            $obj2 = Db::name('hospital')->alias('hospital');
+            $obj2->leftJoin('wl_doctor_hospital dh','dh.hospital_id = hospital.id' );
+            $obj2->where('dh.doctor_id',$info['doctor_id']);
+            $obj2->where('dh.status',1);
+            $infos = $obj2->select();
 
-        return $info;
+            $data['doctor_info'] = $info;
+            $data['hospital_info'] = $infos;
+        }
+        return $data;
+    }
+
+    /**
+     * 获取医生资格证书
+     */
+    public function getDoctorCertificate($user_id){
+        return Db::name('auth')->where('user_id',$user_id)->where('type',2)->field('id as auth_id,qualification,practice_certificate')->find();
+    }
+
+
+    /**
+     * 获取医生资格证书
+     */
+    public function getUserHonorCertificate($user_id){
+        return Db::name('honor_certificate')->where('user_id',$user_id)->select();
     }
 }
