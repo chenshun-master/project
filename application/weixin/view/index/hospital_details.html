@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="/static/css/hospital_details.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <title>Title</title>
+    <style>
+        .ckgd{
+            width: 100%;
+            min-height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #222222;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
 <header>
@@ -96,24 +106,12 @@
     <!--<div style="clear: both"></div>-->
     <!--</div>-->
     <!--</div>-->
-    <div>
+    <div id="wl-box" style="display: none">
         <p class="wl-biaoti">我的文章</p>
-        <div class="wl-nei1">
-            <div class="wl-neirong1">
-                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
-            </div>
-            <div class="wl-neirong2">
-                <img src="" alt="" width="128" height="90">
-            </div>
+        <div class="wl-conter">
+
         </div>
-        <div class="wl-nei1">
-            <div class="wl-neirong1">
-                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
-            </div>
-            <div class="wl-neirong2">
-                <img src="" alt="" width="128" height="90">
-            </div>
-        </div>
+        <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
     </div>
 </main>
 
@@ -140,9 +138,97 @@
 </body>
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script>
+<script type="text/javascript">
+    $(document).on('click','.cus-click-href',function(){
+        window.location.href = $(this).data('href');
+    });
+    var objClass = {
+        uid:{$uid},
+        recommend:{
+            conf:{
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            template:{
+                template1:function(data,thumbnail){
+                    return   '<div class="wl-nei1">'     +
+                        '  <div class="wl-neirong1">' +data.title+'</div>'+
+                        ' <div class="wl-neirong2">'+
+                        '  <img src="'+thumbnail+'" alt="" width="128" height="90">'+
+                        ' </div>'+
+                        '  </div>'
+                },
+                template2:function(data,thumbnail){
+                    return   ' <div class="wl-wenzhnga">' +
+                        ' <div class="wl-deml">' +data.title+'</div>'  +
+                        '</div>' +
+                        '</div>';
+                },
+            },
+            loadList:function(){
+
+                if(objClass.recommend.conf.loading){
+                    return false;
+                }
+
+                objClass.recommend.conf.page++;
+                if(objClass.recommend.conf.page > objClass.recommend.conf.page_total){
+                    $('#cus-recommend-loading-btn').text('没有了');
+                    return false;
+                }
+
+                $.ajax({
+                    url: "/weixin/Article/getUserPublishArticle",
+                    type: 'post',
+                    data: {user_id: objClass.uid,page: objClass.recommend.conf.page, page_size: objClass.recommend.conf.page_size},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.recommend.conf.loading = true;
+                        $('#cus-recommend-loading-btn').text('加载中...');
+                    },
+                    complete: function () {
+                        objClass.recommend.conf.loading = false;
+                        $('#cus-recommend-loading-btn').text('查看更多');
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (objClass.recommend.conf.ini == false) {
+                                objClass.recommend.conf.ini = true;
+                                objClass.recommend.conf.page_total = res.data.page_total;
+                                if (res.data.page_total == 0) {
+
+                                    $('#wl-box').hide();
+                                } else {
+                                    $('#wl-box').show();
+                                }
+                            }
+
+                            $.each(res.data.rows, function (k, val) {
+                                var thumbnail = '';
+                                if(val.thumbnail != '' && val.thumbnail != undefined){
+                                    var obj  = $.parseJSON(val.thumbnail);
+                                    thumbnail = obj.img_1;
+                                    $('.wl-conter').append(objClass.recommend.template.template1(val,thumbnail));
+                                }else{
+                                    $('.wl-conter').append(objClass.recommend.template.template2(val));
+                                }
+
+                            });
+                        }
+                    }
+                });
+            },
+
+        }
+    };
+
+    objClass.recommend.loadList();
+
+
 
 </script>
 </html>

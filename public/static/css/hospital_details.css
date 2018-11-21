@@ -217,6 +217,26 @@ font-size: 13px;
     right: 0;
     margin: 0 auto;
 }
+.wl-wenzhnga{
+    width: 100%;
+    min-height: 30px;
+    background: white;
+    margin-bottom: 10px;
+
+}
+.wl-deml{
+    width: 95%;
+    min-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: #1F1F1F;
+    font-size: 17px;
+    margin: 0 auto;
+    padding: 5px 0 5px 0;
+}
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{
         color: #1D1D1D;

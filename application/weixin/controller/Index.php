@@ -450,7 +450,7 @@ class Index extends BaseController
      * @return mixed
      */
     public function hospitalDetails(){
-
+           $this->assign('uid',42);
         return $this->fetch('index/hospital_details');
     }
 
