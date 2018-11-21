@@ -17,25 +17,30 @@ a{text-decoration: none;color: #221815;display: block;}
     text-align: center;
     border-bottom: 1px solid #F1F1F1;
     position: relative;
-    background: white;
 }
-.wl-nei1{
+.wl-rongyu{
     width: 100%;
-    min-height: 200px;
-    text-align: center;
+    min-height: 33px;
+    line-height: 33px;
+    color: #1B1B1B;
+    font-size: 14px;
+    border-bottom: 1px solid #F1F1F1;
+    padding: 0 15px 0 15px;
+}
+.wl-yishenjian{
+    width: 16%;
+    min-height: 20px;
+    color: #1B1B1B;
+    font-size: 14px;
+    float: left;
+    padding: 10px 0 0 15px;
+
+}
+.wl-jianjie{
+    width: 74%;
+    min-height: 400px;
+    float: left;
     font-size: 14px;
     color: #1B1B1B;
-    background-color: white;
-    padding: 10px 0 15px 0;
-    border-bottom: 12px solid #EEEEEE;
-
-}
-.wl-tupian{
-    width: 90%;
-    min-height:100px;
-    margin: 0 auto;
-    margin-top: 10px;
-}
-@media screen and (min-width: 418px) {
-
+    padding: 10px 10px  0 0px;
 }

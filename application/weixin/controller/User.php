@@ -114,6 +114,34 @@ class User extends BaseController
 
             return $this->fetch('user/hospital_details');
         }
+         /**
+                 * 医院资料详情页面
+                 * @return mixed
+                 */
+                public function detailsHospital()
+                {
+
+                    return $this->fetch('user/details_hospital');
+                }
+                /**
+              * 医院证件详情页面
+                * @return mixed
+                  */
+                 public function hospitalDertificate()
+                {
+
+                 return $this->fetch('user/hospital_certificate');
+               }
+                  /**
+                  * 医院荣誉证书详情页面
+                     * @return mixed
+                    */
+                    public function hospitalHonor()
+                   {
+
+                    return $this->fetch('user/hospital_honor');
+                    }
+
       /**
          * 我的医生详情页面
          * @return mixed
