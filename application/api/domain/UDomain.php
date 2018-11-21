@@ -94,4 +94,19 @@ class UDomain
         }
         return $data;
     }
+
+    /**
+     * 获取医生资格证书
+     */
+    public function getDoctorCertificate($user_id){
+        return Db::name('auth')->where('user_id',$user_id)->where('type',2)->field('id as auth_id,qualification,practice_certificate')->find();
+    }
+
+
+    /**
+     * 获取医生资格证书
+     */
+    public function getUserHonorCertificate($user_id){
+        return Db::name('honor_certificate')->where('user_id',$user_id)->select();
+    }
 }

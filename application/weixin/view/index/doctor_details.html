@@ -34,15 +34,15 @@
                 </div>
             </div>
             <div class="wl-top-yishneg">
-                 <dl data-href="/weixin/index/detailsDoctor/uid/{$uid}">
+                 <dl data-href="/weixin/index/detailsDoctor/uid/{$uid}" class="href cus-click-href">
                      <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
                      <dt>医生资料</dt>
                  </dl>
-                <dl  data-href="/weixin/index/doctorCertificate/uid/{$uid}">
+                <dl  data-href="/weixin/index/doctorCertificate/uid/{$uid}" class="href cus-click-href">
                     <dd class="iconfont icon-zhengjian"  style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生证件</dt>
                 </dl>
-                <dl  data-href="/weixin/index/honor/uid/{$uid}">
+                <dl  data-href="/weixin/index/honor/uid/{$uid}" class="href cus-click-href">
                     <dd class="iconfont icon-rongyu"  style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生荣誉</dt>
                 </dl>
@@ -121,6 +121,10 @@
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(document).on('click','.cus-click-href',function(){
+        window.location.href = $(this).data('href');
+    });
+
     var myObj = {
         uid:{$uid},
     };

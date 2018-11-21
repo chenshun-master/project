@@ -15,7 +15,6 @@ class Index extends BaseController
     {
         parent::__construct($app);
         $this->articleDomain = new \app\api\domain\ArticleDomain();
-
     }
 
     /**
@@ -493,11 +492,10 @@ class Index extends BaseController
         }
 
         $uDomain = new \app\api\domain\UDomain();
-
         $info = $uDomain->getDoctorInfo($uid);
         $statistics = $this->articleDomain->getArticleStatisticsData($uid);
 
-        $this->assign('info',$uid);
+        $this->assign('info',$info);
         $this->assign('statistics',$statistics);
         $this->assign('uid',$uid);
 
@@ -508,7 +506,16 @@ class Index extends BaseController
      * 医生资料详情页面
      * @return mixed
      */
-    public function detailsDoctor(){
+    public function detailsDoctor(Request $request){
+        $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
+
+        $uDomain = new \app\api\domain\UDomain();
+        $info = $uDomain->getDoctorInfo($uid);
+        $this->assign('info',$info);
 
         return $this->fetch('index/detailsDoctor');
     }
@@ -517,7 +524,17 @@ class Index extends BaseController
      * 显示医生证件页面
      * @return mixed
      */
-    public function doctorCertificate(){
+    public function doctorCertificate(Request $request){
+        $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
+
+        $uDomain = new \app\api\domain\UDomain();
+        $info = $uDomain->getDoctorCertificate($uid);
+
+        $this->assign('info',$info);
         return $this->fetch('index/doctor_certificate');
     }
 
@@ -525,7 +542,18 @@ class Index extends BaseController
      * 显示医生荣誉证书页面
      * @return mixed
      */
-    public function honor(){
+    public function honor(Request $request){
+        $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
+
+        $uDomain = new \app\api\domain\UDomain();
+        $info = $uDomain->getUserHonorCertificate($uid);
+
+        $this->assign('info',$info);
+
         return $this->fetch('index/honor');
     }
 
