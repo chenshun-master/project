@@ -436,87 +436,95 @@ class Index extends BaseController
     public function error404(){
         return $this->fetch('error/loss');
     }
-          /**
-             * 我的医院页面
-             * @return mixed
-             */
-            public function hospital()
-            {
 
-                return $this->fetch('index/hospital');
-            }
-          /**
-         * 我的医院详情页面
-         * @return mixed
-         */
-        public function hospitalDetails()
-        {
+    /**
+     * 我的医院页面
+     * @return mixed
+     */
+    public function hospital(){
+        return $this->fetch('index/hospital');
+    }
 
-            return $this->fetch('index/hospital_details');
-        }
-         /**
-                 * 医院资料详情页面
-                 * @return mixed
-                 */
-                public function detailsHospital()
-                {
+    /**
+     * 我的医院详情页面
+     * @return mixed
+     */
+    public function hospitalDetails(){
 
-                    return $this->fetch('index/details_hospital');
-                }
-                /**
-              * 医院证件详情页面
-                * @return mixed
-                  */
-                 public function hospitalDertificate()
-                {
+        return $this->fetch('index/hospital_details');
+    }
 
-                 return $this->fetch('index/hospital_certificate');
-               }
-                  /**
-                  * 医院荣誉证书详情页面
-                     * @return mixed
-                    */
-                    public function hospitalHonor()
-                   {
+     /**
+     * 医院资料详情页面
+     * @return mixed
+     */
+    public function detailsHospital(){
+        return $this->fetch('index/details_hospital');
+    }
 
-                    return $this->fetch('index/hospital_honor');
-                    }
+    /**
+     * 医院证件详情页面
+     * @return mixed
+     */
+    public function hospitalDertificate(){
 
-      /**
-         * 我的医生详情页面
-         * @return mixed
-         */
-        public function doctorDetails()
-        {
+        return $this->fetch('index/hospital_certificate');
+    }
 
-            return $this->fetch('index/doctor_details');
-        }
+    /**
+     * 医院荣誉证书详情页面
+     * @return mixed
+     */
+    public function hospitalHonor(){
 
-        /**
-         * 医生资料详情页面
-         * @return mixed
-         */
-        public function detailsDoctor()
-        {
+        return $this->fetch('index/hospital_honor');
+    }
 
-            return $this->fetch('index/detailsDoctor');
-        }
-        /**
-         * 显示医生证件页面
-         * @return mixed
-         */
-        public function doctorCertificate()
-        {
-            return $this->fetch('index/doctor_certificate');
-        }
-          /**
-          * 显示医生荣誉证书页面
-          * @return mixed
-           */
-           public function honor()
-            {
-                return $this->fetch('index/honor');
-             }
+    /**
+     * 我的医生详情页面
+     * @return mixed
+     */
+    public function doctorDetails(Request $request){
+
+        $uid = $request->param('uid/d',0);
+
+        $uDomain = new \app\api\domain\UDomain();
+
+//        $info = $uDomain->getDoctorInfo($uid);
+//        halt($info);
+//
+//        $this->articleDomain->getArticleStatisticsData($uid);
+
+
+        $this->assign('uid',$uid);
+        return $this->fetch('index/doctor_details');
+    }
+
+    /**
+     * 医生资料详情页面
+     * @return mixed
+     */
+    public function detailsDoctor(){
+
+        return $this->fetch('index/detailsDoctor');
+    }
+
+    /**
+     * 显示医生证件页面
+     * @return mixed
+     */
+    public function doctorCertificate(){
+        return $this->fetch('index/doctor_certificate');
+    }
+
+    /**
+     * 显示医生荣誉证书页面
+     * @return mixed
+     */
+    public function honor(){
+        return $this->fetch('index/honor');
+    }
+
     /**
      * 发送短信验证码
      * @param  string  mobile  手机号

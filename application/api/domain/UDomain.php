@@ -70,4 +70,20 @@ class UDomain
             'total'         =>$total
         ];
     }
+
+    /**
+     * 获取医生相关信息
+     */
+    public function getDoctorInfo($user_id){
+        $info = [];
+
+        $obj = Db::name('user')->alias('user')->where('user.type',3)->where('user.id',$user_id);
+        $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
+        $obj->field('user.id as uid,user.mobile,user.portrait,doctor.id as doctor_id,doctor.real_name,doctor.duties,doctor.speciality,doctor.profile as doctor_profile');
+        $info = $obj->find();
+
+        halt($info);
+
+        return $info;
+    }
 }
