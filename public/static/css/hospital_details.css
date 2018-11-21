@@ -14,6 +14,7 @@ a{text-decoration: none;color: #221815;display: block;}
     min-height: 298px;
     background:url("/static/image/user/bj-1.png")no-repeat;
     padding-top: 40px;
+    background-size: 100% 100%;
 }
 .wl-top-neirong{
     width: 90%;
@@ -44,6 +45,7 @@ a{text-decoration: none;color: #221815;display: block;}
     padding-top: 50px;
 }
 .wl-top-yisheng dd{
+    margin-top: 10px;
     color: #1D1D1D;
     font-size: 14px;
 }
@@ -54,7 +56,7 @@ a{text-decoration: none;color: #221815;display: block;}
     background: #7DB0E8;
     color: #EEEEEE;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 14px;
     margin-top: 10px;
     text-align: center;
 }
@@ -207,6 +209,13 @@ font-size: 13px;
     font-size: 10px;
     color: #333333;
     margin-top: 5px;
+}
+.wl-renz{
+    position: absolute;
+    top: -18px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{

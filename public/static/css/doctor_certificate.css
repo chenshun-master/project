@@ -36,6 +36,11 @@ a{text-decoration: none;color: #221815;display: block;}
     margin: 0 auto;
     margin-top: 10px;
 }
+.wl-norongy{
+    width: 100%;
+    min-height: 500px;
+    text-align: center;
+}
 @media screen and (min-width: 418px) {
 
 }

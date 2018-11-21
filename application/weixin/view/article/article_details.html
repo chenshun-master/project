@@ -28,13 +28,10 @@
             border-radius: 10px;
             z-index: 999999999;
         }
-
         .cus-blue {
             color: #7DB0E8 !important;
         }
-
         .cus-favorite{color: #7db0e8 !important;}
-
         .wl-zhez {
             background: #FFFFFF;
             display: none;
@@ -88,7 +85,9 @@
                 <span style="float: left;margin-left: 10%">分享微信</span></button>
         <div style="display: none;" id="cus-recommend">
             <p class="wx-xg">相关推荐</p>
-            <div id="cus-recommend-content"></div>
+            <div id="cus-recommend-content">
+
+            </div>
             <p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>
         </div>
 
@@ -112,7 +111,6 @@
         <?php else:?>
         <dt class="iconfont icon-favor_light " id="cus-click-favorite"   style="font-size: 23px"></dt>
         <?php endif;?>
-
     </div>
         <div class="marsk-container">
             <div class="tkyy_con" style="border: none;">
@@ -126,7 +124,6 @@
 
             </div>
         </div>
-
         <div class="wl-zhez">
             <div class="kl1 wl-zl" style="">
                 <textarea type="text" placeholder="请输入评论内容" class="neirong" style="resize: none;text-indent: 2px"></textarea>
