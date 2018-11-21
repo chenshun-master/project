@@ -89,11 +89,11 @@ class ChuangRuiSms
         Log::info("短信发送日志==========》{$result}   请求数据{$requestData}");
 
         $arr = json_decode($result,true);
-        if($arr['code'] !== 0 || $arr['code'] !== '0'){
-            return false;
+        if($arr['code'] == 0){
+            return true;
         }
 
-        return true;
+        return false;
     }
 
 }
