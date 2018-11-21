@@ -12,6 +12,7 @@ class Api extends BaseController
 {
     private  $_uDomain;
     private $_userFriendDomain;
+    private  $_userDomain;
 
     public function __construct(App $app = null)
     {
@@ -20,6 +21,9 @@ class Api extends BaseController
         $this->_uDomain = new \app\api\domain\UDomain();
 
         $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
+
+
+        $this->_userDomain = new \app\api\domain\UserDomain();
     }
 
     /**
@@ -61,6 +65,20 @@ class Api extends BaseController
         $uid      = $request->param('uid',0);
         $record   = $request->param('record_id',0);
         $data = $this->_userFriendDomain->getPrivateLetterList(39,43,$record);
+        $user_id = $this->getUserId();
+        if($data['rows']){
+            $ids = [];
+            foreach ($data['rows'] as $val){
+                if($val['receive_user_id'] == $user_id && $val['is_read'] == 1){
+                    $ids[] = $val['id'];
+                }
+            }
+
+            if($ids){
+                $this->_userFriendDomain->uploadPrivateLetterStatus($user_id,$ids);
+            }
+        }
+
         return $this->returnData($data,'',200);
     }
 

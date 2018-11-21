@@ -184,7 +184,6 @@ class UserFriendDomain
      * 获取私信记录
      */
     public function getPrivateLetterList($uid,$uid2,$record_id = 0){
-
         $where = '';
         $record_id = (int)$record_id;
         if($record_id != 0){
@@ -208,4 +207,40 @@ class UserFriendDomain
         ];
     }
 
+    /**
+     * 更新用户私信的阅读状态
+     * @param $receive_user_id
+     * @param array $ids
+     */
+    public function uploadPrivateLetterStatus($receive_user_id , $ids = []){
+        Db::name('chat_record')->where('id','in', $ids)->where('receive_user_id', $receive_user_id)->update(['is_read' => 2]);
+    }
+
+    /**
+     * 获取私信消息通知列表
+     */
+    public function getMessageListData($receive_user_id){
+        $sql = "select tmp_tab.*,user.nickname,user.portrait from (
+                
+                select tmp.send_user_id as uid,tmp.content,tmp.is_read,tmp.created_time,(SELECT count(1) FROM wl_chat_record r2 WHERE tmp.send_user_id = r2.send_user_id  and r2.is_read = 1) AS unread_num 
+                from (SELECT send_user_id,content,is_read,created_time FROM wl_chat_record WHERE receive_user_id = {$receive_user_id} ORDER BY id desc) tmp GROUP BY tmp.send_user_id
+                
+                UNION ALL
+                
+                select tmp.receive_user_id as uid,tmp.content,tmp.is_read,tmp.created_time,0 AS unread_num 
+                from (SELECT receive_user_id,content,is_read,created_time FROM wl_chat_record WHERE send_user_id = {$receive_user_id} ORDER BY id desc) tmp GROUP BY tmp.receive_user_id
+                
+                ) tmp_tab 
+                
+                LEFT JOIN wl_user user on user.id = tmp_tab.uid
+                GROUP BY tmp_tab.uid";
+
+        $rows = Db::query($sql);
+        return [
+            'rows'          =>$rows,
+            'page'          =>1,
+            'page_total'    =>1,
+            'total'         =>count($rows)
+        ];
+    }
 }

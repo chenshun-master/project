@@ -91,6 +91,8 @@ class User extends BaseController
         $this->assign('isFriend',$isFriend ? 1 : 2);
         $this->assign('uid',$uid);
         $this->assign('uInfo',$this->_userDomain->getUserInfo($uid));
+        $this->assign('portrait',$this->_userDomain->getUserInfo($this->getUserId())['portrait']);
+
         return $this->fetch('user/user_dialogue');
     }
      /**
@@ -636,7 +638,14 @@ class User extends BaseController
         $page_size  = (int)$request->param('page_size',15);
 
         $userFriendDomain = new \app\api\domain\UserFriendDomain();
-        $data = $userFriendDomain->getPrivateLetterList($this->getUserId(),$page,$page_size);
+        $data = $userFriendDomain->getMessageListData($this->getUserId());
+
+        if($data['rows']){
+            foreach ($data['rows'] as $k=>$val){
+                $data['rows'][$k]['created_time'] = formatTime(strtotime($val['created_time']));
+            }
+        }
+
         return $this->returnData($data,'',200);
     }
 

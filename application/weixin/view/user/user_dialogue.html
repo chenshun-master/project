@@ -56,6 +56,7 @@
 <script type="text/javascript" >
     var myObj = {
         uid:{$uid},
+        myPortrait:"{$portrait}",
         dialogue:{
             listData: {
                 loading: false,
@@ -167,7 +168,7 @@
                 },
                 success: function (res) {
                     if (res.code == 200) {
-                        $('#wl-container-list').append(myObj.dialogue.templateRight(res.data));
+                        $('#wl-container-list').append(myObj.dialogue.templateRight({send_user_portrait:myObj.myPortrait,content:res.data.content,created_time:res.data.created_time}));
                         $('#cus-send-content').val('');
                         window.scrollTo(0, $(document).height());
                     }else{

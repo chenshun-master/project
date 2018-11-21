@@ -47,15 +47,8 @@ class Test  extends Controller
 //        halt($list);
 
 
-//        $model = new UserFriendDomain();
-//        $res = $model->getFriendsApplyList(17);
-//        halt($res);
-
-//        halt(app()->rootPath);
-
-//        halt(__ROOT__);
-
-
+        $model = new UserFriendDomain();
+        $model->getMessageListData(39);
 
     }
 
