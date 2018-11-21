@@ -15,6 +15,7 @@ class Index extends BaseController
     {
         parent::__construct($app);
         $this->articleDomain = new \app\api\domain\ArticleDomain();
+
     }
 
     /**
@@ -485,18 +486,21 @@ class Index extends BaseController
      * @return mixed
      */
     public function doctorDetails(Request $request){
-
         $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
 
         $uDomain = new \app\api\domain\UDomain();
 
-//        $info = $uDomain->getDoctorInfo($uid);
-//        halt($info);
-//
-//        $this->articleDomain->getArticleStatisticsData($uid);
+        $info = $uDomain->getDoctorInfo($uid);
+        $statistics = $this->articleDomain->getArticleStatisticsData($uid);
 
-
+        $this->assign('info',$uid);
+        $this->assign('statistics',$statistics);
         $this->assign('uid',$uid);
+
         return $this->fetch('index/doctor_details');
     }
 

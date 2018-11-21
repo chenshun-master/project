@@ -34,15 +34,15 @@
                 </div>
             </div>
             <div class="wl-top-yishneg">
-             <dl  onclick="redream.href('/weixin/index/detailsDoctor')">
-                 <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
-                 <dt>医生资料</dt>
-             </dl>
-                <dl  onclick="redream.href('/weixin/index/doctorCertificate')">
+                 <dl data-href="/weixin/index/detailsDoctor/uid/{$uid}">
+                     <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
+                     <dt>医生资料</dt>
+                 </dl>
+                <dl  data-href="/weixin/index/doctorCertificate/uid/{$uid}">
                     <dd class="iconfont icon-zhengjian"  style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生证件</dt>
                 </dl>
-                <dl  onclick="redream.href('/weixin/index/honor')">
+                <dl  data-href="/weixin/index/honor/uid/{$uid}">
                     <dd class="iconfont icon-rongyu"  style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生荣誉</dt>
                 </dl>

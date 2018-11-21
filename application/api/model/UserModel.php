@@ -21,9 +21,17 @@ class UserModel extends Model
         return  self::where('id',$user_id)->find();
     }
 
-
     public function getMobile($user_id){
         return  self::where('id',$user_id)->value('mobile');
     }
 
+    /**
+     * 判断ID是否存在
+     * @return bool
+     */
+    public function findIdExists($user_id){
+        $id = self::where('id',$user_id)->value('id');
+
+        return $id ? true : false;
+    }
 }
