@@ -81,3 +81,8 @@ color: #7DB0E8;
     height: 41px;
     border-radius: 50%;
 }
+.wl-biao{
+    position: absolute;
+    top: 40px;
+    left: 38px;
+}

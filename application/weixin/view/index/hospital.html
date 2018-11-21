@@ -63,6 +63,7 @@
                 var hospital_name =  (data.hospital_name == null) ? '未加入医院机构':data.hospital_name;
                 return '<div class="wl-conter"  onclick="redream.href(\'/weixin/index/hospitalDetails\')">' +
                     '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
+                    '<div style="position: relative"><span class="iconfont icon-renzheng1 wl-biao" style="font-size: 20px;color: #F19149"></span></div>'+
                     '            <div class="wl-pingjia">' +
                     '                <dl>'+ data.real_name +'</dl>' +
                     '                <dd>'+ hospital_name +'</dd>' +

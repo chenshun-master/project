@@ -81,3 +81,8 @@ a{text-decoration: none;color: #221815;display: block;}
     height: 41px;
     border-radius: 50%;
 }
+.wl-biao{
+    position: absolute;
+    top: 40px;
+    left: 38px;
+}
