@@ -96,6 +96,16 @@ class User extends BaseController
         $this->assign('uInfo',$this->_userDomain->getUserInfo($uid));
         return $this->fetch('user/user_dialogue');
     }
+     /**
+         * 我的医院页面
+         * @return mixed
+         */
+        public function hospital()
+        {
+
+            return $this->fetch('user/hospital');
+        }
+
    /**
      * 消息通知页面
      * @return mixed
