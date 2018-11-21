@@ -49,7 +49,6 @@ class Api extends BaseController
         return $this->returnData($data,'',200);
     }
 
-
     /**
      * 获取用户对话记录
      */

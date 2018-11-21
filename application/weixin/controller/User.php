@@ -88,10 +88,7 @@ class User extends BaseController
 
         $isFriend = $this->_userFriendDomain->checkFriend($uid,$this->getUserId());
 
-        if(!$isFriend){
-            halt('你们还不是好友还不能私信');
-        }
-
+        $this->assign('isFriend',$isFriend ? 1 : 2);
         $this->assign('uid',$uid);
         $this->assign('uInfo',$this->_userDomain->getUserInfo($uid));
         return $this->fetch('user/user_dialogue');

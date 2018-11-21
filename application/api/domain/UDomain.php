@@ -27,7 +27,8 @@ class UDomain
         $obj->order('user.created_time', 'desc');
 
         $total = $obj->count();
-        $field = 'doctor.real_name,
+        $field = 'user.portrait,
+                  doctor.real_name,
                   doctor.user_id,
                   hospital.id as hospital_id,
                   hospital.hospital_name,

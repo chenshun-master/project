@@ -191,11 +191,14 @@ class UserFriendDomain
             $where = "  where tmp_tab.id < {$record_id} ";
         }
 
-        $sql = "SELECT * from (
+        $sql = "SELECT tmp_tab.*,user1.portrait as send_user_portrait,user2.portrait as receive_user_portrait from (
                     SELECT * from wl_chat_record where send_user_id = {$uid} and receive_user_id = {$uid2}
                     UNION all
                     SELECT * from wl_chat_record where send_user_id = {$uid2} and receive_user_id = {$uid}
-                ) tmp_tab {$where}  ORDER BY tmp_tab.id desc limit 10";
+                ) tmp_tab
+                LEFT JOIN wl_user user1 on user1.id = tmp_tab.send_user_id
+                LEFT JOIN wl_user user2 on user2.id = tmp_tab.receive_user_id
+                {$where}  ORDER BY tmp_tab.id desc limit 10";
 
         return [
             'rows'          =>Db::query($sql),

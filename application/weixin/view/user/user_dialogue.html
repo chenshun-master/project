@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/user_dialogue.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/css/dropload1.css" />
+    <link rel="stylesheet" href="/static/css/function.css" />
     <title>微琳医美</title>
     <style>
         .dropload-down{display: none;}
@@ -20,7 +21,7 @@
 <header>
 
 <div class="wl-top">
-    <i class="iconfont icon-back_light"></i>
+    <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
     {$uInfo['nickname']}
 </div>
 </header>
@@ -33,7 +34,7 @@
 
 <footer>
     <div class="wl-foot" style="max-width: 750px">
-        <textarea type="text" placeholder="请输入聊天内容"  class="neirong" id="cus-send-content"></textarea>
+        <textarea type="text"  {if ( $isFriend == 1) }  placeholder="请输入聊天内容"  {else /}  placeholder="禁止私信"  disabled  {/if}                 class="neirong" id="cus-send-content"></textarea>
         <button class="wl-btn" id="cus-send-btn">发送</button>
     </div>
 </footer>
@@ -41,7 +42,7 @@
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" >
     $('.wl-foot textarea').on('.kl1 input ', function () {
         if (($.trim($('.neirong').val()) !== "")) {
@@ -69,7 +70,7 @@
                     '            <p class="wl-time">'+ data.created_time +'</p>' +
                     '            <div class="wl-conter" style="position: relative">' +
                     '                <div style="    position: absolute;left: 17px;top: 4px;">' +
-                    '                    <img src="/static/image/user/tou.png" alt="" width="40" height="40">' +
+                    '                    <img src="'+ data.send_user_portrait +'" alt="" width="40" height="40">' +
                     '                </div>' +
                     '                    <div class="dbubble ">' +
                     '                        <div class="dbubble-text">'+ data.content +' </div>' +
@@ -85,8 +86,8 @@
                     '            <p class="wl-time">'+ data.created_time +'</p>' +
                     '            <div class="wl-conter"  style="position: relative">' +
                     '                <div style="    position: absolute;right: 17px;top: 4px;">' +
-                    '                    <img src="/static/image/user/tou.png" alt="" width="40" height="40">' +
-                    '                </div>' +
+                    '                    <img src="'+ data.send_user_portrait +'" alt="" width="40" height="40">' +
+                    '                </div>'+
                     '                <div class="dbubble1">' +
                     '                    <div class="dbubble-text">'+ data.content +'</div>' +
                     '                    <div class=" triangle-box triangle-box-right">' +
@@ -185,18 +186,23 @@
     });
 
 
-    $('#wl-container').dropload({
-        scrollArea: window,
-        loadUpFn: function (me) {
-            myObj.dialogue.listData.loading = false;
-            myObj.dialogue.listData.ini = false;
-            myObj.dialogue.listData.page = 0;
-            myObj.dialogue.listData.page_total = 1;
-            myObj.dialogue.loadList(me);
-        },
-        loadDownFn: function (me) {
-            myObj.dialogue.loadList(me);
-        }
-    });
+
+
+    {if $isFriend == 1 }
+        $('#wl-container').dropload({
+            scrollArea: window,
+            loadUpFn: function (me) {
+                myObj.dialogue.listData.loading = false;
+                myObj.dialogue.listData.ini = false;
+                myObj.dialogue.listData.page = 0;
+                myObj.dialogue.listData.page_total = 1;
+                myObj.dialogue.loadList(me);
+            },
+            loadDownFn: function (me) {
+                myObj.dialogue.loadList(me);
+            }
+        });
+    {/if}
+
 </script>
 </html>
