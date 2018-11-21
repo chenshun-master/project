@@ -112,6 +112,9 @@ a{text-decoration: none;color: #221815;display: block;}
 .wl-jiu{
     height: 60px;padding: 10px;line-height: 42px;
 }
+.wl-top-touxiang img{
+    border-radius: 50%;
+}
 .wl-biaoti{
     width: 100%;
     height: 27px;

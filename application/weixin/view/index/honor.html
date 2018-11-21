@@ -23,14 +23,14 @@
     <main>
         <div class="wl-norongy">
             <p class="iconfont icon-zhengshu " style="font-size: 80px;color: #7DB0E8;margin-top: 80px"></p >
-            <p style="color: #999999;font-size: 12px;margin-top: 20px">该医生还没有上传荣誉证书哦！</p >
+            <p style="color: #999999;font-size: 12px;margin-top: 20px">该{$type == 1?'医院':'医生'}还没有上传荣誉证书哦！</p >
         </div>
     </main>
 {else /}
     <main>
         {foreach $info as $vo }
         <div class="wl-nei1">
-            <p >医生荣誉证件</p>
+            <p >{$type == 1?'医院':'医生'}荣誉证件</p>
             <div class="wl-tupian">
                 <img src="{$vo['img_url']}" alt="" width="100%" >
             </div>

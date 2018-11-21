@@ -559,6 +559,7 @@ class Index extends BaseController
         $info = $uDomain->getUserHonorCertificate($uid);
 
         $this->assign('info',$info);
+        $this->assign('type',$request->param('type/d',1));
 
         return $this->fetch('index/honor');
     }

@@ -28,7 +28,7 @@
     <div class="wl-top">
         <div class="wl-top-neirong">
             <div class="wl-top-touxiang" onclick="redream.href('/weixin/user/detailsDoctor')">
-                <img src="/static/image/user/tou.png" alt="" width="71" height="71">
+                <img src="{$info['doctor_info']['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="71" height="71">
             </div>
            <div class="wl-top-yisheng">
                <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #7DB0E8"></dl></div>
@@ -53,7 +53,7 @@
                     <dd class="iconfont icon-zhengjian"  style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生证件</dt>
                 </dl>
-                <dl  data-href="/weixin/index/honor/uid/{$uid}" class="href cus-click-href">
+                <dl  data-href="/weixin/index/honor/uid/{$uid}/type/2" class="href cus-click-href">
                     <dd class="iconfont icon-rongyu"  style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生荣誉</dt>
                 </dl>
@@ -75,6 +75,7 @@
                 <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
             </dl>
         </div>
+
         <div class="wl-jiu" style="line-height: 42px">
           <i class="iconfont icon-dingwei" style="font-size: 30px;float: left;color: #7DB0E8;margin-left: 5px"></i>
             <dl  class="wl-yiyuan" style="margin-left: 15px">
@@ -84,6 +85,7 @@
                 <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
             </dl>
         </div>
+
         <div style="clear: both"></div>
     </div>
     <div id="wl-box" style="display: none">
@@ -121,9 +123,10 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-$(document).on('click','.cus-click-href',function(){
-    window.location.href = $(this).data('href');
-});
+    $(document).on('click','.cus-click-href',function(){
+        window.location.href = $(this).data('href');
+    });
+
     var objClass = {
         uid:{$uid},
         recommend:{
