@@ -10,7 +10,18 @@
     <meta name="applicable-device" content="pc,mobile">
     <link rel="stylesheet" href="/static/css/doctor_details.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <title>Title</title>
+    <style>
+        .ckgd{
+            width: 100%;
+            min-height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #222222;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
 <header>
@@ -77,22 +88,10 @@
 </div>
     <div>
         <p class="wl-biaoti">我的文章</p>
-        <div class="wl-nei1">
-            <div class="wl-neirong1">
-                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
-            </div>
-            <div class="wl-neirong2">
-                <img src="" alt="" width="128" height="90">
-            </div>
+        <div class="wl-conter">
+
         </div>
-        <div class="wl-nei1">
-            <div class="wl-neirong1">
-                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
-            </div>
-            <div class="wl-neirong2">
-                <img src="" alt="" width="128" height="90">
-            </div>
-        </div>
+        <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
     </div>
 </main>
 
@@ -121,8 +120,78 @@
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    var myObj = {
+    var objClass = {
         uid:{$uid},
+        recommend:{
+            conf:{
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            beforeSend: function () {
+                objClass.recommend.loading = true;
+                $('#cus-recommend-loading-btn').text('加载中...');
+            },
+            complete: function () {
+                objClass.recommend.loading = false;
+                $('#cus-recommend-loading-btn').text('查看更多');
+            },
+            template:function(data){
+              return   '<div class="wl-nei1">'     +
+                  '  <div class="wl-neirong1">' +data.tag+'</div>'+
+                  ' <div class="wl-neirong2">'+
+                  '  <img src="'+data.thumbnail+'" alt="" width="128" height="90">'+
+                   ' </div>'+
+                  '  </div>'
+            },
+            //相关推荐数据加载
+            loadList:function(){
+                if(objClass.recommend.conf.loading){
+                    return false;
+                }
+
+                objClass.recommend.conf.page++;
+
+                if(objClass.recommend.conf.page > objClass.recommend.conf.page_total){
+                    return false;
+                }
+                $.ajax({
+                    url: "/weixin/Article/getUserPublishArticle",
+                    type: 'post',
+                    data: {user_id: objClass.uid,page: objClass.recommend.conf.page, page_size: objClass.recommend.conf.page_size},
+                    dataType: 'json',
+                    // beforeSend: function () {
+                    //     objClass.recommendData.loading = true;
+                    //     $('#cus-recommend-loading-btn').text('加载中...');
+                    // },
+                    // complete: function () {
+                    //     objClass.recommendData.loading = false;
+                    //     $('#cus-recommend-loading-btn').text('查看更多');
+                    // },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            $.each(res.data.rows, function (k, val) {
+                                var thumbnail = '';
+                                if(val.thumbnail != '' && val.thumbnail != undefined){
+                                    var obj  = $.parseJSON(val.thumbnail);
+                                    thumbnail = obj.img_1;
+                                }
+                                console.log(val);
+                                $('.wl-conter').append(objClass.recommend.template(val));
+                            });
+                        }
+                    }
+                });
+            },
+
+        }
     };
+
+    objClass.recommend.loadList();
+
+
+
 </script>
 </html>
