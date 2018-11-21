@@ -17,29 +17,26 @@ a{text-decoration: none;color: #221815;display: block;}
     text-align: center;
     border-bottom: 1px solid #F1F1F1;
     position: relative;
+    background: white;
 }
-.wl-rongyu{
+.wl-nei1{
     width: 100%;
-    min-height: 33px;
-    line-height: 33px;
-    color: #1B1B1B;
+    min-height: 200px;
+    text-align: center;
     font-size: 14px;
-    border-bottom: 1px solid #F1F1F1;
-    padding: 0 15px 0 15px;
+    color: #1B1B1B;
+    background-color: white;
+    padding: 10px 0 15px 0;
+    border-bottom: 12px solid #EEEEEE;
+
 }
-.wl-yishenjian{
-    width: 23%;
-    height: 20px;
-    color: #1B1B1B;
-    font-size: 14px;
-    float: left;
-    padding: 10px 0 0 15px;
+.wl-tupian{
+    width: 90%;
+    height: 340px;
+    background: #EEEEEE;
+    margin: 0 auto;
+    margin-top: 10px;
 }
-.wl-jianjie{
-    width: 77%;
-    min-height: 400px;
-    float: right;
-    font-size: 14px;
-    color: #1B1B1B;
-    padding: 10px 10px  0 0px;
+@media screen and (min-width: 418px) {
+
 }

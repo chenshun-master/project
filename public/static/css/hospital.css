@@ -8,140 +8,6 @@ body { font-family: "思源黑体 CN";color:#221815;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
-
-.wl-top{
-    width: 100%;
-    min-height: 298px;
-    background:url("/static/image/user/bj-1.png")no-repeat;
-    padding-top: 40px;
-}
-.wl-top-neirong{
-    width: 90%;
-    min-height: 244px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin: 0 auto;
-    position: relative;
-}
-.wl-top-touxiang{
-    width: 75px;
-    height: 75px;
-    border-radius: 50px;
-    position: absolute;
-    top: -25px;
-    background: #FFFFFF;
-    margin: 0 auto;
-    left: 0px;
-    right: 0px;
-    padding-left: 2px;
-    padding-top: 2px;
-}
-.wl-top-yisheng{
-    width: 100%;
-    min-height: 60px;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 50px;
-}
-.wl-top-yisheng dd{
-    color: #1D1D1D;
-    font-size: 14px;
-}
-.wl-top-yisheng button{
-    width: 22%;
-    height: 20px;
-    line-height: 20px;
-    background: #7DB0E8;
-    color: #EEEEEE;
-    border-radius: 10px;
-    font-size: 15px;
-    margin-top: 10px;
-}
-.wl-top-anli{
-    width: 70%;
-    line-height: 40px;
-    border-bottom: 1px dashed #E5E5E5;
-    margin: 0 auto;
-}
-.wl-top-yishneg{
-    width: 70%;
-    line-height: 30px;
-    margin: 0 auto;
-    margin-top: 10px;
-    min-height: 30px
-}
-.wl-top-yishneg dl{
-    width: 33%;
-    float: left;
-    text-align: center;
-}
-.wl-top-yishneg dt{
-    color: #1D1D1D;
-    font-size: 13px;
-}
-.wl-am span:nth-child(1){
-    color: #1D1D1D;
-    font-size: 14px;
-    float: left;
-
-}
-.wl-am span:nth-child(2){
-    color: #1D1D1D;
-    font-size: 14px;
-    float: right;
-}
-.wl-con-top{
-width: 100%;
-    min-height: 120px;
-    background: white;
-}
-.wl-yiyuan{
-    float: left;margin-left: 10px
-}
-.wl-yiyuan dd{
-    color: #1D1D1D;
-    font-size: 14px;
-}
-.wl-yiyuan dt{
-     color: #898989;
-     font-size: 12px;
- }
-.wl-jiu{
-    height: 60px;border-bottom: 1px solid #DFDFDF;padding: 10px
-}
-.wl-biaoti{
-    width: 100%;
-    height: 25px;
-    line-height: 25px;
-    color: #1D1D1D;
-    font-size: 14px;
-    text-align: center;
-}
-.wl-nei1{
-    width: 100%;
-    min-height: 105px;
-    background: white;
-    padding: 10px;
-}
-.wl-neirong1{
-    max-width: 60%;
-    min-height: 66px;
-    float: left;
-    margin-top: 10px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:3;
-    color: #1F1F1F;
-    font-size: 17px;
-}
-.wl-neirong2{
-    width: 128px;
-    height: 90px;
-    float: right;
-    background: #EEEEEE;
-}
 .wl-foot {
     width: 100%;
     height: 50px;
@@ -162,23 +28,56 @@ width: 100%;
     color: #000000;
     margin-top: -2px;
 }
-@media screen and (min-width: 418px) {
-    .wl-yiyuan dd{
-        color: #1D1D1D;
-        font-size: 26px;
-    }
-    .wl-yiyuan dt{
-        color: #898989;
-        font-size: 22px;
-    }
-    .wl-jiu{
-        height: 90px;border-bottom: 1px solid #DFDFDF;padding: 10px
-    }
-    .wl-jiu img{
-        width: 60px;
-        height: 60px;
-    }
-    .wl-jiu i{
-        font-size: 50px;
-    }
+.wl-conter{
+    width: 100%;
+    height: 87px;
+    background: #FFFFFF;
+    margin-bottom: 10px;
+}
+.wl-toux{
+    width: 12%;
+    float: left;
+    margin: 15px 0 0 15px;
+}
+.wl-pingjia{
+    width: 80%;
+    min-height: 70px;
+    margin: 10px 10px 0 0 ;
+    float: right;
+}
+.wl-pingjia dl{
+    color: #1D1D1D;
+    width: 50%;
+    font-size: 14px;
+}
+.wl-pingjia dd{
+    width: 70%;
+    color: #898989;
+    font-size: 11px;
+}
+.wl-pingjia dt{
+    width: 90%;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 8px;
+}
+.wl-pingjia dt>i{
+    color: #7DB0E8;
+    float: left;
+}
+.wl-pingjia dt>span{
+    color: #898989;
+    font-size: 11px;
+    float: left;
+}
+.wl-renzheng{
+    float: right;
+    margin-top: -50px;
+    margin-right: 20px;
+    color: #7DB0E8;
+}
+.wl-toux img{
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
 }
