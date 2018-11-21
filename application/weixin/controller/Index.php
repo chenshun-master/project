@@ -449,8 +449,14 @@ class Index extends BaseController
      * 我的医院详情页面
      * @return mixed
      */
-    public function hospitalDetails(){
+    public function hospitalDetails(Request $request){
+        $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
 
+        $this->assign('uid',$uid);
         return $this->fetch('index/hospital_details');
     }
 
