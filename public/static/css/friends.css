@@ -84,11 +84,9 @@ color: #1D1D1D;
     overflow: hidden;
 }
 .wl-nei2 dt{
+    white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
     color: #898989;
     font-size: 11px;
     overflow: hidden;
