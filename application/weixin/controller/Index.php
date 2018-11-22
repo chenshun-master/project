@@ -10,11 +10,14 @@ use think\facade\Session;
 class Index extends BaseController
 {
     private $articleDomain;
+    private $_uDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->articleDomain = new \app\api\domain\ArticleDomain();
+
+        $this->_uDomain = new \app\api\domain\UDomain();
     }
 
     /**
@@ -456,6 +459,26 @@ class Index extends BaseController
             return $this->fetch('error/loss');
         }
 
+        $uDomain = new \app\api\domain\UDomain();
+        $info = $uDomain->getHospitalInfo($uid);
+
+        $data = [
+            'type_1'=>['type'=>1,'total'=>0],
+            'type_2'=>['type'=>2,'total'=>0],
+            'type_3'=>['type'=>3,'total'=>0],
+            'type_4'=>['type'=>4,'total'=>0]
+        ];
+
+        $statistics = $this->articleDomain->getArticleStatisticsData($uid);
+        if($statistics){
+            foreach ($statistics as $val){
+                $type = 'type_'.$val['type'];
+                $data[$type] = $val;
+            }
+        }
+
+        $this->assign('info',$info);
+        $this->assign('statistics',$data);
         $this->assign('uid',$uid);
         return $this->fetch('index/hospital_details');
     }
@@ -464,7 +487,16 @@ class Index extends BaseController
      * 医院资料详情页面
      * @return mixed
      */
-    public function detailsHospital(){
+    public function detailsHospital(Request $request){
+        $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
+
+        $info = $this->_uDomain->getHospitalDetail($uid);
+
+        $this->assign('info',$info);
         return $this->fetch('index/details_hospital');
     }
 
@@ -472,7 +504,16 @@ class Index extends BaseController
      * 医院证件详情页面
      * @return mixed
      */
-    public function hospitalDertificate(){
+    public function hospitalDertificate(Request $request){
+        $uid = $request->param('uid/d',0);
+        $model = new UserModel();
+        if(!$model->findIdExists($uid)){
+            return $this->fetch('error/loss');
+        }
+
+        $info = $this->_uDomain->getUserLicence($uid);
+
+        $this->assign('info',$info);
 
         return $this->fetch('index/hospital_certificate');
     }
@@ -499,10 +540,24 @@ class Index extends BaseController
 
         $uDomain = new \app\api\domain\UDomain();
         $info = $uDomain->getDoctorInfo($uid);
-        $statistics = $this->articleDomain->getArticleStatisticsData($uid);
 
+        $data = [
+            'type_1'=>['type'=>1,'total'=>0],
+            'type_2'=>['type'=>2,'total'=>0],
+            'type_3'=>['type'=>3,'total'=>0],
+            'type_4'=>['type'=>4,'total'=>0]
+        ];
+
+        $statistics = $this->articleDomain->getArticleStatisticsData($uid);
+        if($statistics){
+            foreach ($statistics as $val){
+                $type = 'type_'.$val['type'];
+                $data[$type] = $val;
+            }
+        }
+//        halt($info['doctor_info']['real_name']);
         $this->assign('info',$info);
-        $this->assign('statistics',$statistics);
+        $this->assign('statistics',$data);
         $this->assign('uid',$uid);
 
         return $this->fetch('index/doctor_details');

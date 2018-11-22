@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/static/css/doctor_details.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
-    <title>Title</title>
+    <title>医生简介</title>
     <style>
         .ckgd{
             width: 100%;
@@ -21,6 +21,8 @@
             color: #222222;
             font-size: 16px;
         }
+
+        .href{cursor: pointer}
     </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
@@ -32,14 +34,14 @@
             </div>
            <div class="wl-top-yisheng">
                <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #7DB0E8"></dl></div>
-                <dd>医生名称</dd>
+                <dd>{$info['doctor_info']['real_name']}</dd>
                 <dt><button>＋关注</button></dt>
             </div>
             <div class="wl-top-anli">
                 <div class="wl-am">
                     <div style="width: 170px;margin: 0 auto">
-                        <span><i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: left">&nbsp;368案例</span></span>
-                        <span><i class="iconfont icon-ziliao" style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: right">&nbsp;165文章</span></span>
+                        <span><i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: left">&nbsp;{$statistics['type_3']['total']}案例</span></span>
+                        <span><i class="iconfont icon-ziliao" style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: right">&nbsp;{$statistics['type_1']['total']}文章</span></span>
                     </div>
                     <div style="clear: both"></div>
                 </div>
@@ -63,31 +65,34 @@
     </div>
 </header>
 <main>
-    <div class="wl-con-top">
-        <div class="wl-jiu">
-            <img src="/static/image/user/tou.png" alt="" width="40" height="40" style="float: left">
-            <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz1" style="font-size: 20px;color: #F19149"></dl></div>
-            <dl  class="wl-yiyuan">
-                <dd>医院名称</dd>
-                <dt>所在医院名称所在医院名称</dt>
-            </dl>
-            <dl style="float: right">
-                <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
-            </dl>
-        </div>
+    {if (count($info['hospital_info']) > 0)}
+        <div class="wl-con-top">
+            <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
+                <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="40" height="40" style="float: left">
+                <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz1" style="font-size: 20px;color: #F19149"></dl></div>
+                <dl  class="wl-yiyuan">
+                    <dd>{$info['hospital_info'][0]['hospital_name']}</dd>
+                    <dt>{$info['hospital_info'][0]['profile']}</dt>
+                </dl>
+                <dl style="float: right">
+                    <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
+                </dl>
+            </div>
 
-        <div class="wl-jiu" style="line-height: 42px">
-          <i class="iconfont icon-dingwei" style="font-size: 30px;float: left;color: #7DB0E8;margin-left: 5px"></i>
-            <dl  class="wl-yiyuan" style="margin-left: 15px">
-                <dd >江宁路818号</dd>
-            </dl>
-            <dl style="float: right">
-                <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
-            </dl>
-        </div>
+            <div class="wl-jiu" style="line-height: 42px">
+                <i class="iconfont icon-dingwei" style="font-size: 30px;float: left;color: #7DB0E8;margin-left: 5px"></i>
+                <dl  class="wl-yiyuan" style="margin-left: 15px">
+                    <dd >{$info['hospital_info'][0]['address']}</dd>
+                </dl>
+                <dl style="float: right">
+                    <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
+                </dl>
+            </div>
 
-        <div style="clear: both"></div>
-    </div>
+            <div style="clear: both"></div>
+        </div>
+    {/if}
+
     <div id="wl-box" style="display: none">
         <p class="wl-biaoti">我的文章</p>
         <div class="wl-conter">
@@ -127,6 +132,14 @@
         window.location.href = $(this).data('href');
     });
 
+    $(document).on('click','.click-to-article',function(){
+        window.location.href = '/weixin/article/articleDetails/id/' +$(this).data('id');
+    });
+
+    $(document).on('click','.click-to-hospital-details',function(){
+        window.location.href = $(this).data('href');
+    });
+
     var objClass = {
         uid:{$uid},
         recommend:{
@@ -139,18 +152,18 @@
             },
             template:{
                 template1:function(data,thumbnail){
-                    return   '<div class="wl-nei1">'     +
-                        '  <div class="wl-neirong1">' +data.title+'</div>'+
-                        ' <div class="wl-neirong2">'+
-                        '  <img src="'+thumbnail+'" alt="" width="128" height="90">'+
-                        ' </div>'+
-                        '  </div>'
+                    return   '<div class="wl-nei1 href click-to-article" data-id="'+ data.id +'" >'+
+                                '<div class="wl-neirong1">' +data.title+'</div>'+
+                                '<div class="wl-neirong2">'+
+                                   '<img src="'+thumbnail+'" alt="" width="128" height="90">'+
+                                '</div>'+
+                              '</div>'
                 },
                 template2:function(data,thumbnail){
-                    return   ' <div class="wl-wenzhnga">' +
-                        '                <div class="wl-deml">' +data.title+'</div>'  +
-                        '                </div>' +
-                        '            </div>';
+                    return   ' <div class="wl-wenzhnga  href click-to-article" data-id="'+ data.id +'">' +
+                                    '<div class="wl-deml">' +data.title+'</div>'+
+                                    '</div>'+
+                               '</div>';
                 },
             },
             loadList:function(){

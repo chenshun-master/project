@@ -63,7 +63,7 @@
             },
             template:function(data){
                 var head_img      =  (data.portrait == null) ? '':data.portrait;
-                var hospital_name =  (data.hospital_name == null) ? '未加入医院机构':data.hospital_name;
+                var hospital_name =  (data.hospital_name == null) ? '':data.hospital_name;
                 return '<div class="wl-conter href cus-to-doctor-details"  data-uid="'+ data.user_id+'">' +
                     '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
                     '<div style="position: relative"><span class="iconfont icon-renzheng1 wl-biao" style="font-size: 20px;color: #00A0E9"></span></div>'+
