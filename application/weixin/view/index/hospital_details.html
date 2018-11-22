@@ -10,6 +10,8 @@
     <meta name="applicable-device" content="pc,mobile">
     <link rel="stylesheet" href="/static/css/hospital_details.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
     <title>医院简介</title>
     <style>
         .ckgd{
@@ -22,6 +24,10 @@
         }
 
         .href{cursor: pointer}
+        .isfollow{background-color: #CCCCCC !important;color: white;}
+        input,button,a {
+            outline:0 none !important; blr:expression(this.onFocus=this.blur());
+        }
     </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
@@ -35,7 +41,7 @@
                 <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #F19149"></dl></div>
                 <dd>{$info['hospital']['hospital_name']}</dd>
                 <dt>
-                    <button>＋关注</button>
+                <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
                 </dt>
             </div>
             <div class="wl-top-anli">
@@ -73,8 +79,8 @@
 </header>
 <main>
     <div class="wl-con-top">
-        <div class="wl-jiu">
-            <i class="iconfont icon-dingwei" style="font-size: 25px;float: left;color: #7DB0E8;margin-left: 5px"></i>
+        <div class="wl-jiu href click-to-hospital-details" >
+        <i class="iconfont icon-dingwei" style="font-size: 25px;float: left;color: #7DB0E8;margin-left: 5px"></i>
             <dl class="wl-yiyuan" style="margin-left: 15px">
                  <dd>{$info['hospital']['address']}</dd>
             </dl>
@@ -94,7 +100,7 @@
                 </span>
             </p>
             <div style="clear: both"></div>
-            <div style="height: 145px;overflow: hidden;">
+            <div style="height: 165px;overflow: hidden;border-bottom: 11px solid white;">
             <div class="wl-demo">
                 {foreach $info['doctor_list'] as $vo }
                 <div class="wl-xiang">
@@ -103,7 +109,31 @@
                          class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
                     <dl>{$vo['real_name']}</dl>
                     <dt>{$vo['duties']}</dt>
-                </div>
+                </div>                <div class="wl-xiang">
+                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
+                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
+                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
+                <dl>{$vo['real_name']}</dl>
+                <dt>{$vo['duties']}</dt>
+            </div>                <div class="wl-xiang">
+                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
+                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
+                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
+                <dl>{$vo['real_name']}</dl>
+                <dt>{$vo['duties']}</dt>
+            </div>                <div class="wl-xiang">
+                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
+                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
+                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
+                <dl>{$vo['real_name']}</dl>
+                <dt>{$vo['duties']}</dt>
+            </div>                <div class="wl-xiang">
+                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
+                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
+                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
+                <dl>{$vo['real_name']}</dl>
+                <dt>{$vo['duties']}</dt>
+            </div>
                 {/foreach}
             </div>
             </div>
@@ -111,7 +141,7 @@
     {/if}
 
     <div id="wl-box" style="display: none">
-        <p class="wl-ystd" style="border-top:11px solid #EEEEEE;margin-top: 10px"><span style="font-size: 15px;color: #1D1D1D;float: left;">我的文章</span>
+        <p class="wl-ystd" ><span style="font-size: 15px;color: #1D1D1D;float: left;">我的文章</span>
             <!--<span style="float: right;margin-top: -2px">-->
                     <!--<span style="color: #1D1D1D;font-size: 13px">查看更多</span>-->
                     <!--<i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>-->
@@ -156,7 +186,16 @@
     $(document).on('click','.click-to-article',function(){
         window.location.href = '/weixin/article/articleDetails/id/' +$(this).data('id');
     });
-
+    $(document).on('click','.click-to-hospital-details',function(){
+        window.location.href = $(this).data('href');
+    });
+    $('#click-to-follow').on('click',function(){
+        if($(this).data('isfollow') != 1 && $(this).data('isfollow') != 0){
+            redream.showTip('不能关注自己');
+            return false;
+        }
+        objClass.follow.clickFollow($(this));
+    });
     var objClass = {
         uid:{$uid},
         recommend:{
@@ -237,7 +276,42 @@
                 });
             },
 
-        }
+        },
+        follow:{
+            followLoading:false,
+            clickFollow:function(obj){
+                if(objClass.follow.followLoading){
+                    return false;
+                }
+
+                var type =  obj.data('isfollow') == 0 ? 1 : 2;
+                $.ajax({
+                    url: "/weixin/api/followUser",
+                    type: 'post',
+                    data: {uid: objClass.uid,type:type},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.follow.followLoading = true;
+                    },
+                    complete: function () {
+                        objClass.follow.followLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if(obj.data('isfollow') == 0){
+                                obj.addClass('isfollow').html('<i class="iconfont icon-check"></i>已关注').data('isfollow',1);
+                            }else if(obj.data('isfollow') == 1){
+                                obj.removeClass('isfollow').html('+ 关注').data('isfollow',0);
+                            }
+                        }else if(res.code == 401){
+                            redream.showTip(res.msg);
+                        }else{
+                            redream.showTip('操作失败');
+                        }
+                    }
+                });
+            }
+        },
     };
 
     objClass.recommend.loadList();
