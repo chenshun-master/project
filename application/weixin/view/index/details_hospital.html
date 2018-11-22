@@ -10,28 +10,25 @@
     <meta name="applicable-device" content="pc,mobile">
     <link rel="stylesheet" href="/static/css/details_hospital.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
-    <title>Title</title>
+    <title>微琳医美 - 医院认证</title>
 </head>
 <body style="background: white">
 <header>
     <div class="wl-top">
         <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;left: 10px;top: 1px;"  onClick="redream.toReferer()"></i>
-        医生资料
+        医院资料
     </div>
 </header>
 <main>
-    <div class="wl-rongyu">医院名称: <span>上海薇琳</span></div>
-    <div class="wl-rongyu">医院性质: <span>(门诊部/医院)</span></div>
-    <div class="wl-rongyu">擅长: <span>眼科整形、鼻部整形、胸部整形</span></div>
-    <div class="wl-rongyu">成立时间: <span>2011-8-12</span></div>
-    <div class="wl-rongyu">医院规模: <span>500人</span></div>
+    <div class="wl-rongyu">医院名称: <span>{$info['hospital_name']}</span></div>
+    <div class="wl-rongyu">医院性质: <span>{$info['type']}</span></div>
+    <div class="wl-rongyu">擅长: <span>{$info['speciality']}</span></div>
+    <div class="wl-rongyu">成立时间: <span>{$info['founding_time']}</span></div>
+    <div class="wl-rongyu">医院规模: <span>{$info['hospital_scale']}</span></div>
     <div class="wl-yishenjian">简介：</div>
     <div class="wl-jianjie">
-        <div>上海薇琳医疗美容医院是中美韩合资连锁品牌ReDream薇琳医美集团（中国区）旗舰医院，位于繁华的静安区江宁路818号，交通便利，设施齐全，环境优越。 下设：医疗美容科,美容外科,
-            美容牙科,美容皮肤科,美容中医科,麻醉科,医学检验科,临床体液...
-        </div>
+        <div>{$info['profile']}</div>
     </div>
-
 </main>
 
 </body>

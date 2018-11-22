@@ -6,12 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
     <meta name="applicable-device" content="pc,mobile">
     <link rel="stylesheet" href="/static/css/hospital_details.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
-    <title>Title</title>
+    <title>医院简介</title>
     <style>
         .ckgd{
             width: 100%;
@@ -21,18 +20,20 @@
             color: #222222;
             font-size: 16px;
         }
+
+        .href{cursor: pointer}
     </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
 <header>
     <div class="wl-top">
         <div class="wl-top-neirong">
-            <div class="wl-top-touxiang" onclick="redream.href('/weixin/user/detailsDoctor')">
-                <img src="/static/image/user/tou.png" alt="" width="71" height="71">
+            <div class="wl-top-touxiang">
+                <img src="{$info['hospital']['portrait']}" onerror="this.src='/static/image/user/tou.png'"  width="71" height="71">
             </div>
             <div class="wl-top-yisheng">
                 <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #F19149"></dl></div>
-                <dd>医院名称医院名称</dd>
+                <dd>{$info['hospital']['hospital_name']}</dd>
                 <dt>
                     <button>＋关注</button>
                 </dt>
@@ -40,10 +41,14 @@
             <div class="wl-top-anli">
                 <div class="wl-am">
                     <div style="width: 170px;margin: 0 auto">
-                        <span><i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i><span
-                                style="float: left">&nbsp;368案例</span></span>
-                        <span><i class="iconfont icon-ziliao"
-                                 style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: right">&nbsp;165文章</span></span>
+                        <span>
+                            <i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i>
+                            <span style="float: left">&nbsp;{$statistics['type_3']['total']}案例</span>
+                        </span>
+                        <span>
+                            <i class="iconfont icon-ziliao" style="font-size: 18px;color: #7DB0E8;float: left"></i>
+                            <span style="float: right">&nbsp;{$statistics['type_1']['total']}文章</span>
+                        </span>
                     </div>
                     <div style="clear: both"></div>
                 </div>
@@ -71,7 +76,7 @@
         <div class="wl-jiu">
             <i class="iconfont icon-dingwei" style="font-size: 30px;float: left;color: #7DB0E8;margin-left: 5px"></i>
             <dl class="wl-yiyuan" style="margin-left: 15px">
-                <dd>江宁路818号</dd>
+                 <dd>{$info['hospital']['address']}</dd>
             </dl>
             <dl style="float: right">
                 <span class="iconfont icon-back_left-copy" style="font-size: 30px;color: #AAAAAA"></span>
@@ -79,33 +84,29 @@
         </div>
         <div style="clear: both"></div>
     </div>
-    <!--<div class="wl-tuandui">-->
-    <!--<p class="wl-ystd"> <span style="font-size: 15px;color: #1D1D1D;float: left">医生团队</span>-->
-    <!--<span style="float: right;margin-top: -2px">-->
-    <!--<span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>-->
-    <!--<i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>-->
-    <!--</span>-->
-    <!--</p>-->
-    <!--<div style="clear: both"></div>-->
-    <!--<div style="width: 95%;margin: 0 auto;min-height: 120px;margin-top: 30px">-->
-    <!--<div class="wl-xiang">-->
-    <!--<img src="/static/image/user/tou.png" alt="" width="53" height="53">-->
-    <!--<dl>医生姓名</dl>-->
-    <!--<dt>职称</dt>-->
-    <!--</div>-->
-    <!--<div class="wl-xiang">-->
-    <!--<img src="/static/image/user/tou.png" alt="" width="53" height="53">-->
-    <!--<dl>医生姓名</dl>-->
-    <!--<dt>职称</dt>-->
-    <!--</div>-->
-    <!--<div class="wl-xiang">-->
-    <!--<img src="/static/image/user/tou.png" alt="" width="53" height="53">-->
-    <!--<dl>医生姓名</dl>-->
-    <!--<dt>职称</dt>-->
-    <!--</div>-->
-    <!--<div style="clear: both"></div>-->
-    <!--</div>-->
-    <!--</div>-->
+
+    {if (count($info['doctor_list']) > 0) }
+        <div class="wl-tuandui" style="display: block;">
+            <p class="wl-ystd"><span style="font-size: 15px;color: #1D1D1D;float: left">医生团队</span>
+                <span style="float: right;margin-top: -2px">
+                    <span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>
+                    <i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>
+                </span>
+            </p>
+            <div style="clear: both"></div>
+            <div style="width: 95%;margin: 0 auto;min-height: 120px;margin-top: 30px">
+                {foreach $info['doctor_list'] as $vo }
+                    <div class="wl-xiang">
+                        <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"  class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
+                        <dl>{$vo['real_name']}</dl>
+                        <dt>{$vo['duties']}</dt>
+                    </div>
+                {/foreach}
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    {/if}
+
     <div id="wl-box" style="display: none">
         <p class="wl-biaoti">我的文章</p>
         <div class="wl-conter">
@@ -140,9 +141,10 @@
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    $(document).on('click','.cus-click-href',function(){
+    $(document).on('click','.cus-click-href,.click-to-doctor-details',function(){
         window.location.href = $(this).data('href');
     });
+
     var objClass = {
         uid:{$uid},
         recommend:{
