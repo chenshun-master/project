@@ -13,6 +13,9 @@
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropload1.css"/>
+    <style>
+        .href{cursor: pointer}
+    </style>
 </head>
 <style>
 
@@ -103,6 +106,16 @@
 </script>
 
 <script type="text/javascript">
+
+    $(document).on('click','.click-to-user-dialogue',function(){
+        window.location.href = '/weixin/user/userDialogue/uid/'+$(this).data('uid');
+    });
+
+    $(function(){
+        var h = $(window).height() - 200;
+        $("#friends-container-list,#follow-container-list,#fans-container-list").css('minHeight',h + 'px');
+    });
+
     var myObj = {
         template:{
             getTypeTemplate:function(type){
@@ -125,11 +138,11 @@
                 return html;
             },
             getHtml:function(data){
-                return '<div class="wl-nei1">' +
-                    '                <div class="wl-touxiang">' +
+                return '<div class="wl-nei1 " data-uid="'+ data.uid +'">' +
+                    '                <div class="wl-touxiang href">' +
                     '                    <img src="'+ data.portrait +'" onerror="this.src=\'/static/image/user/tou.png\'" width="41" height="41">' +
                     '                </div>' +
-                    '                <div class="wl-nei2">' + myObj.template.getTypeTemplate(data.type) +
+                    '                <div class="wl-nei2 href click-to-user-dialogue" data-uid="'+ data.uid +'">' + myObj.template.getTypeTemplate(data.type) +
                     '                    <div style="float: left;margin-left: 5px;width: 75%">' +
                     '                        <dl>'+ data.nickname +'</dl>' +
                     '                        <dt>'+ data.profile +'</dt>' +
