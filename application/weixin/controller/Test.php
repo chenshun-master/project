@@ -15,7 +15,7 @@ class Test  extends Controller
         halt($res->createFriend(6,5));**/
 
 
-        $obj = new ArticleDomain();
+//        $obj = new ArticleDomain();
 //        dump($obj->getArticleLikeData(17,1,15));
 //        halt($obj->getNewArticleLikeData(17,1,15));
 
@@ -47,8 +47,11 @@ class Test  extends Controller
 //        halt($list);
 
 
-        $model = new UserFriendDomain();
-        $model->getMessageListData(39);
+//        $model = new UserFriendDomain();
+//        $model->getMessageListData(39);
+
+
+
 
     }
 

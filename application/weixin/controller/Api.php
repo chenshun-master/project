@@ -17,13 +17,9 @@ class Api extends BaseController
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-
-        $this->_uDomain = new \app\api\domain\UDomain();
-
-        $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
-
-
-        $this->_userDomain = new \app\api\domain\UserDomain();
+        $this->_uDomain             = new \app\api\domain\UDomain();
+        $this->_userFriendDomain    = new \app\api\domain\UserFriendDomain();
+        $this->_userDomain          = new \app\api\domain\UserDomain();
     }
 
     /**
@@ -99,5 +95,62 @@ class Api extends BaseController
         }
 
         return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 医生医院用户关注
+     * @param Request $request
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
+    public function followUser(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'请登录后操作...',401);
+        }
+
+        $type  = $request->param('type/d',0);
+        $uid   = $request->param('uid/d',0);
+        $myUid = $this->getUserId();
+        if(empty($type) || empty($uid)){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        if($type == 1){
+            $isTrue = $this->_userFriendDomain->createFollow($uid,$myUid,$myUid);
+        }else{
+            $isTrue = $this->_userFriendDomain->delFollow($uid,$myUid,$myUid);
+        }
+
+        if(!$isTrue){
+            return $this->returnData([],'操作失败',305);
+        }
+
+        return $this->returnData([],'操作成功',200);
+    }
+
+    /**
+     * 手动审核认证
+     * @param Request $request
+     * @return false|string
+     */
+    public function authVerify(Request $request){
+        $username = $request->param('username','');
+        $password = $request->param('password','');
+        $authId   = $request->param('auth_id/d',0);
+        $status   = $request->param('status/d',0);
+        if($username == 'xiaorao' && $password == 'wlxiaorao'){
+            $domain = new \app\api\domain\AuthDomain();
+            $isTrue = $domain->authVerify($authId,$status,'手动审核');
+            if(!$isTrue){
+                return $this->returnData([],'审核失败',305);
+            }
+            return $this->returnData([],'审核成功',200);
+        }else{
+            return $this->returnData([],'用户未授权',305);
+        }
     }
 }
