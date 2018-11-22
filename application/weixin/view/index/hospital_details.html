@@ -145,6 +145,10 @@
         window.location.href = $(this).data('href');
     });
 
+    $(document).on('click','.click-to-article',function(){
+        window.location.href = '/weixin/article/articleDetails/id/' +$(this).data('id');
+    });
+
     var objClass = {
         uid:{$uid},
         recommend:{
@@ -157,7 +161,7 @@
             },
             template:{
                 template1:function(data,thumbnail){
-                    return   '<div class="wl-nei1">'     +
+                    return   '<div class="wl-nei1 href click-to-article" data-id="'+ data.id +'" >'+
                         '  <div class="wl-neirong1">' +data.title+'</div>'+
                         ' <div class="wl-neirong2">'+
                         '  <img src="'+thumbnail+'" alt="" width="128" height="90">'+
@@ -165,7 +169,7 @@
                         '  </div>'
                 },
                 template2:function(data,thumbnail){
-                    return   ' <div class="wl-wenzhnga">' +
+                    return   ' <div class="wl-wenzhnga  href click-to-article" data-id="'+ data.id +'">' +
                         ' <div class="wl-deml">' +data.title+'</div>'  +
                         '</div>' +
                         '</div>';
