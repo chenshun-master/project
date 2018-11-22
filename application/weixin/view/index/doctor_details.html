@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/doctor_details.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
     <title>医生简介</title>
     <style>
         .ckgd{
@@ -23,6 +24,8 @@
         }
 
         .href{cursor: pointer}
+
+        .isfollow{background-color: #CCCCCC !important;color: white;}
     </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
@@ -35,7 +38,7 @@
            <div class="wl-top-yisheng">
                <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #7DB0E8"></dl></div>
                 <dd>{$info['doctor_info']['real_name']}</dd>
-                <dt><button>＋关注</button></dt>
+                <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
             </div>
             <div class="wl-top-anli">
                 <div class="wl-am">
@@ -64,6 +67,7 @@
         </div>
     </div>
 </header>
+
 <main>
     {if (count($info['hospital_info']) > 0)}
         <div class="wl-con-top">
@@ -138,6 +142,14 @@
 
     $(document).on('click','.click-to-hospital-details',function(){
         window.location.href = $(this).data('href');
+    });
+
+    $('#click-to-follow').on('click',function(){
+        if($(this).data('isfollow') != 1 && $(this).data('isfollow') != 0){
+            redream.showTip('不能关注自己');
+            return false;
+        }
+        objClass.follow.clickFollow($(this));
     });
 
     var objClass = {
@@ -219,12 +231,45 @@
                 });
             },
 
-        }
+        },
+        follow:{
+            followLoading:false,
+            clickFollow:function(obj){
+                if(objClass.follow.followLoading){
+                    return false;
+                }
+
+                var type =  obj.data('isfollow') == 0 ? 1 : 2;
+                $.ajax({
+                    url: "/weixin/api/followUser",
+                    type: 'post',
+                    data: {uid: objClass.uid,type:type},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.follow.followLoading = true;
+                    },
+                    complete: function () {
+                        objClass.follow.followLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if(obj.data('isfollow') == 0){
+                                obj.addClass('isfollow').html('<i class="iconfont icon-check"></i>已关注').data('isfollow',1);
+                            }else if(obj.data('isfollow') == 1){
+                                obj.removeClass('isfollow').html('+ 关注').data('isfollow',0);
+                            }
+                        }else if(res.code == 401){
+                            redream.showTip(res.msg);
+                        }else{
+                            redream.showTip('操作失败');
+                        }
+                    }
+                });
+            }
+        },
+
     };
 
     objClass.recommend.loadList();
-
-
-
 </script>
 </html>

@@ -50,7 +50,7 @@ class UserFriendDomain
      * @param $friend_id   用户ID2
      * @return bool
      */
-    public function createFriend($user_id,$friend_id,$remarks=''){
+    public function createFriend($user_id,$friend_id,$remarks='',$status = 1){
         $user_id = (int)$user_id;
         $friend_id = (int)$friend_id;
 
@@ -70,7 +70,7 @@ class UserFriendDomain
             'applicant_id'   =>$user_id,
             'user_group'     =>0,
             'friend_group'   =>0,
-            'status'         =>1,
+            'status'         =>$status,
             'remarks'        =>htmlspecialchars($remarks),
             'create_time'    =>date('Y-m-d H:i:s')
         ];
@@ -211,6 +211,8 @@ class UserFriendDomain
      * 更新用户私信的阅读状态
      * @param $receive_user_id
      * @param array $ids
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function uploadPrivateLetterStatus($receive_user_id , $ids = []){
         Db::name('chat_record')->where('id','in', $ids)->where('receive_user_id', $receive_user_id)->update(['is_read' => 2]);
@@ -242,5 +244,68 @@ class UserFriendDomain
             'page_total'    =>1,
             'total'         =>count($rows)
         ];
+    }
+
+    /**
+     * 判断两个用户是否互相关注
+     * @param int $uid1     用户1
+     * @param int $uid2     用户2
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function checkFollow(int $uid1,int $uid2,$applicant_id){
+        $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
+        $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->fetchSql(false)->field('id')->find();
+        return $res ? true : false;
+    }
+
+    /**
+     * 添加用户关注
+     * @param int $user_id         用户ID1
+     * @param int $friend_id       用户ID2
+     * @param int $applicant_id    发起关注的用户
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function createFollow(int $uid1,int $uid2,$applicant_id){
+        $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
+        $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
+
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->find('id');
+
+        if($res){
+            return true;
+        }
+
+        $data = [
+            'user_id' => $user_id,
+            'friend_id' => $friend_id,
+            'applicant_id' => $applicant_id,
+            'status' => 5,
+            'create_time' => date('Y-m-d H:i:s')
+        ];
+
+        $isTrue = Db::name('user_friends')->insertGetId($data);
+        return $isTrue  ? true : false;
+    }
+
+    /**
+     * 取消用户关注
+     * @param int $user_id         用户ID1
+     * @param int $friend_id       用户ID2
+     * @param int $applicant_id    发起关注的用户
+     * @return int
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function delFollow(int $uid1,int $uid2,$applicant_id){
+        $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
+        $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
+        return Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->delete();
     }
 }

@@ -11,13 +11,15 @@ class Index extends BaseController
 {
     private $articleDomain;
     private $_uDomain;
-
+    private $_userFriendDomain;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->articleDomain = new \app\api\domain\ArticleDomain();
 
         $this->_uDomain = new \app\api\domain\UDomain();
+
+        $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
     }
 
     /**
@@ -477,9 +479,18 @@ class Index extends BaseController
             }
         }
 
+        $myID = $this->getUserId();
+        $isFollow = 0;
+        if($uid == $myID){
+            $isFollow = 2;
+        }else if($uid != $myID){
+            $isFollow = $this->_userFriendDomain->checkFollow((int)$uid,(int)$myID,$myID) ? 1 : 0;
+        }
+
         $this->assign('info',$info);
         $this->assign('statistics',$data);
         $this->assign('uid',$uid);
+        $this->assign('isFollow',$isFollow);
         return $this->fetch('index/hospital_details');
     }
 
@@ -529,7 +540,11 @@ class Index extends BaseController
 
     /**
      * 我的医生详情页面
+     * @param Request $request
      * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function doctorDetails(Request $request){
         $uid = $request->param('uid/d',0);
@@ -555,11 +570,19 @@ class Index extends BaseController
                 $data[$type] = $val;
             }
         }
-//        halt($info['doctor_info']['real_name']);
+
+        $myID = $this->getUserId();
+        $isFollow = 0;
+        if($uid == $myID){
+            $isFollow = 2;
+        }else if($uid != $myID){
+            $isFollow = $this->_userFriendDomain->checkFollow((int)$uid,(int)$myID,$myID) ? 1 : 0;
+        }
+
         $this->assign('info',$info);
         $this->assign('statistics',$data);
         $this->assign('uid',$uid);
-
+        $this->assign('isFollow',$isFollow);
         return $this->fetch('index/doctor_details');
     }
 
