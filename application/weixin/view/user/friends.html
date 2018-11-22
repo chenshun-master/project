@@ -6,22 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
     <meta name="applicable-device" content="pc,mobile">
     <title>微琳医美</title>
-
     <link rel="stylesheet" type="text/css" href="/static/css/friends.css"/>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/dropload1.css"/>
 </head>
 <style>
 
 </style>
 <body style="background: #F2F2F2">
 <header style="background:  #F2F2F2; position: relative;">
-
     <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 36px;left:10px;" onClick="redream.toReferer()"></i>
     <div class="top" style="z-index: 9999999;">
         <span id="one">好友</span>
@@ -33,195 +30,22 @@
     <div class="xia">
         <div class="one ones">
             <p class="wl-haoyou">我的好友</p>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #F29C9F;">用户</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
+            <div id="friends-container">
+                <div id="friends-container-list">
                 </div>
             </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #00A0E9">医生</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #F19149">医院</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #0FD6DD">团队</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-                <div style="clear: both"></div>
-            </div>
-            <div style="clear: both"></div>
         </div>
         <div class="one">
             <p class="wl-haoyou">我的关注</p>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #F29C9F;">用户</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
+            <div id="follow-container">
+                <div id="follow-container-list"></div>
             </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #00A0E9">医生</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #F19149">医院</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #0FD6DD">团队</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-                <div style="clear: both"></div>
-            </div>
-            <div style="clear: both"></div>
         </div>
         <div class="one">
             <p class="wl-haoyou">我的粉丝</p>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #F29C9F;">用户</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
+            <div id="fans-container">
+                <div id="fans-container-list"></div>
             </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #00A0E9">医生</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #F19149">医院</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-nei1">
-                <div class="wl-touxiang">
-                    <img src="/static/image/user/tou.png" alt="" width="41" height="41">
-                </div>
-                <div class="wl-nei2">
-                    <span style="background: #0FD6DD">团队</span>
-                    <div style="float: left;margin-left: 5px;width: 75%">
-                        <dl>用户名称</dl>
-                        <dt>消息内容内消息内容内容消息内容内容容</dt>
-                    </div>
-                    <i class="iconfont icon-back_left-copy"
-                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>
-                </div>
-                <div style="clear: both"></div>
-            </div>
-            <div style="clear: both"></div>
         </div>
     </div>
 </main>
@@ -275,18 +99,240 @@
                 $("#xiao").hide();
             }
         });
-
-
-        var url = window.location.toString();
-        var maodian = url.split('#')[1];
-        if (maodian == 'favorite') {
-            $('#one').trigger('click');
-        } else if (maodian == 'comment') {
-            $('#two').trigger('click');
-        } else if (maodian == 'like') {
-            $('#three').trigger('click');
-        }
     });
 </script>
 
+<script type="text/javascript">
+    var myObj = {
+        template:{
+            getTypeTemplate:function(type){
+                var html = '';
+                switch (type) {
+                    case 1:
+                    case 2:
+                        html = '<span style="background: #F29C9F;">用户</span>';
+                        break;
+                    case 3:
+                        html = '<span style="background: #00A0E9">医生</span>';
+                        break;
+                    case 4:
+                        html = '<span style="background: #F19149">医院</span>';
+                        break;
+                    case 5:
+                        html = '<span style="background: #0FD6DD">团队</span>';
+                        break;
+                }
+                return html;
+            },
+            getHtml:function(data){
+                return '<div class="wl-nei1">' +
+                    '                <div class="wl-touxiang">' +
+                    '                    <img src="'+ data.portrait +'" onerror="this.src=\'/static/image/user/tou.png\'" width="41" height="41">' +
+                    '                </div>' +
+                    '                <div class="wl-nei2">' + myObj.template.getTypeTemplate(data.type) +
+                    '                    <div style="float: left;margin-left: 5px;width: 75%">' +
+                    '                        <dl>'+ data.nickname +'</dl>' +
+                    '                        <dt>'+ data.profile +'</dt>' +
+                    '                    </div>' +
+                    '                    <i class="iconfont icon-back_left-copy"' +
+                    '                       style="font-size: 25px;float: right;margin: 7px 7px 0 0;color: #AAAAAA"></i>' +
+                    '                </div>' +
+                    '            </div>' +
+                    '            <div style="clear: both"></div>';
+            }
+        },
+        friends:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            loadList:function(me){
+                if(myObj.friends.listData.loading){
+                    return false;
+                }
+
+                myObj.friends.listData.page++;
+                if(myObj.friends.listData.ini == true){
+                    if(myObj.friends.listData.page > myObj.friends.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/api/getFriendList",
+                    type:'post',
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.friends.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.friends.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.friends.listData.ini == false){
+                                myObj.friends.listData.ini = true;
+                                myObj.friends.listData.page_total = res.data.page_total;
+                                $('#friends-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#friends-container-list').append(myObj.template.getHtml(val));
+                            });
+                            if(myObj.friends.listData.page >= myObj.friends.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        follow:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            loadList:function(me){
+                if(myObj.follow.listData.loading){
+                    return false;
+                }
+
+                myObj.follow.listData.page++;
+                if(myObj.follow.listData.ini == true){
+                    if(myObj.follow.listData.page > myObj.follow.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/api/getUserFollowList",
+                    type:'post',
+                    data:{page:myObj.follow.listData.page,page_size:myObj.follow.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.follow.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.follow.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.follow.listData.ini == false){
+                                myObj.follow.listData.ini = true;
+                                myObj.follow.listData.page_total = res.data.page_total;
+                                $('#follow-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#follow-container-list').append(myObj.template.getHtml(val));
+                            });
+                            if(myObj.follow.listData.page >= myObj.follow.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        fans:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            loadList:function(me){
+                if(myObj.fans.listData.loading){
+                    return false;
+                }
+
+                myObj.fans.listData.page++;
+                if(myObj.fans.listData.ini == true){
+                    if(myObj.fans.listData.page > myObj.fans.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/api/getUserFansList",
+                    type:'post',
+                    data:{page:myObj.fans.listData.page,page_size:myObj.fans.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.fans.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.fans.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.fans.listData.ini == false){
+                                myObj.fans.listData.ini = true;
+                                myObj.fans.listData.page_total = res.data.page_total;
+                                $('#fans-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#fans-container-list').append(myObj.template.getHtml(val));
+                            });
+                            if(myObj.fans.listData.page >= myObj.fans.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        }
+    };
+
+
+    $('#friends-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            myObj.friends.listData.loading = false;
+            myObj.friends.listData.ini = false;
+            myObj.friends.listData.page = 0;
+            myObj.friends.listData.page_total = 0;
+            myObj.friends.loadList(me);
+        },
+        loadDownFn : function(me){
+            myObj.friends.loadList(me);
+        }
+    });
+
+    $('#follow-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            myObj.follow.listData.loading = false;
+            myObj.follow.listData.ini = false;
+            myObj.follow.listData.page = 0;
+            myObj.follow.listData.page_total = 0;
+            myObj.follow.loadList(me);
+        },
+        loadDownFn : function(me){
+            myObj.follow.loadList(me);
+        }
+    });
+
+    $('#fans-container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            myObj.fans.listData.loading = false;
+            myObj.fans.listData.ini = false;
+            myObj.fans.listData.page = 0;
+            myObj.fans.listData.page_total = 0;
+            myObj.fans.loadList(me);
+        },
+        loadDownFn : function(me){
+            myObj.fans.loadList(me);
+        }
+    });
+</script>
 </html>
