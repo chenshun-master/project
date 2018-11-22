@@ -63,6 +63,14 @@ class User extends BaseController
         $this->assign('user_info',$user_info);
         return $this->fetch('user/modify');
     }
+   /**
+     * 我的好友粉絲頁面
+     * @return mixed
+     */
+    public function friends()
+    {
+        return $this->fetch('user/friends');
+    }
 
    /**
      * 我的收藏页面
