@@ -80,8 +80,8 @@
 <main>
     <div class="wl-con-top">
         <div class="wl-jiu href click-to-hospital-details" >
-        <i class="iconfont icon-dingwei" style="font-size: 25px;float: left;color: #7DB0E8;margin-left: 5px"></i>
-            <dl class="wl-yiyuan" style="margin-left: 15px">
+        <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 5px"></i>
+            <dl class="wl-yiyuan" >
                  <dd>{$info['hospital']['address']}</dd>
             </dl>
             <dl style="float: right">
@@ -109,31 +109,7 @@
                          class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
                     <dl>{$vo['real_name']}</dl>
                     <dt>{$vo['duties']}</dt>
-                </div>                <div class="wl-xiang">
-                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
-                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
-                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
-                <dl>{$vo['real_name']}</dl>
-                <dt>{$vo['duties']}</dt>
-            </div>                <div class="wl-xiang">
-                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
-                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
-                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
-                <dl>{$vo['real_name']}</dl>
-                <dt>{$vo['duties']}</dt>
-            </div>                <div class="wl-xiang">
-                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
-                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
-                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
-                <dl>{$vo['real_name']}</dl>
-                <dt>{$vo['duties']}</dt>
-            </div>                <div class="wl-xiang">
-                <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
-                <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
-                     class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
-                <dl>{$vo['real_name']}</dl>
-                <dt>{$vo['duties']}</dt>
-            </div>
+                </div>
                 {/foreach}
             </div>
             </div>
