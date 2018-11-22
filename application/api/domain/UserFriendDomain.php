@@ -8,7 +8,6 @@ use think\Db;
  */
 class UserFriendDomain
 {
-
     /**
      * 判断两个用户是否已经成功好友
      * @param $user_id     用户ID1
@@ -79,17 +78,7 @@ class UserFriendDomain
         return $isTrue ? true : false;
     }
 
-    /**
-     * 获取我的好友列表
-     * @param $user_id    用户ID
-     * @return mixed
-     */
-    public function getFriendList($user_id){
-        $sql = "SELECT friend_id AS friends, user_group AS my_group FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 2  
-                UNION ALL 
-                SELECT user_id AS friends, friend_group AS my_group FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 2 ";
-        return Db::query($sql);
-    }
+
 
     /**
      * 添加好友私信
@@ -307,5 +296,84 @@ class UserFriendDomain
         $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
         $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
         return Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->delete();
+    }
+
+    /**
+     * 获取用户好友列表
+     * @param $user_id    用户ID
+     * @return mixed
+     */
+    public function getFriendList($user_id){
+        $sql = "SELECT tmp_tab.*,user.portrait,user.nickname,user.`profile`,user.type
+                from (
+                    SELECT friend_id AS uid, user_group AS my_group FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 2  
+                      UNION ALL 
+                    SELECT user_id AS uid, friend_group AS my_group FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 2
+                ) tmp_tab
+                LEFT JOIN wl_user user on user.id = tmp_tab.uid";
+        $rows =  Db::query($sql);
+
+        return [
+            'rows'          =>$rows,
+            'page'          =>1,
+            'page_total'    =>count($rows)?1:0,
+            'total'         =>count($rows)
+        ];
+    }
+
+    /**
+     * 获取用户关注的列表
+     * @param $user_id            用户ID
+     * @param int $page           当前页
+     * @param int $page_size      分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserFollowList($user_id,$page = 1,$page_size = 15){
+        $obj = Db::name('user_friends')->alias('friends');
+        $obj->leftJoin('wl_user user',"user.id = if(friends.user_id = {$user_id},friends.friend_id,friends.user_id)");
+        $obj->where('friends.applicant_id',$user_id);
+        $obj->where('friends.status',5);
+        $total = $obj->count();
+
+        $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type");
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取用户粉丝列表
+     * @param $user_id            用户ID
+     * @param int $page           当前页
+     * @param int $page_size      分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserFansList($user_id,$page = 1,$page_size = 15){
+        $obj = Db::name('user_friends')->alias('friends');
+        $obj->leftJoin('wl_user user',"user.id = if(friends.user_id = {$user_id},friends.friend_id,friends.user_id)");
+
+        $obj->where('friends.applicant_id','<>',$user_id);
+        $obj->where('friends.status',5);
+        $obj->where("friends.user_id = {$user_id} or friends.friend_id = {$user_id}");
+
+        $total = $obj->count();
+        $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type");
+        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }
