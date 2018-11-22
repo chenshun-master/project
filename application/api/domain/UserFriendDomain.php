@@ -10,16 +10,27 @@ class UserFriendDomain
 {
     /**
      * 判断两个用户是否已经成功好友
-     * @param $user_id     用户ID1
-     * @param $friend_id   用户ID2
+     * @param $uid1     用户ID1
+     * @param $uid2     用户ID2
      * @return bool
      */
-    public function checkFriend($user_id,$friend_id){
-        $sql = "SELECT id from wl_user_friends where status = 2  AND  user_id = {$user_id} and friend_id = {$friend_id}
-                union all
-                SELECT id from wl_user_friends where status = 2  AND  user_id = {$friend_id} and friend_id = {$user_id}";
-        $res = Db::query($sql);
+    public function checkFriend($uid1,$uid2){
+        $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
+        $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('status',2)->field('id')->find();
+        return $res ? true : false;
+    }
 
+    /**
+     * 判断两个用户是否已经成功好友或者相互关注
+     * @param $uid1     用户ID1
+     * @param $uid2     用户ID2
+     * @return bool
+     */
+    public function checkFollowOrFriend(int $uid1,int $uid2){
+        $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
+        $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('status','in',[2,5])->field('id')->find();
         return $res ? true : false;
     }
 
@@ -77,8 +88,6 @@ class UserFriendDomain
         $isTrue = Db::name('user_friends')->insertGetId($data);
         return $isTrue ? true : false;
     }
-
-
 
     /**
      * 添加好友私信

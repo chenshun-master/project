@@ -81,39 +81,8 @@
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    $(function () {
-        $(".ones").show();
-        $(".top span").eq(0).addClass("se");
-        var a, b, c, index = 0;
-        $(".top span").click(function () {
-            index = $(this).index();
-            $(".xia .one").eq(index).show().siblings().hide();
-            $(".top span").eq(index).addClass("se").siblings().removeClass("se");
-            if (index == 0) {
-                a = 1;
-            }
-            if (index == 1) {
-                b = 1;
-            }
-            if (index == 2) {
-                c = 1;
-            }
-            if (a == 1 && b == 1 && c == 1) {
-                $("#xiao").hide();
-            }
-        });
-    });
-</script>
-
-<script type="text/javascript">
-
     $(document).on('click','.click-to-user-dialogue',function(){
         window.location.href = '/weixin/user/userDialogue/uid/'+$(this).data('uid');
-    });
-
-    $(function(){
-        var h = $(window).height() - 200;
-        $("#friends-container-list,#follow-container-list,#fans-container-list").css('minHeight',h + 'px');
     });
 
     var myObj = {
@@ -305,47 +274,59 @@
         }
     };
 
+    $(".top span").click(function () {
+        $(".xia .one").eq($(this).index()).show().siblings().hide();
+        $(".top span").eq($(this).index()).addClass("se").siblings().removeClass("se");
 
-    $('#friends-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            myObj.friends.listData.loading = false;
-            myObj.friends.listData.ini = false;
-            myObj.friends.listData.page = 0;
-            myObj.friends.listData.page_total = 0;
-            myObj.friends.loadList(me);
-        },
-        loadDownFn : function(me){
-            myObj.friends.loadList(me);
+        if(myObj.friends.listData.ini == false && $(this).index() == 0){
+            $('#friends-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.friends.listData.loading = false;
+                    myObj.friends.listData.ini = false;
+                    myObj.friends.listData.page = 0;
+                    myObj.friends.listData.page_total = 0;
+                    myObj.friends.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.friends.loadList(me);
+                }
+            });
+        }else if(myObj.follow.listData.ini == false && $(this).index() == 1){
+            $('#follow-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.follow.listData.loading = false;
+                    myObj.follow.listData.ini = false;
+                    myObj.follow.listData.page = 0;
+                    myObj.follow.listData.page_total = 0;
+                    myObj.follow.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.follow.loadList(me);
+                }
+            });
+        }else if(myObj.fans.listData.ini == false && $(this).index() == 2){
+            $('#fans-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.fans.listData.loading = false;
+                    myObj.fans.listData.ini = false;
+                    myObj.fans.listData.page = 0;
+                    myObj.fans.listData.page_total = 0;
+                    myObj.fans.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.fans.loadList(me);
+                }
+            });
         }
     });
+    $(".top span:first-child").trigger('click');
 
-    $('#follow-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            myObj.follow.listData.loading = false;
-            myObj.follow.listData.ini = false;
-            myObj.follow.listData.page = 0;
-            myObj.follow.listData.page_total = 0;
-            myObj.follow.loadList(me);
-        },
-        loadDownFn : function(me){
-            myObj.follow.loadList(me);
-        }
-    });
-
-    $('#fans-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            myObj.fans.listData.loading = false;
-            myObj.fans.listData.ini = false;
-            myObj.fans.listData.page = 0;
-            myObj.fans.listData.page_total = 0;
-            myObj.fans.loadList(me);
-        },
-        loadDownFn : function(me){
-            myObj.fans.loadList(me);
-        }
+    $(function(){
+        var h = $(window).height() - 500;
+        $("#friends-container-list,#follow-container-list,#fans-container-list").css('minHeight',h + 'px');
     });
 </script>
 </html>

@@ -94,7 +94,7 @@ class User extends BaseController
 
         $uid =  $request->param('uid/d',0);
 
-        $isFriend = $this->_userFriendDomain->checkFriend($uid,$this->getUserId());
+        $isFriend = $this->_userFriendDomain->checkFollowOrFriend($uid,$this->getUserId());
 
         $this->assign('isFriend',$isFriend ? 1 : 2);
         $this->assign('uid',$uid);
