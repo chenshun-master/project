@@ -97,7 +97,7 @@ width: 100%;
     background: white;
 }
 .wl-yiyuan{
-    float: left;margin-left: 10px
+    float: left;margin-left: 10px;width: 75%;
 }
 .wl-yiyuan dd{
     color: #1D1D1D;
@@ -106,9 +106,9 @@ width: 100%;
 .wl-yiyuan dt{
      color: #898989;
      font-size: 12px;
- }
+}
 .wl-jiu{
-    height: 60px;border-bottom: 1px solid #DFDFDF;padding: 10px;
+    min-height: 62px;border-bottom: 1px solid #DFDFDF;padding: 10px;
 }
 .wl-biaoti{
     width: 100%;
@@ -123,7 +123,7 @@ width: 100%;
     min-height: 105px;
     background: white;
     padding: 10px;
-    margin-bottom: 10px;
+    border-bottom: 1px solid #EEEEEE;
 }
 .wl-neirong1{
     max-width: 60%;
@@ -183,8 +183,11 @@ width: 100%;
     width: 100%;
     min-height: 30px;
     background: white;
-    margin-bottom: 10px;
+    border-bottom:  1px solid #EEEEEE;
 
+}
+.wl-con-top img{
+    border-radius: 50%;
 }
 .wl-deml{
     width: 95%;
@@ -197,7 +200,7 @@ width: 100%;
     color: #1F1F1F;
     font-size: 17px;
     margin: 0 auto;
-    padding: 5px 0 5px 0;
+    padding: 5px 0 3px 0;
 }
 .wl-top-touxiang img{
     border-radius: 50%;

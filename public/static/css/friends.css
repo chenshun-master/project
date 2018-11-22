@@ -26,8 +26,7 @@ a{text-decoration: none;color: #221815;display: block;}
     min-height: 30px;
     display: inline-block;
     margin-top: -10px;
-    color: #1F1F1F;
-    font-size: 14px;
+    font-size: 16px;
 }
 .se{
     border-bottom: 2px solid #7DB0E8;
@@ -95,4 +94,24 @@ color: #1D1D1D;
     overflow: hidden;
     margin-top: 5px;
 
+}
+.wl-foot {
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #CACACA;
+    position: fixed;
+    bottom: 0;
+    background: white;
+}
+.wl-foot dl {
+    margin-top: -28px;
+    width: 25%;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+.wl-foot dt {
+    font-size: 11px;
+    color: #000000;
+    margin-top: -2px;
 }
