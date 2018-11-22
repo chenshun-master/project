@@ -150,8 +150,6 @@ class Api extends BaseController
         $page_size = $request->param('page_size/d',15);
 
         $data = $this->_userFriendDomain->getUserFollowList($this->getUserId(),$page,$page_size);
-
-        halt($data);
         return $this->returnData($data,'',200);
     }
 
