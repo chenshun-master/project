@@ -61,7 +61,7 @@ class Api extends BaseController
 
         $uid      = $request->param('uid',0);
         $record   = $request->param('record_id',0);
-        $data = $this->_userFriendDomain->getPrivateLetterList(39,43,$record);
+        $data = $this->_userFriendDomain->getPrivateLetterList($this->getUserId(),$uid,$record);
         $user_id = $this->getUserId();
         if($data['rows']){
             $ids = [];
