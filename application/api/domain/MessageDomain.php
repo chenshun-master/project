@@ -206,4 +206,33 @@ class MessageDomain
 
         return $res;
     }
+
+    /**
+     * 获取用户未读消息
+     * @param $user_id
+     * @return array
+     */
+    public function getUnreadMsg($user_id){
+        $sql = "SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = {$user_id} and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = {$user_id} and is_read = 0";
+
+        $data = [
+            'total' =>0,
+            'info'  =>[
+                'chat_record'  =>0,
+                'message_read' =>0
+            ]
+        ];
+
+        $rows = Db::query($sql);
+        if($rows && count($rows) > 0){
+            foreach ($rows as $k=>$v){
+                $data['total'] = $v['num'] + $data['total'];
+                $data['info'][$v['type']] = $v['num'];
+            }
+        }
+
+        return $data;
+    }
 }
