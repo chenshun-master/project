@@ -132,6 +132,69 @@ class Api extends BaseController
         return $this->returnData([],'操作成功',200);
     }
 
+
+    /**
+     * 获取用户关注列表
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserFollowList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page      = $request->param('page/d',1);
+        $page_size = $request->param('page_size/d',15);
+
+        $data = $this->_userFriendDomain->getUserFollowList($this->getUserId(),$page,$page_size);
+
+        halt($data);
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取用户粉丝列表
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserFansList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page      = $request->param('page/d',1);
+        $page_size = $request->param('page_size/d',15);
+
+        $data = $this->_userFriendDomain->getUserFansList($this->getUserId(),$page,$page_size);
+        return $this->returnData($data,'',200);
+    }
+
+    /**
+     * 获取用户好友列表
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getFriendList(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page      = $request->param('page/d',1);
+        $page_size = $request->param('page_size/d',15);
+
+        $data = $this->_userFriendDomain->getFriendList($this->getUserId());
+        return $this->returnData($data,'',200);
+    }
+
     /**
      * 手动审核认证
      * @param Request $request
