@@ -100,4 +100,26 @@ class Api extends BaseController
 
         return $this->returnData($data,'',200);
     }
+
+    /**
+     * 手动审核认证
+     * @param Request $request
+     * @return false|string
+     */
+    public function authVerify(Request $request){
+        $username = $request->param('username','');
+        $password = $request->param('password','');
+        $authId   = $request->param('auth_id/d',0);
+        $status   = $request->param('status/d',0);
+        if($username == 'xiaorao' && $password == 'wlxiaorao'){
+            $domain = new \app\api\domain\AuthDomain();
+            $isTrue = $domain->authVerify($authId,$status,'手动审核');
+            if(!$isTrue){
+                return $this->returnData([],'审核失败',305);
+            }
+            return $this->returnData([],'审核成功',200);
+        }else{
+            return $this->returnData([],'用户未授权',305);
+        }
+    }
 }
