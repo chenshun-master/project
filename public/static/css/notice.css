@@ -112,7 +112,7 @@ a{text-decoration: none;color: #221815;display: block;}
     margin-top: -74px;
     margin-right: 10px;
     color: white;
-    background: red;
+    background: #fc7d7d  ;
     font-size: 20px;
     border-radius: 10px;
 }
@@ -186,7 +186,7 @@ a{text-decoration: none;color: #221815;display: block;}
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: red;
+    background:#fc7d7d;
     position: absolute;
     top: 20px;
     left: 80px;

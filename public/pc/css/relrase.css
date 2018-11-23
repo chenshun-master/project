@@ -435,7 +435,7 @@ a {
     font-size: 14px;
     border: 1px solid #F1F1F1;
     float: right;
-    margin-right: 115px;
+    margin-right: 104px;
     margin-top: 12px;
 }
 .wl-sxia{
@@ -1046,4 +1046,8 @@ top: 190px;
 .modal-content{
     border: 0 !important;
     border-radius: 0 !important;
+}
+.wl-liandong{
+  width: 110px;height: 40px;line-height: 35px;    border: 1px solid #F1F1F1;
+    color: #888888;
 }
