@@ -50,7 +50,7 @@ a{text-decoration: none;color: #221815;display: block;}
     border-bottom: 1px solid #EEEEEE;
 }
 .wl-nei2 dl{
-    width: 72%;
+    width: 70%;
     color: #1D1D1D;
     font-size: 35px;
     overflow: hidden;
@@ -58,7 +58,7 @@ a{text-decoration: none;color: #221815;display: block;}
     text-overflow: ellipsis;
 }
 .wl-nei2 dt{
-    width: 73%;
+    width: 70%;
     color: #898989;
     font-size: 28px;
     margin-top: 7px;
