@@ -36,7 +36,7 @@
             <h3 style="font-size:0.34rem;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
             <p class="wl-jianj">{$user_info['profile']}</p>
             <?php if($is_friend === true):?>
-            <button onclick="redream.showTip('此功能暂未开放...')">私信</button>
+            <button><a href="/weixin/user/userDialogue/uid/{$user_info['id']}">私信</a></button>
             <?php elseif($is_friend === false):?>
             <button  class="wl-haoyou" onclick="myObj.showAddFriend()">加好友</button>
             <?php endif;?>

@@ -209,7 +209,21 @@
                 <p class="wl-zhen2">运营者身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" ></p>
                 <p class="wl-zhen3">运营者手机号 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
                 <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
-                <p class="wl-zhen2">所在地区 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院/机构所在地区" id="fr3-address" style="margin-left: 78px"></p>
+                <p class="wl-zhen2">所在地址
+                    <span class="wl-xin">*</span>
+                    <p style="float: left">
+                        <select id="fr-province" style="border: 1px solid #ede3e3;width: 120px;height: 35px;line-height: 35px;">
+                            <option value="">请选择省</option>
+                        </select>
+                        <select id="fr-city" style="border: 1px solid #ede3e3;width: 120px;height: 35px;line-height: 35px;">
+                            <option value="">请选择市</option>
+                        </select>
+                        <select id="fr-area-county" style="border: 1px solid #ede3e3;width: 120px;height: 35px;line-height: 35px;">
+                            <option value="">请选择县</option>
+                        </select>
+                        <input type="text" placeholder="请输入医院/机构的详细地址" id="fr3-address" style="margin-left: 78px">
+                    </p>
+                </p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片 <span class="wl-xin">*</span></p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
