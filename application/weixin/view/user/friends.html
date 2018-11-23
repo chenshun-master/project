@@ -24,9 +24,9 @@
 <header style="background:  #F2F2F2; position: relative;">
     <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 36px;left:10px;" onClick="redream.toReferer()"></i>
     <div class="top" style="z-index: 9999999;">
-        <span id="one">好友</span>
-        <span id="two">关注</span>
-        <span id="three">粉丝</span>
+        <span id="one"><a href="#friends">好友</a></span>
+        <span id="two"><a href="#follow">关注</a></span>
+        <span id="three"><a href="#fans">粉丝</a></span>
     </div>
 </header>
 <main>
@@ -322,7 +322,20 @@
             });
         }
     });
-    $(".top span:first-child").trigger('click');
+
+    $(function(){
+        var url = window.location.toString();
+        var maodian = url.split('#')[1];
+        if(maodian == 'friends'){
+            $('#one').trigger('click');
+        }else if(maodian == 'follow'){
+            $('#two').trigger('click');
+        }else if(maodian == 'fans'){
+            $('#three').trigger('click');
+        }else{
+            $(".top span:first-child").trigger('click');
+        }
+    });
 
     $(function(){
         var h = $(window).height() - 500;
