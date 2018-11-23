@@ -13,6 +13,9 @@ class UserFriendDomain
      * @param $uid1     用户ID1
      * @param $uid2     用户ID2
      * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function checkFriend($uid1,$uid2){
         $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
@@ -26,11 +29,14 @@ class UserFriendDomain
      * @param $uid1     用户ID1
      * @param $uid2     用户ID2
      * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function checkFollowOrFriend(int $uid1,int $uid2){
         $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
         $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
-        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('status','in',[2,5])->field('id')->find();
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('status','in',[2,3])->field('id')->find();
         return $res ? true : false;
     }
 
@@ -49,18 +55,19 @@ class UserFriendDomain
         $isTrue = Db::name('user_friends')
             ->where('user_id', $user_id2)
             ->where('friend_id', $friend_id2)
-            ->update(['status' =>3]);
+            ->update(['status' =>5]);
 
         return $isTrue ? true : false;
     }
 
     /**
      * 创建好友关系
-     * @param $user_id     用户ID1
-     * @param $friend_id   用户ID2
+     * @param $user_id              用户ID1
+     * @param $friend_id            用户ID2
+     * @param string $remarks       申请备注
      * @return bool
      */
-    public function createFriend($user_id,$friend_id,$remarks='',$status = 1){
+    public function createFriend($user_id,$friend_id,$remarks=''){
         $user_id = (int)$user_id;
         $friend_id = (int)$friend_id;
 
@@ -164,7 +171,7 @@ class UserFriendDomain
      * 处理好友申请状态
      * @param $user_id
      * @param $id            申请记录ID
-     * @param $status
+     * @param $status        好友状态
      * @return bool
      * @throws \think\Exception
      * @throws \think\exception\PDOException
@@ -180,6 +187,10 @@ class UserFriendDomain
 
     /**
      * 获取私信记录
+     * @param $uid        用户ID1
+     * @param $uid2       用户ID2
+     * @param int $record_id
+     * @return array
      */
     public function getPrivateLetterList($uid,$uid2,$record_id = 0){
         $where = '';
@@ -214,6 +225,22 @@ class UserFriendDomain
      */
     public function uploadPrivateLetterStatus($receive_user_id , $ids = []){
         Db::name('chat_record')->where('id','in', $ids)->where('receive_user_id', $receive_user_id)->update(['is_read' => 2]);
+    }
+
+
+    /**
+     * 获取未读信息总数
+     * @param $send_user_id          发送者
+     * @param $receive_user_id       接收者
+     * @param $record_id             记录ID
+     * @return float|string
+     */
+    public function getUnreadNum($send_user_id,$receive_user_id,$record_id){
+        $obj = Db::name('chat_record')->where('send_user_id', $send_user_id)->where('receive_user_id',$receive_user_id)->where('is_read',1);
+        if($record_id > 0){
+            $obj->where('id','<', $record_id);
+        }
+        return $obj->count();
     }
 
     /**
@@ -256,7 +283,7 @@ class UserFriendDomain
     public function checkFollow(int $uid1,int $uid2,$applicant_id){
         $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
         $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
-        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->fetchSql(false)->field('id')->find();
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',3)->fetchSql(false)->field('id')->find();
         return $res ? true : false;
     }
 
@@ -265,27 +292,30 @@ class UserFriendDomain
      * @param int $user_id         用户ID1
      * @param int $friend_id       用户ID2
      * @param int $applicant_id    发起关注的用户
-     * @return bool
+     * @return bool|int|string
+     * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
      */
     public function createFollow(int $uid1,int $uid2,$applicant_id){
         $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
         $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
 
-        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->find('id');
-
-        if($res){
+        $res = Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status','in',[3,4])->find('id,status');
+        if($res && $res['status'] == 3){
             return true;
+        }else if($res && $res['status'] == 4){
+            return Db::name('user_friends')->where('id',$res['id'])->where('status',4)->update(['status'=>3]);
         }
 
         $data = [
-            'user_id' => $user_id,
-            'friend_id' => $friend_id,
-            'applicant_id' => $applicant_id,
-            'status' => 5,
-            'create_time' => date('Y-m-d H:i:s')
+            'user_id'       => $user_id,
+            'friend_id'     => $friend_id,
+            'applicant_id'  => $applicant_id,
+            'status'        => 3,
+            'create_time'   => date('Y-m-d H:i:s')
         ];
 
         $isTrue = Db::name('user_friends')->insertGetId($data);
@@ -304,7 +334,7 @@ class UserFriendDomain
     public function delFollow(int $uid1,int $uid2,$applicant_id){
         $user_id   = $uid1 > $uid2 ? $uid2 : $uid1;
         $friend_id = $uid1 > $uid2 ? $uid1 : $uid2;
-        return Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',5)->delete();
+        return Db::name('user_friends')->where('user_id',$user_id)->where('friend_id',$friend_id)->where('applicant_id',$applicant_id)->where('status',3)->update(['status'=>4]);
     }
 
     /**
@@ -344,7 +374,7 @@ class UserFriendDomain
         $obj = Db::name('user_friends')->alias('friends');
         $obj->leftJoin('wl_user user',"user.id = if(friends.user_id = {$user_id},friends.friend_id,friends.user_id)");
         $obj->where('friends.applicant_id',$user_id);
-        $obj->where('friends.status',5);
+        $obj->where('friends.status',3);
         $total = $obj->count();
 
         $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type");
@@ -372,7 +402,7 @@ class UserFriendDomain
         $obj->leftJoin('wl_user user',"user.id = if(friends.user_id = {$user_id},friends.friend_id,friends.user_id)");
 
         $obj->where('friends.applicant_id','<>',$user_id);
-        $obj->where('friends.status',5);
+        $obj->where('friends.status',3);
         $obj->where("friends.user_id = {$user_id} or friends.friend_id = {$user_id}");
 
         $total = $obj->count();

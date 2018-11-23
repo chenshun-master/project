@@ -76,6 +76,8 @@ class Api extends BaseController
             }
         }
 
+        $data['unread_num'] = $this->_userFriendDomain->getUnreadNum($uid,$this->getUserId(),$record);
+
         return $this->returnData($data,'',200);
     }
 
