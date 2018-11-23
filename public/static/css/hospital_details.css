@@ -272,6 +272,9 @@ font-size: 13px;
         font-size: 26px;
     }
     .wl-yiyuan dt{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: #898989;
         font-size: 22px;
     }

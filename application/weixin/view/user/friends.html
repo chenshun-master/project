@@ -21,14 +21,15 @@
 
 </style>
 <body style="background: #F2F2F2">
-<header style="background:  #F2F2F2; position: relative;">
-    <a href="/weixin/user/main"><i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 36px;left:10px;" ></i></a>
+<header>
+    <a href="/weixin/user/main"><i class="iconfont icon-back_light" style="font-size: 20px; position: absolute; top: 10px;left: 10px;" ></i></a>
     <div class="top" style="z-index: 9999999;">
         <span id="one"><a href="#friends">好友</a></span>
         <span id="two"><a href="#follow">关注</a></span>
         <span id="three"><a href="#fans">粉丝</a></span>
     </div>
 </header>
+
 <main>
     <div class="xia">
         <div class="one ones">
@@ -285,7 +286,8 @@
 
     $(".top span").click(function () {
         $(".xia .one").eq($(this).index()).show().siblings().hide();
-        $(".top span").eq($(this).index()).addClass("se").siblings().removeClass("se");
+        $('a').removeClass("se");
+        $(".top span ").eq($(this).index()).find('a').addClass("se").siblings().find('a').removeClass("se");
 
         if(myObj.friends.listData.ini == false && $(this).index() == 0){
             $('#friends-container').dropload({
