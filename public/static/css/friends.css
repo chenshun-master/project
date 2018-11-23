@@ -10,15 +10,16 @@ ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
 .top{
     width: 100%;
-    height: 40px;
-    line-height: 40px;
+    height: 35px;
+    line-height: 32px;
     text-align: center;
     background: #F2F2F2;
+    padding-top: 2px;
 }
 .top span{
     font-size: 17px;
     width: 12%;
-    height: 40px;
+    height: 35px;
     display: inline-block;
 }
 .one{
