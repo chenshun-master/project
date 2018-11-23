@@ -4,32 +4,31 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 ol, ul { list-style: none; }
 body{position:relative;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
-body { font-family: "思源黑体 CN";color:#221815;}
+body { font-family: "思源黑体 CN";color:#221815;font-size: 14px}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
 .top{
-    width: 60%;
-    margin: 0 auto;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
-    margin-top: -26px;
-    height: 65px;
+    background: #F2F2F2;
+}
+.top span{
+    font-size: 17px;
+    width: 12%;
+    height: 40px;
+    display: inline-block;
 }
 .one{
     width: 100%;
     font-size:20px;
     display: none;
 }
-.top span{
-    text-align: center;
-    width: 20%;
-    min-height: 30px;
-    display: inline-block;
-    margin-top: -10px;
-    font-size: 16px;
-}
+
 .se{
-    border-bottom: 2px solid #7DB0E8;
+    border-bottom: 1.5px solid #7DB0E8;
     color: #7DB0E8;
 }
 .xia{
@@ -102,7 +101,7 @@ color: #1D1D1D;
     background: white;
 }
 .wl-foot dl {
-    margin-top: -24px;
+    margin-top:4px;
     width: 25%;
     height: 50px;
     text-align: center;
@@ -111,5 +110,5 @@ color: #1D1D1D;
 .wl-foot dt {
     font-size: 11px;
     color: #000000;
-    margin-top: -9px;
+    margin-top: -2px;
 }
