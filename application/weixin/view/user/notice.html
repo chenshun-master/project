@@ -391,7 +391,9 @@
             $(".top span:first-child").trigger('click');
         }
 
-        $("#cus-notice-container-list,#cus-noticetwo-container-list,#cus-notice-three-container-list").css('minHeight', + '300px');
+
+        var h = $(window).height() - 200;
+        $("#cus-notice-container-list,#cus-noticetwo-container-list,#cus-notice-three-container-list").css('minHeight',h + 'px');
     });
 </script>
 </html>
