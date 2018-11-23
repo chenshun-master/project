@@ -22,11 +22,11 @@
 </style>
 <body style="background: #F2F2F2">
 <header style="background:  #F2F2F2; position: relative;">
-    <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 36px;left:10px;" onClick="redream.toReferer()"></i>
+    <a href="/weixin/user/main"><i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 36px;left:10px;" ></i></a>
     <div class="top" style="z-index: 9999999;">
-        <span id="one">好友</span>
-        <span id="two">关注</span>
-        <span id="three">粉丝</span>
+        <span id="one"><a href="#friends">好友</a></span>
+        <span id="two"><a href="#follow">关注</a></span>
+        <span id="three"><a href="#fans">粉丝</a></span>
     </div>
 </header>
 <main>
@@ -84,6 +84,16 @@
         window.location.href = '/weixin/user/userDialogue/uid/'+$(this).data('uid');
     });
 
+    $(document).on('click','.click-to-userdetail',function(){
+        if(type == 1 || type == 2 || type ==5){
+            window.location.href = '/weixin/article/userMain/id/'+$(this).data('uid');
+        }else if(type == 3){
+            window.location.href = '/weixin/index/doctorDetails/uid/'+$(this).data('uid');
+        }else if(type == 4){
+            window.location.href = '/weixin/index/hospitalDetails/uid/'+$(this).data('uid')
+        }
+    });
+
     var myObj = {
         template:{
             getTypeTemplate:function(type){
@@ -107,7 +117,7 @@
             },
             getHtml:function(data){
                 return '<div class="wl-nei1 " data-uid="'+ data.uid +'">' +
-                    '                <div class="wl-touxiang href">' +
+                    '                <div class="wl-touxiang href click-to-userdetail" data-type="'+ data.type+'" data-uid="'+data.uid+'" >' +
                     '                    <img src="'+ data.portrait +'" onerror="this.src=\'/static/image/user/tou.png\'" width="41" height="41">' +
                     '                </div>' +
                     '                <div class="wl-nei2 href click-to-user-dialogue" data-uid="'+ data.uid +'">' + myObj.template.getTypeTemplate(data.type) +
@@ -321,7 +331,19 @@
             });
         }
     });
-    $(".top span:first-child").trigger('click');
+
+    $(function(){
+        var maodian = window.location.toString().split('#')[1];
+        if(maodian == 'friends'){
+            $('#one').trigger('click');
+        }else if(maodian == 'follow'){
+            $('#two').trigger('click');
+        }else if(maodian == 'fans'){
+            $('#three').trigger('click');
+        }else{
+            $(".top span:first-child").trigger('click');
+        }
+    });
 
     $(function(){
         var h = $(window).height() - 500;
