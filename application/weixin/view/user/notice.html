@@ -22,8 +22,8 @@
     <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;top: 18px;left:10px;z-index: 1;" onclick="redream.href('/weixin/user/main')"></i>
     <div class="top" style="position: relative">
         <span id="san" ><a href="#notice">公告</a></span>
-        <span id="one" style="position:relative;"><a href="#message">通知</a><i class="wl-dian"></i></span>
-        <span id="two" style="position:relative;"><a href="#letter">私信</a><i class="wl-dian"></i></span>
+        <span id="one" style="position:relative;"><a href="#message">通知</a><i class="wl-dian" style="display: none" id="cus-message-tip"></i></span>
+        <span id="two" style="position:relative;"><a href="#letter">私信</a><i class="wl-dian" style="display: none" id="cus-letter-tip"></i></span>
     </div>
 </header>
 
@@ -212,14 +212,14 @@
             },
             template:function(data){
                 var portrait = (data.portrait == null || data.portrait == '') ? '':data.portrait;
+                var unread_html = (data.unread_num == 0) ? '' : '<dd class="wl-tian2"><span>'+ data.unread_num +'</span>未读</dd>';
                 return '<div class="wl-nei1 href  cus-to-dialogue" data-uid = "'+data.uid +'">' +
                     '<img src="'+ portrait +'" alt="" onerror="this.src=\'/static/image/user/tou.png\'" >' +
                     '<div class="wl-nei2">' +
                     '<dl>'+ data.nickname +'</dl>' +
                     '<dt>'+ data.content +'</dt>' +
-                    '<dd class="wl-tian2"><span>21</span>未读</dd>'+
+                      unread_html +
                     '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
-
                     '</div>' +
                     '</div>';
             },
@@ -291,6 +291,25 @@
                 });
             }
         },
+        loadindUnreadMsg:function(){
+            $.ajax({
+                url: "/weixin/api/getUnreadMsg",
+                type: 'post',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        if(res.data.total > 0){
+                            if(res.data.info.message_read > 0){
+                                $('#cus-message-tip').show();
+                            }
+                            if(res.data.info.chat_record > 0){
+                                $('#cus-letter-tip').show();
+                            }
+                        }
+                    }
+                }
+            });
+        }
     };
 
     $(document).on('click','.cus-click-agreeapply',function(){
@@ -397,5 +416,7 @@
         var h = $(window).height() - 200;
         $("#cus-notice-container-list,#cus-noticetwo-container-list,#cus-notice-three-container-list").css('minHeight',h + 'px');
     });
+
+    myObj.loadindUnreadMsg();
 </script>
 </html>
