@@ -44,6 +44,7 @@ a{text-decoration: none;color: #221815;display: block;}
     min-height: 70px;
     margin: 10px 10px 0 0 ;
     float: right;
+    position: relative;
 }
 .wl-pingjia dl{
     color: #1D1D1D;
@@ -71,10 +72,9 @@ color: #7DB0E8;
     float: left;
 }
 .wl-renzheng{
-    float: right;
-    margin-top: -50px;
-    margin-right: 20px;
-    color: #7DB0E8;
+position:absolute;
+    top: 17px;
+    right: 10px;
 }
 .wl-toux img{
     width: 41px;
