@@ -239,4 +239,5 @@ class Index extends CController
     public function error404(){
         return $this->fetch('error/loss');
     }
+
 }
