@@ -27,6 +27,20 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 ol, ul {
     list-style: none;
 }
+/*select {*/
+    /*!*清除select默认样式*!*/
+    /*!*appearance:none;*!*/
+    /*!*-moz-appearance:none;*!*/
+    /*!*-webkit-appearance:none;*!*/
+    /*!*-ms-appearance:none;*!*/
+
+    /*border:1px solid #CCC;*/
+    /*!*自定义箭头的样式，记得背景一定要加 白色或其他*!*/
+    /*!*ie下,原默认的箭头样式还是会显示，所以这里把自定义的样式给去除了*!*/
+    /*background:#fff;*/
+    /*color:#666;*/
+    /*outline:none;*/
+/*}*/
 
 body {
     position: relative;
@@ -36,7 +50,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin: 0;
     padding: 0;
 }
-
+.de{
+    background: #7DB0E8;
+    color: white;
+}
 body {
     font-family: "微软雅黑 CN";
     color: #221815;
@@ -54,9 +71,11 @@ ul li {
 
 a {
     text-decoration: none;
-    display: block;
 }
-
+.wl-cang1 a:active{
+    text-decoration: none;
+    color: black;
+}
 .wl-con {
     width: 100%;
     height: auto;
@@ -126,18 +145,20 @@ a {
     background: white;
 
 }
+.wl-cang1 a{
+    color: black;
+}
 .tab-box li {
     width: 180px;
     height: 60px;
-    color: #333333;
     line-height: 60px;
     font-size: 18px;
     text-align: center;
     cursor: pointer;
 }
-.tab-box li.active {
+.active {
     background:#7DB0E8;
-    color: #FFFFFF;
+    color: #FFFFFF!important;
     font-size: 18px;
 }
 
@@ -209,12 +230,11 @@ a {
 
 .wl-zhen1{
     width: 100%;
-    height: 60px;
+    min-height: 60px;
     line-height: 70px;
     color: #333333;
     font-size: 16px;
     padding-left: 60px;
-    margin-top: 12px;
 }
 .wl-zhen2{
     width: 100%;
@@ -248,36 +268,36 @@ a {
 .wl-zhen input{
     width: 680px;
     height: 40px;
-    border: 1px solid #F1F1F1;
+    border: 1px solid #e7e7e7;
     font-size: 14px;
-    padding-left: 30px;
+    padding-left: 5px;
     margin-left: 30px;
 }
 .wl-zhen1 input{
     width: 680px;
     height: 40px;
-    border: 1px solid #F1F1F1;
+    border: 1px solid #e7e7e7;
     color: #888888;
     font-size: 14px;
-    padding-left: 30px;
+    padding-left: 5px;
     margin-left: 30px;
 }
 .wl-zhen2 input{
      width: 680px;
      height: 40px;
-     border: 1px solid #F1F1F1;
+     border: 1px solid #e7e7e7;
      color: #888888;
      font-size: 14px;
-     padding-left: 30px;
+     padding-left: 5px;
      margin-left: 30px;
  }
 .wl-zhen3 input{
     width: 680px;
     height: 40px;
-    border: 1px solid #F1F1F1;
+    border: 1px solid #e7e7e7;
     color: #888888;
     font-size: 14px;
-    padding-left: 30px;
+    padding-left: 5px;
     margin-left: 30px;
 }
 .wl-shangc{
@@ -689,7 +709,7 @@ a {
 .wl-zheh input {
     width: 200px;
     height: 38px;
-    border:1px solid #EEEEEE;
+    border:1px solid #e7e7e7;
     margin-left: 40px;
     padding-left: 12px;
     color: #888888;
@@ -698,7 +718,7 @@ a {
 .wl-zhes input {
     width: 200px;
     height: 38px;
-    border:1px solid #EEEEEE;
+    border:1px solid #e7e7e7;
     margin-left: 40px;
     padding-left: 12px;
     color: #888888;
@@ -1050,4 +1070,14 @@ top: 190px;
 .wl-liandong{
   width: 110px;height: 40px;line-height: 35px;    border: 1px solid #F1F1F1;
     color: #888888;
+}
+.wl-zhen1 textarea{
+    width: 72%;
+    min-height: 150px;
+    border: 1px solid #e7e7e7;
+    margin-left: 30px;
+    resize: none;
+    color: #888888;
+    font-size: 14px;
+    padding: 5px;
 }
