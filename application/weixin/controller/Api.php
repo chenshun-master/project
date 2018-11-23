@@ -214,4 +214,19 @@ class Api extends BaseController
             return $this->returnData([],'用户未授权',305);
         }
     }
+
+    /**
+     * 获取用户未读消息统计
+     * @return false|string
+     */
+    public function getUnreadMsg(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $msgDomain = new \app\api\domain\MessageDomain();
+        $msgInfo = $msgDomain->getUnreadMsg($this->getUserId());
+
+        return $this->returnData($msgInfo,'',200);
+    }
 }
