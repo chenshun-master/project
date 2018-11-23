@@ -604,6 +604,8 @@ class User extends BaseController
             }
         }
 
+        sleep(5);
+
         return $this->returnData($data,'',200);
     }
 
