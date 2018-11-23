@@ -59,10 +59,10 @@
                 <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;"></i>实名认证</span><i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px"></i>
             </div>
             <div class="wl-cang1" style="display: none">
-               <span id="san"> <a href="#notice"><li class="{if($type == 1 || $type == 0)} active {/if}">个人认证</li></a></span>
-                <span id="one"> <a href="#message"><li class="{if($type == 2)} active {/if}">医生认证</li></a></span>
-                <span id="two"> <a href="#letter"><li class="{if($type == 3)} active {/if}">医院认证</li></a></span>
-                <span id="six"> <a href="#demo"><li class="{if($type == 4)} active {/if}">官方认证</li></a></span>
+               <span id="san"> <a href="#friends"><li class="{if($type == 1 || $type == 0)} active {/if}">个人认证</li></a></span>
+                <span id="one"> <a href="#follow"><li class="{if($type == 2)} active {/if}">医生认证</li></a></span>
+                <span id="two"> <a href="#fans"><li class="{if($type == 3)} active {/if}">医院认证</li></a></span>
+                <span id="six"> <a href="#four"><li class="{if($type == 4)} active {/if}">官方认证</li></a></span>
 
             </div>
         </ul>
@@ -73,7 +73,7 @@
             </p>
 
             <!--个人认证页面-->
-            <div class="{if($type == 1 || $type == 0)} active-txt {/if} wl-geren"  id="cus-notice-container">
+            <div class="{if($type == 1 || $type == 0)} active-txt {/if} wl-geren"  id="friends-container-list">
                 <p>个人认证</p>
                 <p class="wl-zhen" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
                 <p class="wl-zhen">身份证号 <span class="wl-xin">*</span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"  maxlength="18" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
@@ -120,7 +120,7 @@
             </div>
 
             <!--医生认证页面-->
-            <div class="{if($type == 2)} active-txt {/if} wl-geren1" style="min-height: 1120px"  >
+            <div class="{if($type == 2)} active-txt {/if} wl-geren1" style="min-height: 1120px" id="follow-container-list" >
                 <p>医生认证</p>
                 <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
                 <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18" ></p>
@@ -203,7 +203,7 @@
             </div>
 
             <!--医院机构认证页面-->
-            <div class="{if($type == 3)} active-txt {/if} wl-geren2" style="min-height: 1400px" >
+            <div class="{if($type == 3)} active-txt {/if} wl-geren2" style="min-height: 1400px" id="fans-container-list" >
                 <p>医院/机构认证</p>
                 <p class="wl-zhen2" style="margin-top: 15px">医院名称 <span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
                 <p class="wl-zhen2">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
@@ -283,7 +283,7 @@
             </div>
 
             <!--官方企业认证页面-->
-            <div class="{if($type == 4)} active-txt {/if} wl-geren3" style="min-height: 1280px" >
+            <div class="{if($type == 4)} active-txt {/if} wl-geren3" style="min-height: 1280px"  id="four-container-list" >
                 <p>官方企业认证</p>
                 <p class="wl-zhen3" style="margin-top: 15px;">企业名称<span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 77px"></p>
                 <p class="wl-zhen3">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
@@ -682,18 +682,25 @@
         $(".wl-cang").hide();
     });
 
-    var maodian = window.location.toString().split('#')[1];
-    if(maodian == 'notice'){
-        $('#san').trigger('click');
-    }else if(maodian == 'message'){
-        $('#one').trigger('click');
-    }else if(maodian == 'letter'){
-        $('#two').trigger('click');
-    }else if(maodian == 'demo'){
-        $('#six').trigger('click');
-    }else{
-        $(".wl-cang1 span:first-child").trigger('click');
-    }
+    $(function(){
+        var maodian = window.location.toString().split('#')[1];
+        if(maodian == 'friends'){
+            $('#one').trigger('click');
+        }else if(maodian == 'follow'){
+            $('#two').trigger('click');
+        }else if(maodian == 'fans'){
+            $('#three').trigger('click');
+        } else if(maodian == 'four'){
+            $('#six').trigger('click');
+        }else{
+            $(".wl-cang1 span:first-child").trigger('click');
+        }
+    });
+
+    $(function(){
+        var h = $(window).height() - 200;
+        $("#friends-container-list,#follow-container-list,#fans-container-list,#four-container-list").css('minHeight',h + 'px');
+    });
 
 </script>
 </html>
