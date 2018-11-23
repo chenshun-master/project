@@ -98,7 +98,7 @@
 			</div>
 			<div class="wx-n1">
 				<dl>
-					<dt  onclick="redream.href('/weixin/user/notice')">消息通知 <i class="wl-xui">4</i> <span class="fh"></span></dt>
+					<dt  onclick="redream.href('/weixin/user/notice')">消息通知 <i class="wl-xui" id="cus-unread-msg-tip" style="display: none;">0</i> <span class="fh"></span></dt>
 					<dd  onclick="redream.href('/weixin/user/certification')">用户认证<span  class="fh"></span></dd>
 				</dl>
 			</div>
@@ -172,7 +172,9 @@
                 dataType: 'json',
                 success: function (res) {
                     if (res.code == 200) {
-                        console.log(res.data);
+                        if(res.data.total > 0){
+                            $('#cus-unread-msg-tip').text(res.data.total).show();
+                        }
                     }
                 }
             });

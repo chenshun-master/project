@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
     <meta name="applicable-device" content="pc,mobile">
-    <title>微琳医美</title>
+    <title>微琳医美 - 我的好友</title>
     <link rel="stylesheet" type="text/css" href="/static/css/friends.css"/>
     <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
@@ -85,6 +85,7 @@
     });
 
     $(document).on('click','.click-to-userdetail',function(){
+        var type = $(this).data('type');
         if(type == 1 || type == 2 || type ==5){
             window.location.href = '/weixin/article/userMain/id/'+$(this).data('uid');
         }else if(type == 3){

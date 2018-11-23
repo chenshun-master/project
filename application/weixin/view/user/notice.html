@@ -17,29 +17,31 @@
     .href{cursor: pointer;}
 </style>
 <body style="background: #ffffff;">
-<header>
+
+<header style="position: relative;">
+    <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;top: 18px;left:10px;z-index: 1;" onclick="redream.href('/weixin/user/main')"></i>
     <div class="top" style="position: relative">
-        <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;left: 20px;top: 3px;" onclick="redream.href('/weixin/user/main')"></i>
-        <span id="san">公告</span>
-        <span id="one">通知</span>
-        <span id="two">私信</span>
+        <span id="san"><a href="#notice">公告</a></span>
+        <span id="one"><a href="#message">通知</a></span>
+        <span id="two"><a href="#letter">私信</a></span>
     </div>
 </header>
+
 <content>
     <div class="xia">
-        <div class="san" id="cus-notice-container" >
+        <div class="san wl-box" id="cus-notice-container" >
             <p class="wl-hy1">网站公告</p>
             <div id="cus-notice-container-list" style="min-height: 300px;">
             </div>
         </div>
 
-        <div class="one" id="cus-noticetwo-container">
+        <div class="one wl-box" id="cus-noticetwo-container">
             <p class="wl-hy1">系统通知</p>
             <div class="wl-nei1" id="cus-noticetwo-container-list" style="min-height: 300px;">
             </div>
         </div>
 
-        <div class="two" id="cus-notice-three-container">
+        <div class="two wl-box" id="cus-notice-three-container">
             {if condition="count($applyList) > 0"}
             <div class="wl-haoyou" id="cus-haoyou-box">
                 <p class="wl-hy1">好友申请</p>
@@ -63,7 +65,6 @@
     </div>
 </content>
 
-
 <div class="wl-zhezhao" >
     <div class="wl-zhe1">
         <p class="wl-renzh">好友认证</p>
@@ -79,32 +80,6 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    $(function(){
-        $(".xia .san").show();
-        $(".top span").eq(0).addClass("se");
-        var index=0;
-        $(".top span").click(function(){
-            index=$(this).index();
-            if (index==1){
-                $(".san").show();
-                $(".one").hide();
-                $(".two").hide();
-                $("#san").addClass("se")&&$("#one").removeClass("se")&&$("#two").removeClass("se");
-            } else if (index==2){
-                $(".one").show();
-                $(".two").hide();
-                $(".san").hide();
-                $("#one").addClass("se")&&$("#san").removeClass("se")&&$("#two").removeClass("se");
-            }else if (index==3){
-                $(".two").show();
-                $(".one").hide();
-                $(".san").hide();
-                $("#two").addClass("se")&&$("#one").removeClass("se")&&$("#san").removeClass("se");
-            }
-        })
-    })
-</script>
 <script type="text/javascript">
     var myObj = {
         notice:{
@@ -288,7 +263,6 @@
                 });
             },
         },
-
         agreeApplyId:0,
         agreeApplyLoading:false,
         agreeApply:function(){
@@ -354,45 +328,67 @@
         }
     });
 
-    $('#cus-notice-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            myObj.notice.listData.loading = false;
-            myObj.notice.listData.ini = false;
-            myObj.notice.listData.page = 0;
-            myObj.notice.listData.page_total = 0;
-            myObj.notice.loadList(me);
-        },
-        loadDownFn : function(me){
-            myObj.notice.loadList(me);
+    $(".top span").click(function () {
+        var index = $(this).index();
+
+        $(".xia .wl-box").eq(index).show().siblings().hide();
+        $('.se').removeClass('se');
+        $(".top span").eq(index).find('a').addClass("se").siblings();
+        if(index == 0 && myObj.notice.listData.ini == false){
+            $('#cus-notice-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.notice.listData.loading = false;
+                    myObj.notice.listData.ini = false;
+                    myObj.notice.listData.page = 0;
+                    myObj.notice.listData.page_total = 0;
+                    myObj.notice.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.notice.loadList(me);
+                }
+            });
+        }else if(index == 1 && myObj.noticeTwo.listData.ini == false){
+            $('#cus-noticetwo-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.noticeTwo.listData.loading = false;
+                    myObj.noticeTwo.listData.ini = false;
+                    myObj.noticeTwo.listData.page = 0;
+                    myObj.noticeTwo.listData.page_total = 0;
+                    myObj.noticeTwo.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.noticeTwo.loadList(me);
+                }
+            });
+        }else if(index == 2 && myObj.noticeThree.listData.ini == false){
+            $('#cus-notice-three-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.noticeThree.listData.loading = false;
+                    myObj.noticeThree.listData.ini = false;
+                    myObj.noticeThree.listData.page = 0;
+                    myObj.noticeThree.listData.page_total = 0;
+                    myObj.noticeThree.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.noticeThree.loadList(me);
+                }
+            });
         }
     });
 
-    $('#cus-noticetwo-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            myObj.noticeTwo.listData.loading = false;
-            myObj.noticeTwo.listData.ini = false;
-            myObj.noticeTwo.listData.page = 0;
-            myObj.noticeTwo.listData.page_total = 0;
-            myObj.noticeTwo.loadList(me);
-        },
-        loadDownFn : function(me){
-            myObj.noticeTwo.loadList(me);
-        }
-    });
-
-    $('#cus-notice-three-container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            myObj.noticeThree.listData.loading = false;
-            myObj.noticeThree.listData.ini = false;
-            myObj.noticeThree.listData.page = 0;
-            myObj.noticeThree.listData.page_total = 0;
-            myObj.noticeThree.loadList(me);
-        },
-        loadDownFn : function(me){
-            myObj.noticeThree.loadList(me);
+    $(function(){
+        var maodian = window.location.toString().split('#')[1];
+        if(maodian == 'notice'){
+            $('#san').trigger('click');
+        }else if(maodian == 'message'){
+            $('#one').trigger('click');
+        }else if(maodian == 'letter'){
+            $('#two').trigger('click');
+        }else{
+            $(".top span:first-child").trigger('click');
         }
     });
 
