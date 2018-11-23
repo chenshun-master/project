@@ -3,7 +3,6 @@
         {php}
             $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
         {/php}
-
         {switch $vo.type}
             {case 1}
                 {if condition="count($thumbnail) >= 3"}
@@ -24,8 +23,8 @@
                                 <dd ><img src="{$v}" alt="图片"/></dd>
                             {/foreach}
                         </div>
-                        <div style="height: 80px">
-                            <ul class="wx-fen " style="bottom: 38px">
+                        <div style="height: 70px">
+                            <ul class="wx-fen " style="    position: inherit;">
                                 <li><i class="iconfont icon-share_light" ></i><span></span></li>
                                 <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
                                 <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
