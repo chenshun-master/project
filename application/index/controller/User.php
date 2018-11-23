@@ -247,4 +247,30 @@ class User extends CController
 
         return $this->returnData(['imgUrl' =>$img],'上传成功',200);
     }
+
+
+    /**
+     * 获取地址列表
+     */
+    public function getAddress(Request $request){
+        $region_path  = $request->param('region_path',',');
+        $region_grade = $request->param('region_grade/d',1);
+        $model = new \app\api\model\RegionsModel();
+        $list = $model->getListData(addslashes($region_path),$region_grade);
+
+        if($list){
+            foreach ($list as $k=>$val){
+                $list[$k]['find_next_region_grade'] = $val['region_grade'] + 1;
+            }
+        }
+
+        return $this->returnData([
+            'infos'=>$list,
+            'region_grade'=>$region_grade,
+            'request_params'=>[
+                'region_path'=>$region_path,
+                'region_grade'=>$region_grade
+            ]
+        ],'',200);
+    }
 }

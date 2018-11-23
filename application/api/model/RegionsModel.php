@@ -18,7 +18,4 @@ class RegionsModel extends Model
     public function getListData($region_path,$region_grade = 1){
         return self::query("SELECT * from wl_regions where  region_grade = {$region_grade} and  region_path LIKE '{$region_path}%'");
     }
-
-
-    
 }

@@ -34,6 +34,9 @@
         .se{
             color: #7DB0E8;
         }
+        .wl-liandong{
+            padding-left: 5px;
+        }
     </style>
 </head>
 <body  style="background: #F8F8F8"   >
@@ -211,16 +214,10 @@
                 <p class="wl-zhen3">运营者手机号 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
                 <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-sms-code" style="width: 500px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
                 <dl class="wl-zhen2">所在地址<span class="wl-xin">*</span>
-                    <select id="fr-province" class="wl-liandong" style="margin-left: 83px">
-                        <option value="" class="wl-hj">请选择省</option>
-                    </select>
-                    <select id="fr-city" class="wl-liandong" >
-                        <option value="" class="wl-hj">请选择市</option>
-                    </select>
-                    <select id="fr-area-county" class="wl-liandong" >
-                        <option value="" class="wl-hj">请选择县</option>
-                    </select>
-                    <input type="text" placeholder="请输入医院/机构的详细地址" id="fr3-address" style="width: 34.5% ; margin-left: 10px;">
+                    <select id="fr1-province" class="wl-liandong fr-province" style="margin-left: 83px"><option value="" >请选择省</option></select>
+                    <select id="fr1-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
+                    <select id="fr1-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                    <input type="text" placeholder="详细地址" id="fr3-address" style="width: 34.5% ; margin-left: 10px;padding-left: 5px;">
                 </dl>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片 <span class="wl-xin">*</span></p>
@@ -664,7 +661,58 @@
                 }
             });
         },
+
     };
+
+    var myAddressObj ={
+        requestParams:{
+            region_path :',',
+            region_grade:'1',
+        },
+        loadAddressList:function(region_path,region_grade){
+            myAddressObj.requestParams = {region_path :region_path,region_grade:region_grade};
+
+            $.ajax({
+                url:"/index/user/getAddress",
+                type:'post',
+                data:myAddressObj.requestParams,
+                dataType:'json',
+                success:function(res){
+                    console.log(res.data);
+                    if(res.code == 200){
+                        var data = res.data;
+                        if(data.request_params.region_path == myAddressObj.requestParams.region_path && data.request_params.region_grade == myAddressObj.requestParams.region_grade){
+                            var html = '';
+                            $.each(data.infos,function(k,v){
+                                html += myAddressObj.getSelectOptions(v);
+                            });
+
+                            if(data.request_params.region_grade == 1){
+                                $('.fr-province').empty().append('<option value="" >请选择省</option>').append(html);
+                            }else if(data.request_params.region_grade == 2){
+                                $('.fr-city').empty().append('<option value="" >请选择市</option>').append(html);
+                                $('.fr-area-county').empty().append('<option value="" >请选择县</option>');
+                            }else if(data.request_params.region_grade == 3){
+                                $('.fr-area-county').empty().append('<option value="" >请选择县</option>').append(html);
+                            }
+                        }
+                    }
+                }
+            });
+        },
+        getSelectOptions:function(data){
+            return '<option value="'+ data.local_name +'"  data-region_path="'+ data.region_path +'"  data-region_grade="'+ data.find_next_region_grade +'" >'+ data.local_name +'</option>';
+        }
+    };
+
+    myAddressObj.loadAddressList(myAddressObj.requestParams.region_path,myAddressObj.requestParams.region_grade);
+
+    $('.fr-province,.fr-city,.fr-area-county').on('change',function(){
+        var obj = $(this).find("option:selected");
+        console.log(obj.data('region_path')+ '---' +obj.data('region_grade'));
+        myAddressObj.loadAddressList(obj.data('region_path'),obj.data('region_grade'));
+    });
+
 
     //ajax 上传图片
     $(".fr-file-btn-list").on("change", function () {
