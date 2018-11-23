@@ -98,7 +98,7 @@
 			</div>
 			<div class="wx-n1">
 				<dl>
-					<dt  onclick="redream.href('/weixin/user/notice')">消息通知<span class="fh"></span></dt>
+					<dt  onclick="redream.href('/weixin/user/notice')">消息通知 <i class="wl-xui">4</i> <span class="fh"></span></dt>
 					<dd  onclick="redream.href('/weixin/user/certification')">用户认证<span  class="fh"></span></dd>
 				</dl>
 			</div>
@@ -155,26 +155,6 @@
             $(" .top span").eq(index).addClass("se").siblings().removeClass("se");
         })
     });
-
-    $(document).ready(function () {
-        $(".tkyy").click(function (event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".marsk-container").toggle();
-        });
-
-        //点击空白处隐藏弹出层
-        $(".marsk-container").click(function (event) {
-            var _con = $('.tkyy_con'); // 设置目标区域
-            if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.marsk-container').hide(); //淡出消失
-            }
-        });
-
-        $(".quxiao").click(function () {
-            $('.marsk-container').hide(); //淡出消失
-        })
-    });
-
     $(function () {
         $("span").eq(0).addClass("se");
         $(".top span").click(function () {
