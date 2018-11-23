@@ -25,7 +25,9 @@
     {$uInfo['nickname']}
 </div>
 </header>
-
+<div style="position: relative">
+    <div class="wl-weidu"><i class="iconfont icon-icon-angle-double-top" style="font-size: 20px;color: #7DB0E8;float: left;margin: 1px 4px 0px 7px;"></i>60条新消息</div>
+</div>
 <main  id="wl-container" style="padding-bottom: 150px !important;">
     <div id="wl-container-list">
 
@@ -34,7 +36,7 @@
 
 <footer>
     <div class="wl-foot" style="max-width: 750px">
-        <textarea type="text"  {if ( $isFriend == 1) }  placeholder="请输入聊天内容"  {else /}  placeholder="禁止私信"  disabled  {/if}                 class="neirong" id="cus-send-content"></textarea>
+        <textarea type="text"  {if ( $isFriend == 1) }  placeholder="请输入留言内容"  {else /}  placeholder="禁止私信"  disabled  {/if}                 class="neirong" id="cus-send-content"></textarea>
         <button class="wl-btn" id="cus-send-btn">发送</button>
     </div>
 </footer>

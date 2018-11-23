@@ -21,9 +21,9 @@
 <header style="position: relative;">
     <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;top: 18px;left:10px;z-index: 1;" onclick="redream.href('/weixin/user/main')"></i>
     <div class="top" style="position: relative">
-        <span id="san"><a href="#notice">公告</a></span>
-        <span id="one"><a href="#message">通知</a></span>
-        <span id="two"><a href="#letter">私信</a></span>
+        <span id="san" ><a href="#notice">公告</a></span>
+        <span id="one" style="position:relative;"><a href="#message">通知</a><i class="wl-dian"></i></span>
+        <span id="two" style="position:relative;"><a href="#letter">私信</a><i class="wl-dian"></i></span>
     </div>
 </header>
 
@@ -217,7 +217,9 @@
                     '<div class="wl-nei2">' +
                     '<dl>'+ data.nickname +'</dl>' +
                     '<dt>'+ data.content +'</dt>' +
+                    '<dd class="wl-tian2"><span>21</span>未读</dd>'+
                     '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+
                     '</div>' +
                     '</div>';
             },

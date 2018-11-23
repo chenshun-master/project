@@ -141,3 +141,17 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-das{min-height: 90px !important;}
 .dbubble1,.dbubble{min-height: 40px !important;    padding: 7px 15px;min-width: 50px;max-width:65%;overflow-x: auto !important;margin-top: 8px;}
+.wl-weidu{
+    position: absolute;
+    right: 0;
+    top: 105px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    min-width: 90px;
+    border-radius: 20px 0 0 20px;
+    height: 30px;
+    background: white;
+    color: #7DB0E8;
+    z-index: 999;
+}
