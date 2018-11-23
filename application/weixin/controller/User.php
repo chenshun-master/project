@@ -72,7 +72,7 @@ class User extends BaseController
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
-        
+
         return $this->fetch('user/friends');
     }
 
