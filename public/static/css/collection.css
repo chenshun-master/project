@@ -38,8 +38,6 @@ ul li{
 .xia{
     width: 100%;
     min-height: 400px;
-
-    margin-top: 70px;
 }
 .wl-yonghu{
     width: 100%;
@@ -137,7 +135,7 @@ ul li{
     padding-bottom: 15px
 }
 .wl-one1-1{
-    width: 100%;min-height: 395px;border-bottom: 10px solid #EEEEEE;
+    width: 100%;min-height: 380px;border-bottom: 10px solid #EEEEEE;
 }
 .name1{
     border:none;position: relative;top:10px;
