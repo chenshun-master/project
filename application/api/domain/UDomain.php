@@ -5,7 +5,6 @@ use think\Db;
 
 class UDomain
 {
-
     /**
      * 获取医生列表数据
      * @param int $page             当前分页
@@ -17,7 +16,6 @@ class UDomain
      */
     public function getDoctorListData($page=1,$page_size=15){
         $obj = Db::name('user')->alias('user');
-
         $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
         $obj->leftJoin('wl_doctor_hospital dh','doctor.id = dh.doctor_id');
         $obj->leftJoin('wl_hospital hospital','hospital.id = dh.hospital_id');
@@ -58,10 +56,11 @@ class UDomain
     public function getHospitalListData($page=1,$page_size=15){
         $obj = Db::name('user')->alias('user');
         $obj->leftJoin('wl_hospital hospital','hospital.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','hospital.auth_id = auth.id');
         $obj->where('user.type', 4);
         $total = $obj->count();
 
-        $obj->field("hospital.user_id,hospital.hospital_name,hospital.type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num");
+        $obj->field("hospital.user_id,hospital.hospital_name,auth.hospital_type as type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num");
         $rows = $obj->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
@@ -79,25 +78,24 @@ class UDomain
 
         $obj = Db::name('user')->alias('user')->where('user.type',3)->where('user.id',$user_id);
         $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
-        $obj->field('user.id as uid,user.mobile,user.portrait,doctor.id as doctor_id,doctor.real_name,doctor.duties,doctor.speciality,doctor.profile as doctor_profile,doctor.address');
+        $obj->leftJoin('wl_auth auth','doctor.auth_id = auth.id');
+        $obj->field('user.id as uid,user.mobile,user.portrait,doctor.id as doctor_id,doctor.real_name,auth.duties,auth.speciality,auth.profile as doctor_profile,auth.address');
         $info = $obj->find();
 
         if($info){
             $obj2 = Db::name('hospital')->alias('hospital');
             $obj2->leftJoin('wl_user user','user.id = hospital.user_id' );
             $obj2->leftJoin('wl_doctor_hospital dh','dh.hospital_id = hospital.id' );
+            $obj2->leftJoin('wl_auth auth','hospital.auth_id = auth.id');
             $obj2->where('dh.doctor_id',$info['doctor_id']);
             $obj2->where('dh.status',1);
-            $obj2->field('hospital.id as hospital_id,user.id as uid,user.portrait,hospital.hospital_name,hospital.address,hospital.profile');
+            $obj2->field('hospital.id as hospital_id,user.id as uid,user.portrait,hospital.hospital_name,auth.address,auth.profile');
 
             $data['doctor_info'] = $info;
             $data['hospital_info'] = $obj2->select();
         }
         return $data;
     }
-
-
-
 
     /**
      * 获取医院相关信息
@@ -107,11 +105,12 @@ class UDomain
 
         $obj1 = Db::name('hospital')->alias('hospital');
         $obj1->leftJoin('wl_user user','user.id = hospital.user_id' );
+        $obj1->leftJoin('wl_auth auth','hospital.auth_id = auth.id');
         $obj1->where('hospital.user_id',$user_id);
-        $obj1->field('hospital.id as hospital_id,user.id as uid,user.portrait,hospital.hospital_name,hospital.address,hospital.profile');
+        $obj1->field('hospital.id as hospital_id,user.id as uid,user.portrait,hospital.hospital_name,auth.address,auth.profile');
 
         $data['hospital'] = $obj1->find();
-        $data['doctor_list'] = $this->getHospitalDoctorList($user_id,1,3)['rows'];
+        $data['doctor_list'] = $this->getHospitalDoctorList($user_id,1,100)['rows'];
 
         return $data;
     }
@@ -119,29 +118,35 @@ class UDomain
 
     public function getHospitalDetail($user_id){
         $obj = Db::name('hospital')->alias('hospital');
-
         $obj->leftJoin('wl_user user','user.id = hospital.user_id' );
-        $obj->where('user_id',$user_id);
+        $obj->leftJoin('wl_auth auth','hospital.auth_id = auth.id');
+        $obj->where('hospital.user_id',$user_id);
 
-        $obj->field('user.id as uid,hospital.hospital_name,hospital.type,hospital.hospital_scale,hospital.founding_time,hospital.speciality,hospital.profile,hospital.address');
+        $obj->field('user.id as uid,hospital.hospital_name,auth.hospital_type as type,auth.scale as hospital_scale,auth.founding_time,auth.speciality,auth.profile,auth.address');
         return $obj->find();
     }
 
     /**
      * 获取医院的医生列表
+     * @param $user_id
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getHospitalDoctorList($user_id,$page=1,$page_size=15){
         $obj = Db::name('doctor_hospital')->alias('dh');
         $obj->leftJoin('wl_doctor doctor','doctor.id = dh.doctor_id');
         $obj->leftJoin('wl_hospital hospital','hospital.id = dh.hospital_id');
         $obj->leftJoin('wl_user user','user.id = doctor.user_id');
-
+        $obj->leftJoin('wl_auth auth','doctor.auth_id = auth.id');
         $obj->where('dh.status',1);
         $obj->where('hospital.user_id',$user_id);
 
         $total = $obj->count();
-
-        $obj->field('user.id as uid,user.portrait,doctor.real_name,doctor.duties,doctor.speciality,doctor.profile,doctor.address,hospital.hospital_name');
+        $obj->field('user.id as uid,user.portrait,doctor.real_name,auth.duties,auth.speciality,auth.profile,auth.address,hospital.hospital_name');
 
         $rows = $obj->page($page,$page_size)->select();
         return [

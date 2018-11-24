@@ -139,51 +139,40 @@ class User extends CController
             return $this->returnData([],'用户未登录',401);
         }
 
+        $data = \Request::only([
+            'username'=>'','idcard'=>'',
+            'card_img1'=>'','card_img2'=>'',
+            'qualification'=>'','practice_certificate'=>'',
+            'enterprise_name'=>'','business_licence'=>'',
+            'mobile'=>'','sms_code'=>'',
+            'address'=>'','hospital_type'=>'',
+            'founding_time'=>'','speciality'=>'',
+            'profile'=>'','scale'=>'','duties'=>'',
+        ], 'post');
+
         $type = $request->post('type',0);
         if(!in_array($type,[1,2,3,4])){
             return $this->returnData([],'参数不符合规范',301);
         }
 
+        $data['type']       =  $type;
+        $data['user_id']    =  $this->getUserId();
         $validate = new \app\index\validate\addAuth();
-        if(!$validate->scene('auth'.$type)->check($request->post())){
+        if(!$validate->scene('auth'.$type)->check($data)){
             return $this->returnData([],$validate->getError(),301);
         }
 
-        $username           = $request->post('username');
-        $idcard             = $request->post('idcard');
-        $card_img1          = $request->post('card_img1');
-        $card_img2          = $request->post('card_img2');
-        $qualification      = $request->post('qualification');
-        $practice_certificate = $request->post('practice_certificate');
-        $enterprise_name    = $request->post('enterprise_name');
-        $business_licence   = $request->post('business_licence');
-        $mobile             = $request->post('mobile');
-        $sms_code           = $request->post('sms_code');
-        $address            = $request->post('address');
-
-        $data = [];
-        $data['type']       =  $type;
-        $data['user_id']    =  $this->getUserId();
-        $data['username']   =  $username;
-        $data['idcard']     =  $idcard;
-        $data['card_img1']  =  $card_img1;
-        $data['card_img2']  =  $card_img2;
-        if($type == 2){
-            $data['qualification']          = $qualification;
-            $data['practice_certificate']   = $practice_certificate;
-        }else if($type == 3 || $type == 4){
-            $data['enterprise_name']    = $enterprise_name;
-            $data['business_licence']   = $business_licence;
-
+        if($type == 3 || $type == 4){
             $smsObj = new \app\api\domain\SendSms();
-            $res = $smsObj->checkSmsCode($mobile,7,$sms_code);
+            $res = $smsObj->checkSmsCode($data['mobile'],7,$data['sms_code']);
             if($res === 0 || $res === 2){
                 return $this->returnData([],'验证码错误',302);
             }
-
-            $data['phone']          = $mobile;
-            $data['address']         = $address;
         }
+
+        $data['phone']       =  $data['mobile'];
+        unset($data['mobile']);
+        unset($data['sms_code']);
 
         $isTrue = $this->_authDomain->addAuthentication($data);
         if($isTrue === true){

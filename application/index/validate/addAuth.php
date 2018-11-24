@@ -15,9 +15,21 @@ class addAuth extends Validate
         'business_licence'      =>'require|url',
         'mobile'                =>'require|mobile',
         'sms_code'              =>'require|min:6|max:6',
+
+        'hospital_type'         =>'require',
+        'founding_time'         =>'require',
+        'duties'                =>'require',
+        'scale'                 =>'require',
+        'profile'               =>'require',
+        'speciality'            =>'require',
     ];
 
     protected $message  =   [
+        'hospital_type.require'            => '医院类型不能为空',
+
+        'founding_time.require'            => '成立时间不能为空',
+
+
         'enterprise_name.require'          => '企业或医院名称不能为空',
         'enterprise_name.max'              => '企业或医院名称不合法',
 
@@ -48,8 +60,8 @@ class addAuth extends Validate
 
     protected $scene = [
         'auth1'  =>  ['username','idcard','card_img1','card_img2'],
-        'auth2'  =>  ['username','idcard','card_img1','card_img2','qualification','practice_certificate'],
-        'auth3'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code'],
+        'auth2'  =>  ['username','idcard','card_img1','card_img2','qualification','practice_certificate','profile','speciality','duties'],
+        'auth3'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code','hospital_type','founding_time','profile','speciality','scale'],
         'auth4'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code'],
     ];
 }

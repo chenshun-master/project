@@ -24,7 +24,7 @@ class FavoriteDomain
             return 2;
         }
 
-        $isTrue = DB::name('user_favorite')->where('user_id',$data['user_id'])->where('table_name',$data['table_name'])->where('object_id',$data['object_id'])->find();
+        $isTrue = DB::name('user_favorite')->where('user_id',$data['user_id'])->where('table_name',$data['table_name'])->where('object_id',$data['object_id'])->field('id')->find();
         if($isTrue){
             return 1;
         }
@@ -32,11 +32,7 @@ class FavoriteDomain
         $data['created_time'] = date('Y-m-d H:i:s');
 
         $res = Db::name('user_favorite')->insertGetId($data);
-        if(!$res){
-
-            return false;
-        }
-        return true;
+        return $res ? true : false;
     }
 
     /**

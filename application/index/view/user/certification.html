@@ -40,6 +40,7 @@
     </style>
 </head>
 <body  style="background: #F8F8F8"   >
+
 <div class="wl-con" >
     <div class="wl-top" >
         <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
@@ -55,6 +56,7 @@
             </div>
         </div>
     </div>
+
     <div class="tab-box" >
         <div class="wl-fabiao" style="cursor: pointer" onclick="redream.href('/index/article/article')"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>发表文章</div>
         <ul class="renzheng">
@@ -69,8 +71,9 @@
 
             </div>
         </ul>
+
         <div class="tab-content <?php if(count($authResult) > 0 && $recertification != 1):?>wl-hidden<?php endif;?>" style="position: relative;" >
-            <p id="fr-error-box"  style="position: absolute;width: 462px;height: 38px;left: 469px;z-index: 2;line-height: 38px;text-align: center;border-top: 2px solid red;background-color: #fff1f1;border-radius: 0 0 5px 5px;color: #d4a6a6;display: none">
+            <p id="fr-error-box"  style="position: fixed;width: 462px;height: 38px;top:0px;margin:auto;left:0;right:0;z-index: 2;line-height: 38px;text-align: center;border-top: 2px solid red;background-color: #fff1f1;border-radius: 0 0 5px 5px;color: #d4a6a6;display: none">
                 <span class="fr-error-box-text"></span>
                 <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
             </p>
@@ -127,11 +130,10 @@
                 <p>医生认证</p>
                 <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
                 <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"style="    margin-left: 25px;" ></p>
-                <p class="wl-zhen1" >擅长项目 <span class="wl-xin">*</span><input type="text" placeholder="请输入擅长项目" ></p>
-                <p class="wl-zhen1" >岗位职称 <span class="wl-xin">*</span><input type="text" placeholder="请输入岗位职称" ></p>
+                <p class="wl-zhen1" >擅长项目 <span class="wl-xin">*</span><input type="text" placeholder="请输入擅长项目" id="fr2-speciality" ></p>
+                <p class="wl-zhen1" >岗位职称 <span class="wl-xin">*</span><input type="text" placeholder="请输入岗位职称" id="fr2-duties"></p>
                 <p class="wl-zhen1" style="margin-top: 15px"><span style="float: left;margin-top:-20px">医生简介 <span class="wl-xin">*</span></span>
-
-                    <textarea type="text" placeholder="请输入真实姓名" ></textarea></p>
+                <textarea type="text" placeholder="请填写个人简介(注:个人简介必须真实有效)" id="fr2-profile" ></textarea></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 20px">上传身份证照片 <span class="wl-xin">*</span></p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
@@ -203,7 +205,6 @@
                     </dl>
                     <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
                 </dl>
-
                 <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
                 <p class="wl-foot">{:config('conf.copyright')}</p>
             </div>
@@ -212,17 +213,21 @@
             <div class="{if($type == 3)} active-txt {/if} wl-geren2" style="min-height: 1400px" id="fans-container-list" >
                 <p>医院/机构认证</p>
                 <p class="wl-zhen2" style="margin-top: 15px">医院名称 <span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
-                <p class="wl-zhen2">医院性质 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院性质"  style="margin-left: 76px"></p>
+                <p class="wl-zhen2">医院性质 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院性质 (门诊部/医院)"  style="margin-left: 76px"  id="fr3-type"></p>
+                <p class="wl-zhen2">成立时间 <span class="wl-xin">*</span> <input type="text" placeholder="请选择成立时间"  style="margin-left: 76px" id="fr3-founding-time"></p>
+                <p class="wl-zhen2">医院规模 <span class="wl-xin">*</span> <input type="text" placeholder="请选择医院规模"  style="margin-left: 76px" id="fr3-scale"></p>
+                <p class="wl-zhen2">医院擅长 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)"  style="margin-left: 76px" id="fr3-speciality"></p>
                 <p class="wl-zhen2">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
-                <p class="wl-zhen2">运营者身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" ></p>
-                <p class="wl-zhen3">运营者手机号 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 46px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
-                <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入你收到的6位验证码" id="fr3-sms-code" style="width: 500px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
+                <p class="wl-zhen2">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" style="margin-left: 78px;"></p>
+                <p class="wl-zhen3">手机号 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 93px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
+                <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入验证码" id="fr3-sms-code" style="width: 500px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
                 <dl class="wl-zhen2">所在地址<span class="wl-xin">*</span>
-                    <select id="fr1-province" class="wl-liandong fr-province" style="margin-left: 83px"><option value="" >请选择省</option></select>
-                    <select id="fr1-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
-                    <select id="fr1-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
-                    <input type="text" placeholder="详细地址" id="fr3-address" style="width: 34.5% ; margin-left: 10px;padding-left: 5px;">
+                    <select id="fr3-province" class="wl-liandong fr-province" style="margin-left: 82px"><option value="" >请选择省</option></select>
+                    <select id="fr3-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
+                    <select id="fr3-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                    <input type="text" placeholder="详细地址" id="fr3-detail-address" style="width: 34.5% ; margin-left: 10px;padding-left: 5px;">
                 </dl>
+                <p class="wl-zhen1" style="margin-top: 15px"><span style="float: left;margin-top:-20px">医院简介 <span class="wl-xin">*</span></span><textarea type="text" placeholder="请输入真实姓名" style="margin-left: 82px"  id="fr3-profile"></textarea></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片 <span class="wl-xin">*</span></p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
@@ -286,18 +291,18 @@
             <!--官方企业认证页面-->
             <div class="{if($type == 4)} active-txt {/if} wl-geren3" style="min-height: 1280px"  id="four-container-list" >
                 <p>官方企业认证</p>
-                <p class="wl-zhen3" style="margin-top: 15px;">企业名称<span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 77px"></p>
+                <p class="wl-zhen3" style="margin-top: 15px;">企业名称<span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 81px;"></p>
                 <p class="wl-zhen3">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
                 <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18" ></p>
-                <p class="wl-zhen3">运营者手机号码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;" id="fr4-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
-                <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入你收到的6位验证码" id="fr4-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
-
+                <p class="wl-zhen3">手机号码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;margin-left: 77px" id="fr4-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
+                <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入验证码" id="fr4-sms-code" style="width: 495px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
                 <dl class="wl-zhen2">所在地址<span class="wl-xin">*</span>
-                    <select id="fr4-province" class="wl-liandong fr-province" style="margin-left: 83px"><option value="" >请选择省</option></select>
+                    <select id="fr4-province" class="wl-liandong fr-province" style="margin-left: 82px"><option value="" >请选择省</option></select>
                     <select id="fr4-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
                     <select id="fr4-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
-                    <input type="text" placeholder="详细地址" id="fr4-address" style="width: 34.5% ; margin-left: 10px;padding-left: 5px;">
-                </dl> <dl style="position: relative;height: 300px" >
+                    <input type="text" placeholder="详细地址" id="fr4-detail-address" style="width: 34.5% ; margin-left: 10px;padding-left: 5px;">
+                </dl>
+                <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" style="margin-top: 35px">上传身份证照片 <span class="wl-xin">*</span></p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;">
                         <dt style="float: left;width: 87%;margin-left: 47px;" >
@@ -307,7 +312,6 @@
                                 <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
                                 <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
                             </dl>
-
                             <img id="fr10-img"   width="125" height="125"class="wl-nui"/>
                             <form id="fr10-from" enctype='multipart/form-data'>
                                 <input type="file"  id="fr10-file-btn" data-frid="10"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
@@ -408,7 +412,7 @@
                                 <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
                                 <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
                                 <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
-                                <button>知道了</button>
+                                <!--<button>知道了</button>-->
                             </div>
                         </div>
                     {/case}
@@ -436,8 +440,6 @@
         }
     });
 
-
-
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
     });
@@ -451,7 +453,7 @@
         loading:false,
         sendSmsCode:false,
         showError:function(msg){
-            $('#fr-error-box').fadeIn("slow").delay(3000).fadeOut();
+            $('#fr-error-box').fadeIn("slow").delay(2000).fadeOut();
             $('#fr-error-box').find('.fr-error-box-text').text(msg);
         },
         submit1:function(){
@@ -474,92 +476,137 @@
             }
         },
         submit2:function(){
-            var username  = $.trim($('#fr2-username').val());
-            var idcard    = $.trim($('#fr2-idcard').val());
-            var card_img1 = $('#fr3-img').attr("src");
-            var card_img2 = $('#fr4-img').attr("src");
-            var qualification = $('#fr5-img').attr("src");
-            var practice_certificate = $('#fr6-img').attr("src");
-            if(username == ''){
+            var data  = {
+                type:2,
+                username:             $.trim($('#fr2-username').val()),
+                idcard:               $.trim($('#fr2-idcard').val()),
+                card_img1:            $('#fr3-img').attr("src"),
+                card_img2:            $('#fr4-img').attr("src"),
+                qualification:        $('#fr5-img').attr("src"),
+                practice_certificate: $('#fr6-img').attr("src"),
+                speciality:           $.trim($('#fr2-speciality').val()),
+                duties:               $.trim($('#fr2-duties').val()),
+                profile:              $.trim($('#fr2-profile').val()),
+            };
+
+            if(data.username == ''){
                 this.showError('身份证姓名不能为空');return false;
-            }else if(idcard == ''){
+            }else if(data.idcard == ''){
                 this.showError('身份证号不能为空');return false;
-            }else if(!redream.checkIdcard(idcard)){
+            }else if(data.speciality == ''){
+                this.showError('医生擅长项目不能为空');return false;
+            }else if(data.duties == ''){
+                this.showError('岗位职称不能为空');return false;
+            }else if(data.profile == ''){
+                this.showError('医生简介不能为空');return false;
+            }else if(!redream.checkIdcard(data.idcard)){
                 this.showError('身份证号格式不正确');return false;
-            }else if(card_img1 == '' || card_img1 == undefined){
+            }else if(data.card_img1 == '' || data.card_img1 == undefined){
                 this.showError('请上传身份证正面照');return false;
-            }else if(card_img2 == '' || card_img2 == undefined){
+            }else if(data.card_img2 == '' || data.card_img2 == undefined){
                 this.showError('请上传身份证背面照');return false;
-            }else if(qualification == '' || qualification == undefined){
+            }else if(data.qualification == '' || data.qualification == undefined){
                 this.showError('请上传医师资格证书图片');return false;
-            }else if(practice_certificate == '' || practice_certificate == undefined){
+            }else if(data.practice_certificate == '' || data.practice_certificate == undefined){
                 this.showError('请上传医师执业证书图片');return false;
             }else if(!this.loading){
-                this.ajax({type:2,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,qualification:qualification,practice_certificate:practice_certificate});
+                this.ajax(data);
             }
         },
         submit3:function(){
-            var username            = $.trim($('#fr3-username').val());
-            var idcard              = $.trim($('#fr3-idcard').val());
-            var card_img1           = $('#fr7-img').attr("src");
-            var card_img2           = $('#fr8-img').attr("src");
-            var enterprise_name     = $.trim($('#fr3-enterprise-name').val());
-            var business_licence    = $('#fr9-img').attr("src");
-            var mobile              = $('#fr3-mobile').val();
-            var sms_code            = $.trim($('#fr3-sms-code').val());
-            var address             = $.trim($('#fr3-address').val());
-            if(enterprise_name == ''){
-                this.showError('医院名称不能为空');return false;
-            }else if(username == ''){
-                this.showError('身份证姓名不能为空');return false;
-            }else if(idcard == ''){
-                this.showError('身份证号不能为空');return false;
-            }else if(!redream.checkIdcard(idcard)){
-                this.showError('身份证号格式不正确');return false;
-            }else if(!redream.checkMobile(mobile)){
-                this.showError('手机号格式错误');return false;
-            }else if(sms_code == ''){
-                this.showError('手机验证码不能为空');return false;
-            }else if(card_img1 == '' || card_img1 == undefined){
-                this.showError('请上传身份证正面照');return false;
-            }else if(card_img2 == '' || card_img2 == undefined){
-                this.showError('请上传身份证背面照');return false;
-            }else if(business_licence == '' || business_licence == undefined){
-                this.showError('请上传医院营业执照');return false;
+            var data = {
+                type:3,
+                username:                   $.trim($('#fr3-username').val()),
+                idcard:                     $.trim($('#fr3-idcard').val()),
+                card_img1:                  $('#fr7-img').attr("src"),
+                card_img2:                  $('#fr8-img').attr("src"),
+                enterprise_name:            $.trim($('#fr3-enterprise-name').val()),
+                business_licence:           $('#fr9-img').attr("src"),
+                sms_code:                   $.trim($('#fr3-sms-code').val()),
+                mobile:                     $('#fr3-mobile').val(),
+                address:                    '',
+                hospital_type:              $.trim($('#fr3-type').val()),
+                founding_time:              $.trim($('#fr3-founding-time').val()),
+                speciality:                 $.trim($('#fr3-speciality').val()),
+                profile:                    $.trim($('#fr3-profile').val()),
+                scale:                      $.trim($('#fr3-scale').val()),
+            };
+            if(data.enterprise_name == ''){
+                this.showError('医院名称不能为空');
+            }else if(data.hospital_type == ''){
+                this.showError('医院性质不能为空');
+            }else if(data.founding_time == ''){
+                this.showError('成立时间不能为空');
+            }else if(data.scale == ''){
+                this.showError('医院规模不能为空');
+            }else if(data.speciality == ''){
+                this.showError('医院擅长不能为空');
+            }else if(data.username == ''){
+                this.showError('身份证姓名不能为空');
+            }else if(data.idcard == ''){
+                this.showError('身份证号不能为空');
+            }else if(!redream.checkIdcard(data.idcard)){
+                this.showError('身份证号格式不正确');
+            }else if(!redream.checkMobile(data.mobile)){
+                this.showError('手机号格式错误');
+            }else if(data.sms_code == ''){
+                this.showError('手机验证码不能为空');
+            }else if($('#fr3-province').val() == '' || $('#fr3-city').val() == '' || $('#fr3-area-county').val() == ''){
+                this.showError('请选择所在地址信息');
+            }else if($('#fr3-detail-address').val() == ''){
+                this.showError('详细地址不能为空');
+            }else if(data.profile == ''){
+                this.showError('医院简介不能为空');
+            }else if(data.card_img1 == '' || data.card_img1 == undefined){
+                this.showError('请上传身份证正面照');
+            }else if(data.card_img2 == '' || data.card_img2 == undefined){
+                this.showError('请上传身份证背面照');
+            }else if(data.business_licence == '' || data.business_licence == undefined){
+                this.showError('请上传医院营业执照');
             }else if(!this.loading){
-                this.ajax({type:3,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,enterprise_name:enterprise_name,business_licence:business_licence,sms_code:sms_code,mobile:mobile,address:address});
+                data.address = $('#fr3-province').val() + ' ' + $('#fr3-city').val() + ' ' + $('#fr3-area-county').val() + ' '+  $('#fr3-detail-address').val();
+                this.ajax(data);
             }
         },
         submit4:function(){
-            var enterprise_name         = $.trim($('#fr4-enterprise-name').val());
-            var username                = $.trim($('#fr4-username').val());
-            var idcard                  = $.trim($('#fr4-idcard').val());
-            var card_img1               = $('#fr10-img').attr("src");
-            var card_img2               = $('#fr11-img').attr("src");
-            var mobile                  = $('#fr4-mobile').val();
-            var sms_code                = $.trim($('#fr4-sms-code').val());
-            var business_licence        = $('#fr12-img').attr("src");
-            var address                 = $.trim($('#fr4-address').val());
-            if(enterprise_name == ''){
+            var data = {
+                type              : 4,
+                username          : $.trim($('#fr4-username').val()),
+                idcard            : $.trim($('#fr4-idcard').val()),
+                card_img1         : $('#fr10-img').attr("src"),
+                card_img2         : $('#fr11-img').attr("src"),
+                enterprise_name   : $.trim($('#fr4-enterprise-name').val()),
+                business_licence  : $('#fr12-img').attr("src"),
+                sms_code          : $.trim($('#fr4-sms-code').val()),
+                mobile            : $('#fr4-mobile').val(),
+                address           : '',
+            };
+
+            if(data.enterprise_name == ''){
                 this.showError('企业名称不能为空');return false;
-            }else if(username == ''){
+            }else if(data.username == ''){
                 this.showError('运营者姓名不能为空');return false;
-            }else if(idcard == ''){
+            }else if(data.idcard == ''){
                 this.showError('身份证号不能为空');return false;
-            }else if(!redream.checkIdcard(idcard)){
+            }else if(!redream.checkIdcard(data.idcard)){
                 this.showError('身份证号格式不正确');return false;
-            }else if(!redream.checkMobile(mobile)) {
+            }else if(!redream.checkMobile(data.mobile)) {
                 this.showError('手机号格式错误');return false;
-            }else if(sms_code == ''){
+            }else if(data.sms_code == ''){
                 this.showError('手机验证码不能为空');return false;
-            }else if(card_img1 == '' || card_img1 == undefined){
+            }else if($('#fr4-province').val() == '' || $('#fr4-city').val() == '' || $('#fr4-area-county').val() == ''){
+                this.showError('请选择所在地址信息');
+            }else if($('#fr4-detail-address').val() == ''){
+                this.showError('详细地址不能为空');
+            }else if(data.card_img1 == '' || data.card_img1 == undefined){
                 this.showError('请上传身份证正面照');return false;
-            }else if(card_img2 == '' || card_img2 == undefined){
+            }else if(data.card_img2 == '' || data.card_img2 == undefined){
                 this.showError('请上传身份证背面照');return false;
-            }else if(business_licence == '' || business_licence == undefined){
+            }else if(data.business_licence == '' || data.business_licence == undefined){
                 this.showError('请上传医院营业执照');return false;
             }else if(!this.loading){
-                this.ajax({type:4,username:username,idcard:idcard,card_img1:card_img1,card_img2:card_img2,enterprise_name:enterprise_name,business_licence:business_licence,sms_code:sms_code,mobile:mobile,address:address});
+                data.address = $('#fr4-province').val() + ' ' + $('#fr4-city').val() + ' ' + $('#fr4-area-county').val()+ ' '+  $('#fr4-detail-address').val();
+                this.ajax(data);
             }
         },
         ajax:function(data){
@@ -670,7 +717,6 @@
                 }
             });
         },
-
     };
 
     var myAddressObj ={
@@ -680,14 +726,12 @@
         },
         loadAddressList:function(region_path,region_grade){
             myAddressObj.requestParams = {region_path :region_path,region_grade:region_grade};
-
             $.ajax({
                 url:"/index/user/getAddress",
                 type:'post',
                 data:myAddressObj.requestParams,
                 dataType:'json',
                 success:function(res){
-                    console.log(res.data);
                     if(res.code == 200){
                         var data = res.data;
                         if(data.request_params.region_path == myAddressObj.requestParams.region_path && data.request_params.region_grade == myAddressObj.requestParams.region_grade){
@@ -695,7 +739,6 @@
                             $.each(data.infos,function(k,v){
                                 html += myAddressObj.getSelectOptions(v);
                             });
-
                             if(data.request_params.region_grade == 1){
                                 $('.fr-province').empty().append('<option value="" >请选择省</option>').append(html);
                             }else if(data.request_params.region_grade == 2){
@@ -718,19 +761,15 @@
 
     $('.fr-province,.fr-city,.fr-area-county').on('change',function(){
         var obj = $(this).find("option:selected");
-        console.log(obj.data('region_path')+ '---' +obj.data('region_grade'));
         myAddressObj.loadAddressList(obj.data('region_path'),obj.data('region_grade'));
     });
 
-
-    //ajax 上传图片
     $(".fr-file-btn-list").on("change", function () {
         var frid = $(this).data('frid');
         var formData = new FormData($('#fr'+frid+'-from')[0]);
         formData.append('type',2);
         objClass.ajaxUploadImg('#fr'+frid+'-img',formData);
     });
-
 
     $('.tab-box').on('click',function(){
         $(".wl-cang").hide();
@@ -750,11 +789,5 @@
             $(".wl-cang1 span:first-child").trigger('click');
         }
     });
-
-    $(function(){
-        var h = $(window).height() - 200;
-        $("#friends-container-list,#follow-container-list,#fans-container-list,#four-container-list").css('minHeight',h + 'px');
-    });
-
 </script>
 </html>

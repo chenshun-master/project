@@ -41,9 +41,11 @@ class User extends BaseController
 
         $this->_publishTotal($this->getUserId());
 
+        $isSignOut = is_weixin() && config('conf.weixin_automatic_logon')  ? false : true;
         $this->assign([
             'user_info'=>$user_info,
-            'contactMobile'=>config('conf.website.mobile')
+            'contactMobile'=>config('conf.website.mobile'),
+            'isSignOut' =>$isSignOut,
         ]);
         return $this->fetch('user/main');
     }

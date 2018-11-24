@@ -16,4 +16,9 @@ class AuthModel extends Model
         $res = self::where('idcard',$idcard)->field('user_id')->find();
         return $res ? $res['user_id'] : false;
     }
+
+    public function findPhone($mobile){
+        $res = self::where('phone',$mobile)->field('user_id')->find();
+        return $res ? $res['user_id'] : false;
+    }
 }

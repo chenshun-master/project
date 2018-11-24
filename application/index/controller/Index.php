@@ -177,9 +177,17 @@ class Index extends CController
      */
     public function sendSmsCode(Request $request){
         $mobile    = $request->post('mobile','');
-        $type      = $request->post('type','');
+        $type      = $request->post('type',0);
         if(empty($mobile) || !checkMobile($mobile)){
             return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        if($type == 0){
+            return $this->returnData([],'发送失败',305);
+        }else if(in_array($type,[5,6,7])){
+            if(!$this->checkLogin()){
+                return $this->returnData([],'发送失败',305);
+            }
         }
 
         $sign = 9715;
@@ -201,6 +209,10 @@ class Index extends CController
             case 3:
             case 4:
             case 7:
+                 $id = (new \app\api\model\AuthModel())->findPhone($mobile);
+                 if($id !== $this->getUserId()){
+                     return $this->returnData([],'手机号已被使用',302);
+                 }
                 break;
             case 5:
                 $userModel = new UserModel();
@@ -214,22 +226,10 @@ class Index extends CController
                     return $this->returnData([],'该用户已被使用',302);
                 }
                 break;
-            default :
-                $type = 0;
-                break;
-        }
-
-        if($type == 0){
-            return $this->returnData([],'发送失败',305);
-        }else if(in_array($type,[5,6,7])){
-            if(!$this->checkLogin()){
-                return $this->returnData([],'发送失败',305);
-            }
         }
 
         $smsObject = new \app\api\domain\SendSms();
         $smsObject->sendCode($mobile,$type,$sign,$template_id);
-
         return $this->returnData([],'发送成功',200);
     }
 

@@ -114,7 +114,7 @@
 				</dl>
 			</div>
 
-            <?php if(!is_weixin()):?>
+            <?php if($isSignOut):?>
 				<button id="btn"><a href="/weixin/user/signOut" style="color: #FFF;">退出登录</a></button>
             <?php endif;?>
 
