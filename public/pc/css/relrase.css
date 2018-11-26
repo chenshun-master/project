@@ -479,7 +479,7 @@ a {
     right: 117px;
 }
 .wl-zhanghao{
-    width: 188px;
+    width: 15%;
     min-height: 200px;
     position: absolute;
     top: 0;
@@ -488,7 +488,7 @@ a {
 }
 .wl-zhanghao p{
     text-align: center;
-    width: 164px;
+    width: 95%;
     height: 60px;
     line-height: 60px;
     font-size: 16px;
@@ -496,9 +496,17 @@ a {
     padding-left: 8px;
     background: white;
     margin: 0;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 
 }
-
+.wl-xian span{
+    width: 56%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
 .wl-xiany{
     border: 1px solid #F1F1F1;
 }
@@ -557,6 +565,10 @@ a {
     border-radius: 50%;
 }
 .one-1 dt{
+    width: 60%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
     color: #333333;
     font-size: 20px;
     position: absolute;

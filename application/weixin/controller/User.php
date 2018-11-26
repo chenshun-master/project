@@ -65,6 +65,15 @@ class User extends BaseController
         $this->assign('user_info',$user_info);
         return $this->fetch('user/modify');
     }
+
+   /**
+     * 移动端个人认证
+     * @return mixed
+     */
+    public function userCertification()
+    {
+        return $this->fetch('user/user_certification');
+    }
    /**
      * 我的好友粉絲頁面
      * @return mixed
