@@ -52,7 +52,7 @@ ul li {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: #221815;
     display: block;
 }
