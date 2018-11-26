@@ -6,12 +6,14 @@ use think\Request;
 class Article extends CController
 {
     private $_articleDomain;
-
+    private $_userDomain;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_articleDomain = new \app\api\domain\ArticleDomain();
+
+        $this->_userDomain  = new \app\api\domain\UserDomain();
     }
 
     /**
@@ -94,6 +96,14 @@ class Article extends CController
      * @return mixed
      */
     public function article(){
+
+        if(!$this->checkLogin()){
+            return redirect('/login');
+        }
+
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+
+        $this->assign('user_info',$user_info);
         return $this->fetch('article/article_release');
     }
 }

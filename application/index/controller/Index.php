@@ -210,7 +210,7 @@ class Index extends CController
             case 4:
             case 7:
                  $id = (new \app\api\model\AuthModel())->findPhone($mobile);
-                 if($id !== $this->getUserId()){
+                 if($id !=0  && $id !== $this->getUserId()){
                      return $this->returnData([],'手机号已被使用',302);
                  }
                 break;

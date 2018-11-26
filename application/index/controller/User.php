@@ -53,13 +53,14 @@ class User extends CController
         }
 
         $authResult = $this->_authDomain->findAuthResult($this->getUserId());
-
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
 
         $recertification = (int)$request->get('recertification',0);
 
         $this->assign('recertification',$recertification);
 
         $this->assign('authResult',$authResult);
+        $this->assign('user_info',$user_info);
 
         $this->assign('type',isset($authResult['type'])? $authResult['type'] :0);
 
