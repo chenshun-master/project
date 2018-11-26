@@ -227,7 +227,7 @@
                     <select id="fr3-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
                     <input type="text" placeholder="详细地址" id="fr3-detail-address" style="width: 34.5% ; margin-left: 10px;padding-left: 5px;">
                 </dl>
-                <p class="wl-zhen1" style="margin-top: 15px"><span style="float: left;margin-top:-20px">医院简介 <span class="wl-xin">*</span></span><textarea type="text" placeholder="请输入真实姓名" style="margin-left: 82px"  id="fr3-profile"></textarea></p>
+                <p class="wl-zhen1" style="margin-top: 15px"><span style="float: left;margin-top:-20px">医院简介 <span class="wl-xin">*</span></span><textarea type="text" placeholder="请填写医院简介(注:医院简介必须真实有效)" style="margin-left: 82px"  id="fr3-profile"></textarea></p>
                 <dl style="position: relative;height: 300px" >
                     <p class="wl-zhen" >上传身份证照片 <span class="wl-xin">*</span></p>
                     <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
@@ -643,8 +643,6 @@
                 this.showError('手机号格式不正确');return false;
             }
             if(codeObj.checkTime()){
-                console.log(window.name);
-                console.log('倒计时中1');
                 return false;
             }
             if(!this.sendSmsCode){
@@ -663,6 +661,10 @@
                         if(res.code == 200){
                             codeObj.sendSmsCode();
                             return false;
+                        }else if(res.code == 305){
+                            objClass.showError('短信发送失败...');
+                        }else{
+                            objClass.showError(res.msg);
                         }
                     }
                 });
