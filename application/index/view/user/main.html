@@ -42,135 +42,138 @@
             </div>
         </div>
     </div>
-    <div class="tab-box" >
-        <div class="wl-fabiao" style="cursor: pointer" ><a href="/index/article/article" style="color: #333333"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>发表文章</a></div>
-        <ul class="renzheng">
-            <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
-                <span class="wl-shimin1"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span></i>
-            </div>
-        </ul>
-        <div class="wl-qiehuan" >
-            <div class="top" style="cursor: pointer">
-                <span class="wl-anquan">账号信息</span>
-                <span  class="wl-zhongxon">安全中心</span>
-            </div>
-            <div class="xia">
-                <div class="one">
-                    <div class="one-1">
-                        <img src="{$user_info['portrait']}"  onerror="this.src='/pc/image/tou.png'" >
-                        <dt id="cus-nickname">{$user_info['nickname']}</dt>
-                        <dd id="cus-profile" title="{$user_info['profile']}">
-                            {$user_info['profile']?:'<span style="color: #CCCCCC">您还没有设置您的简介信息...</span>'}
-                        </dd>
-                        <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
-                    </div>
-                    <div style="width: 100px;height: 666px;float: left;color:#333333;font-size: 16px; ">
-                        <dl style="margin-top:31px;">账号信息</dl>
-                        <dl style="margin-top:138px;">登录方式</dl>
-                        <dl style="margin-top:60px;">运营人信息</dl>
-                    </div>
-                    <div class="wl-grxx">
-                        <div>
-                            <span>用户类型</span>
-                            <span>
+    <div class="wl-tabc" style="width: 100%">
+        <div class="tab-box" >
+            <div class="wl-fabiao" style="cursor: pointer" ><a href="/index/article/article" style="color: #333333"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>发表文章</a></div>
+            <ul class="renzheng">
+                <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
+                    <span class="wl-shimin1"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span></i>
+                </div>
+            </ul>
+            <div class="wl-qiehuan" >
+                <div class="top" style="cursor: pointer">
+                    <span class="wl-anquan">账号信息</span>
+                    <span  class="wl-zhongxon">安全中心</span>
+                </div>
+                <div class="xia">
+                    <div class="one">
+                        <div class="one-1">
+                            <img src="{$user_info['portrait']}"  onerror="this.src='/pc/image/tou.png'" >
+                            <dt id="cus-nickname">{$user_info['nickname']}</dt>
+                            <dd id="cus-profile" title="{$user_info['profile']}">
+                                {$user_info['profile']?:'<span style="color: #CCCCCC">您还没有设置您的简介信息...</span>'}
+                            </dd>
+                            <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
+                        </div>
+                        <div style="width: 100px;height: 666px;float: left;color:#333333;font-size: 16px; ">
+                            <dl style="margin-top:31px;">账号信息</dl>
+                            <dl style="margin-top:138px;">登录方式</dl>
+                            <dl style="margin-top:60px;">运营人信息</dl>
+                        </div>
+                        <div class="wl-grxx">
+                            <div>
+                                <span>用户类型</span>
+                                <span>
                                 <?php if($user_info['type'] == 1):?>
-                                <a href="/index/user/certification" style="color:#7DB0E8">申请认证</a>
-                                <?php elseif($user_info['type'] == 2):?>
+                                    <a href="/index/user/certification" style="color:#7DB0E8">申请认证</a>
+                                    <?php elseif($user_info['type'] == 2):?>
                                     认证会员
-                                <?php elseif($user_info['type'] == 3):?>
+                                    <?php elseif($user_info['type'] == 3):?>
                                     认证医生
-                                <?php elseif($user_info['type'] == 4):?>
+                                    <?php elseif($user_info['type'] == 4):?>
                                     认证医院
-                                <?php elseif($user_info['type'] == 5):?>
+                                    <?php elseif($user_info['type'] == 5):?>
                                     官方团队
-                                <?php endif;?>
+                                    <?php endif;?>
                             </span>
-                        </div>
-                        <div><span>用户账号</span> <span>{$user_info['mobile']|mobileFilter}</span></div>
-                        <div><span>绑定手机</span> <span>{$user_info['mobile']|mobileFilter}</span><span style="float: right">如需更换,<i style="color: #FD7D7D;cursor: pointer" onclick="deme()" >请前往"安全中心"</i></span></div>
-                        <div><span>运营人</span>
-                            {if condition="count($auth_info) > 0 && $auth_info['status'] == 3"}
+                            </div>
+                            <div><span>用户账号</span> <span>{$user_info['mobile']|mobileFilter}</span></div>
+                            <div><span>绑定手机</span> <span>{$user_info['mobile']|mobileFilter}</span><span style="float: right">如需更换,<i style="color: #FD7D7D;cursor: pointer" onclick="deme()" >请前往"安全中心"</i></span></div>
+                            <div><span>运营人</span>
+                                {if condition="count($auth_info) > 0 && $auth_info['status'] == 3"}
                                 <span>{$auth_info['username']|userNameTuoming}</span>
-                            {else /}
+                                {else /}
                                 <span>-</span>
-                            {/if}
+                                {/if}
+                            </div>
+                            <div><span>联系邮箱</span> <span>-</span></div>
+                            <div><span>所在地</span>   <span>-</span></div>
                         </div>
-                        <div><span>联系邮箱</span> <span>-</span></div>
-                        <div><span>所在地</span>   <span>-</span></div>
                     </div>
-                </div>
-                <div class="two">
-                    <div class="two-1">
-                        <img src="/pc/image/wl-dunpai.png" alt="">
-                    </div>
-                    <div class="two-2">
-                        <div><span>绑定手机</span><span style="color: #888888;margin-left: 100px" >当前已绑定</span><span style="color: #7DB0E8;margin-left: 210px;cursor: pointer" class="wl-hf">更改手机</span></div>
-                        <div><span>登录密码</span><span style="color: #7DB0E8;margin-left: 391px;cursor: pointer" class="wl-xgmm">修改密码</span></div>
+                    <div class="two">
+                        <div class="two-1">
+                            <img src="/pc/image/wl-dunpai.png" alt="">
+                        </div>
+                        <div class="two-2">
+                            <div><span>绑定手机</span><span style="color: #888888;margin-left: 100px" >当前已绑定</span><span style="color: #7DB0E8;margin-left: 210px;cursor: pointer" class="wl-hf">更改手机</span></div>
+                            <div><span>登录密码</span><span style="color: #7DB0E8;margin-left: 391px;cursor: pointer" class="wl-xgmm">修改密码</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <div class="wl-zhez">
-        <div class="wl-zl" id="cus-from-box1" style="position: relative" >
-            <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-change-err-tip"></p>
-            <div class="wl-title">手机号修改</div>
-            <div class="cus-from-box1-1">
-                <div class="wl-zheh " ><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
-                <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()"  style="color: #7DB0E8">发送验证码</button></div>
-                <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
-                <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
+            <div class="wl-zhez">
+                <div class="wl-zl" id="cus-from-box1" style="position: relative" >
+                    <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-change-err-tip"></p>
+                    <div class="wl-title">手机号修改</div>
+                    <div class="cus-from-box1-1">
+                        <div class="wl-zheh " ><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
+                        <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()"  style="color: #7DB0E8">发送验证码</button></div>
+                        <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
+                        <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
+                    </div>
+                    <div class="cus-from-box1-2" style="display: none;">
+                        <div style="text-align: center;"style="display: none">
+                            <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
+                            <p style="color: #333333;font-size: 18px;margin-top: 20px">手机号修改成功</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="cus-from-box1-2" style="display: none;">
-                <div style="text-align: center;"style="display: none">
-                    <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
-                    <p style="color: #333333;font-size: 18px;margin-top: 20px">手机号修改成功</p>
+            <div class="wl-zhez1">
+                <div class="wl-zl1"  id="cus-from-box2" style="position: relative">
+                    <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-changepwd-err-tip"></p>
+                    <div class="wl-title1">密码修改</div>
+                    <div class="cus-from-box2-1">
+                        <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
+                        <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
+                        <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()" style="color: #7DB0E8">发送验证码</button></div>
+                        <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
+                        <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
+                        <div style="margin-left: 195px;font-size: 12px;color: #CCCCCC;float: left; margin-top: 10px;">注：密码格式为8~16位字母+数字</div>
+                        <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn" disabled>立即修改</button> </div>
+                    </div>
+
+                    <div class="cus-from-box2-2" style="display: none;">
+
+                        <div style="text-align: center;">
+                            <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
+                            <p style="color: #333333;font-size: 18px;margin-top: 20px">新密码修改成功</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="wl-zhez2">
+                <div class="wl-zl2">
+                    <div class="wl-gexx">修改个人信息</div>
+                    <div class="wl-gerenl">
+                        <div class="cd" style="cursor: pointer" >
+                            <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  data-toggle="modal" data-target="#avatar-modal" id="wl-da"/>
+                            <div class="dd" >更换头像</div>
+                        </div>
+                        <div class="wl-ri">
+                            <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
+                            <p>2-10个汉字，请勿使用包含特殊符号</p>
+                            <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none;padding: 5px;" id="fr-box2-profile"  >{$user_info['profile']}</textarea>
+                            <p>30个汉字，无特殊符号</p>
+                            <button class="wl-que1"  onclick="editProfile.submit()" >确认</button> <button  class="wl-que2">取消</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="wl-zhez1">
-        <div class="wl-zl1"  id="cus-from-box2" style="position: relative">
-            <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-changepwd-err-tip"></p>
-            <div class="wl-title1">密码修改</div>
-            <div class="cus-from-box2-1">
-                <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
-                <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
-                <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()" style="color: #7DB0E8">发送验证码</button></div>
-                <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
-                <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
-                <div style="margin-left: 195px;font-size: 12px;color: #CCCCCC;float: left; margin-top: 10px;">注：密码格式为8~16位字母+数字</div>
-                <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn" disabled>立即修改</button> </div>
-            </div>
 
-            <div class="cus-from-box2-2" style="display: none;">
-
-                <div style="text-align: center;">
-                <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
-                <p style="color: #333333;font-size: 18px;margin-top: 20px">新密码修改成功</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="wl-zhez2">
-        <div class="wl-zl2">
-            <div class="wl-gexx">修改个人信息</div>
-            <div class="wl-gerenl">
-                <div class="cd" style="cursor: pointer" >
-                    <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  data-toggle="modal" data-target="#avatar-modal" id="wl-da"/>
-                    <div class="dd" >更换头像</div>
-                </div>
-                <div class="wl-ri">
-                    <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
-                    <p>2-10个汉字，请勿使用包含特殊符号</p>
-                    <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none;padding: 5px;" id="fr-box2-profile"  >{$user_info['profile']}</textarea>
-                    <p>30个汉字，无特殊符号</p>
-                    <button class="wl-que1"  onclick="editProfile.submit()" >确认</button> <button  class="wl-que2">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -661,5 +664,8 @@
     $("#wl-da").click(function () {
         $(".wl-zhez2").hide();
     });
+    $(".wl-tabc").click(function () {
+        $(".wl-cang").hide();
+    })
 </script>
 </html>
