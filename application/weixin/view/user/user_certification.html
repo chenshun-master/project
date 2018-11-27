@@ -147,7 +147,16 @@
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>医院名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" name="enterprise_name" id="fr3-enterprise-name"></p>
                 <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)" id="fr3-h-type" name="hospital_type"></p>
                 <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input readonly="readonly" placeholder="请选择成立时间" id="fr3-founding-time" name="founding_time"></p>
-                <p class="wl-input"><span>医院规模<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择医院规模" id="fr3-scale" name="scale"></p>
+                <p class="wl-input"><span style="border: none;">医院规模<i style="color: #F24F4F">*</i></span>
+                    <select id="fr3-scale" name="scale" style="height: 35px;width: 40%;border: 1px solid #F1F1F1;color: #888888;">
+                    <option value ="请选择医院规模">请选择医院规模</option>
+                    <option value ="50人以下">50人以下</option>
+                    <option value="50-100人 ">50~100人 </option>
+                    <option value="100~200人 ">100~200人 </option>
+                    <option value="200~500人 ">200~500人 </option>
+                    <option value="500~1000人 ">500~1000人 </option>
+                        <option value="1000人以上 ">1000人以上 </option>
+                </select></p>
                 <p class="wl-input" ><span>医院擅长<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)" id="fr3-speciality" name="speciality"></p>
                 <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名" id="fr3-username" name="username"></p>
                 <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard" name="idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
