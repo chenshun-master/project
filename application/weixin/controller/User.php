@@ -138,7 +138,7 @@ class User extends BaseController
 
         $id =  $request->param('id',0);
         $messageDomain = new \app\api\domain\MessageDomain();
-        $data = $messageDomain->getMsgDetail($id);
+        $data = $messageDomain->getMsgDetail($id,$this->getUserId());
 
         if(!$data){
             return redirect('index/error404');

@@ -251,7 +251,7 @@ class UserFriendDomain
         $count2 = Db::name('chat_record')->where('send_user_id',$receive_user_id)->count();
         $sql = "select tmp_tab.*,user.nickname,user.portrait from (
                 
-                select tmp.send_user_id as uid,tmp.content,tmp.is_read,tmp.created_time,(SELECT count(1) FROM wl_chat_record r2 WHERE tmp.send_user_id = r2.send_user_id  and r2.is_read = 1) AS unread_num 
+                select tmp.send_user_id as uid,tmp.content,tmp.is_read,tmp.created_time,(SELECT count(1) FROM wl_chat_record r2 WHERE tmp.send_user_id = r2.send_user_id  and r2.is_read = 1 and r2.receive_user_id = {$receive_user_id}) AS unread_num 
                 from (SELECT send_user_id,content,is_read,created_time FROM wl_chat_record WHERE receive_user_id = {$receive_user_id} ORDER BY id desc LIMIT {$count1}) tmp GROUP BY tmp.send_user_id
                 
                 UNION ALL
@@ -263,7 +263,6 @@ class UserFriendDomain
                 
                 LEFT JOIN wl_user user on user.id = tmp_tab.uid
                 GROUP BY tmp_tab.uid";
-
         $rows = Db::query($sql);
         return [
             'rows'          =>$rows,

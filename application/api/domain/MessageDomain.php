@@ -192,16 +192,15 @@ class MessageDomain
     /**
      * 获取消息详情
      */
-    public function getMsgDetail($msg_id){
+    public function getMsgDetail($msg_id,$user_id){
+
         $res = Db::name('message')
             ->alias('msg')
-            ->leftJoin('wl_message_read msg_read','msg.id = msg_read.message_id')
             ->where('msg.id',$msg_id)
-            ->field('msg.*,msg_read.id as msg_read_id,msg_read.is_read')
             ->find();
 
-        if($res && !empty($res['msg_read_id']) && $res['is_read'] == 0){
-            Db::name('message_read')->where('id',$res['msg_read_id'])->update(['is_read'=>1]);
+        if($res && $res['type'] != 7){
+            Db::name('message_read')->where('message_id',$res['id'])->where('receive_user_id',$user_id)->update(['is_read'=>1]);
         }
 
         return $res;
