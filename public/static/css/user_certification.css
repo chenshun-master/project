@@ -64,7 +64,8 @@ input,button,a,textarea,select{outline:0 none !important; blr:expression(this.on
     text-align: center;
     border-bottom: 1px solid #F1F1F1;
     position: relative;
-    background: white;
+    background: white !important;
+    z-index: 999;
 }
 
 .se {
@@ -166,6 +167,7 @@ input::-webkit-input-placeholder {
     border: 1px solid red;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 .wl-sc2 {
