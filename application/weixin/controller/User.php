@@ -83,11 +83,14 @@ class User extends BaseController
         $authDomain = new \app\api\domain\AuthDomain();
         $authRes = $authDomain->findAuthResult($this->getUserId());
 
-        if(count($authRes) > 0 && $authRes['status'] == 1 || $authRes['status'] == 3){
-            return redirect('/weixin/user/certification');
+
+        if($authRes){
+            if($authRes['status'] == 1 || $authRes['status'] == 3){
+                return redirect('/weixin/user/certification');
+            }
         }
+
         $this->assign('type',$authRes ?$authRes['type']:0);
-        // $this->assign('type',0);
 
         return $this->fetch('user/user_certification');
     }

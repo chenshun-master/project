@@ -215,7 +215,17 @@
                     <p class="wl-zhen2" style="margin-top: 15px">医院名称 <span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
                     <p class="wl-zhen2">医院性质 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院性质 (门诊部/医院)"  style="margin-left: 76px"  id="fr3-type"></p>
                     <p class="wl-zhen2">成立时间 <span class="wl-xin">*</span> <input type="text" placeholder="请选择成立时间"  style="margin-left: 76px" id="fr3-founding-time" ></p>
-                    <p class="wl-zhen2">医院规模 <span class="wl-xin">*</span> <input type="text" placeholder="请选择医院规模"  style="margin-left: 76px" id="fr3-scale"></p>
+                    <p class="wl-zhen2">医院规模 <span class="wl-xin">*</span>
+                        <select type="text" placeholder="请选择医院规模"  style="margin-left: 76px;width: 72%;height: 40px;z-index: 999999; border: 1px solid #e7e7e7;color: #888888;" id="fr3-scale">
+                        <option value ="请选择医院规模">请选择医院规模</option>
+                        <option value ="50人以下">50人以下</option>
+                        <option value="50-100人 ">50~100人 </option>
+                        <option value="100~200人 ">100~200人 </option>
+                        <option value="200~500人 ">200~500人 </option>
+                        <option value="500~1000人 ">500~1000人 </option>
+                        <option value="1000人以上 ">1000人以上 </option>
+                        </select>
+                    </p>
                     <p class="wl-zhen2">医院擅长 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)"  style="margin-left: 76px" id="fr3-speciality"></p>
                     <p class="wl-zhen2">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
                     <p class="wl-zhen2">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" style="margin-left: 78px;"></p>
