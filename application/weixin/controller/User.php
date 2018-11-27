@@ -687,9 +687,7 @@ class User extends BaseController
         }
 
         $files = $request->file();
-
-
-
+        halt($files);
         $data = \Request::only([
             'username'=>'','idcard'=>'',
             'card_img1'=>'','card_img2'=>'',
@@ -701,8 +699,6 @@ class User extends BaseController
             'profile'=>'','scale'=>'','duties'=>'',
         ], 'post');
 
-        \Log::record('日志调试1 '.var_export($_POST,true));
-        \Log::record('日志调试 '.var_export($files,true));
 
         $type = $request->post('type',0);
         if(!in_array($type,[1,2,3,4]) || empty($data['username']) || !checkIdCard($data['idcard']) || !isset($files['card_img1']) || !isset($files['card_img2'])){

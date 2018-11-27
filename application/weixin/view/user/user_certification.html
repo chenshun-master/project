@@ -278,7 +278,7 @@
                     }
                 },
                 error:function(){
-                    alert('加多少开发是的耐烦');
+                    // alert('');
                 }
             });
         },
@@ -465,8 +465,7 @@
             $(this).val('');
             _this.prev().attr('src','').css("opacity","0");
             return false;
-        }
-        if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1 || filePath.indexOf("jpeg") != -1 || filePath.indexOf("JPEG") != -1) {
+        }else if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1 || filePath.indexOf("jpeg") != -1 || filePath.indexOf("JPEG") != -1) {
             fr.onload = function() {
                 _this.prev().attr('src',this.result).css("opacity","1");
             };
