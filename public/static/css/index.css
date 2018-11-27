@@ -52,7 +52,7 @@ ul li {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: #221815;
     display: block;
 }
@@ -194,7 +194,7 @@ a {
 }
 
 .wx-b2 {
-    width: 90%;
+    width: 95%;
     min-height:310px;
     margin: 0 auto;
     border-bottom: 1px solid #F1F1F1;

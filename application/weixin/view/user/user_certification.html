@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/user_certification.css"/>
+    <link rel="stylesheet" href="/static/css/function.css">
+    <title>薇琳医美 - 实名认证</title>
+</head>
+<body style="background: white">
+<header>
+    <div class="wl-top" style="position: fixed;top: 0px;">
+        <a href="/weixin/user/main"> <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;left: 10px;top: 1px;" ></i></a>
+        <span class="wl-ying">
+            <span id="wl-renzheng">个人认证</span> <i class="iconfont  icon-pull_down" style="font-size: 20px"></i></span>
+    </div>
+    <div style="width: 30%;position: fixed;top: 40px;left: 0;right: 0;margin: 0 auto;    border: 1px solid #F1F1F1;display: none" class="wl-cang">
+        <ul class="tabs headMenu" style="">
+            <li class="se"><a href="#tab1">个人认证</a></li>
+            <li><a href="#tab2">医生认证</a></li>
+            <li><a href="#tab3">医院认证</a></li>
+            <li><a href="#tab4">官方认证</a></li>
+        </ul>
+    </div>
+</header>
+<main>
+<from>
+
+
+    <div class="tab_container" style="margin-top: 40px">
+        <div id="tab1" class="tab_content" style="display: block; ">
+            <p class="wl-input" style="    border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名"></p>
+            <p class="wl-input" style="    border-top: 3px solid #F1F1F1;"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"></p>
+            <dl style="position: relative">
+                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file"  id="fr-img-1"/>
+                    </dt>
+                    <dt class="wl-sc2">
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+            <button class="wl-btn" onclick="obj.submit()">提交申请</button>
+        </div>
+        <div id="tab2" class="tab_content" style="display: none;padding-bottom: 100px ">
+            <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名"></p>
+            <p class="wl-input"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"></p>
+            <p class="wl-input" ><span>擅长项目<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入擅长项目"></p>
+            <p class="wl-input"><span>岗位职称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入岗位职称"></p>
+            <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
+                <textarea type="text" placeholder="请务必于上传的身份证件号码一致"></textarea>
+            </p>
+            <dl style="position: relative">
+                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                    <dt class="wl-sc2">
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+
+            <dl style="position: relative">
+                <p class="wl-zhen">上传医生资质证明<span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj" style="left: 24px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 8px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加资格证</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                    <dt class="wl-sc2">
+                        <dl class="wl-tianj" style="left: 24px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 8px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加执业证</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+            <button class="wl-btn">提交申请</button>
+        </div>
+        <div id="tab3" class="tab_content" style="display: none; padding-bottom: 100px">
+            <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>医院名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></p>
+            <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)"></p>
+            <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择成立时间"></p>
+            <p class="wl-input"><span>医院规模<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择医院规模"></p>
+            <p class="wl-input" ><span>医院擅长<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)"></p>
+            <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名"></p>
+            <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></p>
+            <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码"></p>
+            <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%"><button class="wl-yzm">获取验证码</button></p>
+            <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
+                <select  class="wl-liandong " ><option value="" >请选择省</option></select>
+                <select class="wl-liandong "><option value="" >请选择市</option></select>
+                <select  class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                <input type="text" placeholder="详细地址" >
+            </p>
+            <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
+                <textarea type="text" placeholder="请务必于上传的身份证件号码一致"></textarea>
+            </p>
+            <dl style="position: relative">
+                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                    <dt class="wl-sc2">
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+
+            <dl style="position: relative">
+                <p class="wl-zhen">上传医生资质证明<span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj" style="left: 19px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 13px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加营业执照</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+            <button class="wl-btn">提交申请</button>
+        </div>
+        <div id="tab4" class="tab_content" style="display: none; padding-bottom: 100px ">
+            <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>企业名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></p>
+            <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名"></p>
+            <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></p>
+            <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码"></p>
+            <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%"><button class="wl-yzm">获取验证码</button></p>
+            <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
+                <select  class="wl-liandong " ><option value="" >请选择省</option></select>
+                <select class="wl-liandong "><option value="" >请选择市</option></select>
+                <select  class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                <input type="text" placeholder="详细地址" >
+            </p>
+            <dl style="position: relative">
+                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                    <dt class="wl-sc2">
+                        <dl class="wl-tianj">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+
+            <dl style="position: relative">
+                <p class="wl-zhen">上传医院营业证件<span class="wl-xin">*</span></p>
+                <dl style="" class="wl-sc">
+                    <dt class="wl-sc1" >
+                        <dl class="wl-tianj" style="left: 19px;">
+                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 13px;z-index: 2;"></dd>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加营业执照</dt>
+                        </dl>
+                        <img src="" width="90" height="90" class="wl-nui" />
+                        <input type="file"  accept="image/*"    class="file" />
+                    </dt>
+                </dl>
+                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
+            </dl>
+            <button class="wl-btn">提交申请</button>
+        </div>
+    </div>
+</from>
+
+</main>
+<div id="fr-error-box" >
+    <span class="fr-error-box-text"></span>
+    <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
+</div>
+</body>
+<script src="/static/js/jquery.min.js"></script>
+
+<script>
+
+    var obj={
+        showError:function(msg){
+            $('#fr-error-box').fadeIn("slow").delay(2000).fadeOut();
+            $('#fr-error-box').find('.fr-error-box-text').text(msg);
+        },
+        submit:function(){
+            alert($('#fr-img-1').val());
+        }
+    }
+
+    $("ul.tabs li").click(function() {
+        $(".tab_content").hide();
+        $(".wl-cang").toggle();
+
+        $("#wl-renzheng").text($(this).text());
+        var activeTab = $(this).find("a").attr("href");
+        $(activeTab).show();
+
+        $(".tab_content input[type=file]").val('').prev().attr('src','').css("opacity","0");
+        return false;
+    });
+
+    $(".wl-ying").click(function () {
+        $(".wl-cang").toggle();
+    })
+    $(".tab_container").click(function () {
+        $(".wl-cang").hide();
+    });
+
+
+    $(".tab_content").on("change", "input[type=file]", function() {
+
+        var filePath = $(this).val();//读取图片路径
+        var fr = new FileReader();//创建new FileReader()对象
+        fr.readAsDataURL(this.files[0]);//将图片读取为DataURL
+        var _this= $(this);
+        if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1) {
+            var arr = filePath.split('\\');
+            var fileName = arr[arr.length - 1];
+
+            $(this).parent().next().show();
+            fr.onload = function() {
+                _this.prev().attr('src',this.result).css("opacity","1");
+            };
+        }
+    });
+</script>
+</html>
