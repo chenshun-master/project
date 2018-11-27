@@ -68,7 +68,7 @@
                 </dd>
             </dl>
             <?php if($isFriend === true):?>
-                <button class="wx-rig" onclick="redream.showTip('该功能暂未开放...')">私信</button>
+                <button class="wx-rig" ><a href="/weixin/user/userDialogue/uid/{$article_info['user_id']}" style="color: #ffffff">私信</a></button>
             <?php elseif($isFriend === false):?>
                 <button class="wx-rig" onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
             <?php else:?>
