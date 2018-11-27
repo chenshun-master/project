@@ -196,9 +196,13 @@ a{text-decoration: none;color: #221815;display: block;}
 .wl-biau{
     position: absolute;
     top: 24px;
-    left: 0px;
+    left: 57px;
     right: 0;
     z-index: 99;
+    width: 30px;
+    height: 30px;
+    background: url(/static/image/user/lanv.png)no-repeat;
+    background-size: 20px;
 }
 .wl-demo{
     display: -webkit-box;
@@ -241,9 +245,13 @@ font-size: 13px;
 .wl-renz{
     position: absolute;
     top: -18px;
-    left: 0;
+    left: 32px;
     right: 0;
     margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background: url(/static/image/user/chengv.png)no-repeat;
+    background-size: 30px;
 }
 .wl-wenzhnga{
     width: 100%;

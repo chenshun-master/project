@@ -50,7 +50,7 @@
                 <img src="{$info['doctor_info']['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="71" height="71">
             </div>
            <div class="wl-top-yisheng">
-               <div style="position: relative"><dl class="iconfont icon-yisheng wl-renz" style="font-size: 30px;color: #7DB0E8;position: relative"><i class="wl-v">v</i></dl></div>
+               <div style="position: relative"><dl class="wl-renz" ></dl></div>
                 <dd>{$info['doctor_info']['real_name']}</dd>
                 <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
             </div>
@@ -87,7 +87,7 @@
         <div class="wl-con-top">
             <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
                 <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="40" height="40" style="float: left">
-                <div style="position: relative"><dl class="iconfont icon-yisheng wl-renz1" style="font-size: 20px;color: #F19149"><i class="wl-d">v</i></dl></div>
+                <div style="position: relative"><dl class="wl-renz1" ></div>
                 <dl  class="wl-yiyuan">
                     <dd>{$info['hospital_info'][0]['hospital_name']}</dd>
                     <dt> {$info['hospital_info'][0]['profile']}</dt>
