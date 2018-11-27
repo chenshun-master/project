@@ -79,6 +79,15 @@ class User extends BaseController
         if(!$this->checkLogin()){
             return redirect('/weixin/index/login');
         }
+
+        $authDomain = new \app\api\domain\AuthDomain();
+        $authRes = $authDomain->findAuthResult($this->getUserId());
+
+        if($authRes && $authRes['status'] == 1 || $authRes['status'] == 3){
+            return redirect('/weixin/user/userCertification');
+        }
+
+        $this->assign('type',$authRes? $authRes['type']:0);
         return $this->fetch('user/user_certification');
     }
    /**
@@ -164,11 +173,10 @@ class User extends BaseController
         $authDomain = new \app\api\domain\AuthDomain();
         $authRes = $authDomain->findAuthResult($this->getUserId());
         if(!$authRes){
-            return $this->fetch('user/user_certification');
+            return redirect('/weixin/user/userCertification');
         }
 
         $this->assign('authRes',$authRes);
-
         return $this->fetch('user/certification');
     }
 

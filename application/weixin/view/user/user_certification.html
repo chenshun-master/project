@@ -43,8 +43,7 @@
 <header>
     <div class="wl-top" style="position: fixed;top: 0px;">
         <a href="/weixin/user/main"> <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;left: 10px;top: 1px;" ></i></a>
-        <span class="wl-ying">
-            <span id="wl-renzheng">个人认证</span> <i class="iconfont  icon-pull_down" style="font-size: 20px"></i></span>
+        <span class="wl-ying"  ><span id="wl-renzheng">个人认证</span> <i class="iconfont  icon-pull_down" style="font-size: 20px"></i></span>
     </div>
     <div style="width: 30%;position: fixed;top: 40px;left: 0;right: 0;margin: 0 auto;    border: 1px solid #F1F1F1;display: none" class="wl-cang">
         <ul class="tabs headMenu" style="">
@@ -262,7 +261,6 @@
     <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
 </div>
 
-
 <div class="wl-zhez" id="wl-loading-box" style="display: none;">
     <div class="wl-zl">
         <dl><img src="/static/image/user/timg.gif" alt="" width="40px" style="margin-top:50px;margin: 0 auto;position: absolute;left: 0;right: 0"></dl>
@@ -277,6 +275,7 @@
 <script>
 
     var obj={
+        type:{$type},
         loading:false,
         showError:function(msg){
             $('#fr-error-box').fadeIn("slow").delay(2000).fadeOut();
@@ -480,6 +479,9 @@
     };
 
     $("ul.tabs li").click(function() {
+
+
+
         $(".tab_content").hide();
         $(".wl-cang").hide();
 
@@ -490,6 +492,9 @@
     });
 
     $(".wl-ying").click(function () {
+        if(obj.type != 0){
+            return false;
+        }
         $(".wl-cang").toggle();
     });
 
@@ -519,7 +524,9 @@
 
     $(function(){
         var maodian = window.location.toString().split('#')[1];
-        if(maodian == 'tab1'){
+        if(obj.type != 0){
+            $('.headMenu li:nth-child('+obj.type+')').trigger('click');
+        }else if(maodian == 'tab1'){
             $('.headMenu li:nth-child(1)').trigger('click');
         }else if(maodian == 'tab2'){
             $('.headMenu li:nth-child(2)').trigger('click');
@@ -646,20 +653,6 @@
         },
         'onClose': function () { /*取消时触发事件*/
         }
-    });
-    $(document).ready(function() {
-        // $(".wl-tianj").click(function(event) {
-        //     event.stopPropagation(); //停止事件冒泡
-        //     $(".wl-zhez").toggle();
-        // });
-        //点击空白处隐藏弹出层
-        // $(".wl-zhez").click(function(event) {
-        //     var _con = $('.wl-zl'); // 设置目标区域
-        //     if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-        //         $('.wl-zhez').hide(); //淡出消失
-        //     }
-        // });
-
     });
 </script>
 </html>
