@@ -47,15 +47,15 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" name="card_img1"  id="fr1-card_img1"/>
+                        <input type="file"  accept="image/*"    class="file" name="card_img1"  id="fr1-card_img1"  />
                     </dt>
                     <dt class="wl-sc2">
                         <dl class="wl-tianj">
                             <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证背面</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file"  name="card_img2" id="fr1-card_img2"/>
+                        <input type="file"  accept="image/*"    class="file"  name="card_img2" id="fr1-card_img2" />
                     </dt>
                 </dl>
                 <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
@@ -276,6 +276,9 @@
                     }else{
                         obj.showError(res.msg)
                     }
+                },
+                error:function(){
+                    alert('加多少开发是的耐烦');
                 }
             });
         },
@@ -457,6 +460,12 @@
         fr.readAsDataURL(this.files[0]);    //将图片读取为DataURL
         var _this= $(this);
 
+        if(($(this)[0].files[0].size / 1024 /1024) > 5){
+            obj.showError('文件不能大于5M');
+            $(this).val('');
+            _this.prev().attr('src','').css("opacity","0");
+            return false;
+        }
         if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1 || filePath.indexOf("jpeg") != -1 || filePath.indexOf("JPEG") != -1) {
             fr.onload = function() {
                 _this.prev().attr('src',this.result).css("opacity","1");
