@@ -52,8 +52,12 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wl-pingjia dd{
     width: 70%;
+    height: 16px;
     color: #898989;
     font-size: 11px;
+}
+.wl-v{
+    color: white;position: absolute;top: -1px; left:7px;font-size: 13px;
 }
 .wl-pingjia dt{
     width: 90%;
