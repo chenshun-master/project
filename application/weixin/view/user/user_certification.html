@@ -263,16 +263,13 @@
 </div>
 
 
-
-<div class="wl-zhez">
+<div class="wl-zhez" id="wl-loading-box" style="display: none;">
     <div class="wl-zl">
-        <dl>        <img src="/static/image/user/timg.gif" alt="" width="40px" style="margin-top:50px;margin: 0 auto;position: absolute;left: 0;right: 0"></dl>
-        <dt style="text-align: center;margin-top: 50px;float: left;margin-left: 25px;color: white">
-加载中
-        </dt>
-
+        <dl><img src="/static/image/user/timg.gif" alt="" width="40px" style="margin-top:50px;margin: 0 auto;position: absolute;left: 0;right: 0"></dl>
+        <dt style="text-align: center;margin-top: 50px;float: left;margin-left: 25px;color: white">提交中...</dt>
     </div>
 </div>
+
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js"></script>
@@ -293,28 +290,40 @@
             }else if(type == 4){
                 formData.append('address',$('#fr4-address').val());
             }
-            $.ajax({
-                url: '/weixin/user/applyAuth',
-                type: 'POST',
-                cache: false,
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: "json",
-                success: function (res) {
-                    if(res.code == 200){
-                        obj.showError('申请成功')
-                        setTimeout(function(){
-                            window.location.href = '/weixin/user/certification';
-                        },2000)
-                    }else{
-                        obj.showError(res.msg)
+
+            if(this.loading == false){
+                $.ajax({
+                    url: '/weixin/user/applyAuth',
+                    type: 'POST',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    beforeSend:function(){
+                        $('#wl-loading-box').show();
+                        obj.loading = true;
+                    },
+                    complete:function(){
+                        $('#wl-loading-box').hide();
+                        obj.loading = false;
+                    },
+                    success: function (res) {
+                        if(res.code == 200){
+                            obj.showError('申请成功')
+                            setTimeout(function(){
+                                window.location.href = '/weixin/user/certification';
+                            },2000)
+                        }else{
+                            obj.showError(res.msg)
+                        }
+                    },
+                    error:function(){
+                        obj.showError('上传失败');
                     }
-                },
-                error:function(){
-                    // alert('');
-                }
-            });
+                });
+            }
+
         },
         submit1:function(){
             var username  = $.trim($('#fr1-username').val());
