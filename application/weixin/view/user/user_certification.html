@@ -13,6 +13,7 @@
     <title>薇琳医美 - 实名认证</title>
     <style>
         .tab_container  .tab_content{padding-top: 40px !important;}
+        .sms-send-loading{color: #CCCCCC !important;}
     </style>
 </head>
 <body style="background: white">
@@ -34,7 +35,7 @@
 <main >
     <div class="tab_container" >
         <div id="tab1" class="tab_content" style="display: block; ">
-            <form id="fr1-from" enctype='multipart/form-data'>
+            <form id="fr1-from" enctype='multipart/form-data' onsubmit="return false;">
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名" name="username"  id="fr1-username"></p>
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"  name="idcard" id="fr1-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
                 <dl style="position: relative">
@@ -63,7 +64,7 @@
             <button class="wl-btn" onclick="obj.submit1()">提交申请</button>
         </div>
         <div id="tab2" class="tab_content" style="display: none;padding-bottom: 100px ">
-            <form id="fr2-from" enctype='multipart/form-data'>
+            <form id="fr2-from" enctype='multipart/form-data' onsubmit="return false;">
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名" name="username" id="fr2-username"></p>
                 <p class="wl-input"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致" name="idcard" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
                 <p class="wl-input" ><span>擅长项目<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入擅长项目" name="speciality" id="fr2-speciality"></p>
@@ -119,7 +120,7 @@
             <button class="wl-btn" onclick="obj.submit2()">提交申请</button>
         </div>
         <div id="tab3" class="tab_content" style="display: none; padding-bottom: 100px">
-            <form id="fr3-from" enctype='multipart/form-data'>
+            <form id="fr3-from" enctype='multipart/form-data' onsubmit="return false;">
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>医院名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" name="enterprise_name" id="fr3-enterprise-name"></p>
                 <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)" id="fr3-h-type" name="hospital_type"></p>
                 <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择成立时间" id="fr3-founding-time" name="founding_time"></p>
@@ -128,7 +129,7 @@
                 <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名" id="fr3-username" name="username"></p>
                 <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard" name="idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
                 <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" name="mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
-                <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%" id="fr3-sms-code" name="sms_code" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="6"><button class="wl-yzm">获取验证码</button></p>
+                <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%" id="fr3-sms-code" name="sms_code" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="6"><button class="wl-yzm" id="sms-code1">获取验证码</button></p>
                 <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
                     <select  class="wl-liandong fr-province" id="fr3-province" ><option value="" >请选择省</option></select>
                     <select  class="wl-liandong fr-city" id="fr3-city"><option value="" >请选择市</option></select>
@@ -179,12 +180,12 @@
             <button class="wl-btn" onclick="obj.submit3()">提交申请</button>
         </div>
         <div id="tab4" class="tab_content" style="display: none; padding-bottom: 100px ">
-            <form id="fr4-from" enctype='multipart/form-data'>
+            <form id="fr4-from" enctype='multipart/form-data' onsubmit="return false;">
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>企业名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" name="enterprise_name"></p>
                 <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名" id="fr4-username" name="username" ></p>
                 <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" name="idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
                 <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码" id="fr4-mobile" name="mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="11"></p>
-                <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%" id="fr4-sms-code" name="sms_code" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="6"><button class="wl-yzm">获取验证码</button></p>
+                <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%" id="fr4-sms-code" name="sms_code" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="6"><button class="wl-yzm" id="sms-code2">获取验证码</button></p>
                 <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
                     <select  class="wl-liandong fr-province" id="fr4-province" ><option value="" >请选择省</option></select>
                     <select  class="wl-liandong fr-city" id="fr4-city"><option value="" >请选择市</option></select>
@@ -237,9 +238,11 @@
     <span class="fr-error-box-text"></span>
     <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
 </div>
+
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js"></script>
+<script src="/static/plugin/jquery.smscode.js"></script>
 <script>
 
     var obj={
@@ -463,7 +466,6 @@
         }
     });
 
-
     $(function(){
         var maodian = window.location.toString().split('#')[1];
         if(maodian == 'tab1'){
@@ -478,7 +480,6 @@
             $('.headMenu li:nth-child(1)').trigger('click');
         }
     });
-
 
     var myAddressObj ={
         requestParams:{
@@ -523,6 +524,59 @@
     $('.fr-province,.fr-city,.fr-area-county').on('change',function(){
         var obj = $(this).find("option:selected");
         myAddressObj.loadAddressList(obj.data('region_path'),obj.data('region_grade'));
+    });
+</script>
+
+<script>
+    var codeObj = new Code('sms-code1','获取验证码','sms-send-loading','sms-auth3',60);
+    var codeObj2 = new Code('sms-code2','获取验证码','sms-send-loading','sms-auth4',60);
+
+    var smsObj = {
+        sendSmsCode:false,
+        ajaxSendSms:function(mobile,o){
+            $.ajax({
+                url:"/weixin/index/sendSmsCode",
+                type:'post',
+                data:{mobile:mobile,type:7},
+                dataType:'json',
+                beforeSend:function(){
+                    smsObj.sendSmsCode = true;
+                },
+                complete:function(){
+                    smsObj.sendSmsCode = false;
+                },
+                success:function(res){
+                    if(res.code == 200){
+                        obj.showError('发送成功');
+                        o.trigger();
+                    }else{
+                        obj.showError('发送失败');
+                    }
+                }
+            });
+        },
+    };
+
+    $('#sms-code1').on('click',function(){
+        var mobile = $('#fr3-mobile').val();
+        if(mobile == ''){
+            obj.showError('未填写手机号');
+        }else if(!redream.checkMobile(mobile)){
+            obj.showError('手机号格式错误');
+        }else{
+            smsObj.ajaxSendSms(mobile,codeObj);
+        }
+    });
+
+    $('#sms-code2').on('click',function(){
+        var mobile = $('#fr4-mobile').val();
+        if(mobile == ''){
+            obj.showError('未填写手机号');
+        }else if(!redream.checkMobile(mobile)){
+            obj.showError('手机号格式错误');
+        }else{
+            smsObj.ajaxSendSms(mobile,codeObj2);
+        }
     });
 </script>
 </html>
