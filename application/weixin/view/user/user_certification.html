@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/user_certification.css"/>
     <link rel="stylesheet" href="/static/css/function.css">
     <title>薇琳医美 - 实名认证</title>
+    <style>
+        .tab_container  .tab_content{padding-top: 40px !important;}
+    </style>
 </head>
 <body style="background: white">
 <header>
@@ -28,15 +31,13 @@
         </ul>
     </div>
 </header>
-<main>
-<from>
-
-
-    <div class="tab_container" style="margin-top: 40px">
+<main >
+    <div class="tab_container" >
         <div id="tab1" class="tab_content" style="display: block; ">
-            <p class="wl-input" style="    border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名"></p>
-            <p class="wl-input" style="    border-top: 3px solid #F1F1F1;"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"></p>
-            <dl style="position: relative">
+            <form id="fr1-from" enctype='multipart/form-data'>
+                <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名" name="username"  id="fr1-username"></p>
+                <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"  name="idcard" id="fr1-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
+                <dl style="position: relative">
                 <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
                 <dl style="" class="wl-sc">
                     <dt class="wl-sc1" >
@@ -45,7 +46,7 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file"  id="fr-img-1"/>
+                        <input type="file"  accept="image/*"    class="file" name="card_img1"  id="fr1-card_img1"/>
                     </dt>
                     <dt class="wl-sc2">
                         <dl class="wl-tianj">
@@ -53,45 +54,46 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
+                        <input type="file"  accept="image/*"    class="file"  name="card_img2" id="fr1-card_img2"/>
                     </dt>
                 </dl>
                 <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
             </dl>
-            <button class="wl-btn" onclick="obj.submit()">提交申请</button>
+            </form>
+            <button class="wl-btn" onclick="obj.submit1()">提交申请</button>
         </div>
         <div id="tab2" class="tab_content" style="display: none;padding-bottom: 100px ">
-            <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名"></p>
-            <p class="wl-input"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"></p>
-            <p class="wl-input" ><span>擅长项目<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入擅长项目"></p>
-            <p class="wl-input"><span>岗位职称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入岗位职称"></p>
-            <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
-                <textarea type="text" placeholder="请务必于上传的身份证件号码一致"></textarea>
-            </p>
-            <dl style="position: relative">
-                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
-                <dl style="" class="wl-sc">
-                    <dt class="wl-sc1" >
-                        <dl class="wl-tianj">
-                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
-                        </dl>
-                        <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-                    </dt>
-                    <dt class="wl-sc2">
-                        <dl class="wl-tianj">
-                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
-                        </dl>
-                        <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-                    </dt>
+            <form id="fr2-from" enctype='multipart/form-data'>
+                <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名" name="username" id="fr2-username"></p>
+                <p class="wl-input"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致" name="idcard" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
+                <p class="wl-input" ><span>擅长项目<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入擅长项目" name="speciality" id="fr2-speciality"></p>
+                <p class="wl-input"><span>岗位职称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入岗位职称" name="duties" id="fr2-duties"></p>
+                <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
+                    <textarea type="text" placeholder="请务必于上传的身份证件号码一致" id="fr2-profile" name="profile"></textarea>
+                </p>
+                <dl style="position: relative">
+                    <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                    <dl style="" class="wl-sc">
+                        <dt class="wl-sc1" >
+                            <dl class="wl-tianj">
+                                <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            </dl>
+                            <img src="" width="90" height="90" class="wl-nui" />
+                            <input type="file"  accept="image/*"    class="file"  name="card_img1"  id="fr2-card_img1" />
+                        </dt>
+                        <dt class="wl-sc2">
+                            <dl class="wl-tianj">
+                                <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            </dl>
+                            <img src="" width="90" height="90" class="wl-nui" />
+                            <input type="file"  accept="image/*"    class="file" name="card_img2" id="fr2-card_img2" />
+                        </dt>
+                    </dl>
+                    <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
                 </dl>
-                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
-            </dl>
-
-            <dl style="position: relative">
+                <dl style="position: relative">
                 <p class="wl-zhen">上传医生资质证明<span class="wl-xin">*</span></p>
                 <dl style="" class="wl-sc">
                     <dt class="wl-sc1" >
@@ -100,7 +102,7 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加资格证</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
+                        <input type="file"  accept="image/*"    class="file"  id="fr2-qualification" name="qualification" />
                     </dt>
                     <dt class="wl-sc2">
                         <dl class="wl-tianj" style="left: 24px;">
@@ -108,57 +110,58 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加执业证</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-
+                        <input type="file"  accept="image/*"    class="file" id="fr2-practice_certificate" name="practice_certificate" />
                     </dt>
                 </dl>
                 <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
             </dl>
-            <button class="wl-btn">提交申请</button>
+            </form>
+            <button class="wl-btn" onclick="obj.submit2()">提交申请</button>
         </div>
         <div id="tab3" class="tab_content" style="display: none; padding-bottom: 100px">
-            <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>医院名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></p>
-            <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)"></p>
-            <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择成立时间"></p>
-            <p class="wl-input"><span>医院规模<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择医院规模"></p>
-            <p class="wl-input" ><span>医院擅长<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)"></p>
-            <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名"></p>
-            <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></p>
-            <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码"></p>
-            <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%"><button class="wl-yzm">获取验证码</button></p>
-            <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
-                <select  class="wl-liandong " ><option value="" >请选择省</option></select>
-                <select class="wl-liandong "><option value="" >请选择市</option></select>
-                <select  class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
-                <input type="text" placeholder="详细地址" >
-            </p>
-            <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
-                <textarea type="text" placeholder="请务必于上传的身份证件号码一致"></textarea>
-            </p>
-            <dl style="position: relative">
-                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
-                <dl style="" class="wl-sc">
-                    <dt class="wl-sc1" >
-                        <dl class="wl-tianj">
-                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
-                        </dl>
-                        <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-                    </dt>
-                    <dt class="wl-sc2">
-                        <dl class="wl-tianj">
-                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
-                        </dl>
-                        <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-                    </dt>
+            <form id="fr3-from" enctype='multipart/form-data'>
+                <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>医院名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" name="enterprise_name" id="fr3-enterprise-name"></p>
+                <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)" id="fr3-h-type" name="hospital_type"></p>
+                <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择成立时间" id="fr3-founding-time" name="founding_time"></p>
+                <p class="wl-input"><span>医院规模<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择医院规模" id="fr3-scale" name="scale"></p>
+                <p class="wl-input" ><span>医院擅长<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)" id="fr3-speciality" name="speciality"></p>
+                <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名" id="fr3-username" name="username"></p>
+                <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard" name="idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
+                <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" name="mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
+                <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%" id="fr3-sms-code" name="sms_code" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="6"><button class="wl-yzm">获取验证码</button></p>
+                <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
+                    <select  class="wl-liandong fr-province" id="fr3-province" ><option value="" >请选择省</option></select>
+                    <select  class="wl-liandong fr-city" id="fr3-city"><option value="" >请选择市</option></select>
+                    <select  class="wl-liandong fr-area-county" id="fr3-area-county"><option value="" >请选择县</option></select>
+                    <input type="text" placeholder="详细地址" id="fr3-detail-address" >
+                    <input type="hidden" placeholder="详细地址" id="fr3-address"   >
+                </p>
+                <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
+                    <textarea type="text" placeholder="请务必于上传的身份证件号码一致" id="fr3-profile" name="profile"></textarea>
+                </p>
+                <dl style="position: relative">
+                    <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                    <dl style="" class="wl-sc">
+                        <dt class="wl-sc1" >
+                            <dl class="wl-tianj">
+                                <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            </dl>
+                            <img src="" width="90" height="90" class="wl-nui" />
+                            <input type="file"  accept="image/*"    class="file" name="card_img1" id="fr3-card_img1"/>
+                        </dt>
+                        <dt class="wl-sc2">
+                            <dl class="wl-tianj">
+                                <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            </dl>
+                            <img src="" width="90" height="90" class="wl-nui" />
+                            <input type="file"  accept="image/*"    class="file" name="card_img2" id="fr3-card_img2" />
+                        </dt>
+                    </dl>
+                    <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
                 </dl>
-                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
-            </dl>
-
-            <dl style="position: relative">
+                <dl style="position: relative">
                 <p class="wl-zhen">上传医生资质证明<span class="wl-xin">*</span></p>
                 <dl style="" class="wl-sc">
                     <dt class="wl-sc1" >
@@ -167,49 +170,51 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加营业执照</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
+                        <input type="file"  accept="image/*"    class="file" id="f3-business_licence" name="business_licence" />
                     </dt>
                 </dl>
                 <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
             </dl>
-            <button class="wl-btn">提交申请</button>
+            </form>
+            <button class="wl-btn" onclick="obj.submit3()">提交申请</button>
         </div>
         <div id="tab4" class="tab_content" style="display: none; padding-bottom: 100px ">
-            <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>企业名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></p>
-            <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名"></p>
-            <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></p>
-            <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码"></p>
-            <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%"><button class="wl-yzm">获取验证码</button></p>
-            <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
-                <select  class="wl-liandong " ><option value="" >请选择省</option></select>
-                <select class="wl-liandong "><option value="" >请选择市</option></select>
-                <select  class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
-                <input type="text" placeholder="详细地址" >
-            </p>
-            <dl style="position: relative">
-                <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
-                <dl style="" class="wl-sc">
-                    <dt class="wl-sc1" >
-                        <dl class="wl-tianj">
-                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
-                        </dl>
-                        <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-                    </dt>
-                    <dt class="wl-sc2">
-                        <dl class="wl-tianj">
-                            <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
-                            <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
-                        </dl>
-                        <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
-                    </dt>
+            <form id="fr4-from" enctype='multipart/form-data'>
+                <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>企业名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" name="enterprise_name"></p>
+                <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名" id="fr4-username" name="username" ></p>
+                <p class="wl-input" ><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" name="idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
+                <p class="wl-input"><span>手机号码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者手机号码" id="fr4-mobile" name="mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="11"></p>
+                <p class="wl-input"><span>验证码<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入验证码" style="width: 52%" id="fr4-sms-code" name="sms_code" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="6"><button class="wl-yzm">获取验证码</button></p>
+                <p class="wl-shengf"><span>所在地址<i style="color: #F24F4F">*</i></span>
+                    <select  class="wl-liandong fr-province" id="fr4-province" ><option value="" >请选择省</option></select>
+                    <select  class="wl-liandong fr-city" id="fr4-city"><option value="" >请选择市</option></select>
+                    <select  class="wl-liandong fr-area-county" id="fr4-area-county"><option value="" >请选择县</option></select>
+                    <input type="text" placeholder="详细地址" id="fr4-detail-address">
+                    <input type="hidden" placeholder="详细地址" id="fr4-address"   >
+                </p>
+                <dl style="position: relative">
+                    <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
+                    <dl style="" class="wl-sc">
+                        <dt class="wl-sc1" >
+                            <dl class="wl-tianj">
+                                <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            </dl>
+                            <img src="" width="90" height="90" class="wl-nui" />
+                            <input type="file"  accept="image/*"    class="file" name="card_img1"  id="fr4-card_img1" />
+                        </dt>
+                        <dt class="wl-sc2">
+                            <dl class="wl-tianj">
+                                <dd class="iconfont icon-xiangji" style="font-size: 40px;  color: #cdcdcd; margin-left: 17px;z-index: 2;"></dd>
+                                <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加身份证正面</dt>
+                            </dl>
+                            <img src="" width="90" height="90" class="wl-nui" />
+                            <input type="file"  accept="image/*"    class="file" name="card_img2"  id="fr4-card_img2" />
+                        </dt>
+                    </dl>
+                    <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
                 </dl>
-                <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
-            </dl>
-
-            <dl style="position: relative">
+                <dl style="position: relative">
                 <p class="wl-zhen">上传医院营业证件<span class="wl-xin">*</span></p>
                 <dl style="" class="wl-sc">
                     <dt class="wl-sc1" >
@@ -218,71 +223,306 @@
                             <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer;font-size: 11px">添加营业执照</dt>
                         </dl>
                         <img src="" width="90" height="90" class="wl-nui" />
-                        <input type="file"  accept="image/*"    class="file" />
+                        <input type="file"  accept="image/*"    class="file" id="f4-business_licence" name="business_licence" />
                     </dt>
                 </dl>
                 <p class="wl-tup">支持绝大多数的图片格式，单张图片大小不超过10M</p>
             </dl>
-            <button class="wl-btn">提交申请</button>
+            </form>
+            <button class="wl-btn" onclick="obj.submit4()">提交申请</button>
         </div>
     </div>
-</from>
-
 </main>
-<div id="fr-error-box" >
+<div id="fr-error-box" style="display: none;" >
     <span class="fr-error-box-text"></span>
     <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
-
+<script src="/static/js/functions.js"></script>
 <script>
 
     var obj={
+        loading:false,
         showError:function(msg){
             $('#fr-error-box').fadeIn("slow").delay(2000).fadeOut();
             $('#fr-error-box').find('.fr-error-box-text').text(msg);
         },
-        submit:function(){
-            alert($('#fr-img-1').val());
+        ajax:function(fromname,type){
+            var formData = new FormData($('#'+ fromname)[0]);
+            formData.append('type',type);
+            if(type == 3){
+                formData.append('address',$('#fr3-address').val());
+            }else if(type == 4){
+                formData.append('address',$('#fr4-address').val());
+            }
+            $.ajax({
+                url: '/weixin/user/applyAuth',
+                type: 'POST',
+                cache: false,
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                success: function (res) {
+                    if(res.code == 200){
+                        obj.showError('申请成功')
+                        setTimeout(function(){
+                            window.location.href = '/weixin/user/certification';
+                        },2000)
+                    }else{
+                        obj.showError(res.msg)
+                    }
+                }
+            });
+        },
+        submit1:function(){
+            var username  = $.trim($('#fr1-username').val());
+            var idcard    = $.trim($('#fr1-idcard').val());
+            var card_img1 = $('#fr1-card_img1').val();
+            var card_img2 = $('#fr1-card_img2').val();
+            if(username == ''){
+                this.showError('身份证姓名不能为空');return false;
+            }else if(idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(card_img1 == '' || card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(card_img2 == '' || card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(!this.loading){
+                this.ajax('fr1-from',1);
+            }
+        },
+        submit2:function(){
+            var data  = {
+                username:             $.trim($('#fr2-username').val()),
+                idcard:               $.trim($('#fr2-idcard').val()),
+                card_img1:            $('#fr2-card_img1').val(),
+                card_img2:            $('#fr2-card_img2').val(),
+                qualification:        $('#fr2-qualification').val(),
+                practice_certificate: $('#fr2-practice_certificate').val(),
+                speciality:           $.trim($('#fr2-speciality').val()),
+                duties:               $.trim($('#fr2-duties').val()),
+                profile:              $.trim($('#fr2-profile').val()),
+            };
+
+            if(data.username == ''){
+                this.showError('身份证姓名不能为空');return false;
+            }else if(data.idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(data.idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(data.speciality == ''){
+                this.showError('医生擅长项目不能为空');return false;
+            }else if(data.duties == ''){
+                this.showError('岗位职称不能为空');return false;
+            }else if(data.profile == ''){
+                this.showError('医生简介不能为空');return false;
+            }else if(!redream.checkIdcard(data.idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(data.card_img1 == '' || data.card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(data.card_img2 == '' || data.card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(data.qualification == '' || data.qualification == undefined){
+                this.showError('请上传医师资格证书图片');return false;
+            }else if(data.practice_certificate == '' || data.practice_certificate == undefined){
+                this.showError('请上传医师执业证书图片');return false;
+            }else if(!this.loading){
+                this.ajax('fr2-from',2);
+            }
+        },
+        submit3:function(){
+            var data = {
+                username:                   $.trim($('#fr3-username').val()),
+                idcard:                     $.trim($('#fr3-idcard').val()),
+                card_img1:                  $('#fr3-card_img1').val(),
+                card_img2:                  $('#fr3-card_img2').val(),
+                enterprise_name:            $.trim($('#fr3-enterprise-name').val()),
+                business_licence:           $('#f3-business_licence').val(),
+                sms_code:                   $.trim($('#fr3-sms-code').val()),
+                mobile:                     $('#fr3-mobile').val(),
+                hospital_type:              $.trim($('#fr3-h-type').val()),
+                founding_time:              $.trim($('#fr3-founding-time').val()),
+                speciality:                 $.trim($('#fr3-speciality').val()),
+                profile:                    $.trim($('#fr3-profile').val()),
+                scale:                      $.trim($('#fr3-scale').val()),
+            };
+
+            if(data.enterprise_name == ''){
+                this.showError('医院名称不能为空');
+            }else if(data.hospital_type == ''){
+                this.showError('医院性质不能为空');
+            }else if(data.founding_time == ''){
+                this.showError('成立时间不能为空');
+            }else if(data.scale == ''){
+                this.showError('医院规模不能为空');
+            }else if(data.speciality == ''){
+                this.showError('医院擅长不能为空');
+            }else if(data.username == ''){
+                this.showError('身份证姓名不能为空');
+            }else if(data.idcard == ''){
+                this.showError('身份证号不能为空');
+            }else if(!redream.checkIdcard(data.idcard)){
+                this.showError('身份证号格式不正确');
+            }else if(!redream.checkMobile(data.mobile)){
+                this.showError('手机号格式错误');
+            }else if(data.sms_code == ''){
+                this.showError('手机验证码不能为空');
+            }else if($('#fr3-province').val() == '' || $('#fr3-city').val() == '' || $('#fr3-area-county').val() == ''){
+                this.showError('请选择所在地址信息');
+            }else if($('#fr3-detail-address').val() == ''){
+                this.showError('详细地址不能为空');
+            }else if(data.profile == ''){
+                this.showError('医院简介不能为空');
+            }else if(data.card_img1 == '' || data.card_img1 == undefined){
+                this.showError('请上传身份证正面照');
+            }else if(data.card_img2 == '' || data.card_img2 == undefined){
+                this.showError('请上传身份证背面照');
+            }else if(data.business_licence == '' || data.business_licence == undefined){
+                this.showError('请上传医院营业执照');
+            }else if(!this.loading){
+                $('#fr3-address').val($('#fr3-province').val() + ' ' + $('#fr3-city').val() + ' ' + $('#fr3-area-county').val() + ' '+  $('#fr3-detail-address').val());
+                this.ajax('fr3-from',3);
+            }
+        },
+        submit4:function(){
+            var data = {
+                username          : $.trim($('#fr4-username').val()),
+                idcard            : $.trim($('#fr4-idcard').val()),
+                card_img1         : $('#fr4-card_img1').val(),
+                card_img2         : $('#fr4-card_img2').val(),
+                enterprise_name   : $.trim($('#fr4-enterprise-name').val()),
+                business_licence  : $('#f4-business_licence').val(),
+                sms_code          : $.trim($('#fr4-sms-code').val()),
+                mobile            : $('#fr4-mobile').val(),
+                address           : '',
+            };
+
+            if(data.enterprise_name == ''){
+                this.showError('企业名称不能为空');return false;
+            }else if(data.username == ''){
+                this.showError('运营者姓名不能为空');return false;
+            }else if(data.idcard == ''){
+                this.showError('身份证号不能为空');return false;
+            }else if(!redream.checkIdcard(data.idcard)){
+                this.showError('身份证号格式不正确');return false;
+            }else if(!redream.checkMobile(data.mobile)) {
+                this.showError('手机号格式错误');return false;
+            }else if(data.sms_code == ''){
+                this.showError('手机验证码不能为空');return false;
+            }else if($('#fr4-province').val() == '' || $('#fr4-city').val() == '' || $('#fr4-area-county').val() == ''){
+                this.showError('请选择所在地址信息');
+            }else if($('#fr4-detail-address').val() == ''){
+                this.showError('详细地址不能为空');
+            }else if(data.card_img1 == '' || data.card_img1 == undefined){
+                this.showError('请上传身份证正面照');return false;
+            }else if(data.card_img2 == '' || data.card_img2 == undefined){
+                this.showError('请上传身份证背面照');return false;
+            }else if(data.business_licence == '' || data.business_licence == undefined){
+                this.showError('请上传机构营业执照');return false;
+            }else if(!this.loading){
+                $('#fr4-address').val($('#fr4-province').val() + ' ' + $('#fr4-city').val() + ' ' + $('#fr4-area-county').val()+ ' '+  $('#fr4-detail-address').val());
+                this.ajax('fr4-from',4);
+            }
         }
-    }
+    };
 
     $("ul.tabs li").click(function() {
         $(".tab_content").hide();
-        $(".wl-cang").toggle();
+        $(".wl-cang").hide();
 
         $("#wl-renzheng").text($(this).text());
-        var activeTab = $(this).find("a").attr("href");
-        $(activeTab).show();
+        $($(this).find("a").attr("href")).show();
 
         $(".tab_content input[type=file]").val('').prev().attr('src','').css("opacity","0");
-        return false;
     });
 
     $(".wl-ying").click(function () {
         $(".wl-cang").toggle();
-    })
+    });
+
     $(".tab_container").click(function () {
         $(".wl-cang").hide();
     });
 
-
     $(".tab_content").on("change", "input[type=file]", function() {
-
-        var filePath = $(this).val();//读取图片路径
-        var fr = new FileReader();//创建new FileReader()对象
-        fr.readAsDataURL(this.files[0]);//将图片读取为DataURL
+        var filePath = $(this).val();       //读取图片路径
+        var fr = new FileReader();          //创建new FileReader()对象
+        fr.readAsDataURL(this.files[0]);    //将图片读取为DataURL
         var _this= $(this);
-        if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1) {
-            var arr = filePath.split('\\');
-            var fileName = arr[arr.length - 1];
 
-            $(this).parent().next().show();
+        if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1 || filePath.indexOf("jpeg") != -1 || filePath.indexOf("JPEG") != -1) {
             fr.onload = function() {
                 _this.prev().attr('src',this.result).css("opacity","1");
             };
+        }else{
+            obj.showError('不支持该格式图片');
         }
+    });
+
+
+    $(function(){
+        var maodian = window.location.toString().split('#')[1];
+        if(maodian == 'tab1'){
+            $('.headMenu li:nth-child(1)').trigger('click');
+        }else if(maodian == 'tab2'){
+            $('.headMenu li:nth-child(2)').trigger('click');
+        }else if(maodian == 'tab3'){
+            $('.headMenu li:nth-child(3)').trigger('click');
+        } else if(maodian == 'tab4'){
+            $('.headMenu li:nth-child(4)').trigger('click');
+        }else{
+            $('.headMenu li:nth-child(1)').trigger('click');
+        }
+    });
+
+
+    var myAddressObj ={
+        requestParams:{
+            region_path :',',
+            region_grade:'1',
+        },
+        loadAddressList:function(region_path,region_grade){
+            myAddressObj.requestParams = {region_path :region_path,region_grade:region_grade};
+            $.ajax({
+                url:"/index/user/getAddress",
+                type:'post',
+                data:myAddressObj.requestParams,
+                dataType:'json',
+                success:function(res){
+                    if(res.code == 200){
+                        var data = res.data;
+                        if(data.request_params.region_path == myAddressObj.requestParams.region_path && data.request_params.region_grade == myAddressObj.requestParams.region_grade){
+                            var html = '';
+                            $.each(data.infos,function(k,v){
+                                html += myAddressObj.getSelectOptions(v);
+                            });
+                            if(data.request_params.region_grade == 1){
+                                $('.fr-province').empty().append('<option value="" >请选择省</option>').append(html);
+                            }else if(data.request_params.region_grade == 2){
+                                $('.fr-city').empty().append('<option value="" >请选择市</option>').append(html);
+                                $('.fr-area-county').empty().append('<option value="" >请选择县</option>');
+                            }else if(data.request_params.region_grade == 3){
+                                $('.fr-area-county').empty().append('<option value="" >请选择县</option>').append(html);
+                            }
+                        }
+                    }
+                }
+            });
+        },
+        getSelectOptions:function(data){
+            return '<option value="'+ data.local_name +'"  data-region_path="'+ data.region_path +'"  data-region_grade="'+ data.find_next_region_grade +'" >'+ data.local_name +'</option>';
+        }
+    };
+
+    myAddressObj.loadAddressList(myAddressObj.requestParams.region_path,myAddressObj.requestParams.region_grade);
+
+    $('.fr-province,.fr-city,.fr-area-county').on('change',function(){
+        var obj = $(this).find("option:selected");
+        myAddressObj.loadAddressList(obj.data('region_path'),obj.data('region_grade'));
     });
 </script>
 </html>

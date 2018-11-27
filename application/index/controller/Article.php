@@ -12,7 +12,6 @@ class Article extends CController
         parent::__construct($app);
 
         $this->_articleDomain = new \app\api\domain\ArticleDomain();
-
         $this->_userDomain  = new \app\api\domain\UserDomain();
     }
 

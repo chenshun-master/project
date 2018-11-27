@@ -731,7 +731,7 @@
         loadAddressList:function(region_path,region_grade){
             myAddressObj.requestParams = {region_path :region_path,region_grade:region_grade};
             $.ajax({
-                url:"/index/user/getAddress",
+                url:"/weixin/api/getAddress",
                 type:'post',
                 data:myAddressObj.requestParams,
                 dataType:'json',
