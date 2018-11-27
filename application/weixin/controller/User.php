@@ -54,7 +54,7 @@ class User extends BaseController
         return $this->fetch('user/main');
     }
 
-   /**
+    /**
      * 修改资料页面
      * @return mixed
      */
@@ -70,7 +70,7 @@ class User extends BaseController
         return $this->fetch('user/modify');
     }
 
-   /**
+    /**
      * 移动端个人认证
      * @return mixed
      */
@@ -87,10 +87,11 @@ class User extends BaseController
             return redirect('/weixin/user/certification');
         }
         $this->assign('type',$authRes ?$authRes['type']:0);
+        // $this->assign('type',0);
 
         return $this->fetch('user/user_certification');
     }
-   /**
+    /**
      * 我的好友粉絲頁面
      * @return mixed
      */
@@ -103,7 +104,7 @@ class User extends BaseController
         return $this->fetch('user/friends');
     }
 
-   /**
+    /**
      * 我的收藏页面
      * @return mixed
      */
@@ -114,7 +115,7 @@ class User extends BaseController
         }
         return $this->fetch('user/collection');
     }
-   /**
+    /**
      * 我的对话页面
      * @return mixed
      */
@@ -136,7 +137,7 @@ class User extends BaseController
     }
 
 
-   /**
+    /**
      * 消息通知页面
      * @return mixed
      */
@@ -180,7 +181,7 @@ class User extends BaseController
         return $this->fetch('user/certification');
     }
 
-   /**
+    /**
      * 消息通知页面
      * @return mixed
      */
@@ -740,6 +741,8 @@ class User extends BaseController
         unset($data['mobile']);
         unset($data['sms_code']);
 
+
+//        halt($data);
         $img_domain = config('conf.file_save_domain');
         $tmp_arr = [];
         foreach ($files as $k => $file){
