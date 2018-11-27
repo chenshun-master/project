@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/user_certification.css"/>
     <link rel="stylesheet" href="/static/css/function.css">
     <title>薇琳医美 - 实名认证</title>
+    <style>
+        .tab_container  .tab_content{padding-top: 40px !important;}
+    </style>
 </head>
 <body style="background: white">
 <header>
@@ -28,11 +31,9 @@
         </ul>
     </div>
 </header>
-<main>
+<main >
 <from>
-
-
-    <div class="tab_container" style="margin-top: 40px">
+    <div class="tab_container" >
         <div id="tab1" class="tab_content" style="display: block; ">
             <p class="wl-input" style="    border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名"></p>
             <p class="wl-input" style="    border-top: 3px solid #F1F1F1;"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致"></p>
@@ -243,8 +244,20 @@
             $('#fr-error-box').fadeIn("slow").delay(2000).fadeOut();
             $('#fr-error-box').find('.fr-error-box-text').text(msg);
         },
-        submit:function(){
-            alert($('#fr-img-1').val());
+        ajax:function(){
+
+        },
+        submit1:function(){
+
+        },
+        submit2:function(){
+
+        },
+        submit3:function(){
+
+        },
+        submit4:function(){
+
         }
     }
 
@@ -253,23 +266,22 @@
         $(".wl-cang").toggle();
 
         $("#wl-renzheng").text($(this).text());
-        var activeTab = $(this).find("a").attr("href");
-        $(activeTab).show();
+        $($(this).find("a").attr("href")).show();
 
         $(".tab_content input[type=file]").val('').prev().attr('src','').css("opacity","0");
-        return false;
+
     });
 
     $(".wl-ying").click(function () {
         $(".wl-cang").toggle();
-    })
+    });
+
     $(".tab_container").click(function () {
         $(".wl-cang").hide();
     });
 
 
     $(".tab_content").on("change", "input[type=file]", function() {
-
         var filePath = $(this).val();//读取图片路径
         var fr = new FileReader();//创建new FileReader()对象
         fr.readAsDataURL(this.files[0]);//将图片读取为DataURL
