@@ -50,7 +50,7 @@
                 <img src="{$info['hospital']['portrait']}" onerror="this.src='/static/image/user/tou.png'"  width="71" height="71">
             </div>
             <div class="wl-top-yisheng">
-                <div style="position: relative"><dl class="iconfont icon-yisheng wl-renz" style="font-size: 30px;color: #F19149;position: relative"><i class="wl-v">v</i></dl></div>
+                <div style="position: relative"><dl class="wl-renz"></dl></div>
                 <dd>{$info['hospital']['hospital_name']}</dd>
                 <dt>
                 <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
@@ -116,7 +116,7 @@
             <div class="wl-demo">
                 {foreach $info['doctor_list'] as $vo }
                 <div class="wl-xiang">
-                    <span class="iconfont icon-yisheng wl-biau" style="font-size: 20px;color: #00A0E9;position: relative"> <i class="wl-d">v</i></span>
+                    <span class=" wl-biau" ></span>
                     <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
                          class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
                     <dl>{$vo['real_name']}</dl>

@@ -88,6 +88,10 @@ position:absolute;
 }
 .wl-biao{
     position: absolute;
-    top: 40px;
-    left: 38px;
+    top: 43px;
+    left: 37px;
+    width: 30px;
+    height: 30px;
+    background: url(/static/image/user/lanv.png)no-repeat;
+    background-size: 20px;
 }

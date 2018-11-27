@@ -85,8 +85,12 @@ a{text-decoration: none;color: #221815;display: block;}
     height: 41px;
     border-radius: 50%;
 }
-.wl-biao{
+.wl-biao1{
     position: absolute;
-    top: 40px;
-    left: 38px;
+    top: 43px;
+    left: 37px;
+    width: 30px;
+    height: 30px;
+    background: url(/static/image/user/chengv.png)no-repeat;
+    background-size: 20px;
 }

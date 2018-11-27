@@ -172,16 +172,24 @@ width: 100%;
 .wl-renz{
     position: absolute;
     top: -18px;
-    left: 0;
+    left: 32px;
     right: 0;
     margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background: url(/static/image/user/lanv.png)no-repeat;
+    background-size: 30px;
 }
 .wl-renz1{
     position: absolute;
-    top: 25px;
-    left: 20px;
+    top: 30px;
+    left: 19px;
     right: 0;
-    margin: 0 auto;
+    z-index: 99;
+    width: 30px;
+    height: 30px;
+    background: url(/static/image/user/chengv.png)no-repeat;
+    background-size: 20px;
 }
 .wl-wenzhnga{
     width: 100%;

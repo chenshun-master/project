@@ -67,8 +67,7 @@
                 var hospital_name =  (data.hospital_name == null) ? '':data.hospital_name;
                 return '<div class="wl-conter href cus-to-doctor-details"  data-uid="'+ data.user_id+'">' +
                     '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
-                    '<div style="position: relative"><span class="iconfont icon-yisheng wl-biao" style="font-size: 20px;color: #00A0E9">' +
-                    '<i class="wl-v">v</i></span></div>'+
+                    '<div style="position: relative"><span class="wl-biao"></span></div>'+
                     '            <div class="wl-pingjia">' +
                     '                <dl>'+ data.real_name +'</dl>' +
                     '                <dd>'+ hospital_name +'</dd>' +
