@@ -687,7 +687,7 @@ class User extends BaseController
         }
 
         $files = $request->file();
-        halt($files);
+
         $data = \Request::only([
             'username'=>'','idcard'=>'',
             'card_img1'=>'','card_img2'=>'',
@@ -699,13 +699,10 @@ class User extends BaseController
             'profile'=>'','scale'=>'','duties'=>'',
         ], 'post');
 
-
         $type = $request->post('type',0);
         if(!in_array($type,[1,2,3,4]) || empty($data['username']) || !checkIdCard($data['idcard']) || !isset($files['card_img1']) || !isset($files['card_img2'])){
             return $this->returnData([],'参数不符合规范',301);
         }
-
-
 
         $data['type']       =  $type;
         $data['user_id']    =  $this->getUserId();
