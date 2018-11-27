@@ -62,7 +62,7 @@
             <div class="wl-fabiao" style="cursor: pointer" onclick="redream.href('/index/article/article')"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>发表文章</div>
             <ul class="renzheng">
                 <div class="wl-xian1">
-                    <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;"></i>实名认证</span><i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px"></i>
+                    <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;color: #7DB0E8"></i>实名认证</span><i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px"></i>
                 </div>
                 <div class="wl-cang1" >
                     <span id="san"> <a href="#auth1"><li class="{if($type == 1 || $type == 0)} active {/if}">个人认证</li></a></span>
@@ -447,7 +447,9 @@
     });
 
     $(".wl-shimin").click(function () {
-        $(".wl-cang1").toggle();
+        $(".wl-cang1").toggle(function () {
+       $(this).css("background-color","green");
+        });
     });
 
     var objClass = {

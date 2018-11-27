@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
+    <link rel="stylesheet" href="/static/css/dropload1.css" />
     <title>医院简介</title>
     <style>
         .ckgd{
@@ -23,10 +24,21 @@
             font-size: 16px;
         }
 
+        .wl-v{
+            color: white;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            font-size: 18px;
+        }
         .href{cursor: pointer}
         .isfollow{background-color: #CCCCCC !important;color: white;}
         input,button,a {
             outline:0 none !important; blr:expression(this.onFocus=this.blur());
+        }
+        .wl-d{
+            color: white;position: absolute;top: -1px; left:7px;font-size: 13px;
         }
     </style>
 </head>
@@ -38,7 +50,7 @@
                 <img src="{$info['hospital']['portrait']}" onerror="this.src='/static/image/user/tou.png'"  width="71" height="71">
             </div>
             <div class="wl-top-yisheng">
-                <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #F19149"></dl></div>
+                <div style="position: relative"><dl class="iconfont icon-yisheng wl-renz" style="font-size: 30px;color: #F19149;position: relative"><i class="wl-v">v</i></dl></div>
                 <dd>{$info['hospital']['hospital_name']}</dd>
                 <dt>
                 <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
@@ -95,16 +107,16 @@
         <div class="wl-tuandui" style="display: block;">
             <p class="wl-ystd"><span style="font-size: 15px;color: #1D1D1D;float: left">医生团队</span>
                 <span style="float: right;margin-top: -2px">
-                    <span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>
-                    <i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>
+                    <!--<span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>-->
+                    <!--<i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>-->
                 </span>
             </p>
             <div style="clear: both"></div>
-            <div style="height: 165px;overflow: hidden;border-bottom: 11px solid white;">
+            <div style="height: 165px;overflow: hidden;border-bottom: 20px solid white;">
             <div class="wl-demo">
                 {foreach $info['doctor_list'] as $vo }
                 <div class="wl-xiang">
-                    <span class="iconfont icon-renzheng1 wl-biau" style="font-size: 20px;color: #00A0E9"></span>
+                    <span class="iconfont icon-yisheng wl-biau" style="font-size: 20px;color: #00A0E9;position: relative"> <i class="wl-d">v</i></span>
                     <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
                          class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
                     <dl>{$vo['real_name']}</dl>
@@ -113,10 +125,10 @@
                 {/foreach}
             </div>
             </div>
-                    <div style="clear: both"></div>
+                    <div style="clear: both" ></div>
     {/if}
 
-    <div id="wl-box" style="display: none">
+    <div id="wl-box" style="display: none   ;">
         <p class="wl-ystd" ><span style="font-size: 15px;color: #1D1D1D;float: left;">我的文章</span>
             <!--<span style="float: right;margin-top: -2px">-->
                     <!--<span style="color: #1D1D1D;font-size: 13px">查看更多</span>-->
@@ -199,7 +211,6 @@
                 },
             },
             loadList:function(){
-
                 if(objClass.recommend.conf.loading){
                     return false;
                 }
@@ -279,19 +290,35 @@
                             }else if(obj.data('isfollow') == 1){
                                 obj.removeClass('isfollow').html('+ 关注').data('isfollow',0);
                             }
+
                         }else if(res.code == 401){
                             redream.showTip(res.msg);
                         }else{
                             redream.showTip('操作失败');
                         }
+
                     }
                 });
             }
         },
+
     };
 
     objClass.recommend.loadList();
-
+    //
+    // $('#cus-container').dropload({
+    //     scrollArea: window,
+    //     loadUpFn: function (me) {
+    //         objClass.recommend.conf.loading = false;
+    //         objClass.recommend.conf.ini = false;
+    //         objClass.recommend.conf.page = 0;
+    //         objClass.recommend.conf.page_total = 1;
+    //         objClass.recommend.loadList(me);
+    //     },
+    //     loadDownFn: function (me) {
+    //         objClass.recommend.loadList(me);
+    //     }
+    // });
 
 
 </script>

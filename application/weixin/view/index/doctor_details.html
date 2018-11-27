@@ -29,6 +29,17 @@
         input,button,a {
             outline:0 none !important; blr:expression(this.onFocus=this.blur());
         }
+        .wl-v{
+            color: white;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            font-size: 18px;
+        }
+        .wl-d{
+            color: white;position: absolute;top: -1px; left:7px;font-size: 13px;
+        }
     </style>
 </head>
 <body style="background-color:#F2F2F2;padding-bottom: 150px">
@@ -39,7 +50,7 @@
                 <img src="{$info['doctor_info']['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="71" height="71">
             </div>
            <div class="wl-top-yisheng">
-               <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz" style="font-size: 30px;color: #7DB0E8"></dl></div>
+               <div style="position: relative"><dl class="iconfont icon-yisheng wl-renz" style="font-size: 30px;color: #7DB0E8;position: relative"><i class="wl-v">v</i></dl></div>
                 <dd>{$info['doctor_info']['real_name']}</dd>
                 <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
             </div>
@@ -76,11 +87,10 @@
         <div class="wl-con-top">
             <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
                 <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="40" height="40" style="float: left">
-                <div style="position: relative"><dl class="iconfont icon-renzheng1 wl-renz1" style="font-size: 20px;color: #F19149"></dl></div>
+                <div style="position: relative"><dl class="iconfont icon-yisheng wl-renz1" style="font-size: 20px;color: #F19149"><i class="wl-d">v</i></dl></div>
                 <dl  class="wl-yiyuan">
                     <dd>{$info['hospital_info'][0]['hospital_name']}</dd>
-                    <dt> 案发生的借款范德萨驸马的历史你打了款你 阿斯蒂芬啊按时sad发范德萨地方撒打算打算好的方式黑寡妇回家结婚的是矮冬瓜打算十多个地方发送的方式</dt>
-                    <!--{$info['hospital_info'][0]['profile']}-->
+                    <dt> {$info['hospital_info'][0]['profile']}</dt>
                 </dl>
                 <dl style="float: right;margin-top: 5px">
                     <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
