@@ -123,7 +123,7 @@
             <form id="fr3-from" enctype='multipart/form-data' onsubmit="return false;">
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>医院名称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" name="enterprise_name" id="fr3-enterprise-name"></p>
                 <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)" id="fr3-h-type" name="hospital_type"></p>
-                <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择成立时间" id="fr3-founding-time" name="founding_time"></p>
+                <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input readonly="readonly" placeholder="请选择成立时间" id="fr3-founding-time" name="founding_time"></p>
                 <p class="wl-input"><span>医院规模<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请选择医院规模" id="fr3-scale" name="scale"></p>
                 <p class="wl-input" ><span>医院擅长<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)" id="fr3-speciality" name="speciality"></p>
                 <p class="wl-input"><span>运营者姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入运营者姓名" id="fr3-username" name="username"></p>
@@ -534,7 +534,7 @@
         myAddressObj.loadAddressList(obj.data('region_path'),obj.data('region_grade'));
     });
 </script>
-
+<script src="/static/js/datePicker1.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var codeObj = new Code('sms-code1','获取验证码','sms-send-loading','sms-auth3',60);
     var codeObj2 = new Code('sms-code2','获取验证码','sms-send-loading','sms-auth4',60);
@@ -586,5 +586,24 @@
             smsObj.ajaxSendSms(mobile,codeObj2);
         }
     });
+    //编辑日期
+    var calendar = new datePicker();
+    calendar.init({
+        'trigger': '#fr3-founding-time',
+        /*按钮选择器，用于触发弹出插件*/
+        'type': 'date',
+        /*模式：date日期；datetime日期时间；time时间；ym年月；*/
+        'minDate': '1960-1-1',
+        /*最小日期*/
+        'maxDate': '2018-12-31',
+        /*最大日期*/
+        'onSubmit': function () { /*确认时触发事件*/
+            var theSelectData = calendar.value;
+            console.log(theSelectData);
+        },
+        'onClose': function () { /*取消时触发事件*/
+        }
+    });
+
 </script>
 </html>
