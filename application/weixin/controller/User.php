@@ -15,6 +15,7 @@ class User extends BaseController
     private $_articleDomain;
     private $_userModel;
     private $_userFriendDomain;
+    private $_authDomain;
 
     public function __construct(App $app = null)
     {
@@ -24,7 +25,10 @@ class User extends BaseController
         $this->_articleDomain = new \app\api\domain\ArticleDomain();
 
         $this->_userModel = new \app\api\model\UserModel();
+
         $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
+
+        $this->_authDomain = new \app\api\domain\AuthDomain();
     }
 
     /**
@@ -72,6 +76,9 @@ class User extends BaseController
      */
     public function userCertification()
     {
+        if(!$this->checkLogin()){
+            return redirect('/weixin/index/login');
+        }
         return $this->fetch('user/user_certification');
     }
    /**
@@ -156,7 +163,9 @@ class User extends BaseController
 
         $authDomain = new \app\api\domain\AuthDomain();
         $authRes = $authDomain->findAuthResult($this->getUserId());
-
+        if(!$authRes){
+            return $this->fetch('user/user_certification');
+        }
 
         $this->assign('authRes',$authRes);
 
@@ -664,5 +673,96 @@ class User extends BaseController
         return $this->returnData($data,'',200);
     }
 
+    /**
+     * 账号申请认证接口
+     * @param Request $request
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function applyAuth(Request $request){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
 
+        $files = $request->file();
+        $data = \Request::only([
+            'username'=>'','idcard'=>'',
+            'card_img1'=>'','card_img2'=>'',
+            'qualification'=>'','practice_certificate'=>'',
+            'enterprise_name'=>'','business_licence'=>'',
+            'mobile'=>'','sms_code'=>'',
+            'address'=>'','hospital_type'=>'',
+            'founding_time'=>'','speciality'=>'',
+            'profile'=>'','scale'=>'','duties'=>'',
+        ], 'post');
+
+        $type = $request->post('type',0);
+        if(!in_array($type,[1,2,3,4]) || empty($data['username']) || !checkIdCard($data['idcard']) || !isset($files['card_img1']) || !isset($files['card_img2'])){
+            return $this->returnData([],'参数不符合规范',301);
+        }
+
+        $data['type']       =  $type;
+        $data['user_id']    =  $this->getUserId();
+        if($type == 2){
+            if(!isset($files['qualification']) || !isset($files['practice_certificate']) || empty($data['speciality']) || empty($data['duties']) || empty($data['profile'])){
+                return $this->returnData([],'参数不符合规范',301);
+            }
+        }else if($type == 3){
+            if(empty($data['enterprise_name']) || empty($data['hospital_type']) || empty($data['founding_time']) || empty($data['scale']) || empty($data['speciality']) || empty($data['mobile']) || empty($data['sms_code']) || empty($data['address']) || empty($data['profile'])){
+                return $this->returnData([],'参数不符合规范',301);
+            }
+        }else if($type == 4){
+            if(empty($data['enterprise_name']) || empty($data['mobile']) || empty($data['sms_code']) || empty($data['address']) || !isset($files['business_licence'])){
+                return $this->returnData([],'参数不符合规范',301);
+            }
+        }
+
+        if($type == 3 || $type == 4){
+            $smsObj = new \app\api\domain\SendSms();
+            $res = $smsObj->checkSmsCode($data['mobile'],7,$data['sms_code']);
+            if($res === 0 || $res === 2){
+                return $this->returnData([],'验证码错误',302);
+            }
+        }
+
+        $data['phone']       =  $data['mobile'];
+        unset($data['mobile']);
+        unset($data['sms_code']);
+
+        $img_domain = config('conf.file_save_domain');
+        $tmp_arr = [];
+        foreach ($files as $k => $file){
+            if(in_array($k,['card_img1','card_img2','qualification','practice_certificate','business_licence'])){
+                $info = $file->move( 'uploads/');
+                if($info){
+                    $url = $img_domain.'/uploads/'.str_replace("\\","/",$info->getSaveName());
+                    $data[$k] = $url;
+                    if($k == 'card_img1' || $k == 'card_img2'){
+                        $tmp_arr[] = ['type'=>2,'img_url' =>$url,'status'=>1,'created_time'=>date('Y-m-d H:i:s')];
+                    }else if($k == 'qualification' || $k == 'practice_certificate'){
+                        $tmp_arr[] = ['type'=>3,'img_url' =>$url,'status'=>1,'created_time'=>date('Y-m-d H:i:s')];
+                    }else{
+                        $tmp_arr[] = ['type'=>4,'img_url' =>$url,'status'=>1,'created_time'=>date('Y-m-d H:i:s')];
+                    }
+                }else{
+                    return $this->returnData([],'文件上传失败',305);
+                }
+            }
+        }
+
+        if((new \app\api\domain\PictureLibraryDomain())->createAll($tmp_arr)){
+            $isTrue = $this->_authDomain->addAuthentication($data);
+            if($isTrue === true){
+                return $this->returnData([],'认证申请提交成功',200);
+            }else if($isTrue === 1){
+                return $this->returnData([],'身份证号已被使用',303);
+            }else{
+                return $this->returnData([],'认证申请提交失败',305);
+            }
+        }
+
+        return $this->returnData([],'文件上传失败',305);
+    }
 }

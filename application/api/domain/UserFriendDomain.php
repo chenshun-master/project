@@ -87,7 +87,7 @@ class UserFriendDomain
             'applicant_id'   =>$user_id,
             'user_group'     =>0,
             'friend_group'   =>0,
-            'status'         =>$status,
+            'status'         =>1,
             'remarks'        =>htmlspecialchars($remarks),
             'create_time'    =>date('Y-m-d H:i:s')
         ];

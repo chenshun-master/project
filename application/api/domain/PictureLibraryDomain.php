@@ -17,4 +17,8 @@ class PictureLibraryDomain
             'created_time'=>date('Y-m-d H:i:s')
         ]);
     }
+
+    public function createAll($data){
+        return Db::name('picturelibrary')->insertAll($data);
+    }
 }
