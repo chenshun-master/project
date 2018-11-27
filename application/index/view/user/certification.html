@@ -425,13 +425,17 @@
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="/static/plugin/jquery.smscode.js"></script>
 <script type="text/javascript">
-    var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
-    codeObj.run();
+    // var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
+    // codeObj.run();
+    //
+    // var codeObj2 = new VerificationCode('code-btn2','获取验证码','code-hui');
+    // codeObj2.run();
 
-    var codeObj2 = new VerificationCode('code-btn2','获取验证码','code-hui');
-    codeObj2.run();
+    var codeObj = new Code('code-btn','获取验证码','code-hui','pc-sms-auth3',60);
+    var codeObj2 = new Code('code-btn2','获取验证码','code-hui','pc-sms-auth4',60);
 
     $('.wl-cang1 span').on('click',function(){
         if(objClass.type == 0){
@@ -646,9 +650,8 @@
             if(!redream.checkMobile(mobile)){
                 this.showError('手机号格式不正确');return false;
             }
+
             if(codeObj.checkTime()){
-                console.log(window.name);
-                console.log('倒计时中1');
                 return false;
             }
             if(!this.sendSmsCode){
@@ -665,8 +668,9 @@
                     },
                     success:function(res){
                         if(res.code == 200){
-                            codeObj.sendSmsCode();
-                            return false;
+                            codeObj.trigger();
+                        }else{
+                            objClass.showError(res.msg);
                         }
                     }
                 });
@@ -678,8 +682,6 @@
                 this.showError('手机号格式不正确');return false;
             }
             if(codeObj2.checkTime()){
-                console.log(window.name);
-                console.log('倒计时中2');
                 return false;
             }
             if(!this.sendSmsCode){
@@ -696,8 +698,9 @@
                     },
                     success:function(res){
                         if(res.code == 200){
-                            codeObj2.sendSmsCode();
-                            return false;
+                            codeObj2.trigger();
+                        }else{
+                            objClass.showError(res.msg);
                         }
                     }
                 });
