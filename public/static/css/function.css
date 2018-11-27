@@ -32,6 +32,22 @@
     border-radius:10px ;
     z-index: 9999999;
 }
-#fr-error-box{
-    position: fixed;width: 80%;height: 38px;top:0px;margin:auto;left:0;right:0;z-index: 2;line-height: 38px;text-align: center;background-color: #fff1f1;border-radius: 5px 5px 5px 5px;color: #d4a6a6;display: none;margin-top: 5px
+
+#fr-error-box {
+    position: fixed;
+    width: 80%;
+    height: 38px;
+    top: 0px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    line-height: 38px;
+    text-align: center;
+    background-color: #fff1f1;
+    border-radius: 5px 5px 5px 5px;
+    color: #d4a6a6;
+    margin-top: 5px;
+
+    z-index:9999;
 }
