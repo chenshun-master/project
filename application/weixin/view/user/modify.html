@@ -94,7 +94,7 @@
 <article class="htmleaf-container">
     <div id="clipArea"></div>
     <div class="foot-use">
-        <div class="wl-foot" id="wl-fanhui">
+        <div class="wl-foot" id="wl-fanhui" onclick="">
             <span class="iconfont icon-back_light" style="font-size: 50px"></span>
         </div>
         <div style="position: relative" class="wl-foot">
@@ -252,7 +252,6 @@
     });
 </script>
 <script>
-    var obUrl = ''
     $("#clipArea").photoClip({
         width: 300,
         height: 300,
@@ -266,20 +265,27 @@
             console.log("照片读取完成");
         },
         clipFinish: function (dataURL) {
-            console.log(dataURL);//图片路径
+            if(dataURL !== ''){
+                $.ajax({
+                    url: "/weixin/user/uploadHead",
+                    type: 'post',
+                    data: {img:dataURL},
+                    dataType: 'json',
+                    success: function (res) {
+                        if(res.code == 200){
+                            $('#logox').find('img').attr('src',res.data.imgUrl);
+                            $(".htmleaf-container").hide();
+                        }
+                    }
+                });
+            }
         }
     });
-</script>
-<script>
-    $(function () {
-        $("#logox").click(function () {
-            $(".htmleaf-container").show();
-        })
-        $("#clipBtn").click(function () {
-            $('#logox').find('img').attr('src', imgsource);
-            $(".htmleaf-container").hide();
-        })
+
+    $("#logox").click(function () {
+        $(".htmleaf-container").show();
     });
+
     $("#wl-fanhui").click(function () {
         $(".htmleaf-container").hide();
     })
