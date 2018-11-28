@@ -205,15 +205,7 @@
     });
 
     $(function () {
-        $(window).scroll(function () {
-            var scrollTop = $(this).scrollTop();//滚动条在Y轴上的滚动距离。
-            var scrollHeight = $(document).height();//内容可视区域的高度加上溢出（滚动）的距离。
-            var windowHeight = $(this).height();//内容可视区域的高度。
-            //滚动条到底部的条件即为scrollTop + clientHeight == scrollHeight。
-            if (scrollTop + windowHeight == scrollHeight) {
-                //业务逻辑代码
-            }
-        });
+        $("#cus-container-list").css('minHeight','300px');
     })
 </script>
 </html>

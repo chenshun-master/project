@@ -253,14 +253,12 @@
             var text = ($(this).data('val') == 1) ? '男' : '女';
             $('#fr-sex').data('sex', $(this).data('val')).text(text);
         }
-
         $(".marsk-container3").toggle();
     });
 
-
     $("#clipArea").photoClip({
-        width: 300,
-        height: 300,
+        width: 500,
+        height: 500,
         file: "#file",
         view: "#view",
         ok: "#clipBtn",

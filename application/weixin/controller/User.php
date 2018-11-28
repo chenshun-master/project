@@ -340,7 +340,7 @@ class User extends BaseController
 
         $id  = $request->param('id',0);
         $isTrue = \Validate::checkRule($id,'number');
-        if($isTrue || $friend_id == 0){
+        if($isTrue){
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
@@ -369,7 +369,7 @@ class User extends BaseController
             return redirect('/weixin/index/login');
         }
 
-        $user_info = $this->getUserInfo();
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
         $this->_publishTotal($this->getUserId());
 
         $this->assign('user_info',$user_info);
