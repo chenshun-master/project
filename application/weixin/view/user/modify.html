@@ -18,6 +18,29 @@
         *:focus {
             outline: none;
         }
+        .wl-zhez {
+            background: #FFFFFF;
+            position: absolute;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0px;
+            background-color: rgba(0,0,0,.7);
+            z-index: 999999999;
+        }
+        .wl-zl{
+            width: 145px;
+            height: 100px;
+            margin: 0 auto;
+            position: fixed;
+            top: 37%;
+            border-radius: 20px;
+            right: 0;
+            left: 0;
+            bottom: 0px;
+            /* padding: 100px; */
+        }
     </style>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -111,6 +134,14 @@
     </div>
     <div id="view"></div>
 </article>
+
+<div class="wl-zhez" id="wl-loading-box" style="display: none">
+    <div class="wl-zl">
+        <dl><img src="/static/image/user/timg.gif" alt="" width="80px" style="margin-top:50px;margin: 0 auto;position: absolute;left: 0;right: 0"></dl>
+        <dt style="    text-align: center;margin-top: 100px;float: left;margin-left: 25px;color: white;font-size: 30px;">上传中...</dt>
+    </div>
+</div>
+
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/uploadtx/jquery-1.8.2.min.js"></script>
@@ -119,8 +150,6 @@
 <script src="/static/plugin/uploadtx/jquery.photoClip.js"></script>
 <!--<script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript">
-
-
     $(document).ready(function () {
         //上传头像
         $(".tkyy").click(function (event) {
@@ -231,9 +260,12 @@
                     dataType: 'json',
                     beforeSend: function () {
                         objClass.loading2 = true;
+                        $(".wl-zhez").show();
                     },
                     complete: function () {
                         objClass.loading2 = false;
+                        $(".wl-zhez").hide();
+
                     },
                     success: function (res) {
                         if(res.code == 200){

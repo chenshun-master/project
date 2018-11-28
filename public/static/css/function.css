@@ -11,10 +11,11 @@
     text-align: center;
     background: #7DB0E8;
     color: #FFFFFF;
-    font-size:25px;
+    font-size:20px;
     border-radius:5px ;
     z-index: 999999999999;
 }
+
 .wl-msg{
     display: none;
     margin: 0 auto;
