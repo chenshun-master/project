@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/modify.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
+    <link rel="stylesheet" href="/static/plugin/uploadtx/style.css">
     <script src="/static/js/datePicker.js" type="text/javascript" charset="utf-8"></script>
     <title>我的资料</title>
     <style>
@@ -23,17 +24,19 @@
 
 <body style="background: #ffffff;overflow:auto">
 <div class="con">
-    <div class="wx-top tkyy" >
-        <img src="{$user_info['portrait']}"  alt="" onerror='this.src="/static/image/user/tou.png"' />
+    <div class="wx-top tkyy" id="logox">
+        <img src="{$user_info['portrait']}" alt="" onerror='this.src="/static/image/user/tou.png"'/>
         <p>修改头像<i class="iconfont  icon-back_left-copy" style="font-size: 50px;color: #999999;float: right;"></i></p>
     </div>
     <div class="wx-con">
         <p>
             <span style="margin-left: 36px;">昵称</span>
-            <input style="margin-left: 60px;" placeholder="请输入昵称" class="ln1" maxlength="20" id="fr-nickname" value="{$user_info['nickname']}"/>
+            <input style="margin-left: 60px;" placeholder="请输入昵称" class="ln1" maxlength="20" id="fr-nickname"
+                   value="{$user_info['nickname']}"/>
         </p>
         <p class="xb" style="border-bottom: none">
-            <span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;" id="fr-sex" data-sex="{$user_info['sex']}">
+            <span style="margin-left: 36px;">性别</span><span style="margin-left: 60px;" id="fr-sex"
+                                                            data-sex="{$user_info['sex']}">
                 {switch name="user_info.sex"}
                     {case value="1"}男{/case}
                     {case value="2"}女{/case}
@@ -46,7 +49,11 @@
         <p><span style="margin-left: 36px;">生日</span><input
                 style="margin-left: 60px;width: 500px;height: 70px;font-size: 28px;" id="fr-birthday-date"
                 placeholder="设置我的生日" readonly="readonly" value="{$user_info['birthday_date']}"></p>
-        <p style="border-bottom: none"><span style="margin-left: 36px;">地区</span><span style="margin-left: 500px;color: #7DB0E8;">待完善</span></p>
+        <!--<p style="border-bottom: none"><span style="margin-left: 36px;">地区</span>-->
+            <!--<select  class="wl-liandong fr-province" id="fr4-province" ><option value="" >请选择省</option></select>-->
+            <!--<select  class="wl-liandong fr-city" id="fr4-city"><option value="" >请选择市</option></select>-->
+            <!--<select  class="wl-liandong fr-area-county" id="fr4-area-county"><option value="" >请选择县</option></select>-->
+        <!--</p>-->
     </div>
     <div class="jianj">
         <span>简介</span>
@@ -56,10 +63,15 @@
     <button class="btn" onclick="objClass.submit()">保存</button>
     <div class="marsk-container">
         <div class="tkyy_con">
-            <button><span style="position: absolute;top: 0;left: 0;display: block;width: 100%;height: 86px;line-height: 86px">传照片</span>
-                <input type="file" accept="image/*" capture='accept' style="opacity: 0;position: absolute;top: 0px;left: 0;width: 100%;height: 86px;"/></button>
-                <button><span style="position: absolute;top: 80px;left: 0;display: block;width: 100%;height: 86px;line-height: 86px">拍照</span>
-                <input type="file" accept="image/*" capture='accept' style="    opacity: 0; position: absolute;top: 80px;left: 0; width: 100%; height: 86px;"/></button>
+            <button><span
+                    style="position: absolute;top: 0;left: 0;display: block;width: 100%;height: 86px;line-height: 86px">传照片</span>
+                <input type="file" accept="image/*" capture='accept'
+                       style="opacity: 0;position: absolute;top: 0px;left: 0;width: 100%;height: 86px;"/></button>
+            <button><span
+                    style="position: absolute;top: 80px;left: 0;display: block;width: 100%;height: 86px;line-height: 86px">拍照</span>
+                <input type="file" accept="image/*" capture='accept'
+                       style="    opacity: 0; position: absolute;top: 80px;left: 0; width: 100%; height: 86px;"/>
+            </button>
             <button class="quxiao">取消</button>
         </div>
     </div>
@@ -78,9 +90,33 @@
             <button class="quxiao1" data-val="cancel">取消</button>
         </div>
     </div>
+</div>
+<article class="htmleaf-container">
+    <div id="clipArea"></div>
+    <div class="foot-use">
+        <div class="wl-foot" id="wl-fanhui">
+            <span class="iconfont icon-back_light" style="font-size: 50px"></span>
+        </div>
+        <div style="position: relative" class="wl-foot">
+            <div style="position: absolute">
+                <span class="iconfont icon-camera" style="    font-size: 50px;position: absolute;top: 10px;left: 96px;right: 0;margin: 0 auto"></span>
+                <input id="file" type="file" accept="image/*" multiple
+                       style="width: 250px;height: 80px;opacity: 0; position: absolute; top: 0;left: 0;right: 0;margin: 0 auto;z-index: 9999;">
+            </div>
 
+        </div>
+        <div class="wl-foot" id="clipBtn">
+            <span class="iconfont icon-check" style="font-size: 50px"></span>
+        </div>
+    </div>
+    <div id="view"></div>
+</article>
 </body>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/uploadtx/jquery-1.8.2.min.js"></script>
+<script src="/static/plugin/uploadtx/hammer.js"></script>
+<script src="/static/plugin/uploadtx/iscroll-zoom.js"></script>
+<script src="/static/plugin/uploadtx/jquery.photoClip.js"></script>
 <!--<script src="/static/js/selectDate.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript">
 
@@ -147,7 +183,7 @@
     var objClass = {
         loading: false,
         submit: function () {
-            var data  = {
+            var data = {
                 nickname: $.trim($('#fr-nickname').val()),
                 sex: $('#fr-sex').data('sex'),
                 profile: $('#fr-profile').val(),
@@ -155,10 +191,12 @@
             };
 
             if (redream.isEmptyStr(data.nickname)) {
-                redream.showTip('昵称不能为空');return false;
-            }else if(redream.strlen(data.nickname) > 15){
-                redream.showTip('昵称过于太长');return false;
-            }else if(!this.loading){
+                redream.showTip('昵称不能为空');
+                return false;
+            } else if (redream.strlen(data.nickname) > 15) {
+                redream.showTip('昵称过于太长');
+                return false;
+            } else if (!this.loading) {
                 $.ajax({
                     url: "/weixin/user/editProfile",
                     type: 'post',
@@ -173,8 +211,10 @@
                     success: function (res) {
                         if (res.code == 200) {
                             redream.showTip('修改成功');
-                            setTimeout(function(){ history.back(); }, 2000);
-                        }else {
+                            setTimeout(function () {
+                                history.back();
+                            }, 2000);
+                        } else {
                             redream.showTip('修改失败');
                         }
                     }
@@ -210,5 +250,38 @@
         'onClose': function () { /*取消时触发事件*/
         }
     });
+</script>
+<script>
+    var obUrl = ''
+    $("#clipArea").photoClip({
+        width: 300,
+        height: 300,
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function () {
+            console.log("照片读取中");
+        },
+        loadComplete: function () {
+            console.log("照片读取完成");
+        },
+        clipFinish: function (dataURL) {
+            console.log(dataURL);//图片路径
+        }
+    });
+</script>
+<script>
+    $(function () {
+        $("#logox").click(function () {
+            $(".htmleaf-container").show();
+        })
+        $("#clipBtn").click(function () {
+            $('#logox').find('img').attr('src', imgsource);
+            $(".htmleaf-container").hide();
+        })
+    });
+    $("#wl-fanhui").click(function () {
+        $(".htmleaf-container").hide();
+    })
 </script>
 </html>
