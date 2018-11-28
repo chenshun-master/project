@@ -256,4 +256,52 @@ class Api extends BaseController
             ]
         ],'',200);
     }
+
+
+    /**
+     * 图片统一上传文件接口
+     */
+    public function uploadAuthFile(Request $request){
+        $file = $request->file("imgFile");
+        $type = (int)$request->param('type');
+
+        $img_domain = config('conf.file_save_domain');
+        if(!$this->checkLogin()){
+            return $this->returnData([],'未授予上传权限',401);
+        }
+
+        if($type == 0){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        #文件上传类型
+        $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
+        if($file){
+            $size = 1024*1024*5;              #单位字节
+            if(!$file->checkSize($size)){
+                return $this->returnData([],'上传图片大小不能超过5M',305);
+            }
+
+            if(!$file->checkExt($fileExt)){
+                return $this->returnData([],'文件格式错误只支持gif,jpg,jpeg及png格式的图片',305);
+            }
+
+            try {
+                $image = \think\Image::open($file);
+                $path = 'uploads/auth/'.date('Ymd');
+                $filename = date('His').uniqid().uniqid().'.jpeg';
+                @mkdir($path, 0755, true);
+                $image->save("{$path}/{$filename}");
+                $url = "{$img_domain}/{$path}/{$filename}";
+                $id = (new \app\api\domain\PictureLibraryDomain())->create($type,$url);
+                if($id){
+                    return $this->returnData(['url'=>$url],'',200);
+                }else{
+                    return $this->returnData([],'上传失败',305);
+                }
+            } catch (\Exception $e) {
+                return $this->returnData([],'文件上传失败',305);
+            }
+        }
+    }
 }

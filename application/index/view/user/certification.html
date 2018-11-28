@@ -101,7 +101,7 @@
 
                             </dt>
                             </dt>
-                            <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                            <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                         </dl>
                         <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
                             <dt style="float: left;width: 87%;margin-left: 47px;" >
@@ -120,8 +120,6 @@
                         </dl>
                     </dl>
                     <p class="wl-btn"><button onclick="objClass.submit1()">提交申请</button></p>
-
-
                     <p class="wl-foot">{:config('conf.copyright')}</p>
                 </div>
 
@@ -166,7 +164,7 @@
                             </dt>
                             </dt>
                         </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                     </dl>
                     <dl style="position: relative;">
                         <p class="wl-zhen" >上传医生资质证明 <span class="wl-xin">*</span></p>
@@ -203,7 +201,7 @@
                             </dt>
                             </dt>
                         </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                     </dl>
                     <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
                     <p class="wl-foot">{:config('conf.copyright')}</p>
@@ -272,7 +270,7 @@
                             </dt>
                             </dt>
                         </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                     </dl>
                     <dl style="position: relative;height: 450px" >
                         <p class="wl-zhen">上传医院营业证件 <span class="wl-xin">*</span></p>
@@ -292,7 +290,7 @@
                             </dt>
                             </dt>
                         </dl>
-                        <span class="wl-sc-js" style=" left: 243px;">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                        <span class="wl-sc-js" style=" left: 243px;">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                     </dl>
                     <p class="wl-btn2"><button onclick="objClass.submit3()">提交申请</button></p>
                     <p class="wl-foot">{:config('conf.copyright')}</p>
@@ -346,7 +344,7 @@
                             </dt>
                             </dt>
                         </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                     </dl>
                     <dl style="position: relative;height: 450px" >
                         <p class="wl-zhen">上传企业工商营业执照 <span class="wl-xin">*</span></p>
@@ -366,7 +364,7 @@
                             </dt>
                             </dt>
                         </dl>
-                        <span class="wl-sc-js" style="left: 243px">支持绝大多数的图片格式，单张图片大小不超过10M。</span>
+                        <span class="wl-sc-js" style="left: 243px">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
                     </dl>
                     <p class="wl-btn3"><button onclick="objClass.submit4()">提交申请</button></p>
                     <p class="wl-foot">{:config('conf.copyright')}</p>
@@ -717,7 +715,7 @@
         },
         ajaxUploadImg(imname,formData){
             $.ajax({
-                url: '/index/Upload/uploadImgFile',
+                url: '/index/upload/uploadAuthFile',
                 type: 'POST',
                 cache: false,
                 data: formData,
