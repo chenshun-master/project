@@ -182,6 +182,7 @@
 <script type="text/javascript">
     var objClass = {
         loading: false,
+        loading2:false,
         submit: function () {
             var data = {
                 nickname: $.trim($('#fr-nickname').val()),
@@ -220,6 +221,30 @@
                     }
                 });
             }
+        },
+        uploadHead:function(dataURL){
+            if(objClass.loading2 == false){
+                $.ajax({
+                    url: "/weixin/user/uploadHead",
+                    type: 'post',
+                    data: {img:dataURL},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.loading2 = true;
+                    },
+                    complete: function () {
+                        objClass.loading2 = false;
+                    },
+                    success: function (res) {
+                        if(res.code == 200){
+                            $('#logox').find('img').attr('src',res.data.imgUrl);
+                            $(".htmleaf-container").hide();
+                        }else{
+                            redream.showTip('上传失败');
+                        }
+                    }
+                });
+            }
         }
     };
 
@@ -230,6 +255,34 @@
         }
 
         $(".marsk-container3").toggle();
+    });
+
+
+    $("#clipArea").photoClip({
+        width: 300,
+        height: 300,
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function () {
+            console.log("照片读取中");
+        },
+        loadComplete: function () {
+            console.log("照片读取完成");
+        },
+        clipFinish: function (dataURL) {
+            if(dataURL !== ''){
+                objClass.uploadHead(dataURL);
+            }
+        }
+    });
+
+    $("#logox").click(function () {
+        $(".htmleaf-container").show();
+    });
+
+    $("#wl-fanhui").click(function () {
+        $(".htmleaf-container").hide();
     });
 
     //编辑日期
@@ -250,44 +303,5 @@
         'onClose': function () { /*取消时触发事件*/
         }
     });
-</script>
-<script>
-    $("#clipArea").photoClip({
-        width: 300,
-        height: 300,
-        file: "#file",
-        view: "#view",
-        ok: "#clipBtn",
-        loadStart: function () {
-            console.log("照片读取中");
-        },
-        loadComplete: function () {
-            console.log("照片读取完成");
-        },
-        clipFinish: function (dataURL) {
-            if(dataURL !== ''){
-                $.ajax({
-                    url: "/weixin/user/uploadHead",
-                    type: 'post',
-                    data: {img:dataURL},
-                    dataType: 'json',
-                    success: function (res) {
-                        if(res.code == 200){
-                            $('#logox').find('img').attr('src',res.data.imgUrl);
-                            $(".htmleaf-container").hide();
-                        }
-                    }
-                });
-            }
-        }
-    });
-
-    $("#logox").click(function () {
-        $(".htmleaf-container").show();
-    });
-
-    $("#wl-fanhui").click(function () {
-        $(".htmleaf-container").hide();
-    })
 </script>
 </html>
