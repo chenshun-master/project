@@ -1,0 +1,26 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+    <!--<link rel="stylesheet" href="/main.css">-->
+    <style>
+        .wl-footer{
+            background: rebeccapurple !important;
+        }
+    </style>
+{/block}
+
+{block name="main"}
+    {include file="layout:header" /}
+
+    <!--这里编写主体内容-->
+    <div style="width: 100%;height: 1000px;background: red">
+
+
+    </div>
+
+    {include file="layout/footer" /}
+{/block}
+
+{block name="script"}
+
+{/block}

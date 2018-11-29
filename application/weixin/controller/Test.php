@@ -10,56 +10,11 @@ use app\api\domain\MessageDomain;
 
 class Test  extends Controller
 {
-    public function test(){
-        /**$res = new UserFriendDomain();
-        halt($res->createFriend(6,5));**/
 
-
-//        phpinfo();
-
-//        $obj = new ArticleDomain();
-//        dump($obj->getArticleLikeData(17,1,15));
-//        halt($obj->getNewArticleLikeData(17,1,15));
-
-
-
-//        $model = new FavoriteDomain();
-////        $ss = $model->create([
-////            'user_id'     =>4,
-////            'table_name'  =>'article',
-////            'title'       =>'重庆22路公交坠江前为何没有减速？｜深度聚焦555',
-////            'object_id'   =>38,
-////            'thumbnail'   =>'',
-////        ]);
-//
-//        halt($model->getFavoriteList(4,1,15));
-
-
-//        $model = new ArticleDomain();
-//        $res = $model->getCommentArticle(4);
-//
-//        halt($res);
-
-//        $model =  new MessageDomain();
-////        $res = $model->pushGroupMsg(0,'各家会员您好？','罚款羧甲asdasdff淀粉钠fa sdfasdf你卡就是你，那就看你卡就sdfasd是当年按揭房你是客服金卡是的呢',2);
-//        halt($model->getMsgDetail(2));
-
-
-//        $list = $model->getUserMailList(10);
-//        halt($list);
-
-
-//        $model = new UserFriendDomain();
-//        $model->getMessageListData(39);
-
-
-
-
-    }
-
-    public function wxTest(){
-        $api = new \wechat\WeChatApi();
-
-        halt($api);
+    /**
+     * 布局demo
+     */
+    public function demo(){
+        return $this->fetch('test/demo');
     }
 }
