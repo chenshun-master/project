@@ -78,7 +78,7 @@ class Article extends BaseController
             return $this->returnData([],'请登录后再进行操作',401);
         }
 
-        if(!checkUserAuth($this->userDomain->getUserType($this->getUserId()),7)){
+        if(!checkUserAuth($this->userDomain->getUserType($this->getUserId()),1)){
             return $this->returnData([],'未授权操作',403);
         }
 
