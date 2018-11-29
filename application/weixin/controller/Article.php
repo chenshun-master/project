@@ -273,7 +273,7 @@ class Article extends BaseController
         }
 
         $this->assign('weixin_config',$weixin_config);
-        return $this->fetch('article/article_details');
+        return $this->fetch('article/aarticle_details2');
     }
 
     /**
