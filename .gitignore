@@ -11,3 +11,4 @@ config/database.php
 config/conf.php
 runtime/
 doc/
+uploads/

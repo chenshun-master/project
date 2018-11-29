@@ -288,11 +288,12 @@ class Api extends BaseController
 
             try {
                 $image = \think\Image::open($file);
-                $path = 'uploads/auth/'.date('Ymd');
+                $path = '../uploads/auth/'.date('Ymd');
+                $save_path = 'auth/'.date('Ymd');
                 $filename = date('His').uniqid().uniqid().'.jpeg';
                 @mkdir($path, 0755, true);
                 $image->save("{$path}/{$filename}");
-                $url = "{$img_domain}/{$path}/{$filename}";
+                $url = "{$img_domain}/{$save_path}/{$filename}";
                 $id = (new \app\api\domain\PictureLibraryDomain())->create($type,$url);
                 if($id){
                     return $this->returnData(['url'=>$url],'',200);

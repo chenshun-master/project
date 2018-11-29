@@ -45,9 +45,9 @@ class Upload extends CController
                 return json(['error' => 1, 'message' =>'文件格式错误只支持gif,jpg,jpeg及png格式的图片']);
             }
 
-            $info = $file->move( 'uploads/');
+            $info = $file->move( '../uploads/article');
             if($info){
-                $path_dir = $img_domain.'/uploads/'.str_replace("\\","/",$info->getSaveName());
+                $path_dir = $img_domain.'/article/'.str_replace("\\","/",$info->getSaveName());
                 $id = $this->_pictureLibraryDomain->create($type,$path_dir);
                 if($id){
                     return json(array('error' => 0, 'url' => $path_dir));
@@ -59,7 +59,6 @@ class Upload extends CController
             }
         }
     }
-
 
     /**
      * 图片统一上传文件接口
@@ -89,9 +88,9 @@ class Upload extends CController
                 return $this->returnData([],'文件格式错误只支持gif,jpg,jpeg及png格式的图片',305);
             }
 
-            $info = $file->move( 'uploads/');
+            $info = $file->move( '../uploads/article');
             if($info){
-                $path_dir = $img_domain.'/uploads/'.str_replace("\\","/",$info->getSaveName());
+                $path_dir = $img_domain.'/article/'.str_replace("\\","/",$info->getSaveName());
                 $id = $this->_pictureLibraryDomain->create($type,$path_dir);
                 if($id){
                     return $this->returnData(['url'=>$path_dir],'',200);
@@ -103,8 +102,7 @@ class Upload extends CController
             }
         }
     }
-
-
+    
     /**
      * 图片统一上传文件接口
      */
@@ -135,11 +133,12 @@ class Upload extends CController
 
             try {
                 $image = \think\Image::open($file);
-                $path = 'uploads/auth/'.date('Ymd');
+                $path = '../uploads/auth/'.date('Ymd');
+                $save_path = 'auth/'.date('Ymd');
                 $filename = date('His').uniqid().uniqid().'.jpeg';
                 @mkdir($path, 0755, true);
                 $image->save("{$path}/{$filename}");
-                $url = "{$img_domain}/{$path}/{$filename}";
+                $url = "{$img_domain}/{$save_path}/{$filename}";
                 $id = (new \app\api\domain\PictureLibraryDomain())->create($type,$url);
                 if($id){
                     return $this->returnData(['url'=>$url],'',200);
