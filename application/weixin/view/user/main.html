@@ -10,8 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="/static/css/pwesonal.css" />
 		<link rel="stylesheet" href="/static/css/iconfont.css">
 		<title>{:config('conf.title')} - 用户中心</title>
-		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+
 		<style>
 			.se{
 				color: red;
@@ -19,24 +18,7 @@
 		</style>
 	</head>
 	<body style="background: #ffffff;padding-bottom: 150px">
-	<div class="wl-foot" style="max-width: 750px">
-		<dl onclick="redream.href('/weixin/index/index')">
-			<dd> <i class="iconfont icon-home_light" style="font-size: 45px;"></i></dd>
-			<dt >首页</dt>
-		</dl>
-		<dl onclick="redream.href('/weixin/index/doctor')">
-			<dd><i class="iconfont icon-yishengtubiao" style="font-size: 45px"></i></dd>
-			<dt >医生</dt >
-		</dl>
-		<dl  onclick="redream.href('/weixin/index/hospital')">
-			<dd><i class="iconfont icon-chakanyiyuan" style="font-size: 45px"></i></dd>
-			<dt >医院</dt >
-		</dl>
-		<dl onclick="redream.href('/weixin/user/main')" >
-			<dd><i class="iconfont icon-my_fill_light" style="font-size: 45px;color: #7DB0E8"></i></dd>
-			<dt style="color:   #7DB0E8">我的</dt >
-		</dl>
-	</div>
+
 		<div class="con">
 			<div class="wx-top">
 				<img src="{$user_info['portrait']}" alt="" onerror='this.src="/static/image/user/tou.png"' />
@@ -110,7 +92,7 @@
 			</div>
 			<div class="wx-n3">
 				<dl>
-					<dt class="tkyy">联系我们<span style="color: #000000;font-size: 0.28rem;margin-left: 335px;"></span><span class="fh"></span></dt>
+					<dt class="tkyy">联系我们<span style="color: #000000;font-size: 28px;margin-left: 335px;"></span><span class="fh"></span></dt>
 				</dl>
 			</div>
 
@@ -127,8 +109,32 @@
 				</div>
 			</div>
 		</div>
+	<footer>
+		<div class="wl-foot" style="max-width: 750px">
+			<dl onclick="redream.href('/weixin/index/index')">
+				<dd> <i class="iconfont icon-home_light" style="font-size: 45px;"></i></dd>
+				<dt >首页</dt>
+			</dl>
+			<dl onclick="redream.href('/weixin/index/doctor')">
+				<dd><i class="iconfont icon-yishengtubiao" style="font-size: 45px"></i></dd>
+				<dt >医生</dt >
+			</dl>
+			<dl  onclick="redream.href('/weixin/index/hospital')">
+				<dd><i class="iconfont icon-chakanyiyuan" style="font-size: 45px"></i></dd>
+				<dt >医院</dt >
+			</dl>
+			<dl  >
+				<dd><i class="iconfont icon-my_fill_light" style="font-size: 45px;color: #7DB0E8"></i></dd>
+				<dt style="color:   #7DB0E8">我的</dt >
+			</dl>
+		</div>
+	</footer>
 	</body>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+
+
+	<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".tkyy").click(function (event) {
