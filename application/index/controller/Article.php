@@ -24,7 +24,7 @@ class Article extends CController
         }
 
         $user_info = $this->getUserInfo();
-        if(!checkUserAuth($user_info['type'],7)){
+        if(!checkUserAuth($this->_userDomain->getUserType($this->getUserId()),7)){
             return $this->returnData([],'未授权操作',403);
         }
 
