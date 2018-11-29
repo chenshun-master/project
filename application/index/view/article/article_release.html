@@ -8,6 +8,26 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <style>
         #remoteUrl{ime-mode: disabled !important;background-color: #cccccc;}
+        .wl-zh1 {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0px;
+            background-color: rgba(0,0,0,.7);
+            z-index: 999999999;
+        }
+        .wl-z1{
+            width: 145px;
+            height: 100px;
+            margin: 0 auto;
+            position: fixed;
+            top: 37%;
+            border-radius: 20px;
+            right: 0;
+            left: 0;
+            bottom: 0px;
+        }
     </style>
 </head>
 <body style="background: #F8F8F8">
@@ -86,7 +106,12 @@
         </div>
     </div>
 </div>
-
+    <div class="wl-zh1" id="wl-loading-box" style="display: none" >
+        <div class="wl-z1">
+            <dl><img src="/static/image/user/timg.gif" alt="" width="60px" style="    margin: 0 auto;position: absolute;left: -10px;right: 0;"></dl>
+            <dt style="text-align: center;color: white;font-size: 25px;position: absolute;left: 0;right: 0;top: 80px;">上传中...</dt>
+        </div>
+    </div>
 </div>
 
 
@@ -132,6 +157,7 @@
 
     var objClass = {
         loading: false,
+        loading2: false,
         submit: function () {
             window.editor.sync();
             var content = $.trim($('#editor_id').val());
@@ -180,6 +206,10 @@
     };
 
     $("#btn-input-file").on("change", function () {
+        if(objClass.loading2){
+            return false;
+        }
+
         var formData = new FormData($('#infoLogoForm')[0]);
         formData.append('type',5);
         $.ajax({
@@ -190,6 +220,14 @@
             processData: false,
             contentType: false,
             dataType: "json",
+            beforeSend: function () {
+                objClass.loading2 = true;
+                $(".wl-zh1").show();
+            },
+            complete: function () {
+                objClass.loading2 = false;
+                $(".wl-zh1").hide();
+            },
             success: function (data) {
                 if (data.code == 200) {
                     var html = '<div style="width: 138px;height: 138px;border: 2px dashed #cdcdcd;float: left;margin-left: 10px;border-radius: 25px;position: relative" class="cus-remove-img-list">' +
