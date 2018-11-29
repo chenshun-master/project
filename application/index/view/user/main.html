@@ -249,24 +249,18 @@
 <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 <footer class="wl-foot" style="bottom: -100px;">{:config('conf.copyright')}</footer>
 </body>
+<script src="/static/js/jquery.min.js"></script>
 
 <script src="/pc/dis/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
-<script src="/pc/dis/head/jquery.min.js"></script>
 <script src="/pc/dis/head/bootstrap.min.js"></script>
 <script src="/pc/dis/head/cropper.js"></script>
 <script src="/pc/dis/head/sitelogo.js"></script>
-
-
-<script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/jquery.smscode.js"></script>
 <script type="text/javascript">
     //获取修改手机号验证码
-    var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
-    codeObj.run();
-
-    var codeObj1 = new VerificationCode('code-btn1','获取验证码','code-hui');
-    codeObj1.run();
+    var codeObj = new Code('code-btn','获取验证码','code-hui','pc-sms-edit-mobile',60);
+    var codeObj1 = new Code('code-btn1','获取验证码','code-hui','pc-sms-edit-pwd',60);
     var objClass = {
         loading:false,
         sendSmsCode:false,
@@ -332,7 +326,7 @@
                     },
                     success:function(res){
                         if(res.code == 200){
-                            codeObj.sendSmsCode();
+                            codeObj.trigger();
                             objClass.errr1('验证码发送成功！');
                         }else if(res.code == 301){
                             objClass.errr1('请求参数错误！');
@@ -417,7 +411,7 @@
                     },
                     success:function(res){
                         if(res.code == 200){
-                            codeObj1.sendSmsCode();
+                            codeObj1.trigger();
                             objClass1.errr('验证码发送成功！');
                         }else{
                             objClass1.errr('验证码发送失败！');
