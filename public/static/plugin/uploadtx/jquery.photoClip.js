@@ -101,13 +101,23 @@ var imgsource ='';
 				fileReader.onprogress = function(e) {
 					console.log((e.loaded / e.total * 100).toFixed() + "%");
 				};
+
+				var o = this.files[0];
+
 				fileReader.onload = function(e) {
+
+                    var orient;
+                    EXIF.getData(o, function () {
+                        orient = EXIF.getTag(this, 'Orientation');
+                    });
+
 					var kbs = e.total / 1024;
 					if (kbs > 1024) {
 						// 图片大于1M，需要压缩
 						var quality = 1024 / kbs;
 						var $tempImg = $("<img>").hide();
 						$tempImg.load(function() {
+
 							// IOS 设备中，如果的照片是竖屏拍摄的，虽然实际在网页中显示出的方向也是垂直，但图片数据依然是以横屏方向展示
 							var sourceWidth = this.naturalWidth; // 在没有加入文档前，jQuery无法获得正确宽高，但可以通过原生属性来读取
 							$tempImg.appendTo(document.body);
@@ -119,7 +129,12 @@ var imgsource ='';
 							if (sourceWidth == realityHeight) {
 								angleOffset = 90;
 							}
-							// 将图片进行压缩
+
+							if(orient == 6){
+                                angleOffset = 90;
+							}
+
+                            // 将图片进行压缩
 							var newDataURL = compressImg(this, quality, angleOffset, outputType);
 							createImg(newDataURL);
 						});
