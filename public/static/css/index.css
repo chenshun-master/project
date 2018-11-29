@@ -90,12 +90,9 @@ a {
 .biao li {
     float: left;
     margin-right: 42px;
+    font-size: 35px;
 }
 
-.biao li {
-    font-size: 0.34rem;
-    /*font-weight: bold;*/
-}
 
 .wx-n1 {
     width: 680px;
@@ -112,7 +109,7 @@ a {
     min-height: 65px;
     line-height: 45px;
     color: #1F1F1F;
-    font-size: 0.34rem;
+    font-size: 35px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -141,16 +138,16 @@ a {
     color: #7DB0E8;
     border: 1px solid #7DB0E8;
     border-radius: 10px;
-    font-size: 0.2rem;
+    font-size: 20px;
 }
 
  .yh {
     min-width: 100px;
-    height: 24px;
+    min-height: 24px;
     display: block;
     margin-left: 12px;
     color: #898989;
-    font-size: 0.24rem;
+    font-size: 24px;
 
 }
 
@@ -158,7 +155,7 @@ a {
     width: 102px;
     height: 26px;
     color: #898989;
-    font-size: 0.24rem;
+    font-size: 24px;
     padding-left: 50px;
     margin-left: 25px;
     background: url(../image/index/ll.png) no-repeat 15px 7px;
@@ -170,7 +167,7 @@ a {
     width: 102px;
     height: 30px;
     color: #898989;
-    font-size: 0.24rem;
+    font-size: 24px;
     padding-left: 50px;
     margin-left: 25px;
     background: url(../image/index/pl.png) no-repeat 10px 6px;
@@ -221,7 +218,7 @@ a {
     min-height: 240px;
     margin: 0 auto;
     border-bottom: 1px solid #F1F1F1;
-    font-size: 0.38rem;
+    font-size: 38px;
     position: relative;
 }
 
@@ -229,7 +226,7 @@ a {
     width: 65%;
     min-height: 130px;
     color: #1F1F1F;
-    font-size: 0.34rem;
+    font-size:34px;
     float: left;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -255,14 +252,14 @@ a {
     background: white;
 }
 .wl-foot dl{
-    margin-top: -10px;
+    margin-top:6px;
     width: 25%;
     height: 90px;
     text-align: center;
     float: left;
 }
 .wl-foot dt{
-    margin-top: -9px;
+    margin-top: -1px;
     font-size: 20px;
     color: #000000;
 }
