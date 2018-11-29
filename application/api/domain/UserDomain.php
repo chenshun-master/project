@@ -251,8 +251,12 @@ class UserDomain
      * @return bool
      */
     public function uploadHead($user_id,$imgText){
-        $dir = '/uploads/head/'.date('Ymd');
+
+        $save_path = 'head/'.date('Ymd');
+        $dir = "/../uploads/{$save_path}";
         $path = $_SERVER['DOCUMENT_ROOT'] .$dir;
+
+
         if (!is_dir($path)) {
             @mkdir($path, 0755, true);
         }
@@ -264,7 +268,7 @@ class UserDomain
             return false;
         }
 
-        $img_url = config('conf.file_save_domain').$dir.'/'.$filename;
+        $img_url = config('conf.file_save_domain').'/'.$save_path.'/'.$filename;
 
         Db::startTrans();
         try {
