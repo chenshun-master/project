@@ -330,3 +330,18 @@ function diffBetweenTwoDays ($day1, $day2){
 function getHttpReferfer(){
 
 }
+
+/**
+ * 获取商品编号
+ */
+function getOrderNo(){
+    return date('mdHis');
+}
+
+/**
+ * 获取货品单号( 注: 货品单号根据商品编号生成)
+ */
+function getProductNo($order_no){
+
+}
+
