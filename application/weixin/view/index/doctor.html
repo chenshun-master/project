@@ -1,52 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
-    <meta name="applicable-device" content="pc,mobile">
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
     <link rel="stylesheet" href="/static/css/doctor.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/css/dropload1.css" />
-    <link rel="stylesheet" href="/static/css/function.css" />
     <link rel="stylesheet" href="//at.alicdn.com/t/font_890503_haekiko2b0f.css">
-    <title>{:config('conf.title')} - 医生</title>
+{/block}
     <style>
         .href{cursor: pointer}
     </style>
 </head>
-<body style="background: #EEEEEE">
+<!--<body style="background: #EEEEEE">-->
+<!--<main  id="cus-container">-->
+    <!--<div id="cus-container-list">-->
+
+    <!--</div>-->
+<!--</main>-->
+<!--</body>-->
+{block name="main"}
+
+<!--这里编写主体内容-->
+
 <main  id="cus-container">
     <div id="cus-container-list">
 
     </div>
 </main>
-
-<footer>
-    <div class="wl-foot" style="max-width: 750px">
-        <dl onclick="redream.href('/weixin/index/index')" class="dianji">
-            <dd> <i class="iconfont icon-home_light" style="font-size: 25px"></i></dd>
-            <dt>首页</dt>
-        </dl>
-        <dl class="dianji">
-            <dd><i class="iconfont icon-yisheng1" style="font-size: 25px;color:#7DB0E8"></i></dd>
-            <dt  style="color:#7DB0E8">医生</dt>
-        </dl>
-        <dl class="dianji"  onclick="redream.href('/weixin/index/hospital  ')">
-            <dd><i class="iconfont icon-chakanyiyuan" style="font-size: 25px"></i></dd>
-            <dt>医院</dt>
-        </dl>
-        <dl onclick="redream.href('/weixin/user/main')" class="dianji">
-            <dd><i class="iconfont icon-my_light" style="font-size: 25px"></i></dd>
-            <dt>我的</dt>
-        </dl>
-    </div>
-</footer>
-</body>
-
+{include file="layout/footer" /}
+{/block}
+{block name="script"}
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
@@ -150,4 +130,4 @@
         window.location.href = '/weixin/index/doctorDetails/uid/'+$(this).data('uid');
     });
 </script>
-</html>
+{/block}
