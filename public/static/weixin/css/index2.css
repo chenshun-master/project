@@ -41,6 +41,8 @@
     color: #898989;
     margin-right: 15px;
     float: left;
+
+    margin-left: 6px;
 }
 #wl-zhiding{
     margin-top: 5px;
@@ -91,7 +93,7 @@
 }
 .wl-nei6 img{
     width: 100%;
-    height: 194px;
+    height: 220px;
     background: honeydew;
 }
 .wl-jleft{

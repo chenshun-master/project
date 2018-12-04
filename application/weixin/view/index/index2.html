@@ -34,16 +34,17 @@
 {/block}
 
 {block name="script"}
+<script src="/static/plugin/layui/layui.js"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script id="demo" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
         {{#  if(test(item) == 1){ }}
-            <div  class="wl-neirong">
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}">
                 <div class="wl-nei1">{{  item.title }}</div>
                 <div class="wl-nei2">
                     <ul>
                         <li id="wl-zhiding">置顶</li>
-                        <li>用户名称</li>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
                     </ul>
@@ -52,7 +53,7 @@
         {{#  } }}
 
         {{#  if(test(item) == 2){ }}
-            <div  class="wl-neirong">
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}" >
                 <div class="wl-nei1">
                     {{  item.title }}
                 </div>
@@ -61,7 +62,7 @@
                 </div>
                 <div class="wl-nei2">
                     <ul>
-                        <li>用户名称</li>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
                     </ul>
@@ -70,7 +71,7 @@
         {{#  } }}
 
         {{#  if(test(item) == 3){ }}
-            <div  class="wl-neirong">
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}">
                 <div class="wl-nei5">
                     {{  item.title }}
                 </div>
@@ -79,7 +80,7 @@
                 </div>
                 <div class="wl-nei2">
                     <ul>
-                        <li>用户名称</li>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
                     </ul>
@@ -88,7 +89,7 @@
         {{#  } }}
 
         {{#  if(test(item) == 4){ }}
-            <div  class="wl-neirong">
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}" >
                 <div class="wl-nei1">
                     {{  item.title }}
                 </div>
@@ -97,7 +98,7 @@
                 </div>
                 <div class="wl-nei2">
                     <ul>
-                        <li>用户名称</li>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
                     </ul>
@@ -211,6 +212,12 @@
         },
         loadDownFn: function (me) {
             objClass.loadList(me);
+        }
+    });
+
+    $(document).on('click','.to-datail-href',function () {
+        if($(this).data('type') == 1){
+            window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
         }
     });
 </script>
