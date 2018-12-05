@@ -40,14 +40,12 @@ class Category extends BaseController
         $model = new CategoryModel();
         if(request()->isPost())
         {
-            $id = $request->post('id');
-            halt($id);
             $data = $request->param();
             $res =$model->save($data);
             if($res) {
-                return 1;
+                returnData([],'添加成功',200);
             }else{
-                return 2;
+                returnData([],'添加失败',301);
             }
         }else{
             $cateid = input('param.id');

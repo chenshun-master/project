@@ -76,10 +76,10 @@
             dataType:"json",
             success:function (date) {
                 // console.log(data);
-                if(data == 1){
+                if(data == 200){
                     window.location.href="/admin/category/index";
-                }else if(data == 2){
-                    alert('失败！')
+                }else{
+                    alert('添加失败！')
                 }
             }
         })
