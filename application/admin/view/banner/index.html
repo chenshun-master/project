@@ -1,0 +1,82 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">轮播图列表</h3>
+                        <!-- /.box-tools -->
+                    </div>
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="/admin/banner/addbanner" class="btn btn-primary">
+                                新增轮播图
+                            </a>
+                        </div>
+
+                        <!-- /.btn-group -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>banner名称</th>
+                                    <th>链接地址</th>
+                                    <th>图片地址</th>
+                                    <th>类型</th>
+                                    <th>排序</th>
+                                    <th>是否显示</th>
+                                    <th>操作</th>
+                                </tr>
+                                {volist name="res" id="vo"}
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.name}</td>
+                                    <td>{$vo.url}</td>
+                                    <td>
+                                        <a href="http://www.baidu.com"><img src="{$vo.img}" style="width: 150px; height: 100px;" alt=""><br></a>
+                                    </td>
+                                    <td>{$vo.platform}</td>
+                                    <td>{$vo.order}</td>
+                                    <td>
+                                        {gt name="vo.id" value="1"}
+                                            {eq name="vo.visibility" value="1"}
+                                                <a href="{:url('/admin/banner/update',array('id'=>$vo['id'],'visibility'=>0))}"><span class="label label-success">显示</span></a>
+                                            {else}
+                                                <a href="{:url('/admin/banner/update',array('id'=>$vo['id'],'visibility'=>1))}"><span class="label label-danger">不显示</span></a>
+                                            {/eq}
+                                        {/gt}
+                                    </td>
+                                    <td class="table-action">
+                                        <a href="{:url('/admin/banner/addbanner',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="1" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                        {gt name="vo.id" value="1"}
+                                            {eq name="vo.is_del" value="0"}
+                                        <a href="{:url('/admin/banner/del',array('id'=>$vo.id,'is_del' => 1))}" class="btn btn-xs btn-danger btn-delone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="2" data-original-title="删除"><i class="fa fa-trash"></i></a>
+                                        {/eq}
+                                        {/gt}
+                                    </td>
+                                </tr>
+                                {/volist}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pull-right">
+                            {$page|raw}
+                            <!-- /.btn-group -->
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
