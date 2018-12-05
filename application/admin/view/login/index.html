@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台登陆</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="/static/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/admin/dist/css/AdminLTE.min.css">
+    <!-- layui -->
+    <link rel="stylesheet" href="/static/admin/layui/css/layui.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/static/admin/dist/js/html5shiv.min.js"></script>
+    <script src="/static/admin/dist/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="hold-transition login-page" style="background-image:url(/static/admin/wallpage/bg_{:rand(1,9)}.jpg);background-size: cover;">
+<div class="login-box">
+    <div class="login-box-body">
+        <div class="login-logo">
+            <a href="#"><b>后台登陆</b></a>
+        </div>
+        <form class="layui-form">
+            <div class="form-group has-feedback">
+                <input type="text" name="username" required lay-verify="required" class="layui-input" placeholder="用户名">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" name="password" required lay-verify="required" class="layui-input" placeholder="密码">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8"></div>
+                <div class="col-xs-4">
+                    <button class="btn btn-primary btn-block btn-flat" lay-submit lay-filter="login">登陆</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="social-auth-links text-center">
+            <p>要么</p>
+            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>使用
+                Facebook登陆</a>
+            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i>使用
+                Google+登陆</a>
+        </div>
+        <a href="#">我忘了密码</a><br>
+        <a href="#" class="text-center">注册新会员资格</a>
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 3 -->
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="/static/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- layui -->
+<script src="/static/admin/layui/layui.js"></script>
+<script>
+    layui.use('form', function() {
+        var form = layui.form();
+
+        //监听提交
+        form.on('submit(login)', function(data) {
+            // layer.msg(JSON.stringify(data.field));
+            $.ajax({
+                type: "post",
+                url: "{:url('admin/login/index')}",
+                data: data.field,
+                success: function(data) {
+                    layer.msg(data.msg);
+                    if (data.status) {
+                        location.href = "{:url('admin/index/index')}";
+                    }
+                },
+                beforeSend: function() {
+
+                },
+                complete: function() {
+
+                }
+
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

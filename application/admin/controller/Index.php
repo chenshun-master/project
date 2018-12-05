@@ -1,12 +1,11 @@
 <?php
 namespace app\admin\controller;
 
-class Index
+
+class Index extends BaseController
 {
 
     public function index(){
-        return '后台入口';
+        return $this->fetch('/layout/index');
     }
-
-
 }

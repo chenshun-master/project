@@ -19,7 +19,11 @@ class WxTokenModel extends Model
 
     /**
      * 获取最新的Access_token信息
-     * @return type
+     * @param $appid
+     * @return array|null|\PDOStatement|string|Model
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function findAccessToekn($appid){
         $res = self::where('app_id',$appid)->order('created_at', 'desc')->find();
