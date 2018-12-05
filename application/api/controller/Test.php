@@ -34,15 +34,15 @@ class Test
 //        halt($domain->create(['platform'=>'h5','order'=>0]));
 
 
-        $domain = new \app\api\domain\SpSpecDomian();
-
-        halt($domain->create(1,[
-            'name'=>'',
-            'type'=>1,
-            'name'=>'',
-            'value'=>[
-
-            ]
-        ]));
+//        $domain = new \app\api\domain\SpSpecDomian();
+//
+//        halt($domain->create(1,[
+//            'name'=>'',
+//            'type'=>1,
+//            'name'=>'',
+//            'value'=>[
+//
+//            ]
+//        ]));
     }
 }

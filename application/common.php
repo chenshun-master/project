@@ -335,7 +335,7 @@ function getHttpReferfer(){
  * 获取商品编号
  */
 function getOrderNo(){
-    return date('mdHis');
+    return date('YmdHis').getRand(6);
 }
 
 /**

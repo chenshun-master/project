@@ -1,0 +1,339 @@
+{extend name="layout/layout" /}
+
+{block name="css"}
+<link rel="stylesheet" href="/pc/layui/css/layui.css"  media="all">
+<style>
+    #from-img-box{
+        margin-top: 20px;
+    }
+    #from-img-box > div{
+        float: left;
+        margin-left: 5px;
+        width: 100px;
+        height: 120px;
+    }
+
+    #from-img-box > div:first-child{
+        margin-left: 0px;
+    }
+    #from-img-box > div > img{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #f2f2f2;
+    }
+
+    .icon-i{
+        background: #f3eef0;
+    }
+
+    .icon-i i:hover{
+        color:#0b97c4 !important;
+    }
+
+    .icon-i i:nth-child(1){
+        color: #0b93d5;font-size: 18px;font-weight: bold;cursor: pointer;
+    }
+
+    .icon-i i:nth-child(2){
+        color: #0b93d5;font-size: 18px;font-weight: bold;margin-left: 20px;cursor: pointer;
+    }
+
+    .icon-i i:nth-child(3){
+        color: #0b93d5;font-size: 18px;font-weight: bold;margin-left: 18px;cursor: pointer;
+    }
+
+    #remoteUrl{ime-mode: disabled !important;background-color: #cccccc;}
+</style>
+{/block}
+
+{block name="main"}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="home-icon fa fa-home"></i> <a href="#">主页</a></li>
+        <li><a href="#">商品模块</a></li>
+        <li class="active">添加商品</li>
+    </ul>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab-box1" data-toggle="tab">商品(项目)信息</a></li>
+                    <li><a href="#tab-box2" data-toggle="tab">商品(项目)详情</a></li>
+                </ul>
+                <div class="tab-content" style='min-height: 500px;'>
+                    <div class="tab-pane active" id="tab-box1">
+                        <form class="form-horizontal " onsubmit="return false;" id="fr-goods">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">商品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="fr-good-name" placeholder="商品名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">搜索关键词</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="fr-search-words" placeholder="商品搜索关键词">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">商品分类</label>
+                                    <div class="col-sm-10">
+                                        <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" style="color: #0b97c4"><i class="layui-icon layui-icon-set-fill"></i>  设置商品分类</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">商品信息</label>
+                                    <div class="col-sm-10">
+                                        <div class="box box-danger">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">基础信息</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                    <tr style="color: #0b97c4">
+                                                        <th >市场价格</th>
+                                                        <th>销售价格</th>
+                                                        <th>预付价格</th>
+                                                        <th>上架时间</th>
+                                                        <th>预约名额/库存</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" style="width: 150px;" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" style="width: 150px;">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" style="width: 150px;">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" style="width: 150px;">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" style="width: 150px;">
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">是否上架</label>
+                                    <div class="col-sm-10">
+                                        <div class="layui-input-block" style="margin-left: 0px;">
+                                            <input type="radio" name="sex" value="1" title="是"> 是
+                                            <input type="radio" name="sex" value="2" checked>  否
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">手术医生</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" id="fr-select-spec-val">
+                                            <option>请选择医生</option>
+                                            <option value="服务项目1">服务项目1</option>
+                                            <option value="手术医生">手术医生</option>
+                                            <option value="170">170</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">手术医院</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" id="fr-select-spec-name">
+                                            <option>请选择医院</option>
+                                            <option value="我的颜色" >我的颜色</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">商品图片</label>
+                                    <div class="col-sm-10">
+                                        <div style="position: relative;cursor: pointer">
+                                            <div class="layui-btn layui-btn-sm layui-btn-normal" style="color: white;position: absolute;top: 0;z-index: 1;">
+                                                    <i class="layui-icon" ></i>商品图片
+                                            </div>
+                                            <input type="file" name="goodsFile" style="position: absolute;top: 0;z-index: 2;width: 87px;opacity: 0;"  id="fr-upload-goodsimg"  />
+                                        </div>
+
+                                        <div class="layui-inline layui-word-aux" style="margin-left: 100px;padding-top: 5px;top: 5px;">
+                                                每张图片最大限制在2M以内，最多可添加6张
+                                        </div>
+
+                                        <div id="from-img-box">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="box-footer clearfix" style="padding-left: 146px;">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane" id="tab-box2">
+                        <div class="box-body">
+                            <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;"></textarea>
+
+                            <div class="box-footer clearfix" style="padding-left: 0px;">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{/block}
+
+{block name="js"}
+    {js href="/pc/layui/layui.all.js" /}
+    <script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
+    <script type="text/javascript">
+        KindEditor.ready(function (K) {
+            // https://blog.csdn.net/qxl2012/article/details/78052128
+            K.allowImageRemote = false;
+            window.editor = K.create('#editor_id', {
+                cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
+                resizeMode : 1,
+                items : [
+                    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                    'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
+                    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'pagebreak',
+                    'anchor', 'link', 'unlink'
+                ],
+                uploadJson: '/index/upload/editUploadImgFile',
+                allowFileManager: false,
+                allowImageRemote:true,
+                syncType:'auto',
+                afterCreate: function () {
+                    var self = this;
+                    self.sync();
+                }
+            });
+
+            window.editor.sync();
+        });
+
+        $(document).on('focus','#remoteUrl',function(){
+            $(this).prop("readonly","readonly");
+            $(this).parent().hide();
+        });
+
+        var objClass = {
+            uploadLoading:false,
+            uploadGoodsImg:function(formData){
+                if(this.uploadLoading == false){
+                    $.ajax({
+                        url: '/seller/shopApi/uploadGoodImg',
+                        type: 'POST',
+                        cache: false,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json",
+                        beforeSend:function(){
+                            objClass.uploadLoading = true;
+
+                            var html = '<div class="from-img-divs" style="background-color: #f2f2f2;" id="from-img-uploadimg">' +
+                                    '<p align="center" style="margin-top: 30px;">' +
+                                        '<i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="font-size: 20px;"></i>' +
+                                    '</p >' +
+                                    '<br />' +
+                                    '<p align="center" style="color: #CCCCCC">上传中...</p>' +
+                                '</div>';
+
+                            $('#from-img-box').append(html);
+                        },
+                        complete:function(){
+                            objClass.uploadLoading = false;
+                            $('#from-img-uploadimg').remove();
+                        },
+                        success: function (res) {
+                            if(res.code == 200){
+                                var html = '<div class="from-img-divs">' +
+                                        '<img src="'+res.data.img+'" data-goodimgid="'+res.data.img_id+'"  class="fr-imgs-val" >' +
+                                        '<div class="icon-i">' +
+                                            '<i class="layui-icon layui-icon-left fr-move-left" title="左移动"></i>' +
+                                            '<i class="layui-icon layui-icon-close fr-move-close" title="删除"></i>' +
+                                            '<i class="layui-icon layui-icon-right fr-move-right" title="右移动"></i>' +
+                                        '</div>' +
+                                    '</div>';
+                                $('#from-img-box').append(html);
+                            }else{
+                                layer.msg(res.msg);
+                                $('#fr-upload-goodsimg').val('');
+                            }
+                        }
+                    });
+                }
+            },
+            tdMove:function(flag,obj){
+                if(this.uploadLoading){
+                    return false;
+                }
+
+                var div = $(obj).parent().parent(); //获取到触发的tr
+                if(flag =="left"){    //向上移动
+                    if($(div).prev().html()==null){ //获取tr的前一个相同等级的元素是否为空
+                        return false;
+                    }else {
+                        $(div).insertBefore($(div).prev()); //将本身插入到目标tr的前面
+                    }
+                }else if(flag == 'right'){
+                    if($(div).next().html()==null){
+                        return false;
+                    }else {
+                        $(div).insertAfter($(div).next()); //将本身插入到目标tr的后面
+                    }
+                }
+            },
+            releaseGoods:function(){
+
+            }
+        };
+
+        $('#fr-upload-goodsimg').on('change',function(){
+            var formData = new FormData($('#fr-goods')[0]);
+            objClass.uploadGoodsImg(formData);
+        });
+
+        $('#from-img-divs').on('from-img-divs');
+
+        $(document).on('click','.fr-move-left',function(){
+            objClass.tdMove('left',$(this));
+        }).on('click','.fr-move-close',function(){
+            var _this = $(this);
+            var index = layer.confirm('您确定要删除图片吗？', {
+                btn: ['删除','取消'] //按钮
+            }, function(){
+                _this.parent().parent().remove()
+                layer.close(index);
+            });
+        }).on('click','.fr-move-right',function(){
+            objClass.tdMove('right',$(this));
+        });
+    </script>
+{/block}
