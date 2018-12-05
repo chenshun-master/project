@@ -48,12 +48,12 @@ class Banner extends BaseController
                     $result = Db::name('sp_banner')->insert($data);
                 }
                 if($result){
-                    returnData([],'成功',200);
+                    return $this->returnData([],'添加成功',200);
                 }else{
-                    returnData([],'失败',301);
+                    return $this->returnData([],'添加失败',200);
                 }
             }else{
-                returnData([],'请上传文件',302);
+                return $this->returnData([],'请上传文件',302);
 //                $this->error($img->getError());
             }
         }else{

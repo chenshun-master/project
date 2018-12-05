@@ -10,7 +10,6 @@ namespace app\admin\controller;
 
 
 use app\api\model\CategoryModel;
-use app\index\validate\addAuth;
 use think\Db;
 use think\Request;
 
@@ -43,9 +42,9 @@ class Category extends BaseController
             $data = $request->param();
             $res =$model->save($data);
             if($res) {
-                returnData([],'添加成功',200);
+                return $this->returnData([],'添加成功',200);
             }else{
-                returnData([],'添加失败',301);
+                return $this->returnData([],'添加失败',301);
             }
         }else{
             $cateid = input('param.id');
