@@ -51,7 +51,7 @@ class User extends BaseController
             'contactMobile'=>config('conf.website.mobile'),
             'isSignOut' =>$isSignOut,
         ]);
-        return $this->fetch('user/main');
+        return $this->fetch('user/main2');
     }
 
     /**

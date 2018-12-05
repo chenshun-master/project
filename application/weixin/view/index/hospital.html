@@ -1,27 +1,50 @@
 {extend name="layout/layout" /}
 {block name="cssOrcrsipt"}
     <link rel="stylesheet" href="/static/css/hospital.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/css/dropload1.css" />
-    <link rel="stylesheet" href="/static/css/function.css" />
 
-
-    <style>
-        .href{cursor: pointer}
-    </style>
 {/block}
+<style>
+    .href{cursor: pointer}
+</style>
 {block name="main"}
+<!--这里编写主体内容-->
 <main  id="cus-container">
     <div id="cus-container-list">
 
     </div>
 </main>
-
 {include file="layout/footer" /}
 {/block}
+{block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="demo" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-conter href cus-to-href" data-uid="{{item.user_id}}">
+        <div class="wl-toux"><img src="{{item.portrait}}" onerror="this.src ='/static/image/user/tou.png'" width="41" height="41"></div>
+        <div style="position: relative"><span class="wl-biao1"></span></div>
+        <div class="wl-pingjia">
+            <dl>{{item.hospital_name}}</dl>
+            <dd>医院类型:
+                {{#  if(item.type != null){ }}
+                {{item.type}}
+                {{#  } }}
+            </dd>
+            <dt><i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <span style="margin-left: 8px">评价 <span style="padding: 0 3px 0 0px">|</span></span>
+                <span>{{item.case_num}}案例<span style="padding: 0 3px 0 3px;">|</span></span>
+                <span style="margin-top: 1px">{{item.article_num}}文章</span>
+            </dt>
+            <span class="iconfont icon-back_left-copy wl-renzheng" style="font-size: 25px;color: #AAAAAA"></span>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
 
-
-<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -39,24 +62,6 @@
                 var head_img      =  (data.portrait == null) ? '':data.portrait;
                 var type =  (data.type == null) ? '':data.type;
 
-                return '<div class="wl-conter href cus-to-href"  data-uid="'+ data.user_id+'">' +
-                    '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
-                                '<div style="position: relative"><span class="wl-biao1"></span></div>'+
-                    '            <div class="wl-pingjia">' +
-                    '                <dl>'+ data.hospital_name +'</dl>' +
-                    '                <dd>医院类型: '+ type +'</dd>' +
-                    '                <dt><i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <span style="margin-left: 8px">评价 <span style="padding: 0 3px 0 0px">|</span></span>' +
-                    '                    <span>'+ data.case_num +'案例<span style="padding: 0 3px 0 3px;">|</span></span>' +
-                    '                    <span style="margin-top: 1px">'+ data.article_num+'文章</span>' +
-                    '                </dt>' +
-                    '                <span class="iconfont icon-back_left-copy wl-renzheng"   style="font-size: 25px;color: #AAAAAA"></span>' +
-                    '            </div>' +
-                    '        </div>';
             },
             loadList: function (me) {
                 if (myObj.doctor.listData.loading) {
@@ -90,10 +95,12 @@
                                 $('#cus-container-list').html('');
                             }
 
-                            $.each(res.data.rows,function(k,val){
-                                $('#cus-container-list').append(myObj.doctor.template(val));
+                            // $.each(res.data.rows,function(k,val){
+                            //     $('#cus-container-list').append(myObj.doctor.template(val));
+                            // });
+                            layui.laytpl(demo.innerHTML).render(res.data.rows, function(html){
+                                $('#cus-container-list').append(html);
                             });
-
                             if ( myObj.doctor.listData.page >=  myObj.doctor.listData.page_total) {
                                 me.noData();
                             }
@@ -124,4 +131,4 @@
         window.location.href = '/weixin/index/hospitalDetails/uid/'+$(this).data('uid');
     });
 </script>
-</html>
+{/block}
