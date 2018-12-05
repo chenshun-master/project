@@ -1,0 +1,102 @@
+<!-- Main content -->
+<section  class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">新增/修改banner</h3>
+                </div>
+                <form role="form"  id="infoLogoForm" enctype="multipart/form-data" onsubmit="return false;">
+                    <div class="box-body">
+                        <input type="hidden" name="id" class="form-control" value="{$res.id}">
+                        <div class="form-group">
+                            <label for="name">banner名称</label>
+                            <input type="text" class="form-control" id="name" placeholder="请输入banner名称" value="{$res.name}">
+                        </div>
+                        <div class="form-group">
+                            <label for="url">链接地址</label>
+                            <input type="text" class="form-control" id="url" placeholder="请输入有效的url地址" value="{$res.url}">
+                        </div>
+                        <div class="form-group">
+                            <label>PC/H5</label>
+                            <input type="radio" name="platform" value="h5" {eq name="res.platform|default='1'" value="h5"}checked{/eq} checked>H5
+                            <input type="radio" name="platform" value="pc" {eq name="res.platform|default='1'" value="pc"}checked{/eq}>PC
+                        </div>
+                        <div class="form-group">
+                            <label for="order">排序</label>
+                            <input type="text" class="form-control" id="order" placeholder="请输入排序内容" value="{$res.order}">
+                        </div>
+                        <div class="form-group">
+                            <label for="file">图片</label>
+                                {gt name="res.id" value="1"}
+                                <img src="{$res.img}" style="height: 100px; width: 150px;">
+                                {/gt}
+                                <input class="form-control" id="file" value="" name="img" accept="image/*" type="file">
+                                <p class="help-block">必须上传图片</p>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+</section>
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $('.btn').click(function () {
+        var name   = $('#name').val();
+        var url = $('#url').val();
+        var order   = $('#order').val();
+        var platform = $('input:radio:checked').val();
+        if(name == '' || name == null){
+            alert('名称不能为空！');
+            return false;
+        }
+        var regexp = /((http|https):\/\/([\w\-]+\.)+[\w\-]+(\/[\w\u4e00-\u9fa5\-\.\/?\@\%\!\&=\+\~\:\#\;\,]*)?)/ig;
+        if(!regexp.test(url))
+        {
+            alert('请输入有效的URL地址！');
+            return false;
+        }
+        if(url == '' || url == null){
+            alert('链接地址不能为空！');
+            return false;
+        }
+        var SubmitData = {
+            name:name,
+            url:url,
+            order:order,
+            platform:platform
+        };
+        var formData = new FormData($('#infoLogoForm')[0]);
+        formData.append('name',SubmitData.name);
+        formData.append('url',SubmitData.url);
+        formData.append('order',SubmitData.order);
+        formData.append('platform',SubmitData.platform);
+        $.ajax({
+            url:"/admin/banner/addbanner",
+            type:"POST",
+            data:formData,
+            dataType:"json",
+            cache: false,
+            processData: false,  //不处理发送的数据，因为data值是FormData对象，不需要对数据做处理
+            contentType: false,
+            success:function (data) {
+                // console.log(data);
+                if(data == 200) {
+                    window.location.href="/admin/banner/index";
+                }else if(data == 301){
+                    alert('失败');
+                }else{
+                    alert('请上传图片');
+                }
+            }
+        })
+    })
+</script>

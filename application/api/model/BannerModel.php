@@ -12,4 +12,13 @@ class BannerModel extends Model
     public static function getMaxOrder($platform){
         return self::where('is_del',0)->where('platform',$platform)->max('order');
     }
+
+    /**
+     * 查询单条数据
+     */
+    public static function findOne($id)
+    {
+        return self::where('id',$id)->find();
+    }
+
 }

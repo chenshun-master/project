@@ -1,0 +1,88 @@
+<section  class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">新增/修改项目分类</h3>
+                </div>
+                <form role="form"  id="infoLogoForm" enctype="multipart/form-data" onsubmit="return false;">
+                    <div class="box-body">
+                        <input type="text" name="id" class="form-control" value="{$res.id}">
+                        <div class="form-group">
+                            <label for="name">分类名称</label>
+                            <input type="text" class="form-control" id="name" required lay-verify="required" placeholder="请输入分类名称" value="{$res.name}">
+                        </div>
+                        <div class="form-group">
+                            <label>顶级分类</label>
+                            <select class="form-control" name="parent_id" id="parent_id">
+                                <option value="0">请选择顶级分类</option>
+                                {volist name="cate" id="val"}
+                                <option {if condition="$res['parent_id'] eq $val['id']"}selected="selected"{/if} value="{$val.id}">{if condition="$val['level'] neq 0"}|{/if}<?php echo str_repeat('-', $val['level']*4)?>{$val.name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sort">排序</label>
+                            <input type="text" class="form-control" id="sort" required lay-verify="required" placeholder="请输入排序内容" value="{$res.sort}">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">标题</label>
+                            <input type="text" class="form-control" id="title" required lay-verify="required" placeholder="请输入标题" value="{$res.title}">
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">关键字</label>
+                            <input type="text" class="form-control" id="keywords" required lay-verify="required" placeholder="请输入关键字" value="{$res.keywords}">
+                        </div>
+                        <div class="form-group">
+                            <label for="descript">描述</label>
+                            <input type="text" class="form-control" id="descript" required lay-verify="required" placeholder="请输入描述内容" value="{$res.descript}">
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+</section>
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $('.btn').click(function () {
+        var name = $('#name').val();
+        var parent_id= $('#parent_id').val();
+        var sort = $('#sort').val();
+        var title = $('#title').val();
+        var keywords = $('#keywords').val();
+        var descript = $('#descript').val();
+
+        var submitData = {
+            name:name,
+            parent_id:parent_id,
+            sort:sort,
+            title:title,
+            keywords:keywords,
+            descript:descript,
+        }
+
+        $.ajax({
+            url:"/admin/category/add",
+            data:submitData,
+            type:"POST",
+            dataType:"json",
+            success:function (date) {
+                // console.log(data);
+                if(data == 1){
+                    window.location.href="/admin/category/index";
+                }else if(data == 2){
+                    alert('失败！')
+                }
+            }
+        })
+
+    })
+</script>
