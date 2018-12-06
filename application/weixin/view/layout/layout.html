@@ -14,7 +14,14 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/weixin/css/main.css">
     <link rel="stylesheet" href="/static/shop/css/swiper-3.2.7.min.css">
-    {block name="cssOrcrsipt"}{/block}
+    <link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
+    {block name="cssOrcrsipt"}
+    <style>
+        .xian{
+            color: red;
+        }
+    </style>
+    {/block}
 </head>
 
 <body style="width:100%;background: white;max-width: 640px;margin:0 auto;">
@@ -27,7 +34,12 @@
     <script src="/static/js/functions.js"></script>
     <script src="/static/plugin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/shop/js/swiper-3.4.0.jquery.min.js"></script>
+    <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
     {block name="script"}
+    <script>
+
+
+    </script>
     {/block}
 </body>
 </html>

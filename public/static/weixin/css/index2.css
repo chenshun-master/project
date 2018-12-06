@@ -64,6 +64,7 @@
     height: 75px;
     margin-left: 5px;
     background: #EEEEEE;
+    border:none;
 
 }
 .wl-nei5{
@@ -102,6 +103,9 @@
 }
 .wl-jri{
     float: left;
+}
+.xian{
+    color: #7DB0E8;;
 }
 @media screen and (min-width: 500px) {
     .wl-left-img img{

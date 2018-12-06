@@ -12,12 +12,12 @@
     <div class="wl-body" style="padding:37px 0  100px 0">
         <div class="wl-liebiao">
             <ul>
-                <li><a href="">推荐</a></li>
-                <li><a href="">文章</a></li>
-                <li><a href="">视频</a></li>
-                <li><a href="">案例</a></li>
-                <li><a href="">问答</a></li>
-                <li><a href="">其他</a></li>
+                <li class="xian">推荐</li>
+                <li>文章</li>
+                <li>视频</li>
+                <li>案例</li>
+                <li>问答</li>
+                <li>其他</li>
             </ul>
         </div>
 
@@ -36,7 +36,7 @@
 {block name="script"}
 <script src="/static/plugin/layui/layui.js"></script>
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/function.js"></script>
+<script src="/static/js/functions.js"></script>
 <script id="demo" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
         {{#  if(test(item) == 1){ }}
@@ -136,10 +136,10 @@
         obj = $.parseJSON(obj);
         if(type == 4){
             $.each(obj,function(k,v){
-                html += '<img src="'+ v +'" alt="">';
+                html += '<img src="'+ v +'" alt="图片丢失">';
             });
         }else{
-            html += '<img src="'+ obj.img_1 +'" alt="">';
+            html += '<img src="'+ obj.img_1 +'" alt="图片丢失">';
         }
         return html;
     }
@@ -221,5 +221,9 @@
             window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
         }
     });
+    $(".wl-liebiao li").click(function () {
+        var index=$(this).index();
+        $(".wl-liebiao li").eq(index).addClass("xian").siblings().removeClass("xian")
+    })
 </script>
 {/block}

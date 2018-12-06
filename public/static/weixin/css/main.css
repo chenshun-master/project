@@ -7,7 +7,7 @@ body{position:relative;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
-a{text-decoration: none;color: #221815;}
+a{text-decoration: none;}
 
 .wl-header-left {
     padding: 10px;
@@ -24,7 +24,7 @@ a{text-decoration: none;color: #221815;}
 
 .wl-foot {
     margin-top: 2px;
-    width: 25%;
+    width: 20%;
     height: 100%;
     float: left;
     color: #000000;
@@ -50,3 +50,6 @@ a{text-decoration: none;color: #221815;}
     right: 0;
     text-align: center;
 }
+/*.xian{*/
+    /*color: #7DB0E8;;*/
+/*}*/
