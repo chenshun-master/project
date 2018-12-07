@@ -9,6 +9,8 @@
     left: 0;
     right: 0;
     z-index: 999999 !important;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .wl-top input{
     width: 80%;
@@ -32,6 +34,8 @@
     left: 0;
     right: 0;
     background: white;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .wl-daohang li{
     width: 33.3%;
@@ -121,6 +125,7 @@
     background: #FFFFFF;
     margin: 0 auto;
     overflow: hidden;
+    max-width: 640px;
 }
 .marsk-container1 {
     display: none;
@@ -134,6 +139,7 @@
     z-index: 10;
 }
 .tkyy_con1{
+    max-width: 640px;
     position: fixed;
     top: 70px;
     left: 0;
