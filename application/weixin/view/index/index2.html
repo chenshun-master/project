@@ -1,0 +1,229 @@
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/index2.css">
+<link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
+{/block}
+
+
+{block name="main"}
+    {include file="layout:header" /}
+
+    <!--这里编写主体内容-->
+    <div class="wl-body" style="padding:37px 0  100px 0">
+        <div class="wl-liebiao">
+            <ul>
+                <li class="xian">推荐</li>
+                <li>文章</li>
+                <li>视频</li>
+                <li>案例</li>
+                <li>问答</li>
+                <li>其他</li>
+            </ul>
+        </div>
+
+        <div id="container" >
+            <div id="container-list" >
+
+
+            </div>
+
+        </div>
+
+    </div>
+    {include file="layout/footer" /}
+{/block}
+
+{block name="script"}
+<script src="/static/plugin/layui/layui.js"></script>
+<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/functions.js"></script>
+<script id="demo" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+        {{#  if(test(item) == 1){ }}
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}">
+                <div class="wl-nei1">{{  item.title }}</div>
+                <div class="wl-nei2">
+                    <ul>
+                        <li id="wl-zhiding">置顶</li>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
+                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
+                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        {{#  } }}
+
+        {{#  if(test(item) == 2){ }}
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}" >
+                <div class="wl-nei1">
+                    {{  item.title }}
+                </div>
+                <div class="wl-nei6">
+                    {{ showImg(item.thumbnail,test(item))}}
+                </div>
+                <div class="wl-nei2">
+                    <ul>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
+                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
+                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        {{#  } }}
+
+        {{#  if(test(item) == 3){ }}
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}">
+                <div class="wl-nei5">
+                    {{  item.title }}
+                </div>
+                <div class="wl-left-img">
+                    {{ showImg(item.thumbnail,test(item))}}
+                </div>
+                <div class="wl-nei2">
+                    <ul>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
+                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
+                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        {{#  } }}
+
+        {{#  if(test(item) == 4){ }}
+            <div  class="wl-neirong  to-datail-href"  data-id="{{  item.id }}"  data-type="{{  item.type }}" >
+                <div class="wl-nei1">
+                    {{  item.title }}
+                </div>
+                <div class="wl-nei3">
+                    {{ showImg(item.thumbnail,test(item))}}
+                </div>
+                <div class="wl-nei2">
+                    <ul>
+                        <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
+                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
+                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        {{#  } }}
+    {{#  }); }}
+</script>
+
+<script>
+    var laytpl;
+    layui.use('laytpl', function(){
+        laytpl = layui.laytpl;
+    });
+
+    function test(obj){
+        var thumbnail = $.parseJSON(obj.thumbnail);
+        var thumbnailLength = Object.keys(thumbnail).length;
+        if(thumbnailLength == 0){
+            return 1;
+        }else if(thumbnailLength > 0 && thumbnailLength < 3){
+            if(obj.is_top != 0 || obj.recommended !=0){
+                return 2;
+            }else{
+                return 3;
+            }
+        }else{
+            return 4;
+        }
+    }
+
+    function showImg(obj,type){
+        var html ='';
+        obj = $.parseJSON(obj);
+        if(type == 4){
+            $.each(obj,function(k,v){
+                html += '<img src="'+ v +'" alt="图片丢失">';
+            });
+        }else{
+            html += '<img src="'+ obj.img_1 +'" alt="图片丢失">';
+        }
+        return html;
+    }
+
+    var objClass = {
+        listData: {
+            loading: false,
+            ini: false,
+            page: 0,
+            page_total: 1,
+            page_size: 15,
+        },
+
+        //相关推荐数据加载
+        loadList: function (me) {
+            if (this.listData.loading) {
+                return false;
+            }
+
+            this.listData.page++;
+            if (this.listData.ini == true) {
+                if (this.listData.page > this.listData.page_total) {
+                    me.resetload();
+                    return false;
+                }
+            }
+            $.ajax({
+                url: "/weixin/index/getArticleList",
+                type: 'post',
+                data: {type: 0, page: this.listData.page, page_size: this.listData.page_size},
+                dataType: 'json',
+                beforeSend: function () {
+                    objClass.listData.loading = true;
+                },
+                complete: function () {
+                    objClass.listData.loading = false;
+                },
+                success: function (res) {
+                    if (res.code == 200) {
+                        if (objClass.listData.ini == false) {
+                            objClass.listData.ini = true;
+                            objClass.listData.page_total = res.data.page_total;
+                            $('#container-list').html('');
+                        }
+
+                        var rows = res.data.rows;
+
+                        laytpl(demo.innerHTML).render(rows, function(html){
+                            $('#container-list').append(html);
+                        });
+
+                        if (objClass.listData.page >= objClass.listData.page_total) {
+                            me.noData();
+                        }
+                    }
+                    me.resetload();
+                }
+            });
+        },
+
+    };
+
+    $('#container').dropload({
+        scrollArea: window,
+        loadUpFn: function (me) {
+            objClass.listData.loading = false;
+            objClass.listData.ini = false;
+            objClass.listData.page = 0;
+            objClass.listData.page_total = 1;
+            objClass.loadList(me);
+        },
+        loadDownFn: function (me) {
+            objClass.loadList(me);
+        }
+    });
+
+    $(document).on('click','.to-datail-href',function () {
+        if($(this).data('type') == 1){
+            window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
+        }
+    });
+    $(".wl-liebiao li").click(function () {
+        var index=$(this).index();
+        $(".wl-liebiao li").eq(index).addClass("xian").siblings().removeClass("xian")
+    })
+</script>
+{/block}

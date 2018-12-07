@@ -3,7 +3,7 @@
                 <?php if($val['type'] == 1):?>
                         <?php if($val['thumbnail']):?>
                             <?php $thumbnail = json_decode($val['thumbnail'],true); if(count($thumbnail) >=3 ): ?>
-                                <div class="wx-b2 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}">
+                                <div class="wx-b2 cus-article-href" data-id="{$val['id']}" data-type="{$val['type']}" >
                                     <p class="wx-n2"  onclick="clickHref({$val['id']})"  >{$val['title']}</p>
                                     <p class="img" onclick="clickHref({$val['id']})">
                                         <?php foreach($thumbnail as $_v):?>

@@ -8,26 +8,26 @@ body { font-family: "思源黑体 CN";color:#221815;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
-.wl-foot {
-    width: 100%;
-    height: 50px;
-    border-top: 1px solid #CACACA;
-    position: fixed;
-    bottom: 0;
-    background: white;
-}
-.wl-foot dl {
-    margin-top:4px;
-    width: 25%;
-    height: 50px;
-    text-align: center;
-    float: left;
-}
-.wl-foot dt {
-    font-size: 11px;
-    color: #000000;
-    margin-top: -2px;
-}
+/*.wl-foot {*/
+    /*width: 100%;*/
+    /*height: 50px;*/
+    /*border-top: 1px solid #CACACA;*/
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*background: white;*/
+/*}*/
+/*.wl-foot dl {*/
+    /*margin-top:4px;*/
+    /*width: 25%;*/
+    /*height: 50px;*/
+    /*text-align: center;*/
+    /*float: left;*/
+/*}*/
+/*.wl-foot dt {*/
+    /*font-size: 11px;*/
+    /*color: #000000;*/
+    /*margin-top: -2px;*/
+/*}*/
 .wl-conter{
     width: 100%;
     height: 87px;

@@ -1,51 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
-    <meta name="applicable-device" content="pc,mobile">
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
     <link rel="stylesheet" href="/static/css/hospital.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/css/dropload1.css" />
-    <link rel="stylesheet" href="/static/css/function.css" />
-    <title>{:config('conf.title')} - 医院</title>
-    <style>
-        .href{cursor: pointer}
-    </style>
-</head>
-<body style="background: #EEEEEE">
+
+{/block}
+<style>
+    .href{cursor: pointer}
+</style>
+{block name="main"}
+<!--这里编写主体内容-->
 <main  id="cus-container">
     <div id="cus-container-list">
 
     </div>
 </main>
-
-<footer>
-    <div class="wl-foot" style="max-width: 750px">
-        <dl onclick="redream.href('/weixin/index/index')" class="dianji">
-            <dd> <i class="iconfont icon-home_light" style="font-size: 25px"></i></dd>
-            <dt>首页</dt>
-        </dl>
-        <dl class="dianji"  onclick="redream.href('/weixin/index/doctor')">
-            <dd><i class="iconfont icon-yishengtubiao" style="font-size: 25px;"></i></dd>
-            <dt >医生</dt>
-        </dl>
-        <dl class="dianji" >
-            <dd><i class="iconfont icon-yiyuan3" style="font-size: 25px;color:#7DB0E8"></i></dd>
-            <dt style="color:#7DB0E8">医院</dt>
-        </dl>
-        <dl onclick="redream.href('/weixin/user/main')" class="dianji">
-            <dd><i class="iconfont icon-my_light" style="font-size: 25px"></i></dd>
-            <dt>我的</dt>
-        </dl>
+{include file="layout/footer" /}
+{/block}
+{block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="demo" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-conter href cus-to-href" data-uid="{{item.user_id}}">
+        <div class="wl-toux"><img src="{{item.portrait}}" onerror="this.src ='/static/image/user/tou.png'" width="41" height="41"></div>
+        <div style="position: relative"><span class="wl-biao1"></span></div>
+        <div class="wl-pingjia">
+            <dl>{{item.hospital_name}}</dl>
+            <dd>医院类型:
+                {{#  if(item.type != null){ }}
+                {{item.type}}
+                {{#  } }}
+            </dd>
+            <dt><i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <i class="iconfont icon-xingji"></i>
+                <span style="margin-left: 8px">评价 <span style="padding: 0 3px 0 0px">|</span></span>
+                <span>{{item.case_num}}案例<span style="padding: 0 3px 0 3px;">|</span></span>
+                <span style="margin-top: 1px">{{item.article_num}}文章</span>
+            </dt>
+            <span class="iconfont icon-back_left-copy wl-renzheng" style="font-size: 25px;color: #AAAAAA"></span>
+        </div>
     </div>
-</footer>
-</body>
-<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    {{#  }); }}
+</script>
+
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -63,24 +62,6 @@
                 var head_img      =  (data.portrait == null) ? '':data.portrait;
                 var type =  (data.type == null) ? '':data.type;
 
-                return '<div class="wl-conter href cus-to-href"  data-uid="'+ data.user_id+'">' +
-                    '            <div class="wl-toux"><img src="'+ head_img +'"  onerror="this.src =\'/static/image/user/tou.png\'" width="41" height="41"></div>' +
-                                '<div style="position: relative"><span class="wl-biao1"></span></div>'+
-                    '            <div class="wl-pingjia">' +
-                    '                <dl>'+ data.hospital_name +'</dl>' +
-                    '                <dd>医院类型: '+ type +'</dd>' +
-                    '                <dt><i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <i class="iconfont icon-xingji"></i>' +
-                    '                    <span style="margin-left: 8px">评价 <span style="padding: 0 3px 0 0px">|</span></span>' +
-                    '                    <span>'+ data.case_num +'案例<span style="padding: 0 3px 0 3px;">|</span></span>' +
-                    '                    <span style="margin-top: 1px">'+ data.article_num+'文章</span>' +
-                    '                </dt>' +
-                    '                <span class="iconfont icon-back_left-copy wl-renzheng"   style="font-size: 25px;color: #AAAAAA"></span>' +
-                    '            </div>' +
-                    '        </div>';
             },
             loadList: function (me) {
                 if (myObj.doctor.listData.loading) {
@@ -114,10 +95,12 @@
                                 $('#cus-container-list').html('');
                             }
 
-                            $.each(res.data.rows,function(k,val){
-                                $('#cus-container-list').append(myObj.doctor.template(val));
+                            // $.each(res.data.rows,function(k,val){
+                            //     $('#cus-container-list').append(myObj.doctor.template(val));
+                            // });
+                            layui.laytpl(demo.innerHTML).render(res.data.rows, function(html){
+                                $('#cus-container-list').append(html);
                             });
-
                             if ( myObj.doctor.listData.page >=  myObj.doctor.listData.page_total) {
                                 me.noData();
                             }
@@ -148,4 +131,4 @@
         window.location.href = '/weixin/index/hospitalDetails/uid/'+$(this).data('uid');
     });
 </script>
-</html>
+{/block}

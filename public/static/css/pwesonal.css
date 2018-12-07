@@ -279,13 +279,14 @@ a{text-decoration: none;color: #221815;display: block;}
 	}
 .tkyy_con{
 	position: fixed;
-    top: 470px;
-    left: 159px;
-		width: 440px;
-		height: 210px;
-		background: #FFFFFF;
-		margin: 0 auto;
-		border-radius: 10px;
+	top: 50%;
+	left: 0;
+	right: 0;
+	width: 440px;
+	height: 210px;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border-radius: 10px;
 	}
 .tkyy_con .dian{
 	width: 100%;
