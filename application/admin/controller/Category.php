@@ -65,6 +65,7 @@ class Category extends BaseController
         if(isset($data['visibility'])) {
             $result = Db::name('sp_category')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
         }
+
         if($result){
             $this->redirect('/admin/category/index');
         }else{

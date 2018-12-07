@@ -43,6 +43,23 @@
     }
 
     #remoteUrl{ime-mode: disabled !important;background-color: #cccccc;}
+
+    #categoryList th{
+        color:#00c0ef;
+    }
+
+    #categoryList .layui-badge{
+        cursor: pointer;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+    .select{
+        background: #00a65a !important;
+        color: white !important;
+    }
 </style>
 {/block}
 
@@ -82,8 +99,10 @@
 
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">商品分类</label>
-                                    <div class="col-sm-10">
-                                        <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" style="color: #0b97c4"><i class="layui-icon layui-icon-set-fill"></i>  设置商品分类</button>
+                                    <div class="col-sm-10" style="padding-top: 5px;">
+                                        <input type="hidden" value="" id="fr-category">
+                                        <span class="layui-btn layui-btn-xs" onclick="objClass.choiceCategory()">  <i class="layui-icon layui-icon-add-1"></i> 选择分类</span>
+                                        <span id='categoryList-select'></span>
                                     </div>
                                 </div>
 
@@ -98,28 +117,18 @@
                                                 <table class="table table-bordered">
                                                     <tbody>
                                                     <tr style="color: #0b97c4">
-                                                        <th >市场价格</th>
+                                                        <th>市场价格</th>
                                                         <th>销售价格</th>
                                                         <th>预付价格</th>
-                                                        <th>上架时间</th>
-                                                        <th>预约名额/库存</th>
+                                                        <th>到付价格</th>
+                                                        <th>预约名额</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            <input type="text" class="form-control" style="width: 150px;" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" style="width: 150px;">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" style="width: 150px;">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" style="width: 150px;">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" style="width: 150px;">
-                                                        </td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;"  id="fr-market_price" /></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-sell_price"></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-prepay_price"></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-topay_price"></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-store_nums"></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -131,9 +140,9 @@
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">是否上架</label>
                                     <div class="col-sm-10">
-                                        <div class="layui-input-block" style="margin-left: 0px;">
-                                            <input type="radio" name="sex" value="1" title="是"> 是
-                                            <input type="radio" name="sex" value="2" checked>  否
+                                        <div class="layui-input-block" style="margin-left: 0px;" >
+                                            <input type="radio" name="status" value="1" title="是"> 是
+                                            <input type="radio" name="status" value="2" checked>  否
                                         </div>
                                     </div>
                                 </div>
@@ -141,11 +150,8 @@
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">手术医生</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" id="fr-select-spec-val">
-                                            <option>请选择医生</option>
-                                            <option value="服务项目1">服务项目1</option>
-                                            <option value="手术医生">手术医生</option>
-                                            <option value="170">170</option>
+                                        <select class="form-control" id="fr-doctor-id">
+                                            <option value="">请选择医生</option>
                                         </select>
                                     </div>
                                 </div>
@@ -153,9 +159,8 @@
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">手术医院</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" id="fr-select-spec-name">
-                                            <option>请选择医院</option>
-                                            <option value="我的颜色" >我的颜色</option>
+                                        <select class="form-control" id="fr-hospital-id">
+                                            <option value="">请选择医院</option>
                                         </select>
                                     </div>
                                 </div>
@@ -181,7 +186,7 @@
                                 </div>
 
                                 <div class="box-footer clearfix" style="padding-left: 146px;">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left" onclick="objClass.releaseGoods()">发布商品</a>
                                 </div>
                             </div>
                         </form>
@@ -198,10 +203,33 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
+
+<script id="demo" type="text/html">
+    <div style="min-width: 700px;min-height: 100px;" id="categoryList">
+        <div class="layui-row layui-col-space1">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr id="cus-category-tr-1">
+                        <th width="100" >一级分类</th><td id="cus-category-1"></td>
+                    </tr>
+                    <tr id="cus-category-tr-2">
+                        <th>二级分类</th><td id="cus-category-2"></td>
+                    </tr>
+                    <tr id="cus-category-tr-3">
+                        <th>三级分类</th><td id="cus-category-3"></td>
+                    </tr>
+                    <tr id="cus-category-tr-4">
+                        <th>四级分类</th><td id="cus-category-4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+
 {/block}
 
 {block name="js"}
@@ -244,6 +272,8 @@
 
         var objClass = {
             uploadLoading:false,
+            categoryList:[],
+            loading:false,
             uploadGoodsImg:function(formData){
                 if(this.uploadLoading == false){
                     $.ajax({
@@ -311,9 +341,109 @@
                 }
             },
             releaseGoods:function(){
+                window.editor.sync();
+                var data = {
+                    name                :$.trim($('#fr-good-name').val()),
+                    search_keyword      :$.trim($('#fr-search-words').val()),
+                    category            :$('#fr-category').val(),
+                    market_price        :$('#fr-market_price').val(),
+                    prepay_price        :$('#fr-prepay_price').val(),
+                    topay_price         :$('#fr-topay_price').val(),
+                    store_nums          :$('#fr-store_nums').val(),
+                    status              :$('input[name="status"]:checked').val(),
+                    doctor_id           :$('#fr-doctor-id').val(),
+                    hospital_id         :$('#fr-hospital-id').val(),
+                    img_ids             :'',
+                    content             :$('#editor_id').val()
+                };
 
-            }
+                $.each($('.fr-imgs-val'),function(k,v){
+                    data.img_ids +=  ','+ $('.fr-imgs-val')[k].dataset.goodimgid;
+                });
+
+                if(objClass.loading == false){
+                    var loading = layer.msg('提交中，请稍等...', {icon: 16,shade: 0.01,time:0});
+                    $.ajax({
+                        url: '/seller/shopApi/uploadGoodImg',
+                        type: 'POST',
+                        cache: false,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json",
+                        beforeSend:function(){
+                            objClass.loading = true;
+                        },
+                        complete:function(){
+                            objClass.loading = false;
+                            layer.close(loading);
+                        },
+                        success: function (res) {
+                            if(res.code == 200){
+                                layer.msg('提交成功...', {icon: 1});
+                                setTimeout(function(){
+                                    window.location.href = '/seller'
+                                },2000)
+                            }else{
+                                layer.msg(res.msg);
+                            }
+                        }
+                    });
+                }
+            },
+            choiceCategory:function(){
+                var index = layer.open({
+                    type: 1,
+                    title:'选择分类',
+                    area: ['800px', '400px'],
+                    skin: 'layui-layer-rim', //加上边框
+                    content: demo.innerHTML
+                    ,btn: ['添加', '取消'],
+                    yes:function(){
+                        $('#categoryList-select').html('');
+
+                        var val = '';
+                        $.each($('.select'),function(k,v){
+                             val += ','+ $('.select')[k].dataset.id;
+                            $('#categoryList-select').append('<span class="layui-badge layui-bg-blue" data-id="'+ $('.select')[k].dataset.id +'" >'+ $('.select')[k].innerText +'</span>&nbsp;&nbsp;');
+                        });
+
+                        $('#fr-category').val(val);
+                        layer.close(index);
+                    }
+                });
+
+                this.ajaxLloadingCategory(1,0);
+            },
+            ajaxLloadingCategory:function(hierarchy,pid){
+                $.ajax({
+                    url: '/seller/shopApi/getCategoryList',
+                    type: 'POST',
+                    data:{category_id:pid},
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code == 200){
+                            var hierarchy2 = parseInt(hierarchy) + 1;
+                            $.each(res.data.rows,function(k,v){
+                                $('#cus-category-'+hierarchy).append('<span class="layui-badge layui-bg-gray click-find-category" data-findid="'+ hierarchy2 +'"  data-pid="'+ v.id+'"  data-id="'+ v.id +'">'+ v.name +'</span>');
+                            });
+                        }
+                    }
+                });
+            },
         };
+
+        $(document).on('click','.click-find-category',function(){
+            if($(this).data('findid') == 2){
+                $('#cus-category-2,#cus-category-3,#cus-category-4').html('');
+            }else if($(this).data('findid') == 3){
+                $('#cus-category-3,#cus-category-4').html('');
+            }else if($(this).data('findid') == 4){
+                $('#cus-category-4').html('');
+            }
+            $(this).addClass('select').siblings().removeClass('select');
+            objClass.ajaxLloadingCategory($(this).data('findid'),$(this).data('pid'));
+        });
 
         $('#fr-upload-goodsimg').on('change',function(){
             var formData = new FormData($('#fr-goods')[0]);

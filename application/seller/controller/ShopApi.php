@@ -57,9 +57,9 @@ class ShopApi extends BaseController
      * @return false|string
      */
     public function releaseGoods(Request $request){
-        if(!$request->isAjax() || !$request->isPost()){
-            return $this->returnData([],'参数不符合规范',301);
-        }
+//        if(!$request->isAjax() || !$request->isPost()){
+//            return $this->returnData([],'参数不符合规范',301);
+//        }
 
         $data = \Request::only([
             'name'          =>'',
@@ -73,8 +73,11 @@ class ShopApi extends BaseController
             'keywords'      =>'',
             'description'   =>'',
             'search_words'  =>'',
-            'img_ids'       =>''
+            'img_ids'       =>'',
+            'category_ids'  =>''
         ], 'post');
+
+        $data['img_ids'] = trim($data['img_ids'],',');
 
         $goods_id = (int) $request->post('goods_id',0);
         if((new \app\seller\validate\Goods())->scene('releaseGoods')->check($data) == false){
@@ -91,12 +94,15 @@ class ShopApi extends BaseController
         if(!$res){
             return $this->returnData([],'商品发布失败',305);
         }
-        return $this->returnData([],'商品发布成功',305);
+        return $this->returnData([],'商品发布成功',200);
     }
 
+    public function getCategoryList(Request $request){
+        $category_id = $request->post('category_id',0);
 
-    public function test(){
-        $domain = new \app\api\domain\SpGoodsDomain();
-        $domain->directBuyGoods(100000003,2,15);
+        $domain = new \app\api\domain\SpCategory();
+        $data = $domain->getCategoryList($category_id);
+
+        return $this->returnData(['rows'=>$data],'',200);
     }
 }

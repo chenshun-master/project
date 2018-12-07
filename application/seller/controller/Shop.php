@@ -77,6 +77,4 @@ class Shop extends BaseController
         }
     }
 
-
-
 }

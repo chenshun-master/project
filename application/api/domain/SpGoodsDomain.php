@@ -12,7 +12,8 @@ class SpGoodsDomain
      * @return bool
      */
     public function addGoods($seller_id,$data){
-        $imgs = explode(',',$data['img_ids']);
+        $imgs           = explode(',',$data['img_ids']);
+        $category_ids   = explode(',',$data['category_ids']);
 
         $img = Db::name('sp_goods_photo')->where('id',$imgs[0])->value('img');
         Db::startTrans();
@@ -40,11 +41,20 @@ class SpGoodsDomain
                 return false;
             }
 
+            $category_data = [];
+            foreach ($category_ids as $val){
+                $category_data[] = ['category_id' => $val,'goods_id' => $goods_id];
+            }
+            $res = Db::name('sp_category_extend')->data($category_data)->insertAll();
+            if(!$res){
+                Db::rollback();
+                return false;
+            }
+
             $datas = [];
             foreach ($imgs as $v){
                 $datas[] = ['photo_id' => $v,'goods_id' => $goods_id];
             }
-
             $res1 = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
             if(!$res1){
                 Db::rollback();
@@ -72,8 +82,9 @@ class SpGoodsDomain
             return false;
         }
 
-        $imgs = explode(',',$data['img_ids']);
-        $img = Db::name('sp_goods_photo')->where('id',$imgs[0])->value('img');
+        $imgs           = explode(',',$data['img_ids']);
+        $category_ids   = explode(',',$data['category_ids']);
+
         Db::startTrans();
         try {
             $isTrue = Db::name('sp_goods')->where('id',$good_id)->where('seller_id',$seller_id)->update([
@@ -83,7 +94,7 @@ class SpGoodsDomain
                 'prepay_price'  =>$data['prepay_price'],
                 'topay_price'   =>$data['topay_price'],
                 'store_nums'    =>$data['store_nums'],
-                'img'           =>$img,
+                'img'           =>Db::name('sp_goods_photo')->where('id',$imgs[0])->value('img'),
                 'status'        =>$data['status'],
                 'content'       =>$data['content'],
                 'keywords'      =>$data['keywords'],
@@ -95,20 +106,41 @@ class SpGoodsDomain
                 return false;
             }
 
-            $res = Db::name('sp_goods_photo_relation')->where('goods_id',$good_id)->delete();
-            if(!$res){
-                Db::rollback();return false;
+            if($data['category_ids'] !== implode(',',Db::name('sp_category_extend')->where('goods_id',$good_id)->column('category_id'))){
+                $datas = [];
+                foreach ($category_ids as $id){
+                    $datas[] = ['category_id' => $id,'goods_id' => $good_id];
+                }
+
+                $res1 = Db::name('sp_category_extend')->where('goods_id',$good_id)->delete();
+                if(!$res1){
+                    Db::rollback();return false;
+                }
+
+                $res2 = Db::name('sp_category_extend')->data($datas)->insertAll();
+                if(!$res2){
+                    Db::rollback();
+                    return false;
+                }
             }
 
-            $datas = [];
-            foreach ($imgs as $v){
-                $datas[] = ['photo_id' => $v,'goods_id' => $good_id];
-            }
+            if($data['img_ids'] !== implode(',',Db::name('sp_goods_photo_relation')->where('goods_id',$good_id)->column('photo_id'))){
+                $datas = [];
+                foreach ($imgs as $v){
+                    $datas[] = ['photo_id' => $v,'goods_id' => $good_id];
+                }
 
-            $res = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
-            if(!$res){
-                Db::rollback();
-                return false;
+
+                $res3 = Db::name('sp_goods_photo_relation')->where('goods_id',$good_id)->delete();
+                if(!$res3){
+                    Db::rollback();return false;
+                }
+
+                $res4 = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
+                if(!$res4){
+                    Db::rollback();
+                    return false;
+                }
             }
 
             Db::commit();
@@ -186,5 +218,11 @@ class SpGoodsDomain
         $orderData['create_time']       = date('Y-m-d H:i:s');
 
         return  Db::name('sh_order')->insertGetId($orderData);
+    }
+
+
+
+    public function getSearchGoods($searchParams = []){
+
     }
 }

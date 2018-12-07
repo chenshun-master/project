@@ -305,4 +305,28 @@ class Api extends BaseController
             }
         }
     }
+
+
+    /**
+     * 搜索产品
+     */
+    public function searchGoods(){
+        $doamin = new \app\api\domain\SpGoodsDomain();
+
+
+        $data = [];
+
+
+        $doamin->getSearchGoods($data);
+    }
+
+    /**
+     * 获取分类列表
+     */
+    public function getCategoryInfo(Request $request){
+        $category_id = $request->post('category_id',0);
+
+        $domain = new \app\api\domain\SpCategory();
+        $domain->getCategoryList($category_id);
+    }
 }

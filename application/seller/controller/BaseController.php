@@ -2,6 +2,8 @@
 namespace app\seller\controller;
 use think\App;
 use think\Controller;
+use think\facade\Session;
+use think\route\dispatch\Redirect;
 
 class BaseController extends Controller
 {
@@ -10,6 +12,67 @@ class BaseController extends Controller
     {
         parent::__construct($app);
 
+        #配置Session作用域
+        Session::prefix('seller');
+    }
+
+    /**
+     * 验证用户是否登录
+     */
+    protected function checkLogin(){
+        return $this->getUserInfo() ? true : false;
+    }
+
+    /**
+     * 获取用户登录信息
+     */
+    protected function getUserInfo(){
+        $info = Session::get('user_info');
+        if($info){
+            return $info;
+        }
+        return false;
+    }
+
+
+    /**
+     * 获取用户登录信息
+     */
+    protected function getSellerId(){
+        $info = Session::get('user_info');
+        if($info){
+            return $info['seller_id'];
+        }
+        return 0;
+    }
+
+    /**
+     * 获取用户ID
+     * @return int
+     */
+    protected function getUserId(){
+        $info = Session::get('user_info');
+        if($info){
+            return $info['user_id'];
+        }
+        return 0;
+    }
+
+    /**
+     * 用户信息
+     * @param $data
+     * @return bool
+     */
+    protected function saveUserLogin($data){
+        Session::set('user_info',$data);
+        return true;
+    }
+
+    /**
+     * 清除用户登录信息
+     */
+    protected function clearUserLogin(){
+        return Session::clear();
     }
 
     /**
