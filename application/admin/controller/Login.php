@@ -13,25 +13,31 @@ use think\Controller;
 
 class Login extends Controller
 {
+    /**
+     * 后台登陆
+     * @return array|false|mixed|string|\think\response\Json
+     */
     public function index()
     {
+//        halt(session('user_auth'));
         if (request()->isPost()) {
-            $data = input('post.');
+            $username = $this->request->post('username');
+            $password = $this->request->post('password');
+            if (empty($username) || empty($password)) {
+                return $this->returnData([], '请求参数不符合规范', 301);
+            }
             $model = new AdminModel();
-            $res = $model->login($data['username'], $data['password']);
-            if($res === 2){
+            $res = $model->login($username, $password);
+            if ($res === 2) {
+                return $res = ['status' => 0, 'msg' => '用户名不存在'];
+            }
+            if ($res === 3) {
                 return $res = ['status' => 0, 'msg' => '密码错误'];
             }
-
-            if($res === 3){
-                return $res = ['status' => 0, 'msg' => '用户名不存在或者有误'];
-            }
-
-            session('user_info',$data);
+            session('user_auth',$res);
             return json(['status' => 1, 'msg' => '登录成功！']);
         }
-        //检测登录状态
-        if(session('user_info')){
+        if(session('user_auth')){
             $this->redirect('index/index');
         }
         return $this->fetch('login/index');

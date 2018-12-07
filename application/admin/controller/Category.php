@@ -20,7 +20,7 @@ class Category extends BaseController
      * @return mixed
      * @throws \think\exception\DbException
      */
-    public function index()
+    public function index(  )
     {
         $cate = new CategoryModel();
         $cate = $cate->catetree();
@@ -37,18 +37,53 @@ class Category extends BaseController
     public function add(Request $request)
     {
         $model = new CategoryModel();
-        if(request()->isPost())
-        {
-            $data = $request->param();
-            $res =$model->save($data);
+        if(request()->isPost()){
+            $id = $request->post('id');
+            $name = $request->post('name');
+            $parent_id = $request->post('parent_id');
+            $sort = $request->post('sort');
+            $title = $request->post('title');
+            $keywords = $request->post('keywords');
+            $descript = $request->post('descript');
+            $created_at = date('Y-m-d H:i:s');
+            $updated_at = date('Y-m-d H:i:s');
+            if($parent_id==0){
+                $model['path']=0;
+            }else{
+                $model['path']=$model->path($parent_id);
+            }
+            $data = [
+                'name' => $name,
+                'parent_id' => $parent_id,
+                'sort' => $sort,
+                'title' => $title,
+                'keywords' => $keywords,
+                'descript' => $descript,
+                'created_time' => $created_at,
+            ];
+            if($id)
+            {
+                $data = [
+                    'name' => $name,
+                    'parent_id' => $parent_id,
+                    'sort' => $sort,
+                    'title' => $title,
+                    'keywords' => $keywords,
+                    'descript' => $descript,
+                    'updated_time' => $updated_at,
+                ];
+                $res = $model->where('id',$id)->update($data);
+            }else{
+                $res =$model->save($data);
+            }
             if($res) {
-                return $this->returnData([],'添加成功',200);
+                return $this->returnData([],"添加成功",200);
             }else{
                 return $this->returnData([],'添加失败',301);
             }
         }else{
             $cateid = input('param.id');
-            $res = $model->cateOne($cateid);
+            $res = $model->findOne($cateid);
             $cate = $model->catetree();
             $this->assign('cate',$cate);
             $this->assign('res',$res);
@@ -62,33 +97,11 @@ class Category extends BaseController
     public function update()
     {
         $data = input('param.');
-        if(isset($data['visibility'])) {
-            $result = Db::name('sp_category')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
-        }
+        $result = Db::name('sp_category')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
         if($result){
             $this->redirect('/admin/category/index');
         }else{
             $this->error('修改失败', cookie("prevUrl"));
         }
     }
-
-//    /**
-//     * 通过要删除的分类ID，去循环查出，该分类下面的子目录，全部删除。
-//     * @throws \think\db\exception\DataNotFoundException
-//     * @throws \think\db\exception\ModelNotFoundException
-//     * @throws \think\exception\DbException
-//     */
-//    public function del()
-//    {
-//        //  要删除的当前分类的id
-//        $cateid =input('param.id') ;
-//        $cate = new CategoryModel();
-//        $sonids = $cate->getchilrenid($cateid);
-//        //  获得全部的分类ID
-//        $allcateid = $sonids;
-//        $allcateid[] = $cateid;
-//        if ($sonids) {
-//            $cate->delete($sonids);
-//        }
-//    }
 }

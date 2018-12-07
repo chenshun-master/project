@@ -54,10 +54,10 @@
                                         {/gt}
                                     </td>
                                     <td class="table-action">
-                                        <a href="{:url('/admin/banner/addbanner',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="1" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                        <a href="{:url('/admin/banner/addbanner',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" title="编辑"><i class="fa fa-pencil"></i></a>
                                         {gt name="vo.id" value="1"}
                                             {eq name="vo.is_del" value="0"}
-                                        <a href="{:url('/admin/banner/del',array('id'=>$vo.id,'is_del' => 1))}" class="btn btn-xs btn-danger btn-delone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="2" data-original-title="删除"><i class="fa fa-trash"></i></a>
+                                        <a href="{:url('/admin/banner/del',array('id'=>$vo.id,'is_del' => 1))}" class="btn btn-xs btn-danger btn-delone" id="is_del" title="删除"><i class="fa fa-trash"></i></a>
                                         {/eq}
                                         {/gt}
                                     </td>
@@ -80,3 +80,4 @@
         <!-- /.col -->
     </div>
 </section>
+

@@ -14,11 +14,13 @@ class BaseController extends Controller
     }
     public function initialize()
     {
-        // 判断是否登录，没有登录跳转登录页面
-        if(!session('user_info')){
-            return $this->fetch('login/index');
+        parent::initialize();
+        //判断是否登录，没有登录跳转登录页面
+        if(!session('user_auth')){
+            return $this->redirect('login/index');
         }
     }
+
 
     /**
      * 返回接口数据
@@ -28,10 +30,10 @@ class BaseController extends Controller
      * @return false|string
      */
     protected function returnData($data=[],$msg='',$code = 200){
-        return json_encode([
+        exit(json_encode([
             'code' =>$code,
             'msg'  =>$msg,
             'data' =>$data
-        ]);
+        ]));
     }
 }
