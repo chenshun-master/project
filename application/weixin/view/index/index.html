@@ -128,7 +128,9 @@
                             objClass.listData.page_total = res.data.page_total;
                             $('#wx-wz').html('');
                         }
+
                         $('#wx-wz').append(res.data.conetnt);
+
                         if (objClass.listData.page >= objClass.listData.page_total) {
                             me.noData();
                         }
@@ -175,5 +177,9 @@
         var index=$(this).index();
         $(".biao li").eq(index).addClass("xian").siblings().removeClass("xian")
     })
+
+
+
+
 </script>
 </html>

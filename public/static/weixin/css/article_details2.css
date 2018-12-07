@@ -1,0 +1,354 @@
+
+.wl-body{
+    width: 100%;min-height: 200px;
+    max-width: 650px;
+    overflow: hidden;
+}
+.wl-top{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #F1F1F1;
+    position: relative;
+}
+.wl-title{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 15px;
+    height: 50px;
+    color: #1D1D1D;
+    font-size: 18px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.cus-blue {
+    color: #7DB0E8 !important;
+}
+.wl-main{
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 15px;
+    overflow: hidden;
+}
+.wl-tou-img img{
+width: 35px;
+    height: 35px;
+    float: left;
+    border-radius: 50%;
+}
+.wl-neirong img{
+    width: 100%;
+    min-height: 80px;
+    margin: 0 auto;
+    display: block;
+}
+.wl-tou-yonghu{
+    width: 30%;
+    height:50px ;
+    float: left;
+    text-align: left;
+    margin-left: 10px;
+}
+.wl-tou-yonghu dl{
+    font-size: 14px;
+    color: #1D1D1D;
+}
+.wl-tou-yonghu dt{
+    color: #898989;
+    font-size: 12px;
+
+}
+.wl-jiahy button{
+    width: 18%;
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    background: #7DB0E8;
+    color: #FFFFFF;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.wl-neirong{
+    width: 90%;
+    margin: 0 auto;
+    min-height: 200px;
+    text-indent: 30px;
+}
+.wl-fengxiang{
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.pengyouqua{
+    padding-left: 25px;
+
+    background: url("/static/image/user/pyq.png")no-repeat 10px 6px;
+    background-size: 22px;
+}
+.wl-xiang{
+    text-align: center;
+    width: 31.5%;
+    height: 35px;
+    line-height: 35px;
+    color: #1D1D1D;
+    font-size: 12px;
+    border: 1px solid #E0E0E0;
+    float: left;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+.wl-weixn{
+    position: absolute;
+    left: 21px;
+    right: 0;
+}
+.wl-xiang span{
+    margin-left: 10px;
+}
+.wl-xiangguan{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #1D1D1D;
+    font-size: 14px;
+    background: #F2F2F2;
+    margin-top: 10px;
+}
+.wzxq {
+    width: 95%;
+    min-height: 115px;
+    margin: 0 auto;
+    margin-left: 10px;
+    position: relative;
+    top: 10px;
+}
+.wx-x {
+    width: 55%;
+    min-height: 75px;
+    position: absolute;
+    left: 15px;
+    padding-top: 10px;
+}
+.wx-x h3 {
+    min-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    color: #1F1F1F;
+    font-size: 14px;
+}
+.wzxq img {
+    width: 35%;
+    height: 80px;
+    display: block;
+    float: right;
+    margin-right: 10px;
+    background: gray;
+}
+.wx-x p span:nth-child(1) {
+    margin-top: 10px;
+    float: left;
+    font-size:10px;
+    color: #898989;
+}
+.wx-x p span:nth-child(2) {
+    margin-top: 10px;
+    float: right;
+    margin-right: 30px;
+    font-size:10px;
+    color: #898989;
+}
+.ckgd {
+    width: 100%;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    color: #222222;
+    font-size: 14px;
+}
+.wl-pinglun {
+    width: 95%;
+    min-height: 85px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+.wl-ping-xiang{
+    width: 85%;
+    float: left;
+    margin-left: 10px;
+    min-height: 85px;
+    border-bottom: 1px solid #EEEEEE;
+}
+.wl-name{
+    color: #7DB0E8;
+    font-size: 16px;
+    float: left;
+}
+.wl-dianzan{
+    float: right;
+    font-size: 13px;
+    color: #999999;
+}
+.wl-ping-neirong{
+    width: 100%;
+    min-height: 20px;
+    color: #6d6d6d;
+    float: left;
+    font-size: 13px;
+    margin: 5px 0;
+}
+.wl-pji {
+    height: 30px;
+    line-height: 30px;
+    color: #222222;
+    font-size: 11px;
+    float: left;
+}
+.wl-foot{
+    width: 100%;
+    position: fixed;
+    height: 45px;
+    bottom: 0px;
+    background: white;
+    border-top: 1px solid rgb(242, 242, 242);
+    padding: 6px;
+    max-width: 650px;
+}
+.wl-pinglun img{
+    border-radius: 50%;
+}
+.wl-foot-input{
+    width: 65%;
+    float: left;
+    height: 30px;
+    padding-left: 30px;
+    background: url("/static/image/user/xpl.png")no-repeat 7px 5px;
+    background-color: #F4F5F6;
+    background-size: 20px;
+    border-radius: 25px;
+
+}
+.wl-shoucang li{
+    width: 16%;
+    text-align: center;
+    float: left;
+    font-size: 25px;
+    margin-left: 5px;
+}
+.wl-zhez2{
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .3);
+    z-index: 99999;
+}
+.wl-zl2{
+    width: 100%;
+    position: fixed;
+    height: 45px;
+    bottom: 0px;
+    background:white;
+}
+.wl-zl2 textarea{
+    border-radius: 10px;
+    width: 78%;
+    height: 35px;
+    background: #E5E5E5;
+    color: #888888;
+    resize: none;
+    text-indent: 2px;
+    margin: 6px;
+    padding: 6px;
+    font-size: 14px;
+    float: left;
+}
+.wl-fabu{
+    width: 14%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #EBEBEB;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+    float: left;
+    margin-top: 8px;
+}
+.wl-zhezhao {
+    background: #FFFFFF;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .8);
+    z-index: 10;
+}
+.wl-zhe1 {
+    width: 80%;
+    height: 260px;
+    background: white;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 40%;
+}
+.wl-renzh {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 17px;
+    background: #EDEDED;
+    color: #333333;
+    padding-left: 30px;
+    border-radius: 10px 10px 0 0;
+}
+.wl-neie1 {
+    width: 85%;
+    height: 75%;
+    margin: 0 auto;
+}
+.wl-neie1 p:nth-child(1) {
+    color: #888888;
+    font-size: 13px;
+    margin-top: 10px;
+}
+.wl-neie2 {
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    margin-top: 14px;
+    background: #EEEEEE;
+    font-size: 15px;
+    color: #000000;
+    padding: 10px;
+}
+.wl-btn {
+    width: 25%;
+    height: 30px;
+    line-height: 30px;
+    background: #7DB0E8;
+    color: #FFFFFF;
+    font-size: 15px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 8px;
+}
+.cus-favorite{color: #7db0e8 !important;}
+.href{ cursor: pointer !important;}

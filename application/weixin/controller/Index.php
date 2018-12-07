@@ -28,7 +28,7 @@ class Index extends BaseController
      */
     public function index(Request $request)
     {
-        return $this->fetch('index/index');
+        return $this->fetch('index/index2');
     }
 
     /**

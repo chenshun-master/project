@@ -1,0 +1,161 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" type="text/css" href="/static/weixin/css/usermain.css" />
+<style>
+    .se{
+        color: red;
+    }
+</style>
+{/block}
+
+{block name="main"}
+<!--这里编写主体内容-->
+<div style="width: 100%;padding-bottom: 100px">
+<header>
+    <div class="wl-top">
+        <div class="wl-ttop">
+            <div class="wl-touxiang">
+                <img src="{$user_info['portrait']}" alt=""  onerror='this.src="/static/image/user/tou.png"'>
+            </div>
+            <div class="wl-renzheng">
+                <div class="wl-yonghu">
+                    <dl>{$user_info['nickname']? $user_info['nickname'] : $user_info['mobile']|mobileFilter}</dl>
+                    <?php if($user_info['type'] == 1):?>
+                    <dd  onclick="redream.href('/weixin/user/certification')" >申请认证</dd>
+                    <?php elseif($user_info['type'] == 2):?>
+                    <dd>认证用户</dd>
+                    <?php elseif($user_info['type'] == 3):?>
+                    <dd>认证医生</dd>
+                    <?php elseif($user_info['type'] == 4):?>
+                    <dd>认证医院</dd>
+                    <?php elseif($user_info['type'] == 5):?>
+                    <dd>官方团队</dd>
+                    <?php endif;?>
+                </div>
+                <a href="/weixin/user/modify">
+                    <div class="wl-fanhui">
+                        <i class="iconfont icon-back_left-copy" style="font-size: 25px"></i>
+                    </div>
+                </a>
+            </div>
+            <div style="clear:both;" ></div>
+        </div>
+        <div class="wl-anli">
+            <ul>
+                <li>
+                    <dl>{$publishStatistics['type_1']['total']}</dl>
+                    <dt>文章</dt>
+                </li>
+                <li>
+                    <dl>{$publishStatistics['type_2']['total']}</dl>
+                    <dt>视频</dt>
+                </li>
+                <li>
+                    <dl>{$publishStatistics['type_3']['total']}</dl>
+                    <dt>案例</dt>
+                </li>
+                <li style="border: none">
+                    <dl>{$publishStatistics['type_4']['total']}</dl>
+                    <dt>问答</dt>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<main>
+    <div class="wl-shoucang">
+        <ul>
+            <a href="/weixin/user/collection#favorite">
+                <li>
+                    <dl   class="iconfont icon-favor_fill_light" style="font-size: 30px;color: #69BD65;"></dl>
+                    <dt>我的收藏</dt>
+                </li>
+            </a>
+            <a href="/weixin/user/collection#comment">
+                <li>
+                    <dl class="iconfont icon-commentfill"   style="font-size: 30px;color: #EB545F;"></dl>
+                    <dt>我的评论</dt>
+                </li>
+            </a>
+            <a href="/weixin/user/collection#like">
+                <li>
+                    <dl  class="iconfont icon-dianzan1"  style="font-size: 30px;color: #7DB0E8;"></dl>
+                    <dt>我的点赞</dt>
+                </li>
+            </a>
+            <a href="/weixin/user/friends">
+                <li>
+                    <dl  class="iconfont icon-friendfill"  style="font-size: 30px;color: #F29C9F;"></dl>
+                    <dt>我的好友</dt>
+                </li>
+            </a>
+        </ul>
+    </div>
+    <div class="wl-tongzhi">
+        <a href="/weixin/user/notice"><p style="position: relative">消息通知<i class="wl-xui" id="cus-unread-msg-tip" style="display: none">0</i><span class="iconfont icon-back_left-copy" style="font-size: 20px"></span></p></a>
+        <a href="/weixin/user/certification"><p style=" border-bottom: 6px solid #F4F5F6;">用户认证 <span class="iconfont icon-back_left-copy" style="font-size: 20px"></span></p></a>
+        <a href="/weixin/user/modifypwd"><p>修改密码 <span class="iconfont icon-back_left-copy" style="font-size: 20px"></span></p></a>
+        <a href="/weixin/user/replacephone"><p style=" border-bottom: 6px solid #F4F5F6;">修改手机号 <span class="iconfont icon-back_left-copy" style="font-size: 20px"></span></p></a>
+        <p class="tkyy">联系我们 <span class="iconfont icon-back_left-copy" style="font-size: 20px"></span></p>
+    </div>
+    <?php if($isSignOut):?>
+        <a href="/weixin/user/signOut" ><div class="wl-btn">退出登录</div></a>
+    <?php endif;?>
+
+    <div class="marsk-container">
+        <div class="tkyy_con">
+            <p  class="dian">{$contactMobile}</p>
+            <p ><span class="quxiao">取消</span><span class="bd"><a href="tel:{$contactMobile}">拨打</a></span></p>
+        </div>
+    </div>
+</main>
+</div>
+
+{include file="layout/footer" /}
+{/block}
+
+{block name="script"}
+<script>
+    var myObj = {
+        loadindUnreadMsg:function(){
+            $.ajax({
+                url: "/weixin/api/getUnreadMsg",
+                type: 'post',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        if(res.data.total > 0){
+                            $('#cus-unread-msg-tip').text(res.data.total).show();
+                        }
+                    }
+                }
+            });
+        }
+    };
+
+
+    $(function(){
+        myObj.loadindUnreadMsg();
+    });
+
+        $(".tkyy").click(function (event) {
+            event.stopPropagation(); //停止事件冒泡
+            $(".marsk-container").toggle();
+        });
+
+        //点击空白处隐藏弹出层
+        $(".marsk-container").click(function (event) {
+            var _con = $('.tkyy_con'); // 设置目标区域
+            if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+                $('.marsk-container').hide(); //淡出消失
+            }
+        });
+        $(".quxiao").click(function () {
+            $('.marsk-container').hide(); //淡出消失
+        })
+
+
+</script>
+{/block}
