@@ -1,0 +1,74 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/shop/css/pay.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;height: 100%;background: #F2F2F2">
+    <header>
+        <div class="wl-top">
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i>
+            <span>提交订单</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="wl-zonghe">
+            <span class="wl-xiannv">【鼻综合】爆款仙女鼻综合</span>
+            <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="margin: 0">
+            <span class="wl-xiannv">数量</span>
+            <span class="wl-jiage1">1</span>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv1 se">商家立减优惠，减1193元</span>
+            <span class="wl-jiage2 ">-￥1193 <span class="wl-bjtu"></span></span>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">预付金小计</span>
+            <span class="wl-jiage1" style="color: #F24F4F">￥957</span>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe2">
+            <span class="wl-xiannv">到店付尾款</span>
+            <div class="wl-youhui">
+                <dl >￥3827</dl>
+                <dd>(已优惠：￥1193)</dd>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">手机号码</span>
+            <span class="wl-jiage1">196****23.8</span>
+        </div>
+        <div class="wl-zonghe2">
+            <span class="wl-xiannv se ">告知商家手机号码，便于到店前咨询</span>
+            <span class="wl-jiage1 iconfont icon-xuanzhong1" style="font-size: 15px;color: #FF615C"></span>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-bth">
+            去支付 957元
+        </div>
+    </main>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    $(".wl-bjtu").addClass('wl-bjtu'); // 初始化时添加背景1
+    $(".wl-bjtu").click(function() {
+        $(this).toggleClass('wl-bjtu').toggleClass('wl-bjtu1');
+    });
+</script>
+{/block}

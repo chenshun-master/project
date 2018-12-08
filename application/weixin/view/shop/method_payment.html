@@ -1,0 +1,56 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/shop/css/method_payment.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;height: 100%;background: #F2F2F2">
+    <header>
+        <div class="wl-top">
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i>
+            <span>支付方式</span>
+        </div>
+    </header>
+    <main>
+        <div class="wl-zhifu">请选择支付方式</div>
+        <div class="wl-zhifu1">
+            <div style="float: left">
+                <i class="iconfont icon-weixin1 "style="font-size: 20px;color: #35B05E;float: left"></i>
+                <span style="float: left;margin-left: 5px">微信支付</span>
+            </div>
+            <div style="float: right">
+                <i class="iconfont icon-yuanjiaojuxing1kaobei-copy" style="color: #FF615C;font-size: 18px"></i>
+                <i class="iconfont icon-xuanzhong2" style="color: #FF615C;font-size: 18px"></i>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zhifu1" style="margin-top: 10px">
+            <div style="float: left">
+                <span style="float: left;margin-left: 5px">实付金额</span>
+            </div>
+            <div style="float: right">
+                <i  style="color: #FF615C;font-size: 12px">￥957</i>
+            </div>
+        </div>
+        <div class="wl-bth">
+            确认支付
+        </div>
+        <div class="wl-wancheng">
+            完成支付即表示您已阅读并同意 <span style="color: #7DB0E8">薇琳医美隐私政策</span>
+        </div>
+    </main>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+
+</script>
+{/block}

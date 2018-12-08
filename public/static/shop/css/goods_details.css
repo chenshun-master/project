@@ -392,6 +392,7 @@
 
 }
 .wl-re-footer{
+    max-width: 650px;
     position: fixed;
     bottom: 0;
     width: 100%;

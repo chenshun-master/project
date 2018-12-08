@@ -1,0 +1,123 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/shop/css/order_details.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;height: 100%;background: #F2F2F2" id="tab">
+    <header>
+        <div class="wl-top">
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i>
+            <span>订单详情</span>
+        </div>
+
+    </header>
+    <main>
+        <div class="wl-zonghe" style="    padding: 0 10px 0 10px;">
+            <span class="wl-xiannv">【鼻综合】爆款仙女鼻综合</span>
+            <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
+        </div>
+        <div style="clear: both"></div>
+        <div >
+            <div class="wl-shuliang">
+                <div class="wl-zonghe">
+                    <span class="wl-xiannv">数量</span>
+                    <div class="wl-jiage1">
+                            <tr>
+                                <div class="wl">
+                                    <input class="min" name="" type="text" value="-" readonly/>
+                                    <input class="text_box" name="" type="text" value="1" readonly/>
+                                    <input class="add" name="" type="text" value="+" readonly/>
+                                </div>
+                            </tr>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="wl-zonghe">
+                    <span class="wl-xiannv">176****2308</span>
+                </div>
+
+            </div>
+            <div class="wl-zonghe1">
+                <span class="wl-xiannv1 se">商家立减优惠，减1193元</span>
+                <span class="wl-jiage2 ">-￥1193 <span class="wl-bjtu"></span></span>
+            </div>
+            <div class="wl-zonghe1">
+                <span class="wl-xiannv">订金金额</span>
+                <span class="wl-jiage1 " style="color: #F24F4F">￥<span class="price">958</span></span>
+            </div>
+            <div class="wl-zonghe1 qu">
+                <span class="wl-xiannv">订金优惠金额</span>
+                <span class="wl-jiage1" style="color: #F24F4F">-￥1193</span>
+            </div>
+            <div class="wl-zonghe1 qu xian">
+                <span class="wl-xiannv">到院消费后再付给医院</span>
+                <span class="wl-jiage1" style="color: #F24F4F">￥3827</span>
+            </div>
+            <div class="wl-zonghe1 qu">
+                <span class="wl-xiannv">在线支付金额</span>
+                <span class="wl-jiage1" style="color: #F24F4F">￥<span  id="total" >958</span></span>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="wl-foot-btn">
+            <div style="float: right">
+                <div>
+                 <span class="wl-shifu"> 实付：<span style="color: #7DB0E8" >￥<span id="total1">958</span></span></span>
+                    <div class="wl-btn">
+                        提交订单
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    // $(".wl-bjtu").addClass('wl-bjtu'); // 初始化时添加背景1
+    // $(".wl-bjtu").click(function() {
+    //     $(this).toggleClass('wl-bjtu').toggleClass('wl-bjtu1');
+    // });
+    $(function() {
+        $(".add").click(function() {
+            var t = $(this).parent().find('input[class*=text_box]');
+            t.val(parseInt(t.val()) + 1);
+            setTotal();
+        })
+
+				$(".min").click(function() {
+					var t = $(this).parent().find("input[class*=text_box]");
+					t.val(parseInt(t.val()) - 1);
+					if(parseInt(t.val()) < 0) {
+						t.val(0);
+					}
+					setTotal()
+				})
+
+        function setTotal() {
+            var sum = 0;
+            $("#tab").each(function() {
+
+                var num = parseInt($(this).find("input[class*=text_box]").val());
+                var price = parseFloat($(this).find("span[class*=price]").text());
+                sum += num * price;
+            })
+            $("#total,#total1").html(sum.toFixed(2));
+        }
+        setTotal();
+
+    })
+</script>
+{/block}
