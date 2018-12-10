@@ -182,7 +182,7 @@
     margin: 0 auto;
     background: url("/static/image/user/lanv.png")no-repeat 0px 0px;
     background-size: 25px;
-    z-index: 999999!important;
+    z-index: 999;
 
 }
 .wl-ysname img{
@@ -307,7 +307,8 @@
 .wl-xuzhi{
     width: 100%;
     min-height: 100px;
-    padding: 0 10px 0 10px;
+    /*padding: 0 10px 0 10px;*/
+    border-bottom: 5px solid #DFDFDF;
 }
 .wl-shangping1{
     width: 100%;
@@ -315,7 +316,7 @@
     line-height: 34px;
     color: #1D1D1D;
     font-size: 13px;
-
+    padding: 0 10px 0 10px;
     border-bottom: 1px solid #DFDFDF;
 }
 .wl-shangping2{
@@ -324,7 +325,7 @@
     line-height: 34px;
     color: #1D1D1D;
     font-size: 13px;
-    border-top: 5px solid #DFDFDF;
+    padding: 0 10px 0 10px;
     border-bottom: 1px solid #DFDFDF;
 }
 .wl-xuzhi dl{
@@ -344,7 +345,7 @@
 .wl-gengduo{
     width: 100%;
     min-height: 100px;
-    padding: 0 10px 0 10px;
+
 }
 .wl-remen{
     width: 100%;
@@ -433,4 +434,59 @@
     text-align: center;
     border-radius: 25px;
     margin-top: 5px;
+}
+.marsk-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .5);
+    z-index: 99999;
+    display: none;
+}
+.tkyy_con {
+    position: fixed;
+    top: 38%;
+    left: 0;
+    right: 0;
+    width: 70%;
+    height: 135px;
+    background: #FFFFFF;
+    margin: 0 auto;
+    border-radius: 10px;
+    z-index: 99999;
+}
+.tkyy_con .dian {
+    width: 100%;
+    height: 85px;
+    line-height: 85px;
+    text-align: center;
+    color: #000000;
+    font-size: 18px;
+    border-bottom: 1px solid #F1F1F1;
+}
+.quxiao {
+    float: left;
+    display: block;
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-right: 1px solid #F1F1F1;
+    color: #000000;
+    font-size: 18px;
+}
+.bd {
+    float: left;
+    display: block;
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #000000;
+    font-size: 18px;
+}
+.padding{
+    padding: 0 10px 0 10px;
 }

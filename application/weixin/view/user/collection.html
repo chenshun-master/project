@@ -10,12 +10,13 @@
     <title>{:config('conf.title')}</title>
     <link rel="stylesheet" type="text/css" href="/static/css/collection.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
-    <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>-->
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <style>
         .cus-click-href,.cus-article-href2,.cus-article-fabulous{cursor: pointer;}
         .cus-blue{color: #7DB0E8}
+        .wl-ttu{    margin-top: 14px !important;}
     </style>
 </head>
 <style>
@@ -43,12 +44,14 @@
 <div class="wl-con">
     <div class="wx-content">
         <header>
-            <div class="top" id="top"  style="position: relative">
-                <a href="/weixin/user/main"><i class="iconfont icon-back_light" style="    font-size: 40px; position: absolute;top: 24px;left: 11px;" ></i></a>
-                <div id="ul" style="border-bottom: 1px solid #EEEEEE;">
-                    <span id="one" style="margin-left: 207px;">收藏</span>
-                    <span id="two">评论</span>
-                    <span id="three">点赞</span>
+            <div class="top" style="position: relative;margin: 0">
+                <a href="/weixin/user/main"><i class="iconfont icon-back_light" style="    font-size: 40px; position: absolute;top: 4px;left: 11px;" ></i></a>
+                <div  class="wl-ttu" style="border-bottom: 1px solid #EEEEEE;">
+                    <div style="margin: 0 auto;width: 43%;">
+                        <span id="one">收藏</span>
+                        <span id="two">评论</span>
+                        <span id="three">点赞</span>
+                    </div>
                 </div>
             </div>
         </header>

@@ -2,7 +2,7 @@
     <a href="/weixin/index/index">
         <div class="wl-foot">
             {if (checkFooter('/weixin/index/index')) }
-                <dl class="iconfont icon-home_light" style="font-size: 25px;"></dl>
+                <dl class="iconfont icon-home_fill_light xian" style="font-size: 25px;"></dl>
                 <dd class="xian">首页</dd>
             {else /}
                 <dl class="iconfont icon-home_light" style="font-size: 25px;"></dl>
@@ -12,8 +12,13 @@
     </a>
     <a href="/weixin/index/doctor">
         <div class="wl-foot">
+            {if (checkFooter('/weixin/index/doctor')) }
+            <dl class="iconfont icon-yishengsshixin xian" style="font-size: 25px;"></dl>
+            <dd class="xian">医生</dd>
+            {else /}
             <dl class="iconfont icon-yishengkkongxin" style="font-size: 25px;"></dl>
-            <dd>医生</dd>
+            <dd >医生</dd>
+            {/if}
         </div>
     </a>
     <!--<a href="/weixin/shop/index">-->
@@ -24,14 +29,24 @@
     <!--</a>-->
     <a href="/weixin/index/hospital">
         <div class="wl-foot">
-            <dl class="iconfont icon-chakanyiyuan" style="font-size: 25px;color: #000000"></dl>
-            <dd>医院</dd>
+            {if (checkFooter('/weixin/index/hospital')) }
+            <dl class="iconfont icon-yiyuan3 xian" style="font-size: 25px;"></dl>
+            <dd class="xian">医院</dd>
+            {else /}
+            <dl class="iconfont icon-chakanyiyuan" style="font-size: 25px;"></dl>
+            <dd >医院</dd>
+            {/if}
         </div>
     </a>
     <a href="/weixin/user/main">
         <div class="wl-foot">
-            <dl class="iconfont icon-my_light" style="font-size: 25px;color: #000000"></dl>
-            <dd>我的</dd>
+            {if (checkFooter('/weixin/user/main')) }
+            <dl class="iconfont icon-my_fill_light xian" style="font-size: 25px;"></dl>
+            <dd class="xian">我的</dd>
+            {else /}
+            <dl class="iconfont icon-my_light" style="font-size: 25px;"></dl>
+            <dd >我的</dd>
+            {/if}
         </div>
     </a>
 </footer>

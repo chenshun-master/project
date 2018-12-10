@@ -146,25 +146,25 @@
                     <div style="clear: both"></div>
                     <div class="wl-xuzhi" id="goumai">
                         <div class="wl-shangping1">购买须知</div>
-                        <div>
+                        <div class="padding">
                             <dl>有效期</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
                                 购买当天起90天内有效</dt>
                         </div>
                         <div style="clear: both"></div>
-                        <div>
+                        <div class="padding">
                             <dl>预约信息</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
                                 请您提前1天预约</dt>
                         </div>
                         <div style="clear: both"></div>
-                        <div>
+                        <div class="padding">
                             <dl>可用时间</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
                                 10:00:00至22:00:00</dt>
                         </div>
                         <div style="clear: both"></div>
-                        <div>
+                        <div style="margin-bottom: 5px;" class="padding">
                             <dl>消费流程</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
                                 下订单并支付预付金</dt>
@@ -176,7 +176,7 @@
                     </div>
                     <div class="wl-gengduo">
                         <div class="wl-shangping2">更多本店热门商品</div>
-                        <div class="wl-remen">
+                        <div class="wl-remen padding">
                             <div class="wl-remen-img">
                                 <img src="" alt="">
                             </div>
@@ -190,7 +190,7 @@
                                 </dd>
                             </div>
                         </div>
-                        <div class="wl-remen">
+                        <div class="wl-remen padding">
                             <div class="wl-remen-img">
                                 <img src="" alt="">
                             </div>
@@ -204,7 +204,7 @@
                                 </dd>
                             </div>
                         </div>
-                        <div class="wl-remen">
+                        <div class="wl-remen padding">
                             <div class="wl-remen-img">
                                 <img src="" alt="">
                             </div>
@@ -240,6 +240,12 @@
             </div>
         </div>
     </div>
+    <div class="marsk-container">
+        <div class="tkyy_con">
+            <p class="dian">18798276809</p>
+            <p><span class="quxiao">取消</span><span class="bd"><a href="tel:18798276809">拨打</a></span></p>
+        </div>
+    </div>
 </main>
 </div>
 {/block}
@@ -258,5 +264,21 @@
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 
     });
+
+    $(".dianhua-right").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").toggle();
+    });
+
+    //点击空白处隐藏弹出层
+    $(".marsk-container").click(function (event) {
+        var _con = $('.tkyy_con'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.marsk-container').hide(); //淡出消失
+        }
+    });
+    $(".quxiao").click(function () {
+        $('.marsk-container').hide(); //淡出消失
+    })
 </script>
 {/block}
