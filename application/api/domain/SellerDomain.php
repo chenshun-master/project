@@ -35,6 +35,13 @@ class SellerDomain
             return 4;
         }
 
-        return $seller_info;
+        $auth_info = Db::name('auth')->where('user_id',$user_info['id'])->field('username,enterprise_name')->find();
+        return [
+            'seller_id'     =>$seller_info['seller_id'],
+            'user_id'       =>$seller_info['user_id'],
+            'type'          =>$user_info['type'],
+            'hospital_name' =>$auth_info['enterprise_name'],
+            'real_name'     =>$auth_info['username'],
+        ];
     }
 }

@@ -18,12 +18,28 @@ class Shop extends BaseController
         return $this->fetch('shop/spec');
     }
 
-
     /**
-     * 规格列表
+     * 添加商品页面
      * @return mixed
      */
     public function addgood(){
+        if(!$this->checkLogin()){
+            return $this->redirect('index/login');
+        }
+
+        $user_info = $this->getUserInfo();
+        $type = $user_info['type'];
+        $doctor = [];
+        $hospital = [];
+
+        $uDomain = new \app\api\domain\UDomain();
+
+        if($type == 3){
+            $doctor[$user_info['user_id']] = $user_info['real_name'];
+            $hospital = $uDomain->getDoctorHospitalList($user_info['user_id']);
+        }else if($type == 4){
+            $doctorList = $uDomain->getHospitalDoctorList($user_info['user_id'],1,1000);
+        }
         return $this->fetch('shop/addgood');
     }
 
@@ -76,5 +92,4 @@ class Shop extends BaseController
             return $this->returnData([],'添加失败',305);
         }
     }
-
 }

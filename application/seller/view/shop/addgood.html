@@ -364,12 +364,9 @@
                 if(objClass.loading == false){
                     var loading = layer.msg('提交中，请稍等...', {icon: 16,shade: 0.01,time:0});
                     $.ajax({
-                        url: '/seller/shopApi/uploadGoodImg',
+                        url: '/seller/shopApi/releaseGoods',
                         type: 'POST',
-                        cache: false,
-                        data: formData,
-                        processData: false,
-                        contentType: false,
+                        data: data,
                         dataType: "json",
                         beforeSend:function(){
                             objClass.loading = true;
@@ -382,7 +379,7 @@
                             if(res.code == 200){
                                 layer.msg('提交成功...', {icon: 1});
                                 setTimeout(function(){
-                                    window.location.href = '/seller'
+                                    window.location.href = '/seller/shop/index'
                                 },2000)
                             }else{
                                 layer.msg(res.msg);

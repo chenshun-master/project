@@ -1,6 +1,7 @@
 <?php
 namespace app\api\domain;
 
+use app\api\controller\User;
 use think\Db;
 
 class UDomain
@@ -176,5 +177,29 @@ class UDomain
      */
     public function getUserLicence($user_id){
         return Db::name('auth')->where('user_id',$user_id)->where('type',3)->field('id as auth_id,business_licence')->find();
+    }
+
+    /**
+     * 获取医生所在的医院列表
+     * @param $user_id    User 表ID
+     * @return array|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getDoctorHospitalList($user_id){
+        $obj = Db::name('doctor')->alias('doctor');
+        $obj->where('doctor.user_id',$user_id);
+        $obj->leftJoin('wl_doctor_hospital dh','doctor.id = dh.doctor_id');
+        $obj->leftJoin('wl_hospital hospital','dh.hospital_id = hospital.id');
+        $obj->field('hospital.id,hospital.hospital_name');
+        return $obj->select();
+    }
+
+    /**
+     * 获取用户的
+     */
+    public function getDoctorDetail($user_id){
+
     }
 }

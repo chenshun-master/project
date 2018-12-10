@@ -16,54 +16,65 @@
         <!--<a href="/static/admin/index2.html"><b>商家后台管理</b></a>-->
     <!--</div>-->
     <div class="login-box-body">
-            <p class="login-box-msg"><b>商家后台</b></p>
-            <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="手机号">
-                <span class="form-control-feedback"><i class="fa fa-fw fa-user"></i></span>
+        <p class="login-box-msg"><b>商家后台</b></p>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="手机号" id="fr-mobile">
+            <span class="form-control-feedback"><i class="fa fa-fw fa-user"></i></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="登录密码" id="fr-password">
+            <span class="form-control-feedback"><i class="fa fa-unlock-alt"></i></span>
+        </div>
+
+        <div class="form-group has-feedback">
+            <p style="min-height: 20px;color: red" id="fr-error-tip"></p>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4" style="float: right">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" onclick="loginObj.submit()">立即登录</button>
             </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="登录密码">
-                <span class="form-control-feedback"><i class="fa fa-unlock-alt"></i></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-4" style="float: right">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat" >立即登录</button>
-                </div>
-            </div>
+        </div>
     </div>
 </div>
 <script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="/pc/layui/css/layui.css"  media="all">
-
+<script src="/static/js/functions.js"></script>
 <script type="text/javascript">
         var loginObj = {
             loading:false,
             submit:function(){
                 var mobile   = $('#fr-mobile').val();
-                var password = $('#fr-password').val();
+                var password = $.trim($('#fr-password').val());
 
-                $.ajax({
-                    url:"/seller/index/postLogin",
-                    type:'post',
-                    data:{mobile:mobile,password:password},
-                    dataType:'json',
-                    beforeSend:function(){
-                        loginObj.loading = true;
-                    },
-                    complete:function(){
-                        loginObj.loading = false;
-                    },
-                    success:function(res){
-                        if(res.code == 200){
-
-                        }else if(res.code == 301){
-
-                        }else if(res.code == 302){
-
+                if(!redream.checkMobile(mobile)){
+                    $('#fr-error-tip').text('手机号格式错误');
+                    return false;
+                }else if(redream.isEmptyStr(password)){
+                    $('#fr-error-tip').text('密码不能为空');
+                    return false;
+                }else if(this.loading == false){
+                    $('#fr-error-tip').text('');
+                    $.ajax({
+                        url:"/seller/index/postLogin",
+                        type:'post',
+                        data:{mobile:mobile,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            loginObj.loading = true;
+                        },
+                        complete:function(){
+                            loginObj.loading = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                window.location.href = '/seller';
+                            }else {
+                                $('#fr-error-tip').text('登录失败');
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
+            },
         }
 </script>
 </body>

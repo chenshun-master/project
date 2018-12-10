@@ -14,6 +14,10 @@ class BaseController extends Controller
 
         #配置Session作用域
         Session::prefix('seller');
+
+        if($this->request->isGet() && !$this->request->isAjax()){
+            $this->assign('user_info',$this->getUserInfo());
+        }
     }
 
     /**

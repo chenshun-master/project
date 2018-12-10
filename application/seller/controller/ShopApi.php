@@ -12,9 +12,9 @@ class ShopApi extends BaseController
     {
         parent::__construct($app);
 
-//        if(!$this->checkLogin()){
-//            return $this->returnData([],'用户未登录',401);exit;
-//        }
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);exit;
+        }
     }
 
     /**
@@ -57,9 +57,9 @@ class ShopApi extends BaseController
      * @return false|string
      */
     public function releaseGoods(Request $request){
-//        if(!$request->isAjax() || !$request->isPost()){
-//            return $this->returnData([],'参数不符合规范',301);
-//        }
+        if(!$request->isAjax() || !$request->isPost()){
+            return $this->returnData([],'参数不符合规范',301);
+        }
 
         $data = \Request::only([
             'name'          =>'',
@@ -74,7 +74,7 @@ class ShopApi extends BaseController
             'description'   =>'',
             'search_words'  =>'',
             'img_ids'       =>'',
-            'category_ids'  =>''
+            'category_ids'  =>'',
         ], 'post');
 
         $data['img_ids'] = trim($data['img_ids'],',');
@@ -96,6 +96,7 @@ class ShopApi extends BaseController
         }
         return $this->returnData([],'商品发布成功',200);
     }
+
 
     public function getCategoryList(Request $request){
         $category_id = $request->post('category_id',0);
