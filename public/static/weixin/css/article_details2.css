@@ -1,7 +1,7 @@
 
 .wl-body{
     width: 100%;min-height: 200px;
-    max-width: 650px;
+    max-width: 640px;
     overflow: hidden;
 }
 .wl-top{
@@ -221,7 +221,7 @@ width: 35px;
     background: white;
     border-top: 1px solid rgb(242, 242, 242);
     padding: 6px;
-    max-width: 650px;
+    max-width: 640px;
 }
 .wl-pinglun img{
     border-radius: 50%;
@@ -352,3 +352,21 @@ width: 35px;
 }
 .cus-favorite{color: #7db0e8 !important;}
 .href,.cus-comment-fabulous{ cursor: pointer !important;}
+
+.wl-fenxiang{
+    width: 220px;
+    height: 280px;
+    position: absolute;
+    top: 26px;
+    right: -60px;
+    cursor: pointer;
+}
+.wl-fenxiang p{
+    width: 230px;
+    height: 150px;
+    font-size: 0.34rem;
+    color: #FFFFFF;
+    text-align: center;
+    position: absolute;
+    right: 90px;
+}
