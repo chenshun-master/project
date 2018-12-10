@@ -249,7 +249,8 @@ class UserFriendDomain
     public function getMessageListData($receive_user_id){
         $count1 = Db::name('chat_record')->where('receive_user_id',$receive_user_id)->count();
         $count2 = Db::name('chat_record')->where('send_user_id',$receive_user_id)->count();
-        $sql = "select tmp_tab.*,user.nickname,user.portrait from (
+
+        $sql = "select tmp_tab.*,user.nickname,user.portrait,user.type,auth.username,auth.enterprise_name from (
                 
                 select tmp.send_user_id as uid,tmp.content,tmp.is_read,tmp.created_time,(SELECT count(1) FROM wl_chat_record r2 WHERE tmp.send_user_id = r2.send_user_id  and r2.is_read = 1 and r2.receive_user_id = {$receive_user_id}) AS unread_num 
                 from (SELECT send_user_id,content,is_read,created_time FROM wl_chat_record WHERE receive_user_id = {$receive_user_id} ORDER BY id desc LIMIT {$count1}) tmp GROUP BY tmp.send_user_id
@@ -262,6 +263,7 @@ class UserFriendDomain
                 ) tmp_tab 
                 
                 LEFT JOIN wl_user user on user.id = tmp_tab.uid
+                LEFT JOIN wl_auth auth on auth.user_id = tmp_tab.uid
                 GROUP BY tmp_tab.uid";
         $rows = Db::query($sql);
         return [

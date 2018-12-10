@@ -345,3 +345,9 @@ function getProductNo($order_no){
 
 }
 
+
+
+function checkFooter($url){
+    return strtolower(request()->url()) == strtolower($url) ? true : false;
+}
+

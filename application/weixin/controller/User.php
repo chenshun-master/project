@@ -717,6 +717,11 @@ class User extends BaseController
         if($data['rows']){
             foreach ($data['rows'] as $k=>$val){
                 $data['rows'][$k]['created_time'] = formatTime(strtotime($val['created_time']));
+                if($val['type'] == 3){
+                    $data['rows'][$k]['nickname'] = $val['username'];
+                }else if($val['type'] == 4 || $val['type'] == 5){
+                    $data['rows'][$k]['nickname'] = $val['enterprise_name'];
+                }
             }
         }
 

@@ -1,13 +1,18 @@
 <footer class="wl-footer">
     <a href="/weixin/index/index">
         <div class="wl-foot">
-            <dl class="iconfont icon-home_light" style="font-size: 25px;color: #000000"></dl>
-            <dd class="xian">首页</dd>
+            {if (checkFooter('/weixin/index/index')) }
+                <dl class="iconfont icon-home_light" style="font-size: 25px;"></dl>
+                <dd class="xian">首页</dd>
+            {else /}
+                <dl class="iconfont icon-home_light" style="font-size: 25px;"></dl>
+                <dd >首页</dd>
+            {/if}
         </div>
     </a>
     <a href="/weixin/index/doctor">
         <div class="wl-foot">
-            <dl class="iconfont icon-yishengkkongxin" style="font-size: 25px;color: #000000"></dl>
+            <dl class="iconfont icon-yishengkkongxin" style="font-size: 25px;"></dl>
             <dd>医生</dd>
         </div>
     </a>
