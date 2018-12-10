@@ -227,7 +227,7 @@ width: 35px;
     border-radius: 50%;
 }
 .wl-foot-input{
-    width: 65%;
+    width: 68%;
     float: left;
     height: 30px;
     padding-left: 30px;
@@ -238,11 +238,11 @@ width: 35px;
 
 }
 .wl-shoucang li{
-    width: 16%;
+    width: 13%;
     text-align: center;
     float: left;
     font-size: 25px;
-    margin-left: 5px;
+    /* margin-left: 11px; */
 }
 .wl-zhez2{
     background: #FFFFFF;

@@ -5,7 +5,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 ol, ul { list-style: none; }
 body{position:relative;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
-body {font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
+body {font-family: "思源黑体 CN";color:#221815;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
@@ -13,7 +13,7 @@ a{text-decoration: none;color: #221815;display: block;}
 
 .con{
 	width: 100%;
-	height: aoto;
+	height: auto;
 }
 .wx-top{
 	width: 100%;
@@ -22,7 +22,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	border-bottom: 1px solid #F1F1F1;
 	text-align: center;
 	color: #1B1B1B;
-	font-size: 0.34rem;
+	font-size: 34px;
 }
 .tb{
 	width: 70px;
@@ -50,7 +50,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	width: 450px;	
 	height: 160px;
 	float: right;
-	font-size: 0.3rem;
+	font-size:30px;
 	margin-top: 46px;
 	margin-right: 36px;
 }
@@ -62,12 +62,12 @@ a{text-decoration: none;color: #221815;display: block;}
 }
 .wx-wen dl dt{
 	color: #000000;
-	font-size: 0.38rem;
+	font-size:38px;
 	font-weight: bold;
 }
 .wx-wen dl dd{
 	color: #000000;
-	font-size: 0.25rem;
+	font-size: 25px;
 }
 .wx-wen dl:nth-child(1){
 	width: 105px;
@@ -91,7 +91,7 @@ a{text-decoration: none;color: #221815;display: block;}
 	line-height: 54px;
 	text-align: center;
 	color: #FFFFFF;
-	font-size: 0.3rem;
+	font-size:30px;
 	border-radius: 10px;
 	background: #7DB0E8;
 	margin-top: 40px;
@@ -102,18 +102,18 @@ a{text-decoration: none;color: #221815;display: block;}
 	line-height: 54px;
 	text-align: center;
 	color: #7DB0E8;
-	font-size: 0.3rem;
+	font-size: 30px;
 	border-radius: 10px;
 	background: #FFFFFF;
 	border: 1px solid #7DB0E8;
-		margin-top: 30px;
-		margin-left: 25px;
+	margin-top: 30px;
+	margin-left: 25px;
 }
 .wx-name{
-width: 100%;
-height: 72px;
-margin-top: 25px;
-position: relative;
+	width: 100%;
+	height: 72px;
+	margin-top: 25px;
+	position: relative;
 }
 .wx-nei1 img{
 	width: 255px;
@@ -121,34 +121,35 @@ position: relative;
 	background-color: gainsboro;
 	float: left;
 	margin-right: 5px;
+	font-size: 30px;
 }
 .wx-tou{
-width: 72px;
-height: 72px;
-display: block;
-border-radius: 50%;
-background: khaki;
-position: absolute;
-top: 0;
-left: 34px;
+	width: 72px;
+	height: 72px;
+	display: block;
+	border-radius: 50%;
+	background: khaki;
+	position: absolute;
+	top: 0;
+	left: 34px;
 }
 .wx-yh{
-position: absolute;
-top: 0px;
-left: 124px;
+	position: absolute;
+	top: 0px;
+	left: 124px;
 }
 .wx-rig{
-width: 50px;
-height: 50px;
-position: absolute;
-top:10px;
-right: 36px;
-background: url(../image/user/slh.png)no-repeat center;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top:10px;
+	right: 36px;
+	background: url(../image/user/slh.png)no-repeat center;
 }
 .wx-nei1{
-width: 100%;
-height: 180px;
-position: relative;
+	width: 100%;
+	height: 180px;
+	position: relative;
 	margin-bottom: 18px;
 }
 .wx-nei1 dt{
@@ -163,33 +164,33 @@ position: relative;
 
 }
 .wx-nei1 dd{
-width: 256px;
-height: 180px;
-float: right;
-position: absolute;
-top: 0;
-right: 0;
-margin-right: 36px;
+	width: 256px;
+	height: 180px;
+	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 36px;
 }
 .wx-fen{
-width: 100%;
-min-height: 55px;
+	width: 100%;
+	min-height: 55px;
 	line-height: 55px;
 	position:absolute;
 	bottom: 10px;
 }
 .wx-fen li{
 	width: 23%;
-float: left;
+	float: left;
 /*background: fuchsia;*/
-padding-left: 70px;
+	padding-left: 70px;
 }
 .on1{
 	width: 87%;
 	min-height: 55px;
 	margin: 0 auto;
 	margin-top: 20px;
-	font-size: 0.32rem;
+	font-size:32px;
 	color: #1F1F1F;
 	margin-left: 36px;
 	display: -webkit-box;
@@ -212,21 +213,21 @@ padding-left: 70px;
 	float: left;
 	background: gray;
 	margin: 0px 0px 0 7px;
-
+font-size: 30px;
 }
-#cc{
-	font-size: 40px;
+.cc{
+	font-size: 40px!important;
 	color: #999999;
 	float: left;
 }
 
-#ee{
-	padding-top: 5px;
+.ee{
+	padding-top: 1px;
 	padding-left: 10px;
 	height: 36px;
 	float: left;
 	color: #999999;
-    font-size: 0.26rem;
+    font-size:26px;
 }
 .zwnr{
 	position: fixed;
