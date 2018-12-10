@@ -1,7 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<link rel="stylesheet" href="/static/shop/css/goods_details.css">
+<link rel="stylesheet" href="/static/weixin/shop/css/goods_details.css">
 
 <style>
 
@@ -12,7 +12,7 @@
 <div style="width: 100%;min-height: 500px;padding-bottom: 100px">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
             <span>商品详情页</span>
             <i class="iconfont icon-favor_light top-right1"style="font-size: 25px;color: #333333"></i>
             <i class="iconfont icon-share_light top-right"style="font-size: 25px;color: #333333"></i>
@@ -21,9 +21,9 @@
 <main>
     <div class="swiper-container img-gao">
         <div class="swiper-wrapper ">
-            <div class="swiper-slide"><img src="/static/shop/image/index/bg3.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/static/shop/image/index/bg2.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/static/shop/image/index/bg1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg3.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg1.jpg" alt=""></div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
@@ -123,8 +123,8 @@
         <div>
             <ul class="wl-deji">
                 <li  class="active">全部项目</li>
-                <li>眼部</li>
-                <li>鼻部</li>
+                <a href="#goumai"><li>购买须知</li></a>
+                <li>美丽日记</li>
             </ul>
 
             <div class="content">
@@ -139,12 +139,12 @@
                         </p>
                     </div>
                     <div class="wl-img">
-                        <img src="/static/shop/image/index/b1.jpg" alt="">
-                        <img src="/static/shop/image/index/b2.jpg" alt="">
-                        <img src="/static/shop/image/index/b3.jpg" alt="">
+                        <img src="/static/weixin/shop/image/index/b1.jpg" alt="">
+                        <img src="/static/weixin/shop/image/index/b2.jpg" alt="">
+                        <img src="/static/weixin/shop/image/index/b3.jpg" alt="">
                     </div>
                     <div style="clear: both"></div>
-                    <div class="wl-xuzhi">
+                    <div class="wl-xuzhi" id="goumai">
                         <div class="wl-shangping1">购买须知</div>
                         <div>
                             <dl>有效期</dl>
@@ -224,7 +224,7 @@
                             <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>4456</span></span></dl>
                             <dd>到院尾付:￥3827</dd>
                         </div>
-                        <div class="wl-qianggou">
+                        <div class="wl-qianggou" onclick="redream.href('/weixin/shop/pay')">
                             立即抢购
                         </div>
                     </div>
@@ -253,7 +253,7 @@
         },
     })
     $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        $(".wl-deji li").addClass("active").siblings().removeClass("active");//获取选中元素的下标
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 

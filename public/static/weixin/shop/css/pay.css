@@ -50,7 +50,7 @@
     font-size: 11px;
     float: left;
     padding-left: 30px;
-    background: url("/static/shop/image/index/jian.png")no-repeat 2px 8px;
+    background: url("/static/weixin/shop/image/index/jian.png")no-repeat 2px 8px;
     background-size: 20px;
 }
 .wl-jiage2{
@@ -63,14 +63,14 @@
     width: 24px;
     height: 30px;
     float: right;
-    background: url("/static/shop/image/index/xuan.png")no-repeat 8px 8px;
+    background: url("/static/weixin/shop/image/index/xuan.png")no-repeat 8px 8px;
     background-size: 15px;
 }
 .wl-bjtu1{
     width: 24px;
     height: 30px;
     float: right;
-    background: url("/static/shop/image/index/xuan1.png")no-repeat 8px 8px;
+    background: url("/static/weixin/shop/image/index/xuan1.png")no-repeat 8px 8px;
     background-size: 15px;
 }
 /*.active{*/

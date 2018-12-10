@@ -1,0 +1,71 @@
+.wl-top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: white;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #EEEEEE;
+}
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+.wl-zhifu{
+    width: 100%;
+    height: 113px;
+    text-align: center;
+    color: #1B1B1B;
+    font-size: 13px;
+    padding-top: 15px;
+}
+.wl-dingdan{
+    width: 100%;
+    min-height: 100px;
+    background: white;
+}
+.wl-zonghe1 {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    background: #FFFFFF;
+    padding: 0 10px 0 10px;
+}
+.wl-xiannv {
+    color: #333333;
+    font-size: 11px;
+    float: left;
+}
+.wl-jiage1 {
+    color:#1B1B1B;
+    font-size: 11px;
+    float: right;
+    padding-right: 5px;
+}
+.wl-zonghe2{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    background: #FFFFFF;
+    padding: 0 10px 0 10px;
+    border-top: 1px solid #DFDFDF;
+}
+.wl-bizonghe{
+    margin-top: 10px;
+    padding: 0 10px 0 10px;
+}
+.wl-bizonghe dl{
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    color: #1D1D1D;
+    font-size: 11px;
+    padding: 7px 0 5px 0;
+}
+.wl-bizonghe dt{
+    color: #999999;
+    font-size: 11px;
+    padding: 1px 0 5px 0;
+}

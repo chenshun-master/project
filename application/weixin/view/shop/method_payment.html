@@ -1,7 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<link rel="stylesheet" href="/static/shop/css/method_payment.css">
+<link rel="stylesheet" href="/static/weixin/shop/css/method_payment.css">
 <style>
 
 </style>
@@ -13,7 +13,7 @@
 <div style="width: 100%;height: 100%;background: #F2F2F2">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
             <span>支付方式</span>
         </div>
     </header>
@@ -38,7 +38,7 @@
                 <i  style="color: #FF615C;font-size: 12px">￥957</i>
             </div>
         </div>
-        <div class="wl-bth">
+        <div class="wl-bth" onclick="redream.href('/weixin/shop/paySuccess')">
             确认支付
         </div>
         <div class="wl-wancheng">
