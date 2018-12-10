@@ -344,13 +344,14 @@ class UserFriendDomain
      * @return mixed
      */
     public function getFriendList($user_id){
-        $sql = "SELECT tmp_tab.*,user.portrait,user.nickname,user.`profile`,user.type
+        $sql = "SELECT tmp_tab.*,user.portrait,user.nickname,user.`profile`,user.type,auth.username,auth.enterprise_name
                 from (
                     SELECT friend_id AS uid, user_group AS my_group FROM wl_user_friends WHERE user_id = {$user_id} AND  status = 2  
                       UNION ALL 
                     SELECT user_id AS uid, friend_group AS my_group FROM wl_user_friends WHERE friend_id ={$user_id} AND  status = 2
                 ) tmp_tab
-                LEFT JOIN wl_user user on user.id = tmp_tab.uid";
+                LEFT JOIN wl_user user on user.id = tmp_tab.uid
+                LEFT JOIN wl_auth auth on auth.user_id = tmp_tab.uid";
         $rows =  Db::query($sql);
 
         return [
@@ -374,11 +375,13 @@ class UserFriendDomain
     public function getUserFollowList($user_id,$page = 1,$page_size = 15){
         $obj = Db::name('user_friends')->alias('friends');
         $obj->leftJoin('wl_user user',"user.id = if(friends.user_id = {$user_id},friends.friend_id,friends.user_id)");
+        $obj->leftJoin('wl_auth auth','user.id = auth.user_id');
+
         $obj->where('friends.applicant_id',$user_id);
         $obj->where('friends.status',3);
         $total = $obj->count();
 
-        $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type");
+        $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type,auth.username,auth.enterprise_name");
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,
@@ -401,13 +404,14 @@ class UserFriendDomain
     public function getUserFansList($user_id,$page = 1,$page_size = 15){
         $obj = Db::name('user_friends')->alias('friends');
         $obj->leftJoin('wl_user user',"user.id = if(friends.user_id = {$user_id},friends.friend_id,friends.user_id)");
+        $obj->leftJoin('wl_auth auth','user.id = auth.user_id');
 
         $obj->where('friends.applicant_id','<>',$user_id);
         $obj->where('friends.status',3);
         $obj->where("friends.user_id = {$user_id} or friends.friend_id = {$user_id}");
 
         $total = $obj->count();
-        $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type");
+        $obj->field("user.id as uid,user.portrait,user.nickname,user.profile,user.type,auth.username,auth.enterprise_name");
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,

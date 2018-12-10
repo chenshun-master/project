@@ -131,9 +131,23 @@ class User extends BaseController
 
         $isFriend = $this->_userFriendDomain->checkFollowOrFriend($uid,$this->getUserId());
 
+        $userInfo = $this->_userDomain->getUserInfo($uid);
+
+        if($userInfo['type'] == 3 || $userInfo['type'] == 4  || $userInfo['type'] == 5 ){
+            $model = new \app\api\model\AuthModel();
+            $res = $model->findUserId($uid);
+            if($res){
+                if($userInfo['type'] == 3){
+                    $userInfo['nickname'] = $res['username'];
+                }else if($userInfo['type'] == 4 || $userInfo['type'] == 5){
+                    $userInfo['nickname'] = $res['enterprise_name'];
+                }
+            }
+        }
+
         $this->assign('isFriend',$isFriend ? 1 : 2);
         $this->assign('uid',$uid);
-        $this->assign('uInfo',$this->_userDomain->getUserInfo($uid));
+        $this->assign('uInfo',$userInfo);
         $this->assign('portrait',$this->_userDomain->getUserInfo($this->getUserId())['portrait']);
 
         return $this->fetch('user/user_dialogue');
@@ -528,9 +542,16 @@ class User extends BaseController
         $page       = (int)$request->param('page',1);
         $page_size  = (int)$request->param('page_size',15);
 
-
         $data = $this->_articleDomain->getCommentArticle($this->getUserId(),$page,$page_size);
-
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['user_type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['user_type'] == 4 || $v['user_type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
 
         $this->assign($data);
         $data['html'] = $this->fetch('user/collection/comment_tpl');
@@ -555,6 +576,15 @@ class User extends BaseController
         $page_size  = (int)$request->param('page_size',15);
 
         $data = $this->_articleDomain->getFavoriteArticle($this->getUserId(),$page,$page_size);
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['user_type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['user_type'] == 4 || $v['user_type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
 
         $this->assign($data);
         $data['html'] = $this->fetch('user/collection/favorite_tpl');
@@ -580,6 +610,15 @@ class User extends BaseController
         $page_size  = (int)$request->param('page_size',15);
 
         $data = $this->_articleDomain->getArticleLikeData($this->getUserId(),$page,$page_size);
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['user_type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['user_type'] == 4 || $v['user_type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
 
         $this->assign($data);
         $data['html'] = $this->fetch('user/collection/like_tpl');

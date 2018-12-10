@@ -19,7 +19,9 @@
             <div>
                 <div class="wl-tou-img href"><img src="{$article_info['portrait']}" alt="" data-user_id="{$article_info['user_id']}" onerror='this.src="/static/image/user/tou.png"' class="cus-touser-main"></div>
                 <div class="wl-tou-yonghu href">
-                    <dl>{$article_info['nickname']}</dl>
+                    <dl>
+                        {$article_info['user_type'] ==3 ? $article_info['username'] : ($article_info['user_type'] == 4 || $article_info['user_type'] ==5 ? $article_info['enterprise_name'] : $article_info['nickname'])}
+                    </dl>
                     <dt>{$article_info['published_time']|strtotime|formatTime|}</dt>
                 </div>
             </div>

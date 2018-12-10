@@ -152,6 +152,16 @@ class Api extends BaseController
         $page_size = $request->param('page_size/d',15);
 
         $data = $this->_userFriendDomain->getUserFollowList($this->getUserId(),$page,$page_size);
+
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['type'] == 4 || $v['type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
         return $this->returnData($data,'',200);
     }
 
@@ -172,6 +182,16 @@ class Api extends BaseController
         $page_size = $request->param('page_size/d',15);
 
         $data = $this->_userFriendDomain->getUserFansList($this->getUserId(),$page,$page_size);
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['type'] == 4 || $v['type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
+
         return $this->returnData($data,'',200);
     }
 
@@ -192,6 +212,18 @@ class Api extends BaseController
         $page_size = $request->param('page_size/d',15);
 
         $data = $this->_userFriendDomain->getFriendList($this->getUserId());
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['type'] == 4 || $v['type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
+
+
+
         return $this->returnData($data,'',200);
     }
 
