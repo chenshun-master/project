@@ -1,0 +1,50 @@
+.wl-top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: white;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #EEEEEE;
+}
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+.wl-zhifu{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding:  0 10px 0 10px;
+    color: #999999;
+    font-size: 11px;
+}
+.wl-zhifu1{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding:  0 10px 0 10px;
+    color: #999999;
+    font-size: 11px;
+    background: white;
+    color: #1B1B1B;
+}
+.wl-bth {
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 auto;
+    background: #7DB0E8;
+    color: white;
+    border-radius: 5px;
+    margin-top: 140px;
+}
+.wl-wancheng{
+    width: 100%;
+    color: #333333;
+    font-size: 9px;
+    text-align: center;
+    margin-top: 10px;
+}

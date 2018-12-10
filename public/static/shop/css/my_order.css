@@ -1,0 +1,151 @@
+.wl-top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: white;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #EEEEEE;
+}
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+.wl-deji{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #F2F2F2;
+}
+.wl-deji li{
+    width: 25%;
+    height: 40px;
+    text-align: center;
+    float: left;
+    color: #010101;
+    font-size: 13px;
+}
+.content{
+    width: 100%;
+    min-height: 200px;
+}
+.wl-deji li.active {
+    color: #7DB0E8;
+    border-bottom: 2px solid #7DB0E8;
+}
+.content .wl-d {
+    width: 100%;
+    min-height: 200px;
+    display: none;
+}
+.content .active {
+    display: block;
+}
+.wl-dingdan{
+    width: 100%;
+    height: 196px;
+    margin: 0 auto;
+    margin-top: 5px;
+    background: #FFFFFF;
+}
+.wl-xiannv {
+    color: #999999;
+    font-size: 11px;
+    float: left;
+}
+.wl-jiage1 {
+    color: #333333;
+    font-size: 11px;
+    float: right;
+    padding-right: 5px;
+}
+.wl-zonghe1 {
+    width: 95%;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    padding: 0 15px 0 10px;
+    border-bottom: 1px solid #DFDFDF;
+}
+.wl-remen {
+    width: 95%;
+    height: 90px;
+    margin:  0 auto;
+    overflow: hidden;
+    border-bottom: 1px solid #DFDFDF;
+}
+.wl-remen-img {
+    width: 72px;
+    height: 72px;
+    background: darkgrey;
+    margin-top: 10px;
+    float: left;
+}
+.wl-remen-img img {
+    width: 72px;
+    height: 72px;
+}
+.wl-remen-right {
+    width: 73%;
+    float: left;
+    padding-left: 10px;
+}
+.wl-remen-right dl {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width: 260px;
+    min-height: 15px;
+    line-height: 15px;
+    color: #1D1D1D;
+    font-size: 11px;
+    margin-top: 10px;
+}
+.wl-remen-right dt {
+    margin-top: 5px;
+    color: #999999;
+    font-size: 11px;
+}
+.wl-remen-right dd {
+    margin-top: 3px;
+    line-height: 22px;
+}
+
+.wl-quchu {
+    color: #999999;
+    font-size: 11px;
+}
+.wl-xiangqing{
+    width: 95%;
+    margin: 0 auto;
+    height: 44px;
+    line-height: 44px;
+    padding-top: 13px;
+
+}
+.wl-chakan{
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    color: #1B1B1B;
+    font-size: 10px;
+    border: 1px solid #A0A0A0;
+    text-align: center;
+    float: right;
+    margin-right: 15px;
+    border-radius: 2px;
+}
+.wl-zhifu{
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+    font-size: 10px;
+    text-align: center;
+    background: #7DB0E8;
+    float: right;
+    border-radius: 2px;
+}

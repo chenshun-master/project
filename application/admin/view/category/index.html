@@ -33,6 +33,7 @@
                                     <th>描述</th>
                                     <th>排序</th>
                                     <th>首页是否显示</th>
+                                    <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
                                 {volist name="cate" id="vo"}
@@ -57,13 +58,13 @@
                                             {/eq}
                                         {/gt}
                                     </td>
+                                    <td>{$vo.created_time}</td>
                                     <td class="table-action">
                                         <a href="{:url('/admin/category/add',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="1" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
                                         <!--<a href="{:url('/admin/category/del',array('id'=>$vo.id))}" class="btn btn-xs btn-danger btn-delone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="2" data-original-title="删除"><i class="fa fa-trash"></i></a>-->
                                     </td>
                                 </tr>
                                 {/volist}
-
                                 </tbody>
                             </table>
                         </div>

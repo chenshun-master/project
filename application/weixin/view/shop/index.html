@@ -2,7 +2,7 @@
 
 {block name="cssOrcrsipt"}
 <!--<link rel="stylesheet" href="/main.css">-->
-<link rel="stylesheet" href="/static/shop/css/index/index.css">
+<link rel="stylesheet" href="/static/shop/css/index.css">
 <style>
 
 </style>
@@ -17,9 +17,9 @@
     </div>
     <div class="wl-daohang">
         <ul>
-            <li id="wl-quanbu">全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy" style="font-size: 10px;color: #333333"></i></li>
+            <li id="wl-quanbu">全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan" style="font-size: 10px;color: #333333"></i></li>
             <li>上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy" style="font-size: 10px;color: #333333"></i></li>
-            <li style="border: none;" id="wl-zhineng">智能排序<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy" style="font-size: 10px;color: #333333"></i></li>
+            <li style="border: none;" id="wl-zhineng">智能排序<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2" style="font-size: 10px;color: #333333"></i></li>
         </ul>
     </div>
 </div>
@@ -33,7 +33,7 @@
             <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75" alt="">
         </div>
         <div class="wl-xiang">
-            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长                     预约18抵300元 半肋隆鼻9999</div>
+            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长预约18抵300元 半肋隆鼻9999</div>
             <div class="wl-yiyuan"><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
             <div class="wl-yiyuan">1632人预订</div>
             <div class="wl-jiage"><span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span class="wl-quchu">￥5980</span></div>
@@ -140,7 +140,7 @@
         <p class="wl-xiao">日记最多</p>
         <p class="wl-xiao">最新上架</p>
         <p class="wl-xiao">价格从低到高</p>
-        <p class="wl-xiao">离我最近</p>
+        <p class="wl-xiao" style="border: none;">离我最近</p>
     </div>
 </div>
 {include file="layout/footer" /}
@@ -152,7 +152,10 @@
 
     $("#wl-quanbu").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container").toggle().addClass("iconfont icon-shangsanjiaoxiangshangmianxing").siblings().removeClass("iconfont icon-shangsanjiaoxiangshangmianxing-copy");
+        $(".marsk-container").toggle();
+        $(".marsk-container1").hide();
+        $(".qiehuan").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing-copy');
+        $(".qiehuan").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing');
     });
 
     //点击空白处隐藏弹出层
@@ -164,9 +167,11 @@
     });
     $("#wl-zhineng").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container1").toggle().addClass("iconfont icon-shangsanjiaoxiangshangmianxing").siblings().removeClass("iconfont icon-shangsanjiaoxiangshangmianxing-copy");
+        $(".marsk-container1").toggle();
+        $(".marsk-container").hide();
+        $(".qiehuan2").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing-copy');
+        $(".qiehuan2").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing');
     });
-
     //点击空白处隐藏弹出层
     $(".marsk-container1").click(function (event) {
         var _con = $('.tkyy_con1'); // 设置目标区域
@@ -179,12 +184,6 @@
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
     });
-    $(".marsk-container1").click(function () {
-        $(".tkyy_con1").hide();
-    })
-    $(".marsk-container1").click(function () {
-        $(".tkyy_con1").hide();
-    })
 </script>
 
 

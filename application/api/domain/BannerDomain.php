@@ -31,7 +31,7 @@ class BannerDomain
     }
 
     /**
-     * 修改banner图
+     * 删除banner图
      * @param $id                banner id
      * @return BannerModel
      */

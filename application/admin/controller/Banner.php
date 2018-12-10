@@ -1,12 +1,21 @@
 <?php
 namespace app\admin\controller;
 
+use app\api\domain\BannerDomain;
 use app\api\model\BannerModel;
+use think\App;
 use think\Db;
 use think\Request;
 
-class Banner extends BaseController
-{
+class Banner extends BaseController{
+
+    private $BannerDomain;
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->BannerDomain = new BannerDomain();
+    }
+
     public function index($page_size = 10)
     {
         $res = Db::name('sp_banner')->where('is_del',0)->order('id desc')->paginate($page_size);
@@ -17,7 +26,7 @@ class Banner extends BaseController
     }
 
     /**
-     * 发布banner
+     * 发布/修改banner
      */
     public function addBanner(Request $request)
     {
@@ -50,11 +59,10 @@ class Banner extends BaseController
                 if($result){
                     return $this->returnData([],'添加成功',200);
                 }else{
-                    return $this->returnData([],'添加失败',200);
+                    return $this->returnData([],'添加失败',301);
                 }
             }else{
                 return $this->returnData([],'请上传文件',302);
-//                $this->error($img->getError());
             }
         }else{
             $id = input('param.id');
@@ -70,9 +78,7 @@ class Banner extends BaseController
     public function update()
     {
         $data = input('param.');
-        if(isset($data['visibility'])) {
-            $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
-        }
+        $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
         if($result){
             $this->redirect('/admin/banner/index');
         }else{
@@ -84,10 +90,8 @@ class Banner extends BaseController
      */
     public function del()
     {
-        $data = input('param.');
-        if(isset($data['is_del'])) {
-            $result = Db::name('sp_banner')->where('id', $data['id'])->update(['is_del' => $data['is_del']]);
-        }
+        $id = input('param.id');
+        $result = $this->BannerDomain->delete($id);
         if($result){
             $this->redirect('/admin/banner/index');
         }else{

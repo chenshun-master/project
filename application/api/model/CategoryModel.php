@@ -8,7 +8,6 @@
 
 namespace app\api\model;
 
-
 use think\Model;
 
 class CategoryModel extends Model
@@ -16,12 +15,15 @@ class CategoryModel extends Model
     protected $table = 'wl_sp_category';
 
     /**
-     * 查找单条数据
+     * 查询单条数据
      */
-    public function cateOne($cateid)
+    public function findOne($id)
     {
-        $category = $this->where('id',$cateid)->find();
-        return $category;
+        return self::where('id',$id)->find();
+    }
+    public function path($parent_id){
+        $data = self::where('id='.$parent_id)->value('path').",".$parent_id;
+        return $data;
     }
 
     /**
@@ -30,7 +32,7 @@ class CategoryModel extends Model
      * @throws \think\exception\DbException
      */
     public function catetree(){
-        $category=$this->order('sort desc')->select();
+        $category = self::order('sort desc')->select();
         return $this->sort($category);
     }
 
