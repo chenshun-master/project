@@ -42,6 +42,11 @@ class Shop extends BaseController
      public function orderDetails(){
           return $this->fetch('shop/order_details');
        }
-
+     /**
+       *支付成功页面
+       */
+     public function paySuccess(){
+          return $this->fetch('shop/pay_success');
+       }
 
 }

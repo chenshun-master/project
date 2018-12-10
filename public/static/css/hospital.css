@@ -35,6 +35,7 @@
     min-height: 70px;
     margin: 10px 10px 0 0 ;
     float: right;
+    cursor: pointer
 }
 .wl-pingjia dl{
     color: #1D1D1D;

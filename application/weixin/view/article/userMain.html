@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
     <title>{:config('conf.title')}</title>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>-->
     <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -33,7 +33,7 @@
         <a  onClick="redream.toReferer()"> <i class="iconfont icon-back_light" style="color: white;position: absolute;top: 15px;left: 20px;font-size: 45px"></i></a>
         <img src="{$user_info['portrait']}" alt="" class="wx-img" onerror="this.src='/static/image/user/tou.png '" />
         <div class="wx-con">
-            <h3 style="font-size:0.34rem;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
+            <h3 style="font-size:34px;color: #FFFFFF;margin-top: 22px;">{$user_info['nickname']}</h3>
             <p class="wl-jianj">{$user_info['profile']}</p>
             <?php if($is_friend === true):?>
             <button><a href="/weixin/user/userDialogue/uid/{$user_info['id']}">私信</a></button>
@@ -111,11 +111,11 @@
                 }
                 return '<div class="one-1 lists" style="height: 380px;border-bottom: 10px solid #EEEEEE;position: relative">'+
                     ' <div class="wx-name" style="border:none;">'+' <img src="'+data.portrait+'" alt="" class="wx-tou"  onerror="this.src=\'/static/image/user/tou.png \'" >'+
-                    '<dl class="wx-yh">'+'<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:0.24rem;color: #898989;">'+ data.published_time +'</dd>'+
+                    '<dl class="wx-yh">'+'<dt style="font-size:28px;color: #1D1D1D;font-weight: bold;">'+ data.nickname +'</dt>'+'<dd style="font-size:24pxcolor: #898989;">'+ data.published_time +'</dd>'+
                     ' </dl>'+'</div>'+
                     ' <div class="wx-nei1">'+
                     ' <dl>'+
-                    ' <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;cursor: pointer;"  class="cus-article-href" data-id="'+ data.id +'"  >'+data.title+'</dt>'+
+                    ' <dt style="font-size: 34px;color: #1F1F1F;margin-left: 36px;cursor: pointer;"  class="cus-article-href" data-id="'+ data.id +'"  >'+data.title+'</dt>'+
                     '<dd class="cus-article-href" data-id="'+ data.id +'" >'+'<img src="'+obj.img_1 +'" alt="图片"/>'+'</dd>'+
                     ' </dl>'+'  </div>'+
                     ' <ul class="wx-fen">'+
@@ -140,8 +140,8 @@
                     ' <div class="wx-name">'+
                     ' <img src="'+data.portrait+'" alt="" class="wx-tou" onerror="this.src=\'/static/image/user/tou.png \'">'+
                     '  <dl class="wx-yh">'+
-                    '  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>'+
-                    '  <dd style="font-size:0.24rem;color: #898989;">'+ data.published_time +'</dd>'+
+                    '  <dt style="font-size:28px;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>'+
+                    '  <dd style="font-size:24px;color: #898989;">'+ data.published_time +'</dd>'+
                     ' </dl>'+
                     '  </div>'+
                     ' <p class="on1 cus-article-href" data-id="'+ data.id +'"  style="cursor: pointer;" >'+data.title+'</p>'+
@@ -166,8 +166,8 @@
                     ' <div class="wx-name">' +
                     '   <img src="' + data.portrait + '" alt="" class="wx-tou"  onerror="this.src=\'/static/image/user/tou.png \'" >' +
                     '<dl class="wx-yh">' +
-                    '  <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">' + data.nickname + '</dt>' +
-                    '<dd style="font-size:0.24rem;color: #898989;">' + data.published_time + '</dd>' +
+                    '  <dt style="font-size:28px;color: #1D1D1D;font-weight: bold;">' + data.nickname + '</dt>' +
+                    '<dd style="font-size:24px;color: #898989;">' + data.published_time + '</dd>' +
                     ' </dl>' +
                     '</div>' +
                     ' <p class="on1 cus-article-href" data-id="'+ data.id +'"  >' + data.title + '</p>' +
@@ -262,8 +262,8 @@
                     '<div class="wx-name">' +
                     '<img src="'+data.portrait+'" alt="" /class="wx-tou">' +
                     ' <dl class="wx-yh">' +
-                    '<dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>' +
-                    '  <dd style="font-size:0.24rem;color: #898989;">'+data.published_time+'</dd>' +
+                    '<dt style="font-size:28px;color: #1D1D1D;font-weight: bold;">'+data.nickname+'</dt>' +
+                    '  <dd style="font-size:24px;color: #898989;">'+data.published_time+'</dd>' +
                     '</dl>' +
                     ' </div>' +
                     ' <p class="on1">'+data.title+'</p>' +

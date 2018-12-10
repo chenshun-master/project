@@ -37,7 +37,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 body {
     font-family: "思源黑体 CN";
     color: #221815;
-    font-size: 62.5%;
 }
 
 body {
@@ -97,7 +96,7 @@ a {
     height: 56px;
     background-color: #FFFFFF;
     color: #7DB0E8;
-    font-size: 0.34rem;
+    font-size: 34px;
     border-radius: 10px;
     border: 0px;
 }
@@ -113,7 +112,7 @@ a {
     width: 170px;
     height: 37px;
     line-height: 37px;
-    font-size: 0.24rem;
+    font-size:24px;
     color: #000000;
     float: left;
     text-align: center;
@@ -133,7 +132,7 @@ a {
 .one, .two, .san {
     width: 100%;
     display: none;
-    font-size: 0.32rem;
+    font-size: 32px;
     margin-top: 25px;
 }
 
@@ -141,7 +140,7 @@ a {
     text-align: center;
     width: 100px;
     height: 55px;
-    font-size: 0.32rem;
+    font-size:32px;
     display: inline-block;
 }
 
@@ -254,7 +253,7 @@ position: absolute;
 .wx-fen li span {
     width: 100px;
     color: #333333;
-    font-size: 0.26rem;
+    font-size: 26px;
 }
 
 .on1 {
@@ -262,7 +261,7 @@ position: absolute;
     min-height: 43px;
     margin: 0 auto;
     margin-top: 20px;
-    font-size: 0.32rem;
+    font-size: 32px;
     color: #1F1F1F;
     margin-left: 36px;
     display: -webkit-box;
@@ -331,7 +330,7 @@ position: absolute;
 }
 
 .you1 dl dd {
-    font-size: 0.24rem;
+    font-size:24px;
     color: #898989;
 
 }
@@ -342,7 +341,7 @@ position: absolute;
     line-height: 56px;
     background: #7DB0E8;
     color: #FEFEFE;
-    font-size: 0.3rem;
+    font-size:30px;
     position: absolute;
     top: 44px;
     right: 36px;
@@ -376,7 +375,7 @@ position: absolute;
 }
 
 .wl-jianj {
-    font-size: 0.2rem;
+    font-size:20px;
     color: #F1F0F0;
     margin-top: 10px;
     overflow: hidden;
