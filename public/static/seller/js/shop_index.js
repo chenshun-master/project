@@ -1,7 +1,7 @@
 layui.table.render({
     elem: '#table-list'
     ,id:'tab-reload'
-    ,url: '/seller/shop/getGoodsData' //数据接口
+    ,url: '/seller/shopapi/getGoodsList' //数据接口
     ,page: true
     ,parseData: function(res){ //res 即为原始返回的数据
         return {
@@ -12,15 +12,25 @@ layui.table.render({
         };
     }
     ,cols: [[ //表头
-        {field: 'id', title: 'ID',width:50,unresize: true, fixed: 'left'}
-        ,{field: 'name', title: '商品/项目名称',cellMinWidth:50}
-        ,{field: '原图', title: 'img',width:100,unresize: true,templet:function(d){
-            return '<img src="'+d.img+'" alt="">';
-        }}
-        ,{field: 'status', title: '商品状态',width:100,unresize: true}
-        ,{field: 'store_nums', title: '项目名额'}
-        ,{field: 'category', title: '分类'}
-        ,{field: '', title: '操作',width:150,unresize: true}
+        {field: 'id', title: 'ID', fixed: 'left',width:120},
+        {field: 'name', title: '商品名'},
+        {field: 'goods_no', title: '商品编号'},
+        {field: 'store_nums', title: '库存/名额'},
+        {field: 'status', title: '商品状态',width:100,templet:function(row){
+            if(row.status == 0){
+                return '<span class="label label-success">正常</span>';
+            }else if(row.status == 1){
+                return '<span class="label label-danger">已删除</span>';
+            }else if(row.status == 2){
+                return '<span class="label label-info">下架</span>';
+            }else if(row.status == 3){
+                return '<span class="label label-warning">申请上架</span>';
+            }
+        }},
+        {field: 'market_price', title: '市场价格'},
+        {field: 'sell_price', title: '销售价格'},
+        {field: 'prepay_price', title: '预付价格'},
+        {field: 'topay_price', title: '到付价格'},
     ]]
 });
 
@@ -37,4 +47,7 @@ var objClass = {
             }
         });
     },
+    add:function(){
+        window.location.href = '/seller/shop/addGood';
+    }
 };

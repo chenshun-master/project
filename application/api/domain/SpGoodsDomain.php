@@ -225,4 +225,22 @@ class SpGoodsDomain
     public function getSearchGoods($searchParams = []){
 
     }
+
+    /**
+     * 获取商户商品列表
+     */
+    public function getSellerGoodsList($seller_id,$page = 1,$page_size = 15){
+        $obj = Db::name('sp_goods')->alias('goods');
+
+        $obj->where('goods.seller_id',$seller_id);
+
+        $total = $obj->count();
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
 }

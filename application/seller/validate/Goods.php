@@ -13,6 +13,10 @@ class Goods extends Validate
         'store_nums'      =>'require|integer|>:0',
         'img_ids'         =>'require',
         'status'          =>'require|integer',
+
+
+        'doctor_id'      =>'require|integer|>:0',
+        'hospital_id'    =>'require|integer|>:0',
     ];
 
     protected $message  =   [
@@ -20,6 +24,6 @@ class Goods extends Validate
     ];
 
     protected $scene = [
-        'releaseGoods'=>['name','market_price','sell_price','prepay_price','topay_price','store_nums','img_ids','status'],
+        'releaseGoods'=>['name','market_price','sell_price','prepay_price','topay_price','store_nums','img_ids','status','doctor_id','hospital_id'],
     ];
 }
