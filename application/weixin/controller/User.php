@@ -459,6 +459,17 @@ class User extends BaseController
 
         $data = $this->_articleDomain->getUserPublishArticle($this->getUserId(),$type,$page,$page_size,true,$this->getUserId());
 
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as  $k=>$v){
+                if($v['user_type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['user_type'] == 4 || $v['user_type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
+            }
+        }
+
+
         $this->assign($data);
 
         $data['htmlContent'] = $this->fetch('user/userArticleList_tpl');

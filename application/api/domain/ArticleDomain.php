@@ -219,12 +219,22 @@ class ArticleDomain
         $obj->order('article.is_top', 'desc');
         $obj->order('article.published_time', 'desc');
         $obj->leftJoin('wl_user user','article.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
         $total = $obj->count();
 
-
-        $obj->field('article.*,user.nickname,INSERT(user.mobile,4,4,\'****\') as mobile');
+        $obj->field('article.*,user.type as user_type,user.nickname,INSERT(user.mobile,4,4,\'****\') as mobile,auth.username,auth.enterprise_name');
 
         $rows = $obj->page($page,$page_size)->select();
+        if($rows){
+            foreach ($rows as $key => $val){
+                if($val['user_type'] == 3){
+                    $rows[$key]['nickname'] = $val['username'];
+                }else if($val['user_type'] == 4 || $val['user_type'] == 5){
+                    $rows[$key]['nickname'] = $val['enterprise_name'];
+                }
+            }
+        }
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -259,8 +269,18 @@ class ArticleDomain
         $date = date('Y-m-d H:i:s');
         $arr = explode(',',$articleRes['tag']);
 
-        $sql = "SELECT `article`.`id`,`article`.`user_id`,`article`.`title`,`article`.`type`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`user`.`nickname`,`user`.`mobile` FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} and `article`.`thumbnail` != ''  AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
-        $total_sql = "SELECT count(1) as total FROM `wl_article` `article` left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` WHERE article.id !={$id} and `article`.`thumbnail` != '' AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
+        $sql = "SELECT 
+                    `article`.`id`,`article`.`user_id`,`article`.`title`,`article`.`type`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,
+                    `article`.`comment_count`,`article`.`published_time`,`user`.`nickname`,`user`.`mobile`,auth.username,auth.enterprise_name,user.type as user_type
+                    
+                    FROM `wl_article` `article` 
+                    left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` 
+                    left JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` 
+                    WHERE article.id !={$id} and `article`.`thumbnail` != ''  AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
+        $total_sql = "SELECT count(1) as total 
+                FROM `wl_article` `article` 
+                left JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` 
+                WHERE article.id !={$id} and `article`.`thumbnail` != '' AND article.status =1 AND article.type={$articleRes['type']} AND article.published_time <= '{$date}' AND ";
 
         $like_sql = '';
         foreach ($arr as $val){
@@ -269,6 +289,7 @@ class ArticleDomain
                 $like_sql .= "OR `article`.`tag` LIKE '%{$val}%' ";
             }
         }
+
         $sql .= ' ( '.ltrim($like_sql,'OR').' ) ';
         $total_sql .= ' ( '.ltrim($like_sql,'OR').' ) ';
 
@@ -317,12 +338,13 @@ class ArticleDomain
 
 
         $obj->join('wl_user user','article.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
         $total = $obj->count();
 
         if($uid){
-            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$uid} AND wl_user_like.object_id = article.id) as isZan");
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$uid} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         }else{
-            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         }
 
 
@@ -376,13 +398,14 @@ class ArticleDomain
         $obj->where('comment.parent_id',0);
         $obj->where('comment.table_name','article');
         $obj->leftJoin('wl_user user','comment.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','comment.user_id = auth.user_id');
         $obj->order('comment.created_time', 'desc');
         $total = $obj->count();
 
         if($user_id == 0){
-            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan,(SELECT count(1) from wl_comment where path like CONCAT(comment.path,'%') and wl_comment.id <> comment.id) AS reply_count");
+            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan,(SELECT count(1) from wl_comment where path like CONCAT(comment.path,'%') and wl_comment.id <> comment.id) AS reply_count,user.type as user_type,auth.username,auth.enterprise_name");
         }else{
-            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan,(SELECT count(1) from wl_comment where path like CONCAT(comment.path,'%') and wl_comment.id <> comment.id) AS reply_count");
+            $obj->field("comment.id,comment.user_id,comment.object_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan,(SELECT count(1) from wl_comment where path like CONCAT(comment.path,'%') and wl_comment.id <> comment.id) AS reply_count,user.type as user_type,auth.username,auth.enterprise_name");
         }
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();

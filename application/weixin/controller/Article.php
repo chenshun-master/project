@@ -136,6 +136,20 @@ class Article extends BaseController
         $page_size = $request->param('page_size',10);
 
         $data = $this->articleDomain->getRelevantList($id,$page,$page_size);
+
+        foreach ($data['rows'] as $k=>$val){
+            if(!empty($val['thumbnail'])){
+                $tmp = json_decode($val['thumbnail'],true);
+                $data['rows'][$k]['thumbnail'] = $tmp['img_1'];
+            }
+
+            if($val['user_type'] == 3){
+                $data['rows'][$k]['nickname'] = $val['username'];
+            }else if($val['user_type'] == 4 || $val['user_type'] == 5){
+                $data['rows'][$k]['nickname'] = $val['enterprise_name'];
+            }
+        }
+
         return $this->returnData($data,'',200);
     }
 
@@ -306,6 +320,13 @@ class Article extends BaseController
             foreach ($data['rows'] as  $k=>$v){
                 $time = strtotime($v['created_time']);
                 $data['rows'][$k]['created_time'] = formatTime($time);
+
+
+                if($v['user_type'] == 3){
+                    $data['rows'][$k]['nickname'] = $v['username'];
+                }else if($v['user_type'] == 4 || $v['user_type'] == 5){
+                    $data['rows'][$k]['nickname'] = $v['enterprise_name'];
+                }
             }
         }
 

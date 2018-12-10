@@ -351,4 +351,4 @@ width: 35px;
     margin-top: 8px;
 }
 .cus-favorite{color: #7db0e8 !important;}
-.href{ cursor: pointer !important;}
+.href,.cus-comment-fabulous{ cursor: pointer !important;}

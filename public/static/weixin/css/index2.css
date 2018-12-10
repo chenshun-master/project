@@ -107,6 +107,11 @@
 .xian{
     color: #7DB0E8;;
 }
+
+.to-datail-href{
+    cursor: pointer;
+}
+
 @media screen and (min-width: 500px) {
     .wl-left-img img{
         width: 100%;

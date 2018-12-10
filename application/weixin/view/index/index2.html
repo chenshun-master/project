@@ -4,20 +4,17 @@
 <link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
 {/block}
 
-
 {block name="main"}
     {include file="layout:header" /}
-
-    <!--这里编写主体内容-->
     <div class="wl-body" style="padding:37px 0  100px 0">
         <div class="wl-liebiao">
             <ul>
                 <li class="xian">推荐</li>
                 <li>文章</li>
-                <li>视频</li>
-                <li>案例</li>
-                <li>问答</li>
-                <li>其他</li>
+                <!--<li>视频</li>-->
+                <!--<li>案例</li>-->
+                <!--<li>问答</li>-->
+                <!--<li>其他</li>-->
             </ul>
         </div>
 
@@ -136,10 +133,10 @@
         obj = $.parseJSON(obj);
         if(type == 4){
             $.each(obj,function(k,v){
-                html += '<img src="'+ v +'" alt="图片丢失">';
+                html += '<img src="'+ v +'" alt="">';
             });
         }else{
-            html += '<img src="'+ obj.img_1 +'" alt="图片丢失">';
+            html += '<img src="'+ obj.img_1 +'" alt="">';
         }
         return html;
     }
