@@ -7,7 +7,7 @@
 {/block}
 {block name="main"}
 
-<div class="wl-body " style="padding-bottom: 100px">
+<div class="wl-body " style="padding-bottom: 100px;background: white">
 <header>
     <div class="wl-top" >
         <i class="iconfont icon-back_light " style="position: absolute;top: 5px;left: 5px;font-size: 25px" onclick="redream.toReferer()"></i>
@@ -71,7 +71,7 @@
     <div class="wl-foot">
         <input type="text" class="wl-foot-input" placeholder="写评论...">
         <ul class="wl-shoucang">
-            <li class="iconfont icon-comment_light "></li>
+            <li class="iconfont icon-comment_light " style="margin-left: 10px;"></li>
             <?php if($article_info['isFavorites'] == 1):?>
             <li class="iconfont icon-favor_fill_light cus-favorite " ></li>
             <?php else:?>
