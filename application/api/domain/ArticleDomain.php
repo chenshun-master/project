@@ -106,11 +106,12 @@ class ArticleDomain
         $obj = Db::name('article')->alias('article');
         $obj->where('article.id',$id);
         $obj->join('wl_user user','article.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
 
         if($user_id > 0){
-            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,(SELECT count(1) from wl_user_favorite where wl_user_favorite.table_name ='article' AND wl_user_favorite.user_id ={$user_id} AND wl_user_favorite.object_id = article.id) as isFavorites");
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,(SELECT count(1) from wl_user_favorite where wl_user_favorite.table_name ='article' AND wl_user_favorite.user_id ={$user_id} AND wl_user_favorite.object_id = article.id) as isFavorites,auth.username,auth.enterprise_name,user.type as user_type");
         }else{
-            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,0 as isZan,0 as isFavorites");
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,0 as isZan,0 as isFavorites,auth.username,auth.enterprise_name,user.type as user_type");
         }
 
         $articleRes = $obj->find();
@@ -484,7 +485,7 @@ class ArticleDomain
 
         $obj->join('wl_article article','user_like.object_id = article.id');
         $obj->leftJoin('wl_user user','article.user_id = user.id');
-
+        $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
 
         $obj->where('article.type','in',[1,2]);
         $obj->where('article.status',1);
@@ -494,7 +495,7 @@ class ArticleDomain
 
         $total = $obj->count();
 
-        $obj->field("article.*,user.id as user_id,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
+        $obj->field("article.*,user.id as user_id,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
 
@@ -522,6 +523,8 @@ class ArticleDomain
 
         $obj->leftJoin('wl_article article','comment.object_id = article.id');
         $obj->leftJoin('wl_user user','article.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
+
         $obj->leftJoin('wl_comment comment2','comment2.id = comment.parent_id');
         $obj->leftJoin('wl_user user2','comment2.user_id = user2.id');
 
@@ -530,7 +533,7 @@ class ArticleDomain
         $obj->order('comment.created_time desc');
 
         $total = $obj->count();
-        $obj->field("article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,article.thumbnail,user.id as user_id,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
+        $obj->field("article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,article.thumbnail,user.id as user_id,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [
@@ -553,12 +556,12 @@ class ArticleDomain
      */
     public function getFavoriteArticle($user_id,$page=1,$page_size=15){
         $obj = Db::name('user_favorite')->alias('favorite');
-        $obj->where('table_name','article');
+        $obj->where('favorite.table_name','article');
 
 
         $obj->join('wl_article article','favorite.object_id = article.id');
         $obj->leftJoin('wl_user user','article.user_id = user.id');
-
+        $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
 
         $obj->where('article.type','in',[1,2]);
         $obj->where('article.status',1);
@@ -568,7 +571,7 @@ class ArticleDomain
 
         $total = $obj->count();
 
-        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan");
+        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
 
         return [

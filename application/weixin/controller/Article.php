@@ -271,11 +271,11 @@ class Article extends BaseController
             }
         }
 
+
         $this->assign($data);
         $this->assign('isFriend',$isFriend);
         $this->assign('shareImg',$shareImg);
         $this->assign('isFabulous',$data['article_info']['isZan'] == 0 ? 1 :2);
-
 
         $is_localhost = config('conf.is_localhost');
         if($is_localhost){
