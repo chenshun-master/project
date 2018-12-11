@@ -220,10 +220,77 @@ class SpGoodsDomain
         return  Db::name('sh_order')->insertGetId($orderData);
     }
 
+    /**
+     * 查询获取产品列表页(移动端)
+     * @param array $searchParams        查询参数
+     * @param int $page                  分页
+     * @param int $page_size             分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getSearchGoods($searchParams = [],$page=1,$page_size=15){
+        $obj = Db::name('sp_goods')->alias('goods');
 
+        if(isset($searchParams['category']) && !empty($searchParams['category'])){
+            $obj->where('goods.id', 'IN', function ($query) use($searchParams) {
+                $query->table('wl_sp_category')->alias('category')->distinct(true)
+                ->leftJoin('wl_sp_category_extend c_extend','c_extend.category_id = category.id')
+                ->where('category.path','like',"{$searchParams['category']}%")
+                ->field('c_extend.goods_id');
+            });
+        }
 
-    public function getSearchGoods($searchParams = []){
+        if(isset($searchParams['sort']) && !empty($searchParams['sort'])){
+            if($searchParams['sort'] == 1){
+                $obj->order('sale_num desc');
+            }else if($searchParams['sort'] == 2){
+                $obj->order('case_num desc');
+            }else if($searchParams['sort'] == 3){
+                $obj->order('create_time desc');
+            }else if($searchParams['sort'] == 4){
+                $obj->order('sell_price asc');
+            }
+        }
 
+        if(isset($searchParams['city']) && !empty($searchParams['city'])){
+
+        }
+
+        if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
+            $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
+        }
+
+        $obj->where('goods.status',0);
+        $obj->leftJoin('wl_doctor doctor','doctor.id = goods.doctor_id');
+        $obj->leftJoin('wl_hospital hospital','hospital.id = goods.hospital_id');
+
+        $total = $obj->count('goods.id');
+
+        $field = [
+            'goods.id',
+            'goods.name',
+            'goods.market_price',
+            'goods.sell_price',
+            'goods.prepay_price',
+            'goods.img',
+            'goods.visit',
+            'goods.favorite',
+            'goods.sale_num',
+            'goods.case_num',
+            'goods.grade',
+            'doctor.real_name'=>'doctor_name',
+            'hospital.hospital_name'
+        ];
+
+        $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 
     /**

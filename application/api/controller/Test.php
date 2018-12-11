@@ -78,15 +78,15 @@ class Test
             '耳部整形'=>[],
             '私密整形'=>[],
         ];
-        Db::startTrans();
-        try {
-            $this->add($data,0);
-            Db::commit();
-        } catch (\Exception $e) {
-            Db::rollback();
-
-            halt($e);
-        }
+//        Db::startTrans();
+//        try {
+//            $this->add($data,0);
+//            Db::commit();
+//        } catch (\Exception $e) {
+//            Db::rollback();
+//
+//            halt($e);
+//        }
     }
 
     public function add($data,$pid,$path=''){
@@ -112,5 +112,47 @@ class Test
         }
 
         return true;
+    }
+
+
+    public function t(){
+        $domain = new \app\api\domain\SpGoodsDomain();
+        $params = [
+            'category'    =>'',
+            'sort'        =>1,
+            'city'        =>'',
+            'keywords'    =>'layui',
+        ];
+
+        $data = $domain->getSearchGoods($params);
+        halt($data);
+    }
+
+
+    public function ss(){
+        set_time_limit(0);
+
+        $list = Db::name('sp_category')->where('is_leaf',1)->limit(0,37)->column('path');
+
+
+        echo date('Y-m-d H:i:s');
+        $res = Db::name('sp_goods')->where('id','>',100011301)->limit(0,1000)->column('id');
+
+        echo '<br/>';
+
+        foreach ($res as $k=>$val){
+                $key = rand(0,36);
+
+                $arr = explode(',',trim($list[$key],','));
+
+                $data = [];
+                foreach ($arr as $k2=>$v2){
+                    $data[] = ['goods_id'=>$val,'category_id'=>$v2];
+                }
+
+                Db::name('sp_category_extend')->insertAll($data);
+        }
+
+        echo date('Y-m-d H:i:s');
     }
 }
