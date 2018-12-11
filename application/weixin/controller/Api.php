@@ -342,14 +342,16 @@ class Api extends BaseController
     /**
      * 搜索产品
      */
-    public function searchGoods(){
+    public function getGoodsList(){
+
+        $data = [
+
+        ];
+
         $doamin = new \app\api\domain\SpGoodsDomain();
+        $data = $doamin->getSearchGoods($data);
 
-
-        $data = [];
-
-
-        $doamin->getSearchGoods($data);
+        return $this->returnData($data,'',200);
     }
 
     /**
