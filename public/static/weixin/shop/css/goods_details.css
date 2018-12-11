@@ -236,16 +236,20 @@
     background: #F6F6F6;
     border-radius: 25px;
     overflow: hidden;
+    padding-left: 10px;
 }
 .wl-fenshu{
     float: right;
-    height: 11px;
-    padding-right: 20px;
+    min-height: 11px;
+    padding-right: 15px;
 }
 .wl-jie{
     float: left;
-    width: 250px;
+    width: 70%;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }
 .wl-menshi{
     float: right;
@@ -456,6 +460,7 @@
     margin: 0 auto;
     border-radius: 10px;
     z-index: 99999;
+    max-width: 640px;
 }
 .tkyy_con .dian {
     width: 100%;
@@ -489,4 +494,95 @@
 }
 .padding{
     padding: 0 10px 0 10px;
+}
+.wl-meili{
+    width: 100%;
+    min-height: 300px;
+    padding: 0 10px 10px 10px;
+    border-bottom: 5px solid #F2F2F2;
+}
+.wl-meili-top{
+    width: 100%;
+    min-height: 50px;
+    line-height: 50px;
+}
+.wl-meili-left{
+    width: 80%;
+    height: 50px;
+    float: left;
+}
+.wl-meili-left img{
+    width: 27px;
+    height: 27px;
+    float: left;
+    margin: 12px 11px 0 5px;
+}
+.wl-meili-right{
+    width: 20%;
+    height: 50px;
+    float: right;
+    color: #999999;
+    font-size: 10px;
+}
+.wl-yonghu-ming{
+    color: #666666;
+    font-size: 12px;
+}
+.wl-yonghu{
+    width: 25px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    background-color: #F29C9F;
+    color: #FFFFFF;
+    font-size: 8px;
+    border-radius:2px;
+    display: inline-block;
+}
+.wl-meili-img{
+    width: 100%;
+    height: 172px;
+}
+
+.wl-img-left img{
+    width: 48%;
+    height: 172px;
+    float: left;
+}
+.wl-title{
+    width: 100%;
+    min-height: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
+}
+.wl-longxioang{
+    color: #7DB0E8;
+    font-size: 10px;
+}
+.wl-long-top{
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+}
+.wl-meili-left1{
+    width: 80%;
+    height: 38px;
+    float: left;
+}
+.wl-meili-right1{
+    width: 20%;
+    height: 38px;
+    float: right;
+    color: #999999;
+    font-size: 10px;
+}
+.se{
+    color: #FF615C;
+    font-size: 10px;
+}
+.bottom{
+    margin-bottom: 5px;
 }

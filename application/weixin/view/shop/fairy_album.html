@@ -1,0 +1,93 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/shop/css/fairy_album.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;min-height: 500px;">
+
+    <header>
+        <div class="wl-top">
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
+            <span>仙女鼻综合</span>
+            <i class="iconfont icon-favor_light top-right1"style="font-size: 25px;color: #333333"></i>
+            <i class="iconfont icon-share_light top-right"style="font-size: 25px;color: #333333"></i>
+        </div>
+    </header>
+    <main>
+        <div class="wl-meili">
+            <div class="wl-meili-top">
+                <div class="wl-meili-left">
+                    <img src="/static/image/user/tou.png" alt="">
+                    <span class="wl-yonghu-ming">用户名称</span>
+                    <span class="wl-yonghu">用户</span>
+                </div>
+                <div class="wl-meili-right">
+                    <i class="iconfont icon-jiaguanzhu1" style="font-size: 25px;color: #7DB0E8"></i>
+                </div>
+            </div>
+            <div class="wl-meili-img">
+                <div class="wl-img-left">
+                    <img src="/static/weixin/shop/image/index/db2.png" alt="">
+                    <img src="/static/weixin/shop/image/index/db4.png" alt="" style="margin-left: 10px">
+                </div>
+            </div>
+            <div class="swiper-container ">
+                <div class="swiper-wrapper img-gao">
+                    <div class="swiper-slide  dd">
+                        <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;padding-right: 5px"></i>下单商品</div>
+                        <div class="wl-shang">
+                            <div class="wl-img"><img src="" alt=""></div>
+                            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+                            <div class="wl-goumai">
+                                <span><sub style="font-size: 9px">￥</sub>4784</span>
+                                <span class="wl-qugoumai">去购买</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide dd">
+                        <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;padding-right: 5px"></i>下单商品</div>
+                        <div class="wl-shang">
+                            <div class="wl-img"><img src="" alt=""></div>
+                            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+                            <div class="wl-goumai">
+                                <span><sub style="font-size: 9px">￥</sub>4784</span>
+                                <span class="wl-qugoumai">去购买</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="wl-bianmei">
+            <div class="wl-bianmei-title">
+                <span class="wl-riji">我的变美日记</span>
+                <span class="wl-daoxu">时间倒序</span>
+            </div>
+            <div class="wl-riji-neirong">
+                <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
+                <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: true,//可选选项，自动滑动
+        pagination: {
+            el: '.swiper-pagination',
+        },
+    })
+</script>
+{/block}
