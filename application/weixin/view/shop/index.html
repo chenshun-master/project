@@ -27,25 +27,10 @@
             </ul>
         </div>
     </div>
-
 </header>
+
 <main style="padding-top: 70px;background:white">
-
     <div id="container">
-        <div class="wl-shangping" onclick="redream.href('/weixin/shop/goodsDetails')">
-            <div class="wl-sp-img">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75"
-                     alt="">
-            </div>
-            <div class="wl-xiang">
-                <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长预约18抵300元 半肋隆鼻9999</div>
-                <div class="wl-yiyuan"><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
-                <div class="wl-yiyuan">1632人预订</div>
-                <div class="wl-jiage"><span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span
-                        class="wl-quchu">￥5980</span></div>
-            </div>
-        </div>
-
         <div class="wl-shangping" onclick="redream.href('/weixin/shop/goodsDetails')">
             <div class="wl-sp-img">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75"
@@ -62,81 +47,38 @@
         </div>
     </div>
 </main>
+
 <div class="marsk-container">
     <div class="tkyy_con">
         <div class="tabbox">
             <ul class="wl-deji">
-                <li class="active">全部项目</li>
-                <li>眼部</li>
-                <li>鼻部</li>
-                <li>面部轮廓</li>
-                <li>胸部</li>
-                <li>美体塑形</li>
-                <li>自体脂肪</li>
-                <li>除皱.抗衰老</li>
-                <li>口唇</li>
-                <li>水光针</li>
-                <li>吸脂</li>
-                <li>牙齿美容</li>
-                <li>毛发移植</li>
+                <li  data-path="" class="click-select-category href">全部项目</li>
+                {foreach $categoryNav as $key=>$vo }
+                    <li   >{$vo['name']}</li>
+                {/foreach}
             </ul>
-            <div class="content">
-                <div class="wl-d active">
-                    <div class="wl-chakan">
-                        <div><span>查看全部 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                        </div>
-                        <div><span>双眼皮 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">埋线双眼皮</div>
-                                <div class="wl-maixian">韩式双眼皮</div>
-                                <div class="wl-maixian">全切双眼皮</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div><span>双眼皮 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">开内眼角</div>
-                                <div class="wl-maixian">开外眼角</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div><span>祛眼袋 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">激光祛眼袋</div>
-                                <div class="wl-maixian">内切祛眼袋</div>
-                                <div class="wl-maixian">外切祛眼袋</div>
-                                <div class="wl-maixian">射频祛眼袋</div>
-                                <div class="wl-maixian">眶隔释放祛眼袋</div>
-                                <div class="wl-maixian">埋线祛眼袋</div>
-                                <div class="wl-maixian">光纤溶脂祛眼袋</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div><span>眼综合 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">眼综合整形</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                    </div>
 
-                </div>
-                <div class="wl-d">2222222222</div>
-                <div class="wl-d">33333333333</div>
-                <div class="wl-d">44444444</div>
-                <div class="wl-d">111111111111</div>
-                <div class="wl-d">2222222222</div>
-                <div class="wl-d">44444444</div>
-                <div class="wl-d">2222222222</div>
-                <div class="wl-d">44444444</div>
-                <div class="wl-d">33333333333</div>
-                <div class="wl-d">2222222222</div>
-                <div class="wl-d">高富帅</div>
-                <div class="wl-d">2222222222</div>
+            <div class="content">
+                <div class="wl-d"></div>
+                {foreach $categoryNav as $k=>$v }
+                    <div class="wl-d">
+                        <div>
+                            <span data-path="{$v['path']}" class="click-select-category href" >查看全部 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
+                        </div>
+                        {foreach $v['subclass'] as $k2=>$v2 }
+                            <div>
+                                <span class="click-select-category href" data-path="{$v2['path']}">{$v2['name']} <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
+                                <div style="clear: both"></div>
+                                <div class="wl-das">
+                                    {foreach $v2['subclass'] as $k3=>$v3 }
+                                        <div class="wl-maixian click-select-category href" data-path="{$v3['path']}" >{$v3['name']}</div>
+                                    {/foreach}
+                                </div>
+                            </div>
+                            <div style="clear: both"></div>
+                        {/foreach}
+                    </div>
+                {/foreach}
             </div>
         </div>
     </div>
@@ -190,6 +132,11 @@
         $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+
+
+    $('.click-select-category').on('click',function(){
+        alert($(this).data('path'));
     });
 </script>
 

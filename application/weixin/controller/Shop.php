@@ -15,9 +15,6 @@ class Shop extends BaseController
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-
-
-
         $this->_spGoodsDomain = new SpGoodsDomain();
     }
 
@@ -30,7 +27,6 @@ class Shop extends BaseController
 
         $spCategoryDomain = new \app\api\domain\SpCategory();
         $categoryNav = $spCategoryDomain->getCategoryAll();
-
         $this->assign('categoryNav', $categoryNav);
 
         return $this->fetch('shop/index');
