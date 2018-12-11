@@ -1,0 +1,100 @@
+{extend name="layout/layout" /}
+
+{block name="css"}
+<link rel="stylesheet" href="/pc/layui/css/layui.css"  media="all">
+{/block}
+
+{block name="main"}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="home-icon fa fa-home"></i> <a href="#">主页</a></li>
+        <li><a href="#">商品模块</a></li>
+        <li class="active">商品列表</li>
+    </ul>
+</div>
+
+<section class="content" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default panel-intro">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs" data-field="status">
+                        <li class="active"><a href="#t-waitfreight"  data-toggle="tab" >全部</a></li>
+                        <li ><a href="#t-waitpay"  data-toggle="tab" >待付款</a></li>
+                        <li ><a href="#t-waitfreight"  data-toggle="tab" >待消费</a></li>
+                        <li ><a href="#t-finish"  data-toggle="tab" >已完成</a></li>
+                        <li ><a href="#t-cancel"  data-toggle="tab" >已取消</a></li>
+                    </ul>
+                </div>
+
+                <div class="panel-body">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="one">
+                            <div class="widget-body no-padding">
+                                <div class="layui-form">
+                                    <table class="layui-table">
+                                        <colgroup>
+                                            <col width="150">
+                                            <col width="150">
+                                            <col width="200">
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th>人物</th>
+                                            <th>民族</th>
+                                            <th>出场时间</th>
+                                            <th>格言</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>贤心</td>
+                                            <td>汉族</td>
+                                            <td>1989-10-14</td>
+                                            <td>人生似修行</td>
+                                        </tr>
+                                        <tr>
+                                            <td>张爱玲</td>
+                                            <td>汉族</td>
+                                            <td>1920-09-30</td>
+                                            <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Helen Keller</td>
+                                            <td>拉丁美裔</td>
+                                            <td>1880-06-27</td>
+                                            <td> Life is either a daring adventure or nothing.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>岳飞</td>
+                                            <td>汉族</td>
+                                            <td>1103-北宋崇宁二年</td>
+                                            <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
+                                        </tr>
+                                        <tr>
+                                            <td>孟子</td>
+                                            <td>华夏族（汉族）</td>
+                                            <td>公元前-372年</td>
+                                            <td>猿强，则国强。国强，则猿更强！ </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{/block}
+
+{block name="js"}
+
+    {js href="/pc/layui/layui.all.js" /}
+
+{/block}

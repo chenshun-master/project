@@ -152,6 +152,11 @@
                                     <div class="col-sm-2">
                                         <select class="form-control" id="fr-doctor-id">
                                             <option value="">请选择医生</option>
+
+
+                                            {foreach $doctorOrHospitalList['doctor'] as $vo }
+                                                <option value="{$vo['doctor_id']}">{$vo['real_name']}</option>
+                                            {/foreach}
                                         </select>
                                     </div>
                                 </div>
@@ -161,6 +166,9 @@
                                     <div class="col-sm-2">
                                         <select class="form-control" id="fr-hospital-id">
                                             <option value="">请选择医院</option>
+                                            {foreach $doctorOrHospitalList['hospital'] as $vo }
+                                                <option value="{$vo['hospital_id']}">{$vo['hospital_name']}</option>
+                                            {/foreach}
                                         </select>
                                     </div>
                                 </div>
@@ -346,10 +354,11 @@
                     name                :$.trim($('#fr-good-name').val()),
                     search_keyword      :$.trim($('#fr-search-words').val()),
                     category            :$('#fr-category').val(),
-                    market_price        :$('#fr-market_price').val(),
-                    prepay_price        :$('#fr-prepay_price').val(),
-                    topay_price         :$('#fr-topay_price').val(),
-                    store_nums          :$('#fr-store_nums').val(),
+                    market_price        :parseFloat($('#fr-market_price').val()),
+                    sell_price          :parseFloat($('#fr-sell_price').val()),
+                    prepay_price        :parseFloat($('#fr-prepay_price').val()),
+                    topay_price         :parseFloat($('#fr-topay_price').val()),
+                    store_nums          :parseInt($('#fr-store_nums').val()),
                     status              :$('input[name="status"]:checked').val(),
                     doctor_id           :$('#fr-doctor-id').val(),
                     hospital_id         :$('#fr-hospital-id').val(),
@@ -357,11 +366,33 @@
                     content             :$('#editor_id').val()
                 };
 
+
+
+                var img_num = 0;
                 $.each($('.fr-imgs-val'),function(k,v){
                     data.img_ids +=  ','+ $('.fr-imgs-val')[k].dataset.goodimgid;
+                    img_num++;
                 });
 
-                if(objClass.loading == false){
+                if(data.name == '') {
+                    layer.msg('商品名称不能为空');
+                }else if(data.category == ''){
+                    layer.msg('请选择商品所在分类');
+                }else if(data.market_price == ''){
+                    layer.msg('市场价格不能为空');
+                }else if(data.prepay_price == ''){
+                    layer.msg('预付价格不能为空');
+                }else if(data.topay_price == ''){
+                    layer.msg('到付价格不能为空');
+                }else if(data.store_nums == ''){
+                    layer.msg('预约名额不能为空');
+                }else if(data.doctor_id == ''){
+                    layer.msg('请选择手术医生');
+                }else if(data.hospital_id == ''){
+                    layer.msg('请选择手术医院');
+                }else if(img_num == 0){
+                    layer.msg('请上传商品预览图片');
+                }else if(objClass.loading == false){
                     var loading = layer.msg('提交中，请稍等...', {icon: 16,shade: 0.01,time:0});
                     $.ajax({
                         url: '/seller/shopApi/releaseGoods',

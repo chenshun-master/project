@@ -21,12 +21,12 @@
                         <h3 class="box-title">商品列表</h3>
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="">
-                                <button type="button" class="btn  btn-flat" onclick="objClass.reload()"><i class="layui-icon layui-icon-refresh-3" ></i>刷新</button>&nbsp;
-                                <button type="button" class="btn  btn-flat" ><i class="layui-icon layui-icon-add-1" ></i>添加商品</button>
+                                <button type="button" class="layui-btn layui-btn-sm" onclick="objClass.reload()"><i class="layui-icon layui-icon-refresh-3" ></i></button>&nbsp;
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.add()"><i class="layui-icon layui-icon-add-1" ></i>添加商品</button>
                             </div>
                         </div>
                     </div>
-                    <div class="box-body table-responsive no-padding">
+                    <div class="box-body table-responsive">
                         <table id="table-list" ></table>
                     </div>
                 </div>
@@ -36,6 +36,7 @@
 {/block}
 
 {block name="js"}
+
 {js href="/pc/layui/layui.all.js" /}
 
 {js href="/static/seller/js/shop_index.js" /}

@@ -2,9 +2,14 @@
 namespace app\api\domain;
 
 use think\Db;
+use app\api\model\RegionsModel;
 
 class SpGoodsDomain
 {
+
+
+
+
     /**
      * 创建商品
      * @param $seller_id    商家ID
@@ -220,9 +225,121 @@ class SpGoodsDomain
         return  Db::name('sh_order')->insertGetId($orderData);
     }
 
+    /**
+     * 查询获取产品列表页(移动端)
+     * @param array $searchParams        查询参数
+     * @param int $page                  分页
+     * @param int $page_size             分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getSearchGoods($searchParams = [],$page=1,$page_size=15){
+        $obj = Db::name('sp_goods')->alias('goods');
 
+        if(isset($searchParams['category']) && !empty($searchParams['category'])){
+            $obj->where('goods.id', 'IN', function ($query) use($searchParams) {
+                $query->table('wl_sp_category')->alias('category')->distinct(true)
+                ->leftJoin('wl_sp_category_extend c_extend','c_extend.category_id = category.id')
+                ->where('category.path','like',"{$searchParams['category']}%")
+                ->field('c_extend.goods_id');
+            });
+        }
 
-    public function getSearchGoods($searchParams = []){
+        if(isset($searchParams['sort']) && !empty($searchParams['sort'])){
+            if($searchParams['sort'] == 1){
+                $obj->order('sale_num desc');
+            }else if($searchParams['sort'] == 2){
+                $obj->order('case_num desc');
+            }else if($searchParams['sort'] == 3){
+                $obj->order('create_time desc');
+            }else if($searchParams['sort'] == 4){
+                $obj->order('sell_price asc');
+            }
+        }
 
+        if(isset($searchParams['city']) && !empty($searchParams['city'])){
+
+        }
+
+        if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
+            $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
+        }
+
+        $obj->where('goods.status',0);
+        $obj->leftJoin('wl_doctor doctor','doctor.id = goods.doctor_id');
+        $obj->leftJoin('wl_hospital hospital','hospital.id = goods.hospital_id');
+
+        $total = $obj->count('goods.id');
+
+        $field = [
+            'goods.id',
+            'goods.name',
+            'goods.market_price',
+            'goods.sell_price',
+            'goods.prepay_price',
+            'goods.img',
+            'goods.visit',
+            'goods.favorite',
+            'goods.sale_num',
+            'goods.case_num',
+            'goods.grade',
+            'doctor.real_name'=>'doctor_name',
+            'hospital.hospital_name'
+        ];
+
+        $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取商户商品列表
+     */
+    public function getSellerGoodsList($seller_id,$page = 1,$page_size = 15){
+        $obj = Db::name('sp_goods')->alias('goods');
+
+        $obj->where('goods.seller_id',$seller_id);
+
+        $total = $obj->count();
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 获取手机端商品详情
+     */
+    public function getGoodsDetail(int $goods_id){
+        $data = [
+            'goods_info' =>[],
+            'imgs'=>[],
+            'hospital_info'=>[],
+        ];
+
+        //查询商品信息
+        $goodsInfo = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->field('id,name,market_price,sell_price,prepay_price,topay_price,img,content,visit,favorite,comments,sale_num,case_num,doctor_id,hospital_id,seller_id')->find();
+        $data['goods_info'] = $goodsInfo;
+
+        //查询商品图片
+        $data['imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_pr')->leftJoin('wl_sp_goods_photo goods_photo','goods_pr.photo_id = goods_photo.id')->where('goods_pr.goods_id',$goods_id)->column('goods_photo.img');
+
+        //查询医院信息
+        $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
+        $data['hospital_info'] = $hospitalInfo;
+
+        $regionsModel = new RegionsModel();
+        $data['hospital_info']['address_dateil'] = $regionsModel->getAddress([$hospitalInfo['province'],$hospitalInfo['city'],$hospitalInfo['area']],$hospitalInfo['address']);
+
+        return $data;
     }
 }
