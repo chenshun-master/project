@@ -20,44 +20,51 @@
 
     <main>
         <div class="wl-zonghe">
-            <span class="wl-xiannv">【鼻综合】爆款仙女鼻综合</span>
-            <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
+            <span class="wl-xiannv">{$infos['info']['name']}</span>
+            <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{$infos['info']['sell_price']}</span></span>
         </div>
+
         <div style="clear: both"></div>
         <div class="wl-zonghe1" style="margin: 0">
             <span class="wl-xiannv">数量</span>
-            <span class="wl-jiage1">1</span>
+            <span class="wl-jiage1">{$infos['info']['num']}</span>
         </div>
+
         <div style="clear: both"></div>
         <div class="wl-zonghe1">
             <span class="wl-xiannv1 se">商家立减优惠，减1193元</span>
             <span class="wl-jiage2 ">-￥1193 <span class="wl-bjtu"></span></span>
         </div>
+
         <div style="clear: both"></div>
         <div class="wl-zonghe1">
             <span class="wl-xiannv">预付金小计</span>
-            <span class="wl-jiage1" style="color: #F24F4F">￥957</span>
+            <span class="wl-jiage1" style="color: #F24F4F">￥{$infos['calculation']['prepay_price']}</span>
         </div>
+
         <div style="clear: both"></div>
         <div class="wl-zonghe2">
             <span class="wl-xiannv">到店付尾款</span>
             <div class="wl-youhui">
-                <dl >￥3827</dl>
-                <dd>(已优惠：￥1193)</dd>
+                <dl >￥{$infos['calculation']['topay_price']}</dl>
+                <dd>(已优惠：￥{$infos['calculation']['discount_price']})</dd>
             </div>
         </div>
+
         <div style="clear: both"></div>
         <div class="wl-zonghe1">
             <span class="wl-xiannv">手机号码</span>
-            <span class="wl-jiage1">196****23.8</span>
+            <span class="wl-jiage1">{$mobile}</span>
         </div>
+
         <div class="wl-zonghe2">
             <span class="wl-xiannv se ">告知商家手机号码，便于到店前咨询</span>
             <span class="wl-jiage1 iconfont icon-xuanzhong1" style="font-size: 15px;color: #FF615C"></span>
         </div>
+
         <div style="clear: both"></div>
-        <div class="wl-bth" onclick="redream.href('/weixin/shop/methodPayment')">
-            去支付 957元
+        <div class="wl-bth"  id="click-place-order" data-goodsid="{$infos['info']['id']}" data-num="{$infos['info']['num']}">
+            去支付 {$infos['calculation']['prepay_price']}元
         </div>
     </main>
 </div>
@@ -69,6 +76,35 @@
     $(".wl-bjtu").addClass('wl-bjtu'); // 初始化时添加背景1
     $(".wl-bjtu").click(function() {
         $(this).toggleClass('wl-bjtu').toggleClass('wl-bjtu1');
+    });
+
+
+    var objClass = {
+        loading:false,
+        placeOrder:function(goodsid,num){
+            if(this.loading == false){
+                $.ajax({
+                    url: "/weixin/ShopApi/placeOrder",
+                    type: 'post',
+                    data: {goodsid:goodsid,num:num},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.loading = true
+                    },
+                    success: function (res) {
+                        if(res.code == 200){
+                            window.location.href = '/weixin/shop/methodPayment?order_id='+res.data.order_id
+                        }else{
+                            redream.showTip('下单失败');
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+    $('#click-place-order').on('click',function(){
+        objClass.placeOrder($(this).data('goodsid'),$(this).data('num'))
     });
 </script>
 {/block}

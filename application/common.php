@@ -348,6 +348,12 @@ function getProductNo($order_no){
 
 
 function checkFooter($url){
-    return strtolower(request()->url()) == strtolower($url) ? true : false;
+    $u = request()->url();
+
+    if($u == '/weixin'){
+        $u = '/weixin/index/index';
+    }
+
+    return strtolower($u) == strtolower($url) ? true : false;
 }
 

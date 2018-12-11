@@ -9,13 +9,14 @@ use app\api\domain\SpGoodsDomain;
 class Shop extends BaseController
 {
     private $_spGoodsDomain;
-
+    private $_userDomain;
 
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->_spGoodsDomain = new SpGoodsDomain();
+        $this->_userDomain = new \app\api\domain\UserDomain();
     }
 
 
@@ -24,7 +25,6 @@ class Shop extends BaseController
      */
     public function index()
     {
-
         $spCategoryDomain = new \app\api\domain\SpCategory();
         $categoryNav = $spCategoryDomain->getCategoryAll();
         $this->assign('categoryNav', $categoryNav);
@@ -38,20 +38,31 @@ class Shop extends BaseController
     public function goodsDetails()
     {
         $goodsid = $this->request->param('goodsid/d',0);
-
-
-
         $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid);
 
+        if(empty($goodsDetail['goods_info'])){
+            return $this->fetch('error/loss');
+        }
+
+        $this->assign('info',$goodsDetail);
         return $this->fetch('shop/goods_details');
     }
 
     /**
-     *支付页面
+     * 商品下单页面
      */
-    public function pay()
+    public function confirmOrder()
     {
-        return $this->fetch('shop/pay');
+        $goodsid = $this->request->param('goodsid/d',0);
+        $num     = $this->request->param('num/d',1);
+
+        $placeOrderPayInfo = $this->_spGoodsDomain->getPlaceOrderPayInfo($goodsid,$num);
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+
+        $this->assign('mobile',mobileFilter($user_info['mobile']));
+        $this->assign('infos',$placeOrderPayInfo);
+
+        return $this->fetch('shop/confirm_order');
     }
 
     /**
@@ -59,6 +70,8 @@ class Shop extends BaseController
      */
     public function methodPayment()
     {
+        $order_id = $this->request->param('order_id',0);
+
         return $this->fetch('shop/method_payment');
     }
 

@@ -21,30 +21,35 @@
 <main>
     <div class="swiper-container img-gao">
         <div class="swiper-wrapper ">
-            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg3.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg2.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg1.jpg" alt=""></div>
+            {foreach $info['imgs'] as $img }
+                <div class="swiper-slide"><img src="{$img}" alt=""></div>
+            {/foreach}
         </div>
         <div class="swiper-pagination"></div>
     </div>
     <div class="wl-neirong">
-        <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+        <div class="wl-title">{$info['goods_info']['name']}</div>
         <div class="wl-jiage">
-            <div class="wl-jiage"><span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span class="wl-quchu">￥5980</span></div>
+            <div class="wl-jiage">
+                <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{$info['goods_info']['market_price']}</span></span>
+                <span class="wl-quchu">￥{$info['goods_info']['sell_price']}</span>
+            </div>
         </div>
+
         <div class="wl-zizhi">
           资质认证 . 全程认证 .全程陪护 . 定期回访 <i class="iconfont icon-back_left-copy" style="font-size: 15px;float: right;margin-right: 10px"></i>
         </div>
+
         <div class="wl-dizhi">
             <div class="wl-dianhua">
                 <div class="dianhua-left">
-                    <dl>上海薇琳医疗美容医院 <i class="iconfont icon-renzheng1"style="font-size: 20px;color: #F19149"></i></dl>
+                    <dl>{$info['hospital_info']['hospital_name']} <i class="iconfont icon-renzheng1"style="font-size: 20px;color: #F19149"></i></dl>
                     <dt><i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
-                        <i class="wl-lu" style="    float: right;">江宁路</i>
+                        <!--<i class="wl-lu" style="float: right;">江宁路</i>-->
                     </dt>
                 </div>
                 <div class="dianhua-right"><i class="iconfont icon-dianhua" style="font-size: 20px;color: #7DB0E8;margin: 0 auto"></i></div>
@@ -52,74 +57,75 @@
             </div>
             <div class="wl-dizhixaing">
                 <i class="iconfont icon-dingwei1" style="font-size: 15px;color: #BFBFBF"></i>
-               <span style="margin-left: 5px"> 江宁路818号(江宁路与海防路交叉口)</span>
+               <span style="margin-left: 5px"> {$info['hospital_info']['address_dateil']}</span>
                 <i class="iconfont icon-back_left-copy"style="font-size: 15px;float: right;margin-right: 10px"></i>
             </div>
         </div>
-        <!--<div class="wl-yishi">-->
-            <!--<div class="wl-tuijian">-->
-                <!--<span>推荐医师</span>-->
-                <!--<span>共5名医师</span>-->
-            <!--</div>-->
-            <!--<div class="wl-lunbo-yishi">-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-        <div class="wl-jieshao">
-            <div class="wl-shangping">商品详情</div>
-            <div class="wl-xiang">
-                <span class="wl-jie"> 【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</span>
-                <span class="wl-fenshu"><span>1份&nbsp;&nbsp;|</span>&nbsp;&nbsp;4784元</span>
+
+        <!--<div class="wl-yishi">
+            <div class="wl-tuijian">
+                <span>推荐医师</span>
+                <span>共5名医师</span>
             </div>
-            <div class="wl-menshi">
-                <span style="text-decoration: line-through;">门市价:5980元</span>
-                <span style="margin-left: 5px">优惠价:<span style="color: #FF615C">4784元</span></span></div>
+            <div class="wl-lunbo-yishi">
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
         </div>
-        <div style="clear: both"></div>
+    </div>-->
+        <!--<div class="wl-jieshao">-->
+            <!--<div class="wl-shangping">商品详情</div>-->
+            <!--<div class="wl-xiang">-->
+                <!--<span class="wl-jie"> 【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</span>-->
+                <!--<span class="wl-fenshu"><span>1份&nbsp;&nbsp;|</span>&nbsp;&nbsp;4784元</span>-->
+            <!--</div>-->
+            <!--<div class="wl-menshi">-->
+                <!--<span style="text-decoration: line-through;">门市价:5980元</span>-->
+                <!--<span style="margin-left: 5px">优惠价:<span style="color: #FF615C">4784元</span></span></div>-->
+        <!--</div>-->
+        <!--<div style="clear: both"></div>-->
         <div>
             <ul class="wl-deji">
                 <li class="active">全部项目</li>
@@ -275,10 +281,10 @@
                 </div>
                 <div class="wl-re-footer">
                     <div class="wl-yuyue">
-                        <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>4456</span></span></dl>
-                        <dd>到院尾付:￥3827</dd>
+                        <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>{$info['goods_info']['prepay_price']}</span></span></dl>
+                        <dd>到院尾付:￥{$info['goods_info']['topay_price']}</dd>
                     </div>
-                    <div class="wl-qianggou" onclick="redream.href('/weixin/shop/pay')">
+                    <div class="wl-qianggou" data-href="/weixin/shop/confirmOrder" id="click-place-order" data-goodsid="{$info['goods_info']['id']}">
                         立即抢购
                     </div>
                 </div>
@@ -332,5 +338,8 @@
         return false;
     });
 
+    $('#click-place-order').on('click',function(){
+        window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
+    });
 </script>
 {/block}

@@ -6,10 +6,6 @@ use app\api\model\RegionsModel;
 
 class SpGoodsDomain
 {
-
-
-
-
     /**
      * 创建商品
      * @param $seller_id    商家ID
@@ -330,16 +326,48 @@ class SpGoodsDomain
         $goodsInfo = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->field('id,name,market_price,sell_price,prepay_price,topay_price,img,content,visit,favorite,comments,sale_num,case_num,doctor_id,hospital_id,seller_id')->find();
         $data['goods_info'] = $goodsInfo;
 
-        //查询商品图片
-        $data['imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_pr')->leftJoin('wl_sp_goods_photo goods_photo','goods_pr.photo_id = goods_photo.id')->where('goods_pr.goods_id',$goods_id)->column('goods_photo.img');
+        if($goodsInfo){
+            //查询商品图片
+            $data['imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_pr')->leftJoin('wl_sp_goods_photo goods_photo','goods_pr.photo_id = goods_photo.id')->where('goods_pr.goods_id',$goods_id)->column('goods_photo.img');
 
-        //查询医院信息
-        $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
-        $data['hospital_info'] = $hospitalInfo;
+            //查询医院信息
+            $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
+            $data['hospital_info'] = $hospitalInfo;
 
-        $regionsModel = new RegionsModel();
-        $data['hospital_info']['address_dateil'] = $regionsModel->getAddress([$hospitalInfo['province'],$hospitalInfo['city'],$hospitalInfo['area']],$hospitalInfo['address']);
+            $regionsModel = new RegionsModel();
+            $data['hospital_info']['address_dateil'] = $regionsModel->getAddress([$hospitalInfo['province'],$hospitalInfo['city'],$hospitalInfo['area']],$hospitalInfo['address']);
+        }
+
+
 
         return $data;
+    }
+
+
+    /**
+     * 获取商品下单的相关信息
+     */
+    public function getPlaceOrderPayInfo($goods_id,int $goods_num){
+        $info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->field('id,name,market_price,sell_price,prepay_price,topay_price')->find();
+        $data = [];
+        if(!$info){
+            return [];
+        }
+        $info['num'] = $goods_num;
+        $data['info'] = $info;
+        $data['calculation'] = [
+            'prepay_price'=>number_format($info['prepay_price'] * $goods_num, 2, '.', ''),
+            'topay_price' =>number_format($info['topay_price'] * $goods_num, 2, '.', ''),
+            'discount_price'=>'0.00'
+        ];
+
+        return $data;
+    }
+
+    /**
+     * 获取待支付订单信息
+     */
+    public function getPayOrderInfo($order_id){
+        return Db::name('sp_order')->where('id',$order_id)->where('status',1)->find();
     }
 }
