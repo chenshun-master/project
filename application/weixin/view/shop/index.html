@@ -92,6 +92,12 @@
         <p class="wl-xiao" style="border: none;">价格从低到高</p>
     </div>
 </div>
+<div class="marsk-container2">
+    <div class="tkyy_con2">
+        <img src="/static/image/user/timg.gif" alt="" class="wl-touming">
+        <div class="wl-jiazai">加载中</div>
+    </div>
+</div>
 {include file="layout/footer" /}
 {/block}
 
@@ -137,6 +143,17 @@
 
     $('.click-select-category').on('click',function(){
         alert($(this).data('path'));
+    });
+    $("#wl-zhineng").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container2").toggle();
+    });
+    //点击空白处隐藏弹出层
+    $(".marsk-container2").click(function (event) {
+        var _con = $('.tkyy_con2'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.marsk-container1').hide(); //淡出消失
+        }
     });
 </script>
 

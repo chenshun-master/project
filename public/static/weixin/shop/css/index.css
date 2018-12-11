@@ -128,6 +128,19 @@
     overflow: hidden;
     max-width: 640px;
 }
+.tkyy_con2{
+    position: fixed;
+    top: 35%;
+    left: 0;
+    right: 0;
+    width: 90px;
+    height: 90px;
+    background: black;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 640px;
+    opacity: 0.5;
+}
 .marsk-container1 {
     display: none;
     background: #FFFFFF;
@@ -138,6 +151,16 @@
     bottom: 0px;
     background: rgba(0, 0, 0, .5);
     z-index: 10;
+}
+.marsk-container2{
+    display: none;
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    z-index: 9999999!important;
 }
 .tkyy_con1{
     max-width: 640px;
@@ -221,4 +244,16 @@
 }
 .to-datail-href{
     cursor: pointer
+}
+.wl-touming{
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 15px;
+}
+.wl-jiazai{
+    color: white;
+    text-align: center;
+    margin-top: 5px;
 }
