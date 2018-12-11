@@ -48,5 +48,11 @@ class Shop extends BaseController
      public function paySuccess(){
           return $this->fetch('shop/pay_success');
        }
+      /**
+        *用户相册详情页
+        */
+      public function fairyAlbum(){
+           return $this->fetch('shop/fairy_album');
+        }
 
 }

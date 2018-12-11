@@ -122,8 +122,8 @@
         <div style="clear: both"></div>
         <div>
             <ul class="wl-deji">
-                <li  class="active">全部项目</li>
-                <a href="#goumai"><li>购买须知</li></a>
+                <li class="active">全部项目</li>
+                <li class="wl-houmai">购买须知</li>
                 <li>美丽日记</li>
             </ul>
 
@@ -219,23 +219,68 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wl-re-footer">
-                        <div class="wl-yuyue">
-                            <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>4456</span></span></dl>
-                            <dd>到院尾付:￥3827</dd>
-                        </div>
-                        <div class="wl-qianggou" onclick="redream.href('/weixin/shop/pay')">
-                            立即抢购
-                        </div>
-                    </div>
-                </div>
-                <div class="wl-d ">
 
+                </div>
+                <div class="wl-d">
                     2
                 </div>
                 <div class="wl-d ">
-
-                    3
+                    <div class="wl-meili">
+                        <div class="wl-meili-top">
+                            <div class="wl-meili-left">
+                                <img src="/static/image/user/tou.png" alt="">
+                                <span class="wl-yonghu-ming">用户名称</span>
+                                <span class="wl-yonghu">用户</span>
+                            </div>
+                            <div class="wl-meili-right">
+                                <i class="iconfont icon-jiaguanzhu1" style="font-size: 25px;color: #7DB0E8"></i>
+                            </div>
+                        </div>
+                        <div class="wl-meili-img">
+                            <div class="wl-img-left">
+                                <img src="/static/weixin/shop/image/index/db2.png" alt="">
+                                <img src="/static/weixin/shop/image/index/db4.png" alt="" style="margin-left: 10px">
+                            </div>
+                        </div>
+                        <div class="wl-title">
+                            【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，发起来看看，发
+                        </div>
+                        <div class="wl-long-top ">
+                            <div class="wl-meili-left1">
+                                <span class="iconfont icon-news_hot_fill_light" style="font-size: 20px;color: #7DB0E8;float: left;margin: 3px 7px 0 0;"></span>
+                                <span class="wl-longxioang">#假体隆胸</span>
+                                <span class="wl-longxioang">#隆胸</span>
+                                <span  class="wl-longxioang">#胸部</span>
+                            </div>
+                            <div class="wl-meili-right1">
+                               <span>1126人浏览</span>
+                            </div>
+                        </div>
+                        <div class="wl-xiang bottom">
+                            <span class="iconfont icon-goumaiicon" style="float: left;font-size: 14px;color: #F29C9F"></span>
+                            <span class="wl-jie"> 【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</span>
+                            <span class="wl-fenshu se">￥4784元</span>
+                        </div>
+                        <div class="wl-xiang bottom">
+                            <span class="iconfont icon-goumaiicon" style="float: left;font-size: 14px;color: #F29C9F"></span>
+                            <span class="wl-jie"> 【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</span>
+                            <span class="wl-fenshu se">￥4784元</span>
+                        </div>
+                        <div class="wl-xiang bottom">
+                            <span class="iconfont icon-goumaiicon" style="float: left;font-size: 14px;color: #F29C9F"></span>
+                            <span class="wl-jie"> 【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</span>
+                            <span class="wl-fenshu se">￥4784元</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wl-re-footer">
+                    <div class="wl-yuyue">
+                        <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>4456</span></span></dl>
+                        <dd>到院尾付:￥3827</dd>
+                    </div>
+                    <div class="wl-qianggou" onclick="redream.href('/weixin/shop/pay')">
+                        立即抢购
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,8 +304,8 @@
         },
     })
     $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-        $(".wl-deji li").addClass("active").siblings().removeClass("active");//获取选中元素的下标
-        var index = $(this).index();
+        $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
+          var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 
     });
@@ -280,5 +325,12 @@
     $(".quxiao").click(function () {
         $('.marsk-container').hide(); //淡出消失
     })
+
+    $("#p1").click(function() {
+        $("html, body").animate({
+            scrollTop: $("#div1").offset().top }, {duration: 500,easing: "swing"});
+        return false;
+    });
+
 </script>
 {/block}
