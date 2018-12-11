@@ -136,7 +136,7 @@ class Test
 
 
         echo date('Y-m-d H:i:s');
-        $res = Db::name('sp_goods')->where('id','>',100011301)->limit(0,1000)->column('id');
+        $res = Db::name('sp_goods')->where('id','>',100017301)->limit(0,1000)->column('id');
 
         echo '<br/>';
 
