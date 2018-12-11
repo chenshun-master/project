@@ -166,10 +166,10 @@
                     data:{page:objClass.goods.listData.page,page_size:objClass.goods.listData.page_size},
                     dataType:'json',
                     beforeSend:function(){
-                        goods.goods.listData.loading = true;
+                        objClass.goods.listData.loading = true;
                     },
                     complete:function(){
-                        goods.goods.listData.loading = false;
+                        objClass.goods.listData.loading = false;
                     },
                     success:function(res){
                         if(res.code == 200){
