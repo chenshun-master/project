@@ -3,13 +3,22 @@
 namespace app\weixin\controller;
 
 use think\App;
+use app\api\domain\SpGoodsDomain;
+
 
 class Shop extends BaseController
 {
+    private $_spGoodsDomain;
+
+
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
+
+
+
+        $this->_spGoodsDomain = new SpGoodsDomain();
     }
 
 
@@ -32,6 +41,12 @@ class Shop extends BaseController
      */
     public function goodsDetails()
     {
+        $goodsid = $this->request->param('goodsid/d',0);
+
+
+
+        $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid);
+
         return $this->fetch('shop/goods_details');
     }
 
