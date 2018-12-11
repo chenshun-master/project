@@ -333,6 +333,7 @@ width: 100px;
 }
 .wl-tui1{
     width: 50%;
+    float: left;
 }
 .wl-tui-img img{
     width: 170px;
@@ -355,10 +356,15 @@ width: 100px;
     line-height: 30px;
     color: #333333;
     font-size: 9px;
+    padding: 0 5px 0 5px;
 }
 .wl-tui-xaing img{
     width: 20px;
     height: 20px;
     float: left;
     margin: 5px 5px 0 0px;
+}
+.wl-liulan{
+    float: right;
+    margin-right: 5px;
 }
