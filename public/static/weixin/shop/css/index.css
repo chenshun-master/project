@@ -130,16 +130,17 @@
 }
 .tkyy_con2{
     position: fixed;
-    top: 35%;
+    top: 40%;
     left: 0;
     right: 0;
-    width: 90px;
-    height: 90px;
-    background: black;
+    width: 80px;
+    height: 80px;
+    background: #393939;
     margin: 0 auto;
     overflow: hidden;
     max-width: 640px;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    border-radius: 5px;
 }
 .marsk-container1 {
     display: none;
@@ -154,13 +155,13 @@
 }
 .marsk-container2{
     display: none;
-    background: #FFFFFF;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0px;
     z-index: 9999999!important;
+
 }
 .tkyy_con1{
     max-width: 640px;
@@ -246,8 +247,8 @@
     cursor: pointer
 }
 .wl-touming{
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     margin: 0 auto;
     display: block;
     margin-top: 15px;
