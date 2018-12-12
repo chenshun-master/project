@@ -13,19 +13,21 @@
         </div>
         <div class="wl-daohang">
             <ul>
-                <li id="wl-quanbu">全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan"
-                                           style="font-size: 10px;color: #333333"></i></li>
-                <li>上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy"
-                         style="font-size: 10px;color: #333333"></i></li>
-                <li style="border: none;" id="wl-zhineng">智能排序<i
-                        class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2"
-                        style="font-size: 10px;color: #333333"></i></li>
+                <li id="wl-quanbu">
+                    全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan" style="font-size: 10px;color: #333333"></i>
+                </li>
+                <li>
+                    上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy"  style="font-size: 10px;color: #333333"></i>
+                </li>
+                <li style="border: none;" id="wl-zhineng">
+                    智能排序<i  class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2" style="font-size: 10px;color: #333333"></i>
+                </li>
             </ul>
         </div>
     </div>
 </header>
 
-<main style="padding-top: 70px;background:white">
+<main style="padding-top: 70px;background:white;padding-bottom: 100px;">
     <div id="container">
         <div id="container-list"></div>
     </div>
@@ -151,84 +153,90 @@
         alert($(this).data('path'));
     });
 
-    $("#wl-zhineng").click(function (event) {
-        event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container2").toggle();
-    });
+    // $("#wl-zhineng").click(function (event) {
+    //     event.stopPropagation(); //停止事件冒泡
+    //     $(".marsk-container2").toggle();
+    // });
+    //
+    // //点击空白处隐藏弹出层
+    // $(".marsk-container2").click(function (event) {
+    //     var _con = $('.tkyy_con2'); // 设置目标区域
+    //     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+    //         $('.marsk-container1').hide(); //淡出消失
+    //     }
+    // });
 
-    //点击空白处隐藏弹出层
-    $(".marsk-container2").click(function (event) {
-        var _con = $('.tkyy_con2'); // 设置目标区域
-        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.marsk-container1').hide(); //淡出消失
-        }
-    });
-
-    var objClass = {
+    var myObj = {
         goods:{
-            listData:{
-                loading:false,
-                ini:false,
-                page:0,
-                page_total:1,
-                page_size:20,
+            listData: {
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 15,
             },
-            loadList:function(me){
-                if(objClass.goods.listData.loading){
+            loadList: function (me) {
+                if (myObj.goods.listData.loading) {
                     return false;
                 }
 
-                objClass.goods.listData.page++;
-                if(objClass.goods.listData.ini == true){
-                    if(objClass.goods.listData.page > objClass.goods.listData.page_total){
-                        me.resetload();return false;
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        me.resetload();
+                        return false;
                     }
                 }
 
                 $.ajax({
-                    url:"/weixin/shopapi/getGoodsList",
-                    type:'post',
-                    data:{page:objClass.goods.listData.page,page_size:objClass.goods.listData.page_size},
-                    dataType:'json',
-                    beforeSend:function(){
-                        objClass.goods.listData.loading = true;
+                    url: "/weixin/shopapi/getGoodsList",
+                    type: 'post',
+                    data: {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
                     },
-                    complete:function(){
-                        objClass.goods.listData.loading = false;
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
                     },
-                    success:function(res){
-                        if(res.code == 200){
-                            if(objClass.goods.listData.ini == false){
-                                objClass.goods.listData.ini = true;
-                                objClass.goods.listData.page_total = res.data.page_total;
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if ( myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
                             }
 
-                            $('#container-list').append(templateList.innerHTML);
+                            $.each(res.data.rows,function(){
+                                $('#container-list').append(templateList.innerHTML);
+                            });
 
-                            if(objClass.goods.listData.page >= objClass.goods.listData.page_total){
+                            if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
                                 me.noData();
                             }
                         }
+                        me.resetload();
 
+                    },
+                    error:function(){
                         me.resetload();
                     }
                 });
-            },
-        },
+            }
+        }
     };
 
-    $('#container').dropload({
-        scrollArea : window,
-        loadUpFn:function(me){
-            objClass.goods.listData.loading = false;
-            objClass.goods.listData.ini = false;
-            objClass.goods.listData.page = 0;
-            objClass.goods.listData.page_total = 0;
-            objClass.goods.loadList(me);
+    var dropload = $('#container').dropload({
+        scrollArea: window,
+        loadUpFn: function (me) {
+            myObj.goods.listData.loading = false;
+            myObj.goods.listData.ini = false;
+            myObj.goods.listData.page = 0;
+            myObj.goods.listData.page_total = 1;
+            myObj.goods.loadList(me);
         },
-        loadDownFn : function(me){
-            objClass.goods.loadList(me);
+        loadDownFn: function (me) {
+            myObj.goods.loadList(me);
         }
     });
 </script>

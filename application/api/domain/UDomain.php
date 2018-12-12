@@ -36,7 +36,6 @@ class UDomain
 
         $obj->field($field);
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
-
         return [
             'rows'          =>$rows,
             'page'          =>$page,

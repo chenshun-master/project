@@ -302,7 +302,7 @@ class SpGoodsDomain
 
         $obj->where('goods.seller_id',$seller_id);
 
-        $total = $obj->count();
+        $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
