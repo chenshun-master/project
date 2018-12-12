@@ -80,7 +80,8 @@
         <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
     </div>
 </div>
-<div class="marsk-container2">
+<div class="marsk-container2" style="display: none">
+
     <div class="tkyy_con2">
         <div style="text-align: center;margin-top: 10px">
             <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="color: white;font-size: 28px;"></i>
@@ -93,6 +94,7 @@
 {/block}
 
 {block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
