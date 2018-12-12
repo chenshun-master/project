@@ -67,7 +67,7 @@
     background: #EEEEEE;
 }
 .wl-xiang{
-    width: 230px;
+    width: 250px;
     min-height: 30px;
     float: left;
     margin-left: 10px;
@@ -258,4 +258,11 @@
     text-align: center;
     margin-top: 5px;
     font-size: 12px;
+}
+.wl-se{
+    color: #7DB0E8;
+}
+.wl-se1{
+    color: #7DB0E8;
+    border: 1px solid #7DB0E8;
 }
