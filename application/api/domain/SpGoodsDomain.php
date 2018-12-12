@@ -386,12 +386,31 @@ class SpGoodsDomain
      */
     public function getSellerHotGoods($seller_id,$page=1,$page_size=15){
         $obj = Db::name('sp_goods')->alias('goods');
+        $obj->leftJoin('wl_doctor doctor','doctor.id = goods.doctor_id');
+        $obj->leftJoin('wl_hospital hospital','hospital.id = goods.hospital_id');
+
         $obj->where('goods.seller_id',$seller_id);
         $obj->where('goods.status',0);
         $obj->order('goods.sale_num desc,goods.favorite desc,goods.visit desc');
 
+        $field = [
+            'goods.id',
+            'goods.name',
+            'goods.market_price',
+            'goods.sell_price',
+            'goods.prepay_price',
+            'goods.img',
+            'goods.visit',
+            'goods.favorite',
+            'goods.sale_num',
+            'goods.case_num',
+            'goods.grade',
+            'doctor.real_name'=>'doctor_name',
+            'hospital.hospital_name'
+        ];
+
         $total = $obj->count(1);
-        $rows = $obj->page($page,$page_size)->select();
+        $rows = $obj->field($field)->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,

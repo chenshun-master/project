@@ -39,8 +39,8 @@ class ShopApi extends BaseController
             return $this->returnData([],'用户未登录',401);
         }
 
-        $goodsid = $this->request->post('goodsid/s',0);
-        $num     = $this->request->post('num/s',0);
+        $goodsid = $this->request->post('goodsid/d',0);
+        $num     = $this->request->post('num/d',0);
 
         if(empty($goodsid) || empty($num)){
             return $this->returnData([],'参数不符合规范',301);
@@ -53,5 +53,21 @@ class ShopApi extends BaseController
         }
 
         return $this->returnData(['order_id'=>$order_id],'下单成功',200);
+    }
+
+    /**
+     * 获取商家热门商品
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getSellerHotGoods(){
+        $sellerid = $this->request->post('sellerid/d',0);
+        $page = $this->request->post('page/d',1);
+        $page_size     = $this->request->post('page_size/d',5);
+
+        $data = $this->_spGoodsDomain->getSellerHotGoods($sellerid,$page,$page_size);
+        return $this->returnData($data,'',200);
     }
 }
