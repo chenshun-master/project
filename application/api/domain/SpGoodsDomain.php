@@ -188,7 +188,7 @@ class SpGoodsDomain
      * @throws \think\exception\DbException
      */
     public function placeOrder(int $goods_id,int $goods_num,int $user_id){
-        $goods_info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->where('store_nums','>',$goods_num)->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id')->find();
+        $goods_info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->where('store_nums','>',$goods_num)->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id,doctor_id,hospital_id')->find();
         if(!$goods_info){
             return false;
         }
@@ -201,7 +201,8 @@ class SpGoodsDomain
         $orderData['seller_id']         = $goods_info['seller_id'];
         $orderData['goods_nums']        = $goods_num;
         $orderData['img']               = $goods_info['img'];
-        $orderData['img']               = $goods_info['img'];
+        $orderData['hospital_id']       = $goods_info['hospital_id'];
+        $orderData['doctor_id']         = $goods_info['doctor_id'];
 
         //优惠价格
         $orderData['discount_price']    = 0.00;

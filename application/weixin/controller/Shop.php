@@ -53,6 +53,10 @@ class Shop extends BaseController
      */
     public function confirmOrder()
     {
+        if(!$this->checkLogin()){
+            return $this->redirect('index/login');
+        }
+
         $goodsid = $this->request->param('goodsid/d',0);
         $num     = $this->request->param('num/d',1);
 

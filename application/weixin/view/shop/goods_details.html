@@ -302,8 +302,8 @@
         autoplay: true,//可选选项，自动滑动
         pagination: {
             el: '.swiper-pagination',
-        },
-    })
+        }
+    });
 
     $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
         $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
@@ -324,13 +324,15 @@
             $('.marsk-container').hide(); //淡出消失
         }
     });
+
     $(".quxiao").click(function () {
         $('.marsk-container').hide(); //淡出消失
-    })
+    });
 
     $(".wl-gouma").click(function () {
         $(this).removeClass("active")
-    })
+    });
+
     $('#click-place-order').on('click',function(){
         window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
     });
