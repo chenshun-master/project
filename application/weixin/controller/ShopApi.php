@@ -14,16 +14,29 @@ class ShopApi extends BaseController
 
         $this->_spGoodsDomain = new SpGoodsDomain();
         $this->_userDomain          = new \app\api\domain\UserDomain();
-
-        if(!$this->checkLogin()){
-            exit(json_encode(['code' =>401,'msg'  =>'用户未登录','data' =>[]]));
-        }
     }
+
+    /**
+     * 搜索产品
+     */
+    public function getGoodsList(){
+
+        $data = [];
+
+        $doamin = new \app\api\domain\SpGoodsDomain();
+        $data = $doamin->getSearchGoods($data);
+
+        return $this->returnData($data,'',200);
+    }
+
 
     /**
      * 商品下单
      */
     public function placeOrder(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
         $goodsid = $this->request->post('goodsid/s',0);
         $num     = $this->request->post('num/s',0);
 

@@ -338,18 +338,7 @@ class Api extends BaseController
         }
     }
 
-    /**
-     * 搜索产品
-     */
-    public function getGoodsList(){
 
-        $data = [];
-
-        $doamin = new \app\api\domain\SpGoodsDomain();
-        $data = $doamin->getSearchGoods($data);
-
-        return $this->returnData($data,'',200);
-    }
 
     /**
      * 获取分类列表

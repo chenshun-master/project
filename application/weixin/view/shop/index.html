@@ -1,11 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<!--<link rel="stylesheet" href="/main.css">-->
 <link rel="stylesheet" href="/static/weixin/shop/css/index.css">
-<style>
-
-</style>
 {/block}
 
 {block name="main"}
@@ -31,20 +27,7 @@
 
 <main style="padding-top: 70px;background:white">
     <div id="container">
-        <div class="wl-shangping" onclick="redream.href('/weixin/shop/goodsDetails')">
-            <div class="wl-sp-img">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75"
-                     alt="">
-            </div>
-            <div class="wl-xiang">
-                <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-                <div class="wl-yiyuan"><span class="wl-name">医生姓名</span><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
-                <div class="wl-yiyuan">1632人预订</div>
-                <div class="wl-jiage"><span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span
-                        class="wl-quchu">￥5980</span></div>
-            </div>
-            <div style="clear: both"></div>
-        </div>
+        <div id="container-list"></div>
     </div>
 </main>
 
@@ -52,32 +35,35 @@
     <div class="tkyy_con">
         <div class="tabbox">
             <ul class="wl-deji">
-                <li  data-path="" class="click-select-category href">全部项目</li>
+                <li data-path="" class="click-select-category href">全部项目</li>
                 {foreach $categoryNav as $key=>$vo }
-                    <li   >{$vo['name']}</li>
+                <li>{$vo['name']}</li>
                 {/foreach}
             </ul>
 
             <div class="content">
                 <div class="wl-d"></div>
                 {foreach $categoryNav as $k=>$v }
-                    <div class="wl-d">
-                        <div>
-                            <span data-path="{$v['path']}" class="click-select-category href" >查看全部 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                        </div>
-                        {foreach $v['subclass'] as $k2=>$v2 }
-                            <div>
-                                <span class="click-select-category href" data-path="{$v2['path']}">{$v2['name']} <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                                <div style="clear: both"></div>
-                                <div class="wl-das">
-                                    {foreach $v2['subclass'] as $k3=>$v3 }
-                                        <div class="wl-maixian click-select-category href" data-path="{$v3['path']}" >{$v3['name']}</div>
-                                    {/foreach}
-                                </div>
-                            </div>
-                            <div style="clear: both"></div>
-                        {/foreach}
+                <div class="wl-d">
+                    <div>
+                        <span data-path="{$v['path']}" class="click-select-category href">查看全部 <i
+                                class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
                     </div>
+                    {foreach $v['subclass'] as $k2=>$v2 }
+                    <div>
+                        <span class="click-select-category href" data-path="{$v2['path']}">{$v2['name']} <i
+                                class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
+                        <div style="clear: both"></div>
+                        <div class="wl-das">
+                            {foreach $v2['subclass'] as $k3=>$v3 }
+                            <div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}
+                            </div>
+                            {/foreach}
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                    {/foreach}
+                </div>
                 {/foreach}
             </div>
         </div>
@@ -98,13 +84,31 @@
         <div class="wl-jiazai">加载中</div>
     </div>
 </div>
+
 {include file="layout/footer" /}
 {/block}
 
 {block name="script"}
 
-<script type="text/javascript">
+<script id="templateList" type="text/html">
+    <div class="wl-shangping href">
+        <div class="wl-sp-img">
+            <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75"alt="">
+        </div>
+        <div class="wl-xiang">
+            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+            <div class="wl-yiyuan"><span class="wl-name">医生姓名</span><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
+            <div class="wl-yiyuan">1632人预订</div>
+            <div class="wl-jiage">
+                <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
+                <span class="wl-quchu">￥5980</span>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</script>
 
+<script type="text/javascript">
     $("#wl-quanbu").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").toggle();
@@ -120,6 +124,7 @@
             $('.marsk-container').hide(); //淡出消失
         }
     });
+
     $("#wl-zhineng").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container1").toggle();
@@ -127,6 +132,7 @@
         $(".qiehuan2").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing-copy');
         $(".qiehuan2").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing');
     });
+
     //点击空白处隐藏弹出层
     $(".marsk-container1").click(function (event) {
         var _con = $('.tkyy_con1'); // 设置目标区域
@@ -134,20 +140,22 @@
             $('.marsk-container1').hide(); //淡出消失
         }
     });
+
     $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
         $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
     });
 
-
-    $('.click-select-category').on('click',function(){
+    $('.click-select-category').on('click', function () {
         alert($(this).data('path'));
     });
+
     $("#wl-zhineng").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container2").toggle();
     });
+
     //点击空白处隐藏弹出层
     $(".marsk-container2").click(function (event) {
         var _con = $('.tkyy_con2'); // 设置目标区域
@@ -155,7 +163,73 @@
             $('.marsk-container1').hide(); //淡出消失
         }
     });
+
+    var objClass = {
+        goods:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            loadList:function(me){
+                if(objClass.goods.listData.loading){
+                    return false;
+                }
+
+                objClass.goods.listData.page++;
+                if(objClass.goods.listData.ini == true){
+                    if(objClass.goods.listData.page > objClass.goods.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/shopapi/getGoodsList",
+                    type:'post',
+                    data:{page:objClass.goods.listData.page,page_size:objClass.goods.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass.goods.listData.loading = true;
+                    },
+                    complete:function(){
+                        objClass.goods.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(objClass.goods.listData.ini == false){
+                                objClass.goods.listData.ini = true;
+                                objClass.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
+
+                            $('#container-list').append(templateList.innerHTML);
+
+                            if(objClass.goods.listData.page >= objClass.goods.listData.page_total){
+                                me.noData();
+                            }
+                        }
+
+                        me.resetload();
+                    }
+                });
+            },
+        },
+    };
+
+    $('#container').dropload({
+        scrollArea : window,
+        loadUpFn:function(me){
+            objClass.goods.listData.loading = false;
+            objClass.goods.listData.ini = false;
+            objClass.goods.listData.page = 0;
+            objClass.goods.listData.page_total = 0;
+            objClass.goods.loadList(me);
+        },
+        loadDownFn : function(me){
+            objClass.goods.loadList(me);
+        }
+    });
 </script>
-
-
 {/block}
