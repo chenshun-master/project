@@ -39,11 +39,14 @@ $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其�
 $('.click-select-category').on('click', function () {
     myObj.goods.listData.path = $(this).data('path');
     myObj.goods.dropReloadList();
+
+    window.scrollTo(0,0);
 });
 
 $('.click-select-sort > p').on('click', function () {
     myObj.goods.listData.params.sort = $(this).data('sort');
     myObj.goods.dropReloadList();
+    window.scrollTo(0, 0);
 });
 
 $(document).on('click','.to-goods-detail',function(){
