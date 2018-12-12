@@ -1,6 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/css/swiper.min.css">
 <link rel="stylesheet" href="/static/weixin/shop/css/goods_details.css">
 
 <style>
@@ -302,6 +303,7 @@
 {/block}
 
 {block name="script"}
+<script src="/static/js/swiper.min.js"  type="text/javascript" charset="utf-8"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
@@ -331,12 +333,7 @@
     $(".quxiao").click(function () {
         $('.marsk-container').hide(); //淡出消失
     })
-
-    $("#p1").click(function() {
-        $("html, body").animate({
-            scrollTop: $("#div1").offset().top }, {duration: 500,easing: "swing"});
-        return false;
-    });
+    
 
     $('#click-place-order').on('click',function(){
         window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
