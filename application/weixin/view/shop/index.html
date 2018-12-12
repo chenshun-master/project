@@ -80,9 +80,13 @@
         <p class="wl-xiao" style="border: none;">价格从低到高</p>
     </div>
 </div>
-<div class="marsk-container2">
+<div class="marsk-container2" style="display: block">
     <div class="tkyy_con2">
-        <img src="/static/image/user/timg.gif" alt="" class="wl-touming">
+
+        <!--<img src="/static/image/user/timg.gif" alt="" class="wl-touming">-->
+        <div>
+            <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="color: white;font-size: 28px;"></i>
+        </div>
         <div class="wl-jiazai">加载中</div>
     </div>
 </div>
@@ -152,23 +156,9 @@
     });
 
     $('.click-select-category').on('click', function () {
-
         myObj.goods.listData.path = $(this).data('path');
         myObj.goods.dropReloadList();
     });
-
-    // $("#wl-zhineng").click(function (event) {
-    //     event.stopPropagation(); //停止事件冒泡
-    //     $(".marsk-container2").toggle();
-    // });
-    //
-    // //点击空白处隐藏弹出层
-    // $(".marsk-container2").click(function (event) {
-    //     var _con = $('.tkyy_con2'); // 设置目标区域
-    //     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-    //         $('.marsk-container1').hide(); //淡出消失
-    //     }
-    // });
 
     var myObj = {
         goods:{
@@ -181,6 +171,8 @@
                 path:'',
             },
             dropReloadList:function(){
+                $('.marsk-container,.marsk-container1,.marsk-container2').hide();
+                $(".marsk-container2").toggle();
                 this.loadList(null);
             },
             loadList: function (me) {
@@ -191,7 +183,9 @@
                 myObj.goods.listData.page++;
                 if (myObj.goods.listData.ini == true) {
                     if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                        me.resetload();
+                        if(me !== null){
+                            me.resetload();
+                        }
                         return false;
                     }
                 }
@@ -206,6 +200,7 @@
                     },
                     complete: function () {
                         myObj.goods.listData.loading = false;
+                        // $(".marsk-container2").hide();
                     },
                     success: function (res) {
                         if (res.code == 200) {
@@ -214,12 +209,10 @@
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
                             }
+
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
                                 $('#container-list').append(html);
                             });
-                            // $.each(res.data.rows,function(){
-                            //     $('#container-list').append(templateList.innerHTML);
-                            // });
 
                             if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
                                 if(me !== null){
