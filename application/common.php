@@ -357,3 +357,17 @@ function checkFooter($url){
     return strtolower($u) == strtolower($url) ? true : false;
 }
 
+
+/**
+ * 获取加密解密的url
+ * @param $str
+ * @param string $flag   E:加密   D:解密
+ * @return bool|string
+ */
+function getRedirUrl($str,$flag='E'){
+    if($flag == 'E'){
+        return base64_encode($str);
+    }else{
+        return base64_decode($str);
+    }
+}
