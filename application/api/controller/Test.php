@@ -1,9 +1,10 @@
 <?php
 namespace app\api\controller;
 
-
 use app\api\model\SpCategoryModel;
 use think\Db;
+use app\api\domain\ShOrderDomain;
+use app\api\domain\SpGoodsDomain;
 
 class Test
 {
@@ -114,45 +115,57 @@ class Test
         return true;
     }
 
-
     public function t(){
-        $domain = new \app\api\domain\SpGoodsDomain();
-        $params = [
-            'category'    =>'',
-            'sort'        =>1,
-            'city'        =>'',
-            'keywords'    =>'layui',
-        ];
+//        $domain = new \app\api\domain\SpGoodsDomain();
+//        $params = [
+//            'category'    =>'',
+//            'sort'        =>1,
+//            'city'        =>'',
+//            'keywords'    =>'layui',
+//        ];
+//
+//        $data = $domain->getSearchGoods($params);
+//        halt($data);
+    }
 
-        $data = $domain->getSearchGoods($params);
-        halt($data);
+    public function ss(){
+//        set_time_limit(0);
+//
+//        $list = Db::name('sp_category')->where('is_leaf',1)->limit(0,37)->column('path');
+//
+//
+//        echo date('Y-m-d H:i:s');
+//        $res = Db::name('sp_goods')->where('id','>',100017301)->limit(0,1000)->column('id');
+//
+//        echo '<br/>';
+//
+//        foreach ($res as $k=>$val){
+//                $key = rand(0,36);
+//
+//                $arr = explode(',',trim($list[$key],','));
+//
+//                $data = [];
+//                foreach ($arr as $k2=>$v2){
+//                    $data[] = ['goods_id'=>$val,'category_id'=>$v2];
+//                }
+//
+//                Db::name('sp_category_extend')->insertAll($data);
+//        }
+//
+//        echo date('Y-m-d H:i:s');
     }
 
 
-    public function ss(){
-        set_time_limit(0);
+    public function aa(){
+//        $mo = new ShOrderDomain();
+//
+//        $res = $mo->getUserOrder(15,0,1,15);
+//        halt($res);
 
-        $list = Db::name('sp_category')->where('is_leaf',1)->limit(0,37)->column('path');
+        $domain = new SpGoodsDomain();
 
+        $data = $domain->getSellerHotGoods(0,1,5);
 
-        echo date('Y-m-d H:i:s');
-        $res = Db::name('sp_goods')->where('id','>',100017301)->limit(0,1000)->column('id');
-
-        echo '<br/>';
-
-        foreach ($res as $k=>$val){
-                $key = rand(0,36);
-
-                $arr = explode(',',trim($list[$key],','));
-
-                $data = [];
-                foreach ($arr as $k2=>$v2){
-                    $data[] = ['goods_id'=>$val,'category_id'=>$v2];
-                }
-
-                Db::name('sp_category_extend')->insertAll($data);
-        }
-
-        echo date('Y-m-d H:i:s');
+        halt($data);
     }
 }

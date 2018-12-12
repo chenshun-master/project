@@ -178,16 +178,16 @@ class SpGoodsDomain
     }
 
     /**
-     * 不通过购物车直接购买商品
+     * 商品下单
      * @param int $goods_id    商品ID
-     * @param int $goods_num   购买商品的数量
+     * @param int $goods_num   下单商品的数量
      * @param int $user_id     用户数量
      * @return bool|int|string
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function directBuyGoods(int $goods_id,int $goods_num,int $user_id){
+    public function placeOrder(int $goods_id,int $goods_num,int $user_id){
         $goods_info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->where('store_nums','>',$goods_num)->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id')->find();
         if(!$goods_info){
             return false;
@@ -245,13 +245,15 @@ class SpGoodsDomain
 
         if(isset($searchParams['sort']) && !empty($searchParams['sort'])){
             if($searchParams['sort'] == 1){
-                $obj->order('sale_num desc');
+                $obj->order('goods.sale_num desc');
             }else if($searchParams['sort'] == 2){
-                $obj->order('case_num desc');
+                $obj->order('goods.case_num desc');
             }else if($searchParams['sort'] == 3){
-                $obj->order('create_time desc');
+                $obj->order('goods.create_time desc');
             }else if($searchParams['sort'] == 4){
-                $obj->order('sell_price asc');
+                $obj->order('goods.sell_price asc');
+            }else{
+                $obj->order('goods.sale_num desc');
             }
         }
 
@@ -369,5 +371,31 @@ class SpGoodsDomain
      */
     public function getPayOrderInfo($order_id){
         return Db::name('sp_order')->where('id',$order_id)->where('status',1)->find();
+    }
+
+    /**
+     * 获取商家热门商品列表
+     * @param $seller_id           商家ID
+     * @param int $page            当前分页
+     * @param int $page_size       分页大小
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getSellerHotGoods($seller_id,$page=1,$page_size=15){
+        $obj = Db::name('sp_goods')->alias('goods');
+        $obj->where('goods.seller_id',$seller_id);
+        $obj->where('goods.status',0);
+        $obj->order('goods.sale_num desc,goods.favorite desc,goods.visit desc');
+
+        $total = $obj->count(1);
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }
