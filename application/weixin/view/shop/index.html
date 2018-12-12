@@ -91,23 +91,25 @@
 {/block}
 
 {block name="script"}
-
 <script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
     <div class="wl-shangping href">
         <div class="wl-sp-img">
-            <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75"alt="">
+            <img src="{{item.img}}"alt="图片丢失">
         </div>
         <div class="wl-xiang">
-            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-            <div class="wl-yiyuan"><span class="wl-name">医生姓名</span><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
-            <div class="wl-yiyuan">1632人预订</div>
+            <div class="wl-title">{{item.name}}</div>
+            <div class="wl-yiyuan"><span class="wl-name">{{item.doctor_name}}</span><span class="wl-meirong">{{item.hospital_name}}</span></div>
+            <div class="wl-yiyuan">{{item.sale_num}}人预订</div>
             <div class="wl-jiage">
-                <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                <span class="wl-quchu">￥5980</span>
+                <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-quchu">￥{{item.market_price}}</span>
             </div>
         </div>
         <div style="clear: both"></div>
     </div>
+    {{#  }); }}
+
 </script>
 
 <script type="text/javascript">
@@ -150,7 +152,9 @@
     });
 
     $('.click-select-category').on('click', function () {
-        alert($(this).data('path'));
+
+        myObj.goods.listData.path = $(this).data('path');
+        myObj.goods.dropReloadList();
     });
 
     // $("#wl-zhineng").click(function (event) {
@@ -174,6 +178,10 @@
                 page: 0,
                 page_total: 1,
                 page_size: 15,
+                path:'',
+            },
+            dropReloadList:function(){
+                this.loadList(null);
             },
             loadList: function (me) {
                 if (myObj.goods.listData.loading) {
@@ -191,7 +199,7 @@
                 $.ajax({
                     url: "/weixin/shopapi/getGoodsList",
                     type: 'post',
-                    data: {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
+                    data: {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size,path:myObj.goods.listData.path},
                     dataType: 'json',
                     beforeSend: function () {
                         myObj.goods.listData.loading = true;
@@ -206,20 +214,28 @@
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
                             }
-
-                            $.each(res.data.rows,function(){
-                                $('#container-list').append(templateList.innerHTML);
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
+                                $('#container-list').append(html);
                             });
+                            // $.each(res.data.rows,function(){
+                            //     $('#container-list').append(templateList.innerHTML);
+                            // });
 
                             if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
-                                me.noData();
+                                if(me !== null){
+                                    me.noData();
+                                }
                             }
                         }
-                        me.resetload();
 
+                        if(me !== null){
+                            me.resetload();
+                        }
                     },
                     error:function(){
-                        me.resetload();
+                        if(me !== null){
+                            me.resetload();
+                        }
                     }
                 });
             }
@@ -233,6 +249,7 @@
             myObj.goods.listData.ini = false;
             myObj.goods.listData.page = 0;
             myObj.goods.listData.page_total = 1;
+            myObj.goods.listData.path = '';
             myObj.goods.loadList(me);
         },
         loadDownFn: function (me) {
