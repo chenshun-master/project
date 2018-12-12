@@ -6,6 +6,7 @@ use think\Db;
 
 class ShOrderDomain
 {
+
     /**
      * 获取用户订单列表
      * @param $user_id           用户ID
@@ -29,15 +30,59 @@ class ShOrderDomain
             $status = [6];
         }
 
-        $obj = Db::name('sh_order')->where('user_id',$user_id)->where('status','in',$status);
+        $field = [
+            'order.id',
+            'order.order_no',
+            'order.goods_id',
+            'order.user_id',
+            'order.img',
+            'order.goods_price',
+            'order.goods_nums',
+            'order.real_amount',
+            'doctor.real_name'=>'doctor_name',
+            'hospital.hospital_name'
+        ];
+
+        $obj = Db::name('sh_order')->alias('order');
+        if($status == 3){
+            $obj->leftJoin('wl_sp_refund_order refund','order.id = refund.order_id');
+            $field['refund.status'] = ' refund_status';
+        }
+
+        $obj->leftJoin('wl_hospital hospital','hospital.id = order.hospital_id');
+        $obj->leftJoin('wl_doctor doctor','doctor.id = order.doctor_id');
+
+        $obj->where('order.user_id',$user_id);
+        $obj->where('order.status','in',$status);
 
         $total = $obj->count(1);
-        $rows = $obj->page($page,$page_size)->select();
+        $rows = $obj->field($field)->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+    /**
+     * 获取用户订单详情信息
+     * @param $user_id            用户ID
+     * @param $order_id           订单ID
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getOrderDetail($user_id,$order_id)
+    {
+        $data = [];
+
+        $data['order_info'] = $order_info = Db::name('wl_sh_order')->where('user_id',$user_id)->where('id',$order_id)->find();
+        if(!$order_info){
+            return [];
+        }
+
+        return $data;
     }
 }

@@ -4,7 +4,6 @@ use app\api\domain\SpGoodsDomain;
 use think\App;
 class ShopApi extends BaseController
 {
-
     private  $_userDomain;
     private  $_spGoodsDomain;
 
@@ -17,18 +16,20 @@ class ShopApi extends BaseController
     }
 
     /**
-     * 搜索产品
+     * 获取商品列表数据
      */
     public function getGoodsList(){
-
-        $data = [];
+        $data = [
+            'category'=>$this->request->post('path',''),
+            'sort'=>$this->request->post('sort/d',0),
+            'city'=>$this->request->post('city',''),
+            'keywords'=>$this->request->post('keywords','')
+        ];
 
         $doamin = new \app\api\domain\SpGoodsDomain();
         $data = $doamin->getSearchGoods($data);
-
         return $this->returnData($data,'',200);
     }
-
 
     /**
      * 商品下单
@@ -37,6 +38,7 @@ class ShopApi extends BaseController
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
         }
+
         $goodsid = $this->request->post('goodsid/s',0);
         $num     = $this->request->post('num/s',0);
 
@@ -45,8 +47,7 @@ class ShopApi extends BaseController
         }
 
         $uid = $this->getUserId();
-        $order_id = $this->_spGoodsDomain->directBuyGoods($goodsid,$num,$uid);
-
+        $order_id = $this->_spGoodsDomain->placeOrder($goodsid,$num,$uid);
         if($order_id === false){
             return $this->returnData([],'下单失败',305);
         }
