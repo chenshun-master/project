@@ -41,6 +41,16 @@ $('.click-select-category').on('click', function () {
     myObj.goods.dropReloadList();
 });
 
+$('.click-select-sort > p').on('click', function () {
+    myObj.goods.listData.params.sort = $(this).data('sort');
+    myObj.goods.dropReloadList();
+});
+
+$(document).on('click','.to-goods-detail',function(){
+    window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+});
+
+
 var myObj = {
     goods:{
         listData: {
@@ -49,7 +59,12 @@ var myObj = {
             page: 0,
             page_total: 1,
             page_size: 15,
-            path:'',
+            params:{
+                category:'',
+                sort:0,
+                city:'',
+                keywords:''
+            }
         },
         dropReloadList:function(){
             $('.marsk-container,.marsk-container1').hide();
@@ -77,10 +92,11 @@ var myObj = {
                 }
             }
 
+            var data = $.extend({},{page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size}, myObj.goods.listData.params);
             $.ajax({
                 url: "/weixin/shopapi/getGoodsList",
                 type: 'post',
-                data: {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size,path:myObj.goods.listData.path},
+                data: data,
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.goods.listData.loading = true;
@@ -122,17 +138,17 @@ var myObj = {
     }
 };
 
-// var dropload = $('#container').dropload({
-//     scrollArea: window,
-//     loadUpFn: function (me) {
-//         myObj.goods.listData.loading = false;
-//         myObj.goods.listData.ini = false;
-//         myObj.goods.listData.page = 0;
-//         myObj.goods.listData.page_total = 1;
-//         myObj.goods.listData.path = '';
-//         myObj.goods.loadList(me);
-//     },
-//     loadDownFn: function (me) {
-//         myObj.goods.loadList(me);
-//     }
-// });
+var dropload = $('#container').dropload({
+    scrollArea: window,
+    loadUpFn: function (me) {
+        myObj.goods.listData.loading = false;
+        myObj.goods.listData.ini = false;
+        myObj.goods.listData.page = 0;
+        myObj.goods.listData.page_total = 1;
+        myObj.goods.listData.path = '';
+        myObj.goods.loadList(me);
+    },
+    loadDownFn: function (me) {
+        myObj.goods.loadList(me);
+    }
+});

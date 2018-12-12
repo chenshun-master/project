@@ -72,12 +72,12 @@
     </div>
 </div>
 <div class="marsk-container1">
-    <div class="tkyy_con1">
-        <p class="wl-xiao">智能排序</p>
-        <p class="wl-xiao">销量最高</p>
-        <p class="wl-xiao">日记最多</p>
-        <p class="wl-xiao">最新上架</p>
-        <p class="wl-xiao" style="border: none;">价格从低到高</p>
+    <div class="tkyy_con1 click-select-sort">
+        <p class="wl-xiao" data-sort="0" >默认排序</p>
+        <p class="wl-xiao" data-sort="1">销量最高</p>
+        <p class="wl-xiao" data-sort="2">日记最多</p>
+        <p class="wl-xiao" data-sort="3">最新上架</p>
+        <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
     </div>
 </div>
 <div class="marsk-container2">
@@ -95,7 +95,7 @@
 {block name="script"}
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-shangping href">
+    <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
         <div class="wl-sp-img">
             <img src="{{item.img}}" />
         </div>
@@ -111,7 +111,6 @@
         <div style="clear: both"></div>
     </div>
     {{#  }); }}
-
 </script>
 <script src="/static/weixin/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
 {/block}

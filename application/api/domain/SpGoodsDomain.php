@@ -251,7 +251,7 @@ class SpGoodsDomain
             }else if($searchParams['sort'] == 3){
                 $obj->order('goods.create_time desc');
             }else if($searchParams['sort'] == 4){
-                $obj->order('goods.sell_price asc');
+                $obj->order('goods.sell_price desc');
             }else{
                 $obj->order('goods.sale_num desc');
             }
