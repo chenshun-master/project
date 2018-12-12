@@ -245,13 +245,15 @@ class SpGoodsDomain
 
         if(isset($searchParams['sort']) && !empty($searchParams['sort'])){
             if($searchParams['sort'] == 1){
-                $obj->order('sale_num desc');
+                $obj->order('goods.sale_num desc');
             }else if($searchParams['sort'] == 2){
-                $obj->order('case_num desc');
+                $obj->order('goods.case_num desc');
             }else if($searchParams['sort'] == 3){
-                $obj->order('create_time desc');
+                $obj->order('goods.create_time desc');
             }else if($searchParams['sort'] == 4){
-                $obj->order('sell_price asc');
+                $obj->order('goods.sell_price asc');
+            }else{
+                $obj->order('goods.sale_num desc');
             }
         }
 
