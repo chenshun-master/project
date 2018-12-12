@@ -2,6 +2,8 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/shop/css/index.css">
+<style>
+</style>
 {/block}
 
 {block name="main"}
@@ -25,9 +27,11 @@
     </div>
 </header>
 
-<main style="padding-top: 70px;background:white">
+<main style="margin-top: 70px;background:white">
     <div id="container">
-        <div id="container-list"></div>
+        <div id="container-list">
+
+        </div>
     </div>
 </main>
 
@@ -81,7 +85,7 @@
 <div class="marsk-container2">
     <div class="tkyy_con2">
         <img src="/static/image/user/timg.gif" alt="" class="wl-touming">
-        <div class="wl-jiazai">加载中</div>
+        <div class="wl-jiazai">加载中...</div>
     </div>
 </div>
 
@@ -151,18 +155,18 @@
         alert($(this).data('path'));
     });
 
-    $("#wl-zhineng").click(function (event) {
-        event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container2").toggle();
-    });
-
-    //点击空白处隐藏弹出层
-    $(".marsk-container2").click(function (event) {
-        var _con = $('.tkyy_con2'); // 设置目标区域
-        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.marsk-container1').hide(); //淡出消失
-        }
-    });
+    // $("#wl-zhineng").click(function (event) {
+    //     event.stopPropagation(); //停止事件冒泡
+    //     $(".marsk-container2").toggle();
+    // });
+    //
+    // //点击空白处隐藏弹出层
+    // $(".marsk-container2").click(function (event) {
+    //     var _con = $('.tkyy_con2'); // 设置目标区域
+    //     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+    //         $('.marsk-container1').hide(); //淡出消失
+    //     }
+    // });
 
     var objClass = {
         goods:{
@@ -210,7 +214,6 @@
                                 me.noData();
                             }
                         }
-
                         me.resetload();
                     }
                 });
@@ -224,12 +227,13 @@
             objClass.goods.listData.loading = false;
             objClass.goods.listData.ini = false;
             objClass.goods.listData.page = 0;
-            objClass.goods.listData.page_total = 0;
+            objClass.goods.listData.page_total = 1;
             objClass.goods.loadList(me);
         },
         loadDownFn : function(me){
             objClass.goods.loadList(me);
         }
     });
+
 </script>
 {/block}

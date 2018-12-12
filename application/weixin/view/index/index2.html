@@ -1,7 +1,6 @@
 {extend name="layout/layout" /}
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/index2.css">
-<link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
 {/block}
 
 {block name="main"}
@@ -31,9 +30,6 @@
 {/block}
 
 {block name="script"}
-<script src="/static/plugin/layui/layui.js"></script>
-<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/functions.js"></script>
 <script id="demo" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
         {{#  if(test(item) == 1){ }}
