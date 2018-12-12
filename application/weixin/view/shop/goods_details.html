@@ -174,48 +174,10 @@
 
                     <div class="wl-gengduo">
                         <div class="wl-shangping2">更多本店热门商品</div>
-                        <div class="wl-remen padding">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适合的</dl>
-                                <dt>品牌：伊婉C</dt>
-                                <dd>
-                                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                                    <span class="wl-quchu">￥5980</span>
-                                    <span class="wl-jia-right">已售15 </span>
-                                </dd>
-                            </div>
+                        <div id="container-list">
+
                         </div>
-                        <div class="wl-remen padding">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适合的</dl>
-                                <dt>品牌：伊婉C</dt>
-                                <dd>
-                                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                                    <span class="wl-quchu">￥5980</span>
-                                    <span class="wl-jia-right">已售15 </span>
-                                </dd>
-                            </div>
-                        </div>
-                        <div class="wl-remen padding">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适合的</dl>
-                                <dt>品牌：伊婉C</dt>
-                                <dd>
-                                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                                    <span class="wl-quchu">￥5980</span>
-                                    <span class="wl-jia-right">已售15 </span>
-                                </dd>
-                            </div>
-                        </div>
+                        <!--<p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>-->
                     </div>
                 </div>
                 <div class="wl-d">
@@ -294,6 +256,25 @@
 {/block}
 
 {block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-remen padding">
+        <div class="wl-remen-img">
+            <img src="{{item.img}}" alt="图片丢失">
+        </div>
+        <div class="wl-remen-right">
+            <dl>{{item.name}}</dl>
+            <dt>医院:{{item.hospital_name}}</dt>
+            <dd>
+                <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-quchu">￥{{item.prepay_price}}</span>
+                <span class="wl-jia-right">已售{{item.sale_num}} </span>
+            </dd>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
 <script src="/static/js/swiper.min.js"  type="text/javascript" charset="utf-8"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
@@ -345,5 +326,57 @@
             $(".wl-deji").css({"position":"static"});
         }
     });
+</script>
+<script>
+    var myObj = {
+        goods:{
+            listData: {
+                sellerid:0,
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            loadList: function () {
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        return false;
+                    }
+                }
+                var data = $.extend({},{page:myObj.goods.listData.sellerid,page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size});
+                $.ajax({
+                    url: "/weixin/shopapi/getSellerHotGoods",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                        // $(".marsk-container2").hide();
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if ( myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
+                                $('#container-list').append(html);
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    };
+    myObj.goods.loadList();
 </script>
 {/block}
