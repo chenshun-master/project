@@ -293,6 +293,9 @@
     min-height: 20px;
     padding: 10px;
 }
+.wl-youshi img{
+    width: 100%;
+}
 .wl-bizonghe{
     color: #000000;
     font-size: 12px;
@@ -585,4 +588,8 @@
 }
 .bottom{
     margin-bottom: 5px;
+}
+.dingwei{
+    position: fixed;
+    top: 0;
 }
