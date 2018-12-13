@@ -26,7 +26,7 @@ class ShopApi extends BaseController
     public function getGoodsList()
     {
         $data = [
-            'category' => $this->request->post('path', ''),
+            'category' => $this->request->post('category', ''),
             'sort' => $this->request->post('sort/d', 0),
             'city' => $this->request->post('city', ''),
             'keywords' => $this->request->post('keywords', '')

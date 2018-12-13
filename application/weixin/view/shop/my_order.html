@@ -70,6 +70,33 @@
 <script src="/static/weixin/viewjs/my_order.js"></script>
 <script id="orderList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
+
+    {{#  if(item.status == 3){ }}
+    <div class="wl-dingdan">
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">订单号：{{item.order_no}}</span>
+            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
+        </div>
+        <div class="wl-remen">
+            <div class="wl-remen-img">
+                <img src="{{item.img}}" alt="图片丢失">
+            </div>
+            <div class="wl-remen-right">
+                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
+                <dt>{{item.hospital_name}}</dt>
+                <dd>
+                    <span class="wl-quchu">￥{{item.goods_price}}</span>
+                </dd>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="border: none">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    {{#  } }}
+
     {{#  if(item.status == 1){ }}
     <div class="wl-dingdan">
         <div class="wl-zonghe1">
@@ -85,38 +112,13 @@
                 <dt>{{item.hospital_name}}</dt>
                 <dd>
                     <span class="wl-quchu">￥{{item.goods_price}}</span>
-                    <span class="wl-jiageo"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
                 </dd>
             </div>
         </div>
         <div style="clear: both"></div>
-        <div style="clear: both"></div>
-        <div class="wl-xiangqing">
-            <div class="wl-zhifu" onclick="redream.href('/weixin/shop/methodPayment')">去支付</div>
-            <div class="wl-chakan"  onclick="redream.href('/weixin/shop/orderDetails')">查看详情</div>
-        </div>
-    </div>
-    {{#  } }}
-    {{#  if(item.status == 1){ }}
-    <div class="wl-dingdan">
         <div class="wl-zonghe1">
-            <span class="wl-xiannv">订单号：{{item.order_no}}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
         </div>
-        <div class="wl-remen">
-            <div class="wl-remen-img">
-                <img src="{{item.img}}" alt="图片丢失">
-            </div>
-            <div class="wl-remen-right">
-                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                <dt>{{item.hospital_name}}</dt>
-                <dd>
-                    <span class="wl-quchu">￥{{item.goods_price}}</span>
-                    <span class="wl-jiageo"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
-                </dd>
-            </div>
-        </div>
-        <div style="clear: both"></div>
         <div style="clear: both"></div>
         <div class="wl-xiangqing">
             <div class="wl-zhifu" onclick="redream.href('/weixin/shop/methodPayment')">去支付</div>
@@ -124,6 +126,7 @@
         </div>
     </div>
     {{#  } }}
+
     {{#  if(item.status == 5){ }}
     <div class="wl-dingdan">
         <div class="wl-zonghe1">
@@ -139,19 +142,22 @@
                 <dt>{{item.hospital_name}}</dt>
                 <dd>
                     <span class="wl-quchu">￥{{ item.goods_price }}</span>
-                    <span class="wl-jiageo"><span style="margin-right: 10px">数量：{{ item.goods_nums }}</span><span>支付定金：￥958</span></span>
                 </dd>
             </div>
         </div>
         <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="border: none">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{ item.goods_nums }}</span><span>支付定金：￥958</span></span>
+        </div>
         <div style="clear: both"></div>
     </div>
     {{#  } }}
+
     {{#  if(item.status == 6){ }}
     <div class="wl-dingdan">
         <div class="wl-zonghe1">
             <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">已消费</span>
+            <span class="wl-jiage1" style="color: #F24F4F">已完成</span>
         </div>
         <div class="wl-remen">
             <div class="wl-remen-img">
@@ -162,14 +168,17 @@
                 <dt>数量：{{ item.goods_nums }}</dt>
                 <dd>
                     <span class="wl-quchu">￥{{ item.goods_price }}</span>
-                    <span class="wl-jiageo"><span style="margin-right: 10px">数量：{{ item.goods_nums }}</span><span>支付定金：￥958</span></span>
                 </dd>
             </div>
         </div>
         <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="border: none">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{ item.goods_nums }}</span><span>支付定金：￥958</span></span>
+        </div>
         <div style="clear: both"></div>
     </div>
     {{#  } }}
+
     {{#  }); }}
 </script>
 {/block}

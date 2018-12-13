@@ -13,7 +13,7 @@
 <div style="width: 100%;min-height: 500px;padding-bottom: 100px;min-height: 40px">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.href('/weixin/shop/index')"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
             <span>商品详情页</span>
             <i class="iconfont icon-favor_light top-right1"style="font-size: 25px;color: #333333"></i>
             <i class="iconfont icon-share_light top-right"style="font-size: 25px;color: #333333"></i>
@@ -261,7 +261,7 @@
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-remen padding to-goods-detai href">
+    <div class="wl-remen padding to-goods-detai href"  data-goodsid="{{ item.id }}">
         <div class="wl-remen-img">
             <img src="{{item.img}}" alt="图片丢失">
         </div>
@@ -271,7 +271,7 @@
             <dd>
                 <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
                 <span class="wl-quchu">￥{{item.prepay_price}}</span>
-                <span class="wl-jia-right">已售{{item.sale_num}} </span>
+                <span class="wl-jia-right">预约{{item.sale_num}}  </span>
             </dd>
         </div>
     </div>
@@ -313,12 +313,14 @@
     });
 
     $('#click-place-order').on('click',function(){
+        // window.location.href =$(this).data('href');
         window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
     });
 
     var oTop = $(".wl-deji").offset().top;
     var sTop = 0;
     $(window).scroll(function(){
+
         sTop = $(this).scrollTop();
         if(sTop >= oTop){
             $(".wl-deji").css({"position":"fixed","top":"0"});
@@ -327,7 +329,7 @@
         }
     });
     $(document).on('click','.to-goods-detai',function(){
-        window.location.href = '/weixin/shop/goodsDetails/sellerid/'+$(this).data('sellerid');
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
     });
 </script>
 <script>
