@@ -79,6 +79,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab-box1" data-toggle="tab">商品(项目)信息</a></li>
                     <li><a href="#tab-box2" data-toggle="tab">商品(项目)详情</a></li>
+                    <li><a href="#tab-box3" data-toggle="tab">购买须知</a></li>
                 </ul>
                 <div class="tab-content" style='min-height: 500px;'>
                     <div class="tab-pane active" id="tab-box1">
@@ -208,6 +209,34 @@
                                 <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-box3">
+                        <form class="form-horizontal " onsubmit="return false;" id="fr-instructions">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">购买有效期</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" placeholder="有效期多少天">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        商品购买日起 xxx 内有效
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">预约提示信息</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="fr-search-words" placeholder="商品搜索关键词">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="box-footer clearfix" style="padding-left: 146px;">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left" onclick="objClass.releaseGoods()">发布商品</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

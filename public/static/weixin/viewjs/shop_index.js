@@ -39,9 +39,9 @@ $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其�
 $('.click-select-category').on('click', function () {
     myObj.goods.listData.path = $(this).data('path');
     myObj.goods.dropReloadList();
-    $(this).addClass("wl-se1").siblings().removeClass("wl-se1");
+    $('.click-select-category').removeClass('wl-se1');
+    $(this).addClass("wl-se1");
     window.scrollTo(0,0);
-
 });
 
 $('.click-select-sort > p').on('click', function () {
