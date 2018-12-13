@@ -52,29 +52,30 @@
 }
 .wl-xiannv {
     color: #999999;
-    font-size: 11px;
+    font-size: 13px;
     float: left;
 }
 .wl-jiage1 {
     color: #333333;
-    font-size: 11px;
+    font-size: 13px;
     float: right;
-    padding-right: 5px;
+margin-right: -8px;
 }
 .wl-zonghe1 {
     width: 95%;
-    height: 30px;
+    height: 35px;
     margin: 0 auto;
-    line-height: 30px;
+    line-height: 35px;
     padding: 0 15px 0 10px;
-    border-bottom: 1px solid #DFDFDF;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-remen {
     width: 95%;
-    height: 90px;
+    height: 110px;
+    padding-top: 8px;
     margin:  0 auto;
     overflow: hidden;
-    border-bottom: 1px solid #DFDFDF;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-remen-img {
     width: 72px;
@@ -98,11 +99,11 @@
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:2;
-    width: 260px;
+    width: 240px;
     min-height: 15px;
-    line-height: 15px;
+    line-height: 17px;
     color: #1D1D1D;
-    font-size: 11px;
+    font-size: 13px;
     margin-top: 10px;
 }
 .wl-remen-right dt {
@@ -128,25 +129,41 @@
 
 }
 .wl-chakan{
-    width: 50px;
-    height: 20px;
-    line-height: 20px;
+    width: 55px;
+    height: 22px;
+    line-height: 22px;
     color: #1B1B1B;
     font-size: 10px;
-    border: 1px solid #A0A0A0;
+    border: 1px solid #eeeeee;
     text-align: center;
     float: right;
     margin-right: 15px;
     border-radius: 2px;
 }
 .wl-zhifu{
-    width: 50px;
-    height: 20px;
-    line-height: 20px;
+    width: 55px;
+    height: 22px;
+    line-height: 22px;
     color: #FFFFFF;
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
     background: #7DB0E8;
     float: right;
     border-radius: 2px;
+}
+.wl-deji li span{
+    width: 60px;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid red;
+    display: block;
+    text-align: center;
+}
+.wl-jiageo{
+    color: #333333;
+    font-size: 13px;
+    float: right;
+    margin-right: -20px;
+
 }
