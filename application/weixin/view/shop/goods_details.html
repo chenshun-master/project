@@ -145,29 +145,36 @@
                         <div class="wl-shangping1">购买须知</div>
                         <div class="padding">
                             <dl>有效期</dl>
-                            <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                购买当天起90天内有效</dt>
+                            <dt>
+                                <i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
+                                {if($info['goods_info']['buy_deadline'] == 0)}
+                                    购买当天起永久有效
+                                {else /}
+                                    购买当天起天{$info['goods_info']['buy_deadline']}内有效
+                                {/if}
+                            </dt>
                         </div>
                         <div style="clear: both"></div>
                         <div class="padding">
                             <dl>预约信息</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                请您提前1天预约</dt>
+                                {$info['goods_info']['notice']}</dt>
                         </div>
                         <div style="clear: both"></div>
                         <div class="padding">
                             <dl>可用时间</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                10:00:00至22:00:00</dt>
+                                {$info['goods_info']['time_slot']}</dt>
                         </div>
                         <div style="clear: both"></div>
                         <div style="margin-bottom: 5px;" class="padding">
                             <dl>消费流程</dl>
-                            <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                下订单并支付预付金</dt>
-                            <div style="clear: both"></div>
-                            <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                到店后将消费码给商户进行验证，并支付尾款</dt>
+                            {if($info['goods_info']['buyflow'])}
+                                {foreach $info['goods_info']['buyflow'] as $text }
+                                    <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>{$text}</dt>
+                                    <div style="clear: both"></div>
+                                {/foreach}
+                            {/if}
                         </div>
                         <div style="clear: both"></div>
                     </div>

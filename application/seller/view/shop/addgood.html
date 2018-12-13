@@ -60,6 +60,15 @@
         background: #00a65a !important;
         color: white !important;
     }
+
+    #process-hint-table td p{
+        margin-top: 8px;
+        width: 10px;
+    }
+
+    #process-hint-table td p i{
+        color: red;cursor: pointer;display: none;
+    }
 </style>
 {/block}
 
@@ -77,9 +86,9 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-box1" data-toggle="tab">商品(项目)信息</a></li>
-                    <li><a href="#tab-box2" data-toggle="tab">商品(项目)详情</a></li>
-                    <li><a href="#tab-box3" data-toggle="tab">购买须知</a></li>
+                    <li class="active"><a href="#tab-box1" data-toggle="tab">商品信息</a></li>
+                    <li><a href="#tab-box2" data-toggle="tab">商品详情</a></li>
+                    <li><a href="#tab-box3" data-toggle="tab">商品购买须知</a></li>
                 </ul>
                 <div class="tab-content" style='min-height: 500px;'>
                     <div class="tab-pane active" id="tab-box1">
@@ -204,7 +213,6 @@
                     <div class="tab-pane" id="tab-box2">
                         <div class="box-body">
                             <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;"></textarea>
-
                             <div class="box-footer clearfix" style="padding-left: 0px;">
                                 <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
                             </div>
@@ -216,21 +224,45 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">购买有效期</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="有效期多少天">
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" placeholder="有效期多少天" value="" id="fr-buy_deadline">
                                     </div>
-                                    <div class="col-sm-3">
-                                        商品购买日起 xxx 内有效
+                                    <div class="col-sm-2">
+                                        <div class="layui-form-mid layui-word-aux">商品购买日起 <span id="cus-day">xxx</span> 内有效, <font color="red">0代表永久有效</font></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label  class="col-sm-1 control-label">预约提示信息</label>
+                                    <label  class="col-sm-1 control-label">预约信息</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="fr-search-words" placeholder="商品搜索关键词">
+                                        <input type="text" class="form-control" placeholder="提示信息  (例如：请您提前1天预约)" id="fr-buy-notice" >
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">使用时间段</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="layui-input" id="fr-time-slot" placeholder="开始时间 - 结束时间">
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label  class="col-sm-1 control-label">购买流程</label>
+                                    <div class="col-sm-6">
+                                        <div class="layui-form-mid layui-word-aux">购买流程详细信息 </div>
+                                        <div class="layui-form-mid layui-word-aux" style="display: inline-block;float: right">
+                                            <a class="btn btn-default btn-flat btn-xs" onclick="tabObj.addTr()">添加一栏</a>
+                                        </div>
+                                        <table class="table" id="process-hint-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="10" align="center" valign="middle"><p class="tab-number">1.</p></td>
+                                                    <td><input type="text" class="form-control"></td>
+                                                    <td width="10"><p ><i class="fa fa-fw fa-trash-o" ></i></p></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
                                 <div class="box-footer clearfix" style="padding-left: 146px;">
                                     <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left" onclick="objClass.releaseGoods()">发布商品</a>
@@ -306,6 +338,9 @@
             $(this).prop("readonly","readonly");
             $(this).parent().hide();
         });
+
+        //时间范围
+        layui.laydate.render({elem: '#fr-time-slot',type: 'time',range: true});
 
         var objClass = {
             uploadLoading:false,
@@ -392,10 +427,12 @@
                     doctor_id           :$('#fr-doctor-id').val(),
                     hospital_id         :$('#fr-hospital-id').val(),
                     img_ids             :'',
-                    content             :$('#editor_id').val()
+                    content             :$('#editor_id').val(),
+                    buy_deadline        :$('#buy_deadline').val(),
+                    notice              :$.trim($('#fr-buy-notice').val()),
+                    buyflow             :tabObj.getInputVal(),
+                    time_slot           :$.trim($('#fr-time-slot').val())
                 };
-
-
 
                 var img_num = 0;
                 $.each($('.fr-imgs-val'),function(k,v){
@@ -421,6 +458,18 @@
                     layer.msg('请选择手术医院');
                 }else if(img_num == 0){
                     layer.msg('请上传商品预览图片');
+                }else if(data.buy_deadline == ''){
+                    $('.nav-tabs > li').eq(3).trigger('click');
+                    layer.msg('请填写商品购买有效期');
+                }else if(data.notice == ''){
+                    $('.nav-tabs > li').eq(3).trigger('click');
+                    layer.msg('请填写预约提示信息');
+                }else if(data.time_slot == ''){
+                    $('.nav-tabs > li').eq(3).trigger('click');
+                    layer.msg('商品使用时间段不能为空');
+                }else if(data.buyflow == ''){
+                    $('.nav-tabs > li').eq(3).trigger('click');
+                    layer.msg('商品购买流程不能有空');
                 }else if(objClass.loading == false){
                     var loading = layer.msg('提交中，请稍等...', {icon: 16,shade: 0.01,time:0});
                     $.ajax({
@@ -522,5 +571,58 @@
         }).on('click','.fr-move-right',function(){
             objClass.tdMove('right',$(this));
         });
+
+        $(document).on('mouseover','#process-hint-table tr',function(){
+            $(this).find('i').show();
+        }).on('mouseout','#process-hint-table tr',function(){
+            $(this).find('i').hide();
+        }).on('click','#process-hint-table tr td p i ',function(){
+            tabObj.removeTr($(this));
+        });
+
+        var tabObj = {
+            addTr:function(){
+                var l = $('#process-hint-table > tbody > tr').length + 1;
+                $('#process-hint-table > tbody').append('<tr><td width="10" align="center" valign="middle"><p class="tab-number">'+ l +'.</p></td><td><input type="text" class="form-control" ></td><td width="10"><p ><i class="fa fa-fw fa-trash-o" ></i></p></td></tr>');
+            },
+            removeTr:function(o){
+                var val = $.trim(o.parent().parent().parent().find('input').val());
+                if(val != ''){
+                    var index = layer.confirm('您确定要删除这条信息吗？', {
+                        title:'温馨提示',
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        o.parent().parent().parent().remove();
+                        layer.close(index);
+                        tabObj.sort();
+                    });
+                }else{
+                    o.parent().parent().parent().remove();
+                    tabObj.sort();
+                }
+            },
+            sort:function(){
+                $.each($('#process-hint-table > tbody > tr'),function(k,v){
+                    var text = parseInt(k +1);
+                    $('#process-hint-table > tbody > tr').eq(k).find('.tab-number').text(text + '.')
+                });
+            },
+            getInputVal:function(){
+                var num = 0,data = [];
+                $.each($('#process-hint-table > tbody > tr'),function(k,v){
+                    num++;
+                    var val = $('#process-hint-table > tbody > tr').eq(k).find('input').val();
+
+                    if($.trim(val) == ''){return true;}
+                    data[k] = val;
+                });
+
+                if(num != data.length){
+                    return false;
+                }
+
+                return data;
+            }
+        };
     </script>
 {/block}
