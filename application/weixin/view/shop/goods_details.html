@@ -261,7 +261,7 @@
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-remen padding">
+    <div class="wl-remen padding to-goods-detai">
         <div class="wl-remen-img">
             <img src="{{item.img}}" alt="图片丢失">
         </div>
@@ -325,6 +325,9 @@
         }else{
             $(".wl-deji").css({"position":"static"});
         }
+    });
+    $(document).on('click','.to-goods-detai',function(){
+        window.location.href = '/weixin/shop/goodsDetails/sellerid/'+$(this).data('sellerid');
     });
 </script>
 <script>

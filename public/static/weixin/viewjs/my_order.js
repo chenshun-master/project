@@ -10,7 +10,6 @@ var myObj = {
     //全部订单
     goods:{
         listData: {
-            sellerid:0,
             status:0,
             loading: false,
             ini: false,
@@ -48,11 +47,9 @@ var myObj = {
                             myObj.goods.listData.page_total = res.data.page_total;
                             $('#container-list').html('');
                         }
-
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                            $('#container-list').append(html);
-                        });
-
+                                $('#container-list').append(html);
+                            });
                         if(myObj.goods.listData.page >= myObj.goods.listData.page_total){
                             me.noData();
                         }
@@ -65,7 +62,6 @@ var myObj = {
     //待支付订单
     paid:{
         listData: {
-            sellerid:0,
             status:1,
             loading: false,
             ini: false,
@@ -104,7 +100,7 @@ var myObj = {
                             myObj.paid.listData.page_total = res.data.page_total;
                             $('#paid-list').html('');
                         }
-                        layui.laytpl(paidList.innerHTML).render(res.data.rows, function(html){
+                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
                             $('#paid-list').append(html);
                         });
                         if(myObj.paid.listData.page >= myObj.paid.listData.page_total){
@@ -121,7 +117,6 @@ var myObj = {
     //待消费订单
     consumption:{
         listData: {
-            sellerid:0,
             status:2,
             loading: false,
             ini: false,
@@ -160,7 +155,7 @@ var myObj = {
                             myObj.consumption.listData.page_total = res.data.page_total;
                             $('#consumption-list').html('');
                         }
-                        layui.laytpl(consumptionList.innerHTML).render(res.data.rows, function(html){
+                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
                             $('#consumption-list').append(html);
                         });
                         if(myObj.consumption.listData.page >= myObj.consumption.listData.page_total){
@@ -176,7 +171,6 @@ var myObj = {
     //已完成订单
     complete:{
         listData: {
-            sellerid:0,
             status:3,
             loading: false,
             ini: false,
@@ -215,7 +209,7 @@ var myObj = {
                             myObj.complete.listData.page_total = res.data.page_total;
                             $('#complete-list').html('');
                         }
-                        layui.laytpl(completeList.innerHTML).render(res.data.rows, function(html){
+                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
                             $('#complete-list').append(html);
                         });
                         if(myObj.complete.listData.page >= myObj.complete.listData.page_total){
