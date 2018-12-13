@@ -25,6 +25,10 @@ class UserModel extends Model
         return  self::where('id',$user_id)->value('mobile');
     }
 
+    public function info($data){
+        return self::where('mobile|nickname','like','%'.trim($data).'%')->order('id desc')->paginate(10);
+    }
+
     /**
      * 判断ID是否存在
      * @return bool

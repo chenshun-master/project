@@ -25,40 +25,41 @@
                             <table class="table table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <th>编号</th>
-                                    <th>banner名称</th>
-                                    <th>链接地址</th>
-                                    <th>图片地址</th>
-                                    <th>类型</th>
-                                    <th>排序</th>
-                                    <th>是否显示</th>
-                                    <th>操作</th>
+                                    <th style="text-align: center;"><div class="th-inner ">编号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">banner名称</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">链接地址</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">图片地址</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">类型</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">排序</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">是否显示</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">操作</div><div class="fht-cell"></div></th>
                                 </tr>
                                 {volist name="res" id="vo"}
                                 <tr>
-                                    <td>{$vo.id}</td>
-                                    <td>{$vo.name}</td>
-                                    <td>{$vo.url}</td>
-                                    <td>
-                                        <a href="http://www.baidu.com"><img src="{$vo.img}" style="width: 150px; height: 100px;" alt=""><br></a>
+                                    <td style="text-align: center;">{$vo.id}</td>
+                                    <td style="text-align: center;">{$vo.name}</td>
+                                    <td style="text-align: center;"><a href="{$vo.url}">{$vo.url}</a></td>
+                                    <td style="text-align: center;">
+                                        <img src="{$vo.img}" style="width: 100px; height: 80px;" alt=""><br>
                                     </td>
-                                    <td>{$vo.platform}</td>
-                                    <td>{$vo.order}</td>
-                                    <td>
+                                    <td style="text-align: center;">{$vo.platform}</td>
+                                    <td style="text-align: center;">{$vo.order}</td>
+                                    <td style="text-align: center;">
                                         {gt name="vo.id" value="1"}
                                             {eq name="vo.visibility" value="1"}
                                                 <a href="{:url('/admin/banner/update',array('id'=>$vo['id'],'visibility'=>0))}"><span class="label label-success">显示</span></a>
-                                            {else}
+                                        {else}
                                                 <a href="{:url('/admin/banner/update',array('id'=>$vo['id'],'visibility'=>1))}"><span class="label label-danger">不显示</span></a>
                                             {/eq}
                                         {/gt}
                                     </td>
-                                    <td class="table-action">
+                                    <td class="table-action" style="text-align: center;">
                                         <a href="{:url('/admin/banner/addbanner',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" title="编辑"><i class="fa fa-pencil"></i></a>
                                         {gt name="vo.id" value="1"}
                                             {eq name="vo.is_del" value="0"}
-                                        <a href="{:url('/admin/banner/del',array('id'=>$vo.id,'is_del' => 1))}" class="btn btn-xs btn-danger btn-delone" id="is_del" title="删除"><i class="fa fa-trash"></i></a>
-                                        {/eq}
+                                                <!--<a href="{:url('/admin/banner/del',array('id'=>$vo.id,'is_del' => 1))}" class="btn btn-xs btn-danger btn-delone" id="is_del" title="删除"><i class="fa fa-trash"></i></a>-->
+                                                <button class="btn btn-xs btn-danger btn-delone" data-id="{$vo.id}" title="删除"><i class="fa fa-trash"></i></button>
+                                            {/eq}
                                         {/gt}
                                     </td>
                                 </tr>
@@ -68,7 +69,7 @@
                             </table>
                         </div>
                         <div class="pull-right">
-                            {$page|raw}
+                            {$res->render()|raw}
                             <!-- /.btn-group -->
                         </div>
                     </div>
@@ -80,4 +81,25 @@
         <!-- /.col -->
     </div>
 </section>
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $('.btn-delone').click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url:"/admin/banner/del",
+            type:"POST",
+            data:{id:id},
+            dataType:"json",
+            success:function (data) {
+                // console.log(data);
+                if(data.code == 200){
+                    window.location.href='/admin/banner/index';
+                }else{
+                    alert(data.msg);
+                }
+            }
+        })
+    })
+</script>
+
 

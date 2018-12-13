@@ -8,7 +8,6 @@
 
 namespace app\admin\controller;
 
-
 use app\api\model\CategoryModel;
 use think\Db;
 use think\Request;
@@ -20,7 +19,7 @@ class Category extends BaseController
      * @return mixed
      * @throws \think\exception\DbException
      */
-    public function index(  )
+    public function index()
     {
         $cate = new CategoryModel();
         $cate = $cate->catetree();
@@ -61,8 +60,7 @@ class Category extends BaseController
                 'descript' => $descript,
                 'created_time' => $created_at,
             ];
-            if($id)
-            {
+            if($id){
                 $data = [
                     'name' => $name,
                     'parent_id' => $parent_id,

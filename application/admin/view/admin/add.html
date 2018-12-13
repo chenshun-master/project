@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+<section  class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">新增管理员</h3>
+                </div>
+                <form role="form" id="infoLogoForm" enctype="multipart/form-data" onsubmit="return false;">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="id" id="id" value="{$data.id}">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">管理员名称</label>
+                            <input type="text" class="form-control" id="username" placeholder="请输入管理员" value="{$data.username}">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" class="form-control" id="password" maxlength="16" placeholder="请输入排序内容" value="">
+                        </div>
+                        <div style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative">
+                            <div  style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;">
+                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 28px;">
+                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
+                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加图片</dt>
+                                </dl>
+                                    <img src="{$data.pic}" style="width: 134px;height: 134px;border-radius:15%;" alt="">
+                                    <input type="file" name="pic" accept="image/*" id="file"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>状态</label>
+                            <input type="radio" name="status" value="10" checked>启用
+                            <input type="radio" name="status" value="0" >禁用
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary" >提交</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+</section>
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/js/functions.js"></script>
+<!-- layui -->
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    $('.btn').click(function () {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var status = $('input:radio:checked').val();
+        if(username == "" || username == null ){
+            alert('用户名不能为空！');
+            return false;
+        }
+        if(!redream.checkPassword(password)) {
+            alert('密码格式有误！');
+            return false;
+        }
+        var BtnData = {
+            username:username,
+            password:password,
+            status:status,
+        };
+        var formData = new FormData($('#infoLogoForm')[0]);
+        formData.append('username',BtnData.username);
+        formData.append('password',BtnData.password);
+        formData.append('status',BtnData.status);
+        $.ajax({
+            url:"/admin/admin/releaseAdmin",
+            data:formData,
+            type:"POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType:"json",
+            success:function (data) {
+                if(data.code == 200){
+                    window.location.href = '/admin/admin/index';
+                }else{
+                    alert('新增失败');
+                }
+            }
+        })
+    })
+</script>

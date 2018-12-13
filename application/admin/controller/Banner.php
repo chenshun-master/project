@@ -16,15 +16,13 @@ class Banner extends BaseController{
         $this->BannerDomain = new BannerDomain();
     }
 
-    public function index($page_size = 10)
+    public function index()
     {
-        $res = Db::name('sp_banner')->where('is_del',0)->order('id desc')->paginate($page_size);
-        $page = $res->render();
-        $this->assign('page',$page);
-        $this->assign('res',$res);
+        $banner = new BannerModel();
+        $data = $banner->getList();
+        $this->assign('res',$data);
         return $this->fetch('/banner/index');
     }
-
     /**
      * 发布/修改banner
      */
@@ -90,12 +88,12 @@ class Banner extends BaseController{
      */
     public function del()
     {
-        $id = input('param.id');
+        $id = $this->request->post('id');
         $result = $this->BannerDomain->delete($id);
         if($result){
-            $this->redirect('/admin/banner/index');
+            return $this->returnData([],'删除成功',200);
         }else{
-            $this->error('删除失败', cookie("prevUrl"));
+            return $this->returnData([],'删除失败',301);
         }
     }
 }

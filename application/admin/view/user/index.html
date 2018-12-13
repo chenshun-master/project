@@ -1,0 +1,98 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">用户管理</h3>
+                        <div class="box-tools">
+                            <form class="form-horizontal" action="/admin/user/index" method="post">
+                                <div class="input-group input-group-sm" style="width: 250px;">
+                                    <input type="text" name="name" class="form-control pull-right" placeholder="手机号/昵称">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mailbox-controls">
+
+                        <!-- /.btn-group -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <th style="text-align: center;"><div class="th-inner ">编号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">手机号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户昵称</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户头像</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户类型</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户积分</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">账户余额</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户性别</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">出生日期</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户简介</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">最后登陆时间</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">最后登陆IP</div><div class="fht-cell"></div></th>
+                                </tr>
+                                {volist name="info" id="vo"}
+                                <tr>
+                                    <td style="text-align: center;">{$vo.id}</td>
+                                    <td style="text-align: center;">{$vo.mobile}</td>
+                                    <td style="text-align: center;">{$vo.nickname}</td>
+                                    <td style="text-align: center;">
+                                        <!--<img src="{$vo.portrait}" style="width: 50px; height: 50px;" alt="">-->
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {if condition="$vo.type eq 1"}
+                                            <span class="label label-success">普通用户</span>
+                                        {elseif condition="$vo.type eq 2"/}
+                                            <span class="label label-danger">认证用户</span>
+                                        {elseif condition="$vo.type eq 3"/}
+                                            <span class="label label-warning">认证医生</span>
+                                        {elseif condition="$vo.type eq 4"/}
+                                            <span class="label label-primary">认证医院</span>
+                                        {elseif condition="$vo.type eq 5"/}
+                                            <span class="label label-info">官方团队</span>
+                                        {/if}
+                                    </td>
+                                    <td style="text-align: center;">{$vo.score}</td>
+                                    <td style="text-align: center;">{$vo.account}</td>
+                                    <td style="text-align: center;">
+                                        {if condition="$vo.sex eq 0"}
+                                        <span class="label label-danger">未知</span>
+                                        {elseif condition="$vo.sex eq 1"/}
+                                        <span class="label label-success">男</span>
+                                        {elseif condition="$vo.sex eq 2"/}
+                                        <span class="label label-warning">女</span>
+                                        {/if}
+                                    </td>
+                                    <td style="text-align: center;">{$vo.birthday_date}</td>
+                                    <td style="text-align: center;">{$vo.profile}</td>
+                                    <td style="text-align: center;">{$vo.last_login_time}</td>
+                                    <td style="text-align: center;">{$vo.last_login_ip}</td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pull-right">
+                            {$info|raw}
+                            <!-- /.btn-group -->
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>

@@ -1,0 +1,96 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">管理员管理</h3>
+                        <div class="box-tools">
+
+                        </div>
+                    </div>
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="/admin/admin/newadmin" class="btn btn-primary">
+                                新增管理员
+                            </a>
+                        </div>
+                        <!-- /.btn-group -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <th style="text-align: center;"><div class="th-inner ">编号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">管理员姓名</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">管理员头像</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">管理员状态</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">添加时间</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">修改时间</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">操作</div><div class="fht-cell"></div></th>
+                                </tr>
+                                {volist name="data" id="val"}
+                                <tr>
+                                    <td style="text-align: center;">{$val.id}</td>
+                                    <td style="text-align: center;">{$val.username}</td>
+                                    <td style="text-align: center;">
+                                        <img src="{$val.pic}" style="height: 44px; width: 44px;" alt="">
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {gt name="val.id" value="0"}
+                                            {eq name="val.status" value="0"}
+                                                <a href="{:url('/admin/admin/update',array('id'=>$val['id'],'status'=>10))}"><span class="label label-danger">已禁用</span></a>
+                                            {else}
+                                                <a href="{:url('/admin/admin/update',array('id'=>$val['id'],'status'=>0))}"><span class="label label-success">已启用</span></a>
+                                            {/eq}
+                                        {/gt}
+                                    </td>
+                                    <td style="text-align: center;">{$val.created_at}</td>
+                                    <td style="text-align: center;">{$val.updated_at}</td>
+                                    <td style="text-align: center;">
+                                        <a href="{:url('/admin/admin/newAdmin',array('id'=>$val.id))}" class="btn btn-xs btn-success btn-editone" title="编辑"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-xs btn-danger btn-delone" data-id="{$val.id}" title="删除"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pull-right">
+
+                            <!-- /.btn-group -->
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $('.btn-delone').click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url:"/admin/admin/del",
+            type:"POST",
+            data:{id:id},
+            dataType:"json",
+            success:function (data) {
+                // console.log(data);
+                if(data.code == 200){
+                    window.location.href='/admin/admin/index';
+                }else{
+                    alert(data.msg);
+                }
+            }
+        })
+    })
+</script>
