@@ -263,12 +263,11 @@
     line-height: 40px;
     background: #F2F2F2;
 }
-.wl-deji li{
+.wl-deji a{
     width: 33.3%;
     height: 40px;
     text-align: center;
     float: left;
-    color: #010101;
     font-size: 13px;
 }
 
@@ -276,17 +275,9 @@
     width: 100%;
     min-height: 200px;
 }
-.wl-deji li.active {
+.wl-deji a.active {
     color: #7DB0E8;
     border-bottom: 1px solid #7DB0E8;
-}
-.content .wl-d {
-    width: 100%;
-    min-height: 200px;
-    display: none;
-}
-.content .active {
-    display: block;
 }
 .wl-youshi{
     width: 100%;
@@ -325,6 +316,7 @@
     font-size: 13px;
     padding: 0 10px 0 10px;
     border-bottom: 1px solid #DFDFDF;
+    border-top: 5px solid #DFDFDF;
 }
 .wl-shangping2{
     width: 100%;
