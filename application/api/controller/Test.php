@@ -155,17 +155,4 @@ class Test
 //        echo date('Y-m-d H:i:s');
     }
 
-
-    public function aa(){
-//        $mo = new ShOrderDomain();
-//
-//        $res = $mo->getUserOrder(15,0,1,15);
-//        halt($res);
-
-        $domain = new SpGoodsDomain();
-
-        $data = $domain->getSellerHotGoods(0,1,5);
-
-        halt($data);
-    }
 }

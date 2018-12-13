@@ -7,9 +7,7 @@ use think\Request;
 
 class ShopApi extends BaseController
 {
-
     private $_goodsDomain;
-
 
     public function __construct(App $app = null)
     {
@@ -79,10 +77,19 @@ class ShopApi extends BaseController
             'description'   =>'',
             'search_words'  =>'',
             'img_ids'       =>'',
-            'category_ids'  =>'',
+            'category'      =>'',
             'doctor_id'     =>0,
             'hospital_id'   =>0,
+            'buy_deadline'  =>'',
+            'notice'        =>'',
+            'time_slot'     =>'',
         ], 'post');
+
+        $data['buyflow'] = $request->post('buyflow/a','');
+
+        if(is_array($data['buyflow'])){
+            $data['buyflow'] = json_encode($data['buyflow']);
+        }
 
         $data['img_ids'] = trim($data['img_ids'],',');
 

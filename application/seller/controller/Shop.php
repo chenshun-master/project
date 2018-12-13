@@ -1,6 +1,7 @@
 <?php
 namespace app\seller\controller;
 
+use think\exception\Handle;
 use think\Request;
 
 class Shop extends BaseController

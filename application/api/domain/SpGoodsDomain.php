@@ -14,7 +14,7 @@ class SpGoodsDomain
      */
     public function addGoods($seller_id,$data){
         $imgs           = explode(',',$data['img_ids']);
-        $category_ids   = explode(',',$data['category_ids']);
+        $category_ids   = explode(',',$data['category']);
 
         $img = Db::name('sp_goods_photo')->where('id',$imgs[0])->value('img');
         Db::startTrans();
@@ -34,7 +34,9 @@ class SpGoodsDomain
                 'description'   =>$data['description'],
                 'search_words'  =>$data['search_words'],
                 'create_time'   =>date('Y-m-d H:i:s'),
-                'seller_id'     =>$seller_id
+                'seller_id'     =>$seller_id,
+                'doctor_id'     =>$data['doctor_id'],
+                'hospital_id'   =>$data['hospital_id'],
             ]);
 
             if(!$goods_id){
@@ -46,6 +48,7 @@ class SpGoodsDomain
             foreach ($category_ids as $val){
                 $category_data[] = ['category_id' => $val,'goods_id' => $goods_id];
             }
+
             $res = Db::name('sp_category_extend')->data($category_data)->insertAll();
             if(!$res){
                 Db::rollback();
@@ -58,6 +61,21 @@ class SpGoodsDomain
             }
             $res1 = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
             if(!$res1){
+                Db::rollback();
+                return false;
+            }
+
+            $data3 = [
+                'goods_id'      =>$goods_id,
+                'buy_deadline'  =>(int)$data['buy_deadline'],
+                'notice'        =>$data['notice'],
+                'time_slot'     =>$data['time_slot'],
+                'buyflow'       =>$data['buyflow'],
+                'created_time'  =>date('Y-m-d H:i:s'),
+            ];
+
+            $res2 = Db::name('sp_goods_buy_notice')->insertGetId($data3);
+            if(!$res2){
                 Db::rollback();
                 return false;
             }
@@ -101,6 +119,8 @@ class SpGoodsDomain
                 'keywords'      =>$data['keywords'],
                 'description'   =>$data['description'],
                 'search_words'  =>$data['search_words'],
+                'doctor_id'     =>$data['doctor_id'],
+                'hospital_id'   =>$data['hospital_id'],
             ]);
 
             if($isTrue === false){
@@ -142,6 +162,18 @@ class SpGoodsDomain
                     Db::rollback();
                     return false;
                 }
+            }
+
+            $isTrue2 = Db::name('sp_goods_buy_notice')->where('goods_id',$good_id)->update([
+                'buy_deadline'  =>(int)$data['buy_deadline'],
+                'notice'        =>$data['notice'],
+                'time_slot'     =>$data['time_slot'],
+                'buyflow'       =>$data['buyflow'],
+                'updated_time'  =>date('Y-m-d H:i:s')
+            ]);
+
+            if($isTrue2 === false){
+                Db::rollback();return false;
             }
 
             Db::commit();
@@ -326,10 +358,18 @@ class SpGoodsDomain
         ];
 
         //查询商品信息
-        $goodsInfo = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->field('id,name,market_price,sell_price,prepay_price,topay_price,img,content,visit,favorite,comments,sale_num,case_num,doctor_id,hospital_id,seller_id')->find();
-        $data['goods_info'] = $goodsInfo;
+        $obj = Db::name('sp_goods')->alias('goods');
+        $obj->where('goods.status',0);
+        $obj->where('goods.id',$goods_id);
+        $obj->leftJoin('wl_sp_goods_buy_notice buy_notice','buy_notice.goods_id = goods.id');
+        $field = 'goods.id,goods.name,goods.market_price,goods.sell_price,goods.prepay_price,goods.topay_price,goods.img,goods.content,goods.visit,goods.favorite,goods.comments,goods.sale_num,goods.case_num,goods.doctor_id,goods.hospital_id,goods.seller_id,buy_notice.buy_deadline,buy_notice.notice,buy_notice.buyflow,buy_notice.time_slot';
+        $goodsInfo = $data['goods_info'] = $obj->field($field)->find();
 
         if($goodsInfo){
+            if(!empty($data['goods_info']['buyflow'])){
+                $data['goods_info']['buyflow'] = json_decode($data['goods_info']['buyflow'],true);
+            }
+
             //查询商品图片
             $data['imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_pr')->leftJoin('wl_sp_goods_photo goods_photo','goods_pr.photo_id = goods_photo.id')->where('goods_pr.goods_id',$goods_id)->column('goods_photo.img');
 
@@ -340,8 +380,6 @@ class SpGoodsDomain
             $regionsModel = new RegionsModel();
             $data['hospital_info']['address_dateil'] = $regionsModel->getAddress([$hospitalInfo['province'],$hospitalInfo['city'],$hospitalInfo['area']],$hospitalInfo['address']);
         }
-
-
 
         return $data;
     }
