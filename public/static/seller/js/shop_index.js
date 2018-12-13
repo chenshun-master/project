@@ -31,10 +31,13 @@ layui.table.render({
         {field: 'sell_price', title: '销售价格'},
         {field: 'prepay_price', title: '预付价格'},
         {field: 'topay_price', title: '到付价格'},
-    ]]
+    ]],
 });
 
 var objClass = {
+    params:function(){
+        return {status:0};
+    },
     reload:function(){
         layui.table.reload('tab-reload', {
             page: {

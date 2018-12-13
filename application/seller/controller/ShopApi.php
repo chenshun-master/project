@@ -8,12 +8,15 @@ use think\Request;
 class ShopApi extends BaseController
 {
     private $_goodsDomain;
+    private $_orderDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_goodsDomain = new \app\api\domain\SpGoodsDomain();
+
+        $this->_orderDomain = new \app\api\domain\ShOrderDomain();
 
         if(!$this->checkLogin()){
             exit(json_encode(['code' =>401,'msg'  =>'用户未登录','data' =>[]]));
@@ -129,8 +132,24 @@ class ShopApi extends BaseController
      * 获取商品列表
      */
     public function getGoodsList(){
-        $data = $this->_goodsDomain->getSellerGoodsList(0,1,15);
 
-        return $this->returnData($data,'',0);
+        $page = $this->request->param('page',1);
+        $page_size = $this->request->param('limit',10);
+
+        $data = $this->_goodsDomain->getSellerGoodsList($this->getSellerId(),$page,$page_size);
+
+        return $this->returnData($data,'',200);
+    }
+
+    public function getSellerOrderList(){
+
+        $page = $this->request->param('page',1);
+        $page_size = $this->request->param('limit',10);
+        $status = $this->request->param('status/d',0);
+
+
+        $data = $this->_orderDomain->getSellerOrder($this->getSellerId(),$status,$page,$page_size);
+
+        return $this->returnData($data,'',200);
     }
 }
