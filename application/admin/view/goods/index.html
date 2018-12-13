@@ -1,0 +1,111 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">商品管理</h3>
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 250px;">
+                                <input type="text" name="name" id="name" class="form-control pull-right" placeholder="状态">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mailbox-controls">
+
+                        <!-- /.btn-group -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <th style="text-align: center;"><div class="th-inner ">商品编号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">坐诊医生</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">坐诊医院</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">卖家</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">项目名称</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">商品图片</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">市场价格</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">销售价格</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">预付价格</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">到付价格</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">上架时间</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">下架时间</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">库存/名额</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">商品状态</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">项目预约数</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">案列数</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">创建时间</div><div class="fht-cell"></div></th>
+                                </tr>
+                                {volist name="goods" id="val"}
+                                <tr>
+                                    <td style="text-align: center;">{$val.goods_no}</td>
+                                    <td style="text-align: center;">{$val.real_name}</td>
+                                    <td style="text-align: center;">{$val.enterprise_name}</td>
+                                    <td style="text-align: center;">{$val.seller_id}</td>
+                                    <td style="text-align: center;">{$val.name}</td>
+                                    <td style="text-align: center;">
+                                        <img src="{$val.img}" style="width: 50px;height: 50px;" alt="">
+                                    </td>
+                                    <td style="text-align: center;">{$val.market_price}</td>
+                                    <td style="text-align: center;">{$val.sell_price}</td>
+                                    <td style="text-align: center;">{$val.prepay_price}</td>
+                                    <td style="text-align: center;">{$val.topay_price}</td>
+                                    <td style="text-align: center;">{$val.up_time}</td>
+                                    <td style="text-align: center;">{$val.down_time}</td>
+                                    <td style="text-align: center;">{$val.store_nums}</td>
+                                    <td style="text-align: center;">
+                                        {if condition="$val.status eq 0"}
+                                            <span class="label label-success">正常</span>
+                                        {elseif condition="$val.status eq 1"/}
+                                            <span class="label label-danger">已删除</span>
+                                        {elseif condition="$val.status eq 2"/}
+                                            <span class="label label-warning">下架</span>
+                                        {elseif condition="$val.status eq 3"/}
+                                            <span class="label label-primary">申请上架</span>
+                                        {/if}
+                                    </td>
+                                    <td style="text-align: center;">{$val.sale_num}</td>
+                                    <td style="text-align: center;">{$val.case_num}</td>
+                                    <td style="text-align: center;">{$val.create_time}</td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pull-right">
+                            {$goods->render()|raw}
+                            <!-- /.btn-group -->
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $('.btn').click(function () {
+        var name = $('#name').val();
+        $.ajax({
+            url:"/admin/goods/search",
+            type:"POST",
+            data:{name:name},
+            dataType:"json",
+            success:function (data) {
+                console.log(data);
+            }
+        })
+    })
+</script>

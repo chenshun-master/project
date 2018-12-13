@@ -20,5 +20,12 @@ class BannerModel extends Model
     {
         return self::where('id',$id)->find();
     }
+    /**
+     * banner 列表
+     */
+    public function getList()
+    {
+        return self::where('is_del',0)->order('id desc')->paginate(10);
+    }
 
 }

@@ -54,7 +54,6 @@ class CategoryModel extends Model
         }
         return $arr;
     }
-
     /**
      * 通过ID 获得子节点信息
      * @param $cateid

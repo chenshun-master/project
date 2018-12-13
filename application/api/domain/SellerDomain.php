@@ -2,6 +2,7 @@
 namespace app\api\domain;
 
 
+use function PHPSTORM_META\type;
 use think\Db;
 
 class SellerDomain
@@ -43,5 +44,22 @@ class SellerDomain
             'hospital_name' =>$auth_info['enterprise_name'],
             'real_name'     =>$auth_info['username'],
         ];
+    }
+
+    /**
+     * 商户信息列表
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getSellerList()
+    {
+        $sellerInfo = Db::name('auth')->alias('auth')
+            ->join('wl_user user','auth.user_id = user.id')
+            ->join('sp_seller sp','user.id = sp.user_id')
+            ->where('user.type','in',[2,3,4])
+            ->order('sp.id desc')
+            ->paginate();
+        return $sellerInfo;
     }
 }

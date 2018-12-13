@@ -14,32 +14,42 @@
 }
 .wl-zonghe{
     width: 100%;
-    min-height: 30px;
-    padding: 10px 15px 0 10px;
+    min-height: 37px;
+    padding: 8px 15px 0 10px;
+
 }
 .wl-xiannv{
-    min-height: 18px;
+    width: 73%;
+    min-height: 30px;
     color: #999999;
     font-size: 14px;
     float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-bottom: 3px;
 }
 .wl-xiann{
     min-height: 18px;
     color: #999999;
-    font-size: 11px;
+    font-size: 13px;
     float: left;
 }
 
 .wl-jiage1{
+    width: 20%;
     color: #333333;
-    font-size: 11px;
+    font-size: 13px;
     float: right;
+    text-align: center;
     padding-right: 5px;
 }
 .wl-zonghe1{
     width: 100%;
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     padding: 0 15px 0 10px;
     background: #FFFFFF;
     margin-top: 10px;
@@ -54,10 +64,10 @@
 }
 .wl-xiannv1{
     color: #999999;
-    font-size: 11px;
+    font-size: 13px;
     float: left;
     padding-left: 30px;
-    background: url("/static/weixin/shop/image/index/jian.png")no-repeat 2px 8px;
+    background: url("/static/weixin/shop/image/index/jian.png")no-repeat 2px 9px;
     background-size: 20px;
 }
 .wl-jiage2{
@@ -92,13 +102,13 @@
 .wl-youhui dl{
     height: 10px;
     color: #1B1B1B;
-    font-size: 11px;
+    font-size: 12px;
     margin-top: -5px;
 
 }.wl-youhui dd{
      height: 10px;
     color: #999999;
-    font-size: 8px;
+    font-size: 9px;
     margin-top: 3px;
  }
  .se{

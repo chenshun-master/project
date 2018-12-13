@@ -41,30 +41,42 @@
             </div>
             <div style="clear:both;" ></div>
         </div>
-        <div class="wl-anli">
-            <ul>
-                <li onclick="redream.href('/weixin/user/userArticleList')">
-                    <dl >{$publishStatistics['type_1']['total']}</dl>
-                    <dt>文章</dt>
-                </li>
-                <li>
-                    <dl>{$publishStatistics['type_2']['total']}</dl>
-                    <dt>视频</dt>
-                </li>
-                <li>
-                    <dl>{$publishStatistics['type_3']['total']}</dl>
-                    <dt>案例</dt>
-                </li>
-                <li style="border: none">
-                    <dl>{$publishStatistics['type_4']['total']}</dl>
-                    <dt>问答</dt>
-                </li>
-            </ul>
-        </div>
+
     </div>
 
 </header>
 <main>
+<div onclick="redream.href('/weixin/shop/myOrder')">
+    <p class="wl-dingdan"><span>我的订单</span><span>查看全部订单<i class="iconfont icon-back_left-copy" style="font-size: 12px;color: #333333"></i></span></p>
+    <div class="wl-anli">
+        <ul>
+            <a href="/weixin/shop/myOrder#all">
+                <li >
+                    <dl class="iconfont icon-order" style="font-size: 30px"></dl>
+                    <dt>全部</dt>
+                </li>
+            </a>
+            <a href="/weixin/shop/myOrder#paid">
+                <li>
+                    <dl class="iconfont icon-daizhifu" style="font-size: 30px"></dl>
+                    <dt>待支付</dt>
+                </li>
+            </a>
+            <a href="/weixin/shop/myOrder#consumption">
+                <li>
+                    <dl  class="iconfont icon-xiaofeishuju" style="font-size: 30px"></dl>
+                    <dt>待消费</dt>
+                </li>
+            </a>
+            <a href="/weixin/shop/myOrder#complete">
+                <li style="border: none">
+                    <dl  class="iconfont icon-daizhifu" style="font-size: 30px"></dl>
+                    <dt>已完成</dt>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
     <div class="wl-shoucang">
         <ul>
             <a href="/weixin/user/collection#favorite">
@@ -79,10 +91,17 @@
                     <dt>我的评论</dt>
                 </li>
             </a>
+
             <a href="/weixin/user/collection#like">
                 <li>
                     <dl  class="iconfont icon-dianzan1"  style="font-size: 30px;color: #7DB0E8;"></dl>
                     <dt>我的点赞</dt>
+                </li>
+            </a>
+            <a href="/weixin/user/userArticleList">
+                <li>
+                    <dl class="iconfont icon-dingdan1"   style="font-size: 30px;color: #EB825D;"></dl>
+                    <dt>我的文章</dt>
                 </li>
             </a>
             <a href="/weixin/user/friends">

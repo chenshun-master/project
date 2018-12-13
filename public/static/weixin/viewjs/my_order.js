@@ -3,8 +3,81 @@ $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给
     $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
     var index = $(this).index();
     $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    if(index == 0 && myObj.goods.listData.ini == false){
+        var dropload = $('#container').dropload({
+            scrollArea : window,
+            loadUpFn:function(me){
+                myObj.goods.listData.loading = false;
+                myObj.goods.listData.ini = false;
+                myObj.goods.listData.page = 0;
+                myObj.goods.listData.page_total = 1;
+                myObj.goods.loadList(me);
+            },
+            loadDownFn : function(me){
+                myObj.goods.loadList(me);
+            }
+        });
+    }else if(index == 1 && myObj.paid.listData.ini == false){
+        var dropload = $('#container-one').dropload({
+            scrollArea : window,
+            loadUpFn:function(me){
+                myObj.paid.listData.loading = false;
+                myObj.paid.listData.ini = false;
+                myObj.paid.listData.page = 0;
+                myObj.paid.listData.page_total = 1;
+                myObj.paid.loadList(me);
+            },
+            loadDownFn : function(me){
+                myObj.paid.loadList(me);
+            }
+        });
+    }else if(index == 2 && myObj.consumption.listData.ini == false){
+        var dropload = $('#container-two').dropload({
+            scrollArea : window,
+            loadUpFn:function(me){
+                myObj.consumption.listData.loading = false;
+                myObj.consumption.listData.ini = false;
+                myObj.consumption.listData.page = 0;
+                myObj.consumption.listData.page_total = 1;
+                myObj.consumption.loadList(me);
+            },
+            loadDownFn : function(me){
+                myObj.consumption.loadList(me);
+            }
+        });
+    }else if(index == 3 && myObj.complete.listData.ini == false){
+        var dropload = $('#container-three').dropload({
+            scrollArea : window,
+            loadUpFn:function(me){
+                myObj.complete.listData.loading = false;
+                myObj.complete.listData.ini = false;
+                myObj.complete.listData.page = 0;
+                myObj.complete.listData.page_total = 1;
+                myObj.complete.loadList(me);
+            },
+            loadDownFn : function(me){
+                myObj.complete.loadList(me);
+            }
+        });
+    }
 
 });
+$(function () {
+    var url = window.location.toString();
+    var maodian = url.split('#')[1];
+
+    console.log(maodian);
+    if(maodian == 'all'){
+        $(".wl-deji li").eq(0).trigger('click');
+    }else if(maodian  == 'paid'){
+        $(".wl-deji li").eq(1).trigger('click');
+    }else if(maodian == 'consumption'){
+        $(".wl-deji li").eq(2).trigger('click');
+    }else if(maodian == 'complete'){
+        $(".wl-deji li").eq(3).trigger('click');
+    }
+
+})
 
 var myObj = {
     //全部订单
@@ -223,56 +296,3 @@ var myObj = {
     },
 };
 
-
-var dropload = $('#container').dropload({
-    scrollArea : window,
-    loadUpFn:function(me){
-        myObj.goods.listData.loading = false;
-        myObj.goods.listData.ini = false;
-        myObj.goods.listData.page = 0;
-        myObj.goods.listData.page_total = 1;
-        myObj.goods.loadList(me);
-    },
-    loadDownFn : function(me){
-        myObj.goods.loadList(me);
-    }
-});
-var dropload = $('#container-one').dropload({
-    scrollArea : window,
-    loadUpFn:function(me){
-        myObj.paid.listData.loading = false;
-        myObj.paid.listData.ini = false;
-        myObj.paid.listData.page = 0;
-        myObj.paid.listData.page_total = 1;
-        myObj.paid.loadList(me);
-    },
-    loadDownFn : function(me){
-        myObj.paid.loadList(me);
-    }
-});
-var dropload = $('#container-two').dropload({
-    scrollArea : window,
-    loadUpFn:function(me){
-        myObj.consumption.listData.loading = false;
-        myObj.consumption.listData.ini = false;
-        myObj.consumption.listData.page = 0;
-        myObj.consumption.listData.page_total = 1;
-        myObj.consumption.loadList(me);
-    },
-    loadDownFn : function(me){
-        myObj.consumption.loadList(me);
-    }
-});
-var dropload = $('#container-three').dropload({
-    scrollArea : window,
-    loadUpFn:function(me){
-        myObj.complete.listData.loading = false;
-        myObj.complete.listData.ini = false;
-        myObj.complete.listData.page = 0;
-        myObj.complete.listData.page_total = 1;
-        myObj.complete.loadList(me);
-    },
-    loadDownFn : function(me){
-        myObj.complete.loadList(me);
-    }
-});

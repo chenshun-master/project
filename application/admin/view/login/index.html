@@ -11,7 +11,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/static/admin/dist/css/AdminLTE.min.css">
     <!-- layui -->
-    <link rel="stylesheet" href="/static/admin/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -62,10 +62,10 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="/static/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- layui -->
-<script src="/static/admin/layui/layui.js"></script>
+<script src="/static/plugin/layui/layui.js"></script>
 <script>
-    layui.use('form', function() {
-        var form = layui.form();
+        layui.use('form', function(){
+            var form = layui.form
 
         //监听提交
         form.on('submit(login)', function(data) {

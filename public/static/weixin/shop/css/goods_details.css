@@ -38,7 +38,7 @@
     width: 100%;
     min-height: 10px;
     color: #1B1B1B;
-    font-size: 13px;
+    font-size: 14px;
     padding-top: 10px;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -52,7 +52,7 @@
     margin: 0 auto;
     height: 40px;
     line-height: 40px;
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-jiage1{
     color: #F24F4F;
@@ -66,26 +66,27 @@
 }
 .wl-zizhi{
     width: 100%;
-    height: 30px;
+    height: 40px;
     padding: 0 10px 0 10px;
-    line-height: 27px;
+    line-height: 33px;
     border-bottom: 5px solid #F2F2F2;
     padding-left: 35px;
-    background: url("/static/weixin/shop/image/index/dianjia.png")no-repeat 7px 2px;
+    background: url("/static/weixin/shop/image/index/dianjia.png")no-repeat 10px 6px;
     background-size: 20px;
     color: #333333;
-    font-size: 10px;
+    font-size: 12px;
 }
 .wl-dizhi{
     width: 100%;
-    height: 100px;
+    min-height: 100px;
     border-bottom: 5px solid #F2F2F2;
 }
 .wl-dianhua{
     width: 95%;
-    height: 56px;
+    min-height: 56px;
     margin: 0 auto;
-    border-bottom: 1px solid #F2F2F2;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0 3px 0;
 }
 .dianhua-left{
     width: 80%;
@@ -96,7 +97,7 @@
 .dianhua-left dt{
     width: 100%;
     float: left;
-    margin-top: 7px;
+    margin-top: 5px;
     position: relative;
 }
 .dianhua-left dt i{
@@ -116,14 +117,14 @@
     line-height: 40px;
     text-align: center;
     float: right;
-    border-left: 1px solid #EEEEEE;
+    border-left: 1px solid #f1f1f1;
 }
 .wl-dizhixaing{
     width: 100%;
     height: 40px;
     line-height: 40px;
     color: #333333;
-    font-size: 10px;
+    font-size: 11px;
     padding: 0 10px 0 10px;
 }
 .wl-yishi{
@@ -237,6 +238,7 @@
     border-radius: 25px;
     overflow: hidden;
     padding-left: 10px;
+    margin-top: 5px;
 }
 .wl-fenshu{
     float: right;
@@ -310,22 +312,22 @@
 }
 .wl-shangping1{
     width: 100%;
-    height: 34px;
+    height: 38px;
     line-height: 34px;
     color: #1D1D1D;
     font-size: 13px;
     padding: 0 10px 0 10px;
-    border-bottom: 1px solid #DFDFDF;
+    border-bottom: 1px solid #f1f1f1;
     border-top: 5px solid #DFDFDF;
 }
 .wl-shangping2{
     width: 100%;
-    height: 34px;
+    height: 38px;
     line-height: 34px;
     color: #1D1D1D;
     font-size: 13px;
     padding: 0 10px 0 10px;
-    border-bottom: 1px solid #DFDFDF;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-xuzhi dl{
     width: 100%;
@@ -350,7 +352,7 @@
     width: 100%;
     height: 85px;
     overflow: hidden;
-    border-bottom: 1px solid #DFDFDF;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-remen-img{
     width: 85px;
@@ -400,7 +402,7 @@
     height: 50px;
     background: white;
     padding: 5px;
-    border-top: 1px solid #DFDFDF;
+    border-top: 1px solid #f1f1f1;
 }
 .wl-re-footer dl{
     color: #333333;
@@ -488,7 +490,7 @@
     font-size: 18px;
 }
 .padding{
-    padding: 0 10px 0 10px;
+    padding: 5px 10px 0 10px;
 }
 .wl-meili{
     width: 100%;
