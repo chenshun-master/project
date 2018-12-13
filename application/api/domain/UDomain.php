@@ -36,7 +36,6 @@ class UDomain
 
         $obj->field($field);
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
-
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -192,14 +191,38 @@ class UDomain
         $obj->where('doctor.user_id',$user_id);
         $obj->leftJoin('wl_doctor_hospital dh','doctor.id = dh.doctor_id');
         $obj->leftJoin('wl_hospital hospital','dh.hospital_id = hospital.id');
-        $obj->field('hospital.id,hospital.hospital_name');
+        $obj->field('hospital.id as hospital_id,hospital.hospital_name');
         return $obj->select();
     }
 
     /**
      * 获取用户的
      */
-    public function getDoctorDetail($user_id){
+    public function getDoctorOrHospitalList($user_id,$type){
+        $data = ['doctor'  => [],'hospital'=>[]];
 
+        if($type == 3){
+            $doctorInfo = Db::name('doctor')->where('user_id',$user_id)->field('id as doctor_id,user_id,real_name')->find();
+            $data['doctor'][] = $doctorInfo;
+
+            $obj = Db::name('doctor_hospital')->alias('dh');
+            $obj->leftJoin('wl_hospital hospital','hospital.id = dh.hospital_id');
+            $obj->where('dh.doctor_id',$doctorInfo['doctor_id']);
+            $obj->field('hospital.user_id,hospital.id as hospital_id,hospital.hospital_name');
+
+            $data['hospital'] = $obj->select();
+        }else if($type == 4){
+            $hospitalInfo = Db::name('hospital')->where('user_id',$user_id)->field('id as hospital_id,user_id,hospital_name')->find();
+            $data['hospital'][] = $hospitalInfo;
+
+            $obj = Db::name('doctor_hospital')->alias('dh');
+            $obj->leftJoin('wl_doctor doctor','doctor.id = dh.doctor_id');
+            $obj->where('dh.hospital_id',$hospitalInfo['hospital_id']);
+            $obj->field('doctor.id as doctor_id,doctor.user_id,doctor.real_name');
+
+            $data['doctor'] = $obj->select();
+        }
+
+        return $data;
     }
 }

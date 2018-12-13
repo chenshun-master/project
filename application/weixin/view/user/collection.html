@@ -131,7 +131,8 @@
                 myObj.favorite.listData.page++;
                 if(myObj.favorite.listData.ini == true){
                     if(myObj.favorite.listData.page > myObj.favorite.listData.page_total){
-                        me.resetload();return false;
+                        me.resetload();
+                        return false;
                     }
                 }
 

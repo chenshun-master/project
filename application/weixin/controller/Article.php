@@ -271,7 +271,6 @@ class Article extends BaseController
             }
         }
 
-
         $this->assign($data);
         $this->assign('isFriend',$isFriend);
         $this->assign('shareImg',$shareImg);

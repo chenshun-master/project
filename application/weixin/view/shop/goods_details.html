@@ -1,6 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/css/swiper.min.css">
 <link rel="stylesheet" href="/static/weixin/shop/css/goods_details.css">
 
 <style>
@@ -9,7 +10,7 @@
 {/block}
 
 {block name="main"}
-<div style="width: 100%;min-height: 500px;padding-bottom: 100px">
+<div style="width: 100%;min-height: 500px;padding-bottom: 100px;min-height: 40px">
     <header>
         <div class="wl-top">
             <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
@@ -21,30 +22,35 @@
 <main>
     <div class="swiper-container img-gao">
         <div class="swiper-wrapper ">
-            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg3.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg2.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/static/weixin/shop/image/index/bg1.jpg" alt=""></div>
+            {foreach $info['imgs'] as $img }
+                <div class="swiper-slide"><img src="{$img}" alt=""></div>
+            {/foreach}
         </div>
         <div class="swiper-pagination"></div>
     </div>
     <div class="wl-neirong">
-        <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+        <div class="wl-title">{$info['goods_info']['name']}</div>
         <div class="wl-jiage">
-            <div class="wl-jiage"><span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span class="wl-quchu">￥5980</span></div>
+            <div class="wl-jiage">
+                <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{$info['goods_info']['sell_price']}</span></span>
+                <span class="wl-quchu">￥{$info['goods_info']['market_price']}</span>
+            </div>
         </div>
+
         <div class="wl-zizhi">
           资质认证 . 全程认证 .全程陪护 . 定期回访 <i class="iconfont icon-back_left-copy" style="font-size: 15px;float: right;margin-right: 10px"></i>
         </div>
+
         <div class="wl-dizhi">
             <div class="wl-dianhua">
                 <div class="dianhua-left">
-                    <dl>上海薇琳医疗美容医院 <i class="iconfont icon-renzheng1"style="font-size: 20px;color: #F19149"></i></dl>
+                    <dl>{$info['hospital_info']['hospital_name']} <i class="iconfont icon-renzheng1"style="font-size: 20px;color: #F19149"></i></dl>
                     <dt><i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
                         <i class="iconfont icon-xingji" style="font-size: 18px;color:#7DB0E8;"></i>
-                        <i class="wl-lu" style="    float: right;">江宁路</i>
+                        <!--<i class="wl-lu" style="float: right;">江宁路</i>-->
                     </dt>
                 </div>
                 <div class="dianhua-right"><i class="iconfont icon-dianhua" style="font-size: 20px;color: #7DB0E8;margin: 0 auto"></i></div>
@@ -52,63 +58,64 @@
             </div>
             <div class="wl-dizhixaing">
                 <i class="iconfont icon-dingwei1" style="font-size: 15px;color: #BFBFBF"></i>
-               <span style="margin-left: 5px"> 江宁路818号(江宁路与海防路交叉口)</span>
+               <span style="margin-left: 5px"> {$info['hospital_info']['address_dateil']}</span>
                 <i class="iconfont icon-back_left-copy"style="font-size: 15px;float: right;margin-right: 10px"></i>
             </div>
         </div>
-        <!--<div class="wl-yishi">-->
-            <!--<div class="wl-tuijian">-->
-                <!--<span>推荐医师</span>-->
-                <!--<span>共5名医师</span>-->
-            <!--</div>-->
-            <!--<div class="wl-lunbo-yishi">-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="wl-yishi-left">-->
-                    <!--<div class="wl-ysname">-->
-                        <!--<img src="/static/image/user/tou.png" alt="">-->
-                        <!--<i class="wl-tubiao"></i>-->
-                        <!--<dl>医生姓名</dl>-->
-                        <!--<dt>职称</dt>-->
-                        <!--<dd>预约4</dd>-->
-                    <!--</div>-->
-                <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+
+        <!--<div class="wl-yishi">
+            <div class="wl-tuijian">
+                <span>推荐医师</span>
+                <span>共5名医师</span>
+            </div>
+            <div class="wl-lunbo-yishi">
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+                <div class="wl-yishi-left">
+                    <div class="wl-ysname">
+                        <img src="/static/image/user/tou.png" alt="">
+                        <i class="wl-tubiao"></i>
+                        <dl>医生姓名</dl>
+                        <dt>职称</dt>
+                        <dd>预约4</dd>
+                    </div>
+                </div>
+        </div>
+    </div>
         <div class="wl-jieshao">
             <div class="wl-shangping">商品详情</div>
             <div class="wl-xiang">
@@ -119,113 +126,68 @@
                 <span style="text-decoration: line-through;">门市价:5980元</span>
                 <span style="margin-left: 5px">优惠价:<span style="color: #FF615C">4784元</span></span></div>
         </div>
-        <div style="clear: both"></div>
+        <div style="clear: both"></div>-->
         <div>
-            <ul class="wl-deji">
-                <li class="active">全部项目</li>
-                <li class="wl-houmai">购买须知</li>
-                <li>美丽日记</li>
-            </ul>
-
+                <div class="wl-deji">
+                    <a href="#shangping" class="active">商品详情</a>
+                    <a href="#goumai">购买须知</a>
+                    <a href="#meili">美丽日记</a>
+                </div>
             <div class="content">
-                <div class="wl-d active">
-                    <div class="wl-youshi">
-                        <p class="wl-bizonghe"><i class="iconfont icon-wuxing"style="margin-right: 8px"></i>鼻综合的优势：</p>
-                        <p class="wl-bineirong">
-                            能够改变鼻部缺陷，重建鼻部软三角结构；
-                            塑造符合审美标准、与面部比例协调的个性美鼻；
-                            通过一次手术，综合调整各方面鼻部不美的状态;
-                            一次手术解决两个或两个以上的鼻部问题，达到整体的自然、协调美。
-                        </p>
+                    <div class="wl-youshi" id="shangping">
+                        <?php echo $info['goods_info']['content'] ?>
                     </div>
-                    <div class="wl-img">
-                        <img src="/static/weixin/shop/image/index/b1.jpg" alt="">
-                        <img src="/static/weixin/shop/image/index/b2.jpg" alt="">
-                        <img src="/static/weixin/shop/image/index/b3.jpg" alt="">
-                    </div>
+
                     <div style="clear: both"></div>
+
                     <div class="wl-xuzhi" id="goumai">
-                        <div class="wl-shangping1">购买须知</div>
+                        <div class="wl-shangping1"  >购买须知</div>
                         <div class="padding">
                             <dl>有效期</dl>
-                            <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                购买当天起90天内有效</dt>
+                            <dt>
+                                <i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
+                                {if($info['goods_info']['buy_deadline'] == 0)}
+                                    购买当天起永久有效
+                                {else /}
+                                    购买当天起天{$info['goods_info']['buy_deadline']}内有效
+                                {/if}
+                            </dt>
                         </div>
                         <div style="clear: both"></div>
                         <div class="padding">
                             <dl>预约信息</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                请您提前1天预约</dt>
+                                {$info['goods_info']['notice']}</dt>
                         </div>
                         <div style="clear: both"></div>
                         <div class="padding">
                             <dl>可用时间</dl>
                             <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                10:00:00至22:00:00</dt>
+                                {$info['goods_info']['time_slot']}</dt>
                         </div>
                         <div style="clear: both"></div>
                         <div style="margin-bottom: 5px;" class="padding">
                             <dl>消费流程</dl>
-                            <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                下订单并支付预付金</dt>
-                            <div style="clear: both"></div>
-                            <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>
-                                到店后将消费码给商户进行验证，并支付尾款</dt>
+                            {if($info['goods_info']['buyflow'])}
+                                {foreach $info['goods_info']['buyflow'] as $text }
+                                    <dt><i class="iconfont icon-yuandian"style="font-size: 17px;float: left;margin-top: 1px;"></i>{$text}</dt>
+                                    <div style="clear: both"></div>
+                                {/foreach}
+                            {/if}
                         </div>
                         <div style="clear: both"></div>
                     </div>
-                    <div class="wl-gengduo">
-                        <div class="wl-shangping2">更多本店热门商品</div>
-                        <div class="wl-remen padding">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适合的</dl>
-                                <dt>品牌：伊婉C</dt>
-                                <dd>
-                                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                                    <span class="wl-quchu">￥5980</span>
-                                    <span class="wl-jia-right">已售15 </span>
-                                </dd>
-                            </div>
-                        </div>
-                        <div class="wl-remen padding">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适合的</dl>
-                                <dt>品牌：伊婉C</dt>
-                                <dd>
-                                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                                    <span class="wl-quchu">￥5980</span>
-                                    <span class="wl-jia-right">已售15 </span>
-                                </dd>
-                            </div>
-                        </div>
-                        <div class="wl-remen padding">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适合的</dl>
-                                <dt>品牌：伊婉C</dt>
-                                <dd>
-                                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
-                                    <span class="wl-quchu">￥5980</span>
-                                    <span class="wl-jia-right">已售15 </span>
-                                </dd>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="wl-d">
-                    2
-                </div>
-                <div class="wl-d ">
+                    <div class="wl-gengduo">
+                        <div class="wl-shangping2" >更多本店热门商品</div>
+                        <div id="container-list">
+
+                        </div>
+                        <!--<p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>-->
+                    </div>
+                    <div class="wl-shangping2" style="border-top: 4px solid #DFDFDF;" id="meili">美丽日记</div>
                     <div class="wl-meili">
+
                         <div class="wl-meili-top">
                             <div class="wl-meili-left">
                                 <img src="/static/image/user/tou.png" alt="">
@@ -253,7 +215,7 @@
                                 <span  class="wl-longxioang">#胸部</span>
                             </div>
                             <div class="wl-meili-right1">
-                               <span>1126人浏览</span>
+                                <span>1126人浏览</span>
                             </div>
                         </div>
                         <div class="wl-xiang bottom">
@@ -272,13 +234,13 @@
                             <span class="wl-fenshu se">￥4784元</span>
                         </div>
                     </div>
-                </div>
                 <div class="wl-re-footer">
                     <div class="wl-yuyue">
-                        <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>4456</span></span></dl>
-                        <dd>到院尾付:￥3827</dd>
+                        <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>{$info['goods_info']['prepay_price']}</span></span></dl>
+                        <dd>到院尾付:￥{$info['goods_info']['topay_price']}</dd>
                     </div>
-                    <div class="wl-qianggou" onclick="redream.href('/weixin/shop/pay')">
+                    <input type="hidden" value="{$info['goods_info']['seller_id']}" id="fr-seller-id">
+                    <div class="wl-qianggou" data-href="/weixin/shop/confirmOrder" id="click-place-order" data-goodsid="{$info['goods_info']['id']}">
                         立即抢购
                     </div>
                 </div>
@@ -296,18 +258,37 @@
 {/block}
 
 {block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-remen padding to-goods-detai href"  data-goodsid="{{ item.id }}">
+        <div class="wl-remen-img">
+            <img src="{{item.img}}" alt="图片丢失">
+        </div>
+        <div class="wl-remen-right">
+            <dl>{{item.name}}</dl>
+            <dt>医院:{{item.hospital_name}}</dt>
+            <dd>
+                <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-quchu">￥{{item.prepay_price}}</span>
+                <span class="wl-jia-right">预约{{item.sale_num}}  </span>
+            </dd>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+<script src="/static/js/swiper.min.js"  type="text/javascript" charset="utf-8"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
         pagination: {
             el: '.swiper-pagination',
-        },
-    })
-    $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-        $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
-          var index = $(this).index();
-        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+        }
+    });
 
+    $(".wl-deji a").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
+        $(".wl-deji").addClass("dingwei").siblings().removeClass("dingwei");
     });
 
     $(".dianhua-right").click(function (event) {
@@ -322,15 +303,85 @@
             $('.marsk-container').hide(); //淡出消失
         }
     });
+
     $(".quxiao").click(function () {
         $('.marsk-container').hide(); //淡出消失
-    })
-
-    $("#p1").click(function() {
-        $("html, body").animate({
-            scrollTop: $("#div1").offset().top }, {duration: 500,easing: "swing"});
-        return false;
     });
 
+    $(".wl-gouma").click(function () {
+        $(this).removeClass("active")
+    });
+
+    $('#click-place-order').on('click',function(){
+        // window.location.href =$(this).data('href');
+        window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
+    });
+
+    var oTop = $(".wl-deji").offset().top;
+    var sTop = 0;
+    $(window).scroll(function(){
+
+        sTop = $(this).scrollTop();
+        if(sTop >= oTop){
+            $(".wl-deji").css({"position":"fixed","top":"0"});
+        }else{
+            $(".wl-deji").css({"position":"static"});
+        }
+    });
+    $(document).on('click','.to-goods-detai',function(){
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+    });
+</script>
+<script>
+    var myObj = {
+        goods:{
+            listData: {
+                sellerid:0,
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            loadList: function () {
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        return false;
+                    }
+                }
+                var data = $.extend({},{page:myObj.goods.listData.sellerid,page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size});
+                $.ajax({
+                    url: "/weixin/shopapi/getSellerHotGoods",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                        // $(".marsk-container2").hide();
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if ( myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
+                                $('#container-list').append(html);
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    };
+    myObj.goods.loadList();
 </script>
 {/block}

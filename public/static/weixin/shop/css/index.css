@@ -28,7 +28,7 @@
     height: 30px;
     line-height: 30px;
     padding-top: 5px;
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid #f1f1f1;
     z-index: 999999 !important;
     position: fixed;
     top: 40px;
@@ -42,7 +42,7 @@
     width: 33.3%;
     height: 20px;
     line-height: 20px;
-    border-right: 1px solid #E5E5E5;
+    border-right: 1px solid #f1f1f1;
     text-align: center;
     float: left;
     color: #333333;
@@ -50,11 +50,11 @@
 }
 .wl-shangping{
     width: 95%;
-    height: 110px;
-    padding: 10px 0 10px 0;
+    min-height: 110px;
+    padding: 15px 0 15px 0;
     margin: 0 auto;
     overflow: hidden;
-    border-bottom: 1px solid #DFDFDF;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-sp-img{
     width: 90px;
@@ -67,7 +67,7 @@
     background: #EEEEEE;
 }
 .wl-xiang{
-    width: 230px;
+    width: 240px;
     min-height: 30px;
     float: left;
     margin-left: 10px;
@@ -82,10 +82,12 @@
     -webkit-box-orient: vertical;
     color: #1D1D1D;
     font-size: 13px;
+    margin-bottom: 3px;
 }
 .wl-yiyuan{
     color: #999999;
     font-size: 11px;
+    margin-top: 3px;
 }
 .wl-jiage{
     color: #F24F4F;
@@ -128,6 +130,20 @@
     overflow: hidden;
     max-width: 640px;
 }
+.tkyy_con2{
+    position: fixed;
+    top: 40%;
+    left: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    background: #656565;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 640px;
+    /*opacity: 0.5;*/
+    border-radius: 5px;
+}
 .marsk-container1 {
     display: none;
     background: #FFFFFF;
@@ -138,6 +154,16 @@
     bottom: 0px;
     background: rgba(0, 0, 0, .5);
     z-index: 10;
+}
+.marsk-container2{
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    z-index: 9999999!important;
+
 }
 .tkyy_con1{
     max-width: 640px;
@@ -200,7 +226,7 @@
     width:fit-content;
     width:-moz-fit-content;
     height: 20px;
-    line-height: 18px;
+    line-height:20px;
     color: #333333;
     font-size: 13px;
     border: 1px solid #E5E5E5;
@@ -215,10 +241,29 @@
     line-height: 40px;
     margin: 0 auto;
     padding-left: 15px;
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid #f1f1f1;
     color: #333333;
     font-size: 13px;
 }
 .to-datail-href{
     cursor: pointer
+}
+.wl-touming{
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 15px;
+}
+.wl-jiazai{
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.wl-se{
+    color: #7DB0E8;
+}
+.wl-se1{
+    color: #7DB0E8;
 }

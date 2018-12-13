@@ -1,11 +1,11 @@
 <?php
 namespace app\seller\controller;
 
+use think\exception\Handle;
 use think\Request;
 
 class Shop extends BaseController
 {
-
     public function index(){
         return $this->fetch('shop/index');
     }
@@ -20,7 +20,10 @@ class Shop extends BaseController
 
     /**
      * 添加商品页面
-     * @return mixed
+     * @return mixed|void
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function addgood(){
         if(!$this->checkLogin()){
@@ -29,17 +32,12 @@ class Shop extends BaseController
 
         $user_info = $this->getUserInfo();
         $type = $user_info['type'];
-        $doctor = [];
-        $hospital = [];
 
         $uDomain = new \app\api\domain\UDomain();
+        $data = $uDomain->getDoctorOrHospitalList($user_info['user_id'],$type);
 
-        if($type == 3){
-            $doctor[$user_info['user_id']] = $user_info['real_name'];
-            $hospital = $uDomain->getDoctorHospitalList($user_info['user_id']);
-        }else if($type == 4){
-            $doctorList = $uDomain->getHospitalDoctorList($user_info['user_id'],1,1000);
-        }
+        $this->assign('doctorOrHospitalList',$data);
+
         return $this->fetch('shop/addgood');
     }
 
@@ -91,5 +89,12 @@ class Shop extends BaseController
         }else{
             return $this->returnData([],'添加失败',305);
         }
+    }
+
+    /**
+     *
+     */
+    public function goodsOrder(){
+        return $this->fetch('shop/goodsorder');
     }
 }

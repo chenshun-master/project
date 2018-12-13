@@ -1,189 +1,118 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<!--<link rel="stylesheet" href="/main.css">-->
-<link rel="stylesheet" href="/static/weixin/shop/css/index.css">
-<style>
-
-</style>
+    <link rel="stylesheet" href="/static/weixin/shop/css/index.css">
 {/block}
 
 {block name="main"}
 <header style="z-index: 99999 !important;">
-<div class="wl-head">
-    <div class="wl-top">
-        <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 6px;left: 3px"></i>
-        <input type="text" placeholder="搜索您感兴趣的项目">
+    <div class="wl-head">
+        <div class="wl-top">
+            <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 6px;left: 3px"></i>
+            <input type="text" placeholder="搜索您感兴趣的项目">
+        </div>
+        <div class="wl-daohang">
+            <ul>
+                <li id="wl-quanbu">
+                    全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan" style="font-size: 10px;color: #888888;margin-left: 2px"></i>
+                </li>
+                <li>
+                    上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy"  style="font-size: 10px;color: #888888;margin-left: 4px"></i>
+                </li>
+                <li style="border: none;" id="wl-zhineng">
+                    智能排序<i  class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2" style="font-size: 10px;color: #888888;margin-left: 5px"></i>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="wl-daohang">
-        <ul>
-            <li id="wl-quanbu">全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan" style="font-size: 10px;color: #333333"></i></li>
-            <li>上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy" style="font-size: 10px;color: #333333"></i></li>
-            <li style="border: none;" id="wl-zhineng">智能排序<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2" style="font-size: 10px;color: #333333"></i></li>
-        </ul>
-    </div>
-</div>
-
 </header>
-<main style="padding-top: 70px;background:white">
 
-<div id="container">
-    <div class="wl-shangping" onclick="redream.href('/weixin/shop/goodsDetails')">
-        <div class="wl-sp-img">
-            <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75" alt="">
-        </div>
-        <div class="wl-xiang">
-            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长预约18抵300元 半肋隆鼻9999</div>
-            <div class="wl-yiyuan"><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
-            <div class="wl-yiyuan">1632人预订</div>
-            <div class="wl-jiage"><span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span class="wl-quchu">￥5980</span></div>
-        </div>
+<main style="padding-top: 70px;background:white;padding-bottom: 100px;">
+    <div id="container">
+        <div id="container-list"></div>
     </div>
-
-    <div class="wl-shangping" onclick="redream.href('/weixin/shop/goodsDetails')">
-        <div class="wl-sp-img">
-            <img src="https://img.alicdn.com/bao/uploaded/i2/704298669/TB2sxSgs5MnBKNjSZFzXXc_qVXa_!!704298669.jpg_310x310q75" alt="">
-        </div>
-        <div class="wl-xiang">
-            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长                     预约18抵300元 半肋隆鼻9999</div>
-            <div class="wl-yiyuan"><span class="wl-name">医生姓名</span><span class="wl-meirong">上海薇琳医疗美容医院</span></div>
-            <div class="wl-yiyuan">1632人预订</div>
-            <div class="wl-jiage"><span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4456</span></span><span class="wl-quchu">￥5980</span></div>
-        </div>
-        <div style="clear: both"></div>
-    </div>
-</div>
 </main>
+
 <div class="marsk-container">
     <div class="tkyy_con">
         <div class="tabbox">
             <ul class="wl-deji">
-                <li  class="active">全部项目</li>
-                <li>眼部</li>
-                <li>鼻部</li>
-                <li>面部轮廓</li>
-                <li>胸部</li>
-                <li>美体塑形</li>
-                <li>自体脂肪</li>
-                <li>除皱.抗衰老</li>
-                <li>口唇</li>
-                <li>水光针</li>
-                <li>吸脂</li>
-                <li>牙齿美容</li>
-                <li>毛发移植</li>
+                <li data-path="" class="click-select-category href">全部项目</li>
+                {foreach $categoryNav as $key=>$vo }
+                <li>{$vo['name']}</li>
+                {/foreach}
             </ul>
+
             <div class="content">
-                <div class="wl-d active">
-                    <div class="wl-chakan">
-                        <div><span>查看全部 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span></div>
-                        <div><span>双眼皮 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
+                <div class="wl-d"></div>
+                {foreach $categoryNav as $k=>$v }
+                <div class="wl-d">
+                    <div>
+                        <span data-path="{$v['path']}" class="click-select-category href">查看全部 <i
+                                class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
+                    </div>
+                    {foreach $v['subclass'] as $k2=>$v2 }
+                    <div>
+                        <span class="click-select-category href" data-path="{$v2['path']}">{$v2['name']} <i
+                                class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
                         <div style="clear: both"></div>
                         <div class="wl-das">
-                            <div class="wl-maixian">埋线双眼皮</div>
-                            <div class="wl-maixian">韩式双眼皮</div>
-                            <div class="wl-maixian">全切双眼皮</div>
-
+                            {foreach $v2['subclass'] as $k3=>$v3 }
+                            <div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}
+                            </div>
+                            {/foreach}
                         </div>
                     </div>
-                        <div style="clear: both"></div>
-                        <div><span>双眼皮 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">开内眼角</div>
-                                <div class="wl-maixian">开外眼角</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div><span>祛眼袋 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">激光祛眼袋</div>
-                                <div class="wl-maixian">内切祛眼袋</div>
-                                <div class="wl-maixian">外切祛眼袋</div>
-                                <div class="wl-maixian">射频祛眼袋</div>
-                                <div class="wl-maixian">眶隔释放祛眼袋</div>
-                                <div class="wl-maixian">埋线祛眼袋</div>
-                                <div class="wl-maixian">光纤溶脂祛眼袋</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div><span>眼综合 <i class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                            <div style="clear: both"></div>
-                            <div class="wl-das">
-                                <div class="wl-maixian">眼综合整形</div>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                    </div>
-
+                    <div style="clear: both"></div>
+                    {/foreach}
                 </div>
-                <div  class="wl-d">2222222222</div>
-                <div  class="wl-d">33333333333</div>
-                <div  class="wl-d">44444444</div>
-                <div  class="wl-d">111111111111</div>
-                <div  class="wl-d">2222222222</div>
-                <div  class="wl-d">44444444</div>
-                <div  class="wl-d">2222222222</div>
-                <div  class="wl-d">44444444</div>
-                <div  class="wl-d">33333333333</div>
-                <div  class="wl-d">2222222222</div>
-                <div  class="wl-d">高富帅</div>
-                <div  class="wl-d">2222222222</div>
+                {/foreach}
             </div>
         </div>
     </div>
 </div>
 <div class="marsk-container1">
-    <div class="tkyy_con1">
-        <p class="wl-xiao">智能排序</p>
-        <p class="wl-xiao">销量最高</p>
-        <p class="wl-xiao">日记最多</p>
-        <p class="wl-xiao">最新上架</p>
-        <p class="wl-xiao" style="border: none;">价格从低到高</p>
+    <div class="tkyy_con1 click-select-sort">
+        <p class="wl-xiao" data-sort="0" >默认排序</p>
+        <p class="wl-xiao" data-sort="1">销量最高</p>
+        <p class="wl-xiao" data-sort="2">日记最多</p>
+        <p class="wl-xiao" data-sort="3">最新上架</p>
+        <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
     </div>
 </div>
+<div class="marsk-container2" style="display: none">
+
+    <div class="tkyy_con2">
+        <div style="text-align: center;margin-top: 10px">
+            <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="color: white;font-size: 28px;"></i>
+        </div>
+        <div class="wl-jiazai">加载中...</div>
+    </div>
+</div>
+
 {include file="layout/footer" /}
 {/block}
 
 {block name="script"}
-
-<script type="text/javascript">
-
-    $("#wl-quanbu").click(function (event) {
-        event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container").toggle();
-        $(".marsk-container1").hide();
-        $(".qiehuan").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing-copy');
-        $(".qiehuan").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing');
-    });
-
-    //点击空白处隐藏弹出层
-    $(".marsk-container").click(function (event) {
-        var _con = $('.tkyy_con'); // 设置目标区域
-        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.marsk-container').hide(); //淡出消失
-        }
-    });
-    $("#wl-zhineng").click(function (event) {
-        event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container1").toggle();
-        $(".marsk-container").hide();
-        $(".qiehuan2").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing-copy');
-        $(".qiehuan2").toggleClass('iconfont icon-shangsanjiaoxiangshangmianxing');
-    });
-    //点击空白处隐藏弹出层
-    $(".marsk-container1").click(function (event) {
-        var _con = $('.tkyy_con1'); // 设置目标区域
-        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.marsk-container1').hide(); //淡出消失
-        }
-    });
-    $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
-        var index = $(this).index();
-        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
-    });
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
+        <div class="wl-sp-img">
+            <img src="{{item.img}}" />
+        </div>
+        <div class="wl-xiang href">
+            <div class="wl-title">{{item.name}}</div>
+            <div class="wl-yiyuan"><span class="wl-name">{{item.doctor_name}}</span><span class="wl-meirong">{{item.hospital_name}}</span></div>
+            <div class="wl-yiyuan">{{item.sale_num}}人预订</div>
+            <div class="wl-jiage">
+                <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-quchu">￥{{item.market_price}}</span>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    {{#  }); }}
 </script>
-
-
+<script src="/static/weixin/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
 {/block}

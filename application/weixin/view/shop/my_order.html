@@ -24,101 +24,36 @@
                 <li  class="active">全部</li>
                 <li>待支付</li>
                 <li>待消费</li>
-                <li>退款/过期</li>
+                <li>已完成</li>
             </ul>
             <div class="content">
                 <div class="wl-d active">
-                    <div class="wl-dingdan">
-                        <div class="wl-zonghe1">
-                            <span class="wl-xiannv">订单号：3108583241</span>
-                            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
-                        </div>
-                        <div class="wl-remen">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                                <dt>上海薇琳医疗美容医院</dt>
-                                <dd>
-                                    <span class="wl-quchu">￥5980</span>
-                                </dd>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-zonghe1" style="border: none">
-                            <span class="wl-jiage1"><span style="margin-right: 10px">数量：1</span><span>支付定金：￥958</span></span>
-                        </div>
-                        <div style="clear: both"></div>
-                        <!--<div class="wl-xiangqing">-->
-                        <!--<div class="wl-zhifu">去支付</div>-->
-                        <!--<div class="wl-chakan">查看详情</div>-->
+                    <div id="container">
+                        <div id="container-list">
 
-                        <!--</div>-->
+                        </div>
                     </div>
                  </div>
                 <div class="wl-d ">
-                    <div class="wl-dingdan">
-                        <div class="wl-zonghe1">
-                            <span class="wl-xiannv">订单号：3108583241</span>
-                            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
-                        </div>
-                        <div class="wl-remen">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                                <dt>上海薇琳医疗美容医院</dt>
-                                <dd>
-                                    <span class="wl-quchu">￥5980</span>
-                                </dd>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-zonghe1">
-                            <span class="wl-jiage1"><span style="margin-right: 10px">数量：1</span><span>支付定金：￥958</span></span>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-xiangqing">
-                            <div class="wl-zhifu" onclick="redream.href('/weixin/shop/methodPayment')">去支付</div>
-                            <div class="wl-chakan"  onclick="redream.href('/weixin/shop/orderDetails')">查看详情</div>
+                    <div id="container-one">
+                        <div id="paid-list">
 
                         </div>
                     </div>
-
                 </div>
                 <div class="wl-d ">
-                    <div class="wl-dingdan">
-                        <div class="wl-zonghe1">
-                            <span class="wl-xiannv">订单号：3108583241</span>
-                            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
-                        </div>
-                        <div class="wl-remen">
-                            <div class="wl-remen-img">
-                                <img src="" alt="">
-                            </div>
-                            <div class="wl-remen-right">
-                                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                                <dt>上海薇琳医疗美容医院</dt>
-                                <dd>
-                                    <span class="wl-quchu">￥5980</span>
-                                </dd>
-                            </div>
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-zonghe1" style="border: none">
-                            <span class="wl-jiage1"><span style="margin-right: 10px">数量：1</span><span>支付定金：￥958</span></span>
-                        </div>
-                        <div style="clear: both"></div>
-                        <!--<div class="wl-xiangqing">-->
-                            <!--<div class="wl-zhifu">去支付</div>-->
-                            <!--<div class="wl-chakan">查看详情</div>-->
-                        <!--</div>-->
+                    <div id="container-two">
+                          <div id="consumption-list">
+
+                         </div>
                     </div>
                 </div>
                 <div class="wl-d ">
-4                    3
+                    <div id="container-three">
+                        <div id="complete-list">
+
+                        </div>
+                    </div>
                 </div>
                 </div>
 
@@ -130,12 +65,120 @@
 {/block}
 
 {block name="script"}
-<script>
-    $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
-        var index = $(this).index();
-        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 
-    });
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/weixin/viewjs/my_order.js"></script>
+<script id="orderList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+
+    {{#  if(item.status == 3){ }}
+    <div class="wl-dingdan">
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">订单号：{{item.order_no}}</span>
+            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
+        </div>
+        <div class="wl-remen">
+            <div class="wl-remen-img">
+                <img src="{{item.img}}" alt="图片丢失">
+            </div>
+            <div class="wl-remen-right">
+                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
+                <dt>{{item.hospital_name}}</dt>
+                <dd>
+                    <span class="wl-quchu">￥{{item.goods_price}}</span>
+                </dd>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="border: none">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    {{#  } }}
+
+    {{#  if(item.status == 1){ }}
+    <div class="wl-dingdan">
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">订单号：{{item.order_no}}</span>
+            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
+        </div>
+        <div class="wl-remen">
+            <div class="wl-remen-img">
+                <img src="{{item.img}}" alt="图片丢失">
+            </div>
+            <div class="wl-remen-right">
+                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
+                <dt>{{item.hospital_name}}</dt>
+                <dd>
+                    <span class="wl-quchu">￥{{item.goods_price}}</span>
+                </dd>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-xiangqing">
+            <div class="wl-zhifu" onclick="redream.href('/weixin/shop/methodPayment')">去支付</div>
+            <div class="wl-chakan"  onclick="redream.href('/weixin/shop/orderDetails')">查看详情</div>
+        </div>
+    </div>
+    {{#  } }}
+
+    {{#  if(item.status == 5){ }}
+    <div class="wl-dingdan">
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
+            <span class="wl-jiage1" style="color: #F24F4F">已支付</span>
+        </div>
+        <div class="wl-remen">
+            <div class="wl-remen-img">
+                <img src="{{ item.img }}" alt="图片丢失">
+            </div>
+            <div class="wl-remen-right">
+                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
+                <dt>{{item.hospital_name}}</dt>
+                <dd>
+                    <span class="wl-quchu">￥{{ item.goods_price }}</span>
+                </dd>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="border: none">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{ item.goods_nums }}</span><span>支付定金：￥958</span></span>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    {{#  } }}
+
+    {{#  if(item.status == 6){ }}
+    <div class="wl-dingdan">
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
+            <span class="wl-jiage1" style="color: #F24F4F">已完成</span>
+        </div>
+        <div class="wl-remen">
+            <div class="wl-remen-img">
+                <img src="{{ item.img }}" alt="图片丢失">
+            </div>
+            <div class="wl-remen-right">
+                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
+                <dt>数量：{{ item.goods_nums }}</dt>
+                <dd>
+                    <span class="wl-quchu">￥{{ item.goods_price }}</span>
+                </dd>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="wl-zonghe1" style="border: none">
+            <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{ item.goods_nums }}</span><span>支付定金：￥958</span></span>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    {{#  } }}
+
+    {{#  }); }}
 </script>
 {/block}

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
-    <link rel="stylesheet" href="/static/css/dropload1.css" />
     <title>{:config('conf.title')} - 医院简介</title>
     <style>
         .ckgd{
@@ -140,6 +139,7 @@
         </div>
         <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
     </div>
+        </div>
 </main>
 
 <footer>
@@ -151,6 +151,10 @@
         <dl class="dianji" onclick="redream.href('/weixin/index/doctor')">
             <dd><i class="iconfont icon-yishengkkongxin" style="font-size: 25px;"></i></dd>
             <dt>医生</dt>
+        </dl>
+        <dl class="dianji" onclick="redream.href('/weixin/shop/index')">
+            <dd><i class="iconfont icon-shoplight" style="font-size: 25px;"></i></dd>
+            <dt>商城</dt>
         </dl>
         <dl class="dianji" onclick="redream.href('/weixin/index/hospital')">
             <dd><i class="iconfont icon-chakanyiyuan" style="font-size: 25px;"></i></dd>

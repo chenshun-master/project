@@ -7,13 +7,16 @@ use think\Request;
 
 class ShopApi extends BaseController
 {
+    private $_goodsDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
+        $this->_goodsDomain = new \app\api\domain\SpGoodsDomain();
+
         if(!$this->checkLogin()){
-            return $this->returnData([],'用户未登录',401);exit;
+            exit(json_encode(['code' =>401,'msg'  =>'用户未登录','data' =>[]]));
         }
     }
 
@@ -58,7 +61,7 @@ class ShopApi extends BaseController
      */
     public function releaseGoods(Request $request){
         if(!$request->isAjax() || !$request->isPost()){
-            return $this->returnData([],'参数不符合规范',301);
+            return $this->returnData([],'参数不符合规范1',301);
         }
 
         $data = \Request::only([
@@ -74,12 +77,24 @@ class ShopApi extends BaseController
             'description'   =>'',
             'search_words'  =>'',
             'img_ids'       =>'',
-            'category_ids'  =>'',
+            'category'      =>'',
+            'doctor_id'     =>0,
+            'hospital_id'   =>0,
+            'buy_deadline'  =>'',
+            'notice'        =>'',
+            'time_slot'     =>'',
         ], 'post');
+
+        $data['buyflow'] = $request->post('buyflow/a','');
+
+        if(is_array($data['buyflow'])){
+            $data['buyflow'] = json_encode($data['buyflow']);
+        }
 
         $data['img_ids'] = trim($data['img_ids'],',');
 
         $goods_id = (int) $request->post('goods_id',0);
+
         if((new \app\seller\validate\Goods())->scene('releaseGoods')->check($data) == false){
             return $this->returnData([],'参数不符合规范',301);
         }
@@ -98,12 +113,24 @@ class ShopApi extends BaseController
     }
 
 
+    /**
+     *
+     * @param Request $request
+     * @return false|string
+     */
     public function getCategoryList(Request $request){
         $category_id = $request->post('category_id',0);
-
         $domain = new \app\api\domain\SpCategory();
         $data = $domain->getCategoryList($category_id);
-
         return $this->returnData(['rows'=>$data],'',200);
+    }
+
+    /**
+     * 获取商品列表
+     */
+    public function getGoodsList(){
+        $data = $this->_goodsDomain->getSellerGoodsList(0,1,15);
+
+        return $this->returnData($data,'',0);
     }
 }
