@@ -225,4 +225,22 @@ class SpGoodsDomain
     public function getSearchGoods($searchParams = []){
 
     }
+
+    /**
+     * 商品信息列表
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getGoodsList()
+    {
+        $goodsList = Db::name('sp_goods')->alias('sp')
+            ->leftJoin('wl_doctor doctor','doctor.id = sp.doctor_id')
+            ->leftJoin('wl_hospital hospital','hospital.id = sp.hospital_id')
+            ->leftJoin('wl_sp_seller seller','seller.id = sp.seller_id')
+            ->leftJoin('wl_user user','hospital.user_id = user.id')
+            ->leftJoin('wl_auth auth','auth.user_id = user.id')
+            ->paginate();
+        return $goodsList;
+    }
 }

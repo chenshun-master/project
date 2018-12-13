@@ -2,6 +2,7 @@
 namespace app\api\domain;
 
 
+use app\api\model\CategoryModel;
 use think\Db;
 
 class SpCategory

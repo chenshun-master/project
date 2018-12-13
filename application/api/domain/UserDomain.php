@@ -49,6 +49,13 @@ class UserDomain
     public function getUserInfo($user_id){
         return $this->userModel->findUserId($user_id);
     }
+    /**
+     * 获取用户所有信息
+     */
+    public function userInfo($data)
+    {
+        return $this->userModel->info($data);
+    }
 
     /**
      * 获取用户类型

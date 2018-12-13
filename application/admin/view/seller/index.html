@@ -1,0 +1,88 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">商户管理</h3>
+                        <!-- /.box-tools -->
+                        <div class="box-tools">
+
+                        </div>
+                    </div>
+                    <div class="mailbox-controls">
+                        <!-- /.btn-group -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <th style="text-align: center;"><div class="th-inner ">编号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">手机号</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户昵称</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户头像</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">用户类型</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">医院名称</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">是否锁定</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">收款账号信息</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">评分总数</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">总预约量</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">评论次数</div><div class="fht-cell"></div></th>
+                                    <th style="text-align: center;"><div class="th-inner ">申请加入时间</div><div class="fht-cell"></div></th>
+                                </tr>
+                                {volist name="data" id="val"}
+                                <tr>
+                                    <td style="text-align: center;">{$val.id}</td>
+                                    <td style="text-align: center;">{$val.mobile}</td>
+                                    <td style="text-align: center">{$val.nickname}</td>
+                                    <td style="text-align: center;">
+
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {if condition="$val.type eq 2"}
+                                            <span class="label label-danger">认证用户</span>
+                                        {elseif condition="$val.type eq 3"/}
+                                            <span class="label label-warning">认证医生</span>
+                                        {elseif condition="$val.type eq 4"/}
+                                            <span class="label label-primary">认证医院</span>
+                                        {/if}
+                                    </td>
+                                    <td style="text-align: center">{$val.enterprise_name}</td>
+                                    <!--<td><?php if(isset($returndata['hospital'][$val['id']])){ echo $returndata['hospital'][$val['id']]; }?></td>-->
+                                    <td style="text-align: center;">
+                                        {gt name="val.id" value="0"}
+                                            {eq name="val.is_lock" value="1"}
+                                            <a href="{:url('/admin/seller/update',array('id'=>$val['id'],'is_lock'=>0))}"><span class="label label-danger">已锁定</span></a>
+                                        {else}
+                                            <a href="{:url('/admin/seller/update',array('id'=>$val['id'],'is_lock'=>1))}"><span class="label label-success">未锁定</span></a>
+                                            {/eq}
+                                        {/gt}
+                                    </td>
+                                    <td style="text-align: center;">{$val.account}</td>
+                                    <td style="text-align: center;">{$val.grade}</td>
+                                    <td style="text-align: center;">{$val.sale}</td>
+                                    <td style="text-align: center;">{$val.comments}</td>
+                                    <td style="text-align: center;">{$val.create_time}</td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pull-right">
+                            {$data->render()|raw}
+                            <!-- /.btn-group -->
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
