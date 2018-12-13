@@ -26,15 +26,14 @@ var myObj = {
             if (myObj.goods.listData.ini == true) {
                 if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
                     me.resetload();
-
                     return false;
                 }
             }
-            var data = $.extend({},{page:myObj.goods.listData.sellerid,page:myObj.goods.listData.status,page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size});
+
             $.ajax({
                 url: "/weixin/shopapi/getUserOrder",
                 type: 'post',
-                data: data,
+                data: {status:myObj.goods.listData.status,page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.goods.listData.loading = true;
@@ -49,9 +48,11 @@ var myObj = {
                             myObj.goods.listData.page_total = res.data.page_total;
                             $('#container-list').html('');
                         }
+
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
                             $('#container-list').append(html);
                         });
+
                         if(myObj.goods.listData.page >= myObj.goods.listData.page_total){
                             me.noData();
                         }
@@ -84,11 +85,11 @@ var myObj = {
                     return false;
                 }
             }
-            var data = $.extend({},{page:myObj.paid.listData.sellerid,page:myObj.paid.listData.status,page: myObj.paid.listData.page, page_size: myObj.paid.listData.page_size});
+
             $.ajax({
                 url: "/weixin/shopapi/getUserOrder",
                 type: 'post',
-                data: data,
+                data: {status:myObj.paid.listData.status,page: myObj.paid.listData.page, page_size: myObj.paid.listData.page_size},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.paid.listData.loading = true;
@@ -138,11 +139,11 @@ var myObj = {
                     return false;
                 }
             }
-            var data = $.extend({},{page:myObj.consumption.listData.sellerid,page:myObj.consumption.listData.status,page: myObj.consumption.listData.page, page_size: myObj.consumption.listData.page_size});
+
             $.ajax({
                 url: "/weixin/shopapi/getUserOrder",
                 type: 'post',
-                data: data,
+                data: {status:myObj.consumption.listData.status,page: myObj.consumption.listData.page, page_size: myObj.consumption.listData.page_size},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.consumption.listData.loading = true;
@@ -193,11 +194,11 @@ var myObj = {
                     return false;
                 }
             }
-            var data = $.extend({},{page:myObj.complete.listData.sellerid,page:myObj.complete.listData.status,page: myObj.complete.listData.page, page_size: myObj.complete.listData.page_size});
+
             $.ajax({
                 url: "/weixin/shopapi/getUserOrder",
                 type: 'post',
-                data: data,
+                data: {status:myObj.complete.listData.status,page: myObj.complete.listData.page, page_size: myObj.complete.listData.page_size},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.complete.listData.loading = true;
@@ -225,6 +226,8 @@ var myObj = {
         }
     },
 };
+
+
 var dropload = $('#container').dropload({
     scrollArea : window,
     loadUpFn:function(me){

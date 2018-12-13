@@ -10,7 +10,7 @@ class ShOrderDomain
     /**
      * 获取用户订单列表
      * @param $user_id           用户ID
-     * @param int $status        0：待支付、已支付、退款订单   1:待支付   2:已支付,待消费  3:退款订单
+     * @param int $status        0：待支付、已支付、退款订单   1:待支付   2:已支付,待消费  3:退款订单 4:已完成订单
      * @param int $page          当前分页
      * @param int $page_size     分页大小
      * @return array
@@ -28,6 +28,8 @@ class ShOrderDomain
             $status = [3];
         }else if($status == 3){
             $status = [6];
+        }else if($status == 4){
+            $status = [5];
         }
 
         $field = [
@@ -40,7 +42,8 @@ class ShOrderDomain
             'order.goods_nums',
             'order.real_amount',
             'doctor.real_name'=>'doctor_name',
-            'hospital.hospital_name'
+            'hospital.hospital_name',
+            'order.status'
         ];
 
         $obj = Db::name('sh_order')->alias('order');
