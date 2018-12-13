@@ -13,7 +13,7 @@
 <div style="width: 100%;min-height: 500px;padding-bottom: 100px;min-height: 40px">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.href('/weixin/shop/index')"></i>
             <span>商品详情页</span>
             <i class="iconfont icon-favor_light top-right1"style="font-size: 25px;color: #333333"></i>
             <i class="iconfont icon-share_light top-right"style="font-size: 25px;color: #333333"></i>
@@ -128,21 +128,20 @@
         </div>
         <div style="clear: both"></div>-->
         <div>
-                <ul class="wl-deji">
-                    <li class="active">商品详情</li>
-                    <a href="#goumai"> <li class="wl-gouma">购买须知</li></a>
-                    <li>美丽日记</li>
-                </ul>
+                <div class="wl-deji">
+                    <a href="#shangping" class="active">商品详情</a>
+                    <a href="#goumai">购买须知</a>
+                    <a href="#meili">美丽日记</a>
+                </div>
             <div class="content">
-                <div class="wl-d active">
-                    <div class="wl-youshi">
+                    <div class="wl-youshi" id="shangping">
                         <?php echo $info['goods_info']['content'] ?>
                     </div>
 
                     <div style="clear: both"></div>
 
                     <div class="wl-xuzhi" id="goumai">
-                        <div class="wl-shangping1">购买须知</div>
+                        <div class="wl-shangping1"  >购买须知</div>
                         <div class="padding">
                             <dl>有效期</dl>
                             <dt>
@@ -180,18 +179,15 @@
                     </div>
 
                     <div class="wl-gengduo">
-                        <div class="wl-shangping2">更多本店热门商品</div>
+                        <div class="wl-shangping2" >更多本店热门商品</div>
                         <div id="container-list">
 
                         </div>
                         <!--<p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>-->
                     </div>
-                </div>
-                <div class="wl-d">
-                    2
-                </div>
-                <div class="wl-d ">
+                    <div class="wl-shangping2" style="border-top: 4px solid #DFDFDF;" id="meili">美丽日记</div>
                     <div class="wl-meili">
+
                         <div class="wl-meili-top">
                             <div class="wl-meili-left">
                                 <img src="/static/image/user/tou.png" alt="">
@@ -219,7 +215,7 @@
                                 <span  class="wl-longxioang">#胸部</span>
                             </div>
                             <div class="wl-meili-right1">
-                               <span>1126人浏览</span>
+                                <span>1126人浏览</span>
                             </div>
                         </div>
                         <div class="wl-xiang bottom">
@@ -238,7 +234,6 @@
                             <span class="wl-fenshu se">￥4784元</span>
                         </div>
                     </div>
-                </div>
                 <div class="wl-re-footer">
                     <div class="wl-yuyue">
                         <dl>预约金:<span class="wl-jiage2"><sub style="font-size: 10px">￥</sub><span>{$info['goods_info']['prepay_price']}</span></span></dl>
@@ -291,11 +286,9 @@
         }
     });
 
-    $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+    $(".wl-deji a").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
         $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
-          var index = $(this).index();
-        $(".wl-deji li").parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
-        $(".wl-deji").addClass("dingwei");
+        $(".wl-deji").addClass("dingwei").siblings().removeClass("dingwei");
     });
 
     $(".dianhua-right").click(function (event) {
