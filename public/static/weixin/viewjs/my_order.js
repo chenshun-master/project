@@ -5,6 +5,22 @@ $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给
     $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 
 });
+$(function () {
+    var url = window.location.toString();
+    var maodian = url.split('#')[1];
+
+    console.log(maodian);
+    if(maodian == 'all'){
+        $(".wl-deji li").eq(0).trigger('click');
+    }else if(maodian  == 'paid'){
+        $(".wl-deji li").eq(1).trigger('click');
+    }else if(maodian == 'consumption'){
+        $(".wl-deji li").eq(2).trigger('click');
+    }else if(maodian == 'complete'){
+        $(".wl-deji li").eq(3).trigger('click');
+    }
+
+})
 
 var myObj = {
     //全部订单
