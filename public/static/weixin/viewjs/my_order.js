@@ -109,6 +109,8 @@ var myObj = {
                         if(myObj.paid.listData.page >= myObj.paid.listData.page_total){
                             me.noData();
                         }
+                    }else if (res.code == 401) {
+                        redream.showTip('请先进行登录');
                     }
                     me.resetload();
                 }

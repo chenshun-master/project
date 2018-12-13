@@ -128,7 +128,6 @@ var myObj = {
                             }
                         }
                     }
-
                     if(me !== null){
                         me.resetload();
                     }
