@@ -18,7 +18,7 @@ class SellerDomain
      * @throws \think\exception\DbException
      */
     public function login($mobile,$password){
-        $user_info = Db::name('user')->where('mobile',$mobile)->where('type','in',[2,3,4])->field('id,mobile,password,type')->find();
+        $user_info = Db::name('user')->where('mobile',$mobile)->where('type','in',[2,3,4])->field('id,mobile,password,type,portrait')->find();
         if(!$user_info){
             return 1;
         }
@@ -43,6 +43,7 @@ class SellerDomain
             'type'          =>$user_info['type'],
             'hospital_name' =>$auth_info['enterprise_name'],
             'real_name'     =>$auth_info['username'],
+            'portrait'      =>$user_info['portrait']
         ];
     }
 
