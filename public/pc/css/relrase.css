@@ -118,7 +118,7 @@ a {
     width: 180px;
     height: auto;
     float: left;
-    margin-top: 79px;
+    margin-top: 140px;
     background: white;position: relative;
 }
 .wl-shimin{
@@ -133,6 +133,19 @@ a {
     background: white;
 
 }
+.wl-fabiaoa{
+
+    width: 180px;
+    height: 60px;
+    color: #333333;
+    background: #ffffff;
+    text-align: center;
+    line-height: 60px;
+    font-size: 18px;
+    position: absolute;
+    top: 180px;
+}
+
 .wl-shimin1{
     width: 180px;
     height: 60px;
@@ -1091,4 +1104,15 @@ top: 190px;
     color: #888888;
     font-size: 14px;
     padding: 5px;
+}
+.wl-fabiao4{
+    width: 180px;
+    height: 60px;
+    color: #333333;
+    background: #ffffff;
+    text-align: center;
+    line-height: 60px;
+    font-size: 18px;
+    position: absolute;
+    top: 70px;
 }

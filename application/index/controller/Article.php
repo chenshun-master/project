@@ -105,4 +105,11 @@ class Article extends CController
         $this->assign('user_info',$user_info);
         return $this->fetch('article/article_release');
     }
+        /**
+         * 全部图文页面
+         * @return mixed
+         */
+        public function graphic(){
+            return $this->fetch('article/graphic');
+        }
 }
