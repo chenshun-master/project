@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="wl-zizhi">
+        <div class="wl-zizhi href">
           资质认证 . 全程认证 .全程陪护 . 定期回访 <i class="iconfont icon-back_left-copy" style="font-size: 15px;float: right;margin-right: 10px"></i>
         </div>
 
@@ -310,9 +310,9 @@
     $(".quxiao").click(function () {
         $('.marsk-container').hide(); //淡出消失
     });
-    $(".wl-gouma").click(function () {
-        $(this).removeClass("active")
-    });
+    // $(".wl-gouma").click(function () {
+    //     $(this).removeClass("active")
+    // });
     $('#click-place-order').on('click',function(){
         // window.location.href =$(this).data('href');
         window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
@@ -390,9 +390,9 @@
                                 myObj.goods.listData.ini = true;
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 if ( res.data.page_total == 0) {
-                                    $('.wl-youshi').hide();
+                                    $('.wl-gengduo').hide();
                                 } else {
-                                    $('.wl-youshi').show();
+                                    $('.wl-gengduo').show();
                                 }
                             }
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
@@ -403,7 +403,6 @@
                 });
             },
         },
-
 
     };
     myObj.goods.loadList();
