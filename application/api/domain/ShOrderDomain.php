@@ -130,7 +130,8 @@ class ShOrderDomain
             'order.real_amount',
             'order.pay_time',
             'user.mobile',
-            'auth.username'
+            'auth.username',
+            'goods.distribution_id'
         ];
 
         $obj = Db::name('sh_order')->alias('order');
@@ -144,6 +145,10 @@ class ShOrderDomain
 
         $total = $obj->count(1);
         $rows = $obj->field($field)->page($page,$page_size)->select();
+
+
+
+
 
         return [
             'rows'          =>$rows,
