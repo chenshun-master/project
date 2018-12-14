@@ -14,11 +14,21 @@ class AdminDomain
 {
     /**
      * 后台管理员列表
+     * @param  int $page
+     * @param  int $page_size
      * @throws \think\exception\DbException
      */
-    public function getAdminList(){
-        $adminList = Db::name('admin')->order('id desc')->select();
-        return $adminList;
+    public function getAdminList($page=1,$page_size=15){
+        $obj = Db::name('admin')->order('id desc');
+        $total = $obj->count(1);
+        $rows = $obj->page($page,$page_size)->select();
+
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 
     /**

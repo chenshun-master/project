@@ -23,13 +23,14 @@ class User extends BaseController
 
     public function index()
     {
-        if(input('param.name') != ""){
-            $key = input('param.name');
-        }else{
-            $key = "";
-        }
-        $info = $this->userDomain->userInfo($key);
-        $this->assign('info',$info);
         return $this->fetch('user/index');
+    }
+
+    /**
+     * 用户列表
+     */
+    public function getUserList(){
+        $data = $this->userDomain->userInfo(1,15);
+        return $this->returnData($data,'',0);
     }
 }

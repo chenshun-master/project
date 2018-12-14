@@ -52,9 +52,9 @@ class UserDomain
     /**
      * 获取用户所有信息
      */
-    public function userInfo($data)
+    public function userInfo($page,$page_size)
     {
-        return $this->userModel->info($data);
+        return $this->userModel->info($page,$page_size);
     }
 
     /**

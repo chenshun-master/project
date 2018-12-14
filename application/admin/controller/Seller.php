@@ -24,9 +24,14 @@ class Seller extends BaseController
 
     public function index()
     {
-        $data = $this->SellerDomain->getSellerList();
-        $this->assign('data',$data);
         return $this->fetch('/seller/index');
+    }
+    /**
+     * 商户列表
+     */
+    public function getSellerList(){
+        $data = $this->SellerDomain->getSellerList();
+        return $this->returnData($data,'',0);
     }
 
     /**
