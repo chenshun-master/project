@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
-                    <table id="table-list" ></table>
+                    <table id="table-list" lay-filter="test"></table>
                 </div>
             </div>
         </div>
@@ -66,6 +66,38 @@
         ]]
     });
 
+    layui.table.on('tool(test)',function (obj) {
+        var data = obj.data;
+        var id = data.id;
+        if (obj.event === 'del') {
+            layer.confirm('真的删除行么', function (index) {
+                $.ajax({
+                    url:"/admin/banner/del",
+                    data:{id:id},
+                    type:"POST",
+                    dataType:"json",
+                    success:function (data) {
+                        if(data.code == 200){
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                            layer.close(index);
+                            layer.msg('删除成功',{icon:6});
+                        }else{
+                            layer.msg('删除失败',{icon:5});
+                        }
+                    }
+                })
+            });
+        }else if(obj.event === 'edit'){
+            obj.update({
+                platform: 'platform',
+                name: 'name',
+                url:"url",
+                img:'img',
+                order:"order",
+                visibility:"visibility",
+            });
+        }
+    });
 
     var objClass = {
         reload:function(){
@@ -84,4 +116,5 @@
             window.location.href = '/admin/banner/addBanner';
         }
     };
+
 </script>

@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
-                    <table id="table-list" ></table>
+                    <table id="table-list" lay-filter="admin" ></table>
                 </div>
             </div>
         </div>
@@ -64,7 +64,29 @@
             {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150},
         ]]
     });
-
+    layui.table.on('tool(admin)',function (obj) {
+        var data = obj.data;
+        var id = data.id;
+        if (obj.event === 'del') {
+            layer.confirm('真的删除行么', function (index) {
+                $.ajax({
+                    url: "/admin/admin/del",
+                    data: {id: id},
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code == 200) {
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                            layer.close(index);
+                            layer.msg('删除成功', {icon: 6});
+                        } else {
+                            layer.msg('删除失败', {icon: 5});
+                        }
+                    }
+                })
+            });
+        }
+    });
     var objClass = {
         reload:function(){
             layui.table.reload('tab-reload', {

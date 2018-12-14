@@ -78,9 +78,7 @@ class SellerDomain
           'sp.comments',
           'sp.create_time',
         ];
-
         $rows = $sellerInfo->field($field)->page($page,$page_size)->select();
-
         return [
             'rows' => $rows,
             'page' => $page,
