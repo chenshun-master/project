@@ -16,6 +16,13 @@ class BaseController extends Controller
         Session::prefix('seller');
 
         if($this->request->isGet() && !$this->request->isAjax()){
+            if(!$this->checkLogin()){
+                $u =  $this->request->controller(true).'/'.$this->request->action(true);
+                if($u != 'index/login'){
+                    header('Location: /seller/index/login');exit;
+                }
+            }
+
             $this->assign('user_info',$this->getUserInfo());
         }
     }

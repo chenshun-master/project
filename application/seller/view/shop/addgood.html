@@ -73,14 +73,6 @@
 {/block}
 
 {block name="main"}
-<div id="breadcrumb">
-    <ul class="breadcrumb">
-        <li><i class="home-icon fa fa-home"></i> <a href="#">主页</a></li>
-        <li><a href="#">商品模块</a></li>
-        <li class="active">添加商品</li>
-    </ul>
-</div>
-
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -94,25 +86,32 @@
                     <div class="tab-pane active" id="tab-box1">
                         <form class="form-horizontal " onsubmit="return false;" id="fr-goods">
                             <div class="box-body">
+                                <input type="hidden" value="{$info['goods_info']['id']?:0}" id="fr-gooid_id">
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">商品名称</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="fr-good-name" placeholder="商品名称">
+                                        <input type="text" class="form-control" id="fr-good-name" placeholder="商品名称"  value="{$info['goods_info']['name']?:''}"  />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">搜索关键词</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="fr-search-words" placeholder="商品搜索关键词">
+                                        <input type="text" class="form-control" id="fr-search-words" placeholder="商品搜索关键词" value="{$info['goods_info']['search_words']?:''}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">商品分类</label>
                                     <div class="col-sm-10" style="padding-top: 5px;">
-                                        <input type="hidden" value="" id="fr-category">
+                                        <input type="hidden" value="{$category}" id="fr-category">
                                         <span class="layui-btn layui-btn-xs" onclick="objClass.choiceCategory()">  <i class="layui-icon layui-icon-add-1"></i> 选择分类</span>
-                                        <span id='categoryList-select'></span>
+                                        <span id='categoryList-select'>
+                                            {if(isset($info['goods_category']) && count($info['goods_category']) > 0)}
+                                                {foreach($info['goods_category'] as $val)}
+                                                        <span class="layui-badge layui-bg-blue" data-id="{$val['id']}" >{$val['name']}</span>
+                                                {/foreach}
+                                            {/if}
+                                        </span>
                                     </div>
                                 </div>
 
@@ -134,11 +133,11 @@
                                                         <th>预约名额</th>
                                                     </tr>
                                                     <tr>
-                                                        <td><input type="text" class="form-control" style="width: 150px;"  id="fr-market_price" /></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-sell_price"></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-prepay_price"></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-topay_price"></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-store_nums"></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;"  id="fr-market_price"  value="{$info['goods_info']['market_price']?:''}" /></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-sell_price" value="{$info['goods_info']['sell_price']?:''}" ></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-prepay_price" value="{$info['goods_info']['prepay_price']?:''}" ></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-topay_price" value="{$info['goods_info']['topay_price']?:''}" ></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-store_nums" value="{$info['goods_info']['store_nums']?:''}" ></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -148,11 +147,20 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label  class="col-sm-1 control-label">是否上架</label>
+                                    <label  class="col-sm-1 control-label">商品状态</label>
                                     <div class="col-sm-10">
                                         <div class="layui-input-block" style="margin-left: 0px;" >
-                                            <input type="radio" name="status" value="1" title="是"> 是
-                                            <input type="radio" name="status" value="2" checked>  否
+
+                                            <label  style="font-weight:normal;cursor: pointer">
+                                                <input type="radio" name="status" value="3" title="是" checked> 申请上架
+                                            </label>
+
+                                            &nbsp;&nbsp;&nbsp;
+                                            <label  style="font-weight:normal;cursor: pointer">
+                                                <input type="radio" name="status" value="2" >  下架
+                                            </label>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -162,10 +170,14 @@
                                     <div class="col-sm-2">
                                         <select class="form-control" id="fr-doctor-id">
                                             <option value="">请选择医生</option>
-
-
                                             {foreach $doctorOrHospitalList['doctor'] as $vo }
-                                                <option value="{$vo['doctor_id']}">{$vo['real_name']}</option>
+
+                                                {if(count($info['goods_info']) > 0 && $vo['doctor_id'] == $info['goods_info']['doctor_id'])}
+                                                    <option value="{$vo['doctor_id']}" selected >{$vo['real_name']}</option>
+                                                {else/}
+                                                    <option value="{$vo['doctor_id']}" >{$vo['real_name']}</option>
+                                                {/if}
+
                                             {/foreach}
                                         </select>
                                     </div>
@@ -177,7 +189,11 @@
                                         <select class="form-control" id="fr-hospital-id">
                                             <option value="">请选择医院</option>
                                             {foreach $doctorOrHospitalList['hospital'] as $vo }
-                                                <option value="{$vo['hospital_id']}">{$vo['hospital_name']}</option>
+                                                {if(count($info['goods_info']) > 0 && $vo['hospital_id'] == $info['goods_info']['hospital_id'])}
+                                                    <option value="{$vo['hospital_id']}" selected >{$vo['hospital_name']}</option>
+                                                {else/}
+                                                    <option value="{$vo['hospital_id']}">{$vo['hospital_name']}</option>
+                                                {/if}
                                             {/foreach}
                                         </select>
                                     </div>
@@ -198,7 +214,18 @@
                                         </div>
 
                                         <div id="from-img-box">
-
+                                                {if(count($info['goods_imgs']) > 0)}
+                                                    {foreach $info['goods_imgs'] as $val }
+                                                        <div class="from-img-divs">
+                                                            <img src="{$val['img']}" data-goodimgid="{$val['id']}"  class="fr-imgs-val" >
+                                                            <div class="icon-i">
+                                                                <i class="layui-icon layui-icon-left fr-move-left" title="左移动"></i>
+                                                                <i class="layui-icon layui-icon-close fr-move-close" title="删除"></i>
+                                                                <i class="layui-icon layui-icon-right fr-move-right" title="右移动"></i>
+                                                                </div>
+                                                            </div>
+                                                    {/foreach}
+                                                {/if}
                                         </div>
                                     </div>
                                 </div>
@@ -212,7 +239,7 @@
 
                     <div class="tab-pane" id="tab-box2">
                         <div class="box-body">
-                            <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;"></textarea>
+                            <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;">{$info['goods_info']['content']?:''}</textarea>
                             <div class="box-footer clearfix" style="padding-left: 0px;">
                                 <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
                             </div>
@@ -225,7 +252,7 @@
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">购买有效期</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="有效期多少天" value="" id="fr-buy_deadline">
+                                        <input type="text" class="form-control" placeholder="有效期多少天"  id="fr-buy_deadline" value="{$info['goods_info']['buy_deadline']?:''}">
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="layui-form-mid layui-word-aux">商品购买日起 <span id="cus-day">xxx</span> 内有效, <font color="red">0代表永久有效</font></div>
@@ -234,14 +261,14 @@
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">预约信息</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="提示信息  (例如：请您提前1天预约)" id="fr-buy-notice" >
+                                        <input type="text" class="form-control" placeholder="提示信息  (例如：请您提前1天预约)" id="fr-buy-notice"  value="{$info['goods_info']['notice']?:''}" >
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">使用时间段</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="layui-input" id="fr-time-slot" placeholder="开始时间 - 结束时间">
+                                        <input type="text" class="layui-input" id="fr-time-slot" placeholder="开始时间 - 结束时间"  value="{$info['goods_info']['time_slot']?:''}">
                                     </div>
                                 </div>
 
@@ -254,11 +281,21 @@
                                         </div>
                                         <table class="table" id="process-hint-table">
                                             <tbody>
-                                                <tr>
-                                                    <td width="10" align="center" valign="middle"><p class="tab-number">1.</p></td>
-                                                    <td><input type="text" class="form-control"></td>
-                                                    <td width="10"><p ><i class="fa fa-fw fa-trash-o" ></i></p></td>
-                                                </tr>
+                                                {if(isset($info['goods_info']['buyflow']))}
+                                                    {foreach($info['goods_info']['buyflow'] as $k=>$text)}
+                                                        <tr>
+                                                            <td width="10" align="center" valign="middle"><p class="tab-number">{$k+1}.</p></td>
+                                                            <td><input type="text" class="form-control" value="{$text}"></td>
+                                                            <td width="10"><p ><i class="fa fa-fw fa-trash-o" ></i></p></td>
+                                                        </tr>
+                                                    {/foreach}
+                                                {else/}
+                                                    <tr>
+                                                        <td width="10" align="center" valign="middle"><p class="tab-number">1.</p></td>
+                                                        <td><input type="text" class="form-control" value=""></td>
+                                                        <td width="10"><p ><i class="fa fa-fw fa-trash-o" ></i></p></td>
+                                                    </tr>
+                                                {/if}
                                             </tbody>
                                         </table>
                                     </div>
@@ -431,7 +468,8 @@
                     buy_deadline        :$('#buy_deadline').val(),
                     notice              :$.trim($('#fr-buy-notice').val()),
                     buyflow             :tabObj.getInputVal(),
-                    time_slot           :$.trim($('#fr-time-slot').val())
+                    time_slot           :$.trim($('#fr-time-slot').val()),
+                    goods_id            :$('#fr-gooid_id').val()
                 };
 
                 var img_num = 0;

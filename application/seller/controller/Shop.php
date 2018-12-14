@@ -1,11 +1,21 @@
 <?php
 namespace app\seller\controller;
-
+use think\App;
 use think\exception\Handle;
 use think\Request;
 
 class Shop extends BaseController
 {
+
+    private $_goodsDomain;
+
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+
+        $this->_goodsDomain = new \app\api\domain\SpGoodsDomain();
+    }
+
     public function index(){
         return $this->fetch('shop/index');
     }
@@ -30,13 +40,30 @@ class Shop extends BaseController
             return $this->redirect('index/login');
         }
 
+        $goodsid = $this->request->param('goodsid/d',0);
+
+
+        $goods_info = $this->_goodsDomain->getEditGoodsInfo($goodsid,$this->getSellerId());
+
+
         $user_info = $this->getUserInfo();
         $type = $user_info['type'];
 
         $uDomain = new \app\api\domain\UDomain();
         $data = $uDomain->getDoctorOrHospitalList($user_info['user_id'],$type);
 
+        $category = '';
+
+        if(isset($goods_info['goods_category']) && count($goods_info['goods_category']) > 0){
+            foreach ($goods_info['goods_category'] as $val){
+                $category .= ','.$val['id'];
+            }
+        }
+
+
         $this->assign('doctorOrHospitalList',$data);
+        $this->assign('info',$goods_info);
+        $this->assign('category',$category);
 
         return $this->fetch('shop/addgood');
     }
