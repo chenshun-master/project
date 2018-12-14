@@ -13,7 +13,7 @@
 <div style="width: 100%;min-height: 500px;padding-bottom: 100px;min-height: 40px">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" data-href="{$referer}" id="click-to-referer"></i>
             <span>商品详情页</span>
             <i class="iconfont icon-favor_light top-right1"style="font-size: 25px;color: #333333"></i>
             <i class="iconfont icon-share_light top-right"style="font-size: 25px;color: #333333"></i>
@@ -329,6 +329,10 @@
 
     $(document).on('click','.to-goods-detai',function(){
         window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+    });
+
+    $('#click-to-referer').on('click',function(){
+        window.location.href = $(this).data('href');
     });
 </script>
 <script>

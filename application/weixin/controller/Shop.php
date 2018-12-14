@@ -44,6 +44,10 @@ class Shop extends BaseController
             return $this->fetch('error/loss');
         }
 
+
+        $referer = $this->request->server('HTTP_REFERER');
+        $this->assign('referer',$referer);
+
         $this->assign('info',$goodsDetail);
         return $this->fetch('shop/goods_details');
     }
