@@ -97,12 +97,13 @@ class SpGoodsDomain
      */
     public function editGoods($good_id,$seller_id,$data){
         $good_id = Db::name('sp_goods')->where('id',$good_id)->where('seller_id',$seller_id)->value('id');
+
         if(!$good_id){
             return false;
         }
 
         $imgs           = explode(',',$data['img_ids']);
-        $category_ids   = explode(',',$data['category_ids']);
+        $category_ids   = explode(',',$data['category']);
 
         Db::startTrans();
         try {
@@ -127,7 +128,7 @@ class SpGoodsDomain
                 return false;
             }
 
-            if($data['category_ids'] !== implode(',',Db::name('sp_category_extend')->where('goods_id',$good_id)->column('category_id'))){
+            if($data['category'] !== implode(',',Db::name('sp_category_extend')->where('goods_id',$good_id)->column('category_id'))){
                 $datas = [];
                 foreach ($category_ids as $id){
                     $datas[] = ['category_id' => $id,'goods_id' => $good_id];
@@ -180,6 +181,7 @@ class SpGoodsDomain
             return true;
         } catch (\Exception $e) {
             Db::rollback();
+            halt($e);
             return false;
         }
     }
@@ -503,5 +505,54 @@ class SpGoodsDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+    /**
+     * 获取待编辑的商品信息
+     */
+    public function getEditGoodsInfo($goods_id,$seller_id){
+        $data = [
+            'goods_info'=>[],'goods_imgs'=>[]
+        ];
+
+        $field = [
+            'goods.id',
+            'goods.name',
+            'goods.market_price',
+            'goods.sell_price',
+            'goods.prepay_price',
+            'goods.topay_price',
+            'goods.royalty',
+            'goods.store_nums',
+            'goods.status',
+            'goods.keywords',
+            'goods.description',
+            'goods.search_words',
+            'goods.doctor_id',
+            'goods.hospital_id',
+            'goods.content',
+            'notice.buy_deadline',
+            'notice.notice',
+            'notice.buyflow',
+            'notice.time_slot',
+        ];
+
+        $obj = Db::name('sp_goods')->alias('goods');
+        $obj->leftJoin('sp_goods_buy_notice notice','notice.goods_id = goods.id');
+        $obj->where('goods.id',$goods_id);
+        $obj->where('seller_id',$seller_id);
+
+        $goods_info = $obj->field($field)->find();
+        if($goods_info){
+            if($goods_info['buyflow']){
+                $goods_info['buyflow'] = json_decode($goods_info['buyflow'],true);
+            }
+
+            $data['goods_info'] = $goods_info;
+            $data['goods_imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_photo')->leftJoin('wl_sp_goods_photo photo','photo.id = goods_photo.goods_id')->where('goods_photo.goods_id',$goods_id)->field('photo.id,photo.img')->select();
+            $data['goods_category'] = Db::name('sp_category_extend')->alias('c_extend')->leftJoin('wl_sp_category category','c_extend.category_id = category.id')->where('c_extend.goods_id',$goods_id)->field('category.id,category.name')->select();
+        }
+
+        return $data;
     }
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/pc/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/css/function.css">
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
 </head>
 <body  style="background: #F8F8F8"   >
 <div class="wl-con" >
@@ -38,18 +39,59 @@
             </ul>
             <div class="wl-fabu">
                 <p>全部图文</p>
-                
+                <div class="wl-xianshi-neirong">
+                    <div class="wl-all-title">
+                        已显示全部40条内容
+                    </div>
+                    <div class="wl-all-neirong">
+                        <div class="wl-all-left">
+                            <img src="https://inews.gtimg.com/newsapp_bt/0/6824965087/1000" alt="图片丢失">
+                        </div>
+                        <div class="wl-all-center">
+                            <dl>我国的柔术第一人：身体柔软得不可思议，美貌和才能惊艳世界</dl>
+                            <dt>已发表</dt>
+                            <dd>2018-12-13 14:06</dd>
+                        </div>
+                        <div class="wl-all-right">
+                            <span class="iconfont icon-xiugai"></span><span style="margin-left: 10px">修改</span>
+                        </div>
+                    </div>
+                    <div class="wl-all-neirong">
+                        <div class="wl-all-left">
+                            <img src="https://inews.gtimg.com/newsapp_bt/0/6824965087/1000" alt="图片丢失">
+                        </div>
+                        <div class="wl-all-center">
+                            <dl>我国的柔术第一人：身体柔软得不可思议，美貌和才能惊艳世界</dl>
+                            <dt>已发表</dt>
+                            <dd>2018-12-13 14:06</dd>
+                        </div>
+                        <div class="wl-all-right">
+                            <span class="iconfont icon-xiugai"></span><span style="margin-left: 10px">修改</span>
+                        </div>
+                    </div>
+                    <div id="wl-fenye" ></div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
 <script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数低于页码总数
+        laypage.render({
+            elem: 'wl-fenye'
+            ,count: 50 //数据总数
+        });
+    })
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
     });
-
 </script>
 </html>
