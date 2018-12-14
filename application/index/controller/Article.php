@@ -110,6 +110,7 @@ class Article extends CController
          * @return mixed
          */
         public function graphic(){
+
             return $this->fetch('article/graphic');
         }
 }

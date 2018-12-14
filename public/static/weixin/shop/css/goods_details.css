@@ -27,6 +27,7 @@
 }
 .swiper-wrapper img{
     width: 100%;
+    height: 240px;
 }
 .wl-neirong{
     width: 100%;
@@ -283,8 +284,8 @@
 }
 .wl-youshi{
     width: 100%;
-    min-height: 20px;
-    padding: 10px;
+    padding-top: 10px;
+    border-bottom: 5px solid #DFDFDF;
 }
 .wl-youshi img{
     width: 100%;
@@ -318,7 +319,7 @@
     font-size: 13px;
     padding: 0 10px 0 10px;
     border-bottom: 1px solid #f1f1f1;
-    border-top: 5px solid #DFDFDF;
+
 }
 .wl-shangping2{
     width: 100%;
@@ -445,6 +446,30 @@
     background: rgba(0, 0, 0, .5);
     z-index: 99999;
     display: none;
+}
+.marsk-container1{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .5);
+    z-index: 99999;
+    display: none;
+}
+.tkyy_con1 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 70%;
+    background: #FFFFFF;
+    margin: 0 auto;
+    z-index: 99999;
+    max-width: 640px;
+    border-top-left-radius:10px ;
+    border-top-right-radius:10px ;
 }
 .tkyy_con {
     position: fixed;
@@ -594,4 +619,9 @@
     text-align: center;
     color: #222222;
     font-size: 14px;
+}
+.wl-ding{
+    width: 100%;
+    height: 80px;
+    display: none;
 }
