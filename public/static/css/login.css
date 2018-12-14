@@ -4,7 +4,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 ol, ul { list-style: none; }
 body{position:relative;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
-body { font-family: "思源黑体 CN";color:#221815;font-size: 62.5%;}
+body { font-family: "思源黑体 CN";color:#221815;}
 body{max-width:750px;margin:0 auto;min-width: 320px;}
 ul li{list-style-type: none;}
 a{text-decoration: none;color: #221815;display: block;}
@@ -31,7 +31,7 @@ z-index: 1;
 	height: 90px;
 	line-height: 85px;
 	border: 1px solid gray;
-	font-size:0.4rem;
+	font-size:40px;
 	border-radius: 10px;
 	margin: 0 auto;
 
@@ -40,7 +40,7 @@ z-index: 1;
 	width: 340px;
 	height: 50px;
 	outline:none;
-	font-size:0.28rem;
+	font-size:28px;
 	-webkit-tap-highlight-color:rgba(255,0,0,0);
 	color: #a9a9a9;
 	padding-left: 30px;
@@ -48,7 +48,7 @@ z-index: 1;
 .wx-reg button{
 	width: 220px;
 	height: 50px;
-	font-size:0.28rem;
+	font-size:28px;
 	outline:none;
 	background: white;
 	padding-bottom: 10px;
@@ -66,7 +66,7 @@ z-index: 1;
 	line-height: 85px;
 	background: #ebebeb;
 	margin: 0 auto;
-	font-size: 0.34rem;
+	font-size: 34px;
 	border-radius: 10px;
 	display: block;
 	color: #FFFFFF;
@@ -75,7 +75,7 @@ z-index: 1;
 .qian {
 	text-align: center;
 	color: #1f1f1f;
-	font-size: 0.26rem;
+	font-size: 26px;
 	float: left;
 	text-decoration: underline;
 }
@@ -86,7 +86,7 @@ z-index: 1;
 	width: 200px;
 	height: 100px;
 	float: right;
-	font-size: 0.24rem;
+	font-size: 24px;
 	color: #fff;
 	background: url(../image/reg/yj.png)no-repeat 137px 21px;
 	background-size: 30px;
@@ -97,7 +97,7 @@ z-index: 1;
 	width: 650px;
 	height: 514px;
 	display: none;
-	font-size: 0.3rem;
+	font-size: 30px;
 	margin-top: 50px;
 }
 
@@ -105,7 +105,7 @@ z-index: 1;
 #two {
 	width: 230px;
 	height: 60px;
-	font-size: 0.32rem;
+	font-size:32px;
 	text-align: center;
 	margin-left: 65px;
 	display: inline-block;
