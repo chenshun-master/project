@@ -32,8 +32,8 @@ class CategoryModel extends Model
      * @throws \think\exception\DbException
      */
     public function catetree(){
-        $category = self::order('sort desc')->select();
-        return $this->sort($category);
+        $cate = self::order('sort desc')->select();
+        return $this->sort($cate);
     }
 
     /**

@@ -18,10 +18,14 @@ class Banner extends BaseController{
 
     public function index()
     {
-        $banner = new BannerModel();
-        $data = $banner->getList();
-        $this->assign('res',$data);
         return $this->fetch('/banner/index');
+    }
+
+    public function getBannerList()
+    {
+        $banner = new BannerModel();
+        $data = $banner->getList(1,10);
+        return $this->returnData($data,'',0);
     }
     /**
      * 发布/修改banner

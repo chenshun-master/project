@@ -51,11 +51,11 @@
                                     <td style="text-align: center;">{$vo.sort}</td>
                                     <td style="text-align: center;">
                                         {gt name="vo.id" value="0"}
-                                            {eq name="vo.visibility" value="1"}
-                                                <a href="{:url('/admin/category/update',array('id'=>$vo['id'],'visibility'=>0))}"><span class="label label-success">显示</span></a>
+                                        {eq name="vo.visibility" value="1"}
+                                        <a href="{:url('/admin/category/update',array('id'=>$vo['id'],'visibility'=>0))}"><span class="label label-success">显示</span></a>
                                         {else}
-                                                <a href="{:url('/admin/category/update',array('id'=>$vo['id'],'visibility'=>1))}"><span class="label label-danger">不显示</span></a>
-                                            {/eq}
+                                        <a href="{:url('/admin/category/update',array('id'=>$vo['id'],'visibility'=>1))}"><span class="label label-danger">不显示</span></a>
+                                        {/eq}
                                         {/gt}
                                     </td>
                                     <td style="text-align: center;">{$vo.created_time}</td>

@@ -31,11 +31,8 @@ class Admin extends BaseController
      */
     public function index()
     {
-        $data = $this->AdminDomain->getAdminList();
-        $this->assign('data',$data);
         return $this->fetch('/admin/index');
     }
-
     /**
      * 新增管理员页面
      */
@@ -46,6 +43,15 @@ class Admin extends BaseController
         $this->assign('data',$data);
         return $this->fetch('/admin/add');
     }
+
+    /**
+     * 管理员列表
+     */
+    public function getAdminList(){
+        $data = $this->AdminDomain->getAdminList(1,15);
+        return $this->returnData($data,'',0);
+    }
+
 
     /**
      * 新增管理员

@@ -459,19 +459,49 @@ class SpGoodsDomain
 
     /**
      * 商品信息列表
+     *  * @param $seller_id           商家ID
+     * @param int $page            当前分页
+     * @param int $page_size       分页大小
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getGoodsList()
+    public function getGoodsList($status,$seller_id,$page=1,$page_size=15)
     {
-        $goodsList = Db::name('sp_goods')->alias('sp')
-            ->leftJoin('wl_doctor doctor','doctor.id = sp.doctor_id')
-            ->leftJoin('wl_hospital hospital','hospital.id = sp.hospital_id')
-            ->leftJoin('wl_sp_seller seller','seller.id = sp.seller_id')
-            ->leftJoin('wl_user user','hospital.user_id = user.id')
-            ->leftJoin('wl_auth auth','auth.user_id = user.id')
-            ->paginate();
-        return $goodsList;
+        $obj = Db::name('sp_goods')->alias('sp');
+        $obj->join('wl_doctor doctor','doctor.id = sp.doctor_id');
+        $obj->join('wl_hospital hospital', 'hospital.id = sp.hospital_id');
+        $obj->join('wl_user user','user.id = hospital.user_id');
+        $obj->join('wl_auth auth','user.id = auth.user_id');
+        $obj->where('sp.seller_id',$seller_id);
+        $obj->where("sp.status",'like','%'.trim($status).'%');
+        $field = [
+          'sp.id',
+          'sp.name',
+          'sp.goods_no',
+          'sp.market_price',
+          'sp.sell_price',
+          'sp.prepay_price',
+          'topay_price',
+          'sp.up_time',
+          'sp.down_time',
+          'sp.store_nums',
+          'sp.img',
+          'sp.status',
+          'sp.sale_num',
+          'sp.case_num',
+          'doctor.real_name',
+          'auth.enterprise_name',
+          'sp.seller_id',
+          'sp.create_time',
+        ];
+        $total = $obj->count(1);
+        $rows  = $obj->field($field)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }

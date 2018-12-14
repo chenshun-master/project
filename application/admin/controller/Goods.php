@@ -23,9 +23,15 @@ class Goods extends BaseController
 
     public function index()
     {
-        $name = $this->request->post('name');
-        $goodsList = $this->SpGoodsDomain->getGoodsList();
-        $this->assign('goods',$goodsList);
         return $this->fetch('/goods/index');
+    }
+
+    /**
+     * 商品列表
+     */
+    public function getGoodsList(){
+        $name = $this->request->post('name');
+        $data = $this->SpGoodsDomain->getGoodsList($name,0,1,15);
+        return $this->returnData($data,'',0);
     }
 }
