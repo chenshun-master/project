@@ -1,5 +1,6 @@
 <?php
 namespace app\api\model;
+use think\Db;
 use think\Model;
 
 class UserModel extends Model
@@ -25,8 +26,16 @@ class UserModel extends Model
         return  self::where('id',$user_id)->value('mobile');
     }
 
-    public function info($data){
-        return self::where('mobile|nickname','like','%'.trim($data).'%')->order('id desc')->paginate(10);
+    public function info($page=1,$page_size=15){
+        $obj = Db::name('user')->order('id desc');
+        $total = $obj->count(1);
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows' => $rows,
+            'page' => $page,
+            'page_total' => getPageTotal($total,$page_size),
+            'total' => $total,
+        ];
     }
 
     /**

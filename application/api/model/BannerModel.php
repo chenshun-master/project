@@ -1,5 +1,6 @@
 <?php
 namespace app\api\model;
+use think\Db;
 use think\Model;
 
 class BannerModel extends Model
@@ -23,9 +24,17 @@ class BannerModel extends Model
     /**
      * banner 列表
      */
-    public function getList()
+    public function getList($page = 1,$page_size = 15)
     {
-        return self::where('is_del',0)->order('id desc')->paginate(10);
+        $obj = Db::name('sp_banner')->where('is_del',0)->order('id desc');
+        $total = $obj->count(1);
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 
 }

@@ -15,15 +15,15 @@ use think\Request;
 class Category extends BaseController
 {
     /**
-     * 分类列表
+     * 渲染分类展示页面
      * @return mixed
      * @throws \think\exception\DbException
      */
     public function index()
     {
         $cate = new CategoryModel();
-        $cate = $cate->catetree();
-        $this->assign('cate',$cate);
+        $data = $cate->catetree(1,15);
+        $this->assign('cate',$data);
         return $this->fetch('/category/index');
     }
 
