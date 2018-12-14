@@ -33,6 +33,9 @@ layui.table.render({
             "data": res.data.rows //解析数据列表
         };
     }
+    ,text: {
+        none: '暂无相关数据'
+    }
     ,cols: [[
         {type: 'checkbox', fixed: 'left'},
         {field: 'mobile', title: '手机号',width:150},
