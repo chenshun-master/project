@@ -13,7 +13,7 @@
 <div style="width: 100%;min-height: 500px;padding-bottom: 100px;min-height: 40px">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" data-href="{$referer}" id="click-to-referer"></i>
             <span>商品详情页</span>
             <i class="iconfont icon-favor_light top-right1"style="font-size: 25px;color: #333333"></i>
             <i class="iconfont icon-share_light top-right"style="font-size: 25px;color: #333333"></i>
@@ -127,14 +127,14 @@
                 <span style="margin-left: 5px">优惠价:<span style="color: #FF615C">4784元</span></span></div>
         </div>
         <div style="clear: both"></div>-->
-        <div>
+        <div id="cus-test-content">
                 <div class="wl-deji">
                     <a href="#shangping" class="active">商品详情</a>
                     <a href="#goumai">购买须知</a>
                     <a href="#meili">美丽日记</a>
                 </div>
             <div class="content">
-                    <div class="wl-youshi" id="shangping">
+                    <div class="wl-youshi" id="shangping" >
                         <?php echo $info['goods_info']['content'] ?>
                     </div>
 
@@ -185,7 +185,8 @@
                         </div>
                         <!--<p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>-->
                     </div>
-                    <div class="wl-shangping2" style="border-top: 4px solid #DFDFDF;" id="meili">美丽日记</div>
+
+                    <div class="wl-shangping2" style="border-top: 4px solid #DFDFDF;" >美丽日记</div>
                     <div class="wl-meili">
 
                         <div class="wl-meili-top">
@@ -317,19 +318,21 @@
         window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
     });
 
-    var oTop = $(".wl-deji").offset().top;
-    var sTop = 0;
-    $(window).scroll(function(){
 
-        sTop = $(this).scrollTop();
-        if(sTop >= oTop){
+    $(window).scroll(function(){
+        if(parseInt($(this).scrollTop()) >= parseInt($('#cus-test-content').offset().top)){
             $(".wl-deji").css({"position":"fixed","top":"0"});
         }else{
             $(".wl-deji").css({"position":"static"});
         }
     });
+
     $(document).on('click','.to-goods-detai',function(){
         window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+    });
+
+    $('#click-to-referer').on('click',function(){
+        window.location.href = $(this).data('href');
     });
 </script>
 <script>
