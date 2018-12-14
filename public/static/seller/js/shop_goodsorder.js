@@ -75,9 +75,7 @@ layui.table.render({
                 }else{
                     return '<span class="label label-success">是</span>';
                 }
-            }},
-
-        {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+        }},
     ]]
     ,page: true,
 });

@@ -1,6 +1,8 @@
-layui.table.render({
+var table = layui.table
+table.render({
     elem: '#table-list'
     ,id:'tab-reload'
+    ,toolbar: '#toolbarDemo'
     ,url: '/seller/shopapi/getGoodsList' //数据接口
     ,page: true
     ,parseData: function(res){ //res 即为原始返回的数据
@@ -31,6 +33,9 @@ layui.table.render({
         {field: 'sell_price', title: '销售价格'},
         {field: 'prepay_price', title: '预付价格'},
         {field: 'topay_price', title: '到付价格'},
+        {field: '', title: '操作',width:100,templet:function(row){
+            return '<a href="/seller/shop/addGood/goodsid/'+ row.id +'">编辑</a>';
+        }},
     ]],
 });
 
