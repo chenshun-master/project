@@ -28,7 +28,6 @@
 }
 .content{
     width: 100%;
-    min-height: 200px;
 }
 .wl-deji li.active {
     color: #7DB0E8;
@@ -36,7 +35,6 @@
 }
 .content .wl-d {
     width: 100%;
-    min-height: 200px;
     display: none;
     margin-top: 5px;
 }
@@ -166,4 +164,20 @@ margin-right: -8px;
     float: right;
     margin-right: -20px;
 
+}
+.wl-zhanwu{
+    width: 100%;
+    min-height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30%;
+    display: none;
+}
+.wl-zhanwu dl{
+    font-size: 80px!important;
+    color: #7DB0E8!important;
+}
+.wl-zhanwu dt{
+    font-size: 14px!important;
+    color: #999999!important;
 }

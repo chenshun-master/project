@@ -1,0 +1,41 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/css/swiper.min.css">
+<link rel="stylesheet" href="/static/weixin/shop/css/diary_second.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;min-height: 500px;">
+    <div class="swiper-container img-gao swiper-container-horizontal swiper-container-ios">
+        <div class="swiper-wrapper " style="transform: translate3d(0px, 0px, 0px);">
+            <div class="swiper-slide swiper-slide-active" style="width: 375px;">
+                <img src="http://inews.gtimg.com/newsapp_bt/0/6825626112/641" alt="">
+            </div>
+            <div class="swiper-slide swiper-slide-active" style="width: 375px;">
+                <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="">
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+</div>
+
+{/block}
+
+{block name="script"}
+<script src="/static/js/swiper.min.js"  type="text/javascript" charset="utf-8"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: true,//可选选项，自动滑动
+        pagination: {
+            el: '.swiper-pagination',
+        },
+    })
+</script>
+{/block}

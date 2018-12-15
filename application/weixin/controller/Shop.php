@@ -122,4 +122,13 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/diary_of');
     }
+
+
+    /**
+     *用户相册详情页三
+     */
+    public function diarySecond()
+    {
+        return $this->fetch('shop/diary_second');
+    }
 }
