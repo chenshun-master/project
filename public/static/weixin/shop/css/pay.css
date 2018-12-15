@@ -14,16 +14,14 @@
 }
 .wl-zonghe{
     width: 100%;
-    min-height: 37px;
-    padding: 8px 15px 0 10px;
+    padding: 10px;
 
 }
 .wl-xiannv{
-    width: 73%;
+    width: 100%;
     min-height: 30px;
     color: #999999;
-    font-size: 14px;
-    float: left;
+    font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -39,11 +37,11 @@
 }
 
 .wl-jiage1{
-    width: 20%;
+    width: 23%;
     color: #333333;
     font-size: 13px;
     float: right;
-    text-align: center;
+    text-align: right;
     padding-right: 5px;
 }
 .wl-zonghe1{
@@ -124,4 +122,13 @@
      color: white;
      border-radius: 5px;
      margin-top: 140px;
+ }
+ .wl-top-jiage{
+     width: 23%;
+     color: #333333;
+     font-size: 13px;
+     float: right;
+     text-align: right;
+     padding-right: 10px;
+     margin-top: 5px
  }

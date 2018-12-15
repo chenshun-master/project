@@ -6,6 +6,7 @@
     text-align: center;
     position: fixed;
     top: 0;
+    max-width: 640px;
     border-bottom: 1px solid #EEEEEE;
     z-index: 99999!important;
 }
@@ -282,6 +283,7 @@
     display: block;
     position: fixed;
     top: 40px;
+    max-width: 640px;
 }
 .content{
     width: 100%;

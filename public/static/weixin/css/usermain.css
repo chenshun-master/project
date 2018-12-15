@@ -60,12 +60,12 @@
     float: left;
 }
 .wl-anli li>dl{
-    color:#000000;
+    color:#999090;
     font-size: 23px;
 
 }
 .wl-anli li>dt{
-color: #333333;
+    color:#000000;
     font-size: 13px;
     padding-bottom: 10px;
 }
