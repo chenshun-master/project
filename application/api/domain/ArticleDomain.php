@@ -348,7 +348,6 @@ class ArticleDomain
             $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         }
 
-
         $rows = $obj->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
@@ -612,5 +611,38 @@ class ArticleDomain
         } catch (\Exception $e) {
             Db::rollback();return false;
         }
+    }
+
+
+    /**
+     * 获取PC端用户中心，用户发布的文章列表
+     * @param $user_id
+     * @param $page
+     * @param $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getPcUserPublishArticle($user_id,$page,$page_size){
+        $obj = Db::table('wl_article')->alias('article');
+        $obj->where('article.type', 1);
+        $obj->where('article.user_id', $user_id);
+        $obj->order('article.published_time', 'desc');
+
+        $total = $obj->count();
+
+        $field = [
+            'article.id','article.type','article.user_id','article.title','article.tag','article.excerpt','article.thumbnail','article.status','article.is_top','article.recommended',
+            'article.recommended','article.hits','article.favorites','article.like','article.comment_count','article.published_time','article.updated_time',
+        ];
+
+        $rows = $obj->field($field)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }

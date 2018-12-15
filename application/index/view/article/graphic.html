@@ -19,9 +19,9 @@
     </div>
     <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="" class="wl-toux"  onerror="this.src='/pc/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">吴永辉</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
+            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="{$user_info['portrait']}" class="wl-toux"  onerror="this.src='/pc/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
-                <a href="/index/user/main"><p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
+                <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
             </div>
         </div>
@@ -40,39 +40,31 @@
             <div class="wl-fabu">
                 <p>全部图文</p>
                 <div class="wl-xianshi-neirong">
-                    <div class="wl-all-title">
-                        已显示全部40条内容
+                    <div class="wl-all-title">已显示全部40条内容</div>
+                    <div id="container-list">
+                        {if(count($rows) > 0)}
+                            {foreach($rows as $key=>$val)}
+                            <div class="wl-all-neirong">
+                                <div class="wl-all-left">
+                                    <img src="{$val['thumbnail']?$val['thumbnail']['img_1']:''}" alt="{$val['title']}">
+                                </div>
+                                <div class="wl-all-center">
+                                    <dl>{$val['title']}</dl>
+                                    <dt>已发表</dt>
+                                    <dd>{$val['published_time']}</dd>
+                                </div>
+                                <div class="wl-all-right" style="cursor: pointer">
+                                    <span class="iconfont icon-xiugai"></span>
+                                    <span style="margin-left: 2px">修改</span>
+                                </div>
+                            </div>
+                            {/foreach}
+                        {/if}
                     </div>
-                    <div class="wl-all-neirong">
-                        <div class="wl-all-left">
-                            <img src="https://inews.gtimg.com/newsapp_bt/0/6824965087/1000" alt="图片丢失">
-                        </div>
-                        <div class="wl-all-center">
-                            <dl>我国的柔术第一人：身体柔软得不可思议，美貌和才能惊艳世界</dl>
-                            <dt>已发表</dt>
-                            <dd>2018-12-13 14:06</dd>
-                        </div>
-                        <div class="wl-all-right">
-                            <span class="iconfont icon-xiugai"></span><span style="margin-left: 10px">修改</span>
-                        </div>
-                    </div>
-                    <div class="wl-all-neirong">
-                        <div class="wl-all-left">
-                            <img src="https://inews.gtimg.com/newsapp_bt/0/6824965087/1000" alt="图片丢失">
-                        </div>
-                        <div class="wl-all-center">
-                            <dl>我国的柔术第一人：身体柔软得不可思议，美貌和才能惊艳世界</dl>
-                            <dt>已发表</dt>
-                            <dd>2018-12-13 14:06</dd>
-                        </div>
-                        <div class="wl-all-right">
-                            <span class="iconfont icon-xiugai"></span><span style="margin-left: 10px">修改</span>
-                        </div>
-                    </div>
+
                     <div id="wl-fenye" ></div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -82,14 +74,20 @@
 <script src="/static/plugin/layui/layui.js"></script>
 <script>
     layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage
-            ,layer = layui.layer;
-        //总页数低于页码总数
+        var laypage = layui.laypage,layer = layui.layer;
         laypage.render({
             elem: 'wl-fenye'
-            ,count: 50 //数据总数
+            ,limit:15
+            ,count:{$total}
+            ,curr:{$page}
+            ,jump: function(obj, first){
+                if(!first){
+                    window.location.href = '/index/article/graphic/page/'+obj.curr;
+                }
+            }
         });
-    })
+    });
+
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
     });
