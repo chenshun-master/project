@@ -395,3 +395,10 @@ width: 100px;
 .text{
     padding-right: 5px;
 }
+.swiper-pagination-bullet-active{
+    background: red!important;
+}
+.swiper-pagination-bullet{
+    width: 5px!important;
+    height: 5px!important;
+}

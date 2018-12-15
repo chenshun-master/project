@@ -8,7 +8,6 @@
 <header style="z-index: 99999 !important;">
     <div class="wl-head">
         <div class="wl-top">
-            <i class="iconfont icon-back_light" style="font-size: 25px;position: absolute;top: 6px;left: 3px"></i>
             <input type="text" placeholder="搜索您感兴趣的项目">
         </div>
         <div class="wl-daohang">
@@ -55,15 +54,16 @@
                     <div>
                         <span class="click-select-category href" data-path="{$v2['path']}">{$v2['name']} <i
                                 class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                        <div style="clear: both"></div>
+                        <dl style="clear: both"></dl>
                         <div class="wl-das">
                             {foreach $v2['subclass'] as $k3=>$v3 }
                             <div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}
                             </div>
                             {/foreach}
                         </div>
+
                     </div>
-                    <div style="clear: both"></div>
+                    <dl style="clear: both"></dl>
                     {/foreach}
                 </div>
                 {/foreach}
@@ -110,7 +110,7 @@
                 <span class="wl-quchu">￥{{item.market_price}}</span>
             </div>
         </div>
-        <div style="clear: both"></div>
+        <dl style="clear: both"></dl>
     </div>
     {{#  }); }}
 </script>
