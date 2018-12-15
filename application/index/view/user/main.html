@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{:config('conf.title')} - 用户中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content>
+    <title>{:config('conf.title')} - 用户中心</title>
     <link rel="stylesheet" href="/pc/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="/pc/dis/head/sitelogo.css" rel="stylesheet">
     <link href="/pc/dis/head/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/function.css">
@@ -38,16 +44,19 @@
     </div>
     <div class="wl-tabc" style="width: 100%">
         <div class="tab-box" >
+            <a href="/index/article/article" style="color: #333333">
             <div class="wl-fabiao" style="cursor: pointer" >
-                <a href="/index/article/article" style="color: #333333">
+
                     <i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>发表文章
-                </a>
             </div>
+                </a>
+            <a href="/index/article/graphic" style="color: #333333">
             <div class="wl-fabiaoa" style="cursor: pointer" >
-                <a href="/index/article/graphic" style="color: #333333">
+
                     <i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>全部图文
-                </a>
             </div>
+                </a>
+
             <ul class="renzheng">
                 <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
                     <span class="wl-shimin1"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span></i>
