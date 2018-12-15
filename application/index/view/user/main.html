@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content>
     <title>{:config('conf.title')} - 用户中心</title>
-    <link rel="stylesheet" href="/pc/css/relrase.css">
+    <link rel="stylesheet" href="/static/web/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link href="/pc/dis/head/sitelogo.css" rel="stylesheet">
-    <link href="/pc/dis/head/cropper.min.css" rel="stylesheet">
+    <link href="/static/web/dis/head/sitelogo.css" rel="stylesheet">
+    <link href="/static/web/dis/head/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/function.css">
 
     <style>
@@ -30,12 +30,12 @@
 <div class="wl-con" >
     <div class="wl-top" >
         <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
-            <img src="/pc/image/logo1.png" alt="" >
+            <img src="/static/web/image/logo1.png" alt="" >
         </div>
     </div>
     <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="{$user_info['portrait']}" class="wl-toux"  onerror="this.src='/pc/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
+            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="{$user_info['portrait']}" class="wl-toux"  onerror="this.src='/static/web/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
                 <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
@@ -70,7 +70,7 @@
                 <div class="xia">
                     <div class="one">
                         <div class="one-1">
-                            <img src="{$user_info['portrait']}"  onerror="this.src='/pc/image/tou.png'" >
+                            <img src="{$user_info['portrait']}"  onerror="this.src='/static/web/image/tou.png'" >
                             <dt id="cus-nickname">{$user_info['nickname']}</dt>
                             <dd id="cus-profile" title="{$user_info['profile']}">
                                 {$user_info['profile']?:'<span style="color: #CCCCCC">您还没有设置您的简介信息...</span>'}
@@ -114,7 +114,7 @@
                     </div>
                     <div class="two">
                         <div class="two-1">
-                            <img src="/pc/image/wl-dunpai.png" alt="">
+                            <img src="/static/web/image/wl-dunpai.png" alt="">
                         </div>
                         <div class="two-2">
                             <div><span>绑定手机</span><span style="color: #888888;margin-left: 100px" >当前已绑定</span><span style="color: #7DB0E8;margin-left: 210px;cursor: pointer" class="wl-hf">更改手机</span></div>
@@ -170,7 +170,7 @@
                     <div class="wl-gexx">修改个人信息</div>
                     <div class="wl-gerenl">
                         <div class="cd" style="cursor: pointer" data-toggle="modal" data-target="#avatar-modal" id="wl-da">
-                            <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/pc/image/tou.png'"  />
+                            <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/static/web/image/tou.png'"  />
                             <div class="dd" >更换头像</div>
                         </div>
                         <div class="wl-ri">
@@ -259,11 +259,11 @@
 <footer class="wl-foot" style="bottom: -100px;">{:config('conf.copyright')}</footer>
 </body>
 <!--<script src="/static/js/jquery.min.js"></script>-->
-<script src="/pc/dis/head/jquery.min.js"></script>
-<script src="/pc/dis/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/pc/dis/head/bootstrap.min.js"></script>
-<script src="/pc/dis/head/cropper.js"></script>
-<script src="/pc/dis/head/sitelogo.js"></script>
+<script src="/static/web/dis/head/jquery.min.js"></script>
+<script src="/static/web/dis/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/web/dis/head/bootstrap.min.js"></script>
+<script src="/static/web/dis/head/cropper.js"></script>
+<script src="/static/web/dis/head/sitelogo.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/jquery.smscode.js"></script>
 <script type="text/javascript">
