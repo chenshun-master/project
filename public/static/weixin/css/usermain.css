@@ -185,12 +185,12 @@
     margin: 0 auto;
     border-bottom: 1px solid #f1f1f1;
 }
-.wl-dingdan span:nth-child(1){
+.wl-me-dingdan{
     float: left;
     color: #000000;
     font-size: 13px;
 }
-.wl-dingdan span:nth-child(2){
+.wl-ckqb{
     float: right;
     color: #000000;
     font-size: 11px;
