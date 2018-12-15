@@ -1,7 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="css"}
-<link rel="stylesheet" href="/pc/layui/css/layui.css"  media="all">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
 <style>
     #from-img-box{
         margin-top: 20px;
@@ -203,8 +203,8 @@
                                     <label  class="col-sm-1 control-label">商品图片</label>
                                     <div class="col-sm-10">
                                         <div style="position: relative;cursor: pointer">
-                                            <div class="layui-btn layui-btn-sm layui-btn-normal" style="color: white;position: absolute;top: 0;z-index: 1;">
-                                                    <i class="layui-icon" ></i>商品图片
+                                            <div class="layui-btn layui-btn-sm layui-btn-normal" style="position: absolute;top: 0;z-index: 1;">
+                                                <i class="layui-icon layui-icon-upload-drag"></i>商品图片
                                             </div>
                                             <input type="file" name="goodsFile" style="position: absolute;top: 0;z-index: 2;width: 87px;opacity: 0;"  id="fr-upload-goodsimg"  />
                                         </div>
@@ -339,7 +339,7 @@
 {/block}
 
 {block name="js"}
-    {js href="/pc/layui/layui.all.js" /}
+    {js href="/static/plugin/layui/layui.all.js" /}
     <script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
     <script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
     <script type="text/javascript">

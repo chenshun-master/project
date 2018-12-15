@@ -43,7 +43,8 @@ class ShOrderDomain
             'order.real_amount',
             'doctor.real_name'=>'doctor_name',
             'hospital.hospital_name',
-            'order.status'
+            'order.status',
+            'order.goods_name'
         ];
 
         $obj = Db::name('sh_order')->alias('order');

@@ -222,23 +222,31 @@ class SpGoodsDomain
      * @throws \think\exception\DbException
      */
     public function placeOrder(int $goods_id,int $goods_num,int $user_id){
-        $goods_info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->where('store_nums','>',$goods_num)->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id,doctor_id,hospital_id')->find();
+        $goods_info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->where('store_nums','>',$goods_num)->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id,doctor_id,hospital_id,name')->find();
         if(!$goods_info){
             return false;
         }
 
-        //准备订单数据
+        //包装订单数据
         $orderData = [];
         $orderData['order_no']          = getOrderNo();
         $orderData['goods_id']          = $goods_id;
         $orderData['user_id']           = $user_id;
         $orderData['seller_id']         = $goods_info['seller_id'];
-        $orderData['goods_nums']        = $goods_num;
         $orderData['img']               = $goods_info['img'];
         $orderData['hospital_id']       = $goods_info['hospital_id'];
         $orderData['doctor_id']         = $goods_info['doctor_id'];
+        $orderData['status']            = 1;
+        $orderData['is_checkout']       = 0;
+        $orderData['create_time']       = date('Y-m-d H:i:s');
+        $orderData['goods_name']        = $goods_info['name'];
 
-        //优惠价格
+        //价格处理
+        //原销售单价
+        $orderData['goods_price']       = $goods_info['sell_price'];
+        //购买数量
+        $orderData['goods_nums']        = $goods_num;
+        //订单优惠价格
         $orderData['discount_price']    = 0.00;
         //应付商品总金额
         $orderData['payable_amount']    = $goods_info['sell_price'] * $goods_num;
@@ -247,12 +255,7 @@ class SpGoodsDomain
         //到付总金额
         $orderData['topay_price']       = $goods_info['topay_price'] * $goods_num;
         //实付商品总金额
-        $orderData['real_amount']       = 0.00;
-
-        $orderData['status']            = 1;
-        $orderData['is_checkout']       = 0;
-        $orderData['create_time']       = date('Y-m-d H:i:s');
-
+        $orderData['real_amount']       = $orderData['prepay_price'];
         return  Db::name('sh_order')->insertGetId($orderData);
     }
 
@@ -549,8 +552,18 @@ class SpGoodsDomain
             }
 
             $data['goods_info'] = $goods_info;
-            $data['goods_imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_photo')->leftJoin('wl_sp_goods_photo photo','photo.id = goods_photo.goods_id')->where('goods_photo.goods_id',$goods_id)->field('photo.id,photo.img')->select();
-            $data['goods_category'] = Db::name('sp_category_extend')->alias('c_extend')->leftJoin('wl_sp_category category','c_extend.category_id = category.id')->where('c_extend.goods_id',$goods_id)->field('category.id,category.name')->select();
+            $data['goods_imgs'] = Db::name('sp_goods_photo_relation')
+                ->alias('goods_photo')
+                ->leftJoin('wl_sp_goods_photo photo','photo.id = goods_photo.photo_id')
+                ->where('goods_photo.goods_id',$goods_id)
+                ->field('photo.id,photo.img')
+                ->select();
+            $data['goods_category'] = Db::name('sp_category_extend')
+                ->alias('c_extend')
+                ->leftJoin('wl_sp_category category','c_extend.category_id = category.id')
+                ->where('c_extend.goods_id',$goods_id)
+                ->field('category.id,category.name')
+                ->select();
         }
 
         return $data;
