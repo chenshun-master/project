@@ -110,9 +110,16 @@ class Shop extends BaseController
     /**
      *用户相册详情页
      */
-    public function fairyAlbum()
+    public function diary()
     {
-        return $this->fetch('shop/fairy_album');
+        return $this->fetch('shop/diary');
     }
 
+    /**
+     *用户相册详情页二
+     */
+    public function diaryOf()
+    {
+        return $this->fetch('shop/diary_of');
+    }
 }
