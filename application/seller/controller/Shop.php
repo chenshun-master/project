@@ -65,6 +65,7 @@ class Shop extends BaseController
         $this->assign('info',$goods_info);
         $this->assign('category',$category);
 
+
         return $this->fetch('shop/addgood');
     }
 
