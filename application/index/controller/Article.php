@@ -143,12 +143,6 @@ class Article extends CController
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
         $this->assign('user_info',$user_info);
 
-
-
         return $this->fetch('article/graphic');
-    }
-
-    public function test(){
-        halt(['asdf','asdfdasadf']);
     }
 }
