@@ -23,6 +23,7 @@ class BaseController extends Controller
                 }
             }
 
+//            halt($this->getUserInfo());
             $this->assign('user_info',$this->getUserInfo());
         }
     }

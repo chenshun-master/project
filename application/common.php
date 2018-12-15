@@ -95,6 +95,18 @@ function encryptPwd($password){
 }
 
 /**
+ * 密码加密方式(改进)
+ * @param $password   用户输入密码
+ * @return string     加密后的密码
+ */
+function encryptPwd2($password){
+    $password = md5($password);
+    $password = sha1($password);
+    $password = substr($password,0,5).md5($password).substr($password,-5).'wl';
+    return md5($password);
+}
+
+/**
  * 验证手机号是否正确
  * @param $mobile    待验证手机号
  * @return bool

@@ -68,6 +68,7 @@ class Index extends BaseController
      * 用戶登录页
      */
     public function login(){
+
         if($this->checkLogin()){
             return redirect('/weixin/user/main');
         }else if(is_weixin() && config('conf.weixin_automatic_logon')){
