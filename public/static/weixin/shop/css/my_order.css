@@ -45,8 +45,8 @@
     width: 100%;
     min-height: 100px;
     margin: 0 auto;
-    margin-top: 5px;
     background: #FFFFFF;
+    border-bottom: 5px solid #f1f1f1;
 }
 .wl-xiannv {
     color: #999999;
