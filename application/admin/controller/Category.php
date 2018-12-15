@@ -27,7 +27,6 @@ class Category extends BaseController
         return $this->fetch('/category/index');
     }
 
-
     /**
      * 发布分类
      * @param Request $request

@@ -8,6 +8,7 @@
 
 namespace app\api\model;
 
+use think\Db;
 use think\Model;
 
 class CategoryModel extends Model
