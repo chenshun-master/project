@@ -77,7 +77,7 @@ $(function () {
         $(".wl-deji li").eq(3).trigger('click');
     }
 
-})
+});
 
 var myObj = {
     //全部订单
@@ -88,7 +88,7 @@ var myObj = {
             ini: false,
             page: 0,
             page_total: 1,
-            page_size: 10,
+            page_size: 15,
         },
         loadList: function (me) {
             if (myObj.goods.listData.loading) {
@@ -97,8 +97,7 @@ var myObj = {
             myObj.goods.listData.page++;
             if (myObj.goods.listData.ini == true) {
                 if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                    me.resetload();
-                    return false;
+                    me.resetload();return false;
                 }
             }
 
@@ -119,15 +118,26 @@ var myObj = {
                             myObj.goods.listData.ini = true;
                             myObj.goods.listData.page_total = res.data.page_total;
                             $('#container-list').html('');
+                            if(res.data.page_total == 0){
+                                $('#container-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                            }
                         }
+
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                                $('#container-list').append(html);
-                            });
+                            $('#container-list').append(html);
+                        });
+
                         if(myObj.goods.listData.page >= myObj.goods.listData.page_total){
                             me.noData();
                         }
                     }
                     me.resetload();
+
+                    if(myObj.goods.listData.page_total == 0){
+                        $('#container-list').parent().find('.dropload-down').hide();
+                    }else{
+                        $('#container-list').parent().find('.dropload-down').show();
+                    }
                 }
             })
         }
@@ -150,7 +160,6 @@ var myObj = {
             if (myObj.paid.listData.ini == true) {
                 if (myObj.paid.listData.page > myObj.paid.listData.page_total) {
                     me.resetload();
-
                     return false;
                 }
             }
@@ -172,6 +181,9 @@ var myObj = {
                             myObj.paid.listData.ini = true;
                             myObj.paid.listData.page_total = res.data.page_total;
                             $('#paid-list').html('');
+                            if(res.data.page_total == 0){
+                                $('#paid-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                            }
                         }
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
                             $('#paid-list').append(html);
@@ -182,7 +194,14 @@ var myObj = {
                     }else if (res.code == 401) {
                         redream.showTip('请先进行登录');
                     }
+
                     me.resetload();
+
+                    if(myObj.paid.listData.page_total == 0){
+                        $('#paid-list').parent().find('.dropload-down').hide();
+                    }else{
+                        $('#paid-list').parent().find('.dropload-down').show();
+                    }
                 }
             })
         }
@@ -204,9 +223,7 @@ var myObj = {
             myObj.consumption.listData.page++;
             if (myObj.consumption.listData.ini == true) {
                 if (myObj.consumption.listData.page > myObj.consumption.listData.page_total) {
-                    me.resetload();
-
-                    return false;
+                    me.resetload();return false;
                 }
             }
 
@@ -227,16 +244,27 @@ var myObj = {
                             myObj.consumption.listData.ini = true;
                             myObj.consumption.listData.page_total = res.data.page_total;
                             $('#consumption-list').html('');
+                            if(res.data.page_total == 0){
+                                $('#consumption-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                            }
                         }
-                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                            $('#consumption-list').append(html);
-                        });
+
                         if(myObj.consumption.listData.page >= myObj.consumption.listData.page_total){
                             me.noData();
                         }
 
+                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
+                            $('#consumption-list').append(html);
+                        });
                     }
+
                     me.resetload();
+
+                    if(myObj.consumption.listData.page_total == 0){
+                        $('#consumption-list').parent().find('.dropload-down').hide();
+                    }else{
+                        $('#consumption-list').parent().find('.dropload-down').show();
+                    }
                 }
             })
         }
@@ -258,9 +286,7 @@ var myObj = {
             myObj.complete.listData.page++;
             if (myObj.complete.listData.ini == true) {
                 if (myObj.complete.listData.page > myObj.complete.listData.page_total) {
-                    me.resetload();
-
-                    return false;
+                    me.resetload();return false;
                 }
             }
 
@@ -281,6 +307,9 @@ var myObj = {
                             myObj.complete.listData.ini = true;
                             myObj.complete.listData.page_total = res.data.page_total;
                             $('#complete-list').html('');
+                            if(res.data.page_total == 0){
+                                $('#complete-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                            }
                         }
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
                             $('#complete-list').append(html);
@@ -290,6 +319,12 @@ var myObj = {
                         }
                     }
                     me.resetload();
+
+                    if(myObj.complete.listData.page_total == 0){
+                        $('#complete-list').parent().find('.dropload-down').hide();
+                    }else{
+                        $('#complete-list').parent().find('.dropload-down').show();
+                    }
                 }
             })
         }
