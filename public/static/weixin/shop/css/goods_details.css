@@ -235,10 +235,10 @@
 }
 .wl-xiang{
     width: 100%;
-    height: 23px;
-    line-height: 23px;
+    height: 25px;
+    line-height: 25px;
     color: #1B1B1B;
-    font-size: 10px;
+    font-size: 12px;
     background: #F6F6F6;
     border-radius: 25px;
     overflow: hidden;
@@ -597,7 +597,7 @@
 }
 .wl-longxioang{
     color: #7DB0E8;
-    font-size: 10px;
+    font-size: 11px;
 }
 .wl-long-top{
     width: 100%;
@@ -614,11 +614,11 @@
     height: 38px;
     float: right;
     color: #999999;
-    font-size: 10px;
+    font-size: 11px;
 }
 .se{
     color: #FF615C;
-    font-size: 10px;
+    font-size: 11px;
 }
 .bottom{
     margin-bottom: 5px;

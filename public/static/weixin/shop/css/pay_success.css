@@ -69,3 +69,16 @@
     font-size: 11px;
     padding: 1px 0 5px 0;
 }
+.wl-success-errer{
+    display: none;
+}
+.wl-shibai{
+    color:#333333;
+    font-size: 13px;
+    padding: 15px;
+    line-height: 25px;
+
+}
+.wl-shibai dd{
+    margin-top: 30px;
+}
