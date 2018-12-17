@@ -24,7 +24,7 @@ class BannerModel extends Model
     /**
      * banner 列表
      */
-    public function getList($page = 1,$page_size = 15)
+    public function getList($page = 1,$page_size = 10)
     {
         $obj = Db::name('sp_banner')->where('is_del',0)->order('id desc');
         $total = $obj->count(1);

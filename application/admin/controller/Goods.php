@@ -31,7 +31,7 @@ class Goods extends BaseController
      */
     public function getGoodsList(){
         $name = $this->request->post('name');
-        $data = $this->SpGoodsDomain->getGoodsList($name,0,1,15);
+        $data = $this->SpGoodsDomain->getGoodsList($name,0,1,10);
         return $this->returnData($data,'',0);
     }
 }

@@ -48,52 +48,41 @@ class Admin extends BaseController
      * 管理员列表
      */
     public function getAdminList(){
-        $data = $this->AdminDomain->getAdminList(1,15);
+        $data = $this->AdminDomain->getAdminList(1,10);
         return $this->returnData($data,'',0);
     }
-
 
     /**
      * 新增管理员
      * @param  Request $request
      */
-    public function releaseAdmin(Request $request){
+    public function releaseAdmin(Request $request)
+    {
+        $id = $request->post('id');
         $username = $request->post('username');
         $password = $request->post('password');
-        $status   = $request->post('status');
-        $file     = $request->file("pic");
-        $img_domain = config('conf.file_save_domain');
-        #文件上传类型
-        $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
-        if($file) {
-            $size = 1024 * 1024 * 5;              #单位字节
-            if (!$file->checkSize($size)) {
-                return $this->returnData([], '上传图片大小不能超过5M', 305);
-            }
-
-            if (!$file->checkExt($fileExt)) {
-                return $this->returnData([], '文件格式错误只支持gif,jpg,jpeg及png格式的图片', 305);
-            }
-
-            $info = $file->move('../uploads/');
-            if ($info) {
-                $path_dir = $img_domain . '/uploads/' . str_replace("\\", "/", $info->getSaveName());
-                $data = [
-                    'username' => $username,
-                    'password' => encryptPwd($password),
-                    'pic'      => $path_dir,
-                    'status'   => $status,
-                ];
-                $result = $this->AdminDomain->createAdmin($data);
-                if (!$result) {
-                    return $this->returnData([], '新增失败',301);
-                } else {
-                    return $this->returnData([], '新增成功', 200);
-                }
-            } else {
-                return $this->returnData([], $file->getError(), 305);
-            }
-
+        $status = $request->post('status');
+        $data = [
+            'username' => $username,
+            'password' => encryptPwd($password),
+            'status' => $status,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+        if ($id) {
+            $data = [
+                'username' => $username,
+                'password' =>encryptPwd($password),
+                'status' => $status,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            $result = $this->AdminDomain->getUpdate($id,$data);
+        } else {
+            $result = $this->AdminDomain->createAdmin($data);
+        }
+        if (!$result) {
+            return $this->returnData([], '新增失败', 301);
+        } else {
+            return $this->returnData([], '新增成功', 200);
         }
     }
 
@@ -103,11 +92,15 @@ class Admin extends BaseController
      */
     public function update(){
         $data = input('param.');
-        $result = Db::name('admin')->where('id', $data['id'])->update(['status' => $data['status']]);
-        if($result){
-            $this->redirect('/admin/admin/index');
+        if($data['status'] == 0){
+            $result = Db::name('admin')->where('id', $data['id'])->update(['status' => 10]);
         }else{
-            $this->error('修改失败', cookie("prevUrl"));
+            $result = Db::name('admin')->where('id', $data['id'])->update(['status' => 0]);
+        }
+        if($result){
+            return $this->returnData([],'修改成功','200');
+        }else{
+            return $this->returnData([],'修改失败','301');
         }
     }
 

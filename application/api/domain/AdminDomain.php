@@ -18,7 +18,7 @@ class AdminDomain
      * @param  int $page_size
      * @throws \think\exception\DbException
      */
-    public function getAdminList($page=1,$page_size=15){
+    public function getAdminList($page=1,$page_size=10){
         $obj = Db::name('admin')->order('id desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();
@@ -42,6 +42,16 @@ class AdminDomain
         }else{
             return false;
         }
+    }
+
+    /**
+     * 修改管理员
+     * @param  $id  修改的ID
+     * @param $data 要修改的数据
+     */
+    public function getUpdate($id,$data){
+        $res = Db::name('admin')->where('id',$id)->update($data);
+        return $res;
     }
 
     /**

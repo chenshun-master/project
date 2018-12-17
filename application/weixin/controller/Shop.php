@@ -145,6 +145,25 @@ class Shop extends BaseController
     }
 
     /**
+      *有好货页面
+      */
+       public function haveGood()
+       {
+           return $this->fetch('shop/have_good');
+       }
+    /**
+      *有好货详情页面
+      */
+       public function haveGoodDetails()
+       {
+           return $this->fetch('shop/havegood_details');
+       }
+
+
+
+
+
+    /**
      *用户相册详情页
      */
     public function diary()
@@ -168,4 +187,5 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/diary_second');
     }
+
 }
