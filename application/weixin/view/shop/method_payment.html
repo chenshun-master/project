@@ -2,14 +2,10 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/shop/css/method_payment.css">
-<style>
-
-</style>
 {/block}
 
 {block name="main"}
 
-<!--这里编写主体内容-->
 <div style="width: 100%;height: 100%;background: #F2F2F2">
     <header>
         <div class="wl-top">
@@ -35,7 +31,7 @@
                 <span style="float: left;margin-left: 5px">实付金额</span>
             </div>
             <div style="float: right">
-                <i  style="color: #FF615C;font-size: 12px">￥957</i>
+                <i  style="color: #FF615C;font-size: 12px">￥{$data['order_info']['real_amount']}</i>
             </div>
         </div>
         <div class="wl-bth" onclick="redream.href('/weixin/shop/paySuccess')">
@@ -50,7 +46,4 @@
 {/block}
 
 {block name="script"}
-<script>
-
-</script>
 {/block}

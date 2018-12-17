@@ -115,19 +115,6 @@ class Test
         return true;
     }
 
-    public function t(){
-//        $domain = new \app\api\domain\SpGoodsDomain();
-//        $params = [
-//            'category'    =>'',
-//            'sort'        =>1,
-//            'city'        =>'',
-//            'keywords'    =>'layui',
-//        ];
-//
-//        $data = $domain->getSearchGoods($params);
-//        halt($data);
-    }
-
     public function ss(){
 //        set_time_limit(0);
 //
@@ -155,4 +142,22 @@ class Test
 //        echo date('Y-m-d H:i:s');
     }
 
+    public function myTest(){
+////        $domain = new \app\api\domain\UserFavoriteDomain();
+////        $res = $domain->createFavorite(46,1,'goods');
+////        $res = $domain->cancelFavorite(164,46);
+//
+//
+//        $domain = new \app\api\domain\UserLikeDomain();
+////        $res = $domain->createLike(46,180,'article');
+//        $res = $domain->cancelLike(506,46);
+//
+//
+//        halt($res);
+        $domain = new \app\api\domain\SpGoodGoodsDomain();
+
+
+        $res = $domain->getGoodGoodsDetail(1);
+        halt($res);
+    }
 }

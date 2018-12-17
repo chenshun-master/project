@@ -15,6 +15,8 @@ class Article extends BaseController
     private $userDomain;
     private $_userFriendDomain;
     private $wechatJssdk;
+    private $_userFavoriteDomain;
+    private $_userLikeDomain;
 
     public function __construct(App $app = null)
     {
@@ -22,10 +24,10 @@ class Article extends BaseController
 
         $this->articleDomain = new \app\api\domain\ArticleDomain();
         $this->userDomain    = new \app\api\domain\UserDomain();
-
         $this->wechatJssdk = new \wechat\WeChatJsSDK;
         $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
-
+        $this->_userFavoriteDomain = new \app\api\domain\UserFavoriteDomain();
+        $this->_userLikeDomain = new \app\api\domain\UserLikeDomain();
     }
 
     /**
@@ -37,7 +39,7 @@ class Article extends BaseController
         }
 
         $id = $request->param('id','');
-        $type = $request->param('type',1);
+        $type = $request->param('type/d',1);
         $user_id = $this->getUserInfo()['id'];
 
         $res = $this->articleDomain->addFabulous($user_id,$id,$type,'article');
@@ -382,7 +384,7 @@ class Article extends BaseController
             return $this->returnData([],'请求参数不符合规范',301);
         }
 
-        $res = (new \app\api\domain\ArticleDomain())->createFavoriteArticle($this->getUserId(),$id);
+        $res = $this->_userFavoriteDomain->createFavorite($this->getUserId(),$id,'article');
         if(!$res){
             return $this->returnData([],'操作失败',305);
         }
