@@ -16,6 +16,7 @@ class User extends BaseController
     private $_userModel;
     private $_userFriendDomain;
     private $_authDomain;
+    private $_userFavoriteDomain;
 
     public function __construct(App $app = null)
     {
@@ -29,6 +30,9 @@ class User extends BaseController
         $this->_userFriendDomain = new \app\api\domain\UserFriendDomain();
 
         $this->_authDomain = new \app\api\domain\AuthDomain();
+
+
+        $this->_userFavoriteDomain = new \app\api\domain\UserFavoriteDomain();
     }
 
     /**
@@ -575,7 +579,7 @@ class User extends BaseController
         $page       = (int)$request->param('page',1);
         $page_size  = (int)$request->param('page_size',15);
 
-        $data = $this->_articleDomain->getFavoriteArticle($this->getUserId(),$page,$page_size);
+        $data = $this->_userFavoriteDomain->getFavoriteArticleList($this->getUserId(),$page,$page_size);
         if(count($data['rows']) > 0){
             foreach ($data['rows'] as  $k=>$v){
                 if($v['user_type'] == 3){

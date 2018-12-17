@@ -2,9 +2,6 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/shop/css/order_details.css">
-<style>
-
-</style>
 {/block}
 
 {block name="main"}
@@ -16,12 +13,11 @@
             <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
             <span>订单详情</span>
         </div>
-
     </header>
     <main>
         <div class="wl-zonghe" style="    padding: 0 10px 0 10px;">
-            <span class="wl-xiannv">【鼻综合】爆款仙女鼻综合</span>
-            <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>4456</span></span>
+            <span class="wl-xiannv">{$data['order_info']['goods_name']}</span>
+            <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{$data['order_info']['goods_price']}</span></span>
         </div>
         <div style="clear: both"></div>
         <div >
@@ -29,40 +25,49 @@
                 <div class="wl-zonghe">
                     <span class="wl-xiannv">数量</span>
                     <div class="wl-jiage1">
-                            <tr>
-                                <div class="wl">
-                                    <input class="min" name="" type="text" value="-" readonly/>
-                                    <input class="text_box" name="" type="text" value="1" readonly/>
-                                    <input class="add" name="" type="text" value="+" readonly/>
-                                </div>
-                            </tr>
+                        <tr>
+                            <div class="wl">
+                                <input class="min" name="" type="text" value="-" readonly disabled/>
+                                <input class="text_box" name="" type="text" value="1" readonly />
+                                <input class="add" name="" type="text" value="+" readonly disabled/>
+                            </div>
+                        </tr>
                     </div>
                 </div>
                 <div style="clear: both"></div>
                 <div class="wl-zonghe">
-                    <span class="wl-xiannv">176****2308</span>
+                    <span class="wl-xiannv">{$mobile}</span>
                 </div>
+            </div>
 
-            </div>
             <div class="wl-zonghe1">
-                <span class="wl-xiannv1 se">商家立减优惠，减1193元</span>
-                <span class="wl-jiage2 ">-￥1193 <span class="wl-bjtu"></span></span>
+                <span class="wl-xiannv1 se">商家立减优惠，减 0.00元</span>
+                <span class="wl-jiage2 ">-￥0.00 <span class="wl-bjtu"></span></span>
             </div>
+
             <div class="wl-zonghe1">
                 <span class="wl-xiannv">订金金额</span>
-                <span class="wl-jiage1 " style="color: #F24F4F">￥<span class="price">958</span></span>
+                <span class="wl-jiage1 " style="color: #F24F4F">￥<span class="price">{$data['order_info']['prepay_price']}</span></span>
             </div>
+
             <div class="wl-zonghe1 qu">
-                <span class="wl-xiannv">订金优惠金额</span>
-                <span class="wl-jiage1" style="color: #F24F4F">-￥1193</span>
+                <span class="wl-xiannv">优惠金额</span>
+                <span class="wl-jiage1" style="color: #F24F4F">-￥{$data['order_info']['discount_price']}</span>
             </div>
+
             <div class="wl-zonghe1 qu xian">
                 <span class="wl-xiannv">到院消费后再付给医院</span>
-                <span class="wl-jiage1" style="color: #F24F4F">￥3827</span>
+                <span class="wl-jiage1" style="color: #F24F4F">￥{$data['order_info']['topay_price']}</span>
             </div>
+
+            <div class="wl-zonghe1 qu ">
+                <span class="wl-xiannv">应付商品总金额</span>
+                <span class="wl-jiage1" style="color: #F24F4F">￥{$data['order_info']['payable_amount']}</span>
+            </div>
+
             <div class="wl-zonghe1 qu">
                 <span class="wl-xiannv">在线支付金额</span>
-                <span class="wl-jiage1" style="color: #F24F4F">￥<span  id="total" >958</span></span>
+                <span class="wl-jiage1" style="color: #F24F4F">￥<span  id="total" >{$data['order_info']['real_amount']}</span></span>
             </div>
         </div>
 
@@ -71,12 +76,9 @@
         <div class="wl-foot-btn">
             <div style="float: right">
                 <div>
-                 <span class="wl-shifu"> 实付：<span style="color: #7DB0E8" >￥<span id="total1">958</span></span></span>
-                    <div class="wl-btn">
-                        提交订单
-                    </div>
+                 <span class="wl-shifu"> 在线支付：<span style="color: #7DB0E8" >￥<span id="total1">{$data['order_info']['real_amount']}</span></span></span>
+                    <a href="/weixin/shop/methodPayment?oid={$data['order_info']['id']}"><div class="wl-btn">提交订单</div></a>
                 </div>
-
             </div>
         </div>
     </footer>
@@ -86,25 +88,21 @@
 
 {block name="script"}
 <script>
-    // $(".wl-bjtu").addClass('wl-bjtu'); // 初始化时添加背景1
-    // $(".wl-bjtu").click(function() {
-    //     $(this).toggleClass('wl-bjtu').toggleClass('wl-bjtu1');
-    // });
     $(function() {
         $(".add").click(function() {
             var t = $(this).parent().find('input[class*=text_box]');
             t.val(parseInt(t.val()) + 1);
             setTotal();
-        })
+        });
 
-				$(".min").click(function() {
-					var t = $(this).parent().find("input[class*=text_box]");
-					t.val(parseInt(t.val()) - 1);
-					if(parseInt(t.val()) < 0) {
-						t.val(0);
-					}
-					setTotal()
-				})
+        $(".min").click(function() {
+            var t = $(this).parent().find("input[class*=text_box]");
+            t.val(parseInt(t.val()) - 1);
+            if(parseInt(t.val()) < 0) {
+                t.val(0);
+            }
+            setTotal()
+        });
 
         function setTotal() {
             var sum = 0;
@@ -117,7 +115,6 @@
             $("#total,#total1").html(sum.toFixed(2));
         }
         setTotal();
-
-    })
+    });
 </script>
 {/block}

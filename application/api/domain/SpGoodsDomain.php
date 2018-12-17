@@ -3,6 +3,7 @@ namespace app\api\domain;
 
 use think\Db;
 use app\api\model\RegionsModel;
+use app\api\model\SpGoodsModel;
 
 class SpGoodsDomain
 {
@@ -317,7 +318,7 @@ class SpGoodsDomain
             'goods.prepay_price',
             'goods.img',
             'goods.visit',
-            'goods.favorite',
+            'goods.favorites',
             'goods.sale_num',
             'goods.case_num',
             'goods.grade',
@@ -367,7 +368,7 @@ class SpGoodsDomain
         $obj->where('goods.status',0);
         $obj->where('goods.id',$goods_id);
         $obj->leftJoin('wl_sp_goods_buy_notice buy_notice','buy_notice.goods_id = goods.id');
-        $field = 'goods.id,goods.name,goods.market_price,goods.sell_price,goods.prepay_price,goods.topay_price,goods.img,goods.content,goods.visit,goods.favorite,goods.comments,goods.sale_num,goods.case_num,goods.doctor_id,goods.hospital_id,goods.seller_id,buy_notice.buy_deadline,buy_notice.notice,buy_notice.buyflow,buy_notice.time_slot';
+        $field = 'goods.id,goods.name,goods.market_price,goods.sell_price,goods.prepay_price,goods.topay_price,goods.img,goods.content,goods.visit,goods.favorites,goods.comments,goods.sale_num,goods.case_num,goods.doctor_id,goods.hospital_id,goods.seller_id,buy_notice.buy_deadline,buy_notice.notice,buy_notice.buyflow,buy_notice.time_slot';
         $goodsInfo = $data['goods_info'] = $obj->field($field)->find();
 
         if($goodsInfo){
@@ -376,7 +377,7 @@ class SpGoodsDomain
             }
 
             //查询商品图片
-            $data['imgs'] = Db::name('sp_goods_photo_relation')->alias('goods_pr')->leftJoin('wl_sp_goods_photo goods_photo','goods_pr.photo_id = goods_photo.id')->where('goods_pr.goods_id',$goods_id)->column('goods_photo.img');
+            $data['imgs'] = SpGoodsModel::getImgs($goods_id);
 
             //查询医院信息
             $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
@@ -434,7 +435,7 @@ class SpGoodsDomain
 
         $obj->where('goods.seller_id',$seller_id);
         $obj->where('goods.status',0);
-        $obj->order('goods.sale_num desc,goods.favorite desc,goods.visit desc');
+        $obj->order('goods.sale_num desc,goods.favorites desc,goods.visit desc');
 
         $field = [
             'goods.id',
@@ -444,7 +445,7 @@ class SpGoodsDomain
             'goods.prepay_price',
             'goods.img',
             'goods.visit',
-            'goods.favorite',
+            'goods.favorites',
             'goods.sale_num',
             'goods.case_num',
             'goods.grade',

@@ -1,6 +1,5 @@
-
-$(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-    $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+$(".wl-deji li").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
     var index = $(this).index();
     $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
     if(index == 0 && myObj.goods.listData.ini == false){
@@ -60,13 +59,11 @@ $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给
             }
         });
     }
-
 });
+
 $(function () {
     var url = window.location.toString();
     var maodian = url.split('#')[1];
-
-    console.log(maodian);
     if(maodian == 'all'){
         $(".wl-deji li").eq(0).trigger('click');
     }else if(maodian  == 'paid'){
@@ -76,7 +73,6 @@ $(function () {
     }else if(maodian == 'complete'){
         $(".wl-deji li").eq(3).trigger('click');
     }
-
 });
 
 var myObj = {
@@ -331,3 +327,8 @@ var myObj = {
     },
 };
 
+$(document).on('click','.click-to-orderpaydetail',function(){
+    window.location.href = '/weixin/shop/orderDetails?oid='+$(this).data('oid');
+}).on('click','.click-to-paydetail',function(){
+    window.location.href = '/weixin/shop/methodPayment?oid='+$(this).data('oid');
+});
