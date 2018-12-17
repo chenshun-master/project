@@ -73,18 +73,21 @@ class Banner extends BaseController{
             return $this->fetch('/banner/add');
         }
     }
-
     /**
      * 是否推送到首页
      */
     public function update()
     {
         $data = input('param.');
-        $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
-        if($result){
-            $this->redirect('/admin/banner/index');
+        if($data['visibility'] == 0){
+            $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => 1]);
         }else{
-            $this->error('修改失败', cookie("prevUrl"));
+            $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => 0]);
+        }
+        if($result){
+            return $this->returnData([],'修改成功','200');
+        }else{
+            return $this->returnData([],'修改失败','301');
         }
     }
     /**

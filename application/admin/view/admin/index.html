@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="/pc/layui/css/layui.css"  media="all">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
 
 <div id="breadcrumb">
     <ul class="breadcrumb">
@@ -33,7 +33,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
-{js href="/pc/layui/layui.all.js" /}
+{js href="/static/plugin/layui/layui.all.js" /}
 <script type="text/javascript">
     layui.table.render({
         elem: '#table-list'
@@ -51,12 +51,11 @@
         ,cols: [[ //表头
             {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'username', title: '管理员姓名'},
-            {field: 'pic', title: '管理员头像'},
             {field: 'status', title: '管理员状态',templet:function (res) {
                     if(res.status == 0){
-                        return '<span class="label label-danger">已禁用</span>';
+                        return '<span class="label label-danger" lay-event="end">已禁用</span>';
                     }else if(res.status == 10){
-                        return '<span class="label label-success">已启用</span>';
+                        return '<span class="label label-success" lay-event="show">已启用</span>';
                     }
                 }},
             {field: 'created_at', title: '添加时间'},
@@ -85,6 +84,36 @@
                     }
                 })
             });
+        }else if (obj.event === 'show'){
+            $.ajax({
+                url:'/admin/admin/update',
+                data:{id:id,status:data.status},
+                type:"POST",
+                dataType:"json",
+                success:function (data) {
+                    if(data.code == 200){
+                        window.location.reload();
+                    }else{
+                        layer.msg('修改失败');
+                    }
+                }
+            })
+        }else if(obj.event === 'end'){
+            $.ajax({
+                url:'/admin/admin/update',
+                data:{id:id,status:data.status},
+                type:"POST",
+                dataType:"json",
+                success:function (data) {
+                    if(data.code == 200){
+                        window.location.reload();
+                    }else{
+                        layer.msg('修改失败');
+                    }
+                }
+            })
+        }else if(obj.event === 'edit'){
+            window.location.href = "/admin/admin/newAdmin/id/"+id;
         }
     });
     var objClass = {

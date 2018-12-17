@@ -82,10 +82,7 @@ class ShOrderDomain
     {
         $data = [];
 
-        $data['order_info'] = $order_info = Db::name('wl_sh_order')->where('user_id',$user_id)->where('id',$order_id)->find();
-        if(!$order_info){
-            return [];
-        }
+        $data['order_info'] = (array)$order_info = Db::name('sh_order')->where('user_id',$user_id)->where('id',$order_id)->find();
 
         return $data;
     }
@@ -146,10 +143,6 @@ class ShOrderDomain
 
         $total = $obj->count(1);
         $rows = $obj->field($field)->page($page,$page_size)->select();
-
-
-
-
 
         return [
             'rows'          =>$rows,

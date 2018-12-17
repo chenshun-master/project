@@ -10,6 +10,7 @@ class Shop extends BaseController
 {
     private $_spGoodsDomain;
     private $_userDomain;
+    private $_orderDomain;
 
 
     public function __construct(App $app = null)
@@ -17,6 +18,8 @@ class Shop extends BaseController
         parent::__construct($app);
         $this->_spGoodsDomain = new SpGoodsDomain();
         $this->_userDomain = new \app\api\domain\UserDomain();
+
+        $this->_orderDomain = new \app\api\domain\ShOrderDomain();
     }
 
 
@@ -43,7 +46,6 @@ class Shop extends BaseController
         if(empty($goodsDetail['goods_info'])){
             return $this->fetch('error/loss');
         }
-
 
         $referer = $this->request->server('HTTP_REFERER');
         $this->assign('referer',$referer);
@@ -78,8 +80,17 @@ class Shop extends BaseController
      */
     public function methodPayment()
     {
-        $order_id = $this->request->param('order_id',0);
+        if(!$this->checkLogin()){
+            return $this->redirect('index/login');
+        }
 
+        $order_id = $this->request->param('oid/d',0);
+        $data = $this->_orderDomain->getOrderDetail($this->getUserId(),$order_id);
+        if(!$data['order_info']){
+            return $this->fetch('error/loss');
+        }
+
+        $this->assign('data',$data);
         return $this->fetch('shop/method_payment');
     }
 
@@ -88,6 +99,10 @@ class Shop extends BaseController
      */
     public function myOrder()
     {
+        if(!$this->checkLogin()){
+            return $this->redirect('index/login');
+        }
+
         return $this->fetch('shop/my_order');
     }
 
@@ -96,6 +111,23 @@ class Shop extends BaseController
      */
     public function orderDetails()
     {
+        if(!$this->checkLogin()){
+            return $this->redirect('index/login');
+        }
+
+        $order_id = $this->request->param('oid/d',0);
+        $data = $this->_orderDomain->getOrderDetail($this->getUserId(),$order_id);
+
+
+        if(!$data['order_info']){
+            return $this->fetch('error/loss');
+        }
+
+        $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+
+        $this->assign('mobile',mobileFilter($user_info['mobile']));
+
+        $this->assign('data',$data);
         return $this->fetch('shop/order_details');
     }
 
@@ -104,6 +136,11 @@ class Shop extends BaseController
      */
     public function paySuccess()
     {
+        if(!$this->checkLogin()){
+            return $this->redirect('index/login');
+        }
+
+
         return $this->fetch('shop/pay_success');
     }
 

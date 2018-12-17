@@ -16,7 +16,6 @@
             <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
             <span>我的订单</span>
         </div>
-
     </header>
     <main>
         <div>
@@ -29,36 +28,26 @@
             <div class="content">
                 <div class="wl-d active">
                     <div id="container">
-                        <div id="container-list">
-
-                        </div>
+                        <div id="container-list"></div>
                     </div>
                 </div>
                 <div class="wl-d ">
                     <div id="container-one">
-                        <div id="paid-list">
-
-                        </div>
+                        <div id="paid-list"></div>
                     </div>
                 </div>
                 <div class="wl-d ">
                     <div id="container-two">
-                        <div id="consumption-list">
-
-                        </div>
+                        <div id="consumption-list"></div>
                     </div>
                 </div>
                 <div class="wl-d ">
                     <div id="container-three">
-                        <div id="complete-list">
-
-                        </div>
+                        <div id="complete-list"></div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </main>
 </div>
 
@@ -79,7 +68,7 @@
         </div>
         <div class="wl-remen">
             <div class="wl-remen-img">
-                <img src="{{item.img}}" alt="图片丢失">
+                <img src="{{item.img}}" />
             </div>
             <div class="wl-remen-right">
                 <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
@@ -109,14 +98,14 @@
                 <dt>{{item.hospital_name}}</dt>
                 <dd>
                     <span class="wl-quchu">￥{{item.goods_price}}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
+                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
                 </dd>
             </div>
         </div>
         <div style="clear: both"></div>
         <div class="wl-xiangqing">
-            <div class="wl-zhifu" onclick="redream.href('/weixin/shop/methodPayment')">去支付</div>
-            <div class="wl-chakan"  onclick="redream.href('/weixin/shop/orderDetails')">查看详情</div>
+            <div class="wl-zhifu href click-to-paydetail"  data-oid="{{ item.id }}" >去支付</div>
+            <div class="wl-chakan href click-to-orderpaydetail"  data-oid="{{ item.id }}" >查看详情</div>
         </div>
     </div>
     {{#  } }}
@@ -129,14 +118,14 @@
         </div>
         <div class="wl-remen">
             <div class="wl-remen-img">
-                <img src="{{ item.img }}" alt="图片丢失">
+                <img src="{{ item.img }}" >
             </div>
             <div class="wl-remen-right">
                 <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
                 <dt>{{item.hospital_name}}</dt>
                 <dd>
                     <span class="wl-quchu">￥{{ item.goods_price }}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
+                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
                 </dd>
             </div>
         </div>
@@ -160,7 +149,7 @@
                 <dt>数量：{{ item.goods_nums }}</dt>
                 <dd>
                     <span class="wl-quchu">￥{{ item.goods_price }}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
+                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
                 </dd>
             </div>
         </div>
