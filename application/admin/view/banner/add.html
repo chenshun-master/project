@@ -8,7 +8,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">新增轮播图</h3>
                 </div>
-                <form role="form"  id="infoLogoForm" enctype="multipart/form-data" onsubmit="return false;">
+                <form role="form"  id="infoLogoForm"  enctype="multipart/form-data" onsubmit="return false;">
                     <div class="box-body">
                         <input type="hidden" name="id" class="form-control" value="{$res.id}">
                         <div class="form-group">
@@ -30,11 +30,11 @@
                         </div>
                         <div class="form-group">
                             <label for="file">图片</label>
-                                {gt name="res.id" value="1"}
-                                <img src="{$res.img}" style="height: 100px; width: 150px;">
-                                {/gt}
-                                <input class="form-control" id="file" value="" name="img" accept="image/*" type="file">
-                                <p class="help-block">必须上传图片</p>
+                            {gt name="res.id" value="1"}
+                            <img src="{$res.img}" style="height: 100px; width: 150px;">
+                            {/gt}
+                            <input class="form-control" id="file" value="" name="img" accept="image/*" type="file">
+                            <p class="help-block">必须上传图片</p>
                         </div>
                     </div>
                     <!-- /.box-body -->

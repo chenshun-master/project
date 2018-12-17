@@ -39,11 +39,15 @@ class Seller extends BaseController
      */
     public function update(){
         $data = input('param.');
-        $result = Db::name('sp_seller')->where('id', $data['id'])->update(['is_lock' => $data['is_lock']]);
-        if($result){
-            $this->redirect('/admin/seller/index');
+        if($data['is_lock'] == 0){
+            $result = Db::name('sp_seller')->where('id', $data['id'])->update(['is_lock' => 1]);
         }else{
-            $this->error('修改失败', cookie("prevUrl"));
+            $result = Db::name('sp_seller')->where('id', $data['id'])->update(['is_lock' => 0]);
+        }
+        if($result){
+            return $this->returnData([],'修改成功','200');
+        }else{
+            return $this->returnData([],'修改失败','301');
         }
     }
 }

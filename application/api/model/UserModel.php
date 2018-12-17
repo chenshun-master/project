@@ -26,7 +26,7 @@ class UserModel extends Model
         return  self::where('id',$user_id)->value('mobile');
     }
 
-    public function info($page=1,$page_size=15){
+    public function info($page=1,$page_size=10){
         $obj = Db::name('user')->order('id desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();

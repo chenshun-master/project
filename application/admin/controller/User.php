@@ -30,7 +30,7 @@ class User extends BaseController
      * 用户列表
      */
     public function getUserList(){
-        $data = $this->userDomain->userInfo(1,15);
+        $data = $this->userDomain->userInfo(1,10);
         return $this->returnData($data,'',0);
     }
 }

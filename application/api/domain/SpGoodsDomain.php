@@ -471,7 +471,7 @@ class SpGoodsDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getGoodsList($status,$seller_id,$page=1,$page_size=15)
+    public function getGoodsList($status,$seller_id,$page=1,$page_size=10)
     {
         $obj = Db::name('sp_goods')->alias('sp');
         $obj->join('wl_doctor doctor','doctor.id = sp.doctor_id');
