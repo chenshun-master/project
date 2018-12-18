@@ -118,9 +118,9 @@ class ShopApi extends BaseController
      */
     public function getGoodGoodsComment()
     {
-        $gid = $this->request->get('gid/d', 1);
-        $page = $this->request->get('page/d', 1);
-        $page_size = $this->request->get('page_size/d', 15);
+        $gid = $this->request->param('gid/d', 1);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
 
         $data = $this->_spGoodGoodsDomain->getGoodGoodsCommentList($gid,$this->getUserId(),$page,$page_size);
         return $this->returnData($data, '', 200);
@@ -147,5 +147,17 @@ class ShopApi extends BaseController
         }
 
         return $this->returnData([], '评论失败...', 200);
+    }
+
+    /**
+     *  获取分销产品有关的产品
+     */
+    public function getGoodGoodsRelevant(){
+        $gid = $this->request->param('gid/d', 1);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
+
+        $data = $this->_spGoodGoodsDomain->getGoodGoodsRelevant($gid,$page,$page_size);
+        return $this->returnData($data, '', 200);
     }
 }
