@@ -119,4 +119,41 @@ class SpGoodGoodsDomain
 
         return $data;
     }
+
+    /**
+     * 获取分销商品的评论数据列表
+     * @param $good_goods_id
+     * @param int $user_id
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getGoodGoodsCommentList($good_goods_id,$user_id=0,$page=1,$page_size=15){
+        $field = [
+            'comment.id','comment.user_id','comment.like_count','comment.content','comment.created_time','user.nickname','user.portrait',
+            'auth.username','auth.enterprise_name',
+            'user.type'=>'user_type',
+            'IF(like.id > 0,1,0)'=>'islike',
+        ];
+
+        $obj = Db::name('comment')->alias('comment');
+        $obj->leftJoin('wl_user user','comment.user_id = user.id');
+        $obj->leftJoin('wl_auth auth','comment.user_id = auth.user_id');
+        $obj->leftJoin('wl_user_like like',"like.object_id = comment.id and like.table_name = 'comment' and like.user_id = {$user_id} and like.status = 0");
+        $obj->where('comment.object_id',$good_goods_id);
+        $obj->where('comment.table_name','sp_good_goods');
+        $obj->order('comment.created_time', 'desc');
+
+        $total = $obj->count();
+        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
 }

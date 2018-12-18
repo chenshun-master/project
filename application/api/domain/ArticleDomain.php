@@ -44,49 +44,7 @@ class ArticleDomain
      * @throws \think\exception\DbException
      */
     public function createComment($data,$tablename='article'){
-        $data['like_count']         = 0;
-        $data['status']             = 1;
-        $data['table_name']         = $tablename;
-
-        if($tablename == 'article'){
-            $res = Db::name('article')->where('id',$data['object_id'])->field(['id','comment_status'])->find();
-            if(!$res || $res['comment_status'] != 1){
-                return false;
-            }
-        }
-
-        if($data['parent_id'] !== 0){
-            $commentModel = new CommentModel();
-            $commentRes = $commentModel->findId($data['parent_id']);
-            if(!$commentRes || $commentRes['object_id'] != $data['object_id'] || $data['table_name'] != $commentRes['table_name']){
-                return false;
-            }
-        }
-
-        Db::startTrans();
-        try {
-            $id = Db::name('comment')->insertGetId($data);
-            if(!$id){
-                return false;
-            }
-
-            $path = ($data['parent_id'] == 0) ? ",{$id}," : "{$commentRes['path']}{$id}," ;
-
-            $res1 = Db::name('comment')->where('id',$id)->update(['path'=>$path]);
-            if(!$res1){
-                Db::rollback();return false;
-            }
-
-            if($tablename == 'article'){
-                $res4 = Db::name('article')->where('id',$data['object_id'])->inc('comment_count')->update();
-                if(!$res4){
-                    Db::rollback();return false;
-                }
-            }
-            Db::commit();return true;
-        } catch (\Exception $e) {
-            Db::rollback();return false;
-        }
+        return (new \app\api\domain\CommentDomain())->createComment($data,'article');
     }
 
     /**
