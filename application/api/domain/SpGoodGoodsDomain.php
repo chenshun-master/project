@@ -75,6 +75,8 @@ class SpGoodGoodsDomain
             'good_goods.favorites',
             'good_goods.like',
             'good_goods.comment',
+            'goods.market_price',
+            'goods.sell_price',
         ];
 
         $obj->order('good_goods.created_time desc');
@@ -159,7 +161,7 @@ class SpGoodGoodsDomain
 
     /**
      * 获取分销产品有关的产品
-     * @param $good_goods_id
+     * @param $goods_id
      * @param int $page
      * @param int $page_size
      * @return array
@@ -170,7 +172,7 @@ class SpGoodGoodsDomain
     public function getGoodGoodsRelevant($goods_id,$page=1,$page_size=5){
         $obj = Db::name('sp_category_extend')->distinct(true)->alias('ce');
         $obj->where('ce.category_id', 'IN', function ($query) use($goods_id) {
-            $query->name('sp_category_extend')->where('goods_id', $good_goods_id)->field('category_id');
+            $query->name('sp_category_extend')->where('goods_id', $goods_id)->field('category_id');
         });
 
         $obj->join('wl_sp_good_goods good_goods','ce.goods_id = good_goods.goods_id and good_goods.is_del=0');
