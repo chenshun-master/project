@@ -160,4 +160,39 @@ class ShopApi extends BaseController
         $data = $this->_spGoodGoodsDomain->getGoodGoodsRelevant($gid,$page,$page_size);
         return $this->returnData($data, '', 200);
     }
+
+    /**
+     * 点赞操作
+     * @param  obj_id        点赞的对象id
+     * @param  flag          点赞对象的标识   1:文章点赞  2:评论点赞   3:分销商品点赞
+     * @param  type          点赞操作方式  1:点赞  2:取消点赞
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function giveFabulous(){
+        $object_id = $this->request->param('obj_id/d', 0);
+        $flag = $this->request->param('flag/d', '');
+        $type = $this->request->param('type/d', 1);
+
+        $result = false;
+        $linkDomain = new \app\api\domain\UserLikeDomain();
+        $flag = $linkDomain::getTypeName($flag);
+        if(!$this->checkLogin()){
+            return $this->returnData([], '用户未登录', 401);
+        }else if(empty($object_id) || empty($flag)){
+            return $this->returnData([], '参数不符合规范', 301);
+        }elseif($type == 1){
+            $result = $linkDomain->createLike($this->getUserId(),$object_id,$flag);
+        }else if($type == 2){
+            $result = $linkDomain->cancelLike($object_id,$this->getUserId(),$flag);
+        }
+
+        if($result){
+            return $this->returnData([], '操作成功', 200);
+        }else{
+            return $this->returnData([], '操作失败', 305);
+        }
+    }
 }
