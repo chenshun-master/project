@@ -126,7 +126,7 @@ class SpGoodsDomain
             ]);
 
             if($isTrue === false){
-                return false;
+                throw new \think\Exception('商品信息更新失败');
             }
 
             if($data['category'] !== implode(',',Db::name('sp_category_extend')->where('goods_id',$good_id)->column('category_id'))){
@@ -137,13 +137,12 @@ class SpGoodsDomain
 
                 $res1 = Db::name('sp_category_extend')->where('goods_id',$good_id)->delete();
                 if(!$res1){
-                    Db::rollback();return false;
+                    throw new \think\Exception('商品分类信息更新失败');
                 }
 
                 $res2 = Db::name('sp_category_extend')->data($datas)->insertAll();
                 if(!$res2){
-                    Db::rollback();
-                    return false;
+                    throw new \think\Exception('商品分类信息更新失败');
                 }
             }
 
@@ -156,13 +155,12 @@ class SpGoodsDomain
 
                 $res3 = Db::name('sp_goods_photo_relation')->where('goods_id',$good_id)->delete();
                 if(!$res3){
-                    Db::rollback();return false;
+                    throw new \think\Exception('商品分类信息更新失败');
                 }
 
                 $res4 = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
                 if(!$res4){
-                    Db::rollback();
-                    return false;
+                    throw new \think\Exception('商品分类信息更新失败');
                 }
             }
 
@@ -175,14 +173,13 @@ class SpGoodsDomain
             ]);
 
             if($isTrue2 === false){
-                Db::rollback();return false;
+                throw new \think\Exception('商品分类信息更新失败');
             }
 
             Db::commit();
             return true;
         } catch (\Exception $e) {
             Db::rollback();
-            halt($e);
             return false;
         }
     }

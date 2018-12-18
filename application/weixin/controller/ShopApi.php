@@ -4,20 +4,26 @@ namespace app\weixin\controller;
 
 use app\api\domain\SpGoodsDomain;
 use think\App;
+use app\api\domain\SpGoodGoodsDomain;
 
 class ShopApi extends BaseController
 {
     private $_userDomain;
     private $_spGoodsDomain;
     private $_shOrderDomain;
+    private $_spGoodGoodsDomain;
+    private $_commentDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_spGoodsDomain = new SpGoodsDomain();
+        $this->_spGoodGoodsDomain = new SpGoodGoodsDomain();
         $this->_userDomain = new \app\api\domain\UserDomain();
         $this->_shOrderDomain = new \app\api\domain\ShOrderDomain();
+
+        $this->_commentDomain = new \app\api\domain\CommentDomain();
     }
 
     /**
@@ -93,5 +99,53 @@ class ShopApi extends BaseController
 
         $data = $this->_shOrderDomain->getUserOrder($this->getUserId(), $status, $page, $page_size);
         return $this->returnData($data, '', 200);
+    }
+
+    /**
+     * 获取分销商品列表
+     * @return false|string
+     */
+    public function getGoodGoodsList(){
+        $page = $this->request->get('page/d', 1);
+        $page_size = $this->request->get('page_size/d', 15);
+
+        $data = $this->_spGoodGoodsDomain->getGoodGoodsList($page,$page_size);
+        return $this->returnData($data, '', 200);
+    }
+
+    /**
+     * 获取分销商品评论
+     */
+    public function getGoodGoodsComment()
+    {
+        $gid = $this->request->get('gid/d', 1);
+        $page = $this->request->get('page/d', 1);
+        $page_size = $this->request->get('page_size/d', 15);
+
+        $data = $this->_spGoodGoodsDomain->getGoodGoodsCommentList($gid,$this->getUserId(),$page,$page_size);
+        return $this->returnData($data, '', 200);
+    }
+
+    /**
+     * 获取分销商品评论
+     */
+    public function createGoodGoodsComment()
+    {
+        $data  = [
+            'parent_id'=>$this->request->post('pid/d', 0),
+            'user_id'=>$this->getUserId(),
+            'object_id'=>$this->request->post('obj_id/d', 0),
+            'content'=>$this->request->post('content/d', ''),
+        ];
+
+        if(!$this->checkLogin()){
+            return $this->returnData([], '用户未登录', 401);
+        }else if(empty($data['object_id']) || empty($data['content'])){
+            return $this->returnData([], '参数不符合规范', 301);
+        }else if($this->_commentDomain->createComment($data,'sp_good_goods')){
+            return $this->returnData([], '评论成功...', 200);
+        }
+
+        return $this->returnData([], '评论失败...', 200);
     }
 }
