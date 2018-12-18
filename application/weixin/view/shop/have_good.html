@@ -19,22 +19,20 @@
     </header>
     <main>
         <div class="wl-jieshao"> 爱美的仙女都在买</div>
-        <div class="container">
+        <div id="container">
             <div id="container-list">
 
             </div>
         </div>
     </main>
 </div>
-
-
 {/block}
 
 {block name="script"}
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-shangping href">
+    <div class="wl-shangping href click-to-havegoodDetails" data-id="{{item.id}}">
         <div class="wl-sp-img">
             <img src="{{item.img}}" />
         </div>
@@ -64,6 +62,7 @@
                 page_size: 3,
             },
             loadList: function (me) {
+
                 if (myObj.goods.listData.loading) {
                     return false;
                 }
@@ -107,7 +106,6 @@
             }
         }
     };
-
     var dropload = $('#container').dropload({
         scrollArea: window,
         loadUpFn: function (me) {
@@ -122,6 +120,9 @@
             myObj.goods.loadList(me);
         }
     });
-    myObj.goods.loadList();
+    $(document).on('click','.click-to-havegoodDetails',function(){
+        window.location.href = '/weixin/shop/havegoodDetails?gid='+$(this).data('id');
+    })
+    // myObj.goods.loadList();
 </script>
 {/block}

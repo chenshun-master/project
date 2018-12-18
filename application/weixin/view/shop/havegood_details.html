@@ -306,5 +306,62 @@
     $('.wl-tan-pinglun').on('click',function(event){
         $('.wl-foot-gundong').css('overflowY',"auto");
     });
+
+</script>
+<script>
+    var myObj = {
+        goods: {
+            listData: {
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            loadList: function (me) {
+
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        me.resetload();
+                        return false;
+                    }
+                }
+                $.ajax({
+                    url: "/weixin/shopapi/getGoodGoodsComment",
+                    type: 'post',
+                    data: {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
+
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                                $('#container-list').append(html);
+                            });
+
+                            if(myObj.goods.listData.page >= myObj.goods.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            }
+        }
+    };
 </script>
 {/block}
