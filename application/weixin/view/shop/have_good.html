@@ -19,56 +19,10 @@
     </header>
     <main>
         <div class="wl-jieshao"> 爱美的仙女都在买</div>
-        <div class="wl-shangping href">
-            <div class="wl-sp-img">
-                <img src="{{item.img}}" />
+        <div class="container">
+            <div id="container-list">
+
             </div>
-            <div class="wl-xiang href">
-                <div class="wl-top-title">合@马金荣院长 预约18抵300</div>
-                <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-                <div class="wl-yuding">
-                    <div class="wl-yiyuan">12人预订</div>
-                    <div class="wl-jiage">
-                        <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                        <span class="wl-quchu">￥123</span>
-                    </div>
-                </div>
-            </div>
-            <dl style="clear: both"></dl>
-        </div>
-        <div class="wl-shangping href">
-            <div class="wl-sp-img">
-                <img src="{{item.img}}" />
-            </div>
-            <div class="wl-xiang href">
-                <div class="wl-top-title">合@马金荣院长 预约18抵300</div>
-                <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-                <div class="wl-yuding">
-                    <div class="wl-yiyuan">12人预订</div>
-                    <div class="wl-jiage">
-                        <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                        <span class="wl-quchu">￥123</span>
-                    </div>
-                </div>
-            </div>
-            <dl style="clear: both"></dl>
-        </div>
-        <div class="wl-shangping href">
-            <div class="wl-sp-img">
-                <img src="https://inews.gtimg.com/newsapp_bt/0/6868141708/1000" />
-            </div>
-            <div class="wl-xiang href">
-                <div class="wl-top-title">合@马金荣院长 预约18抵300</div>
-                <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-                <div class="wl-yuding">
-                    <div class="wl-yiyuan">12人预订</div>
-                    <div class="wl-jiage">
-                        <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                        <span class="wl-quchu">￥123</span>
-                    </div>
-                </div>
-            </div>
-            <dl style="clear: both"></dl>
         </div>
     </main>
 </div>
@@ -77,5 +31,98 @@
 {/block}
 
 {block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-shangping href">
+        <div class="wl-sp-img">
+            <img src="{{item.img}}" />
+        </div>
+        <div class="wl-xiang href">
+            <div class="wl-top-title">{{item.title}}</div>
+            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+            <div class="wl-yuding">
+                <div class="wl-yiyuan">{{item.like}}人喜欢</div>
+                <div class="wl-jiage">
+                    <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
+                    <span class="wl-quchu">￥123</span>
+                </div>
+            </div>
+        </div>
+        <dl style="clear: both"></dl>
+    </div>
+    {{#  }); }}
+</script>
+<script>
+    var myObj = {
+        goods: {
+            listData: {
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 15,
+            },
+            dropReloadList: function () {
+                myObj.goods.listData.loading = false;
+                myObj.goods.listData.ini = false;
+                myObj.goods.listData.page = 0;
+                myObj.goods.listData.page_total = 1;
+                this.loadList(null);
+            },
+            loadList: function (me) {
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        return false;
+                    }
+                }
+                var data = $.extend({}, {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size});
+                $.ajax({
+                    url: "/weixin/shopapi/getGoodGoodsList",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
 
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                                $('#container-list').append(html);
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    var dropload = $('#container').dropload({
+        scrollArea: window,
+        loadUpFn: function (me) {
+            myObj.goods.listData.loading = false;
+            myObj.goods.listData.ini = false;
+            myObj.goods.listData.page = 0;
+            myObj.goods.listData.page_total = 1;
+            myObj.goods.listData.path = '';
+
+        },
+        loadDownFn: function (me) {
+            myObj.goods.loadList(me);
+        }
+    });
+</script>
 {/block}
