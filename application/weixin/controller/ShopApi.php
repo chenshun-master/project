@@ -188,7 +188,6 @@ class ShopApi extends BaseController
         }else if($type == 2){
             $result = $linkDomain->cancelLike($object_id,$this->getUserId(),$flag);
         }
-
         if($result){
             return $this->returnData([], '操作成功', 200);
         }else{

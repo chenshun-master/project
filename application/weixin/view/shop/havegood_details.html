@@ -95,7 +95,7 @@
     <div class="marsk-container">
         <div class="tkyy_con">
             <div>
-                <div class="wl-tan-pinglun">3条评论 <span class="iconfont icon-guanbi1 wl-quxiao"></span></div>
+                <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao"></span></div>
             </div>
             <div class="wl-foot-gundong">
                 <div id="container-list">
@@ -141,7 +141,7 @@
 </script>
     <script id="recommendedList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-remen">
+    <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
         <div class="wl-remen-img">
             <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"
                  alt="图片丢失"></div>
@@ -169,6 +169,7 @@
         $(".marsk-container").show();
         $("body").addClass("body");
     });
+
     //点击空白处隐藏弹出层
     $(".marsk-container").click(function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
@@ -240,10 +241,10 @@
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
                             }
+
+                            $("#cus-pinglun-num").val(res.data.total);
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                                 $('#container-list').append(html);
-
-
                             });
                         }
                     }
@@ -303,5 +304,11 @@
     };
     myObj.goods.loadList();
     myObj.recommended.loadList();
+
+
+
+    $(document).on('click','.click-to-havegoodDetails',function(){
+        window.location.href = '/weixin/shop/havegoodDetails?gid='+$(this).data('id');
+    })
 </script>
 {/block}
