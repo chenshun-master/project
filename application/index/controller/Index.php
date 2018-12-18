@@ -240,4 +240,9 @@ class Index extends CController
         return $this->fetch('error/loss');
     }
 
+
+    public function test(){
+        return $this->fetch('test/test');
+    }
+
 }
