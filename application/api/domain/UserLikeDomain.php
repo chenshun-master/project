@@ -9,6 +9,19 @@ use think\Db;
 class UserLikeDomain
 {
 
+
+
+
+    public static function getTypeName($val){
+        $config = [
+            1=>'article',
+            2=>'comment',
+            3=>'sp_good_goods',
+        ];
+
+        return isset($config[$val]) ? $config[$val] :'';
+    }
+
     /**
      * 用户点赞操作
      * @param int        $user_id           用户id
@@ -28,29 +41,29 @@ class UserLikeDomain
                 try {
                     $isTrue = Db::name('user_like')->where('id',$likeRes['id'])->update(['status'=>0]);
                     if(!$isTrue){
-                        return false;
-                    }
-
-                    if($likeRes['table_name'] == 'article'){
+                        throw new \think\Exception('异常消息');
+                    }else if($likeRes['table_name'] == 'article'){
                         $res2 = Db::name('article')->where('id',$likeRes['object_id'])->inc('like',1)->update();
                         if(!$res2){
-                            Db::rollback();return false;
+                            throw new \think\Exception('异常消息');
                         }
                     }else  if($likeRes['table_name'] == 'sp_good_goods'){
                         $res2 = Db::name('sp_good_goods')->where('id',$likeRes['object_id'])->inc('like',1)->update();
                         if(!$res2){
-                            Db::rollback();return false;
+                            throw new \think\Exception('异常消息');
                         }
                     }else  if($likeRes['table_name'] == 'comment'){
                         $res2 = Db::name('comment')->where('id',$likeRes['object_id'])->inc('like',1)->update();
                         if(!$res2){
-                            Db::rollback();return false;
+                            throw new \think\Exception('异常消息');
                         }
                     }
 
-                    Db::commit();return true;
+                    Db::commit();
+                    return true;
                 } catch (\Exception $e) {
-                    Db::rollback();return false;
+                    Db::rollback();
+                    return false;
                 }
             }else{
                 return false;
@@ -63,38 +76,41 @@ class UserLikeDomain
             if($tablename == 'article'){
                 Db::name('article')->where('id',$object_id)->inc('like')->update();
                 if(!$res){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }else if($tablename == 'sp_good_goods'){
                 Db::name('sp_good_goods')->where('id',$object_id)->inc('like')->update();
                 if(!$res){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }else  if($tablename == 'comment'){
                 $res2 = Db::name('comment')->where('id',$likeRes['object_id'])->inc('like_count',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }
 
-            Db::commit();return true;
+            Db::commit();
+            return true;
         } catch (\Exception $e) {
-            Db::rollback();return false;
+            Db::rollback();
+            return false;
         }
     }
 
     /**
      * 用户取消点赞处理
-     * @param $like_id         点赞ID
+     * @param $object_id         点赞ID
      * @param $user_id         用户ID
+     * @param $tablename
      * @return bool
-     * @throws \think\Exception
-     * @throws \think\exception\PDOException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function cancelLike($like_id,$user_id){
-        $likeRes = Db::name('user_like')->where('id',$like_id)->where('user_id',$user_id)->field('id,object_id,table_name')->find();
-
-        if(!$likeRes){
+    public function cancelLike($object_id,$user_id,$tablename){
+        $likeRes = Db::name('user_like')->where('object_id',$object_id)->where('user_id',$user_id)->field('id,object_id,table_name')->find();
+        if(!$likeRes || $likeRes['table_name'] !=$tablename){
             return false;
         }
 
@@ -102,27 +118,25 @@ class UserLikeDomain
         try {
             $res = Db::name('user_like')->where('id',$likeRes['id'])->update(['status'=>2]);
             if(!$res){
-                return false;
-            }
-
-            if($likeRes['table_name'] == 'article'){
+                throw new \think\Exception('异常消息');
+            }else if($likeRes['table_name'] == 'article'){
                 $res2 = Db::name('article')->where('id',$likeRes['object_id'])->dec('like',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }else if($likeRes['table_name'] == 'comment'){
                 $res2 = Db::name('comment')->where('id',$likeRes['object_id'])->dec('like_count',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }else  if($likeRes['table_name'] == 'sp_good_goods'){
                 $res2 = Db::name('sp_good_goods')->where('id',$likeRes['object_id'])->dec('like',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }
-
-            Db::commit();return true;
+            Db::commit();
+            return true;
         } catch (\Exception $e) {
             Db::rollback();
             return false;
