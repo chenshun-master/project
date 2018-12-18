@@ -108,10 +108,12 @@ class SpGoodGoodsDomain
 
         $field = [
             'good_goods.id',
+            'good_goods.goods_id',
             'good_goods.title',
             'good_goods.favorites',
             'good_goods.like',
             'good_goods.comment',
+            'good_goods.article_text'
         ];
 
         $data['info'] = Db::name('sp_good_goods')->alias('good_goods')->field($field)->find();
