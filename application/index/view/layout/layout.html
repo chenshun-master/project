@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="applicable-device" content="pc,mobile">
+
+    <title>{block name="title"}{:config('conf.title')}{/block}</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/web/css/main.css"/>
+    {block name="cssOrcrsipt"}
+
+    {/block}
+</head>
+
+<body>
+    {block name="header"}
+        <header class="web-header">
+            <div class="web-header-body" >
+                    头部
+            </div>
+        </header>
+    {/block}
+
+    {block name="main"}
+
+    {/block}
+
+    {block name="footer"}
+        <footer class="web-footer">
+            <div class="web-footer-body" >
+                脚部
+            </div>
+        </footer>
+    {/block}
+
+    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    {block name="script"}
+
+    {/block}
+</body>
+</html>
