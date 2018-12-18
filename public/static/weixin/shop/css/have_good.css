@@ -65,7 +65,7 @@
     margin: 3px 0 3px 0;
 }
 .wl-yiyuan{
-    width: 50%;
+    width: 30%;
     color: #999999;
     font-size: 11px;
     margin-top: 3px;
@@ -73,14 +73,21 @@
     text-align: right;
 }
 .wl-jiage{
-    width: 50%;
+    width: 100%;
+
+}
+.wl-jiage1{
     color: #F24F4F;
     font-size: 17px;
+    float: left;
 }
 .wl-quchu{
     color: #999999;
     font-size: 11px;
     text-decoration:line-through;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 .wl-yuding{
     width: 100%;

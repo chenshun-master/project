@@ -44,8 +44,8 @@
             <div class="wl-yuding">
                 <div class="wl-yiyuan">{{item.like}}人喜欢</div>
                 <div class="wl-jiage">
-                    <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                    <span class="wl-quchu">￥123</span>
+                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                    <span class="wl-quchu">￥{{item.market_price}}</span>
                 </div>
             </div>
         </div>
@@ -61,14 +61,7 @@
                 ini: false,
                 page: 0,
                 page_total: 1,
-                page_size: 15,
-            },
-            dropReloadList: function () {
-                myObj.goods.listData.loading = false;
-                myObj.goods.listData.ini = false;
-                myObj.goods.listData.page = 0;
-                myObj.goods.listData.page_total = 1;
-                this.loadList(null);
+                page_size: 3,
             },
             loadList: function (me) {
                 if (myObj.goods.listData.loading) {
@@ -77,14 +70,14 @@
                 myObj.goods.listData.page++;
                 if (myObj.goods.listData.ini == true) {
                     if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        me.resetload();
                         return false;
                     }
                 }
-                var data = $.extend({}, {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size});
                 $.ajax({
                     url: "/weixin/shopapi/getGoodGoodsList",
                     type: 'post',
-                    data: data,
+                    data: {page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
                     dataType: 'json',
                     beforeSend: function () {
                         myObj.goods.listData.loading = true;
@@ -103,12 +96,17 @@
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                                 $('#container-list').append(html);
                             });
+
+                            if(myObj.goods.listData.page >= myObj.goods.listData.page_total){
+                                me.noData();
+                            }
                         }
+                        me.resetload();
                     }
                 });
             }
         }
-    }
+    };
 
     var dropload = $('#container').dropload({
         scrollArea: window,
@@ -118,11 +116,12 @@
             myObj.goods.listData.page = 0;
             myObj.goods.listData.page_total = 1;
             myObj.goods.listData.path = '';
-
+            myObj.goods.loadList(me);
         },
         loadDownFn: function (me) {
             myObj.goods.loadList(me);
         }
     });
+    myObj.goods.loadList();
 </script>
 {/block}
