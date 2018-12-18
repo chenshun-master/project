@@ -55,7 +55,7 @@ class SellerDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getSellerList($page=1,$page_size=15)
+    public function getSellerList($page=1,$page_size=10)
     {
         $sellerInfo = Db::name('auth')->alias('auth');
         $sellerInfo->join('wl_user user','auth.user_id = user.id');

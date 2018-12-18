@@ -39,6 +39,10 @@
         ,id:'tab-reload'
         ,url: '/admin/banner/getBannerList' //数据接口
         ,page: true
+        ,request: {
+            pageName: 'page' //页码的参数名称，默认：page
+            ,limitName: 'page_size' //每页数据量的参数名，默认：limit
+        }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
                 "code": res.code, //解析接口状态
@@ -52,8 +56,8 @@
             {field: 'platform', title: '类型'},
             {field: 'name', title: 'banner名称'},
             {field: 'url', title: '链接地址'},
-            {field: 'img', title: '图片地址',width:150,templet:function(row){
-                    return '<img src="'+row.img+'" width="55" >';
+            {field: 'img', title: '图片地址',width:100,align:"center",templet:function(row){
+                    return '<img src="'+row.img+'" width="50" >';
                 }},
             {field: 'order', title: '排序'},
             {field: 'visibility', title: '首页是否显示',width:100,templet:function(row){

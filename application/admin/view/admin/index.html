@@ -40,6 +40,10 @@
         ,id:'tab-reload'
         ,url: '/admin/admin/getAdminList' //数据接口
         ,page: true
+        ,request: {
+            pageName: 'page' //页码的参数名称，默认：page
+            ,limitName: 'page_size' //每页数据量的参数名，默认：limit
+        }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
                 "code": res.code, //解析接口状态

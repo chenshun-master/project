@@ -23,6 +23,8 @@ class BannerModel extends Model
     }
     /**
      * banner 列表
+     * @param  $page
+     * @param  $page_size
      */
     public function getList($page = 1,$page_size = 10)
     {

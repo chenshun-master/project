@@ -199,7 +199,7 @@ class SpGoodsDomain
         $data = [];
 
         $data['status'] = $status;
-        if($status == 0){
+        if($status == 0 || $status == 3){
             $data['up_time'] = date('Y-m-d H:i:s');
         }else if($status == 1 || $status == 2){
             $data['down_time'] = date('Y-m-d H:i:s');
@@ -468,6 +468,7 @@ class SpGoodsDomain
      *  * @param $seller_id           商家ID
      * @param int $page            当前分页
      * @param int $page_size       分页大小
+     * @param int $status          状态
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException

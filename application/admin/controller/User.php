@@ -28,9 +28,12 @@ class User extends BaseController
 
     /**
      * 用户列表
+     * @param $page
+     * @param $page_size
+     * @return false|string
      */
-    public function getUserList(){
-        $data = $this->userDomain->userInfo(1,10);
+    public function getUserList($page,$page_size){
+        $data = $this->userDomain->userInfo($page,$page_size);
         return $this->returnData($data,'',0);
     }
 }

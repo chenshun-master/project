@@ -21,10 +21,16 @@ class Banner extends BaseController{
         return $this->fetch('/banner/index');
     }
 
-    public function getBannerList()
+    /**
+     * banner 列表
+     * @param $page
+     * @param $page_size
+     * @return false|string
+     */
+    public function getBannerList($page,$page_size)
     {
         $banner = new BannerModel();
-        $data = $banner->getList(1,10);
+        $data = $banner->getList($page,$page_size);
         return $this->returnData($data,'',0);
     }
     /**

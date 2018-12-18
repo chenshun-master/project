@@ -46,9 +46,13 @@ class Admin extends BaseController
 
     /**
      * 管理员列表
+     * @param $page
+     * @param $page_size
+     * @return false|string
+     * @throws \think\exception\DbException
      */
-    public function getAdminList(){
-        $data = $this->AdminDomain->getAdminList(1,10);
+    public function getAdminList($page,$page_size){
+        $data = $this->AdminDomain->getAdminList($page,$page_size);
         return $this->returnData($data,'',0);
     }
 
