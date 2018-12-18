@@ -42,9 +42,6 @@ ol, ul {
     /*outline:none;*/
 /*}*/
 
-body {
-    position: relative;
-}
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
     margin: 0;
@@ -118,7 +115,7 @@ a {
     width: 180px;
     height: auto;
     float: left;
-    margin-top: 140px;
+    margin-top: 70px;
     background: white;position: relative;
 }
 .wl-shimin{
@@ -493,7 +490,6 @@ a {
 }
 .wl-zhanghao{
     width: 15%;
-    min-height: 200px;
     position: absolute;
     top: 0;
     right: 500px;

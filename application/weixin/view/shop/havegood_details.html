@@ -11,105 +11,69 @@
 {block name="main"}
 
 <!--这里编写主体内容-->
-<div style="width: 100%;min-height: 500px;padding-bottom: 100px;overflow:scroll;overflow-y:hidden">
+<div style="width: 100%;min-height: 500px;padding-bottom: 100px;overflow-y:hidden">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light wl-fahui"></i><i class="iconfont icon-share_light wl-fenxiang"></i>
+            <i class="iconfont icon-back_light wl-fahui " onclick="redream.toReferer()"></i>
+            <i class="iconfont icon-share_light wl-fenxiang"></i>
         </div>
     </header>
     <main>
         <div class="swiper-container img-gao">
             <div class="swiper-wrapper ">
-                <div class="swiper-slide"><img src="https://inews.gtimg.com/newsapp_bt/0/6868515758/1000" alt=""></div>
-                <div class="swiper-slide"><img src="https://inews.gtimg.com/newsapp_bt/0/6868517738/1000" alt=""></div>
-                <div class="swiper-slide"><img src="https://inews.gtimg.com/newsapp_bt/0/6868515758/1000" alt=""></div>
+                {foreach($imgs as $src)}
+                <div class="swiper-slide"><img src="{$src}" alt=""></div>
+                {/foreach}
             </div>
             <div class="swiper-pagination"></div>
         </div>
 
-     <div>
-         <div class="wl-neirong">
-             <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-             <div class="wl-jiage">
-                 <div class="wl-yuyue">
-                     256人预约
-                 </div>
-                 <div class="wl-jiayo">
-                     <sub style="font-size: 8px">￥</sub><span>4520</span>
-                 </div>
-                 <div style="clear: both"></div>
-             </div>
-         </div>
+        <div>
+            <div class="wl-neirong">
+                <div class="wl-title">{$info['title']}</div>
+                <div class="wl-jiage">
+                    <div class="wl-yuyue">
+                        256人预约
+                    </div>
+                    <div class="wl-jiayo">
+                        <sub style="font-size: 8px">￥</sub><span>4520</span>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+            </div>
 
-         <div class="wl-main href">
-             <div>
-                 <div class="wl-tou-img href"><img src="http://172.16.100.85:81/head/20181212/1553215c10be7173bec5c10be7173bee.png" alt="" data-user_id="54" onerror="this.src=&quot;/static/image/user/tou.png&quot;" class="cus-touser-main"></div>
-                 <div class="wl-tou-yonghu href">
-                     <dl>张晴</dl>
-                     <dt>2018年11月29日</dt>
-                 </div>
-             </div>
-             <div class="wl-jiahy href">
-                 <button onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
-             </div>
-             <div style="clear:both"></div>
-         </div>
-     </div>
+            <div class="wl-main href">
+                <div>
+                    <div class="wl-tou-img href"><img
+                            src="http://172.16.100.85:81/head/20181212/1553215c10be7173bec5c10be7173bee.png" alt=""></div>
+                    <div class="wl-tou-yonghu href">
+                        <dl>张晴</dl>
+                        <dt>2018年11月29日</dt>
+                    </div>
+                </div>
+                <div class="wl-jiahy href">
+                    <button onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
 
 
         <div class="wl-content">
             <div class="wl-content-title">
-               <p> 项目亮点</p>
+                <p> 项目亮点</p>
                 <hr/>
             </div>
-            我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内
-            我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
-            我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我
-            是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内
-            容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+            <div>
+                {$info['article_text']}
+            </div>
         </div>
         <div>
             <div class="wl-tuijian-title">
                 其它推荐商品
             </div>
-            <div class="wl-remen">
-                <div class="wl-remen-img">
-                    <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="图片丢失"> </div>
-                <div class="wl-remen-right">
-                    <dl>伊婉C玻尿酸.亚洲人更适亚合的亚洲人更适合的合的</dl>
-                    <dt>产品介绍</dt>
-                    <dd>
-                        <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                        <span class="wl-quchu">￥880.00</span>
-                        <span class="wl-jiage1"><span style="margin-right: 10px">已售123</span></span>
-                    </dd>
-                </div>
-            </div>
-            <div class="wl-remen">
-                <div class="wl-remen-img">
-                    <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="图片丢失"> </div>
-                <div class="wl-remen-right">
-                    <dl>伊婉C玻尿酸.亚洲人更适亚合的亚洲人更适合的合的</dl>
-                    <dt>产品介绍</dt>
-                    <dd>
-                        <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                        <span class="wl-quchu">￥880.00</span>
-                        <span class="wl-jiage1"><span style="margin-right: 10px">已售123</span></span>
-                    </dd>
-                </div>
-            </div>
-            <div class="wl-remen">
-                <div class="wl-remen-img">
-                    <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="图片丢失"> </div>
-                <div class="wl-remen-right">
-                    <dl>伊婉C玻尿酸.亚洲人更适亚合的亚洲人更适合的合的</dl>
-                    <dt>产品介绍</dt>
-                    <dd>
-                        <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                        <span class="wl-quchu">￥880.00</span>
-                        <span class="wl-jiage1"><span style="margin-right: 10px">已售123</span></span>
-                    </dd>
-                </div>
+            <div id="recommended-List">
+
             </div>
         </div>
     </main>
@@ -128,124 +92,15 @@
         </div>
         <div style="clear: both"></div>
     </footer>
-</div>
-<div class="marsk-container">
-    <div class="tkyy_con">
-        <div>
-            <div class="wl-tan-pinglun">251条评论 <span class="iconfont icon-guanbi1 wl-quxiao"></span></div>
-        </div>
-        <div class="wl-foot-gundong">
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
+    <div class="marsk-container">
+        <div class="tkyy_con">
+            <div>
+                <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao"></span></div>
             </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
+            <div class="wl-foot-gundong">
+                <div id="container-list">
+
                 </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
-            </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
-            </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
-            </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
-            </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
-            </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
-            </div>
-            <div class="wl-pinglun">
-                <div style="float: left">
-                    <img src="http://172.16.100.85:81/head/20181215/1053185c146c9e653345c146c9e6533a.png" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
-                </div>
-                <div class="wl-ping-xiang"> <div> <div class="wl-name cus-touser-main" >饶远东</div>
-                    <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
-                        <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                        <span class="wl-dian-one" style="font-size: 13px">0</span>
-                    </div>
-                </div>
-                    <div style="clear:both"></div>
-                    <div class="wl-ping-neirong">你在幹什麽</div>
-                    <div class="wl-pji">2018年12月10日</div> </div> <div style="clear:both"></div>
             </div>
         </div>
         <div class="cus-footer">
@@ -254,13 +109,54 @@
     </div>
 </div>
 
-
-
+<input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
 
 {/block}
 
 {block name="script"}
 <script src="/static/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-pinglun">
+        <div style="float: left">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
+        </div>
+        <div class="wl-ping-xiang">
+            <div>
+                <div class="wl-name cus-touser-main">{{item.nickname}}</div>
+                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
+                    <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
+                    <span class="wl-dian-one" style="font-size: 13px">{{item.islike}}</span>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="wl-ping-neirong">{{item.content}}</div>
+            <div class="wl-pji">{{item.created_time}}</div>
+        </div>
+        <div style="clear:both">
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+    <script id="recommendedList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
+        <div class="wl-remen-img">
+            <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"
+                 alt="图片丢失"></div>
+        <div class="wl-remen-right">
+            <dl>伊婉C玻尿酸.亚洲人更适亚合的亚洲人更适合的合的</dl>
+            <dt>产品介绍</dt>
+            <dd>
+                <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
+                <span class="wl-quchu">￥880.00</span>
+                <span class="wl-jiage1"><span style="margin-right: 10px">已售123</span></span>
+            </dd>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
@@ -271,25 +167,23 @@
     $(".cus-ping").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").show();
-
         $("body").addClass("body");
     });
+
     //点击空白处隐藏弹出层
     $(".marsk-container").click(function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.marsk-container').hide(); //淡出消失
+            // $('.marsk-container').hide(); //淡出消失
             $("body").removeClass("body");
         }
-
         event.stopPropagation(); //停止事件冒泡
-    }).on('touchstart',function(event){
+    }).on('touchstart', function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.marsk-container').hide(); //淡出消失
+            // $('.marsk-container').hide(); //淡出消失
             $("body").removeClass("body");
         }
-
         event.stopPropagation(); //停止事件冒泡
     });
 
@@ -299,12 +193,122 @@
         $("body").removeClass("body");
     })
 
-    $('.wl-tan-pinglun').on('touchstart',function(event){
-        $('.wl-foot-gundong').css('overflowY',auto);
+    $('.wl-tan-pinglun').on('touchstart', function (event) {
+        $('.wl-foot-gundong').css('overflowY', "auto");
     });
 
-    $('.wl-tan-pinglun').on('click',function(event){
-        $('.wl-foot-gundong').css('overflowY',auto);
+    $('.wl-tan-pinglun').on('click', function (event) {
+        $('.wl-foot-gundong').css('overflowY', "auto");
     });
+</script>
+<script>
+    var myObj = {
+        goods: {
+            listData: {
+                gid: $('#fr-goodid').val(),
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            loadList: function () {
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        return false;
+                    }
+                }
+                $.ajax({
+                    url: "/weixin/shopapi/getGoodGoodsComment",
+                    type: 'post',
+                    data: {gid: myObj.goods.listData.gid, page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
+
+                            $("#cus-pinglun-num").val(res.data.total);
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                                $('#container-list').append(html);
+                            });
+                        }
+                    }
+                });
+            }
+        },
+        recommended: {
+             listData: {
+                 gid: $('#fr-goodid').val(),
+                 loading: false,
+                 ini: false,
+                 page: 0,
+                 page_total: 1,
+                page_size: 3,
+             },
+             loadList: function () {
+                 if (myObj.recommended.listData.loading) {
+                     return false;
+                 }
+                 myObj.recommended.listData.page++;
+                 if (myObj.recommended.listData.ini == true) {
+                     if (myObj.recommended.listData.page > myObj.recommended.listData.page_total) {
+                         return false;
+                     }
+                 }
+                $.ajax({
+                    url: "/weixin/shopapi/getGoodGoodsRelevant",
+                    type: 'post',
+                     data: {
+                         gid: myObj.recommended.listData.gid,
+                         page: myObj.recommended.listData.page,
+                         page_size: myObj.recommended.listData.page_size
+                     },
+                     dataType: 'json',
+                     beforeSend: function () {
+                         myObj.recommended.listData.loading = true;
+                     },
+                     complete: function () {
+                         myObj.recommended.listData.loading = false;
+                     },
+                     success: function (res) {
+                         if (res.code == 200) {
+                             if (myObj.recommended.listData.ini == false) {
+                                 myObj.recommended.listData.ini = true;
+                                 myObj.recommended.listData.page_total = res.data.page_total;
+                                 $('#recommended-List').html('');
+                             }
+                             layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
+                                $('#recommended-List').append(html);
+                                console.log(html);
+                             });
+                         }
+                     }
+                 });
+             }
+        }
+    };
+    myObj.goods.loadList();
+    myObj.recommended.loadList();
+
+
+
+    $(document).on('click','.click-to-havegoodDetails',function(){
+        window.location.href = '/weixin/shop/havegoodDetails?gid='+$(this).data('id');
+    })
 </script>
 {/block}
