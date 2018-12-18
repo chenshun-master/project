@@ -20,16 +20,16 @@
     <main>
         <div class="swiper-container img-gao">
             <div class="swiper-wrapper ">
-                <div class="swiper-slide"><img src="https://inews.gtimg.com/newsapp_bt/0/6868515758/1000" alt=""></div>
-                <div class="swiper-slide"><img src="https://inews.gtimg.com/newsapp_bt/0/6868517738/1000" alt=""></div>
-                <div class="swiper-slide"><img src="https://inews.gtimg.com/newsapp_bt/0/6868515758/1000" alt=""></div>
+                {foreach($imgs as $src)}
+                        <div class="swiper-slide"><img src="{$src}" alt=""></div>
+                {/foreach}
             </div>
             <div class="swiper-pagination"></div>
         </div>
 
      <div>
          <div class="wl-neirong">
-             <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
+             <div class="wl-title">{$info['title']}</div>
              <div class="wl-jiage">
                  <div class="wl-yuyue">
                      256人预约
@@ -62,11 +62,9 @@
                <p> 项目亮点</p>
                 <hr/>
             </div>
-            我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内
-            我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
-            我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我
-            是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内
-            容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+            <div>
+                {$info['article_text']}
+            </div>
         </div>
         <div>
             <div class="wl-tuijian-title">
@@ -255,7 +253,7 @@
 </div>
 
 
-
+<input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
 
 {/block}
 
