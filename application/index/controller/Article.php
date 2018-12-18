@@ -145,4 +145,21 @@ class Article extends CController
 
         return $this->fetch('article/graphic');
     }
+
+    /**
+      *文章列表页面
+      */
+          public function articleLists(){
+
+                  return $this->fetch('article/article_lists');
+
+          }
+     /**
+      *我的推荐页面
+      */
+         public function recommend(){
+
+                  return $this->fetch('article/recommend');
+
+         }
 }

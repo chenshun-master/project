@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/web/css/relrase.css">
     <link rel="stylesheet" href="/static/web/css/test.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
+    <link rel="stylesheet" href="/static/web/css/graphic.css">
     <style>
         #remoteUrl{ime-mode: disabled !important;background-color: #cccccc;}
         .wl-zh1 {
@@ -53,15 +54,20 @@
 
 <div class="wl-tabc" style="width: 100%">
     <div class="tab-box" style="position: relative">
-        <div class="wl-fabiao3" style="cursor: pointer"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;color: white"></i>发表文章</div>
-        <a href="/index/article/graphic">
-            <div class="wl-fabiao4" style="cursor: pointer"><i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>发表图文</div>
-        </a>
-        <ul class="renzheng">
-            <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
-                <span class="wl-renzhengs"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span></i>
-            </div>
-        </ul>
+        <div class="wl-nide">
+            <ul  class="wl-top-liebiao">
+                <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                <div class="wl-ding">
+                    <a href="/index/article/article"> <li class="action">发表文章</li> </a>
+                    <a href="/index/article/graphic"> <li >我的文章 </li></a>
+                    <a href="/index/article/articleLists"> <li>推荐文章 </li></a>
+                    <a href="/index/article/recommend"><li >我的推荐</li></a>
+                </div>
+            </ul>
+            <a href="/index/user/certification">
+                <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
+            </a>
+        </div>
         <div class="wl-fabu">
             <p>发表文章</p>
             <div style="height: 60px;line-height: 60px;padding-left: 10px;margin-top: 20px">
@@ -123,7 +129,6 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
 <script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script>
     KindEditor.ready(function (K) {
         // https://blog.csdn.net/qxl2012/article/details/78052128
@@ -248,14 +253,14 @@
 </script>
 <script type="text/javascript">
 
-    $(".tab-box li").each(function (index) {
-        $(this).click(function () {
-            $("li.active").removeClass("active"); //注意这里
-            $(this).addClass("active");
-            $(".tab-content div.active-txt").removeClass("active-txt");
-            $(".tab-content div").eq(index).addClass("active-txt");
-        });
-    });
+    // $(".tab-box li").each(function (index) {
+    //     $(this).click(function () {
+    //         $("li.active").removeClass("active"); //注意这里
+    //         $(this).addClass("active");
+    //         $(".tab-content div.active-txt").removeClass("active-txt");
+    //         $(".tab-content div").eq(index).addClass("active-txt");
+    //     });
+    // });
 
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
@@ -266,12 +271,17 @@
         $(".wl-cang1").toggle();
     })
 
-$(".wl-tabc").click(function () {
-    $(".wl-cang").hide();
-})
+    $(".wl-tabc").click(function () {
+        $(".wl-cang").hide();
+    })
     $(document).on('click','.cus-remove-img',function(){
         $(this).parent().remove();
         $('#btn-input-file').prop('disabled',false);
     });
+    $(".wl-yingj").click(function () {
+        $(".wl-ding").toggle();
+        $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
+        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
+    })
 </script>
 </html>

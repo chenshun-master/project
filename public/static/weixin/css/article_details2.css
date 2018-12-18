@@ -261,7 +261,11 @@ width: 35px;
     position: fixed;
     height: 45px;
     bottom: 0px;
-    background:white;
+    left: 0;
+    right: 0;
+    background: white;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .wl-zl2 textarea{
     border-radius: 10px;
