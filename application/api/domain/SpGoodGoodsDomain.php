@@ -156,4 +156,33 @@ class SpGoodGoodsDomain
             'total'         =>$total
         ];
     }
+
+    /**
+     * 获取分销产品有关的产品
+     * @param $good_goods_id
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getGoodGoodsRelevant($goods_id,$page=1,$page_size=5){
+        $obj = Db::name('sp_category_extend')->distinct(true)->alias('ce');
+        $obj->where('ce.category_id', 'IN', function ($query) use($goods_id) {
+            $query->name('sp_category_extend')->where('goods_id', $good_goods_id)->field('category_id');
+        });
+
+        $obj->join('wl_sp_good_goods good_goods','ce.goods_id = good_goods.goods_id and good_goods.is_del=0');
+        $obj->order('good_goods.like desc,good_goods.favorites desc,good_goods.created_time asc');
+
+        $total = $obj->count();
+        $rows = $obj->field('good_goods.*')->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
 }
