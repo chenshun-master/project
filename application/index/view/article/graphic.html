@@ -27,18 +27,37 @@
         </div>
     </div>
     <div class="wl-tabc" style="width: 100%">
-        <div class="tab-box" style="position: relative">
-            <a href="/index/article/article"><div class="wl-fabiaoio" style="cursor: pointer"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>发表文章</div></a>
-            <a href="/index/article/graphic">
-                <div class="demo" style="cursor: pointer"><i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>全部图文</div>
-            </a>
-            <ul class="renzheng">
-                <div class="wl-xian1" onclick="redream.href('/index/user/certification')">
-                    <span class="wl-renzhengs"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证</span>
-                </div>
-            </ul>
+        <div class="tab-box" style="position: relative;min-height: 855px;">
+            <div class="wl-nide">
+                <ul  class="wl-top-liebiao">
+                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                    <div class="wl-ding">
+
+                        <a href="/index/article/article"> <li>发表文章</li> </a>
+                        <a href="/index/article/graphic"> <li class="action">我的文章 </li></a>
+                        <a href="/index/article/articleLists"> <li>推荐文章 </li></a>
+                        <a href="/index/article/recommend"><li >我的推荐</li></a>
+                    </div>
+                </ul>
+                <a href="/index/user/certification">
+                    <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
+                </a>
+           </div>
+            <!---->
+                <!--<div class="demo" style="cursor: pointer;top: 0px;"><i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
+            <!--</a>-->
+            <!--<div class="wl-fabia">-->
+                <!--<a href="/index/article/article"><div class="wl-fabiaoio" style="cursor: pointer">发表文章</div></a>-->
+                <!--<div class="wl-wenzhang1">我的文章</div>-->
+                <!--<div class="wl-tuijian-wen">推荐文章</div>-->
+                <!--<div class="wl-me-tuijian">我的推荐</div>-->
+            <!--</div>-->
+
+            <!--<a href="/index/user/certification" class="renzheng">-->
+                <!--<div class="wl-renzhengs" style="top:170px"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
+            <!--</a>-->
             <div class="wl-fabu">
-                <p>全部图文</p>
+                <p>我的文章</p>
                 <div class="wl-xianshi-neirong">
                     <!--<div class="wl-all-title">已显示全部40条内容</div>-->
                     <div id="container-list">
@@ -67,6 +86,7 @@
             </div>
         </div>
     </div>
+    <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
@@ -91,5 +111,10 @@
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
     });
+    $(".wl-yingj").click(function () {
+        $(".wl-ding").toggle();
+        $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
+        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
+    })
 </script>
 </html>

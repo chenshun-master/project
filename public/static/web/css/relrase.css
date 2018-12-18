@@ -118,7 +118,7 @@ a {
     width: 180px;
     height: auto;
     float: left;
-    margin-top: 140px;
+    margin-top: 70px;
     background: white;position: relative;
 }
 .wl-shimin{
@@ -493,7 +493,6 @@ a {
 }
 .wl-zhanghao{
     width: 15%;
-    min-height: 200px;
     position: absolute;
     top: 0;
     right: 500px;

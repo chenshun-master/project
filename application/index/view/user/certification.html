@@ -63,20 +63,19 @@
 
                 <a href="/index/article/graphic" style="color: #333333">
                     <div class="wl-fabiaoa" style="cursor: pointer" >
-                    <i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>全部图文
+                    <i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>我的文章
                     </div>
                 </a>
 
             <ul class="renzheng">
                 <div class="wl-xian1">
-                    <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;color: #7DB0E8"></i>实名认证</span><i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px"></i>
+                    <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;color: #7DB0E8"></i>实名认证</span><i class="iconfont icon-triangledownfill wl-sxia qiehuan" style="font-size: 20px"></i>
                 </div>
                 <div class="wl-cang1" >
                     <span id="san"> <a href="#auth1"><li class="{if($type == 1 || $type == 0)} active {/if}">个人认证</li></a></span>
                     <span id="one"> <a href="#auth2"><li class="{if($type == 2)} active {/if}">医生认证</li></a></span>
                     <span id="two"> <a href="#auth3"><li class="{if($type == 3)} active {/if}">医院认证</li></a></span>
                     <span id="six"> <a href="#auth4"><li class="{if($type == 4)} active {/if}">官方认证</li></a></span>
-
                 </div>
             </ul>
 
@@ -467,7 +466,8 @@
 
     $(".wl-shimin").click(function () {
         $(".wl-cang1").toggle();
-
+        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
+        $(".qiehuan").toggleClass('iconfont icon-triangledownfill');
     });
 
     var objClass = {
