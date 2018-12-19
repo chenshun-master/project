@@ -270,7 +270,7 @@
     left: 0;
     right: 0;
     width: 100%;
-    min-height: 400px;
+    min-height: 500px;
     max-height: 75%;
     margin: 0 auto;
     background: #292627;
@@ -357,7 +357,7 @@
     line-height: 40px;
     font-size: 12px;
     padding: 0 10px 0 10px;
-    background: #292627;
+    background: black;
     color: #69686D;
     position: absolute;
     top:0;
@@ -375,4 +375,73 @@
     font-size: 13px;
     color: #E7E4E6;
     padding: 3px 10px 5px 10px;
+}
+.wl-no-shuju{
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #69686D;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.wl-no-shuju dl {
+    font-size: 60px!important;
+    color:#69686D!important;
+}
+.wl-no-shuju dt{
+    margin-top: 10px;
+}
+.wl-xiangmu-lia{
+    margin-top: 20px;
+}
+.wl-zhez2 {
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .3);
+    z-index: 99999;
+}
+.wl-zl2 {
+    width: 100%;
+    position: fixed;
+    height: 45px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    background: white;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.wl-zl2 textarea {
+    border-radius: 10px;
+    width: 78%;
+    height: 45px;
+    color: #888888;
+    resize: none;
+    text-indent: 2px;
+    margin: 6px;
+    padding: 6px;
+    font-size: 14px;
+    float: left;
+}
+.wl-fabu {
+    width: 14%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color:#B7B7B9;
+    font-size: 14px;
+    background: white;
+    float: left;
+    margin-top: 8px;
+    font-size: 25px;
+}
+.cus-red{
+    color: #ee3148;
 }

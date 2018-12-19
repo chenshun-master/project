@@ -135,7 +135,7 @@ class ShopApi extends BaseController
             'parent_id'=>$this->request->post('pid/d', 0),
             'user_id'=>$this->getUserId(),
             'object_id'=>$this->request->post('obj_id/d', 0),
-            'content'=>$this->request->post('content/d', ''),
+            'content'=>$this->request->post('content', ''),
         ];
 
         if(!$this->checkLogin()){
@@ -188,6 +188,7 @@ class ShopApi extends BaseController
         }else if($type == 2){
             $result = $linkDomain->cancelLike($object_id,$this->getUserId(),$flag);
         }
+
         if($result){
             return $this->returnData([], '操作成功', 200);
         }else{
