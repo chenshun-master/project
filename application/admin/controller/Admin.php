@@ -51,7 +51,7 @@ class Admin extends BaseController
      * @return false|string
      * @throws \think\exception\DbException
      */
-    public function getAdminList($page,$page_size){
+    public function getAdminList($page=1,$page_size=10){
         $data = $this->AdminDomain->getAdminList($page,$page_size);
         return $this->returnData($data,'',0);
     }
