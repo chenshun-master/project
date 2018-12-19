@@ -67,8 +67,8 @@
                         return '<span class="label label-info">官方团队</span>';
                     }
                 }},
-            {field: 'score', title: '用户积分'},
-            {field: 'account', title: '账户余额'},
+            {field: 'score', title: '用户积分',sort:true},
+            {field: 'account', title: '账户余额',sort:true},
             {field: 'sex', title: '用户性别',width:100,templet:function(row){
                     if(row.sex == 0){
                         return '<span class="label label-warning">未知</span>';

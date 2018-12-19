@@ -59,7 +59,7 @@
             {field: 'img', title: '图片地址',width:100,align:"center",templet:function(row){
                     return '<img src="'+row.img+'" width="50" >';
                 }},
-            {field: 'order', title: '排序'},
+            {field: 'order', title: '排序',sort:true},
             {field: 'visibility', title: '首页是否显示',width:100,templet:function(row){
                     if(row.visibility == 0){
                         return '<span class="label label-danger" lay-event="end">不显示</span>';
