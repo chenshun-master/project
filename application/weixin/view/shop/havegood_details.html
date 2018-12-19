@@ -64,11 +64,11 @@
                 <p> 项目亮点</p>
                 <hr/>
             </div>
-            <div>
+            <div class="wl-xiangmu-lia">
                 {$info['article_text']}
             </div>
         </div>
-        <div>
+        <div class="wl-tuijianshangpin">
             <div class="wl-tuijian-title">
                 其它推荐商品
             </div>
@@ -81,7 +81,7 @@
         <div class="wl-footer">
             <div class="cus-pinglun">
                 <ul>
-                    <li class="iconfont icon-like "></li>
+                    <li class="iconfont icon-like "id="cus-click-fabulous"  data-type="1" ></li>
                     <li class="iconfont  icon-comment_light cus-ping"></li>
                     <li class="iconfont icon-favor_light"></li>
                 </ul>
@@ -104,13 +104,19 @@
             </div>
         </div>
         <div class="cus-footer">
-            <input type="text" placeholder="据说颜值高的人都爱评论">
+            <input type="text" placeholder="据说颜值高的人都爱评论" class="wl-foot-input">
+        </div>
+    </div>
+    <div class="wl-zhez2">
+        <div class="wl-zl2">
+            <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid" placeholder="有爱评论，说点好听的..."></textarea>
+            <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
         </div>
     </div>
 </div>
 
 <input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
-
+<input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
 {/block}
 
 {block name="script"}
@@ -139,15 +145,15 @@
     </div>
     {{#  }); }}
 </script>
-    <script id="recommendedList" type="text/html">
+<script id="recommendedList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
         <div class="wl-remen-img">
             <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"
                  alt="图片丢失"></div>
         <div class="wl-remen-right">
-            <dl>伊婉C玻尿酸.亚洲人更适亚合的亚洲人更适合的合的</dl>
-            <dt>产品介绍</dt>
+            <dl>{{item.article_text}}</dl>
+            <dt>{{item.article_text}}</dt>
             <dd>
                 <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
                 <span class="wl-quchu">￥880.00</span>
@@ -200,17 +206,36 @@
     $('.wl-tan-pinglun').on('click', function (event) {
         $('.wl-foot-gundong').css('overflowY', "auto");
     });
+    $(".wl-foot-input").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".wl-zhez2").toggle();
+        $('.wl-text').focus();
+    });
+    $(document).on('input', 'textarea', function () {
+        if (($.trim($('.wl-text').val()) !== "")) {
+            $('.wl-fabu').css({'color': '#7DB0E8'});
+        } else {
+            $('.wl-fabu').css({'color': '#B7B7B9'});
+        }
+    });
+    //点击空白处隐藏弹出层
+    $(".wl-zhez2").click(function (event) {
+        var _con = $('.wl-zl2'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhez2').hide(); //淡出消失
+        }
+    });
 </script>
 <script>
     var myObj = {
         goods: {
             listData: {
-                gid: $('#fr-goodid').val(),
+                gid: $('#fr-good-goods-id').val(),
                 loading: false,
                 ini: false,
                 page: 0,
                 page_total: 1,
-                page_size: 3,
+                page_size: 15,
             },
             loadList: function () {
                 if (myObj.goods.listData.loading) {
@@ -240,8 +265,10 @@
                                 myObj.goods.listData.ini = true;
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
+                                if(res.data.page_total == 0){
+                                    $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
+                                }
                             }
-
                             $("#cus-pinglun-num").val(res.data.total);
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                                 $('#container-list').append(html);
@@ -253,7 +280,7 @@
         },
         recommended: {
              listData: {
-                 gid: $('#fr-goodid').val(),
+                 gid: $('#fr-good-goods-id').val(),
                  loading: false,
                  ini: false,
                  page: 0,
@@ -291,24 +318,93 @@
                                  myObj.recommended.listData.ini = true;
                                  myObj.recommended.listData.page_total = res.data.page_total;
                                  $('#recommended-List').html('');
+                                 if (res.data.page_total == 0){
+                                     $(".wl-tuijianshangpin").hide();
+                                 }else{
+                                     $(".wl-tuijianshangpin").show();
+                                 }
                              }
                              layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
                                 $('#recommended-List').append(html);
-                                console.log(html);
                              });
                          }
                      }
                  });
              }
-        }
+        },
+        giveLikeLoading:false,
+        giveLike:function(o,type){
+            if(myObj.giveLikeLoading == false){
+                $.ajax({
+                    url: "/weixin/shopapi/giveFabulous",
+                    type: 'post',
+                    data: {
+                        obj_id: $('#fr-good-goods-id').val(),
+                        flag:3 ,
+                        type: type
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.giveLikeLoading = true;
+                    },
+                    complete: function () {
+                        myObj.giveLikeLoading = false;
+                    },
+                    success: function (res) {
+                        if(res.code == 200){
+                            if(type == 1){
+                                $('#cus-click-fabulous').removeClass('icon-like').addClass("icon-likefill").addClass('cus-red');
+                                o.data('type',2);
+                            }else{
+                                o.data('type',1);
+                                $('#cus-click-fabulous').removeClass('cus-red').addClass("icon-like");
+                            }
+                        }else if(res.code == 401){
+
+                            redream.showTip('请登录后操作...');
+                        }
+                    }
+                });
+            }
+        },
+
+        publishCommentConf:{
+            loading:false,
+        },
+        publishComment:function(){
+            var content = $('.wl-text').val();
+            $('.wl-text').focus();
+            $('.wl-text').val('');
+
+            var pid = $('#cus-comment-pid').val();
+
+            $.ajax({
+                url: "/weixin/shopapi/createGoodGoodsComment",
+                type: 'post',
+                data: {
+                    obj_id: $('#fr-good-goods-id').val(),
+                    content:content
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.publishCommentConf.loading = true;
+                },
+                success: function (res) {
+                    myObj.publishCommentConf.loading = false;
+                    if (res.code == 200) {
+
+                    }
+                }
+            });
+        },
+
     };
     myObj.goods.loadList();
     myObj.recommended.loadList();
 
-
-
-    $(document).on('click','.click-to-havegoodDetails',function(){
-        window.location.href = '/weixin/shop/havegoodDetails?gid='+$(this).data('id');
-    })
+    $('#cus-click-fabulous').on('click',function(){
+        var type = $(this).data('type');
+        myObj.giveLike($(this),type);
+    });
 </script>
 {/block}

@@ -28,7 +28,9 @@
 
 <main style="padding-top: 70px;background:white;padding-bottom: 100px;">
     <div id="container">
-        <div id="container-list"></div>
+        <div id="container-list">
+
+        </div>
     </div>
 </main>
 
@@ -89,7 +91,12 @@
         <div class="wl-jiazai">加载中...</div>
     </div>
 </div>
-
+<span class="wl-haohuo" onclick="redream.href('/weixin/shop/haveGood')">有好货</span>
+<div class="wl-good">
+    <dl class="iconfont icon-shangpin4 " onclick="redream.href('/weixin/shop/haveGood')">
+    </dl>
+    <dd class="iconfont icon-xiangshang1 wl-tingbu "></dd>
+</div>
 {include file="layout/footer" /}
 {/block}
 
@@ -115,4 +122,5 @@
     {{#  }); }}
 </script>
 <script src="/static/weixin/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
+
 {/block}

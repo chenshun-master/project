@@ -24,7 +24,7 @@
                 <img src="" class="wl-toux"  onerror="this.src='/static/web/image/tou.png'"/>
                 <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">吴永辉</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
-                <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
+                <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
             </div>
         </div>
@@ -33,11 +33,19 @@
         <div class="tab-box" style="position: relative">
             <div class="wl-nide">
                 <ul  class="wl-top-liebiao">
-                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                    <a href="/index/article/article">
+                        <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i></li>
+                    </a>
                     <div class="wl-ding">
-                        <a href="/index/article/article"> <li >发表文章</li> </a>
-                        <a href="/index/article/graphic"> <li >我的文章 </li></a>
-                        <a href="/index/article/articleLists"> <li class="action">推荐文章 </li></a>
+                        <!-- <li >发表文章</li> </a>-->
+                        <!--<a href="/index/article/graphic"> <li >我的文章 </li></a>-->
+                    </div>
+                </ul>
+                <ul  class="wl-top-liebiao" style="margin-top: 10px">
+
+                        <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                    <div class="wl-ding">
+                        <a href="/index/article/articleLists"><li class="action">推荐文章 </li></a>
                         <a href="/index/article/recommend"><li >我的推荐</li></a>
                     </div>
                 </ul>
@@ -45,7 +53,7 @@
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
             </div>
-            <div class="wl-fabu" >
+            <div class="wl-fabu padding" >
                 <p style="border: 0">全部项目</p>
                 <div class="wl-xianshi-neirong">
                     <div class="wl-list">
@@ -79,13 +87,35 @@
                         <div style="clear: both"></div>
                     </div>
                     <div>
-                            <div class="wl-shangpin-quan">
-                                <dl><img src="" alt=""></dl>
-                                <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
-                                <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
-                                <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
-                                <dd class="wl-fenxiao">推荐分销</dd>
-                            </div>
+                                <div class="wl-shangpin-quan">
+                                    <dl><img src="" alt=""></dl>
+                                    <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
+                                    <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
+                                    <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
+                                    <dd class="wl-fenxiao">推荐分销</dd>
+                                </div>
+
+                                <div class="wl-shangpin-quan">
+                                    <dl><img src="" alt=""></dl>
+                                    <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
+                                    <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
+                                    <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
+                                    <dd class="wl-fenxiao">推荐分销</dd>
+                                </div>
+                                <div class="wl-shangpin-quan">
+                                    <dl><img src="" alt=""></dl>
+                                    <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
+                                    <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
+                                    <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
+                                    <dd class="wl-fenxiao">推荐分销</dd>
+                                </div>
+                                <div class="wl-shangpin-quan">
+                                    <dl><img src="" alt=""></dl>
+                                    <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
+                                    <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
+                                    <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
+                                    <dd class="wl-fenxiao">推荐分销</dd>
+                                </div>
 
                             <div class="wl-shangpin-quan">
                                 <dl><img src="" alt=""></dl>
@@ -108,76 +138,20 @@
                                 <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
                                 <dd class="wl-fenxiao">推荐分销</dd>
                             </div>
+                            <div class="wl-shangpin-quan">
+                                <dl><img src="" alt=""></dl>
+                                <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
+                                <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
+                                <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
+                                <dd class="wl-fenxiao">推荐分销</dd>
+                            </div>
 
-                        <div class="wl-shangpin-quan">
-                            <dl><img src="" alt=""></dl>
-                            <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
-                            <dt class="wl-yiyuan">上海薇琳医疗美容医院</dt>
-                            <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
-                            <dd class="wl-fenxiao">推荐分销</dd>
-                        </div>
-                    </div>
+
 
                     </div>
                     <div style="clear: both"></div>
+                <footer class="wl-foot" style="bottom: -110px">{:config('conf.copyright')}</footer>
                 </div>
-
-            <div class="wl-fabu1" style="display: none">
-                <div class="wl-top-title">
-                    <div class="wl-top-img">
-                        <img src="" alt="">
-                    </div>
-                    <div class="wl-top-right">
-                        <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
-                        <dt class="wl-yiyuan" style="margin-top: 10px">上海薇琳医疗美容医院</dt>
-                        <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
-                    </div>
-                </div>
-                <div>
-                    <div style="height: 60px;line-height: 60px;padding-left: 10px;margin-top: 20px">
-                        <div style="float: left;width: 7%;margin-left: 52px;"> 标 题</div>
-                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入文章标题" style="width: 93%;height: 36px;text-indent: 10px"></div>
-                    </div>
-                    <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;">
-                        <div style="float: left;width: 7%; margin-left: 52px;"> 摘 要</div>
-                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-zaiyao" placeholder="请输入文章摘要"  style="width: 93%;height: 36px;text-indent: 10px"></div>
-                    </div>
-                    <div style="clear: both;min-height: 60px;line-height: 60px;padding-left: 10px;">
-                        <div style="float: left;width: 7%;margin-left: 52px;"> 标 签</div>
-                        <div style="float: left;width: 87%;">
-                            <input type="text" value="" id="fr-tag" placeholder="文章标签 例如(xxx,xxx,xxx) 请用英文逗号',' 分割,标签有利于文章之间的关联"   style="width: 93%;height: 36px;text-indent: 10px">
-                        </div>
-                    </div>
-
-                    <div style="clear: both;padding-left: 10px;">
-                        <div style="float: left;width: 90%;margin-top: 35px; margin-left: 44px;">
-                            <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;"></textarea>
-                        </div>
-                    </div>
-                    <div style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative">
-                        <div style="float: left;width: 87%;margin-left: 47px;" id="ccc">
-                            <div style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px;float: left;position: relative;"  id="ttttt">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;top: 23px;left: 28px;">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加缩略图</dt>
-                                </dl>
-                                <form id="infoLogoForm" enctype='multipart/form-data'>
-                                    <input type="file" name="imgFile" accept="image/*" id="btn-input-file"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"/>
-                                </form>
-                            </div>
-
-                        </div>
-                        <p style="position: absolute;top: 190px;left: 58px;color: #a1a1a1;font-size: 12px;"><font color="red">注</font>：缩略图最多只能上传三张</p>
-                    </div>
-                    <div style="position: relative;width: 100%;min-height: 155px">
-                        <div style=";width:100%;height: 100px;border-top: 1px solid #EEEEEE;position: absolute;bottom: 10px">
-                            <button onclick="objClass.submit()" class="wl-tijiao" style="cursor: pointer">发表</button>
-                        </div>
-                    </div>
-                    <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
-                </div>
-            </div>
             </div>
         </div>
     </div>
@@ -196,40 +170,14 @@
     $(".wl-liebiao span").click(function () {
         $(this).addClass("se").siblings().removeClass("se");//获取选中元素的下标
     })
-    KindEditor.ready(function (K) {
-        // https://blog.csdn.net/qxl2012/article/details/78052128
-        K.allowImageRemote = false;
-        window.editor = K.create('#editor_id', {
-            cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
-            resizeMode : 1,
-            items : [
-                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-                'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
-                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'pagebreak',
-                'anchor', 'link', 'unlink'
-            ],
-            uploadJson: '/index/upload/editUploadImgFile',
-            allowFileManager: false,
-            allowImageRemote:true,
-            syncType:'auto',
-            afterCreate: function () {
-                var self = this;
-                self.sync();
-            }
-        });
-
-        window.editor.sync();
-    });
     $(".wl-yingj").click(function () {
         $(".wl-ding").toggle();
         $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
         $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
     })
-    $(".wl-shangpin-quan").click(function () {
-        $(".wl-fabu1").show();
+
+    $(document).on('click','.wl-shangpin-quan',function(){
+        window.location.href = '/index/article/articleEditor';
     })
 </script>
 </body>
