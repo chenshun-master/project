@@ -47,7 +47,7 @@
                 <span  style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i>
             </p>
             <div class="wl-cang" style="display: none">
-                <p class="wl-xiany" id="wl-anquan" onclick="redream.href('/index/user/main')"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
+                <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录
                 </p>
             </div>
@@ -58,12 +58,19 @@
     <div class="tab-box" style="position: relative">
         <div class="wl-nide">
             <ul  class="wl-top-liebiao">
-                <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
                 <div class="wl-ding">
                     <a href="/index/article/article"> <li class="action">发表文章</li> </a>
                     <a href="/index/article/graphic"> <li >我的文章 </li></a>
-                    <a href="/index/article/articleLists"> <li>推荐文章 </li></a>
-                    <a href="/index/article/recommend"><li >我的推荐</li></a>
+                </div>
+            </ul>
+            <ul  class="wl-top-liebiao" style="margin-top: 10px">
+                <a href="/index/article/articleLists">
+                    <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i></li>
+                </a>
+                <div class="wl-ding">
+                    <!--<a href="/index/article/articleLists"><li>推荐文章 </li></a>-->
+                    <!--<a href="/index/article/recommend"><li >我的推荐</li></a>-->
                 </div>
             </ul>
             <a href="/index/user/certification">
@@ -112,10 +119,13 @@
                 <div style=";width:100%;height: 100px;border-top: 1px solid #EEEEEE;position: absolute;bottom: 10px">
                     <button onclick="objClass.submit()" class="wl-tijiao" style="cursor: pointer">发表</button>
                 </div>
+
             </div>
-            <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
+
         </div>
+
     </div>
+    <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
 </div>
     <div class="wl-zh1" id="wl-loading-box" style="display: none" >
         <div class="wl-z1">

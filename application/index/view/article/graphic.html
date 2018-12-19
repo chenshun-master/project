@@ -23,7 +23,7 @@
         <div class="wl-zhanghao" style="right:0;">
             <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="{$user_info['portrait']}" class="wl-toux"  onerror="this.src='/static/web/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
-                <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
+                <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
             </div>
         </div>
@@ -32,19 +32,25 @@
         <div class="tab-box" style="position: relative;min-height: 855px;">
             <div class="wl-nide">
                 <ul  class="wl-top-liebiao">
-                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
                     <div class="wl-ding">
-
-                        <a href="/index/article/article"> <li>发表文章</li> </a>
+                        <a href="/index/article/article"> <li >发表文章</li> </a>
                         <a href="/index/article/graphic"> <li class="action">我的文章 </li></a>
-                        <a href="/index/article/articleLists"> <li>推荐文章 </li></a>
-                        <a href="/index/article/recommend"><li >我的推荐</li></a>
+                    </div>
+                </ul>
+                <ul  class="wl-top-liebiao" style="margin-top: 10px">
+                    <a href="/index/article/articleLists">
+                        <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i></li>
+                    </a>
+                    <div class="wl-ding">
+                        <!-- <li>推荐文章 </li></a>-->
+                        <!--<a href="/index/article/recommend"><li >我的推荐</li></a>-->
                     </div>
                 </ul>
                 <a href="/index/user/certification">
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
-           </div>
+            </div>
             <!---->
                 <!--<div class="demo" style="cursor: pointer;top: 0px;"><i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
             <!--</a>-->

@@ -275,3 +275,42 @@
     margin: 5px 0 5px 0;
     font-size: 13px;
 }
+.wl-good{
+    width: 45px;
+    height: 100px;
+    position: fixed;
+    bottom: 150px;
+    right: 10px;
+    background: #000000;
+    border-radius: 30px;
+    color: white;
+    opacity: 0.4;
+    text-align: center;
+    z-index: 1;
+}
+.wl-good dl{
+    width: 80%;
+    margin: 0 auto;
+   font-size: 30px!important;
+    border-bottom: 1px solid white;
+    padding: 10px 0 8px 0;
+}
+.wl-good dd{
+    font-size: 30px!important;
+    padding: 5px 0 8px 0;
+}
+.wl-haohuo{
+    width: 30px;
+    height: 13px;
+    line-height: 13px;
+    text-align: center;
+    background:#F24F4F;
+    color: white;
+    font-size: 9px;
+    display: inline-block;
+    position: fixed;
+    bottom: 230px;
+    right: 12px;
+    border-radius: 5px;
+    z-index: 2;
+}

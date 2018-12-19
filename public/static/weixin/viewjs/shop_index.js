@@ -55,7 +55,11 @@ $(document).on('click','.to-goods-detail',function(){
     window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
 });
 
-
+//当点击跳转链接后，回到页面顶部位置
+$(".wl-tingbu").click(function(){
+    $('body,html').animate({scrollTop:0},500);
+    return false;
+});
 var myObj = {
     goods:{
         listData: {

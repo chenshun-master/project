@@ -154,6 +154,14 @@ class Article extends CController
                   return $this->fetch('article/article_lists');
 
           }
+              /**
+                *文章列表页面
+                */
+                    public function articleEditor(){
+
+                            return $this->fetch('article/article_editor');
+
+                    }
      /**
       *我的推荐页面
       */
