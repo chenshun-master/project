@@ -8,6 +8,8 @@ use think\facade\Log;
 class Index extends BaseController
 {
 
+    public $weChatApiClass;
+
     /**
      * 微信公众号消息推送接口
      * @return mixed

@@ -9,9 +9,6 @@ use think\Db;
 class UserLikeDomain
 {
 
-
-
-
     public static function getTypeName($val){
         $config = [
             1=>'article',

@@ -150,4 +150,38 @@ class ShOrderDomain
             'total'         =>$total
         ];
     }
+
+    /**
+     * 处理支付订单
+     */
+    public function  processingOrder($data,$flag =''){
+        dump($data);
+
+        $order_no = '';
+        if($flag == 'weixin'){
+            $order_no = $data['out_trade_no'];
+        }else if($flag == 'alipay'){
+
+        }
+
+        $field = [
+            'id','real_amount','status','pay_status'
+        ];
+
+
+        $orderRes = Db::name('sh_order')->where('order_no',$order_no)->field($field)->find();
+        dump($orderRes['real_amount'] == $data['total_fee']);
+
+
+
+
+        Db::startTrans();
+        try {
+
+            Db::commit();
+        } catch (\Exception $e) {
+            Db::rollback();
+            return [false,'处理订单异常',null];
+        }
+    }
 }
