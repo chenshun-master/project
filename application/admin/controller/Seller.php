@@ -26,11 +26,18 @@ class Seller extends BaseController
     {
         return $this->fetch('/seller/index');
     }
+
     /**
      * 商户列表
+     * @param $page
+     * @param $page_size
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function getSellerList(){
-        $data = $this->SellerDomain->getSellerList();
+    public function getSellerList($page=1,$page_size=10){
+        $data = $this->SellerDomain->getSellerList($page,$page_size);
         return $this->returnData($data,'',0);
     }
 

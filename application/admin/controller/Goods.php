@@ -28,10 +28,17 @@ class Goods extends BaseController
 
     /**
      * 商品列表
+     * @param  $page 当前页码
+     * @param  $page_size 每页展示的数据
      */
-    public function getGoodsList(){
-        $name = $this->request->post('name');
-        $data = $this->SpGoodsDomain->getGoodsList($name,0,1,10);
+    public function getGoodsList($page=1,$page_size=10){
+        if($this->request->post('status')){
+            $search = $this->request->post('status');
+        }else{
+            $search = '';
+        }
+        $data = $this->SpGoodsDomain->getGoodsList($search,0,$page,$page_size);
         return $this->returnData($data,'',0);
     }
+
 }

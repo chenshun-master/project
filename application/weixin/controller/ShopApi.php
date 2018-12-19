@@ -153,7 +153,7 @@ class ShopApi extends BaseController
      *  获取分销产品有关的产品
      */
     public function getGoodGoodsRelevant(){
-        $gid = $this->request->param('gid/d', 1);
+        $gid = $this->request->param('gid/d', 0);
         $page = $this->request->param('page/d', 1);
         $page_size = $this->request->param('page_size/d', 15);
 
@@ -188,7 +188,6 @@ class ShopApi extends BaseController
         }else if($type == 2){
             $result = $linkDomain->cancelLike($object_id,$this->getUserId(),$flag);
         }
-
         if($result){
             return $this->returnData([], '操作成功', 200);
         }else{

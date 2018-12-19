@@ -40,6 +40,10 @@
         ,id:'tab-reload'
         ,url: '/admin/admin/getAdminList' //数据接口
         ,page: true
+        ,request: {
+            pageName: 'page' //页码的参数名称，默认：page
+            ,limitName: 'page_size' //每页数据量的参数名，默认：limit
+        }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
                 "code": res.code, //解析接口状态
@@ -58,7 +62,7 @@
                         return '<span class="label label-success" lay-event="show">已启用</span>';
                     }
                 }},
-            {field: 'created_at', title: '添加时间'},
+            {field: 'created_at', title: '添加时间',sort:true},
             {field: 'updated_at', title: '修改时间'},
             {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150},
         ]]

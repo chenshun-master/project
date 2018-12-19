@@ -196,7 +196,7 @@ class SpGoodsDomain
         $data = [];
 
         $data['status'] = $status;
-        if($status == 0){
+        if($status == 0 || $status == 3){
             $data['up_time'] = date('Y-m-d H:i:s');
         }else if($status == 1 || $status == 2){
             $data['down_time'] = date('Y-m-d H:i:s');
@@ -465,6 +465,7 @@ class SpGoodsDomain
      *  * @param $seller_id           商家ID
      * @param int $page            当前分页
      * @param int $page_size       分页大小
+     * @param int $status          状态
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
@@ -477,7 +478,7 @@ class SpGoodsDomain
         $obj->join('wl_user user','user.id = hospital.user_id');
         $obj->join('wl_auth auth','user.id = auth.user_id');
         $obj->where('sp.seller_id',$seller_id);
-        $obj->where("sp.status",'like','%'.trim($status).'%');
+        $obj->where("sp.status",'like',"%".trim($status)."%");
         $field = [
           'sp.id',
           'sp.name',

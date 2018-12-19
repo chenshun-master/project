@@ -35,6 +35,10 @@
         ,id:'tab-reload'
         ,url: '/admin/seller/getSellerList' //数据接口
         ,page: true
+        ,request: {
+            pageName: 'page' //页码的参数名称，默认：page
+            ,limitName: 'page_size' //每页数据量的参数名，默认：limit
+        }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
                 "code": res.code, //解析接口状态
@@ -47,7 +51,7 @@
             {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'mobile', title: '手机号'},
             {field: 'nickname', title: '用户昵称'},
-            {field: 'portrait', title: '用户头像',width: 150,templet:function (row) {
+            {field: 'portrait', title: '用户头像',width: 100,align:"center",templet:function (row) {
                     return '<img src="'+row.portrait+'" width="30">'
                 }},
             {field: 'type', title: '用户类型',templet:function(row){
@@ -72,9 +76,9 @@
                     }
                 }},
             {field: 'account', title: '收款账号信息'},
-            {field: 'grade', title: '评分总数'},
-            {field: 'sale', title: '总预约量'},
-            {field: 'comments', title: '评论次数'},
+            {field: 'grade', title: '评分总数',sort:true},
+            {field: 'sale', title: '总预约量',sort:true},
+            {field: 'comments', title: '评论次数',sort:true},
             {field: 'create_time', title: '申请加入时间'},
         ]]
     });
