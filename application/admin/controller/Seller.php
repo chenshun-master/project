@@ -36,7 +36,7 @@ class Seller extends BaseController
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getSellerList($page,$page_size){
+    public function getSellerList($page=1,$page_size=10){
         $data = $this->SellerDomain->getSellerList($page,$page_size);
         return $this->returnData($data,'',0);
     }

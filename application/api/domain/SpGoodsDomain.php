@@ -478,7 +478,7 @@ class SpGoodsDomain
         $obj->join('wl_user user','user.id = hospital.user_id');
         $obj->join('wl_auth auth','user.id = auth.user_id');
         $obj->where('sp.seller_id',$seller_id);
-        $obj->where("sp.status",'like','%'.trim($status).'%');
+        $obj->where("sp.status",'like',"%".trim($status)."%");
         $field = [
           'sp.id',
           'sp.name',

@@ -27,7 +27,7 @@ class Banner extends BaseController{
      * @param $page_size
      * @return false|string
      */
-    public function getBannerList($page,$page_size)
+    public function getBannerList($page=1,$page_size=10)
     {
         $banner = new BannerModel();
         $data = $banner->getList($page,$page_size);

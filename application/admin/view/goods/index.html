@@ -24,7 +24,7 @@
                                 <option value="3">申请上架</option>
                             </select>
                         </div>
-                        <button class="layui-btn" data-type="getInfo" id="search">搜索</button>
+                        <button class="layui-btn" data-type="getInfo">搜索</button>
                     </div>
 
 
@@ -64,7 +64,7 @@
         }
         ,cols: [[ //表头
             {field: 'id', title: 'ID', fixed: 'left',width:120},
-            {field: 'goods_no', title: '商品的编号'},
+            {field: 'goods_no', title: '商品的编号',sort:true},
             {field: 'real_name', title: '坐诊医生'},
             {field: 'enterprise_name', title: '坐诊医院'},
             {field: 'seller_id', title: '卖家ID'},
@@ -72,16 +72,16 @@
             {field: 'img', title: '商品图片',width:100,align:"center",templet:function (res) {
                     return '<img src="'+res.img+'" width="30" >';
                 }},
-            {field: 'market_price', title: '市场价格'},
-            {field: 'sell_price', title: '销售价格'},
-            {field: 'prepay_price', title: '预付价格'},
-            {field: 'topay_price', title: '到付价格'},
-            {field: 'up_time', title: '上架时间'},
-            {field: 'down_time', title: '下架时间'},
-            {field: 'store_nums', title: '库存/名额'},
-            {field: 'status', title: '商品状态',show: 'text',templet:function (res) {
+            {field: 'market_price', title: '市场价格',sort:true},
+            {field: 'sell_price', title: '销售价格',sort:true},
+            {field: 'prepay_price', title: '预付价格',sort:true},
+            {field: 'topay_price', title: '到付价格',sort:true},
+            {field: 'up_time', title: '上架时间',sort:true},
+            {field: 'down_time', title: '下架时间',sort:true},
+            {field: 'store_nums', title: '库存/名额',sort:true},
+            {field: 'status', title: '商品状态',sort:true,templet:function (res) {
                     if(res.status == 0){
-                        return '<span class="label label-success" lay-event="zc">正常</span>';
+                        return '<span class="label label-success" lay-event="normal">正常</span>';
                     }else if(res.status == 1){
                         return '<span class="label label-danger">已删除</span>';
                     }else if(res.status ==2){
@@ -90,26 +90,10 @@
                         return '<span class="label label-primary">申请上架</span>';
                     }
             }},
-            {field: 'sale_num', title: '项目预约数'},
-            {field: 'case_num', title: '案例数'},
+            {field: 'sale_num', title: '项目预约数',sort:true},
+            {field: 'case_num', title: '案例数',sort:true},
             {field: 'create_time', title: '创建时间'},
         ]]
-    });
-
-    layui.table.on('tool(test)',function (obj) {
-        var data = obj.data;
-        var id   = data.id;
-        if(obj.event === "zc"){
-            layer.prompt({
-                formType: 2
-                ,value: data.status
-            }, function(value, index){
-                obj.update({
-                    status: data.status
-                });
-                layer.close(index);
-            });
-        }
     });
 
     var $ = layui.$, active = {
@@ -135,7 +119,7 @@
                         status:status,
                     }
                 });
-                table.reload('');
+                layui.table.reload('');
             }
         }
     };

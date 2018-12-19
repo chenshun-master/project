@@ -32,7 +32,7 @@ class User extends BaseController
      * @param $page_size
      * @return false|string
      */
-    public function getUserList($page,$page_size){
+    public function getUserList($page=1,$page_size=10){
         $data = $this->userDomain->userInfo($page,$page_size);
         return $this->returnData($data,'',0);
     }
