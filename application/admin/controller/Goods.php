@@ -30,16 +30,18 @@ class Goods extends BaseController
      * 商品列表
      * @param  $page 当前页码
      * @param  $page_size 每页展示的数据
+     * @param  $seller_id  商家ID
      */
     public function getGoodsList($page=1,$page_size=10){
         $status = input('param.status');
-        $data = $this->SpGoodsDomain->getGoodsList($status,0,$page,$page_size);
+        $seller_id = $this->request->post('seller_id','0');
+        $data = $this->SpGoodsDomain->getGoodsList($status,$seller_id,$page,$page_size);
         return $this->returnData($data,'',0);
     }
 
     public function getGoodsStatus(){
         $id = $this->request->post('id','0');
-        $status = $this->request->post('status','');
+        $status = $this->request->post('status','3');
         $data = $this->SpGoodsDomain->examineGoods($id,intval($status));
         if(!$data){
             return $this->returnData([],'修改失败','301');

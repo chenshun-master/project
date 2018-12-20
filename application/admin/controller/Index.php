@@ -2,6 +2,8 @@
 namespace app\admin\controller;
 
 
+use think\Db;
+
 class Index extends BaseController
 {
     public function index(){
@@ -9,4 +11,5 @@ class Index extends BaseController
         return $this->fetch('/layout/index');
 
     }
+
 }

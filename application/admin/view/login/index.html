@@ -13,19 +13,11 @@
     <!-- layui -->
     <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="/static/admin/dist/js/html5shiv.min.js"></script>
-    <script src="/static/admin/dist/js/respond.min.js"></script>
-    <![endif]-->
-
 </head>
-<body class="hold-transition login-page" style="background-image:url(/static/admin/wallpage/bg_{:rand(1,9)}.jpg);background-size: cover;">
+<body class="hold-transition login-page" style="height: 400px;background-image:url(/static/admin//wallpage/bg_{:rand(1,9)}.jpg);background-size: cover;">
 <div class="login-box">
     <div class="login-box-body">
-        <div class="login-logo">
-            <a href="#"><b>后台登陆</b></a>
-        </div>
+        <p class="login-box-msg"><b>后台登陆</b></p>
         <form class="layui-form">
             <div class="form-group has-feedback">
                 <input type="text" name="username" required lay-verify="required" class="layui-input" placeholder="用户名">
@@ -43,15 +35,6 @@
             </div>
         </form>
 
-        <div class="social-auth-links text-center">
-            <p>要么</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>使用
-                Facebook登陆</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i>使用
-                Google+登陆</a>
-        </div>
-        <a href="#">我忘了密码</a><br>
-        <a href="#" class="text-center">注册新会员资格</a>
     </div>
     <!-- /.login-box-body -->
 </div>
@@ -64,8 +47,8 @@
 <!-- layui -->
 <script src="/static/plugin/layui/layui.js"></script>
 <script>
-        layui.use('form', function(){
-            var form = layui.form
+    layui.use('form', function(){
+        var form = layui.form
 
         //监听提交
         form.on('submit(login)', function(data) {
