@@ -53,6 +53,7 @@
         ,request: {
             pageName: 'page' //页码的参数名称，默认：page
             ,limitName: 'page_size' //每页数据量的参数名，默认：limit
+            ,seller_id:'seller_id'
         }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
@@ -66,8 +67,7 @@
             {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'goods_no', title: '商品的编号',sort:true},
             {field: 'real_name', title: '坐诊医生'},
-            {field: 'enterprise_name', title: '坐诊医院'},
-            {field: 'seller_id', title: '卖家ID'},
+            {field: 'hospital_name', title: '坐诊医院'},
             {field: 'name', title: '项目名称'},
             {field: 'img', title: '商品图片',width:100,align:"center",templet:function (res) {
                     return '<img src="'+res.img+'" width="30" >';
@@ -79,7 +79,6 @@
             {field: 'up_time', title: '上架时间',sort:true},
             {field: 'down_time', title: '下架时间',sort:true},
             {field: 'store_nums', title: '库存/名额',sort:true},
-            {field: 'status', title: '商品状态',templet:"#demoTable"},
             {field: 'status', title: '商品状态',sort:true,width:100,templet:function (res) {
                     if(res.status == 0){
                         return '<span class="label label-success" lay-event="normal">正常</span>';
@@ -97,20 +96,21 @@
         ]]
     });
 
-    layui.table.on('tool(test)',function (obj) {
-        var data = obj.data;
-        if(data.status == 0 || data.status == 1 || data.status==2 || data.status || 3){
-            $.ajax({
-                url:"/admin/goods/getGoodsStatus",
-                data:{id:data.id,data:data.status},
-                type:"POST",
-                dataType:"json",
-                success:function (data) {
-                    console.log(data)
-                }
-            })
-        }
-    });
+    // layui.table.on('tool(test)',function (obj) {
+    //     var data = obj.data;
+    //     if(data.status == 0 || data.status == 1 || data.status==2 || data.status || 3){
+    //         $.ajax({
+    //             url:"/admin/goods/getGoodsStatus",
+    //             data:{id:data.id,data:data.status},
+    //             type:"POST",
+    //             dataType:"json",
+    //             success:function (data) {
+    //                 console.log(data)
+    //             }
+    //         })
+    //     }
+    // });
+
     var $ = layui.$, active = {
         getInfo: function(){
             var status = $('#status').val();

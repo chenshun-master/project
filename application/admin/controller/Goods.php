@@ -33,18 +33,18 @@ class Goods extends BaseController
      */
     public function getGoodsList($page=1,$page_size=10){
         $status = input('param.status');
-        $data = $this->SpGoodsDomain->getGoodsList($status,0,$page,$page_size);
+        $data = $this->SpGoodsDomain->getGoodsList($status,$page,$page_size);
         return $this->returnData($data,'',0);
     }
 
-    public function getGoodsStatus(){
-        $id = $this->request->post('id','0');
-        $status = $this->request->post('status','3');
-        $data = $this->SpGoodsDomain->examineGoods($id,intval($status));
-        if(!$data){
-            return $this->returnData([],'修改失败','301');
-        }else{
-            return $this->returnData([],'修改成功','200');
-        }
-    }
+//    public function getGoodsStatus(){
+//        $id = $this->request->post('id','0');
+//        $status = $this->request->post('status','0');
+//        $data = $this->SpGoodsDomain->examineGoods($id,$status);
+//        if(!$data){
+//            return $this->returnData([],'修改失败','301');
+//        }else{
+//            return $this->returnData([],'修改成功','200');
+//        }
+//    }
 }
