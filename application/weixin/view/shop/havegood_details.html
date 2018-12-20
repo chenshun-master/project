@@ -67,7 +67,7 @@
                 <hr/>
             </div>
             <div class="wl-xiangmu-lia">
-                {$info['article_text']}
+                <?php echo $info['article_text'] ?>
             </div>
         </div>
         <div class="wl-tuijianshangpin">
@@ -83,9 +83,9 @@
         <div class="wl-footer">
             <div class="cus-pinglun">
                 <ul>
-                    <li class="iconfont icon-like "id="cus-click-fabulous"  data-type="1" ></li>
+                    <li class="iconfont icon-like "id="cus-click-fabulous"  data-type="0" ></li>
                     <li class="iconfont  icon-comment_light cus-ping"></li>
-                    <li class="iconfont icon-favor_light"></li>
+                    <li class="iconfont icon-favor_light" id="cus-click-favorite"></li>
                 </ul>
             </div>
             <div class="wl-goumai">
@@ -117,17 +117,18 @@
     </div>
 </div>
 <div class="wl-zhezhao">
-   <div class="wl-zhe1">
-    <p class="wl-renzh">申请备注</p>
-    <div class="wl-neie1">
-        <p>你需要发送验证申请，等待对方通过</p>
-        <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
-        <button class="wl-btn" onclick="myObj.submitFriendApply()">发送</button>
+    <div class="wl-zhe1">
+        <p class="wl-renzh">申请备注</p>
+        <div class="wl-neie1">
+            <p>你需要发送验证申请，等待对方通过</p>
+            <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
+            <button class="wl-btn" onclick="myObj.submitFriendApply()">发送</button>
+        </div>
     </div>
-</div>
 </div>
 <input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
 <input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
+<input type="hidden" id="fr-user-id" value="{$info['user_id']}">
 {/block}
 
 {block name="script"}
@@ -142,19 +143,17 @@
         <div class="wl-ping-xiang">
             <div>
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
-                {{#  if(item.islike == 0){ }}
-                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px"  data-id="{{item.id}}" data-click="{{item.islike}}">
-                    <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                    <span class="wl-dian-one" style="font-size: 13px">{{item.islike}}</span>
-                </div>
-                {{#  } }}
+                <div class=" wl-dianzan cus-comment-fabulous"   data-id="{{item.id}}" data-type="{{item.islike}}">
+                    {{#  if(item.islike == 0){ }}
+                        <span class="iconfont icon-dianzan" ></span>
+                    {{#  } }}
 
-                {{#  if(item.islike == 1){ }}
-                <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.islike}}" >
-                    <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
-                    <span style="font-size: 13px">{{item.like_count}}</span>
+                    {{#  if(item.islike == 1){ }}
+                            <span class="iconfont icon-dianzan1" ></span>
+                    {{#  } }}
+
+                    <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
                 </div>
-                {{#  } }}
             </div>
             <div style="clear:both"></div>
             <div class="wl-ping-neirong">{{item.content}}</div>
@@ -169,11 +168,10 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
         <div class="wl-remen-img">
-            <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"
-                 alt="图片丢失" ></div>
+            <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"alt="图片丢失" ></div>
         <div class="wl-remen-right">
-            <dl>{{item.article_text}}</dl>
-            <dt>{{item.article_text}}</dt>
+            <dl>{{item.title}}</dl>
+            <dt>{{item.title}}</dt>
             <dd>
                 <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
                 <span class="wl-quchu">￥880.00</span>
@@ -200,10 +198,9 @@
     $(".marsk-container").click(function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-            // $('.marsk-container').hide(); //淡出消失
+            $('.marsk-container').hide(); //淡出消失
             $("body").removeClass("body");
         }
-        event.stopPropagation(); //停止事件冒泡
     }).on('touchstart', function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
@@ -216,7 +213,7 @@
 
     $(".wl-quxiao").click(function () {
         $(".marsk-container").hide();
-        $("body").removeClass("body");
+        // $("body").removeClass("body");
     })
 
     $('.wl-tan-pinglun').on('touchstart', function (event) {
@@ -290,7 +287,6 @@
                                 }
                             }
                             $("#cus-pinglun-num").html(res.data.total);
-                            console.log(res.data.total);
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                                 $('#container-list').append(html);
                             });
@@ -300,68 +296,64 @@
             }
         },
         recommended: {
-             listData: {
-                 gid: $('#fr-good-goods-id').val(),
-                 loading: false,
-                 ini: false,
-                 page: 0,
-                 page_total: 1,
+            listData: {
+                gid: $('#fr-good-goods-id').val(),
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
                 page_size: 3,
-             },
-             loadList: function () {
-                 if (myObj.recommended.listData.loading) {
-                     return false;
-                 }
-                 myObj.recommended.listData.page++;
-                 if (myObj.recommended.listData.ini == true) {
-                     if (myObj.recommended.listData.page > myObj.recommended.listData.page_total) {
-                         return false;
-                     }
-                 }
+            },
+            loadList: function () {
+                if (myObj.recommended.listData.loading) {
+                    return false;
+                }
+                myObj.recommended.listData.page++;
+                if (myObj.recommended.listData.ini == true) {
+                    if (myObj.recommended.listData.page > myObj.recommended.listData.page_total) {
+                        return false;
+                    }
+                }
                 $.ajax({
                     url: "/weixin/shopapi/getGoodGoodsRelevant",
                     type: 'post',
-                     data: {
-                         gid: myObj.recommended.listData.gid,
-                         page: myObj.recommended.listData.page,
-                         page_size: myObj.recommended.listData.page_size
-                     },
-                     dataType: 'json',
-                     beforeSend: function () {
-                         myObj.recommended.listData.loading = true;
-                     },
-                     complete: function () {
-                         myObj.recommended.listData.loading = false;
-                     },
-                     success: function (res) {
-                         if (res.code == 200) {
-                             if (myObj.recommended.listData.ini == false) {
-                                 myObj.recommended.listData.ini = true;
-                                 myObj.recommended.listData.page_total = res.data.page_total;
-                                 $('#recommended-List').html('');
-                                 if (res.data.page_total == 0){
-                                     $('#recommended-List').html(' <div class="wl-no-shuju" style="margin-top: 40px"> <dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl> <dt style="margin: 0">暂无商品</dt></div>');
-                                 }
-                             }
-                             layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
+                    data: {
+                        gid: myObj.recommended.listData.gid,
+                        page: myObj.recommended.listData.page,
+                        page_size: myObj.recommended.listData.page_size
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.recommended.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.recommended.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (myObj.recommended.listData.ini == false) {
+                                myObj.recommended.listData.ini = true;
+                                myObj.recommended.listData.page_total = res.data.page_total;
+                                $('#recommended-List').html('');
+                                if (res.data.page_total == 0){
+                                    $('#recommended-List').html(' <div class="wl-no-shuju" style="margin-top: 40px"> <dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl> <dt style="margin: 0">暂无商品</dt></div>');
+                                }
+                            }
+                            layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
                                 $('#recommended-List').append(html);
-                             });
-                         }
-                     }
-                 });
-             }
+                            });
+                        }
+                    }
+                });
+            }
         },
         giveLikeLoading:false,
-        giveLike:function(o,type){
+        giveLike:function(o,dataObj){
             if(myObj.giveLikeLoading == false){
                 $.ajax({
                     url: "/weixin/shopapi/giveFabulous",
                     type: 'post',
-                    data: {
-                        obj_id: $('#fr-good-goods-id').val(),
-                        flag:3 ,
-                        type: type
-                    },
+                    data: dataObj,
                     dataType: 'json',
                     beforeSend: function () {
                         myObj.giveLikeLoading = true;
@@ -371,16 +363,20 @@
                     },
                     success: function (res) {
                         if(res.code == 200){
-                            if(type == 1){
-                                $('#cus-click-fabulous').removeClass('icon-like').addClass("icon-likefill").addClass('cus-red');
-                                o.data('type',2);
-                            }else{
-                                o.data('type',1);
-                                $('#cus-click-fabulous').removeClass('cus-red').addClass("icon-like");
+                            if(dataObj.flag == 2){
+                                if(dataObj.type == 1){
+                                    o.data('type',1).find('.iconfont').removeClass('icon-dianzan').addClass('icon-dianzan1');
+                                }else{
+                                    o.data('type',0).find('.iconfont').removeClass('icon-dianzan1').addClass('icon-dianzan');
+                                }
+                            } else if(dataObj.flag == 3){
+                                if(dataObj.type == 1){
+                                    o.data('type',1).removeClass('icon-like').addClass("icon-likefill").addClass('cus-red');
+                                }else{
+                                    o.data('type',0).removeClass('cus-red').removeClass('icon-likefill').addClass("icon-like");
+                                }
                             }
-
                         }else if(res.code == 401){
-
                             redream.showTip('请登录后操作...');
                         }
                     }
@@ -396,7 +392,6 @@
             $('.wl-text').focus();
             $('.wl-text').val('');
             var pid = $('#cus-comment-pid').val();
-
             $.ajax({
                 url: "/weixin/shopapi/createGoodGoodsComment",
                 type: 'post',
@@ -418,18 +413,9 @@
                         myObj.goods.loadList();
                         redream.showTip('发布成功');
                         $('.wl-text').val('');
-
-                        if (flag == 2) {
-                            var num = parseInt(o.find('.wl-dian-one').text());
-                            if (type == 1) {
-                                o.data('click', 1);
-                                o.find('.wl-dian-one').text(num + 1);
-                                o.find('.wl-fabulous-icon').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
-                            } else {
-                                o.data('click', 0);
-                                o.find('.wl-dian-one').text(num - 1);
-                            }
-                        }
+                    }else if (res.code == 401){
+                        redream.showTip('请先进行登录');
+                        $('.wl-zhez2').hide();
                     }
                 }
             });
@@ -453,7 +439,10 @@
                 $.ajax({
                     url: "/weixin/user/addFriend",
                     type: 'post',
-                    data: {friend_id: objClass.u_id,remarks:remarks},
+                    data: {
+                        friend_id: $('#fr-user-id').val(),
+                        remarks:remarks
+                    },
                     dataType: 'json',
                     beforeSend:function(){
                         myObj.addFriendLoading = true;
@@ -463,10 +452,11 @@
                     },
                     success: function (res) {
                         if (res.code == 200) {
-                            objClass.isAdd = true;
+                            myObj.isAdd = true;
                             redream.showTip('申请提交成功...');
                             $('#cus-add-friend').text('已申请');
                             $(".wl-zhezhao").toggle();
+                            $(".wl-zhezhao").hide();
                         }else if (res.code == 401){
                             redream.showTip('请先进行登录');
                         }else if (res.code == 403){
@@ -478,17 +468,64 @@
                 });
             }
         },
+        //收藏
+        myFavorite:{
+            loading:false,
+            submit:function(){
+                if(myObj.myFavorite.loading){
+                    return false;
+                }
+                $.ajax({
+                    url: "/weixin/article/addFavorite",
+                    type: 'post',
+                    data: { obj_id: $('#fr-good-goods-id').val(),},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.myFavorite.loading = true;
+                    },
+                    success: function (res) {
+                        myObj.myFavorite.loading = false;
+                        if (res.code == 200) {
+                            $('#cus-click-favorite').removeClass('icon-favor_light').addClass('icon-favor_fill_light').addClass('cus-favorite');
+                            myObj.myFavorite.loading = true;
+                            redream.showTip('收藏成功...');
+                        }else if(res.code == 401){
+                            redream.showTip('请登录后操作...');
+                        }
+                    }
+                });
+            }
+        },
     };
     myObj.goods.loadList();
     myObj.recommended.loadList();
 
     $('#cus-click-fabulous').on('click',function(){
         var type = $(this).data('type');
-        myObj.giveLike($(this),type);
+        if(type == 0){
+            type = 1;
+        }else{
+            type = 2;
+        }
+        myObj.giveLike($(this),{type:type,obj_id:$('#fr-good-goods-id').val(),flag:3});
     });
+
+    $(document).on('click', '.cus-comment-fabulous', function () {
+        var type = $(this).data('type');
+        if(type == 0){
+            type = 1;
+        }else{
+            type = 2;
+        }
+
+        myObj.giveLike($(this),{type:type,obj_id:$(this).data('id'),flag:2});
+    });
+
     $(document).on('click', '.cus-touser-main', function () {
-        // window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
-        console.log("dasdas");
+        window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
+    });
+    $('#cus-click-favorite').on('click', function () {
+        myObj.myFavorite.submit();
     });
     $(".wl-zhezhao").click(function (event) {
         var _con = $('.wl-zhe1'); // 设置目标区域

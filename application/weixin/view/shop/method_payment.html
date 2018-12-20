@@ -34,9 +34,7 @@
                 <i  style="color: #FF615C;font-size: 12px">￥{$data['order_info']['real_amount']}</i>
             </div>
         </div>
-        <div class="wl-bth" onclick="redream.href('/weixin/shop/paySuccess')">
-            确认支付
-        </div>
+        <div class="wl-bth" id="click-payment">确认支付</div>
         <div class="wl-wancheng">
             完成支付即表示您已阅读并同意 <span style="color: #7DB0E8">薇琳医美隐私政策</span>
         </div>
@@ -46,4 +44,68 @@
 {/block}
 
 {block name="script"}
+
+<script type="text/javascript">
+    //调用微信JS api 支付
+    var paymentObj = {
+        loading:false,
+        params:{
+            oid:{$data['order_info']['id']},
+            type:'weixin',
+        },
+        requesPayData:function(){
+            if(paymentObj.loading == false){
+                $.ajax({
+                    url: "/weixin/shopapi/getPaymentData",
+                    type: 'post',
+                    data: paymentObj.params,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        paymentObj.loading == true;
+                    },
+                    complete: function () {
+                        paymentObj.loading == false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if(paymentObj.params == 'weixin'){
+                                paymentObj.weChatJsApiCall(res.data.jsApiParameters);
+                            }
+                        }else{
+                            alert('调入取支付失败');
+                        }
+                    }
+                });
+            }
+        },
+        weChatJsApiCall:function(jsApiParameters){
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                WeixinJSBridge.invoke('getBrandWCPayRequest',jsApiParameters,function(res){
+                    WeixinJSBridge.log(res.err_msg);
+                    alert(res.err_code+res.err_desc+res.err_msg);
+                    //这里通过获取支付结果来进行跳转
+                    if(res.err_msg == "get_brand_wcpay_request:ok"){
+                        alert('微信支付成功');
+                    }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
+                        alert('用户取消支付');
+                    }else if(res.err_msg == "get_brand_wcpay_request:fail"){
+                        alert('微信支付失败');
+                    }
+                });
+            }
+        }
+    };
+
+    $('#click-payment').on('click',function(){
+        paymentObj.requesPayData();
+    });
+</script>
+
 {/block}
