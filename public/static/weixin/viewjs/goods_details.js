@@ -32,10 +32,16 @@ $(".quxiao").click(function () {
     $('.marsk-container').hide(); //淡出消失
 });
 
-$('#click-place-order').on('click',function(){
-    // window.location.href =$(this).data('href');
+// $('#click-place-order').on('click',function(){
+//     // window.location.href =$(this).data('href');
+//     alert('asd');
+//     window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
+// });
+
+$(document).on('click','#click-place-order',function(){
     window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
 });
+
 $(window).scroll(function(){
     var scrollTop = parseInt($(this).scrollTop());
 
