@@ -88,9 +88,9 @@
                     <li class="iconfont icon-favor_light" id="cus-click-favorite"></li>
                 </ul>
             </div>
-            <div class="wl-goumai">
-                <button><i class="iconfont icon-gouwuche"></i>去购买</button>
-            </div>
+                <div class="wl-goumai">
+                    <button id="click-place-order"><i class="iconfont icon-gouwuche"></i>去购买</button>
+                </div>
         </div>
         <div style="clear: both"></div>
     </footer>
@@ -145,14 +145,14 @@
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
                 <div class=" wl-dianzan cus-comment-fabulous"   data-id="{{item.id}}" data-type="{{item.islike}}">
                     {{#  if(item.islike == 0){ }}
-                        <span class="iconfont icon-dianzan" ></span>
+                        <dl class="iconfont icon-like wl-font-size" ></dl>
                     {{#  } }}
 
                     {{#  if(item.islike == 1){ }}
-                            <span class="iconfont icon-dianzan1" ></span>
+                            <dl class="iconfont icon-likefill wl-font-size cus-red" ></dl>
                     {{#  } }}
 
-                    <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
+                    <dt class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</dt>
                 </div>
             </div>
             <div style="clear:both"></div>
@@ -364,10 +364,13 @@
                     success: function (res) {
                         if(res.code == 200){
                             if(dataObj.flag == 2){
+
                                 if(dataObj.type == 1){
-                                    o.data('type',1).find('.iconfont').removeClass('icon-dianzan').addClass('icon-dianzan1');
+                                    o.data('type',1).find('.iconfont').removeClass('icon-like').addClass('icon-likefill').addClass("cus-red");
+                               
                                 }else{
-                                    o.data('type',0).find('.iconfont').removeClass('icon-dianzan1').addClass('icon-dianzan');
+                                    o.data('type',0).find('.iconfont').removeClass('icon-likefill').addClass('icon-like').removeClass('cus-red');
+
                                 }
                             } else if(dataObj.flag == 3){
                                 if(dataObj.type == 1){
@@ -532,6 +535,9 @@
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
             $('.wl-zhezhao').hide(); //淡出消失
         }
+    });
+    $(document).on('click','#click-place-order',function(){
+        window.location.href = '/weixin/shop/goodsDetails'
     });
 </script>
 {/block}
