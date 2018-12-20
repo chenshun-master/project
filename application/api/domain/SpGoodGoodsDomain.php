@@ -108,6 +108,7 @@ class SpGoodGoodsDomain
 
         $field = [
             'good_goods.id',
+            'good_goods.user_id',
             'good_goods.goods_id',
             'good_goods.title',
             'good_goods.favorites',
