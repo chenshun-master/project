@@ -176,11 +176,12 @@ class ShopApi extends BaseController
     public function giveFabulous(){
         $object_id = $this->request->param('obj_id/d', 0);
         $flag = $this->request->param('flag/d', '');
-        $type = $this->request->param('type/d', 1);
+        $type = $this->request->param('type/d', 0);
 
         $result = false;
         $linkDomain = new \app\api\domain\UserLikeDomain();
         $flag = $linkDomain::getTypeName($flag);
+
         if(!$this->checkLogin()){
             return $this->returnData([], '用户未登录', 401);
         }else if(empty($object_id) || empty($flag)){

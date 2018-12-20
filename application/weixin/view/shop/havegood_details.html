@@ -83,7 +83,7 @@
         <div class="wl-footer">
             <div class="cus-pinglun">
                 <ul>
-                    <li class="iconfont icon-like "id="cus-click-fabulous"  data-type="1" ></li>
+                    <li class="iconfont icon-like "id="cus-click-fabulous"  data-type="0" ></li>
                     <li class="iconfont  icon-comment_light cus-ping"></li>
                     <li class="iconfont icon-favor_light" id="cus-click-favorite"></li>
                 </ul>
@@ -143,18 +143,17 @@
         <div class="wl-ping-xiang">
             <div>
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
-                {{#  if(item.islike == 0){ }}
-                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px"  data-id="{{item.id}}" data-click="{{item.islike}}">
-                    <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
-                    <span class="wl-dian-one" style="font-size: 13px">{{item.islike}}</span>
+                <div class=" wl-dianzan cus-comment-fabulous"   data-id="{{item.id}}" data-type="{{item.islike}}">
+                    {{#  if(item.islike == 0){ }}
+                        <span class="iconfont icon-dianzan" ></span>
+                    {{#  } }}
+
+                    {{#  if(item.islike == 1){ }}
+                            <span class="iconfont icon-dianzan1" ></span>
+                    {{#  } }}
+
+                    <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
                 </div>
-                {{#  } }}
-                {{#  if(item.islike == 1){ }}
-                <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.islike}}" >
-                    <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
-                    <span style="font-size: 13px">{{item.like_count}}</span>
-                </div>
-                {{#  } }}
             </div>
             <div style="clear:both"></div>
             <div class="wl-ping-neirong">{{item.content}}</div>
@@ -169,8 +168,7 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
         <div class="wl-remen-img">
-            <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"
-                 alt="图片丢失" ></div>
+            <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"alt="图片丢失" ></div>
         <div class="wl-remen-right">
             <dl>{{item.title}}</dl>
             <dt>{{item.title}}</dt>
@@ -350,16 +348,12 @@
             }
         },
         giveLikeLoading:false,
-        giveLike:function(o,type,flag){
+        giveLike:function(o,dataObj){
             if(myObj.giveLikeLoading == false){
                 $.ajax({
                     url: "/weixin/shopapi/giveFabulous",
                     type: 'post',
-                    data: {
-                        obj_id: $('#fr-good-goods-id').val(),
-                        flag:3 ,
-                        type: type
-                    },
+                    data: dataObj,
                     dataType: 'json',
                     beforeSend: function () {
                         myObj.giveLikeLoading = true;
@@ -369,20 +363,20 @@
                     },
                     success: function (res) {
                         if(res.code == 200){
-                            if(type == 1){
-                                    $('#cus-click-fabulous').removeClass('icon-like').addClass("icon-likefill").addClass('cus-red');
-                                    o.data('type',2);
+                            if(dataObj.flag == 2){
+                                if(dataObj.type == 1){
+                                    o.data('type',1).find('.iconfont').removeClass('icon-dianzan').addClass('icon-dianzan1');
                                 }else{
-                                    o.data('type',1);
-                                    $('#cus-click-fabulous').removeClass('cus-red').removeClass('icon-likefill').addClass("icon-like");
+                                    o.data('type',0).find('.iconfont').removeClass('icon-dianzan1').addClass('icon-dianzan');
                                 }
-                            //
-                            //     if (flag == 2){
-                            //         $(".wl-fabulous-icon").removeClass("icon-dianzan").addClass("icon-dianzan1").addClass("cus-blue");
-                            //     }
-                            // }
+                            } else if(dataObj.flag == 3){
+                                if(dataObj.type == 1){
+                                    o.data('type',1).removeClass('icon-like').addClass("icon-likefill").addClass('cus-red');
+                                }else{
+                                    o.data('type',0).removeClass('cus-red').removeClass('icon-likefill').addClass("icon-like");
+                                }
+                            }
                         }else if(res.code == 401){
-
                             redream.showTip('请登录后操作...');
                         }
                     }
@@ -508,12 +502,25 @@
 
     $('#cus-click-fabulous').on('click',function(){
         var type = $(this).data('type');
-        myObj.giveLike($(this),type);
+        if(type == 0){
+            type = 1;
+        }else{
+            type = 2;
+        }
+        myObj.giveLike($(this),{type:type,obj_id:$('#fr-good-goods-id').val(),flag:3});
     });
+
     $(document).on('click', '.cus-comment-fabulous', function () {
-        var flag = $(this).data('flag');
-        myObj.giveLike($(this),flag);
+        var type = $(this).data('type');
+        if(type == 0){
+            type = 1;
+        }else{
+            type = 2;
+        }
+
+        myObj.giveLike($(this),{type:type,obj_id:$(this).data('id'),flag:2});
     });
+
     $(document).on('click', '.cus-touser-main', function () {
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
     });

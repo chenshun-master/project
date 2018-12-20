@@ -50,7 +50,7 @@ class UserLikeDomain
                             throw new \think\Exception('异常消息');
                         }
                     }else  if($likeRes['table_name'] == 'comment'){
-                        $res2 = Db::name('comment')->where('id',$likeRes['object_id'])->inc('like',1)->update();
+                        $res2 = Db::name('comment')->where('id',$likeRes['object_id'])->inc('like_count',1)->update();
                         if(!$res2){
                             throw new \think\Exception('异常消息');
                         }
@@ -65,33 +65,33 @@ class UserLikeDomain
             }else{
                 return false;
             }
-        }
+        }else{
+            Db::startTrans();
+            try {
+                $res = Db::name('user_like')->insertGetId(['user_id' => $user_id, 'table_name' => $tablename, 'object_id' => $object_id,'created_time'=>date('Y-m-d H:i:s')]);
+                if($tablename == 'article'){
+                    Db::name('article')->where('id',$object_id)->inc('like')->update();
+                    if(!$res){
+                        throw new \think\Exception('异常消息');
+                    }
+                }else if($tablename == 'sp_good_goods'){
+                    Db::name('sp_good_goods')->where('id',$object_id)->inc('like')->update();
+                    if(!$res){
+                        throw new \think\Exception('异常消息');
+                    }
+                }else  if($tablename == 'comment'){
+                    $res2 = Db::name('comment')->where('id',$object_id)->inc('like_count',1)->update();
+                    if(!$res2){
+                        throw new \think\Exception('异常消息');
+                    }
+                }
 
-        Db::startTrans();
-        try {
-            $res = Db::name('user_like')->insertGetId(['user_id' => $user_id, 'table_name' => $tablename, 'object_id' => $object_id,'created_time'=>date('Y-m-d H:i:s')]);
-            if($tablename == 'article'){
-                Db::name('article')->where('id',$object_id)->inc('like')->update();
-                if(!$res){
-                    throw new \think\Exception('异常消息');
-                }
-            }else if($tablename == 'sp_good_goods'){
-                Db::name('sp_good_goods')->where('id',$object_id)->inc('like')->update();
-                if(!$res){
-                    throw new \think\Exception('异常消息');
-                }
-            }else  if($tablename == 'comment'){
-                $res2 = Db::name('comment')->where('id',$likeRes['object_id'])->inc('like_count',1)->update();
-                if(!$res2){
-                    throw new \think\Exception('异常消息');
-                }
+                Db::commit();
+                return true;
+            } catch (\Exception $e) {
+                Db::rollback();
+                return false;
             }
-
-            Db::commit();
-            return true;
-        } catch (\Exception $e) {
-            Db::rollback();
-            return false;
         }
     }
 
