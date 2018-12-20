@@ -93,3 +93,16 @@
     width: 100%;
     margin: 3px 0 3px 0;
 }
+.wl-no-shuju dl {
+    font-size: 60px!important;
+    color: #69686D!important;
+}
+.wl-no-shuju {
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #69686D;
+    margin: 0 auto;
+    margin-top: 80px;
+}
