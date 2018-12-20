@@ -53,6 +53,7 @@
         ,request: {
             pageName: 'page' //页码的参数名称，默认：page
             ,limitName: 'page_size' //每页数据量的参数名，默认：limit
+            ,seller_id:'seller_id'
         }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
@@ -67,7 +68,6 @@
             {field: 'goods_no', title: '商品的编号',sort:true},
             {field: 'real_name', title: '坐诊医生'},
             {field: 'hospital_name', title: '坐诊医院'},
-            {field: 'seller_id', title: '卖家ID'},
             {field: 'name', title: '项目名称'},
             {field: 'img', title: '商品图片',width:100,align:"center",templet:function (res) {
                     return '<img src="'+res.img+'" width="30" >';
