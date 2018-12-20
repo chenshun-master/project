@@ -475,8 +475,8 @@ class SpGoodsDomain
         $obj = Db::name('sp_goods')->alias('sp');
         $obj->join('wl_doctor doctor','doctor.id = sp.doctor_id');
         $obj->join('wl_hospital hospital', 'hospital.id = sp.hospital_id');
-        $obj->join('wl_user user','user.id = hospital.user_id');
-        $obj->join('wl_auth auth','user.id = auth.user_id');
+//        $obj->join('wl_user user','user.id = hospital.user_id');
+//        $obj->join('wl_auth auth','user.id = auth.user_id');
         $obj->where('sp.seller_id',$seller_id);
         $obj->where("sp.status",'like',"%".trim($status)."%");
         $field = [
@@ -486,7 +486,7 @@ class SpGoodsDomain
           'sp.market_price',
           'sp.sell_price',
           'sp.prepay_price',
-          'topay_price',
+          'sp.topay_price',
           'sp.up_time',
           'sp.down_time',
           'sp.store_nums',
@@ -495,7 +495,7 @@ class SpGoodsDomain
           'sp.sale_num',
           'sp.case_num',
           'doctor.real_name',
-          'auth.enterprise_name',
+          'hospital.hospital_name',
           'sp.seller_id',
           'sp.create_time',
         ];
