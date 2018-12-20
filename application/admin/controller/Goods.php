@@ -39,7 +39,7 @@ class Goods extends BaseController
 
     public function getGoodsStatus(){
         $id = $this->request->post('id','0');
-        $status = $this->request->post('status','');
+        $status = $this->request->post('status','3');
         $data = $this->SpGoodsDomain->examineGoods($id,intval($status));
         if(!$data){
             return $this->returnData([],'修改失败','301');
