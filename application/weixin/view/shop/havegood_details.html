@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="/static/weixin/shop/css/havegood_details.css">
 <link rel="stylesheet" href="/static/css/swiper.min.css">
 <style>
-
+    .cus-blue {
+        color: #7DB0E8 !important;
+    }
 </style>
 {/block}
 
@@ -52,7 +54,7 @@
                     </div>
                 </div>
                 <div class="wl-jiahy href">
-                    <button onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
+                    <button onclick="myObj.showAddFriend()" id="cus-add-friend">加好友</button>
                 </div>
                 <div style="clear:both"></div>
             </div>
@@ -114,7 +116,16 @@
         </div>
     </div>
 </div>
-
+<div class="wl-zhezhao">
+   <div class="wl-zhe1">
+    <p class="wl-renzh">申请备注</p>
+    <div class="wl-neie1">
+        <p>你需要发送验证申请，等待对方通过</p>
+        <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
+        <button class="wl-btn" onclick="myObj.submitFriendApply()">发送</button>
+    </div>
+</div>
+</div>
 <input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
 <input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
 {/block}
@@ -126,15 +137,24 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
         <div style="float: left">
-            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'" data-user_id="{{item.user_id}}"  class="cus-touser-main">
         </div>
         <div class="wl-ping-xiang">
             <div>
-                <div class="wl-name cus-touser-main">{{item.nickname}}</div>
-                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px">
+                <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
+                {{#  if(item.islike == 0){ }}
+                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px"  data-id="{{item.id}}" data-click="{{item.islike}}">
                     <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
                     <span class="wl-dian-one" style="font-size: 13px">{{item.islike}}</span>
                 </div>
+                {{#  } }}
+
+                {{#  if(item.islike == 1){ }}
+                <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.islike}}" >
+                    <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
+                    <span style="font-size: 13px">{{item.like_count}}</span>
+                </div>
+                {{#  } }}
             </div>
             <div style="clear:both"></div>
             <div class="wl-ping-neirong">{{item.content}}</div>
@@ -150,7 +170,7 @@
     <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
         <div class="wl-remen-img">
             <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png"
-                 alt="图片丢失"></div>
+                 alt="图片丢失" ></div>
         <div class="wl-remen-right">
             <dl>{{item.title}}</dl>
             <dt>{{item.title}}</dt>
@@ -269,7 +289,8 @@
                                     $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
                                 }
                             }
-                            $("#cus-pinglun-num").val(res.data.total);
+                            $("#cus-pinglun-num").html(res.data.total);
+                            console.log(res.data.total);
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                                 $('#container-list').append(html);
                             });
@@ -319,9 +340,7 @@
                                  myObj.recommended.listData.page_total = res.data.page_total;
                                  $('#recommended-List').html('');
                                  if (res.data.page_total == 0){
-                                     $(".wl-tuijianshangpin").hide();
-                                 }else{
-                                     $(".wl-tuijianshangpin").show();
+                                     $('#recommended-List').html(' <div class="wl-no-shuju" style="margin-top: 40px"> <dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl> <dt style="margin: 0">暂无商品</dt></div>');
                                  }
                              }
                              layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
@@ -359,6 +378,7 @@
                                 o.data('type',1);
                                 $('#cus-click-fabulous').removeClass('cus-red').addClass("icon-like");
                             }
+
                         }else if(res.code == 401){
 
                             redream.showTip('请登录后操作...');
@@ -371,11 +391,10 @@
         publishCommentConf:{
             loading:false,
         },
-        publishComment:function(){
+        publishComment:function(type,flag){
             var content = $('.wl-text').val();
             $('.wl-text').focus();
             $('.wl-text').val('');
-
             var pid = $('#cus-comment-pid').val();
 
             $.ajax({
@@ -392,12 +411,73 @@
                 success: function (res) {
                     myObj.publishCommentConf.loading = false;
                     if (res.code == 200) {
+                        $('.wl-zhez2').hide();
+                        myObj.recommended.ini= false;
+                        myObj.recommended.page= 0;
+                        myObj.recommended.page_total= 0;
+                        myObj.goods.loadList();
+                        redream.showTip('发布成功');
+                        $('.wl-text').val('');
 
+                        if (flag == 2) {
+                            var num = parseInt(o.find('.wl-dian-one').text());
+                            if (type == 1) {
+                                o.data('click', 1);
+                                o.find('.wl-dian-one').text(num + 1);
+                                o.find('.wl-fabulous-icon').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
+                            } else {
+                                o.data('click', 0);
+                                o.find('.wl-dian-one').text(num - 1);
+                            }
+                        }
                     }
                 }
             });
         },
-
+        isAdd:false,
+        addFriendLoading:false,
+        showAddFriend:function(){
+            if(!this.isAdd){
+                $(".wl-zhezhao").toggle();
+            }else{
+                redream.showTip('不能重复申请...');
+            }
+        },
+        //好友申请
+        submitFriendApply:function(){
+            var remarks = $.trim($('#fr-friend-remarks').val());
+            if(redream.isEmptyStr(remarks)){
+                redream.showTip('申请备注不能为空...');
+                return false;
+            }else if(!this.addFriendLoading){
+                $.ajax({
+                    url: "/weixin/user/addFriend",
+                    type: 'post',
+                    data: {friend_id: objClass.u_id,remarks:remarks},
+                    dataType: 'json',
+                    beforeSend:function(){
+                        myObj.addFriendLoading = true;
+                    },
+                    complete:function(){
+                        myObj.addFriendLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            objClass.isAdd = true;
+                            redream.showTip('申请提交成功...');
+                            $('#cus-add-friend').text('已申请');
+                            $(".wl-zhezhao").toggle();
+                        }else if (res.code == 401){
+                            redream.showTip('请先进行登录');
+                        }else if (res.code == 403){
+                            redream.showTip('您还没有授权');
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        },
     };
     myObj.goods.loadList();
     myObj.recommended.loadList();
@@ -405,6 +485,16 @@
     $('#cus-click-fabulous').on('click',function(){
         var type = $(this).data('type');
         myObj.giveLike($(this),type);
+    });
+    $(document).on('click', '.cus-touser-main', function () {
+        // window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
+        console.log("dasdas");
+    });
+    $(".wl-zhezhao").click(function (event) {
+        var _con = $('.wl-zhe1'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhezhao').hide(); //淡出消失
+        }
     });
 </script>
 {/block}

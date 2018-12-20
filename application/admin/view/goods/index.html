@@ -3,7 +3,7 @@
 
 <div id="breadcrumb">
     <ul class="breadcrumb">
-        <li><i class="home-icon fa fa-home"></i> <a href="#">主页</a></li>
+        <li><i class="home-icon fa fa-home"></i> <a href="/admin/index/index">主页</a></li>
         <li><a href="#">商品模块</a></li>
         <li class="active">商品列表</li>
     </ul>
@@ -79,15 +79,16 @@
             {field: 'up_time', title: '上架时间',sort:true},
             {field: 'down_time', title: '下架时间',sort:true},
             {field: 'store_nums', title: '库存/名额',sort:true},
-            {field: 'status', title: '商品状态',sort:true,templet:function (res) {
+            {field: 'status', title: '商品状态',templet:"#demoTable"},
+            {field: 'status', title: '商品状态',sort:true,width:100,templet:function (res) {
                     if(res.status == 0){
                         return '<span class="label label-success" lay-event="normal">正常</span>';
                     }else if(res.status == 1){
-                        return '<span class="label label-danger">已删除</span>';
+                        return '<span class="label label-danger" lay-event="del">已删除</span>';
                     }else if(res.status ==2){
-                        return '<span class="label label-warning">下架</span>';
+                        return '<span class="label label-warning" lay-event="lower">下架</span>';
                     }else if(res.status == 3){
-                        return '<span class="label label-primary">申请上架</span>';
+                        return '<span class="label label-primary" lay-event="upper">申请上架</span>';
                     }
             }},
             {field: 'sale_num', title: '项目预约数',sort:true},
@@ -96,6 +97,20 @@
         ]]
     });
 
+    layui.table.on('tool(test)',function (obj) {
+        var data = obj.data;
+        if(data.status == 0 || data.status == 1 || data.status==2 || data.status || 3){
+            $.ajax({
+                url:"/admin/goods/getGoodsStatus",
+                data:{id:data.id,data:data.status},
+                type:"POST",
+                dataType:"json",
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        }
+    });
     var $ = layui.$, active = {
         getInfo: function(){
             var status = $('#status').val();
