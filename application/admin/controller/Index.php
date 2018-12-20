@@ -11,8 +11,5 @@ class Index extends BaseController
         return $this->fetch('/layout/index');
 
     }
-
-    public function getUserInfo(){
-        $info = Db::name('admin')->where('username',$username)->find();
-    }
+    
 }
