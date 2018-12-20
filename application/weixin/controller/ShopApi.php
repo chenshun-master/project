@@ -228,7 +228,7 @@ class ShopApi extends BaseController
 
             list($ok,$msg,$data) = MyPay::wechat()->mp(['body'=>$data['order_info']['goods_name'],'out_trade_no'=>$data['order_info']['order_no'],'total_fee'=>$data['order_info']['real_amount'],'notify_url'=>url('/api/pay/notify', '', '', true),'openid'=>$wxAuthorize['openid']]);
             if($ok === true){
-                return $this->returnData(['jsApiParameters'=>$data], '', 200);
+                return $this->returnData(['jsApiParameters'=>json_decode($data),true], '', 200);
             }
 
             return $this->returnData(['jsApiParameters'=>$data], '操作失败', 305);

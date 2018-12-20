@@ -23,10 +23,13 @@ class WechatPay
     {
         try{
             $mustKeys = ['body','out_trade_no','total_fee','notify_url','openid'];
+
             $intersection = array_intersect($mustKeys,array_keys($params));
             if($mustKeys != $intersection){
                 throw new \think\Exception('订单缺少参数');
             }
+
+            \Log::error('支付调试1   '.json_encode($params));
 
             $input = new WxPayUnifiedOrder();
             $input->SetBody($params['body']);
@@ -46,12 +49,15 @@ class WechatPay
             $config = new WxPayConfig();
             $order = WxPayApi::unifiedOrder($config, $input);
             $jsApiParameters = [];
+
+
+            \Log::error('支付调试2   '.json_encode($order));
             if($order['return_code'] == 'SUCCESS'){
                 $tools = new JsApiPay();
                 $jsApiParameters = $tools->GetJsApiParameters($order);
             }
 
-
+            \Log::error('支付调试3   '.json_encode($jsApiParameters));
             if($order['return_code'] == 'FAIL'){
                 return [false,$order['return_code'],$jsApiParameters];
             }

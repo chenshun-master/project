@@ -98,7 +98,7 @@
                     },
                     success: function (res) {
                         if(res.code == 200){
-                            window.location.href = '/weixin/shop/methodPayment?oid='+res.data.order_id
+                            window.location.href = '/weixin/shop/methodpayment/?oid='+res.data.order_id
                         }else{
                             redream.showTip('下单失败');
                         }

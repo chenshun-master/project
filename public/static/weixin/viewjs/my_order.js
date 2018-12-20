@@ -330,5 +330,5 @@ var myObj = {
 $(document).on('click','.click-to-orderpaydetail',function(){
     window.location.href = '/weixin/shop/orderDetails?oid='+$(this).data('oid');
 }).on('click','.click-to-paydetail',function(){
-    window.location.href = '/weixin/shop/methodPayment?oid='+$(this).data('oid');
+    window.location.href = '/weixin/shop/methodpayment/?oid='+$(this).data('oid');
 });

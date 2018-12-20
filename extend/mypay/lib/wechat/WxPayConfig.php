@@ -45,7 +45,7 @@ class WxPayConfig
      */
     public function GetAppId()
     {
-        return $this->config['appid'];
+        return $this->config['app_id'];
     }
 
     public function GetMerchantId()

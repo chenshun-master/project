@@ -30,7 +30,9 @@ class RhirdPartyUserDomain
                 //'app_id'            =>$user_info['app_id'],
                 'openid'            =>$user_info['openid'],
                 'union_id'          =>isset($user_info['union_id'])?$user_info['union_id']:'',
-                'created_time'      =>date('Y-m-d H:i:s')
+                'created_time'      =>date('Y-m-d H:i:s'),
+                'last_login_time'   =>date('Y-m-d H:i:s'),
+                'last_login_ip'     =>'127.0.0.1',
             ]);
 
             if(!$id){return false;}

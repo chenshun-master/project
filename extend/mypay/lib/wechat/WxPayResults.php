@@ -48,6 +48,7 @@ class WxPayResults extends WxPayDataBase
             throw new \think\Exception("签名错误！");
         }
 
+        return true;
         $sign = $this->MakeSign($config, false);
         if($this->GetSign() == $sign){
             //签名正确
