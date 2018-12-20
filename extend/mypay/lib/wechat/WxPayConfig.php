@@ -18,18 +18,20 @@ class WxPayConfig
     public function __construct()
     {
         $this->config = [
-            'appid' => 'wxb3fxxxxxxxxxxx',                       // APP APPID
-            'app_id' => 'wxb3fxxxxxxxxxxx',                      // 公众号 APPID
-            'miniapp_id' => 'wxb3fxxxxxxxxxxx',                  // 小程序 APPID
-            'mch_id' => '145776xxxx',                            // 商户ID
-            'key' => 'mF2suE9sU6Mk1CxxxxIxxxxx',                 // 商户支付密钥
-            'app_secret'=>'',                                    //APPSECRET：公众帐号secert
+            'appid' => '',                                                                          // APP APPID
+            'miniapp_id' => '',                                                                     // 小程序 APPID
+
+            'app_id' => 'wxf8c7fa2d80e2651c',                                                       // 公众号 APPID
+            'app_secret'=>'bea2a9eb7a54a405d361c9f81dab51e1',                                       //APPSECRET：公众帐号secert
+
+            'mch_id' => '1512180411',                                                               // 商户ID
+            'key' => 'a86f40a75c286d3c00bc6a943bcff576',                                            // 商户支付密钥
+
             'notify_url' => '',
-            'cert_client' => './cert/apiclient_cert.pem',        // optional, 退款，红包等情况时需要用到
-            'cert_key' => './cert/apiclient_key.pem',            // optional, 退款，红包等情况时需要用到
+            'cert_client' => './cert/apiclient_cert.pem',                                           // optional, 退款，红包等情况时需要用到
+            'cert_key' => './cert/apiclient_key.pem',                                               // optional, 退款，红包等情况时需要用到
         ];
     }
-
 
     //=======【基本信息设置】=====================================
     /**

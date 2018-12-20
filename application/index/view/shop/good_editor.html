@@ -10,73 +10,86 @@
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/web/css/graphic.css">
     <link rel="stylesheet" href="/static/css/function.css">
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
 </head>
-<body style="background: #F8F8F8"  >
-<div class="wl-con" >
-    <div class="wl-top" >
+<body style="background: #F8F8F8">
+<div class="wl-con">
+    <div class="wl-top">
         <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
-            <img src="/static/web/image/logo1.png" alt="" >
+            <img src="/static/web/image/logo1.png" alt="">
         </div>
     </div>
-    <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
+    <div class="wl-zhanghao-box"
+         style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
             <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian">
-                <img src="" class="wl-toux"  onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">吴永辉</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
+                <img src="" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
+                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">吴永辉</span><i
+                    class="iconfont icon-triangledownfill" style="color: white;"></i></p>
             <div class="wl-cang" style="display: none">
-                <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
-                <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
+                <a href="/index/user/main"><p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi"
+                                                                                 style="font-size: 22px;margin-right: 10px"></i>账号设置
+                </p></a>
+                <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi"
+                                                                                     style="font-size: 18px;margin-right: 10px"></i>退出登录</a>
+                </p>
             </div>
         </div>
     </div>
     <div class="wl-tabc" style="width: 100%">
         <div class="tab-box" style="position: relative">
             <div class="wl-nide">
-                <ul  class="wl-top-liebiao">
+                <ul class="wl-top-liebiao">
                     <a href="/index/article/article">
-                        <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i></li>
+                        <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i
+                                class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i>
+                        </li>
                     </a>
                     <div class="wl-ding">
                         <!-- <li >发表文章</li> </a>-->
                         <!--<a href="/index/article/graphic"> <li >我的文章 </li></a>-->
                     </div>
                 </ul>
-                <ul  class="wl-top-liebiao" style="margin-top: 10px">
+                <ul class="wl-top-liebiao" style="margin-top: 10px">
 
-                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
+                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i
+                            class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i>
+                    </li>
                     <div class="wl-ding">
-                        <a href="/index/article/articleLists"><li class="action">推荐文章 </li></a>
-                        <a href="/index/article/recommend"><li >我的推荐</li></a>
+                        <a href="/index/article/articleLists">
+                            <li class="action">推荐文章</li>
+                        </a>
+                        <a href="/index/article/recommend">
+                            <li>我的推荐</li>
+                        </a>
                     </div>
                 </ul>
                 <a href="/index/user/certification">
-                    <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
+                    <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i
+                            class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
             </div>
             <div class="wl-fabu1">
                 <div class="wl-top-title">
                     <div class="wl-top-img">
-                        <img src="" alt="">
+                        <img src="{$goods_info['img']}" alt="">
                     </div>
                     <div class="wl-top-right">
-                        <dt class="wl-shang-title">项目介绍项目介绍项目介项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍绍项目介绍</dt>
-                        <dt class="wl-yiyuan" style="margin-top: 10px">上海薇琳医疗美容医院</dt>
-                        <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>4784</dd>
+                        <dt class="wl-shang-title">{$goods_info['name']}</dt>
+                        <dt class="wl-yiyuan" style="margin-top: 10px">{$goods_info['hospital_name']}</dt>
+                        <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>{$goods_info['sell_price']}</dd>
                     </div>
                 </div>
                 <div>
+                    <input type="hidden" id="fr-goods_id" value="{$goods_info['id']}">
                     <div style="height: 60px;line-height: 60px;padding-left: 10px;margin-top: 20px">
                         <div style="float: left;width: 7%;margin-left: 52px;"> 标 题</div>
-                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入文章标题" style="width: 93%;height: 36px;text-indent: 10px"></div>
+                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入文章标题" style="width: 93%;height: 36px;text-indent: 10px">
+                        </div>
                     </div>
                     <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;">
                         <div style="float: left;width: 7%; margin-left: 52px;"> 摘 要</div>
-                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-zaiyao" placeholder="请输入文章摘要"  style="width: 93%;height: 36px;text-indent: 10px"></div>
-                    </div>
-                    <div style="clear: both;min-height: 60px;line-height: 60px;padding-left: 10px;">
-                        <div style="float: left;width: 7%;margin-left: 52px;"> 标 签</div>
-                        <div style="float: left;width: 87%;">
-                            <input type="text" value="" id="fr-tag" placeholder="文章标签 例如(xxx,xxx,xxx) 请用英文逗号',' 分割,标签有利于文章之间的关联"   style="width: 93%;height: 36px;text-indent: 10px">
+                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-zaiyao"  placeholder="请输入文章摘要"  style="width: 93%;height: 36px;text-indent: 10px">
                         </div>
                     </div>
 
@@ -91,11 +104,9 @@
                             <button onclick="objClass.submit()" class="wl-tijiao" style="cursor: pointer">发表</button>
                         </div>
                     </div>
-
                 </div>
                 <footer class="wl-foot" style="bottom: -110px">{:config('conf.copyright')}</footer>
             </div>
-
         </div>
     </div>
 </div>
@@ -104,17 +115,19 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
 <script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
 <script>
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
     });
+
     KindEditor.ready(function (K) {
         // https://blog.csdn.net/qxl2012/article/details/78052128
         K.allowImageRemote = false;
         window.editor = K.create('#editor_id', {
             cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
-            resizeMode : 1,
-            items : [
+            resizeMode: 1,
+            items: [
                 'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
                 'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
                 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
@@ -125,21 +138,62 @@
             ],
             uploadJson: '/index/upload/editUploadImgFile',
             allowFileManager: false,
-            allowImageRemote:true,
-            syncType:'auto',
+            allowImageRemote: true,
+            syncType: 'auto',
             afterCreate: function () {
                 var self = this;
                 self.sync();
             }
         });
-
         window.editor.sync();
     });
+
     $(".wl-yingj").click(function () {
         $(".wl-ding").toggle();
         $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
         $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
-    })
+    });
+
+
+    var objClass ={
+        loading:false,
+        submit:function(){
+            window.editor.sync();
+            var data = {
+                gid:$('#fr-goods_id').val(),
+                title:$.trim($('#fr-title').val()),
+                content:$.trim($('#editor_id').val())
+            };
+
+            if(data.title == ''){
+                redream.msg('标题不能为空');
+            }else if(data.content == ''){
+                redream.msg('正文不能为空');
+            }else if(objClass.loading == false){
+                var index = layer.msg('提交中，请耐心等待...', {icon: 16 ,shade: 0.01,time:0});
+                $.ajax({
+                    url: "/index/shop/createGoodGoods",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.loading = true;
+                    },
+                    complete: function () {
+                        objClass.loading = false;
+                        layer.close(index);
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            layer.msg('创建成功...',{icon:1});
+                        }else{
+                            layer.msg('创建失败...',{icon:5});
+                        }
+                    }
+                });
+            }
+        }
+    };
 </script>
 </body>
 </html>

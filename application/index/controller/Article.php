@@ -1,4 +1,5 @@
 <?php
+
 namespace app\index\controller;
 
 use think\App;
@@ -125,14 +126,14 @@ class Article extends CController
             return redirect('/login');
         }
 
-        $page       = $this->request->param('page/d',1);
-        $data = $this->_articleDomain->getPcUserPublishArticle($this->getUserId(),$page,15);
+        $page = $this->request->param('page/d', 1);
+        $data = $this->_articleDomain->getPcUserPublishArticle($this->getUserId(), $page, 15);
 
-        if(count($data['rows']) > 0){
-            foreach ($data['rows'] as  $k=>$v){
-                if($v['thumbnail']){
-                    $data['rows'][$k]['thumbnail'] = json_decode($v['thumbnail'],true);
-                }else{
+        if (count($data['rows']) > 0) {
+            foreach ($data['rows'] as $k => $v) {
+                if ($v['thumbnail']) {
+                    $data['rows'][$k]['thumbnail'] = json_decode($v['thumbnail'], true);
+                } else {
                     $data['rows'][$k]['thumbnail'] = [];
                 }
             }
@@ -141,33 +142,40 @@ class Article extends CController
         $this->assign($data);
 
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
-        $this->assign('user_info',$user_info);
+        $this->assign('user_info', $user_info);
 
         return $this->fetch('article/graphic');
     }
 
     /**
-      *文章列表页面
-      */
-          public function articleLists(){
+     *  商品列表页面
+     */
+    public function articleLists()
+    {
+        if (!$this->checkLogin()) {
+            return redirect('/login');
+        }
 
-                  return $this->fetch('article/article_lists');
+        return $this->fetch('article/article_lists');
+    }
 
-          }
-              /**
-                *文章列表页面
-                */
-                    public function articleEditor(){
+    /**
+     *文章列表页面
+     */
+    public function articleEditor()
+    {
 
-                            return $this->fetch('article/article_editor');
+        return $this->fetch('article/article_editor');
 
-                    }
-     /**
-      *我的推荐页面
-      */
-         public function recommend(){
+    }
 
-                  return $this->fetch('article/recommend');
+    /**
+     *我的推荐页面
+     */
+    public function recommend()
+    {
 
-         }
+        return $this->fetch('article/recommend');
+
+    }
 }

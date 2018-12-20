@@ -51,6 +51,11 @@ class WechatPay
                 $jsApiParameters = $tools->GetJsApiParameters($order);
             }
 
+
+            if($order['return_code'] == 'FAIL'){
+                return [false,$order['return_code'],$jsApiParameters];
+            }
+
             return [true,$order['return_code'],$jsApiParameters];
         } catch(\Exception $e) {
             \Log::error(json_encode($e));

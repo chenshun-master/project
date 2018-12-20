@@ -16,7 +16,7 @@ class SpGoodsModel extends Model
         $imgs = self::alias('goods')
             ->leftJoin('wl_sp_goods_photo_relation pr','pr.goods_id = goods.id')
             ->leftJoin('wl_sp_goods_photo goods_photo','pr.photo_id = goods_photo.id')
-            ->where('goods.id',$goods_id)->cache(true,60)
+            ->where('goods.id',$goods_id)
             ->column('goods_photo.img');
         return $imgs;
     }

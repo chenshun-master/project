@@ -44,62 +44,36 @@
 
                     <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
                     <div class="wl-ding">
-                        <a href="/index/article/articleLists"><li >推荐文章 </li></a>
-                        <a href="/index/article/recommend"><li class="action">我的推荐</li></a>
+                        <a href="/index/shop/index"><li >商品列表</li></a>
+                        <a href="/index/shop/myshoplist"><li class="action">分销列表</li></a>
                     </div>
                 </ul>
                 <a href="/index/user/certification">
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
             </div>
-            <!---->
-            <!--<div class="demo" style="cursor: pointer;top: 0px;"><i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
-            <!--</a>-->
-            <!--<div class="wl-fabia">-->
-            <!--<a href="/index/article/article"><div class="wl-fabiaoio" style="cursor: pointer">发表文章</div></a>-->
-            <!--<div class="wl-wenzhang1">我的文章</div>-->
-            <!--<div class="wl-tuijian-wen">推荐文章</div>-->
-            <!--<div class="wl-me-tuijian">我的推荐</div>-->
-            <!--</div>-->
 
-            <!--<a href="/index/user/certification" class="renzheng">-->
-            <!--<div class="wl-renzhengs" style="top:170px"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
-            <!--</a>-->
             <div class="wl-fabu">
-                <p>我的推荐</p>
+                <p>我的分销商品</p>
                 <div class="wl-xianshi-neirong">
                     <!--<div class="wl-all-title">已显示全部40条内容</div>-->
+                    {foreach($list['rows'] as $val)}
                         <div class="wl-all-neirong">
                             <div class="wl-all-left">
-                                <img src="" alt="">
+                                <img src="{$val['img']}" alt="">
                             </div>
                             <div class="wl-all-center">
-                                <div class="wl-tuijian-title">一发布的撒很多科技股份散客价格单身科技噶会计师干会计师那几款看你 </div>
+                                <div class="wl-tuijian-title">{$val['title']} </div>
                                 <div class="wl-yiyuan-tuijian">上海薇琳医疗美容医院</div>
-                                <div class="wl-jiagewa"><sup style="font-size: 10px">￥</sup>4784</div>
-                                <div><span class="wl-tuijian-fabu">已发表</span><span class="wl-tuijian-time">2018-12-13 14:06</span></div>
+                                <div class="wl-jiagewa"><sup style="font-size: 10px">￥</sup>{$val['sell_price']}</div>
+                                <div><span class="wl-tuijian-fabu">已发表</span><span class="wl-tuijian-time">{$val['created_time']}</span></div>
                             </div>
                             <div class="wl-all-right" style="cursor: pointer">
                                 <span class="iconfont icon-xiugai"></span>
                                 <span style="margin-left: 2px">修改</span>
                             </div>
                         </div>
-                    <div class="wl-all-neirong">
-                        <div class="wl-all-left">
-                            <img src="" alt="">
-                        </div>
-                        <div class="wl-all-center">
-                            <div class="wl-tuijian-title">一发布的撒很多科技股份散客价格单身科技噶会计师干会计师那几款看你 </div>
-                            <div class="wl-yiyuan-tuijian">上海薇琳医疗美容医院</div>
-                            <div class="wl-jiagewa"><sup style="font-size: 10px">￥</sup>4784</div>
-                            <div><span class="wl-tuijian-fabu">已发表</span><span class="wl-tuijian-time">2018-12-13 14:06</span></div>
-                        </div>
-                        <div class="wl-all-right" style="cursor: pointer">
-                            <span class="iconfont icon-xiugai"></span>
-                            <span style="margin-left: 2px">修改</span>
-                        </div>
-                    </div>
-
+                    {/foreach}
                     </div>
                     <div id="wl-fenye" ></div>
                 </div>
@@ -116,8 +90,15 @@
     layui.use(['laypage', 'layer'], function(){
         var laypage = layui.laypage,layer = layui.layer;
         laypage.render({
-            elem: 'wl-fenye',
-            count: 55 //数据总数
+            elem: 'wl-fenye'
+            ,limit:15
+            ,count:{$list['total']}
+            ,curr:{$list['page']}
+            ,jump: function(obj, first){
+                if(!first){
+                    window.location.href = '/index/shop/myshoplist/page/'+obj.curr;
+                }
+            }
         });
     });
 

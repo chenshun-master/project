@@ -13,11 +13,11 @@ class SpGoodGoodsDomain
      * @param $article_text        分销商品推荐文章内容
      * @return int|string
      */
-    public function create($user_id,$goods_id,$article_text){
+    public function create($data){
         return Db::name('sp_good_goods')->insertGetId([
-            'user_id'       =>$user_id,
-            'goods_id'      =>$goods_id,
-            'article_text'  =>$article_text,
+            'user_id'       =>$data['user_id'],
+            'goods_id'      =>$data['goods_id'],
+            'article_text'  =>$data['article_text'],
             'favorites'     =>0,
             'like'          =>0,
             'comment'       =>0,
@@ -116,7 +116,7 @@ class SpGoodGoodsDomain
             'good_goods.article_text'
         ];
 
-        $data['info'] = Db::name('sp_good_goods')->alias('good_goods')->field($field)->find();
+        $data['info'] = Db::name('sp_good_goods')->alias('good_goods')->where('id',$good_goods_id)->field($field)->find();
         if($data['info']){
             $data['imgs'] = SpGoodsModel::getImgs($good_goods_id);
         }
@@ -182,6 +182,39 @@ class SpGoodGoodsDomain
 
         $total = $obj->count();
         $rows = $obj->field('good_goods.*')->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+
+    /**
+     * 获取分销商品列表数据
+     */
+    public function getUserGoodGoodsList($user_id,$page=1,$page_size=15){
+        $obj = Db::name('sp_good_goods')->alias('good_goods');
+        $obj->leftJoin('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status = 0');
+
+        $obj->where('good_goods.user_id',$user_id);
+        $field = [
+            'good_goods.id',
+            'goods.img',
+            'good_goods.title',
+            'good_goods.favorites',
+            'good_goods.like',
+            'good_goods.comment',
+            'goods.market_price',
+            'goods.sell_price',
+            'good_goods.created_time'
+        ];
+
+        $obj->order('good_goods.created_time desc');
+        $total = $obj->count(1);
+
+        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,

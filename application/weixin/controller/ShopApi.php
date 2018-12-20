@@ -5,7 +5,7 @@ namespace app\weixin\controller;
 use app\api\domain\SpGoodsDomain;
 use think\App;
 use app\api\domain\SpGoodGoodsDomain;
-
+use mypay\MyPay;
 class ShopApi extends BaseController
 {
     private $_userDomain;
@@ -13,6 +13,7 @@ class ShopApi extends BaseController
     private $_shOrderDomain;
     private $_spGoodGoodsDomain;
     private $_commentDomain;
+    private $_orderDomain;
 
     public function __construct(App $app = null)
     {
@@ -24,6 +25,7 @@ class ShopApi extends BaseController
         $this->_shOrderDomain = new \app\api\domain\ShOrderDomain();
 
         $this->_commentDomain = new \app\api\domain\CommentDomain();
+        $this->_orderDomain = new \app\api\domain\ShOrderDomain();
     }
 
     /**
@@ -193,6 +195,44 @@ class ShopApi extends BaseController
             return $this->returnData([], '操作成功', 200);
         }else{
             return $this->returnData([], '操作失败', 305);
+        }
+    }
+
+    /**
+     * 获取支付数据
+     */
+    public function getPaymentData(){
+        if (!$this->checkLogin()) {
+            return $this->returnData([], '用户未登录', 401);
+        }
+
+        $order_id = $this->request->param('oid/d', 0);
+        $type     = $this->request->param('type', '');
+
+        if(empty($order_id) || empty($type)){
+            return $this->returnData([], '支付请求参数错误', 301);
+        }
+
+        $data     = $this->_orderDomain->getOrderDetail($this->getUserId(), $order_id);
+        if (!$data['order_info']) {
+            return $this->returnData([], '订单不存在', 302);
+        }
+
+        if($type == 'weixin'){
+            $wxAuthorize = \Session::get('wxAuthorize');
+
+            if(!isset($wxAuthorize['openid'])){
+                return $this->returnData([], '调取微信用户信息失败', 303);
+            }
+
+            list($ok,$msg,$data) = MyPay::wechat()->mp(['body'=>$data['order_info']['goods_name'],'out_trade_no'=>$data['order_info']['order_no'],'total_fee'=>$data['order_info']['real_amount'],'notify_url'=>url('/api/pay/notify', '', '', true),'openid'=>$wxAuthorize['openid']]);
+            if($ok === true){
+                return $this->returnData(['jsApiParameters'=>$data], '', 200);
+            }
+
+            return $this->returnData(['jsApiParameters'=>$data], '操作失败', 305);
+        }else{
+            return $this->returnData([], '支付方式不存在', 306);
         }
     }
 }

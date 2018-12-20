@@ -5,6 +5,7 @@ namespace app\weixin\controller;
 use think\App;
 use app\api\domain\SpGoodsDomain;
 use app\api\domain\SpGoodGoodsDomain;
+use mypay\MyPay;
 
 class Shop extends BaseController
 {
