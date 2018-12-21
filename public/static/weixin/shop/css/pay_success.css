@@ -86,9 +86,9 @@
     height: 40px;
     line-height: 40px;
     text-align: center;
-    color: white;
-    background-color: #7DB0E8;
+    color: #7DB0E8;
+    /* background-color: #7DB0E8; */
     margin: 0 auto;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
 }

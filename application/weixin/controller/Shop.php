@@ -171,7 +171,13 @@ class Shop extends BaseController
         $this->assign($data);
         return $this->fetch('shop/havegood_details');
     }
-
+    /**
+     *用户订单详情页
+     */
+    public function paymentOrder()
+    {
+        return $this->fetch('shop/payment_order');
+    }
 
     /**
      *用户相册详情页
