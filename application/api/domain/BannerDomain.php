@@ -1,9 +1,15 @@
 <?php
 namespace app\api\domain;
 use app\api\model\BannerModel;
+use think\Db;
 
 class BannerDomain
 {
+    private $BannerModel;
+    public function __construct()
+    {
+        $this->BannerModel = new BannerModel();
+    }
 
     /**
      * 添加banner图
@@ -39,21 +45,7 @@ class BannerDomain
         return BannerModel::where('id', $id)->update(['is_del' => 1]);
     }
 
-    /**
-     * banner 列表
-     * @param  $page
-     * @param  $page_size
-     */
-    public function getList($page = 1,$page_size = 10)
-    {
-        $obj = BannerModel::where('is_del',0)->order('id desc');
-        $total = $obj->count(1);
-        $rows = $obj->page($page,$page_size)->select();
-        return [
-            'rows'          =>$rows,
-            'page'          =>$page,
-            'page_total'    =>getPageTotal($total,$page_size),
-            'total'         =>$total
-        ];
+    public function getBannerList($page,$page_size){
+        return $this->BannerModel->getList($page,$page_size);
     }
 }
