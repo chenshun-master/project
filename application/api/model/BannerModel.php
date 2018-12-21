@@ -24,8 +24,12 @@ class BannerModel extends Model
 
     /**
      * banner 列表
-     * @param  $page
-     * @param  $page_size
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getList($page = 1,$page_size = 10)
     {
