@@ -31,8 +31,8 @@ class Category extends BaseController
      */
     public function addCategory(){
         $model = new CategoryModel();
-        $cateid = input('param.id');
-        $res = $model->findOne($cateid);
+        $cate_id = input('param.id');
+        $res = $model->findOne($cate_id);
         $cate = $model->catetree();
         $this->assign('cate',$cate);
         $this->assign('res',$res);
