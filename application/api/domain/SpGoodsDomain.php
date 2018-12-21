@@ -475,9 +475,6 @@ class SpGoodsDomain
         $obj = Db::name('sp_goods')->alias('sp');
         $obj->leftJoin('wl_doctor doctor','doctor.id = sp.doctor_id');
         $obj->leftJoin('wl_hospital hospital', 'hospital.id = sp.hospital_id');
-//        $obj->leftJoin('wl_user user','user.id = hospital.user_id');
-//        $obj->leftJoin('wl_auth auth','user.id = auth.user_id');
-//        $obj->where('sp.seller_id',$seller_id);
         $obj->where("sp.status",'like',"%".trim($status)."%");
         $field = [
           'sp.id',
@@ -496,7 +493,6 @@ class SpGoodsDomain
           'sp.case_num',
           'doctor.real_name',
           'hospital.hospital_name',
-//          'sp.seller_id',
           'sp.create_time',
         ];
         $total = $obj->count(1);

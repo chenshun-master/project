@@ -107,17 +107,4 @@ class Admin extends BaseController
             return $this->returnData([],'修改失败','301');
         }
     }
-
-    /**
-     * 删除管理员
-     */
-    public function del(){
-        $id = $this->request->post('id');
-        $del = $this->AdminDomain->getDelete($id);
-        if($del){
-            return $this->returnData([],'删除成功',200);
-        }else{
-            return $this->returnData([],'删除失败',301);
-        }
-    }
 }

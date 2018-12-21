@@ -710,4 +710,12 @@ class Index extends BaseController
 
         return $this->returnData([],'发送成功',200);
     }
+       /**
+         * 地图
+         * @return mixed
+         */
+        public function map(){
+
+            return $this->fetch('index/map');
+        }
 }

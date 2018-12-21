@@ -22,7 +22,7 @@ class Banner extends BaseController{
     }
 
     /**
-     * banner 列表
+     * 轮播图 列表
      * @param $page
      * @param $page_size
      * @return false|string
@@ -33,20 +33,34 @@ class Banner extends BaseController{
         return $this->returnData($data,'',0);
     }
     /**
-     * 发布/修改banner
+     * 新增轮播图页面
      */
-    public function addBanner(Request $request)
+    public function addBanner(){
+        $id = input('param.id');
+        $res = BannerModel::findOne($id);
+        $this->assign('res',$res);
+        return $this->fetch('/banner/add');
+    }
+    /**
+     * 发布/修改轮播如
+     */
+    public function releaseBanner(Request $request)
     {
-        if(request()->isPost()){
-            $id = $request->post('id');
-            $name = $request->post('name');
-            $url  = $request->post('url');
-            $order  = $request->post('order');
-            $platform  = $request->post('platform');
-            $img    = $request->file('img');
-            $img_domain = config('conf.file_save_domain');
-            if (empty($img)) {
-                $this->error('请选择上传文件');
+        $id = $request->post('id');
+        $name = $request->post('name');
+        $url  = $request->post('url');
+        $order  = $request->post('order');
+        $platform  = $request->post('platform');
+        $img    = $request->file('img');
+        $img_domain = config('conf.file_save_domain');
+        $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
+        if($img){
+            $size = 1024*1024*5;              #单位字节
+            if(!$img->checkSize($size)){
+                return $this->returnData([],'上传图片大小不能超过5M',305);
+            }
+            if(!$img->checkExt($fileExt)){
+                return $this->returnData([],'文件格式错误只支持gif,jpg,jpeg及png格式的图片',305);
             }
             $info = $img->move( '../uploads/');
             if($info){
@@ -69,13 +83,8 @@ class Banner extends BaseController{
                     return $this->returnData([],'添加失败',301);
                 }
             }else{
-                return $this->returnData([],'请上传文件',302);
+                return $this->returnData([],$img->getError(),302);
             }
-        }else{
-            $id = input('param.id');
-            $res = BannerModel::findOne($id);
-            $this->assign('res',$res);
-            return $this->fetch('/banner/add');
         }
     }
     /**
@@ -96,7 +105,7 @@ class Banner extends BaseController{
         }
     }
     /**
-     * 删除banner
+     * 删除轮播图
      */
     public function del()
     {

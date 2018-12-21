@@ -53,11 +53,11 @@
                         <i  class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i>
                     </li>
                     <div class="wl-ding">
-                        <a href="/index/article/articleLists">
-                            <li class="action">推荐文章</li>
+                        <a href="/index/shop/index">
+                            <li class="action">商品列表</li>
                         </a>
-                        <a href="/index/article/recommend">
-                            <li>我的推荐</li>
+                        <a href="/index/shop/myshoplist">
+                            <li>分销列表</li>
                         </a>
                     </div>
                 </ul>
@@ -93,7 +93,13 @@
                             <li class="active">智能排序</li>
                             <li>评分最高</li>
                             <li>最新上架</li>
-                            <li>价格排序</li>
+                            <li class="wl-price">
+                                价格排序
+                                <ul class="wl-sorting-gao">
+                                    <li>价格最高</li>
+                                    <li>价格最低</li>
+                                </ul>
+                            </li>
                         </ul>
                         <div style="clear: both"></div>
                     </div>
@@ -145,6 +151,10 @@
     $(".wl-xian").click(function () {
         $(".wl-cang").toggle();
     });
+    $(".wl-price").click(function () {
+        $(".wl-sorting-gao").toggle();
+    });
+
     $(".wl-sorting li").click(function () {
         $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
     });
