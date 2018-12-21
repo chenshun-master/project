@@ -22,4 +22,22 @@ class BannerModel extends Model
         return self::where('id',$id)->find();
     }
 
+    /**
+     * banner 列表
+     * @param  $page
+     * @param  $page_size
+     */
+    public function getList($page = 1,$page_size = 10)
+    {
+        $obj = self::where('is_del',0)->order('id desc');
+        $total = $obj->count(1);
+        $rows = $obj->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
 }

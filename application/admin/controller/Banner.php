@@ -29,7 +29,7 @@ class Banner extends BaseController{
      */
     public function getBannerList($page=1,$page_size=10)
     {
-        $data = $this->BannerDomain->getList($page,$page_size);
+        $data = $this->BannerDomain->getBannerList($page,$page_size);
         return $this->returnData($data,'',0);
     }
     /**
