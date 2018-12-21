@@ -11,7 +11,7 @@ use think\Db;
  * Class ArticleDomain
  * @package app\api\domain
  */
-class ArticleDomain
+class ArticleDomain extends ArticleModel
 {
     /**
      * 发布文章
@@ -21,6 +21,8 @@ class ArticleDomain
     public function createArticle($data){
         if(isset($data['thumbnail']) && count($data['thumbnail']) > 0){
             $data['thumbnail'] = handleThumbnailData($data['thumbnail']);
+        }else{
+            $data['thumbnail'] = '';
         }
 
         $data['status']             = 1;
@@ -30,8 +32,57 @@ class ArticleDomain
         $res = ArticleModel::create($data);
 
         #处理其它业务逻辑(后期的等级积分处理)
-
         return $res ? true : false;
+    }
+
+    /**
+     * 编辑发布文章
+     * @param $user_id
+     * @param $article_id
+     * @param $data
+     * @return ArticleDomain
+     */
+    public function edit($user_id,$article_id,$data,$isdraft){
+        if(isset($data['thumbnail']) && count($data['thumbnail']) > 0){
+            $data['thumbnail'] = handleThumbnailData($data['thumbnail']);
+        }else{
+            $data['thumbnail'] = '';
+        }
+
+        if($isdraft == 1){
+            $data['status']             = 1;
+            $data['comment_status']     = 1;
+            $data['updated_time'] = $data['published_time'] = date('Y-m-d H:i:s');
+        }
+
+        return self::where('id', $article_id)->where('user_id', $user_id)->update($data);
+    }
+
+    /**
+     * 快速保持草稿文章
+     * @param $user_id
+     * @param $type
+     * @param $data
+     * @return bool
+     */
+    public function saveArticleDraft($user_id,$type,$data){
+        $data['status']             = 2;
+        if(isset($data['thumbnail']) && count($data['thumbnail']) > 0){
+            $data['thumbnail'] = handleThumbnailData($data['thumbnail']);
+        }else{
+            $data['thumbnail'] = '';
+        }
+
+        if(!$draftId = self::findArticleDraft($user_id,$type)){
+            $data['updated_time'] = $data['created_time'] = $data['published_time'] = date('Y-m-d H:i:s');
+            $res = ArticleModel::create($data);
+            return $res ? true : false;
+        }else{
+            if(self::where('id', $draftId)->update($data)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -515,6 +566,7 @@ class ArticleDomain
         $obj = Db::table('wl_article')->alias('article');
         $obj->where('article.type', 1);
         $obj->where('article.user_id', $user_id);
+        $obj->where('article.status', 1);
         $obj->order('article.published_time', 'desc');
 
         $total = $obj->count();

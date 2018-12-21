@@ -42,32 +42,23 @@
                     <a href="/index/shop/index">
                         <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品<i class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i></li>
                     </a>
-                    <div class="wl-ding">
-                        <!-- <li>推荐文章 </li></a>-->
-                        <!--<a href="/index/article/recommend"><li >我的推荐</li></a>-->
-                    </div>
+                    <div class="wl-ding"></div>
                 </ul>
                 <a href="/index/user/certification">
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
             </div>
-            <!---->
-                <!--<div class="demo" style="cursor: pointer;top: 0px;"><i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
-            <!--</a>-->
-            <!--<div class="wl-fabia">-->
-                <!--<a href="/index/article/article"><div class="wl-fabiaoio" style="cursor: pointer">发表文章</div></a>-->
-                <!--<div class="wl-wenzhang1">我的文章</div>-->
-                <!--<div class="wl-tuijian-wen">推荐文章</div>-->
-                <!--<div class="wl-me-tuijian">我的推荐</div>-->
-            <!--</div>-->
-
-            <!--<a href="/index/user/certification" class="renzheng">-->
-                <!--<div class="wl-renzhengs" style="top:170px"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>-->
-            <!--</a>-->
             <div class="wl-fabu">
                 <p>我的文章</p>
                 <div class="wl-xianshi-neirong">
-                    <!--<div class="wl-all-title">已显示全部40条内容</div>-->
+                    <div class="wl-all-title">
+                        <span style="display: inline-block;float: left">共 {$total} 条数据，已显示 {:count($rows)} 条</span>
+                        {if($draftId > 0)}
+                            <span style="cursor: pointer;display: inline-block;float: right">
+                                <a href="{:url('/index/article/article',['id'=>$draftId])}" style="color: #ff8868;" title="立即编辑">温馨提示：您有草稿还没发布哦！</a>
+                            </span>
+                        {/if}
+                    </div>
                     <div id="container-list">
                         {if(count($rows) > 0)}
                             {foreach($rows as $key=>$val)}
@@ -80,15 +71,14 @@
                                     <dt>已发表</dt>
                                     <dd>{$val['published_time']}</dd>
                                 </div>
-                                <div class="wl-all-right" style="cursor: pointer">
-                                    <span class="iconfont icon-xiugai"></span>
-                                    <span style="margin-left: 2px">修改</span>
+                                <div class="wl-all-right" style="cursor: pointer;float: right">
+                                    <span style="margin-left: 2px"><a href="{:url('/index/article/article',['id'=>$val['id']])}" target="_blank">修改</a></span>
+                                    <span style="margin-left: 2px"><a href="{:url('/weixin/article/articleDetails',['id'=>$val['id']])}" target="_blank">查看</a></span>
                                 </div>
                             </div>
                             {/foreach}
                         {/if}
                     </div>
-
                     <div id="wl-fenye" ></div>
                 </div>
             </div>
