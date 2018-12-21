@@ -41,8 +41,13 @@ class Banner extends BaseController{
         $this->assign('res',$res);
         return $this->fetch('/banner/add');
     }
+
     /**
-     * 发布/修改轮播如
+     * 发布/修改轮播图
+     * @param Request $request
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function releaseBanner(Request $request)
     {

@@ -82,3 +82,6 @@
     height: 100%;
     z-index: 99;
 }
+.wl-all-right:hover{
+    color: #7DB0E8!important;
+}
