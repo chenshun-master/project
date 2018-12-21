@@ -113,7 +113,7 @@ a {
     padding: 0 15px 0 15px;
 }
 .wl-all-right{
-    width: 150px;
+    width: 70px;
     height: 98px;
     color: #A0A0A0;
     padding-top: 10px;
@@ -121,8 +121,15 @@ a {
     float: left;
     text-align: center;
 }
+.wl-all-right a:hover{
+    color: white!important;
+    text-decoration: none;
+    background: #7DB0E8;
+    border-radius: 3px;
+}
 .wl-all-center dl{
     width: 95%;
+    height: 41px;
     font-size: 16px;
     min-height: 20px;
     word-break: break-all;
@@ -424,4 +431,11 @@ a {
     border-left: 1px solid #E5E5E5;
     border-bottom: 1px solid #E5E5E5;
     border-right: 1px solid #E5E5E5;
+}
+.wl-all-center:hover{
+    color:#7DB0E8;
+}
+.wl-all-right a{
+    height: 25px;
+    line-height: 25px;
 }

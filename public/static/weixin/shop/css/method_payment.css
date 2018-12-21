@@ -48,3 +48,37 @@
     text-align: center;
     margin-top: 10px;
 }
+.wl-tanchu{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    background: black;
+    opacity: 0.6;
+    border-radius: 10px;
+    color: white;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+}
+.wl-zhifu-tu{
+    font-size: 30px!important;
+}
+.wl-tanchu dl{
+    margin-top: 20px;
+}
+.wl-tanchu dt{
+    margin-top: 10px;
+}
+.wl-tanchu dd>i{
+    font-size: 11px!important;
+}
+.wl-zhezhao{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
