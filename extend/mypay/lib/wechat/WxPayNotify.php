@@ -28,11 +28,14 @@ class WxPayNotify extends WxPayNotifyReply
         $result = WxpayApi::notify($config, array($this, 'NotifyCallBack'), $msg);
 
         if($result == false){
+            \Log::notice('微信支付回调[支付跟踪 4 ]  FAIL');
             $this->SetReturn_code("FAIL");
             $this->SetReturn_msg($msg);
             $this->ReplyNotify(false);
             return;
         } else {
+            \Log::notice('微信支付回调[支付跟踪 4 ]  SUCCESS');
+
             //该分支在成功回调到NotifyCallBack方法，处理完成之后流程
             $this->SetReturn_code("SUCCESS");
             $this->SetReturn_msg("OK");

@@ -427,19 +427,21 @@ class WxPayApi
      */
     public static function notify($config, $callback, &$msg)
     {
-
-        if (!isset($GLOBALS['HTTP_RAW_POST_DATA'])) {
-            # 如果没有数据，直接返回失败
+        $xml = file_get_contents('php://input');
+        if(empty($xml)){
+            \Log::notice('微信支付回调[支付跟踪 2 ]  如果没有数据，直接返回失败');
             return false;
         }
 
+        \Log::notice('微信支付回调[支付跟踪 notify ]'.var_export($xml,true));
+
+
         //如果返回成功则验证签名
         try {
-            //获取通知的数据
-            $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
             $result = WxPayNotifyResults::Init($config, $xml);
         } catch (\Exception $e){
             $msg = $e->getMessage();
+            \Log::notice("微信支付回调[支付跟踪 3 ]  {$msg}");
             return false;
         }
 
