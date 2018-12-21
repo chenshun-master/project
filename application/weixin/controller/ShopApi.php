@@ -226,7 +226,7 @@ class ShopApi extends BaseController
                 return $this->returnData([], '调取微信用户信息失败', 303);
             }
 
-            list($ok,$msg,$data) = MyPay::wechat()->mp(['body'=>$data['order_info']['goods_name'],'out_trade_no'=>$data['order_info']['order_no'],'total_fee'=>$data['order_info']['real_amount'],'notify_url'=>url('/api/pay/notify', '', '', true),'openid'=>$wxAuthorize['openid']]);
+            list($ok,$msg,$data) = MyPay::wechat()->mp(['body'=>$data['order_info']['goods_name'],'out_trade_no'=>$data['order_info']['order_no'],'total_fee'=>$data['order_info']['real_amount'] * 100,'notify_url'=>url('/api/pay/notify/', '', '', true),'openid'=>$wxAuthorize['openid']]);
             if($ok === true){
                 return $this->returnData(['jsApiParameters'=>json_decode($data),true], '', 200);
             }

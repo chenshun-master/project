@@ -3,6 +3,7 @@
 namespace app\api\domain;
 
 use think\Db;
+use app\api\model\RegionsModel;
 
 class ShOrderDomain
 {
@@ -81,11 +82,31 @@ class ShOrderDomain
     public function getOrderDetail($user_id,$order_id)
     {
         $data = [];
-
         $data['order_info'] = (array)$order_info = Db::name('sh_order')->where('user_id',$user_id)->where('id',$order_id)->find();
-
         return $data;
     }
+
+    public function getPayOrderDetail($user_id,$order_id){
+        $obj = Db::name('sh_order')->alias('order');
+        $obj->leftJoin('wl_hospital hospital','order.hospital_id = hospital.id');
+        $obj->leftJoin('wl_auth auth','auth.user_id = hospital.user_id');
+
+        $obj->where('order.user_id',$user_id);
+        $obj->where('order.id',$order_id);
+        $obj->field([
+            'order.order_no','order.goods_name','order.goods_nums','order.goods_price','order.discount_price','order.payable_amount',
+            'order.prepay_price','order.topay_price','order.real_amount','order.pay_type','order.status','order.create_time',
+            'auth.province','auth.city','auth.area','auth.address','auth.enterprise_name','order.pay_status'
+        ]);
+
+        $info = $obj->find();
+        if($info){
+            $regionsModel = new RegionsModel();
+            $info['address_detail'] = $regionsModel->getAddress([$info['province'],$info['city'],$info['area']],$info['address']);
+        }
+        return $info;
+    }
+
 
     /**
      * 获取用户订单列表

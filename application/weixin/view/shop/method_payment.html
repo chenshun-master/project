@@ -42,12 +42,10 @@
 
 </div>
 
-<div class="wl-zhezhao">
+<div class="wl-zhezhao" style="display: none">
     <div class="wl-tanchu">
         <dl><i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop wl-zhifu-tu"></i></dl>
-        <dt>支付中 ...</dt>
-        <!--<dd><i class="iconfont icon-yuandian"></i><i class="iconfont icon-yuandian"></i><i class="iconfont icon-yuandian"></i></dd>-->
-   <!---->
+        <dt>加载中 ...</dt>
     </div>
 </div>
 
@@ -63,6 +61,13 @@
             oid:{$data['order_info']['id']},
             type:'weixin',
         },
+        showLoad:function(flag,msg){
+            if(flag == 'show'){
+                $('.wl-zhezhao').show().find('dt').text(msg);
+            }else{
+                $('.wl-zhezhao').hide();
+            }
+        },
         requesPayData:function(){
             if(paymentObj.loading == false){
                 $.ajax({
@@ -71,19 +76,22 @@
                     data: paymentObj.params,
                     dataType: 'json',
                     beforeSend: function () {
+                        paymentObj.showLoad('show','加载中...');
                         paymentObj.loading == true;
                     },
                     complete: function () {
+                        paymentObj.showLoad('hide');
                         paymentObj.loading == false;
                     },
                     success: function (res) {
                         if (res.code == 200) {
-                            if(paymentObj.params == 'weixin'){
-                                paymentObj.weChatJsApiCall(res.data.jsApiParameters);
-                            }
+                            paymentObj.weChatJsApiCall(res.data.jsApiParameters);
                         }else{
-                            alert('调入取支付失败');
+                            alert('支付失败');
                         }
+                    },
+                    error:function(){
+                        $('.wl-zhezhao').hide();
                     }
                 });
             }
@@ -98,11 +106,10 @@
                 }
             }else{
                 WeixinJSBridge.invoke('getBrandWCPayRequest',jsApiParameters,function(res){
-                    WeixinJSBridge.log(res.err_msg);
-                    alert(res.err_code+res.err_desc+res.err_msg);
                     //这里通过获取支付结果来进行跳转
                     if(res.err_msg == "get_brand_wcpay_request:ok"){
-                        alert('微信支付成功');
+                        paymentObj.showLoad('show','跳转中。。。');
+                        window.location.href = '/weixin/shop/paySuccess/oid/'+paymentObj.params.oid;
                     }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
                         alert('用户取消支付');
                     }else if(res.err_msg == "get_brand_wcpay_request:fail"){

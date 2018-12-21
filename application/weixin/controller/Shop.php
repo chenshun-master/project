@@ -143,7 +143,19 @@ class Shop extends BaseController
             return $this->redirect('index/login');
         }
 
+        $order_id = $this->request->param('oid/d', 0);
+        if($order_id == 0){
+            return $this->fetch('error/loss');
+        }
 
+        $data = $this->_orderDomain->getPayOrderDetail($this->getUserId(), $order_id);
+        if(!$data){
+            return $this->fetch('error/loss');
+        }
+
+        $data['mobile'] = $this->getUserInfo()['mobile'];
+
+        $this->assign('order_info',$data);
         return $this->fetch('shop/pay_success');
     }
 
