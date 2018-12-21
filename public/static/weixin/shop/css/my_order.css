@@ -173,10 +173,14 @@ margin-right: -8px;
     margin-top: 30%;
 }
 .wl-zhanwu dl{
-    font-size: 80px!important;
+    font-size: 90px!important;
     color: #7DB0E8!important;
 }
 .wl-zhanwu dt{
-    font-size: 14px!important;
+    font-size: 16px!important;
+    color: #666666 !important;
+}
+.wl-zhanwu dd{
+    font-size: 11px!important;
     color: #999999!important;
 }

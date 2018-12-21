@@ -115,7 +115,7 @@ var myObj = {
                             myObj.goods.listData.page_total = res.data.page_total;
                             $('#container-list').html('');
                             if(res.data.page_total == 0){
-                                $('#container-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                                $('#container-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
                             }
                         }
 
@@ -178,7 +178,7 @@ var myObj = {
                             myObj.paid.listData.page_total = res.data.page_total;
                             $('#paid-list').html('');
                             if(res.data.page_total == 0){
-                                $('#paid-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                                $('#paid-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
                             }
                         }
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
@@ -241,7 +241,7 @@ var myObj = {
                             myObj.consumption.listData.page_total = res.data.page_total;
                             $('#consumption-list').html('');
                             if(res.data.page_total == 0){
-                                $('#consumption-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                                $('#consumption-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
                             }
                         }
 
@@ -304,7 +304,7 @@ var myObj = {
                             myObj.complete.listData.page_total = res.data.page_total;
                             $('#complete-list').html('');
                             if(res.data.page_total == 0){
-                                $('#complete-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>暂无数据</dt></div>');
+                                $('#complete-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
                             }
                         }
                         layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){

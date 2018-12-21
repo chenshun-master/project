@@ -6,6 +6,7 @@
     list-style: none;
     list-style-image: none;
     list-style-type: none;
+    text-decoration: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -19,7 +20,6 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     margin: 0;
     padding: 0;
     border: 0;
-    /*font: inherit;*/
     vertical-align: baseline;
 }
 
@@ -27,12 +27,15 @@ ol, ul {
     list-style: none;
 }
 
-
 .web-header{
     height: 50px;
     width: 100%;
-
-    background: #7DB0E8;
+    background-color:#7DB0E8 ;
+}
+.web-header-content{
+    width: 1200px;
+    height: 50px;
+    margin: 0 auto;
 }
 
 .web-header-body{
@@ -42,17 +45,94 @@ ol, ul {
     background: #70e8e2;
 }
 
-
-.web-footer{
+.web-header-logo{
+    width: 15%;
     height: 50px;
-    width: 100%;
-
-    background: #7DB0E8;
+    float: left;
+    background: url("/static/web/image/logo1.png")no-repeat 10px 9px;
+    background-size: 100px;
+}
+.web-head-portrait{
+    width: 50%;
+    height: 50px;
+    float: right;
+    color: #000000;
+    /*padding-left: 10%;*/
+}
+.web-head-portrait img{
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
 }
 
+.web-footer{
+    min-height: 50px;
+    width: 100%;
+    background-color: #eee;
+}
+.web-footer-content{
+    width: 1200px;
+    min-height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
+}
+.web-footer-content span{
+    margin-right: 15px;
+}
+.web-footer-content a{
+    margin-right: 10px;
+    -webkit-user-select: none;
+    user-select: none;
+    color: #000000;
+}
+.web-footer-content a:hover{
+    color: #7DB0E8;
+}
 .web-footer-body{
     height: 100%;
     width: 1200px;
     margin: 0 auto;
     background: #70e8e2;
+}
+.web-top-center{
+    width: 35%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    color: white;
+}
+.web-reg{
+    width: 20%;
+    float: left;
+}
+.web-reg li{
+    width: 40%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+.web-reg li:hover{
+    border-bottom: 2px solid #FEB091;
+    color: #FEB091;
+}
+.web-article{
+     width: 50%;
+    margin-left:22%;
+ }
+.web-article li{
+    width:30%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+.web-article li:hover{
+    border-bottom: 2px solid #FEB091;
+    color: #FEB091;
 }

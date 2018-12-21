@@ -25,13 +25,7 @@
                 <div class="wl-zonghe">
                     <span class="wl-xiannv">数量</span>
                     <div class="wl-jiage1">
-                        <tr>
-                            <div class="wl">
-                                <input class="min" name="" type="text" value="-" readonly disabled/>
-                                <input class="text_box" name="" type="text" value="1" readonly />
-                                <input class="add" name="" type="text" value="+" readonly disabled/>
-                            </div>
-                        </tr>
+                        <span>1</span>
                     </div>
                 </div>
                 <div style="clear: both"></div>
@@ -88,33 +82,33 @@
 
 {block name="script"}
 <script>
-    $(function() {
-        $(".add").click(function() {
-            var t = $(this).parent().find('input[class*=text_box]');
-            t.val(parseInt(t.val()) + 1);
-            setTotal();
-        });
-
-        $(".min").click(function() {
-            var t = $(this).parent().find("input[class*=text_box]");
-            t.val(parseInt(t.val()) - 1);
-            if(parseInt(t.val()) < 0) {
-                t.val(0);
-            }
-            setTotal()
-        });
-
-        function setTotal() {
-            var sum = 0;
-            $("#tab").each(function() {
-
-                var num = parseInt($(this).find("input[class*=text_box]").val());
-                var price = parseFloat($(this).find("span[class*=price]").text());
-                sum += num * price;
-            })
-            $("#total,#total1").html(sum.toFixed(2));
-        }
-        setTotal();
-    });
+    // $(function() {
+    //     $(".add").click(function() {
+    //         var t = $(this).parent().find('input[class*=text_box]');
+    //         t.val(parseInt(t.val()) + 1);
+    //         setTotal();
+    //     });
+    //
+    //     $(".min").click(function() {
+    //         var t = $(this).parent().find("input[class*=text_box]");
+    //         t.val(parseInt(t.val()) - 1);
+    //         if(parseInt(t.val()) < 0) {
+    //             t.val(0);
+    //         }
+    //         setTotal()
+    //     });
+    //
+    //     function setTotal() {
+    //         var sum = 0;
+    //         $("#tab").each(function() {
+    //
+    //             var num = parseInt($(this).find("input[class*=text_box]").val());
+    //             var price = parseFloat($(this).find("span[class*=price]").text());
+    //             sum += num * price;
+    //         })
+    //         $("#total,#total1").html(sum.toFixed(2));
+    //     }
+    //     setTotal();
+    // });
 </script>
 {/block}

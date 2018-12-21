@@ -409,3 +409,17 @@ a {
 .padding{
     padding-bottom: 100px;
 }
+.wl-sorting li:hover{
+    color: #7DB0E8!important;
+}
+.wl-sorting-gao{
+    width: 100%!important;
+    display: none;
+}
+.wl-sorting-gao li{
+    width: 100%;
+    background: #FFFFFF;
+    border-left: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    border-right: 1px solid #E5E5E5;
+}
