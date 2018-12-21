@@ -102,6 +102,7 @@ class Article extends CController
      */
     public function graphic()
     {
+
         if (!$this->checkLogin()) {
             return redirect('/login');
         }

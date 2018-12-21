@@ -45,12 +45,13 @@ class WxPayResults extends WxPayDataBase
     public function CheckSign($config)
     {
         if(!$this->IsSignSet()){
-            throw new \think\Exception("签名错误！");
+            \Log::notice('微信支付回调[支付跟踪 签名不存在 ]');
+            throw new \think\Exception("签名不存在！");
         }
 
-        return true;
         $sign = $this->MakeSign($config, false);
         if($this->GetSign() == $sign){
+            \Log::notice('微信支付回调[支付跟踪 签名正确 ]');
             //签名正确
             return true;
         }
