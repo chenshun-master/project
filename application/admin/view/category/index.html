@@ -11,7 +11,7 @@
                     </div>
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <a href="/admin/category/add" class="btn btn-primary">
+                            <a href="/admin/category/addCategory" class="btn btn-primary">
                                 新增项目分类
                             </a>
                         </div>
@@ -60,7 +60,7 @@
                                     </td>
                                     <td style="text-align: center;">{$vo.created_time}</td>
                                     <td class="table-action" style="text-align: center;">
-                                        <a href="{:url('/admin/category/add',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="1" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                        <a href="{:url('/admin/category/addCategory',array('id'=>$vo.id))}" class="btn btn-xs btn-success btn-editone" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
                                         <!--<a href="{:url('/admin/category/del',array('id'=>$vo.id))}" class="btn btn-xs btn-danger btn-delone" data-toggle="tooltip" title="" data-table-id="table" data-field-index="9" data-row-index="0" data-button-index="2" data-original-title="删除"><i class="fa fa-trash"></i></a>-->
                                     </td>
                                 </tr>
