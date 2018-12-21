@@ -157,6 +157,7 @@ a {
 .layui-box{
     margin-top: 20px!important;
     float: right;
+    margin-right: 20px!important;
 }
 .layui-laypage .layui-laypage-curr .layui-laypage-em{
     background: #7DB0E8!important;
