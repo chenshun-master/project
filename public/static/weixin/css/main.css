@@ -58,3 +58,6 @@ a{text-decoration: none;}
 .href{
     cursor: pointer;
 }
+img{
+    border: none;
+}

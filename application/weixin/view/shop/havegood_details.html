@@ -99,7 +99,7 @@
             <div>
                 <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao"></span></div>
             </div>
-            <div class="wl-foot-gundong">
+            <div class="wl-foot-gundong" style="overflow-x:hidden">
                 <div id="container-list">
 
                 </div>
@@ -145,7 +145,7 @@
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
                 <div class=" wl-dianzan cus-comment-fabulous"   data-id="{{item.id}}" data-type="{{item.islike}}">
                     {{#  if(item.islike == 0){ }}
-                        <dl class="iconfont icon-like wl-font-size" ></dl>
+                        <dl class="iconfont icon-likefill wl-font-size" ></dl>
                     {{#  } }}
 
                     {{#  if(item.islike == 1){ }}
@@ -213,7 +213,7 @@
 
     $(".wl-quxiao").click(function () {
         $(".marsk-container").hide();
-        // $("body").removeClass("body");
+        $("body").removeClass("body");
     })
 
     $('.wl-tan-pinglun').on('touchstart', function (event) {
@@ -252,23 +252,18 @@
                 ini: false,
                 page: 0,
                 page_total: 1,
-                page_size: 15,
+                page_size: 1000,
             },
-            loadList: function () {
+            loadList: function (){
+
                 if (myObj.goods.listData.loading) {
                     return false;
                 }
-                myObj.goods.listData.page++;
-                if (myObj.goods.listData.ini == true) {
-                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                        return false;
-                    }
-                }
+
                 $.ajax({
                     url: "/weixin/shopapi/getGoodGoodsComment",
                     type: 'post',
-                    data: {gid: myObj.goods.listData.gid, page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size
-                    },
+                    data: {gid: myObj.goods.listData.gid, page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
                     dataType: 'json',
                     beforeSend: function () {
                         myObj.goods.listData.loading = true;
@@ -278,14 +273,11 @@
                     },
                     success: function (res) {
                         if (res.code == 200) {
-                            if (myObj.goods.listData.ini == false) {
-                                myObj.goods.listData.ini = true;
-                                myObj.goods.listData.page_total = res.data.page_total;
-                                $('#container-list').html('');
-                                if(res.data.page_total == 0){
-                                    $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
-                                }
+                            $('#container-list').html('');
+                            if(res.data.page_total == 0){
+                                $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
                             }
+
                             $("#cus-pinglun-num").html(res.data.total);
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                                 $('#container-list').append(html);
@@ -364,13 +356,15 @@
                     success: function (res) {
                         if(res.code == 200){
                             if(dataObj.flag == 2){
-
+                                var num =parseInt(o.find('.wl-dian-one').text());
                                 if(dataObj.type == 1){
-                                    o.data('type',1).find('.iconfont').removeClass('icon-like').addClass('icon-likefill').addClass("cus-red");
-                               
+                                    o.data('type',1).find('.iconfont').addClass("cus-red");
+                                    num++;
+                                    o.find('.wl-dian-one').text(num);
                                 }else{
-                                    o.data('type',0).find('.iconfont').removeClass('icon-likefill').addClass('icon-like').removeClass('cus-red');
-
+                                    o.data('type',0).find('.iconfont').removeClass('cus-red');
+                                    num--;
+                                    o.find('.wl-dian-one').text(num);
                                 }
                             } else if(dataObj.flag == 3){
                                 if(dataObj.type == 1){
@@ -413,9 +407,10 @@
                         myObj.recommended.ini= false;
                         myObj.recommended.page= 0;
                         myObj.recommended.page_total= 0;
-                        myObj.goods.loadList();
                         redream.showTip('发布成功');
-                        $('.wl-text').val('');
+                        $('.wl-text').val('').blur();
+
+                        myObj.goods.loadList();
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
                         $('.wl-zhez2').hide();
@@ -471,34 +466,6 @@
                 });
             }
         },
-        //收藏
-        myFavorite:{
-            loading:false,
-            submit:function(){
-                if(myObj.myFavorite.loading){
-                    return false;
-                }
-                $.ajax({
-                    url: "/weixin/article/addFavorite",
-                    type: 'post',
-                    data: { obj_id: $('#fr-good-goods-id').val(),},
-                    dataType: 'json',
-                    beforeSend: function () {
-                        myObj.myFavorite.loading = true;
-                    },
-                    success: function (res) {
-                        myObj.myFavorite.loading = false;
-                        if (res.code == 200) {
-                            $('#cus-click-favorite').removeClass('icon-favor_light').addClass('icon-favor_fill_light').addClass('cus-favorite');
-                            myObj.myFavorite.loading = true;
-                            redream.showTip('收藏成功...');
-                        }else if(res.code == 401){
-                            redream.showTip('请登录后操作...');
-                        }
-                    }
-                });
-            }
-        },
     };
     myObj.goods.loadList();
     myObj.recommended.loadList();
@@ -520,24 +487,23 @@
         }else{
             type = 2;
         }
-
         myObj.giveLike($(this),{type:type,obj_id:$(this).data('id'),flag:2});
     });
 
     $(document).on('click', '.cus-touser-main', function () {
         window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
     });
-    $('#cus-click-favorite').on('click', function () {
-        myObj.myFavorite.submit();
-    });
+    // $('#cus-click-favorite').on('click', function () {
+    //     myObj.myFavorite.submit();
+    // });
     $(".wl-zhezhao").click(function (event) {
         var _con = $('.wl-zhe1'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
             $('.wl-zhezhao').hide(); //淡出消失
         }
     });
-    $(document).on('click','#click-place-order',function(){
-        window.location.href = '/weixin/shop/goodsDetails'
-    });
+    // $(document).on('click','#click-place-order',function(){
+    //     window.location.href = '/weixin/shop/goodsDetails'
+    // });
 </script>
 {/block}

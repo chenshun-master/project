@@ -90,6 +90,10 @@
                                 myObj.goods.listData.ini = true;
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
+                                if(res.data.page_total == 0){
+                                    $('#container').html('<div class="wl-no-shuju" style="margin-top: 40px"><dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl><dt style="margin: 0">暂无商品</dt></div>');
+                                    $("#container").hide();
+                                }
                             }
 
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
