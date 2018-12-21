@@ -91,6 +91,7 @@ a {
     width: 100%;
     min-height: 120px;
     padding: 10px 0 10px 0 ;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-all-left{
     width: 135px;
@@ -260,6 +261,7 @@ a {
 
 }
 .wl-shang-title{
+    height: 55px;
     color: #000000;
     font-size: 16px;
     overflow:hidden;
