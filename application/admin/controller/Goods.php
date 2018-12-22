@@ -14,11 +14,11 @@ use think\App;
 
 class Goods extends BaseController
 {
-    private $SpGoodsDomain;
+    private $_spGoodsDomain;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->SpGoodsDomain = new SpGoodsDomain();
+        $this->_spGoodsDomain = new SpGoodsDomain();
     }
 
     public function index()
@@ -37,7 +37,7 @@ class Goods extends BaseController
      */
     public function getGoodsList($page=1,$page_size=10){
         $status = input('param.status');
-        $data = $this->SpGoodsDomain->getGoodsList($status,$page,$page_size);
+        $data = $this->_spGoodsDomain->getGoodsList($status,$page,$page_size);
         return $this->returnData($data,'',0);
     }
 
@@ -61,7 +61,7 @@ class Goods extends BaseController
             return $this->returnData([],'参数不符合规范',301);
         }
 
-        $isTrue = $this->SpGoodsDomain->examineGoods($ids,$status);
+        $isTrue = $this->_spGoodsDomain->examineGoods($ids,$status);
 
         if($isTrue){
             return $this->returnData([],'更新成功',200);

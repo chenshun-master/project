@@ -16,12 +16,12 @@ use think\Request;
 
 class Admin extends BaseController
 {
-    private $AdminDomain;
+    private $_adminDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->AdminDomain = new AdminDomain();
+        $this->_adminDomain = new AdminDomain();
     }
 
     /**
@@ -39,7 +39,7 @@ class Admin extends BaseController
     public function newAdmin()
     {
         $id = input('param.id');
-        $data = $this->AdminDomain->getOne($id);
+        $data = $this->_adminDomain->getOne($id);
         $this->assign('data',$data);
         return $this->fetch('/admin/add');
     }
@@ -52,7 +52,7 @@ class Admin extends BaseController
      * @throws \think\exception\DbException
      */
     public function getAdminList($page=1,$page_size=10){
-        $data = $this->AdminDomain->getAdminList($page,$page_size);
+        $data = $this->_adminDomain->getAdminList($page,$page_size);
         return $this->returnData($data,'',0);
     }
 
@@ -79,9 +79,9 @@ class Admin extends BaseController
                 'status' => $status,
                 'updated_at' => date('Y-m-d H:i:s')
             ];
-            $result = $this->AdminDomain->getUpdate($id,$data);
+            $result = $this->_adminDomain->getUpdate($id,$data);
         } else {
-            $result = $this->AdminDomain->createAdmin($data);
+            $result = $this->_adminDomain->createAdmin($data);
         }
         if (!$result) {
             return $this->returnData([], '新增失败', 301);
