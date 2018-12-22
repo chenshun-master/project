@@ -1,4 +1,5 @@
-var table = layui.table
+var table = layui.table;
+
 table.render({
     elem: '#table-list'
     ,id:'tab-reload'
@@ -7,6 +8,7 @@ table.render({
     ,page: true
     ,loading:true
     ,parseData: function(res){ //res 即为原始返回的数据
+        objClass.currentpage = res.data.page;
         return {
             "code": res.code == 200?0:res.code, //解析接口状态
             "msg": res.msg, //解析提示文本
@@ -18,7 +20,8 @@ table.render({
         none: '暂无相关数据'
     }
     ,cols: [[ //表头
-        {field: 'id', title: 'ID', fixed: 'left',width:100},
+        {type:'numbers'},
+        {type:'checkbox',width:50,field: 'id'},
         {field: 'name', title: '商品名',minWidth:200},
         {field: 'goods_no', title: '商品编号',width:200},
         {field: 'store_nums', title: '库存/名额',width:100,align:'center'},
@@ -51,23 +54,80 @@ table.render({
     limits:[10,20,30,50,100]
 });
 
+
+
+var active = {
+    getCheckId: function(){ //获取选中数据
+        var checkStatus = table.checkStatus('tab-reload') ,data = checkStatus.data;
+        if(data.length > 0){
+            var ids = [];
+            $.each(data,function(k,v){ids.push(v.id);});
+            return ids;
+        }else{
+            return [];
+        }
+    }
+};
+
+
 var objClass = {
+    currentpage:1,
     params:function(){
         return {status:0};
     },
     reload:function(){
         layui.table.reload('tab-reload', {
-            page: {
-                curr: 1
-            }
+            page: {curr: 1}
             ,where: {
-                key: {
 
-                }
             }
         });
     },
     add:function(){
         window.location.href = '/seller/shop/addGood';
+    },
+    lowerShelf:function(){
+        var ids = active.getCheckId();
+        if(ids.length == 0){
+            layer.alert('请选择需要操作的商品',{title:'温馨提示'});
+            return  false;
+        }
+        var index = layer.confirm('您确定要下架商品吗？', {
+            btn: ['立即下架','取消']
+        }, function(){
+            objClass.updateSatus(ids,'lower-shelf',index);
+        });
+    },
+    upperShelf:function(){
+        var ids = active.getCheckId();
+        if(ids.length == 0){
+            layer.alert('请选择需要操作的商品',{title:'温馨提示'});
+            return  false;
+        }
+        var index = layer.confirm('您确定要上架商品吗？', {
+            btn: ['立即上架','取消']
+        }, function(){
+            objClass.updateSatus(ids,'upper-shelf',index);
+        });
+    },
+    updateLoading:false,
+    updateSatus:function(ids,flag,index){
+        if(objClass.updateLoading == false){
+            $.ajax({
+                url: '/seller/shopApi/updateGoodsStatus',
+                type: 'POST',
+                data:{ids:ids,flag:flag},
+                dataType: "json",
+                success: function (res) {
+                    layer.close(index);
+                    if(res.code == 200){
+                        layer.msg('操作成功。。。', {icon: 1});
+                        layui.table.reload('tab-reload', {page: {curr: objClass.currentpage}});
+                    }else{
+                        layer.msg('操作失败。。。', {icon: 2});
+                    }
+                }
+            });
+        }
     }
 };

@@ -180,6 +180,7 @@ class Shop extends BaseController
             return $this->fetch('error/loss');
         }
 
+
         $this->assign($data);
         return $this->fetch('shop/havegood_details');
     }

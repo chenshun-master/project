@@ -52,7 +52,7 @@
 {/block}
 
 {block name="script"}
-
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     //调用微信JS api 支付
     var paymentObj = {
@@ -121,7 +121,11 @@
     };
 
     $('#click-payment').on('click',function(){
-        paymentObj.requesPayData();
+        if(redream.isWeiXin()){
+            paymentObj.requesPayData();
+        }else{
+            alert('请在微信浏览器中进行支付');
+        }
     });
 </script>
 

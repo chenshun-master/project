@@ -156,4 +156,32 @@ class ShopApi extends BaseController
 
         return $this->returnData($data,'',200);
     }
+
+    /**
+     * 更新商品状态
+     */
+    public function updateGoodsStatus(){
+        $ids = $this->request->post('ids/a',[]);
+        $flag = $this->request->post('flag','');
+
+        if(empty($ids) || empty($flag)){
+            return $this->returnData([],'参数不符合规范',301);
+        }
+
+        if($flag == 'upper-shelf'){
+            $status = 3;
+        }else if($flag == 'lower-shelf'){
+            $status = 2;
+        }else{
+            return $this->returnData([],'参数不符合规范',301);
+        }
+
+        $isTrue = $this->_goodsDomain->updateStatus($this->getSellerId(),$ids,$status);
+
+        if($isTrue){
+            return $this->returnData([],'更新成功',200);
+        }
+
+        return $this->returnData([],'',305);
+    }
 }

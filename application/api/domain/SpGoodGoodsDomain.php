@@ -114,10 +114,15 @@ class SpGoodGoodsDomain
             'good_goods.favorites',
             'good_goods.like',
             'good_goods.comment',
-            'good_goods.article_text'
+            'good_goods.article_text',
+            'goods.sale_num',
+            'goods.sell_price',
         ];
 
-        $data['info'] = Db::name('sp_good_goods')->alias('good_goods')->where('id',$good_goods_id)->field($field)->find();
+        $data['info'] = Db::name('sp_good_goods')->alias('good_goods')
+            ->leftJoin('wl_sp_goods goods','goods.id = good_goods.goods_id')
+            ->where('good_goods.id',$good_goods_id)->field($field)->find();
+
         if($data['info']){
             $data['imgs'] = SpGoodsModel::getImgs($good_goods_id);
         }

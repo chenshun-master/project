@@ -564,4 +564,30 @@ class SpGoodsDomain
 
         return $data;
     }
+
+    /**
+     * 商家更新产品状态
+     * @param int $seller_id
+     * @param int $good_id
+     * @param int $status
+     * @return bool
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function updateStatus($seller_id,array $ids,int $status){
+        $data = [];
+
+        $data['status'] = $status;
+        if($status == 0 || $status == 3){
+            $data['up_time'] = date('Y-m-d H:i:s');
+        }else if($status == 1 || $status == 2){
+            $data['down_time'] = date('Y-m-d H:i:s');
+        }
+
+        if(!Db::name('sp_goods')->where('id','IN',$ids)->where('seller_id',$seller_id)->update($data)){
+            return false;
+        }
+
+        return true;
+    }
 }
