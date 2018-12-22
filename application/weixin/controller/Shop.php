@@ -188,6 +188,20 @@ class Shop extends BaseController
      */
     public function paymentOrder()
     {
+
+        $oid = $this->request->param('oid/d',0);
+        if (empty($oid)) {
+            return $this->fetch('error/loss');
+        }
+
+        $data = $this->_orderDomain->getPayOrderDetail($this->getUserId(), $oid);
+        if (!$data) {
+            return $this->fetch('error/loss');
+        }
+
+        $this->assign('order_info',$data);
+        $this->assign('mobile',$this->getUserInfo()['mobile']);
+
         return $this->fetch('shop/payment_order');
     }
 
