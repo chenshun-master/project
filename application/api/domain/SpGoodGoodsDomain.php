@@ -185,10 +185,22 @@ class SpGoodGoodsDomain
         });
 
         $obj->join('wl_sp_good_goods good_goods','ce.goods_id = good_goods.goods_id and good_goods.is_del=0');
+        $obj->join('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status=0');
         $obj->order('good_goods.like desc,good_goods.favorites desc,good_goods.created_time asc');
 
         $total = $obj->count();
-        $rows = $obj->field('good_goods.*')->page($page,$page_size)->fetchSql(false)->select();
+        $field = [
+            'goods.id as goods_id',
+            'goods.name',
+            'good_goods.title',
+            'goods.sell_price',
+            'goods.sale_num',
+            'goods.market_price',
+            'good_goods.id as goods_good_id',
+            'goods.img'
+        ];
+
+        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -196,7 +208,6 @@ class SpGoodGoodsDomain
             'total'         =>$total
         ];
     }
-
 
     /**
      * 获取分销商品列表数据
