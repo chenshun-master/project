@@ -11,7 +11,6 @@ namespace app\admin\controller;
 
 use app\api\domain\SpGoodsDomain;
 use think\App;
-use think\Db;
 
 class Goods extends BaseController
 {
@@ -43,24 +42,31 @@ class Goods extends BaseController
     }
 
     /**
-     * 修改商品状态
-     * @return false|string
-     * @throws \think\Exception
-     * @throws \think\exception\PDOException
-     */
-    public function getGoodsStatus(){
-        $data = input('param.');
-        if($data['status'] == 0){
-            $data = Db::name('sp_goods')->where('id',$data['id'])->update(['status' => 3,'up_time'=>date('Y-m-d H:i:s')]);
-        }else if($data['status'] == 3){
-            $data = Db::name('sp_goods')->where('id',$data['id'])->update(['status'=> 2,'down_time'=>date('Y-m-d H:i:s')]);
-        }else if($data['status'] == 2){
-            $data = Db::name('sp_goods')->where('id',$data['id'])->update(['status' => 3,'up_time'=>date('Y-m-d H:i:s')]);
+    * 更新商品状态
+    */
+    public function updateGoodsStatus(){
+        $ids = $this->request->post('ids/a',[]);
+        $flag = $this->request->post('flag','');
+        if(empty($ids) || empty($flag)){
+            return $this->returnData([],'参数不符合规范',301);
         }
-        if(!$data){
-            return $this->returnData([],'修改失败','301');
+
+        if($flag == 'upper'){
+            $status = 3;
+        }else if($flag == 'lower'){
+            $status = 2;
+        }else if($flag == 'normal'){
+            $status = 0;
         }else{
-            return $this->returnData([],'修改成功','200');
+            return $this->returnData([],'参数不符合规范',301);
         }
+
+        $isTrue = $this->SpGoodsDomain->examineGoods($ids,$status);
+
+        if($isTrue){
+            return $this->returnData([],'更新成功',200);
+        }
+
+        return $this->returnData([],'',305);
     }
 }
