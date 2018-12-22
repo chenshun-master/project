@@ -67,7 +67,7 @@ class SpGoodGoodsDomain
      */
     public function getGoodGoodsList($page=1,$page_size=15){
         $obj = Db::name('sp_good_goods')->alias('good_goods');
-        $obj->leftJoin('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status = 0');
+        $obj->join('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status = 0');
         $field = [
             'good_goods.id',
             'goods.img',
