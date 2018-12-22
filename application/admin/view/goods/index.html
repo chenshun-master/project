@@ -27,7 +27,6 @@
                         <button class="layui-btn" data-type="getInfo">搜索</button>
                     </div>
 
-
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="">
                             <button type="button" class="btn  btn-flat" onclick="objClass.reload()"><i class="layui-icon layui-icon-refresh-3" ></i>刷新</button>
@@ -79,7 +78,7 @@
             {field: 'up_time', title: '上架时间',sort:true},
             {field: 'down_time', title: '下架时间',sort:true},
             {field: 'store_nums', title: '库存/名额',sort:true},
-            {field: 'status', title: '商品状态',sort:true,width:100,templet:function (res) {
+            {field: 'status', title: '当前状态',sort:true,width:100,templet:function (res) {
                     if(res.status == 0){
                         return '<span class="label label-success" lay-event="normal">正常</span>';
                     }else if(res.status == 1){
@@ -95,21 +94,24 @@
             {field: 'create_time', title: '创建时间'},
         ]]
     });
-
-    // layui.table.on('tool(test)',function (obj) {
-    //     var data = obj.data;
-    //     if(data.status == 0 || data.status == 1 || data.status==2 || data.status || 3){
-    //         $.ajax({
-    //             url:"/admin/goods/getGoodsStatus",
-    //             data:{id:data.id,data:data.status},
-    //             type:"POST",
-    //             dataType:"json",
-    //             success:function (data) {
-    //                 console.log(data)
-    //             }
-    //         })
-    //     }
-    // });
+    layui.table.on('tool(test)',function (obj) {
+        var data = obj.data;
+        if(data.status == 0 || data.status==2 || data.status || 3){
+            $.ajax({
+                url:"/admin/goods/getGoodsStatus",
+                data:{id:data.id,status:data.status},
+                type:"POST",
+                dataType:"json",
+                success:function (data) {
+                    if(data.code == 200){
+                        window.location.href="/admin/goods/index";
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                }
+            })
+        }
+    });
 
     var $ = layui.$, active = {
         getInfo: function(){

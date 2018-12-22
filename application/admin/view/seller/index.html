@@ -86,21 +86,7 @@
     layui.table.on('tool(test)',function (obj) {
         var data = obj.data;
         var id = data.id;
-        if(obj.event === 'show'){
-            $.ajax({
-                url:'/admin/seller/update',
-                data:{id:id,is_lock:data.is_lock},
-                type:"POST",
-                dataType:"json",
-                success:function (data) {
-                    if(data.code == 200){
-                        window.location.reload();
-                    }else{
-                        layer.msg('修改失败');
-                    }
-                }
-            });
-        }else if(obj.event === 'end'){
+        if(data.is_lock == 0 || data.is_lock == 1){
             $.ajax({
                 url:'/admin/seller/update',
                 data:{id:id,is_lock:data.is_lock},
