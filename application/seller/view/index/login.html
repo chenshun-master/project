@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/static/admin/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/admin/bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="/static/admin/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/static/web/css/sellerLogin.css">
+    <link rel="stylesheet" href="/static/css/function.css">
 </head>
 <body class="hold-transition login-page" style="height: 400px;">
 <div class="login-box">
@@ -16,22 +18,25 @@
         <!--<a href="/static/admin/index2.html"><b>商家后台管理</b></a>-->
     <!--</div>-->
     <div class="login-box-body">
-        <p class="login-box-msg"><b>商家后台</b></p>
+        <p class="login-box-msg  web-logo"></p>
+        <p class="login-box-msg  web-title"><b>商家后台</b></p>
         <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="手机号" id="fr-mobile">
-            <span class="form-control-feedback"><i class="fa fa-fw fa-user"></i></span>
+            <i class="icon ion-person-stalker"></i>
+            <input type="text" class="form-control" placeholder="请输入手机号" id="fr-mobile">
+
         </div>
         <div class="form-group has-feedback">
+            <i class="icon ion-locked" ></i>
             <input type="password" class="form-control" placeholder="登录密码" id="fr-password">
-            <span class="form-control-feedback"><i class="fa fa-unlock-alt"></i></span>
+
         </div>
 
-        <div class="form-group has-feedback">
-            <p style="min-height: 20px;color: red" id="fr-error-tip"></p>
-        </div>
+        <!--<div class="form-group has-feedback">-->
+            <!--<p style="min-height: 20px;color: red" id="fr-error-tip"></p>-->
+        <!--</div>-->
 
         <div class="row">
-            <div class="col-xs-4" style="float: right">
+            <div class="col-xs-12">
                 <button type="submit" class="btn btn-primary btn-block btn-flat" onclick="loginObj.submit()">立即登录</button>
             </div>
         </div>
