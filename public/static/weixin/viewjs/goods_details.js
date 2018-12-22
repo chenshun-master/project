@@ -167,7 +167,49 @@ var myObj = {
                 }
             });
         },
+
+        collectionLoading: false,
+        collection: function (o, dataObj) {
+            if (myObj.goods.collectionLoading == false) {
+                $.ajax({
+                    url: "/weixin/user/giveFavorite",
+                    type: 'post',
+                    data: dataObj,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.collectionLoading = true;
+                    },
+                    complete: function () {
+                        myObj.collectionLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (dataObj.flag == 2) {
+                                if (dataObj.type == 1) {
+                                    o.data('type', 1).removeClass('icon-favor_light').addClass("icon-favor_fill_light").addClass('cus-sou');
+                                } else {
+                                    o.data('type', 0).removeClass('icon-favor_fill_light').removeClass('cus-sou').addClass("icon-favor_light");
+                                }
+                            }
+                        } else if (res.code == 401) {
+                            redream.showTip('请登录后操作...');
+                        }
+                    }
+                });
+            }
+        },
     },
 
 };
 myObj.goods.loadList();
+
+$(document).on('click', '#cus-click-collection', function () {
+    var type = $(this).data('type');
+    if (type == 0) {
+        type = 1;
+    } else {
+        type = 2;
+    }
+    myObj.goods.collection($(this), {type: type, obj_id:$(this).data('gid'), flag: 2});
+
+});

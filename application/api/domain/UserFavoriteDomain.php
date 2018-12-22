@@ -106,8 +106,9 @@ class UserFavoriteDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function cancelFavorite($favorite_id,$user_id,$tablename){
-        $favoriteRes = Db::name('user_favorite')->where('id',$favorite_id)->where('user_id',$user_id)->where('status',0)->field('id,object_id,table_name')->find();
+    public function cancelFavorite($object_id,$user_id,$tablename){
+        $favoriteRes = Db::name('user_favorite')->where('object_id',$object_id)->where('user_id',$user_id)->where('status',0)->field('id,object_id,table_name')->find();
+
         if(!$favoriteRes || $favoriteRes['table_name'] !=$tablename){
             return false;
         }
