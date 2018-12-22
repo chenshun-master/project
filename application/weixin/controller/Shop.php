@@ -7,6 +7,8 @@ use app\api\domain\SpGoodsDomain;
 use app\api\domain\SpGoodGoodsDomain;
 use mypay\MyPay;
 
+use app\api\domain\UserLikeDomain;
+
 class Shop extends BaseController
 {
     private $_spGoodsDomain;
@@ -45,7 +47,6 @@ class Shop extends BaseController
     {
         $goodsid = $this->request->param('goodsid/d', 0);
         $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid);
-
         if (empty($goodsDetail['goods_info'])) {
             return $this->fetch('error/loss');
         }
@@ -144,18 +145,18 @@ class Shop extends BaseController
         }
 
         $order_id = $this->request->param('oid/d', 0);
-        if($order_id == 0){
+        if ($order_id == 0) {
             return $this->fetch('error/loss');
         }
 
         $data = $this->_orderDomain->getPayOrderDetail($this->getUserId(), $order_id);
-        if(!$data){
+        if (!$data) {
             return $this->fetch('error/loss');
         }
 
         $data['mobile'] = $this->getUserInfo()['mobile'];
 
-        $this->assign('order_info',$data);
+        $this->assign('order_info', $data);
         return $this->fetch('shop/pay_success');
     }
 
@@ -173,17 +174,15 @@ class Shop extends BaseController
     public function haveGoodDetails()
     {
 
-        $gid = $this->request->param('gid/d',0);
-
-        $data = $this->_spGoodGoodsDomain->getGoodGoodsDetail($gid);
-        if(empty($data['info'])){
+        $gid = $this->request->param('gid/d', 0);
+        $data = $this->_spGoodGoodsDomain->getGoodGoodsDetail($gid,$this->getUserId());
+        if (empty($data['info'])) {
             return $this->fetch('error/loss');
         }
-
-
         $this->assign($data);
         return $this->fetch('shop/havegood_details');
     }
+
     /**
      *用户订单详情页
      */
@@ -208,13 +207,11 @@ class Shop extends BaseController
         return $this->fetch('shop/diary_of');
     }
 
-
     /**
-     *用户相册详情页三
+     * 用户相册详情页三
      */
     public function diarySecond()
     {
         return $this->fetch('shop/diary_second');
     }
-
 }

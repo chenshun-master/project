@@ -101,7 +101,7 @@ class SpGoodGoodsDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getGoodGoodsDetail($good_goods_id){
+    public function getGoodGoodsDetail($good_goods_id,$user_id = 0){
         $data = [
             'info'=>[],
             'imgs'=>[],
@@ -118,12 +118,20 @@ class SpGoodGoodsDomain
             'good_goods.article_text',
             'goods.sale_num',
             'goods.sell_price',
+            'good_goods.created_time',
+            'user.portrait',
+            'user.nickname',
+            'user.type',
+            'IF(like.id > 0,1,0)'=>'islike',
+            'IF(favorite.id > 0,1,0)'=>'isfavorite',
         ];
 
         $data['info'] = Db::name('sp_good_goods')->alias('good_goods')
             ->leftJoin('wl_sp_goods goods','goods.id = good_goods.goods_id')
+            ->leftJoin('wl_user user','user.id = good_goods.user_id')
+            ->leftJoin('wl_user_like like',"like.user_id = {$user_id} and like.table_name='sp_good_goods' and like.status=0 and like.object_id = good_goods.id")
+            ->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='sp_good_goods' and favorite.status=0 and favorite.object_id = good_goods.id")
             ->where('good_goods.id',$good_goods_id)->field($field)->find();
-
         if($data['info']){
             $data['imgs'] = SpGoodsModel::getImgs($good_goods_id);
         }

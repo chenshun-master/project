@@ -139,4 +139,12 @@ class UserLikeDomain
             return false;
         }
     }
+
+    /**
+     *
+     */
+    public function isLike($user_id,$tablename,$object_id){
+        $likeRes = Db::name('user_like')->where('object_id',$object_id)->where('user_id',$user_id)->where('table_name',$tablename)->where('status',0)->field('id,object_id,table_name')->find();
+        return    $likeRes?1:0;
+    }
 }
