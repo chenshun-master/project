@@ -15,11 +15,11 @@ use think\Db;
 
 class Seller extends BaseController
 {
-    private $SellerDomain;
+    private $_sellerDomain;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->SellerDomain = new SellerDomain();
+        $this->_sellerDomain = new SellerDomain();
     }
 
     public function index()
@@ -37,7 +37,7 @@ class Seller extends BaseController
      * @throws \think\exception\DbException
      */
     public function getSellerList($page=1,$page_size=10){
-        $data = $this->SellerDomain->getSellerList($page,$page_size);
+        $data = $this->_sellerDomain->getSellerList($page,$page_size);
         return $this->returnData($data,'',0);
     }
 

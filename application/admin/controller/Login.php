@@ -34,7 +34,7 @@ class Login extends Controller
             if ($res === 3) {
                 return $res = ['status' => 0, 'msg' => '密码错误'];
             }
-            session('user_auth',$res);
+            session('user_auth',$res,'admin');
             return json(['status' => 200, 'msg' => '登录成功！']);
         }
         if(session('user_auth')){

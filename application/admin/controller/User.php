@@ -14,11 +14,11 @@ use think\App;
 
 class User extends BaseController
 {
-    private $userDomain;
+    private $_userDomain;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->userDomain = new UserDomain();
+        $this->_userDomain = new UserDomain();
     }
 
     public function index()
@@ -33,7 +33,7 @@ class User extends BaseController
      * @return false|string
      */
     public function getUserList($page=1,$page_size=10){
-        $data = $this->userDomain->userInfo($page,$page_size);
+        $data = $this->_userDomain->userInfo($page,$page_size);
         return $this->returnData($data,'',0);
     }
 }
