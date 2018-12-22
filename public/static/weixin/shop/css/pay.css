@@ -19,14 +19,9 @@
 }
 .wl-xiannv{
     width: 100%;
-    min-height: 30px;
+    min-height:15px;
     color: #999999;
     font-size: 13px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
     margin-bottom: 3px;
 }
 .wl-xiann{
@@ -128,4 +123,14 @@
      color: #333333;
      font-size: 13px;
      text-align: right;
+     margin-top: 5px;
+ }
+ .wl-top-title{
+     width: 100%;
+     min-height: 10px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 2;
  }
