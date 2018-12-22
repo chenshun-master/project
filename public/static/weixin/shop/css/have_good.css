@@ -55,7 +55,7 @@
     font-weight: 600;
 }
 .wl-title{
-    min-height: 10px;
+    min-height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
