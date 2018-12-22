@@ -45,11 +45,12 @@ class Seller extends BaseController
      * 是否锁定
      */
     public function update(){
-        $data = input('param.');
-        if($data['is_lock'] == 0){
-            $result = Db::name('sp_seller')->where('id', $data['id'])->update(['is_lock' => 1]);
+        $id = $this->request->post('id');
+        $is_lock = $this->request->post('is_lock');
+        if($is_lock == 0){
+            $result = Db::name('sp_seller')->where('id', $id)->update(['is_lock' => 1]);
         }else{
-            $result = Db::name('sp_seller')->where('id', $data['id'])->update(['is_lock' => 0]);
+            $result = Db::name('sp_seller')->where('id', $id)->update(['is_lock' => 0]);
         }
         if($result){
             return $this->returnData([],'修改成功','200');
