@@ -77,6 +77,7 @@ class SpGoodGoodsDomain
             'good_goods.comment',
             'goods.market_price',
             'goods.sell_price',
+            'goods.name'
         ];
 
         $obj->order('good_goods.created_time desc');
