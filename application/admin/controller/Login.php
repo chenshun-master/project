@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 use app\api\model\AdminModel;
 use think\Controller;
+use think\facade\Session;
 
 class Login extends Controller
 {
@@ -36,7 +37,7 @@ class Login extends Controller
             session('user_auth',$res);
             return json(['status' => 200, 'msg' => '登录成功！']);
         }
-        if(session('user_auth')){
+        if(session::get('user_auth')){
             $this->redirect('index/index');
         }
         return $this->fetch('login/index');
@@ -46,7 +47,7 @@ class Login extends Controller
      * 退出登陆
      */
     public function loginout(){
-        session(null);
+        session::clear();
         return $this->fetch('login/index');
     }
 }

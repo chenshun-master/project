@@ -92,14 +92,17 @@ class Admin extends BaseController
 
     /**
      * 修改状态
-     * @param int (0-禁用 10-开启)
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function update(){
-        $data = input('param.');
-        if($data['status'] == 0){
-            $result = Db::name('admin')->where('id', $data['id'])->update(['status' => 10]);
+        $id = $this->request->post('id');
+        $status = $this->request->post('status');
+        if($status == 0){
+            $result = Db::name('admin')->where('id', $id)->update(['status' => 10]);
         }else{
-            $result = Db::name('admin')->where('id', $data['id'])->update(['status' => 0]);
+            $result = Db::name('admin')->where('id', $id)->update(['status' => 0]);
         }
         if($result){
             return $this->returnData([],'修改成功','200');
