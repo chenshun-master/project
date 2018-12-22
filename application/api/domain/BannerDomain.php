@@ -1,7 +1,6 @@
 <?php
 namespace app\api\domain;
 use app\api\model\BannerModel;
-use think\Db;
 
 class BannerDomain
 {
@@ -38,7 +37,7 @@ class BannerDomain
 
     /**
      * 删除banner图
-     * @param $id                banner id
+     * @param $id
      * @return BannerModel
      */
     public function delete($id){
