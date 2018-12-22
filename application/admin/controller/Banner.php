@@ -97,11 +97,12 @@ class Banner extends BaseController{
      */
     public function update()
     {
-        $data = input('param.');
-        if($data['visibility'] == 0){
-            $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => 1]);
+        $id  = $this->request->post('id');
+        $visibility = $this->request->post('visibility');
+        if($visibility == 0){
+            $result = Db::name('sp_banner')->where('id', $id)->update(['visibility' => 1]);
         }else{
-            $result = Db::name('sp_banner')->where('id', $data['id'])->update(['visibility' => 0]);
+            $result = Db::name('sp_banner')->where('id', $id)->update(['visibility' => 0]);
         }
         if($result){
             return $this->returnData([],'修改成功','200');

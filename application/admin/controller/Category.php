@@ -96,8 +96,9 @@ class Category extends BaseController
      */
     public function update()
     {
-        $data = input('param.');
-        $result = Db::name('sp_category')->where('id', $data['id'])->update(['visibility' => $data['visibility']]);
+        $id = input('param.id');
+        $visibility = input('param.visibility');
+        $result = Db::name('sp_category')->where('id', $id)->update(['visibility' => $visibility]);
         if($result){
             $this->redirect('/admin/category/index');
         }else{

@@ -371,7 +371,7 @@ class SpGoodsDomain
         $obj->where('goods.status',0);
         $obj->where('goods.id',$goods_id);
         $obj->leftJoin('wl_sp_goods_buy_notice buy_notice','buy_notice.goods_id = goods.id');
-        $obj->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='sp_goods' and favorite.status=0 and favorite.object_id = goods.id");
+        $obj->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='goods' and favorite.status=0 and favorite.object_id = goods.id");
 
         $field = [
             'goods.id','goods.name','goods.market_price','goods.sell_price','goods.prepay_price','goods.topay_price','goods.img','goods.content','goods.visit','goods.favorites','goods.comments','goods.sale_num',
