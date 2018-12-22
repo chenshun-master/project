@@ -204,7 +204,7 @@ var myObj = {
 
     collectionLoading: false,
     collection: function (o, dataObj) {
-        if (myObj.collection == false) {
+        if (myObj.collectionLoading == false) {
             $.ajax({
                 url: "/weixin/user/giveFavorite",
                 type: 'post',
@@ -220,9 +220,9 @@ var myObj = {
                     if (res.code == 200) {
                         if (dataObj.flag == 3) {
                             if (dataObj.type == 1) {
-                                o.data('type', 1).removeClass('icon-like').addClass("icon-wuxing").addClass('cus-red');
+                                o.data('type', 1).removeClass('icon-favor_light').addClass("icon-favor_fill_light").addClass('cus-sou');
                             } else {
-                                o.data('type', 0).removeClass('cus-red').removeClass('icon-wuxing').addClass("icon-like");
+                                o.data('type', 2).removeClass('icon-favor_fill_light').removeClass('cus-sou').addClass("icon-favor_light");
                             }
                         }
                     } else if (res.code == 401) {
@@ -341,7 +341,7 @@ $(document).on('click', '#cus-click-collection', function () {
     } else {
         type = 2;
     }
-    myObj.collection($(this), {type: type, obj_id: $(this).data('id'), flag: 3});
+    myObj.collection($(this), {type: type, obj_id: $('#fr-good-goods-id').val(), flag: 3});
 });
 
 $(document).on('click', '.cus-comment-fabulous', function () {
@@ -364,6 +364,7 @@ $(".wl-zhezhao").click(function (event) {
         $('.wl-zhezhao').hide(); //淡出消失
     }
 });
+
 $(document).on('click', '#click-place-order', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $('#fr-goodid').val() + '&goodsgoodid=' + $('#fr-good-goods-id').val();
 });

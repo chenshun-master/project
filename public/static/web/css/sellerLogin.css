@@ -11,8 +11,8 @@
     width: 90%!important;
     height: 50px;
     border-radius: 25px!important;
-    background: #7d7d7d;
-    opacity: 0.5;
+    background: black;
+    opacity: 0.2;
     margin: 0 auto;
     margin-top: 40px;
     border: none;
@@ -24,7 +24,7 @@
 .has-feedback{
     width: 83%!important;
     height: 40px;
-    border-bottom: 1.5px solid white;
+    border-bottom: 1px solid white;
     margin: 0 auto;
     margin-top: 30px;
 }
