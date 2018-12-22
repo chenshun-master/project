@@ -368,3 +368,7 @@ $(".wl-zhezhao").click(function (event) {
 $(document).on('click', '#click-place-order', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $('#fr-goodid').val() + '&goodsgoodid=' + $('#fr-good-goods-id').val();
 });
+$(document).on('click', '.click-to-havegoodDetails', function () {
+    window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $(this).data('id') ;
+
+});
