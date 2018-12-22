@@ -37,7 +37,9 @@ $(".quxiao").click(function () {
 //     alert('asd');
 //     window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
 // });
-
+$(document).on('click','.dianhua-left',function(){
+    window.location.href = '/weixin/index/hospital';
+});
 $(document).on('click','#click-place-order',function(){
     window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
 });
