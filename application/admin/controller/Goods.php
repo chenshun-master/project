@@ -11,6 +11,7 @@ namespace app\admin\controller;
 
 use app\api\domain\SpGoodsDomain;
 use think\App;
+use think\Db;
 
 class Goods extends BaseController
 {
@@ -37,14 +38,25 @@ class Goods extends BaseController
         return $this->returnData($data,'',0);
     }
 
-//    public function getGoodsStatus(){
-//        $id = $this->request->post('id','0');
-//        $status = $this->request->post('status','0');
-//        $data = $this->SpGoodsDomain->examineGoods($id,$status);
-//        if(!$data){
-//            return $this->returnData([],'修改失败','301');
-//        }else{
-//            return $this->returnData([],'修改成功','200');
-//        }
-//    }
+    /**
+     * 修改商品状态
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function getGoodsStatus(){
+        $data = input('param.');
+        if($data['status'] == 0){
+            $data = Db::name('sp_goods')->where('id',$data['id'])->update(['status' => 3,'up_time'=>date('Y-m-d H:i:s')]);
+        }else if($data['status'] == 3){
+            $data = Db::name('sp_goods')->where('id',$data['id'])->update(['status'=> 2,'down_time'=>date('Y-m-d H:i:s')]);
+        }else if($data['status'] == 2){
+            $data = Db::name('sp_goods')->where('id',$data['id'])->update(['status' => 3,'up_time'=>date('Y-m-d H:i:s')]);
+        }
+        if(!$data){
+            return $this->returnData([],'修改失败','301');
+        }else{
+            return $this->returnData([],'修改成功','200');
+        }
+    }
 }
