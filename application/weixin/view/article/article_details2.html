@@ -2,7 +2,6 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/article_details2.css">
-<!--<link rel="stylesheet" type="text/css" href="/static/css/zhezhao.css"/>-->
 {/block}
 {block name="main"}
 
@@ -225,9 +224,9 @@
 
             var type = $('#cus-click-fabulous').data('fabulous');
             $.ajax({
-                url: "/weixin/article/clickZan",
+                url: "/weixin/user/giveFabulous",
                 type: 'post',
-                data: {id: objClass.article_id, type: type},
+                data: {obj_id: objClass.article_id, type: type,flag:1},
                 dataType: 'json',
                 beforeSend: function () {
                     objClass.oneLoading = true;
@@ -320,9 +319,9 @@
                     return false;
                 }else if(!objClass.clickCommentFabulousLading){
                     $.ajax({
-                        url: "/weixin/article/commentClickZan",
+                        url: "/weixin/user/giveFabulous",
                         type: 'post',
-                        data: {id: id, type: type},
+                        data: {obj_id: id, type: type,flag:2},
                         dataType: 'json',
                         beforeSend: function () {
                             objClass.clickCommentFabulousLading = true;
@@ -541,9 +540,9 @@
                     return false;
                 }
                 $.ajax({
-                    url: "/weixin/article/addFavorite",
+                    url: "/weixin/user/giveFavorite",
                     type: 'post',
-                    data: {id:objClass.article_id},
+                    data: {obj_id:objClass.article_id,flag:1,type:1},
                     dataType: 'json',
                     beforeSend: function () {
                         objClass.myFavorite.loading = true;

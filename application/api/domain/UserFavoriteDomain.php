@@ -8,6 +8,17 @@ use think\Db;
  */
 class UserFavoriteDomain
 {
+
+    public static function getTypeName($val){
+        $config = [
+            1=>'article',
+            2=>'goods',
+            3=>'sp_good_goods',
+        ];
+
+        return isset($config[$val]) ? $config[$val] :'';
+    }
+
     /**
      * 添加用户收藏
      * @param int $user_id               用户ID
@@ -29,29 +40,30 @@ class UserFavoriteDomain
                 try {
                     $isTrue = Db::name('user_favorite')->where('id',$favoriteRes['id'])->update(['status'=>0]);
                     if(!$isTrue){
-                        return false;
+                        throw new \think\Exception('异常消息');
                     }
 
                     if($favoriteRes['table_name'] == 'article'){
                         $res2 = Db::name('article')->where('id',$favoriteRes['object_id'])->inc('favorites',1)->update();
                         if(!$res2){
-                            Db::rollback();return false;
+                            throw new \think\Exception('异常消息');
                         }
                     }else if($favoriteRes['table_name'] == 'goods'){
                         $res2 = Db::name('sp_goods')->where('id',$favoriteRes['object_id'])->inc('favorites',1)->update();
                         if(!$res2){
-                            Db::rollback();return false;
+                            throw new \think\Exception('异常消息');
                         }
                     }else  if($favoriteRes['table_name'] == 'sp_good_goods'){
                         $res2 = Db::name('sp_good_goods')->where('id',$favoriteRes['object_id'])->inc('favorites',1)->update();
                         if(!$res2){
-                            Db::rollback();return false;
+                            throw new \think\Exception('异常消息');
                         }
                     }
 
                     Db::commit();return true;
                 } catch (\Exception $e) {
-                    Db::rollback();return false;
+                    Db::rollback();
+                    return false;
                 }
             }else{
                 return false;
@@ -88,14 +100,15 @@ class UserFavoriteDomain
      * 用户取消收藏处理
      * @param int $favorite_id       收藏ID
      * @param int $user_id           用户ID
-     * @return int|string
-     * @throws \think\Exception
-     * @throws \think\exception\PDOException
+     * @param $tablename
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function cancelFavorite($favorite_id,$user_id){
+    public function cancelFavorite($favorite_id,$user_id,$tablename){
         $favoriteRes = Db::name('user_favorite')->where('id',$favorite_id)->where('user_id',$user_id)->where('status',0)->field('id,object_id,table_name')->find();
-
-        if(!$favoriteRes){
+        if(!$favoriteRes || $favoriteRes['table_name'] !=$tablename){
             return false;
         }
 
@@ -103,30 +116,29 @@ class UserFavoriteDomain
         try {
             $res = Db::name('user_favorite')->where('id',$favoriteRes['id'])->update(['status'=>2]);
             if(!$res){
-                return false;
+                throw new \think\Exception('异常消息');
             }
 
             if($favoriteRes['table_name'] == 'article'){
                 $res2 = Db::name('article')->where('id',$favoriteRes['object_id'])->dec('favorites',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }else if($favoriteRes['table_name'] == 'goods'){
                 $res2 = Db::name('sp_goods')->where('id',$favoriteRes['object_id'])->dec('favorites',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }else  if($favoriteRes['table_name'] == 'sp_good_goods'){
                 $res2 = Db::name('sp_good_goods')->where('id',$favoriteRes['object_id'])->dec('favorites',1)->update();
                 if(!$res2){
-                    Db::rollback();return false;
+                    throw new \think\Exception('异常消息');
                 }
             }
 
             Db::commit();return true;
         } catch (\Exception $e) {
             Db::rollback();
-            halt($e);
             return false;
         }
     }
@@ -168,7 +180,7 @@ class UserFavoriteDomain
 
         $total = $obj->count();
 
-        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
+        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} and wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
 
         return [

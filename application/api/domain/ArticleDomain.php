@@ -352,7 +352,7 @@ class ArticleDomain extends ArticleModel
         $total = $obj->count();
 
         if($uid){
-            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$uid} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
+            $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$uid} AND wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         }else{
             $obj->field("article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         }
@@ -498,6 +498,7 @@ class ArticleDomain extends ArticleModel
         $obj->where('article.type','in',[1,2]);
         $obj->where('article.status',1);
         $obj->where('user_like.user_id',$user_id);
+        $obj->where('user_like.status',0);
         $obj->order('user_like.created_time desc');
 
 
@@ -541,7 +542,7 @@ class ArticleDomain extends ArticleModel
         $obj->order('comment.created_time desc');
 
         $total = $obj->count();
-        $obj->field("article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,article.thumbnail,user.id as user_id,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
+        $obj->field("article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,article.thumbnail,user.id as user_id,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' and wl_user_like.status =0 AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
         return [

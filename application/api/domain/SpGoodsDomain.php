@@ -353,6 +353,11 @@ class SpGoodsDomain
 
     /**
      * 获取手机端商品详情
+     * @param int $goods_id     商品ID
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getGoodsDetail(int $goods_id){
         $data = [
@@ -388,9 +393,14 @@ class SpGoodsDomain
         return $data;
     }
 
-
-    /**
+    /***
      * 获取商品下单的相关信息
+     * @param $goods_id         商品ID
+     * @param int $goods_num    商品数量
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getPlaceOrderPayInfo($goods_id,int $goods_num){
         $info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->field('id,name,market_price,sell_price,prepay_price,topay_price')->find();

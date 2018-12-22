@@ -42,8 +42,8 @@
             </div>
 
             <div class="wl-zizhi href">
-                资质认证 . 全程认证 .全程陪护 . 定期回访 <i class="iconfont icon-back_left-copy"
-                                            style="font-size: 15px;float: right;margin-right: 10px"></i>
+                资质认证 . 全程认证 .全程陪护 . 定期回访
+                <i class="iconfont icon-back_left-copy" style="font-size: 15px;float: right;margin-right: 10px"></i>
             </div>
 
             <div class="wl-dizhi">
@@ -281,7 +281,7 @@
         </footer>
         <div class="marsk-container">
             <div class="tkyy_con">
-                <p class="dian">18798276809</p>
+                <p class="dian">{$info['hospital_info']['phone']}</p>
                 <p><span class="quxiao">取消</span><span class="bd"><a href="tel:18798276809">拨打</a></span></p>
             </div>
         </div>
@@ -325,7 +325,7 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-remen padding to-goods-detai href" data-goodsid="{{ item.id }}">
         <div class="wl-remen-img">
-            <img src="{{item.img}}" alt="图片丢失">
+            <img src="{{item.img}}" >
         </div>
         <div class="wl-remen-right">
             <dl>{{item.name}}</dl>

@@ -77,6 +77,7 @@ class SpGoodGoodsDomain
             'good_goods.comment',
             'goods.market_price',
             'goods.sell_price',
+            'goods.name'
         ];
 
         $obj->order('good_goods.created_time desc');
@@ -100,7 +101,7 @@ class SpGoodGoodsDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getGoodGoodsDetail($good_goods_id){
+    public function getGoodGoodsDetail($good_goods_id,$user_id = 0){
         $data = [
             'info'=>[],
             'imgs'=>[],
@@ -117,12 +118,20 @@ class SpGoodGoodsDomain
             'good_goods.article_text',
             'goods.sale_num',
             'goods.sell_price',
+            'good_goods.created_time',
+            'user.portrait',
+            'user.nickname',
+            'user.type',
+            'IF(like.id > 0,1,0)'=>'islike',
+            'IF(favorite.id > 0,1,0)'=>'isfavorite',
         ];
 
         $data['info'] = Db::name('sp_good_goods')->alias('good_goods')
             ->leftJoin('wl_sp_goods goods','goods.id = good_goods.goods_id')
+            ->leftJoin('wl_user user','user.id = good_goods.user_id')
+            ->leftJoin('wl_user_like like',"like.user_id = {$user_id} and like.table_name='sp_good_goods' and like.status=0 and like.object_id = good_goods.id")
+            ->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='sp_good_goods' and favorite.status=0 and favorite.object_id = good_goods.id")
             ->where('good_goods.id',$good_goods_id)->field($field)->find();
-
         if($data['info']){
             $data['imgs'] = SpGoodsModel::getImgs($good_goods_id);
         }
@@ -184,10 +193,22 @@ class SpGoodGoodsDomain
         });
 
         $obj->join('wl_sp_good_goods good_goods','ce.goods_id = good_goods.goods_id and good_goods.is_del=0');
+        $obj->join('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status=0');
         $obj->order('good_goods.like desc,good_goods.favorites desc,good_goods.created_time asc');
 
         $total = $obj->count();
-        $rows = $obj->field('good_goods.*')->page($page,$page_size)->fetchSql(false)->select();
+        $field = [
+            'goods.id as goods_id',
+            'goods.name',
+            'good_goods.title',
+            'goods.sell_price',
+            'goods.sale_num',
+            'goods.market_price',
+            'good_goods.id as goods_good_id',
+            'goods.img'
+        ];
+
+        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -195,7 +216,6 @@ class SpGoodGoodsDomain
             'total'         =>$total
         ];
     }
-
 
     /**
      * 获取分销商品列表数据

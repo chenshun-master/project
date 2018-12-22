@@ -86,3 +86,8 @@
 .wl-all-right:hover{
     color: #7DB0E8!important;
 }
+
+
+#click-payment:active{
+    background: #CCCCCC;
+}
