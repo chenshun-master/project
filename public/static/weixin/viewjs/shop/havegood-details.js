@@ -164,7 +164,7 @@ var myObj = {
     giveLike: function (o, dataObj) {
         if (myObj.giveLikeLoading == false) {
             $.ajax({
-                url: "/weixin/shopapi/giveFabulous",
+                url: "/weixin/user/giveFabulous",
                 type: 'post',
                 data: dataObj,
                 dataType: 'json',
