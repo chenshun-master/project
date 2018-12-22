@@ -19,8 +19,6 @@
 			}
 		</style>
 		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
-
 	</head>
 
 	<body style="background-color: #fff;">
@@ -28,7 +26,7 @@
 			<div class="wx-top">
 			<a href="login.html"  class="iconfont icon-back_light" style="font-size: 40px;padding-top: 10px;margin-left: 25px;"></a>
 				<div class="wx-reg">
-					<h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">免费注册</h3>
+					<h3 style="font-size:38px;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">免费注册</h3>
 			     	<p><input id="mobile" type="text"  placeholder="请输入你的手机号"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
 					<p style="margin-top: 15px;"><input id="sms_code" type="text"  placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 500px;" ></p>
 					<p style="margin-top: 15px;"><input id="password" type="password"  placeholder="6~16个字符，区分大小写" style="width: 400px;" class="yan"><span id='xian'><img src="/static/image/reg/zy.png" width="40px" /></span></p>

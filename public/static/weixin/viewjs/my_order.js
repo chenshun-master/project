@@ -327,7 +327,7 @@ var myObj = {
     },
 };
 $(document).on('click','.wl-remen',function(){
-    window.location.href = '/weixin/shop/goodsDetails?oid='+$(this).data('user_id');
+    window.location.href = '/weixin/shop/paymentOrder';
 });
 
 $(document).on('click','.click-to-orderpaydetail',function(){
