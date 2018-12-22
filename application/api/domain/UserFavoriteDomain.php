@@ -180,7 +180,7 @@ class UserFavoriteDomain
 
         $total = $obj->count();
 
-        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
+        $obj->field("article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} and wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
 
         return [
