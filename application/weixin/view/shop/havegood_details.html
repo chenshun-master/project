@@ -288,7 +288,7 @@
         },
         recommended: {
             listData: {
-                gid: $('#fr-good-goods-id').val(),
+                sellerid: $('#fr-good-goods-id').val(),
                 loading: false,
                 ini: false,
                 page: 0,
@@ -306,10 +306,10 @@
                     }
                 }
                 $.ajax({
-                    url: "/weixin/shopapi/getGoodGoodsRelevant",
+                    url: "/weixin/shopapi/getSellerHotGoods",
                     type: 'post',
                     data: {
-                        gid: myObj.recommended.listData.gid,
+                        sellerid: myObj.recommended.listData.sellerid,
                         page: myObj.recommended.listData.page,
                         page_size: myObj.recommended.listData.page_size
                     },
