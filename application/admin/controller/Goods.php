@@ -29,8 +29,12 @@ class Goods extends BaseController
 
     /**
      * 商品列表
-     * @param  $page 当前页码
-     * @param  $page_size 每页展示的数据
+     * @param int $page
+     * @param int $page_size
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getGoodsList($page=1,$page_size=10){
         $status = input('param.status');
