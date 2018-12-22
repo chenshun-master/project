@@ -20,7 +20,7 @@ $(".marsk-container").click(function (event) {
 }).on('touchstart', function (event) {
     var _con = $('.tkyy_con'); // 设置目标区域
     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-        // $('.marsk-container').hide(); //淡出消失
+        $('.marsk-container').hide(); //淡出消失
         $("body").removeClass("body");
     }
     event.stopPropagation(); //停止事件冒泡
