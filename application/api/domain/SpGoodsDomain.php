@@ -359,7 +359,7 @@ class SpGoodsDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getGoodsDetail(int $goods_id){
+    public function getGoodsDetail(int $goods_id,$user_id=0){
         $data = [
             'goods_info' =>[],
             'imgs'=>[],
@@ -371,7 +371,13 @@ class SpGoodsDomain
         $obj->where('goods.status',0);
         $obj->where('goods.id',$goods_id);
         $obj->leftJoin('wl_sp_goods_buy_notice buy_notice','buy_notice.goods_id = goods.id');
-        $field = 'goods.id,goods.name,goods.market_price,goods.sell_price,goods.prepay_price,goods.topay_price,goods.img,goods.content,goods.visit,goods.favorites,goods.comments,goods.sale_num,goods.case_num,goods.doctor_id,goods.hospital_id,goods.seller_id,buy_notice.buy_deadline,buy_notice.notice,buy_notice.buyflow,buy_notice.time_slot';
+        $obj->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='sp_goods' and favorite.status=0 and favorite.object_id = goods.id");
+
+        $field = [
+            'goods.id','goods.name','goods.market_price','goods.sell_price','goods.prepay_price','goods.topay_price','goods.img','goods.content','goods.visit','goods.favorites','goods.comments','goods.sale_num',
+            'goods.case_num','goods.doctor_id','goods.hospital_id','goods.seller_id','buy_notice.buy_deadline','buy_notice.notice','buy_notice.buyflow','buy_notice.time_slot','IF(favorite.id > 0,1,0) as isfavorite'
+        ];
+
         $goodsInfo = $data['goods_info'] = $obj->field($field)->find();
 
         if($goodsInfo){
