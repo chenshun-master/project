@@ -83,11 +83,11 @@
         <div class="wl-footer">
             <div class="cus-pinglun">
                 <ul>
-                    <li class="iconfont {$info['islike']== 1?'icon-likefill cus-red':'icon-like'}"
-                        id="cus-click-fabulous" data-type=""></li>
+                    <li class="iconfont {$info['islike']== 1?'icon-emojifill cus-sou':'icon-emojilight'}"
+                        id="cus-click-fabulous" data-type="{$info['islike']}"></li>
                     <li class="iconfont  icon-comment_light cus-ping"></li>
-                    <li class="iconfont icon-favor_light" id="cus-click-collection"
-                        data-type="{$info['isfavorite']}"></li>
+                    <li class="iconfont {$info['isfavorite']== 1?'icon-favor_fill_light cus-sou':'icon-favor_light'}"
+                        id="cus-click-collection" data-type="{$info['isfavorite']}"></li>
                 </ul>
             </div>
             <div class="wl-goumai">

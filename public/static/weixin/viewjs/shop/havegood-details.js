@@ -189,9 +189,9 @@ var myObj = {
                             }
                         } else if (dataObj.flag == 3) {
                             if (dataObj.type == 1) {
-                                o.data('type', 1).removeClass('icon-like').addClass("icon-likefill").addClass('cus-red');
+                                o.data('type', 1).removeClass('icon-emojilight').addClass("icon-emojifill").addClass('cus-sou');
                             } else {
-                                o.data('type', 0).removeClass('cus-red').removeClass('icon-likefill').addClass("icon-like");
+                                o.data('type', 0).removeClass('cus-sou').removeClass('icon-emojifill').addClass("icon-emojilight");
                             }
                         }
                     } else if (res.code == 401) {
@@ -222,7 +222,7 @@ var myObj = {
                             if (dataObj.type == 1) {
                                 o.data('type', 1).removeClass('icon-favor_light').addClass("icon-favor_fill_light").addClass('cus-sou');
                             } else {
-                                o.data('type', 2).removeClass('icon-favor_fill_light').removeClass('cus-sou').addClass("icon-favor_light");
+                                o.data('type', 0).removeClass('icon-favor_fill_light').removeClass('cus-sou').addClass("icon-favor_light");
                             }
                         }
                     } else if (res.code == 401) {
