@@ -8,19 +8,18 @@
 {/block}
 
 {block name="main"}
-
-<!--这里编写主体内容-->
 <div style="width: 100%;height: 100%;background: #F2F2F2">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.href('/weixin/user/main')"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"
+               onclick="redream.href('/weixin/user/main')"></i>
             <span>我的订单</span>
         </div>
     </header>
     <main>
         <div>
             <ul class="wl-deji">
-                <li  class="active">全部</li>
+                <li class="active">全部</li>
                 <li>待支付</li>
                 <li>待消费</li>
                 <li>已完成</li>
@@ -60,102 +59,102 @@
 <script id="orderList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
 
-    {{#  if(item.status == 5){ }}
-    <div class="wl-dingdan">
-        <div class="wl-zonghe1">
-            <span class="wl-xiannv">订单号：{{item.order_no}}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
-        </div>
-        <div class="wl-remen">
-            <div class="wl-remen-img">
-                <img src="{{item.img}}" />
+        {{#  if(item.status == 5){ }}
+        <div class="wl-dingdan">
+            <div class="wl-zonghe1">
+                <span class="wl-xiannv">订单号：{{item.order_no}}</span>
+                <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
             </div>
-            <div class="wl-remen-right">
-                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                <dt>{{item.hospital_name}}</dt>
-                <dd>
-                    <span class="wl-quchu">￥{{item.goods_price}}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥958</span></span>
-                </dd>
+            <div class="wl-remen">
+                <div class="wl-remen-img">
+                    <img src="{{item.img}}"/>
+                </div>
+                <div class="wl-remen-right">
+                    <dl>{{item.goods_name}}</dl>
+                    <dt>{{item.hospital_name}}</dt>
+                    <dd>
+                        <span class="wl-quchu">￥{{item.goods_price}}</span>
+                        <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
+                    </dd>
+                </div>
             </div>
+            <div style="clear: both"></div>
         </div>
-        <div style="clear: both"></div>
-    </div>
-    {{#  } }}
+        {{#  } }}
 
-    {{#  if(item.status == 1){ }}
-    <div class="wl-dingdan" >
-        <div class="wl-zonghe1">
-            <span class="wl-xiannv">订单号：{{item.order_no}}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
-        </div>
-        <div class="wl-remen">
-            <div class="wl-remen-img">
-                <img src="{{item.img}}" alt="图片丢失">
+        {{#  if(item.status == 1){ }}
+        <div class="wl-dingdan href click-to-orderpaydetail" data-oid="{{ item.id }}">
+            <div class="wl-zonghe1">
+                <span class="wl-xiannv">订单号：{{item.order_no}}</span>
+                <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
             </div>
-            <div class="wl-remen-right">
-                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                <dt>{{item.hospital_name}}</dt>
-                <dd>
-                    <span class="wl-quchu">￥{{item.goods_price}}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
-                </dd>
+            <div class="wl-remen">
+                <div class="wl-remen-img">
+                    <img src="{{item.img}}" alt="">
+                </div>
+                <div class="wl-remen-right">
+                    <dl>{{item.goods_name}}</dl>
+                    <dt>{{item.hospital_name}}</dt>
+                    <dd>
+                        <span class="wl-quchu">￥{{item.goods_price}}</span>
+                        <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
+                    </dd>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="wl-xiangqing">
+                <div class="wl-zhifu href click-to-paydetail" data-oid="{{ item.id }}">去支付</div>
+                <div class="wl-chakan href click-to-orderpaydetail" data-oid="{{ item.id }}">查看详情</div>
             </div>
         </div>
-        <div style="clear: both"></div>
-        <div class="wl-xiangqing">
-            <div class="wl-zhifu href click-to-paydetail"  data-oid="{{ item.id }}" >去支付</div>
-            <div class="wl-chakan href click-to-orderpaydetail"  data-oid="{{ item.id }}" >查看详情</div>
-        </div>
-    </div>
-    {{#  } }}
+        {{#  } }}
 
-    {{#  if(item.status == 3){ }}
-    <div class="wl-dingdan" >
-        <div class="wl-zonghe1">
-            <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">已支付</span>
-        </div>
-        <div class="wl-remen">
-            <div class="wl-remen-img">
-                <img src="{{ item.img }}" >
+        {{#  if(item.status == 3){ }}
+        <div class="wl-dingdan to-myorder href"  data-oid="{{ item.id }}">
+            <div class="wl-zonghe1">
+                <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
+                <span class="wl-jiage1" style="color: #F24F4F">已支付</span>
             </div>
-            <div class="wl-remen-right">
-                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                <dt>{{item.hospital_name}}</dt>
-                <dd>
-                    <span class="wl-quchu">￥{{ item.goods_price }}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
-                </dd>
+            <div class="wl-remen">
+                <div class="wl-remen-img">
+                    <img src="{{ item.img }}">
+                </div>
+                <div class="wl-remen-right">
+                    <dl>{{item.goods_name}}</dl>
+                    <dt>{{item.hospital_name}}</dt>
+                    <dd>
+                        <span class="wl-quchu">￥{{ item.goods_price }}</span>
+                        <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
+                    </dd>
+                </div>
             </div>
-        </div>
 
-        <div style="clear: both"></div>
-    </div>
-    {{#  } }}
+            <div style="clear: both"></div>
+        </div>
+        {{#  } }}
 
-    {{#  if(item.status == 5){ }}
-    <div class="wl-dingdan" >
-        <div class="wl-zonghe1">
-            <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">已完成</span>
-        </div>
-        <div class="wl-remen">
-            <div class="wl-remen-img">
-                <img src="{{ item.img }}" alt="图片丢失">
+        {{#  if(item.status == 5){ }}
+        <div class="wl-dingdan to-myorder href"  data-oid="{{ item.id }}">
+            <div class="wl-zonghe1">
+                <span class="wl-xiannv">订单号：{{ item.order_no }}</span>
+                <span class="wl-jiage1" style="color: #F24F4F">已完成</span>
             </div>
-            <div class="wl-remen-right">
-                <dl>伊婉C玻尿酸.亚洲人更适亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的亚洲人更适合的合的</dl>
-                <dt>数量：{{ item.goods_nums }}</dt>
-                <dd>
-                    <span class="wl-quchu">￥{{ item.goods_price }}</span>
-                    <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
-                </dd>
+            <div class="wl-remen">
+                <div class="wl-remen-img">
+                    <img src="{{ item.img }}">
+                </div>
+                <div class="wl-remen-right">
+                    <dl>{{item.goods_name}}</dl>
+                    <dt>数量：{{ item.goods_nums }}</dt>
+                    <dd>
+                        <span class="wl-quchu">￥{{ item.goods_price }}</span>
+                        <span class="wl-jiage1"><span style="margin-right: 10px">数量：{{item.goods_nums}}</span><span>支付定金：￥{{item.real_amount}}</span></span>
+                    </dd>
+                </div>
             </div>
+            <div style="clear: both"></div>
         </div>
-        <div style="clear: both"></div>
-    </div>
-    {{#  } }}
+        {{#  } }}
 
     {{#  }); }}
 </script>

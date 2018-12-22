@@ -94,6 +94,7 @@ class ShOrderDomain
         $obj->where('order.user_id',$user_id);
         $obj->where('order.id',$order_id);
         $obj->field([
+            'order.img','order.goods_id',
             'order.order_no','order.goods_name','order.goods_nums','order.goods_price','order.discount_price','order.payable_amount',
             'order.prepay_price','order.topay_price','order.real_amount','order.pay_type','order.status','order.create_time',
             'auth.province','auth.city','auth.area','auth.address','auth.enterprise_name','order.pay_status'

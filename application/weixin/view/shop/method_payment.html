@@ -1,7 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<link rel="stylesheet" href="/static/weixin/shop/css/method_payment.css">
+    <link rel="stylesheet" href="/static/weixin/shop/css/method_payment.css">
 {/block}
 
 {block name="main"}
@@ -9,7 +9,7 @@
 <div style="width: 100%;height: 100%;background: #F2F2F2">
     <header>
         <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.href('/weixin/shop/myOrder#paid')"></i>
             <span>支付方式</span>
         </div>
     </header>
@@ -112,8 +112,16 @@
                         window.location.href = '/weixin/shop/paySuccess/oid/'+paymentObj.params.oid;
                     }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
                         alert('用户取消支付');
+                        setTimeout(function(){
+                            paymentObj.showLoad('show','跳转中。。。');
+                            window.location.href = '/weixin/shop/myOrder#paid';
+                        },2000);
                     }else if(res.err_msg == "get_brand_wcpay_request:fail"){
                         alert('微信支付失败');
+                        setTimeout(function(){
+                            paymentObj.showLoad('show','跳转中。。。');
+                            window.location.href = '/weixin/shop/myOrder#paid';
+                        },2000);
                     }
                 });
             }
@@ -124,9 +132,8 @@
         if(redream.isWeiXin()){
             paymentObj.requesPayData();
         }else{
-            // alert('请在微信浏览器中进行支付');
+            alert('请在微信浏览器中进行支付');
         }
     });
 </script>
-
 {/block}

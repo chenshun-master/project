@@ -326,12 +326,12 @@ var myObj = {
         }
     },
 };
-$(document).on('click','.wl-remen',function(){
-    window.location.href = '/weixin/shop/paymentOrder';
-});
+
 
 $(document).on('click','.click-to-orderpaydetail',function(){
     window.location.href = '/weixin/shop/orderDetails?oid='+$(this).data('oid');
 }).on('click','.click-to-paydetail',function(){
     window.location.href = '/weixin/shop/methodpayment/?oid='+$(this).data('oid');
+}).on('click','.to-myorder',function(){
+    window.location.href = '/weixin/shop/paymentOrder/oid/'+$(this).data('oid');
 });

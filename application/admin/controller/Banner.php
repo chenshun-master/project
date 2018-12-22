@@ -67,9 +67,9 @@ class Banner extends BaseController{
             if(!$img->checkExt($fileExt)){
                 return $this->returnData([],'文件格式错误只支持gif,jpg,jpeg及png格式的图片',305);
             }
-            $info = $img->move( '../uploads/banner/');
+            $info = $img->move( '../uploads/');
             if($info){
-                $path_dir =$img_domain.'/banner/'.str_replace("\\","/",$info->getSaveName());
+                $path_dir =$img_domain.'/uploads/'.str_replace("\\","/",$info->getSaveName());
                 $data = [
                     'name' => $name,
                     'url'  => $url,

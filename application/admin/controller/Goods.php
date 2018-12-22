@@ -11,7 +11,6 @@ namespace app\admin\controller;
 
 use app\api\domain\SpGoodsDomain;
 use think\App;
-use think\Db;
 
 class Goods extends BaseController
 {
