@@ -461,10 +461,10 @@ class SpGoodsDomain
     }
 
     /**
-     * @param $status           状态
-     * @param $seller_id        商家ID
-     * @param int $page         当前分页
-     * @param int $page_size    分页大小
+     * 获取商品列表
+     * @param $status
+     * @param int $page
+     * @param int $page_size
      * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
