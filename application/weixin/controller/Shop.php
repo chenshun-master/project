@@ -55,6 +55,7 @@ class Shop extends BaseController
         $this->assign('referer', $referer);
 
         $this->assign('info', $goodsDetail);
+
         return $this->fetch('shop/goods_details');
     }
 
