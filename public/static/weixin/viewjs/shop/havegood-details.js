@@ -202,6 +202,36 @@ var myObj = {
         }
     },
 
+    collectionLoading: false,
+    collection: function (o, dataObj) {
+        if (myObj.collection == false) {
+            $.ajax({
+                url: "/weixin/user/giveFavorite",
+                type: 'post',
+                data: dataObj,
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.collectionLoading = true;
+                },
+                complete: function () {
+                    myObj.collectionLoading = false;
+                },
+                success: function (res) {
+                    if (res.code == 200) {
+                        if (dataObj.flag == 3) {
+                            if (dataObj.type == 1) {
+                                o.data('type', 1).removeClass('icon-like').addClass("icon-wuxing").addClass('cus-red');
+                            } else {
+                                o.data('type', 0).removeClass('cus-red').removeClass('icon-wuxing').addClass("icon-like");
+                            }
+                        }
+                    } else if (res.code == 401) {
+                        redream.showTip('请登录后操作...');
+                    }
+                }
+            });
+        }
+    },
     publishCommentConf: {
         loading: false,
     },
@@ -303,6 +333,17 @@ $('#cus-click-fabulous').on('click', function () {
     myObj.giveLike($(this), {type: type, obj_id: $('#fr-good-goods-id').val(), flag: 3});
 });
 
+
+$(document).on('click', '#cus-click-collection', function () {
+    var type = $(this).data('type');
+    if (type == 0) {
+        type = 1;
+    } else {
+        type = 2;
+    }
+    myObj.collection($(this), {type: type, obj_id: $(this).data('id'), flag: 3});
+});
+
 $(document).on('click', '.cus-comment-fabulous', function () {
     var type = $(this).data('type');
     if (type == 0) {
@@ -316,9 +357,7 @@ $(document).on('click', '.cus-comment-fabulous', function () {
 $(document).on('click', '.cus-touser-main', function () {
     window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
 });
-// $('#cus-click-favorite').on('click', function () {
-//     myObj.myFavorite.submit();
-// });
+
 $(".wl-zhezhao").click(function (event) {
     var _con = $('.wl-zhe1'); // 设置目标区域
     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
