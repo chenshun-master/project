@@ -21,6 +21,7 @@ class Login extends Controller
     public function index()
     {
         if (request()->isPost()) {
+
             $username = $this->request->post('username');
             $password = $this->request->post('password');
             if (empty($username) || empty($password)) {
@@ -37,7 +38,7 @@ class Login extends Controller
             session('user_auth',$res);
             return json(['status' => 200, 'msg' => '登录成功！']);
         }
-        if(session('user_auth')){
+        if(session('?user_auth')){
             $this->redirect('index/index');
         }
         return $this->fetch('login/index');

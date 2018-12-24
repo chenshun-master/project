@@ -9,7 +9,6 @@ class BaseController extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-
         $this->view->engine->layout('layout/layout');
     }
     public function initialize()
