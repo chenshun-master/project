@@ -76,13 +76,18 @@ class Shop extends CController
             'title'     =>$title,
             'article_text'=>$content
         ];
+
         $res = false;
         if($good_goods_id == 0){
-            $res = (new \app\api\domain\SpGoodGoodsDomain())->create($data);
+            $domain = new \app\api\domain\SpGoodGoodsDomain();
+            if($domain->findGoodGoods($this->getUserId(),$gid)){
+                return $this->returnData([],'此商品不能重复发表',301);
+            }
+            $res = $domain->create($data);
         }
 
         if(!$res){
-            return $this->returnData([],'操作成功',30);
+            return $this->returnData([],'操作成功',301);
         }
 
         return $this->returnData([],'操作成功',200);
