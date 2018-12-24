@@ -59,7 +59,9 @@
                 <p>我的文章</p>
                 <div class="wl-xianshi-neirong">
                     <div class="wl-all-title">
+                        {if(count($rows) > 0)}
                         <span style="display: inline-block;float: left">共 {$total} 条数据，已显示 {:count($rows)} 条</span>
+                        {/if}
                         {if($draftId > 0)}
                             <span style="cursor: pointer;display: inline-block;float: right">
                                 <a href="{:url('/index/article/article',['id'=>$draftId])}" style="color: #ff8868;" title="立即编辑">温馨提示：您有草稿还没发布哦！</a>
@@ -84,6 +86,11 @@
                                 </div>
                             </div>
                             {/foreach}
+                        {else/}
+                        <div class="wl-weifabiao">
+                            <dl class="iconfont icon-wushuju"></dl>
+                            <dt>你还没有发布过文章</dt>
+                        </div>
                         {/if}
                     </div>
                     <div id="wl-fenye" ></div>
