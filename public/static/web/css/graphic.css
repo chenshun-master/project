@@ -238,6 +238,7 @@ a {
     height: 50px;
     border:1px solid #E5E5E5;
     margin-top: 20px;
+    z-index: 999999;
 }
 .wl-sorting li{
     width: 25%;
@@ -439,4 +440,11 @@ a {
 .wl-all-right a{
     height: 25px;
     line-height: 25px;
+}
+#wl-fenye{
+    width: 100%;
+    min-height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

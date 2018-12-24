@@ -101,9 +101,9 @@
                                 </ul>
                             </li>
                         </ul>
-                        <div style="clear: both"></div>
-                    </div>
 
+                    </div>
+                    <div style="clear: both"></div>
                     <div id="content">
 
                     </div>
@@ -124,7 +124,7 @@
 
 <script id="shoptemplateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-        <div class="wl-shangpin-quan">
+        <div class="wl-shangpin-quan" style="z-index: 1;">
             <dl><img src="{{ item.img }}" alt=""></dl>
             <dt class="wl-shang-title">{{item.name}}</dt>
             <dt class="wl-yiyuan">{{item.hospital_name}}</dt>

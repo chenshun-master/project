@@ -60,6 +60,12 @@ $(".wl-zhez2").click(function (event) {
     }
 });
 
+$(".wl-fenxiang").click(function () {
+    $("#cus-myshare-box").show();
+})
+$("#cus-myshare-box").click(function () {
+    $("#cus-myshare-box").hide();
+})
 
 
 var myObj = {

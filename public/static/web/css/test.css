@@ -107,19 +107,17 @@ a {
 }
     .wl-tijiao{
         width: 100px!important;
-        height: 40px!important;
-        line-height: 40px!important;
-        width: 130px;
-        height: 45px;
-        line-height: 45px;
+        height: 35px!important;
+        line-height: 35px!important;
         background: #7DB0E8;
         color: #FFfFFF;
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
         border-radius: 10px;
         float: right;
-        margin-right: 50px;
+        margin-right: 10px;
         margin-top: 25px;
+
     }
     input::-webkit-input-placeholder {
                    color: #cdcdcd;
