@@ -327,9 +327,9 @@
             var id = obj.data('id');
             var type = obj.data('click') == 1 ?2:1;
             $.ajax({
-                url:"/weixin/article/clickZan",
-                type:'post',
-                data:{id:id,type:type},
+                url: "/weixin/user/giveFabulous",
+                type: 'post',
+                data: {obj_id: id, type: type,flag:1},
                 dataType:'json',
                 beforeSend:function(){
                     objClass.oneLoading = true;

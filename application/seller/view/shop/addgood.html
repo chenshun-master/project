@@ -131,11 +131,11 @@
                                                         <th>预约名额</th>
                                                     </tr>
                                                     <tr>
-                                                        <td><input type="text" class="form-control" style="width: 150px;"  id="fr-market_price"  value="{$info['goods_info']['market_price']?:''}" /></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-sell_price" value="{$info['goods_info']['sell_price']?:''}" ></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-prepay_price" value="{$info['goods_info']['prepay_price']?:''}" ></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;"  id="fr-market_price"  value="{$info['goods_info']['market_price']?:''}" onkeyup="checkDecimal(this)" /></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-sell_price" value="{$info['goods_info']['sell_price']?:''}" onkeyup="checkDecimal(this)" ></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-prepay_price" value="{$info['goods_info']['prepay_price']?:''}" onkeyup="checkDecimal(this)" ></td>
                                                         <td><input type="text" class="form-control" style="width: 150px;" id="fr-topay_price" value="{$info['goods_info']['topay_price']?:''}" readonly></td>
-                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-store_nums" value="{$info['goods_info']['store_nums']?:''}" ></td>
+                                                        <td><input type="text" class="form-control" style="width: 150px;" id="fr-store_nums" value="{$info['goods_info']['store_nums']?:''}" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -442,11 +442,11 @@
                     name                :$.trim($('#fr-good-name').val()),
                     search_keyword      :$.trim($('#fr-search-words').val()),
                     category            :$('#fr-category').val(),
-                    market_price        :parseFloat($('#fr-market_price').val()),
-                    sell_price          :parseFloat($('#fr-sell_price').val()),
-                    prepay_price        :parseFloat($('#fr-prepay_price').val()),
-                    topay_price         :parseFloat($('#fr-topay_price').val()),
-                    store_nums          :parseInt($('#fr-store_nums').val()),
+                    market_price        :$('#fr-market_price').val(),
+                    sell_price          :$('#fr-sell_price').val(),
+                    prepay_price        :$('#fr-prepay_price').val(),
+                    topay_price         :$('#fr-topay_price').val(),
+                    store_nums          :$('#fr-store_nums').val(),
                     status              :$('input[name="status"]:checked').val(),
                     doctor_id           :$('#fr-doctor-id').val(),
                     hospital_id         :$('#fr-hospital-id').val(),
@@ -677,5 +677,17 @@
             $('#fr-prepay_price').val('');
             $('#fr-topay_price').val('');
         });
+
+        function checkDecimal(obj) {
+            var temp = /^\d+\.?\d{0,15}$/;
+            if (temp.test(obj.value)) {
+                var temp2 = /^\d+\.?\d{0,2}$/;
+                if(!temp2.test(obj.value)){
+                    obj.value = obj.value.substr(0, obj.value.length - 1);
+                }
+            } else {
+                obj.value = '';
+            }
+        }
     </script>
 {/block}
