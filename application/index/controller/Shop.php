@@ -99,7 +99,6 @@ class Shop extends CController
 
         $page = $this->request->param('page/d',1);
         $page_size = $this->request->param('page_size',15);
-
         $data = (new \app\api\domain\SpGoodGoodsDomain())->getUserGoodGoodsList($this->getUserId(),$page,$page_size);
 
         $this->assign('list',$data);

@@ -102,6 +102,10 @@ class ShopApi extends BaseController
             return $this->returnData([],'参数不符合规范',301);
         }
 
+        if(($data['sell_price'] - $data['prepay_price']) != $data['topay_price']){
+            return $this->returnData([],'销售价格 != 预付金额+到付金额',301);
+        }
+
         $domain = new \app\api\domain\SpGoodsDomain();
         if($goods_id > 0){
             $res = $domain->editGoods($goods_id,$this->getSellerId(),$data);
