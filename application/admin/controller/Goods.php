@@ -53,8 +53,6 @@ class Goods extends BaseController
 
         if($flag == 'upper'){
             $status = 3;
-        }else if($flag == 'lower'){
-            $status = 2;
         }else if($flag == 'normal'){
             $status = 0;
         }else{
