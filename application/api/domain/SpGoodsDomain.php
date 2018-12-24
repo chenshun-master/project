@@ -357,7 +357,7 @@ class SpGoodsDomain
             $data['imgs'] = SpGoodsModel::getImgs($goods_id);
 
             //查询医院信息
-            $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
+            $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.user_id,hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
             $data['hospital_info'] = $hospitalInfo;
 
             $regionsModel = new RegionsModel();

@@ -7,6 +7,15 @@ class SpGoodGoodsDomain
 {
 
     /**
+     * 查询分销产品是否存在
+     */
+    public function findGoodGoods($user_id,$goods_id){
+        $isTrue = Db::name('sp_good_goods')->where('goods_id',$goods_id)->where('user_id',$user_id)->value('id');
+
+        return $isTrue ?:0;
+    }
+
+    /**
      * 创建用户分销商品
      * @param $user_id             用户ID
      * @param $goods_id            商品ID
@@ -188,14 +197,11 @@ class SpGoodGoodsDomain
      * @throws \think\exception\DbException
      */
     public function getGoodGoodsRelevant($goods_id,$page=1,$page_size=5){
-        $obj = Db::name('sp_category_extend')->distinct(true)->alias('ce');
-        $obj->where('ce.category_id', 'IN', function ($query) use($goods_id) {
-            $query->name('sp_category_extend')->where('goods_id', $goods_id)->field('category_id');
-        });
-
-        $obj->join('wl_sp_good_goods good_goods','ce.goods_id = good_goods.goods_id and good_goods.is_del=0');
+        $obj = Db::name('sp_good_goods')->alias('good_goods');
         $obj->join('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status=0');
-        $obj->order('good_goods.like desc,good_goods.favorites desc,good_goods.created_time asc');
+        $obj->where('goods.category_id','IN', function ($query) use($goods_id) {
+            $query->name('sp_good_goods')->where('id', $goods_id)->field('category_id');
+        });
 
         $total = $obj->count();
         $field = [

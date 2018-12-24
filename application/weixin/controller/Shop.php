@@ -47,6 +47,7 @@ class Shop extends BaseController
     {
         $goodsid = $this->request->param('goodsid/d', 0);
         $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid,$this->getUserId());
+
         if (empty($goodsDetail['goods_info'])) {
             return $this->fetch('error/loss');
         }

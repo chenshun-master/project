@@ -7,12 +7,18 @@ use app\api\domain\SpGoodsDomain;
 class Shop extends CController
 {
     private $_spGoodsDomain;
+    private $_userDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_spGoodsDomain = new SpGoodsDomain();
+        $this->_userDomain  = new \app\api\domain\UserDomain();
+        if($this->request->isGet() && !$this->request->isAjax() && $this->checkLogin()){
+            $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+            $this->assign('user_info',$user_info);
+        }
     }
 
     public function index(){
@@ -76,13 +82,18 @@ class Shop extends CController
             'title'     =>$title,
             'article_text'=>$content
         ];
+
         $res = false;
         if($good_goods_id == 0){
-            $res = (new \app\api\domain\SpGoodGoodsDomain())->create($data);
+            $domain = new \app\api\domain\SpGoodGoodsDomain();
+            if($domain->findGoodGoods($this->getUserId(),$gid)){
+                return $this->returnData([],'此商品不能重复发表',301);
+            }
+            $res = $domain->create($data);
         }
 
         if(!$res){
-            return $this->returnData([],'操作成功',30);
+            return $this->returnData([],'操作成功',301);
         }
 
         return $this->returnData([],'操作成功',200);
