@@ -7,12 +7,18 @@ use app\api\domain\SpGoodsDomain;
 class Shop extends CController
 {
     private $_spGoodsDomain;
+    private $_userDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_spGoodsDomain = new SpGoodsDomain();
+        $this->_userDomain  = new \app\api\domain\UserDomain();
+        if($this->request->isGet() && !$this->request->isAjax() && $this->checkLogin()){
+            $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+            $this->assign('user_info',$user_info);
+        }
     }
 
     public function index(){
