@@ -8,7 +8,7 @@ $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给
     $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
     var index = $(this).index();
     if(index == 0){
-        var top = parseInt($('#wl-xiangqing').offset().top) - 75;
+        var top = parseInt($('#wl-xiangqing').offset().top) - 250;
     }else if(index == 1){
         var top = parseInt($('#cus-xuzi').offset().top) -75;
     }else if(index == 2){
@@ -32,11 +32,6 @@ $(".quxiao").click(function () {
     $('.marsk-container').hide(); //淡出消失
 });
 
-// $('#click-place-order').on('click',function(){
-//     // window.location.href =$(this).data('href');
-//     alert('asd');
-//     window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
-// });
 $(document).on('click','.dianhua-left',function(){
     window.location.href = '/weixin/index/hospital';
 });
@@ -47,9 +42,9 @@ $(document).on('click','#click-place-order',function(){
 $(window).scroll(function(){
     var scrollTop = parseInt($(this).scrollTop());
 
-    if(scrollTop == 0 || scrollTop > 240){
+    if(scrollTop == 0 || scrollTop > 414){
         $('.wl-top').css('opacity','1');
-    }else if(scrollTop < 240){
+    }else if(scrollTop < 414){
         if(scrollTop < 50 ){
             $('.wl-top').css('opacity','0.5');
         }else if(scrollTop < 100){
@@ -69,7 +64,21 @@ $(window).scroll(function(){
         }else if(scrollTop < 220){
             $('.wl-top').css('opacity','0.3');
         }else if(scrollTop < 230){
-            $('.wl-top').css('opacity','0.3');
+            $('.wl-top').css('opacity','0.28');
+        }else if(scrollTop < 220){
+            $('.wl-top').css('opacity','0.25');
+        }else if(scrollTop < 210){
+            $('.wl-top').css('opacity','0.22');
+        }else if(scrollTop < 200){
+            $('.wl-top').css('opacity','0.20');
+        }else if(scrollTop < 190){
+            $('.wl-top').css('opacity','0.18');
+        }else if(scrollTop < 180){
+            $('.wl-top').css('opacity','0.15');
+        }else if(scrollTop < 170){
+            $('.wl-top').css('opacity','0.11');
+        }else if(scrollTop < 160){
+            $('.wl-top').css('opacity','0.08');
         }
     }
 
@@ -85,7 +94,7 @@ $(window).scroll(function(){
     }else if(scrollTop >= parseInt($('#cus-xuzi').offset().top) -75){
         $(".wl-deji li").eq(1).find('i').show().parent().siblings().find('i').hide();
         $(".wl-deji li").eq(1).addClass("active").siblings().removeClass('active');
-    }else if(scrollTop >= parseInt($('#wl-xiangqing').offset().top) - 75){
+    }else if(scrollTop >= parseInt($('#wl-xiangqing').offset().top) - 250){
         $(".wl-deji li").eq(0).find('i').show().parent().siblings().find('i').hide();
         $(".wl-deji li").eq(0).addClass("active").siblings().removeClass('active');
     }
@@ -112,6 +121,12 @@ $(".wl-quxiao").click(function () {
     $(".marsk-container1").hide();
 });
 
+$(".top-right").click(function () {
+    $("#cus-myshare-box").show();
+})
+$("#cus-myshare-box").click(function () {
+    $("#cus-myshare-box").hide();
+})
 
 var myObj = {
     goods:{
