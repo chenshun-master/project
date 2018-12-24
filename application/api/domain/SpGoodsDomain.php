@@ -239,13 +239,19 @@ class SpGoodsDomain
     public function getSearchGoods($searchParams = [],$page=1,$page_size=15){
         $obj = Db::name('sp_goods')->alias('goods');
 
+        //分类筛选
         if(isset($searchParams['category']) && !empty($searchParams['category'])){
-            $obj->where('goods.id', 'IN', function ($query) use($searchParams) {
-                $query->table('wl_sp_category')->alias('category')->distinct(true)
-                ->leftJoin('wl_sp_category_extend c_extend','c_extend.category_id = category.id')
-                ->where('category.path','like',"{$searchParams['category']}%")
-                ->field('c_extend.goods_id');
-            });
+            $obj->where('goods.category_id', $searchParams['category']);
+        }
+
+        //城市筛选
+        if(isset($searchParams['city']) && !empty($searchParams['city'])){
+
+        }
+
+        //关键词筛选
+        if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
+            $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
         }
 
         if(isset($searchParams['sort']) && !empty($searchParams['sort'])){
@@ -257,17 +263,11 @@ class SpGoodsDomain
                 $obj->order('goods.create_time desc');
             }else if($searchParams['sort'] == 4){
                 $obj->order('goods.sell_price desc');
+            }else if($searchParams['sort'] == 5){
+                $obj->order('goods.sell_price asc');
             }else{
                 $obj->order('goods.sale_num desc');
             }
-        }
-
-        if(isset($searchParams['city']) && !empty($searchParams['city'])){
-
-        }
-
-        if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
-            $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
         }
 
         $obj->where('goods.status',0);

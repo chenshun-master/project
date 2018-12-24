@@ -17,6 +17,7 @@ class SpGoodGoodsDomain
         return Db::name('sp_good_goods')->insertGetId([
             'user_id'       =>$data['user_id'],
             'goods_id'      =>$data['goods_id'],
+            'title'         =>$data['title'],
             'article_text'  =>$data['article_text'],
             'favorites'     =>0,
             'like'          =>0,

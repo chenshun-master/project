@@ -76,7 +76,7 @@ class Shop extends CController
             'title'     =>$title,
             'article_text'=>$content
         ];
-
+        $res = false;
         if($good_goods_id == 0){
             $res = (new \app\api\domain\SpGoodGoodsDomain())->create($data);
         }
@@ -117,7 +117,10 @@ class Shop extends CController
             'keywords' => $this->request->post('keywords', '')
         ];
 
-        $data = $this->_spGoodsDomain->getSearchGoods($data);
+        $page = $this->request->param('page/d',1);
+        $page_size = $this->request->param('page_size',12);
+
+        $data = $this->_spGoodsDomain->getSearchGoods($data,$page,$page_size);
         return $this->returnData($data, '', 200);
     }
 

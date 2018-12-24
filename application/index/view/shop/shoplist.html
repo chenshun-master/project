@@ -75,29 +75,26 @@
                         <div class="wl-project category-hierarchy" data-hierarchy="1" >
                             <div>项目</div>
                             <div class="wl-liebiao">
-                                <span class="se myselecte">全部</span>
+                                <span class="se myselecte click-find-category">全部</span>
                                 {foreach($categoryList as $k=>$val)}
-                                    <span data-findid="1"  data-pid="{$val['id']}"  data-id="{$val['id']}" class="click-find-category">{$val['name']}</span>
+                                    <span  data-pid="{$val['id']}"  data-id="{$val['id']}" class="click-find-category">{$val['name']}</span>
                                 {/foreach}
                             </div>
                             <div style="clear: both"></div>
                         </div>
                     </div>
                     <div style="clear: both"></div>
-                    <div>
-                        <div style="width: 50px;height: 30px;background: #7DB0E8;line-height: 30px;text-align: center;margin-top: 5px;color: white;cursor: pointer;border-radius: 3px;">查询</div>
-                    </div>
 
                     <div>
                         <ul class="wl-sorting">
-                            <li class="active">智能排序</li>
-                            <li>评分最高</li>
-                            <li>最新上架</li>
-                            <li class="wl-price">
+                            <li class="active click-find-sort" data-sort="0">智能排序</li>
+                            <li data-sort="3" class="click-find-sort">最新上架</li>
+                            <li data-sort="1" class="click-find-sort">销量最高</li>
+                            <li class="wl-price click-find-sort" data-sort="4">
                                 价格排序
-                                <ul class="wl-sorting-gao">
-                                    <li>价格最高</li>
-                                    <li>价格最低</li>
+                                <ul class="wl-sorting-gao" >
+                                    <li data-sort="4" class="click-find-sort">价格最高</li>
+                                    <li data-sort="5" class="click-find-sort">价格最低</li>
                                 </ul>
                             </li>
                         </ul>
@@ -109,8 +106,12 @@
                     </div>
                     <div style="clear: both"></div>
 
-
-                    <div id="wl-fenye" ></div>
+                    <div>
+                        <div class="layui-box layui-laypage layui-laypage-default" id="click-reload-more">
+                            <!--layui-disabled-->
+                            <a href="javascript:;" class="layui-laypage-next " data-page="2"  >加载更多</a>
+                        </div>
+                    </div>
 
                     <footer class="wl-foot" style="bottom: -110px">{:config('conf.copyright')}</footer>
                 </div>
@@ -133,122 +134,6 @@
         </div>
     {{#  }); }}
 </script>
-
-<script id="categoryList" type="text/html">
-    <div class="wl-project category-hierarchy" data-hierarchy="{{ d.hierarchy }}" >
-        <div>{{ d.name }}</div>
-        <div class="wl-liebiao">
-            <span class="se myselecte " data-id="{{ d.all }}">全部</span>
-            {{#  layui.each(d.rows, function(index, item){ }}
-                <span data-findid="{{ d.hierarchy }}"  data-pid="{{item.id}}"  data-id="{{item.id}}" class="click-find-category">{{item.name}}</span>
-            {{#  }); }}
-        </div>
-        <div style="clear: both"></div>
-    </div>
-</script>
-
-<script>
-    $(".wl-xian").click(function () {
-        $(".wl-cang").toggle();
-    });
-    $(".wl-price").click(function () {
-        $(".wl-sorting-gao").toggle();
-    });
-
-    $(".wl-sorting li").click(function () {
-        $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
-    });
-
-    $(".wl-yingj").click(function () {
-        $(".wl-ding").toggle();
-        $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
-        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
-    });
-
-    $(document).on('click', '.click-to-create', function () {
-        window.location.href = '/index/shop/shopEditor?gid='+$(this).data('goods_id');
-    });
-
-    var listObj = {
-        params:{
-            page: 0,
-            page_size: 15,
-            category:'',
-            sort:0,
-            city:'',
-            keywords:''
-        },
-        loadlist:function(laypageObj){
-            $.ajax({
-                url: "/index/shop/getShopList",
-                type: 'post',
-                data: listObj.params,
-                dataType: 'json',
-                success: function (res) {
-                    layui.laytpl(shoptemplateList.innerHTML).render(res.data.rows, function(html){
-                        $('#content').html(html);
-                    });
-                }
-            });
-        }
-    };
-
-
-    layui.laypage.render({
-        elem: 'wl-fenye'
-        ,limit:15
-        ,curr:1
-        ,jump: function(obj, first){
-            listObj.loadlist(obj);
-        }
-    });
-
-    var objClass = {
-        categoryList:[],
-        loading:false,
-        ajaxLloadingCategory:function(hierarchy,pid){
-
-            $.ajax({
-                url: '/index/shop/getCategoryList',
-                type: 'POST',
-                data:{category_id:pid},
-                dataType: "json",
-                success: function (res) {
-                    if(res.code == 200){
-                        var hierarchy2 = parseInt(hierarchy) + 1;
-                        var name = '';
-                        if(hierarchy2 == 2){
-                            name = '二级';
-                        }else if(hierarchy2 == 3){
-                            name = '三级';
-                        }else if(hierarchy2 == 4){
-                            name = '四级';
-                        }else if(hierarchy2 == 3){
-                            name = '五级';
-                        }
-                        if(res.data.rows.length > 0){
-                            layui.laytpl(categoryList.innerHTML).render({rows:res.data.rows,hierarchy:hierarchy2,all:pid,name:name}, function(html){
-                                $('#category-container').append(html);
-                            });
-                        }
-                    }
-                },
-            });
-        },
-    };
-
-    $(document).on('click','.click-find-category',function(){
-        $(this).addClass("se").siblings().removeClass("se");
-        var index = $(this).parent().parent().index();
-        var length = $('.category-hierarchy').length -1;
-        for (var i=length; i >= 0; i--){
-            if(i > index){
-                $('.category-hierarchy').eq(i).remove();
-            }
-        }
-
-        objClass.ajaxLloadingCategory($(this).data('findid'),$(this).data('pid'));
-    });
-</script>
+<script src="/static/web/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
