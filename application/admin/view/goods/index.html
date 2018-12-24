@@ -15,21 +15,9 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title"> 商品列表 </h3>
-
-                    <div class="demoTable">
-                        <div class="layui-form col-xs-2">
-                            <select name="status" id="status">
-                                <option value="0">审核成功</option>
-                                <option value="3">等待审核</option>
-                            </select>
-                        </div>
-                        <button class="layui-btn" data-type="getInfo">搜索</button>
-                    </div>
-
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="">
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()"><i class="layui-icon layui-icon-refresh-3"></i></button>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" onclick="objClass.upper()">审核</button>
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-success" onclick="objClass.normal()">审核成功</button>
                         </div>
                     </div>
@@ -65,7 +53,6 @@
         }
         ,cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
-            {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'goods_no', title: '商品的编号',sort:true},
             {field: 'real_name', title: '坐诊医生'},
             {field: 'hospital_name', title: '坐诊医院'},
@@ -150,18 +137,6 @@
 
                     }
                 }
-            });
-        },
-        upper:function(){
-            var ids = active.getCheckId();
-            if(ids.length == 0){
-                layer.alert('请选择需要操作的商品',{title:'温馨提示'});
-                return  false;
-            }
-            var index = layer.confirm('您确定要审核商品吗？', {
-                btn: ['立即审核','取消']
-            }, function(){
-                objClass.updateSatus(ids,'upper',index);
             });
         },
         normal:function(){
