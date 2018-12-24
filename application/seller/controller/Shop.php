@@ -44,8 +44,6 @@ class Shop extends BaseController
 
 
         $goods_info = $this->_goodsDomain->getEditGoodsInfo($goodsid,$this->getSellerId());
-
-
         $user_info = $this->getUserInfo();
         $type = $user_info['type'];
 

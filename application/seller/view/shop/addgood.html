@@ -101,15 +101,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label  class="col-sm-1 control-label">商品分类</label>
+                                    <label  class="col-sm-1 control-label">商品类别</label>
                                     <div class="col-sm-10" style="padding-top: 5px;">
-                                        <input type="hidden" value="{$category}" id="fr-category">
-                                        <span class="layui-btn layui-btn-xs" onclick="objClass.choiceCategory()">  <i class="layui-icon layui-icon-add-1"></i> 选择分类</span>
+                                        <input type="hidden" value="{$info['goods_info']['category_id']?:0}" id="fr-category">
+                                        <span class="layui-btn layui-btn-xs" onclick="objClass.choiceCategory()">  <i class="layui-icon layui-icon-add-1"></i> 选择类别</span>
                                         <span id='categoryList-select'>
-                                            {if(isset($info['goods_category']) && count($info['goods_category']) > 0)}
-                                                {foreach($info['goods_category'] as $val)}
-                                                        <span class="layui-badge layui-bg-blue" data-id="{$val['id']}" >{$val['name']}</span>
-                                                {/foreach}
+                                            {if(isset($info['goods_info']['category_id']))}
+                                                <span class="layui-badge layui-bg-blue" data-id="{$info['goods_info']['category_id']?:0}" >{$info['goods_info']['category_name']}</span>
                                             {/if}
                                         </span>
                                     </div>
@@ -150,17 +148,12 @@
                                     <label  class="col-sm-1 control-label">商品状态</label>
                                     <div class="col-sm-10" style="padding-top: 8px;">
                                         <div class="layui-input-block" style="margin-left: 0px;" >
-
                                             <label  style="font-weight:normal;cursor: pointer">
                                                 <input type="radio" name="status" value="3" title="是" checked> 申请上架
                                             </label>
-
-                                            &nbsp;&nbsp;&nbsp;
-                                            <label  style="font-weight:normal;cursor: pointer">
+                                            <label  style="font-weight:normal;cursor: pointer;margin-left: 10px;">
                                                 <input type="radio" name="status" value="2" >  下架
                                             </label>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -319,16 +312,7 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr id="cus-category-tr-1">
-                        <th width="100" >一级分类</th><td id="cus-category-1"></td>
-                    </tr>
-                    <tr id="cus-category-tr-2">
-                        <th>二级分类</th><td id="cus-category-2"></td>
-                    </tr>
-                    <tr id="cus-category-tr-3">
-                        <th>三级分类</th><td id="cus-category-3"></td>
-                    </tr>
-                    <tr id="cus-category-tr-4">
-                        <th>四级分类</th><td id="cus-category-4"></td>
+                        <th width="50" >类别</th><td id="cus-category-1"></td>
                     </tr>
                 </tbody>
             </table>
@@ -549,13 +533,9 @@
                     yes:function(){
                         $('#categoryList-select').html('');
 
-                        var val = '';
-                        $.each($('.select'),function(k,v){
-                             val += ','+ $('.select')[k].dataset.id;
-                            $('#categoryList-select').append('<span class="layui-badge layui-bg-blue" data-id="'+ $('.select')[k].dataset.id +'" >'+ $('.select')[k].innerText +'</span>&nbsp;&nbsp;');
-                        });
+                        $('#fr-category').val($('.select').data('id'));
+                        $('#categoryList-select').append('<span class="layui-badge layui-bg-blue" data-id="'+ $('.select').data('id') +'" >'+ $('.select').text() +'</span>');
 
-                        $('#fr-category').val(val);
                         layer.close(index);
                     }
                 });
@@ -581,15 +561,7 @@
         };
 
         $(document).on('click','.click-find-category',function(){
-            if($(this).data('findid') == 2){
-                $('#cus-category-2,#cus-category-3,#cus-category-4').html('');
-            }else if($(this).data('findid') == 3){
-                $('#cus-category-3,#cus-category-4').html('');
-            }else if($(this).data('findid') == 4){
-                $('#cus-category-4').html('');
-            }
             $(this).addClass('select').siblings().removeClass('select');
-            objClass.ajaxLloadingCategory($(this).data('findid'),$(this).data('pid'));
         });
 
         $('#fr-upload-goodsimg').on('change',function(){

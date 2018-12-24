@@ -96,8 +96,6 @@ class ShopApi extends BaseController
 
         $data['img_ids'] = trim($data['img_ids'],',');
 
-        $data['category'] = trim($data['category'],',');
-
         $goods_id = (int) $request->post('goods_id',0);
 
         if((new \app\seller\validate\Goods())->scene('releaseGoods')->check($data) == false){
@@ -105,8 +103,6 @@ class ShopApi extends BaseController
         }
 
         $domain = new \app\api\domain\SpGoodsDomain();
-
-
         if($goods_id > 0){
             $res = $domain->editGoods($goods_id,$this->getSellerId(),$data);
         }else{

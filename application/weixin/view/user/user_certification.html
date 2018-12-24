@@ -321,7 +321,6 @@
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/jquery.smscode.js"></script>
 <script type="text/javascript">
-
     var obj={
         type:{$type},
         loading:false,
@@ -433,12 +432,16 @@
                 business_licence:           $('#fr9-img').attr("src"),
                 sms_code:                   $.trim($('#fr3-sms-code').val()),
                 mobile:                     $('#fr3-mobile').val(),
-                address:                    '',
                 hospital_type:              $.trim($('#fr3-type').val()),
                 founding_time:              $.trim($('#fr3-founding-time').val()),
                 speciality:                 $.trim($('#fr3-speciality').val()),
                 profile:                    $.trim($('#fr3-profile').val()),
                 scale:                      $.trim($('#fr3-scale').val()),
+
+                province:                   $('#fr3-province').val(),
+                city:                       $('#fr3-city').val(),
+                area:                       $('#fr3-area-county').val(),
+                address:                    $('#fr3-detail-address').val(),
             };
             if(data.enterprise_name == ''){
                 this.showError('医院名称不能为空');
@@ -473,7 +476,6 @@
             }else if(data.business_licence == '' || data.business_licence == undefined){
                 this.showError('请上传医院营业执照');
             }else if(!this.loading){
-                data.address = $('#fr3-province').val() + ' ' + $('#fr3-city').val() + ' ' + $('#fr3-area-county').val() + ' '+  $('#fr3-detail-address').val();
                 this.ajax(data);
             }
         },
@@ -488,7 +490,11 @@
                 business_licence  : $('#fr12-img').attr("src"),
                 sms_code          : $.trim($('#fr4-sms-code').val()),
                 mobile            : $('#fr4-mobile').val(),
-                address           : '',
+
+                province:                   $('#fr4-province').val(),
+                city:                       $('#fr4-city').val(),
+                area:                       $('#fr4-area-county').val(),
+                address:                    $('#fr4-detail-address').val(),
             };
 
             if(data.enterprise_name == ''){
@@ -514,7 +520,6 @@
             }else if(data.business_licence == '' || data.business_licence == undefined){
                 this.showError('请上传医院营业执照');return false;
             }else if(!this.loading){
-                data.address = $('#fr4-province').val() + ' ' + $('#fr4-city').val() + ' ' + $('#fr4-area-county').val()+ ' '+  $('#fr4-detail-address').val();
                 this.ajax(data);
             }
         },
@@ -625,7 +630,7 @@
             });
         },
         getSelectOptions:function(data){
-            return '<option value="'+ data.local_name +'"  data-region_path="'+ data.region_path +'"  data-region_grade="'+ data.find_next_region_grade +'" >'+ data.local_name +'</option>';
+            return '<option value="'+ data.id +'"  data-region_path="'+ data.region_path +'"  data-region_grade="'+ data.find_next_region_grade +'" >'+ data.local_name +'</option>';
         }
     };
 
