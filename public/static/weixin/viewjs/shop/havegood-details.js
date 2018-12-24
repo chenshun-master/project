@@ -378,3 +378,6 @@ $(document).on('click', '.click-to-havegoodDetails', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $(this).data('id') ;
 
 });
+
+$('#wl-goods-detail').find('img').removeAttr('width').removeAttr('height');
+$('#wl-goods-detail').find('table').removeAttr('width').removeAttr('height');
