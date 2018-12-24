@@ -75,8 +75,16 @@
                     <span id="one"> <a href="#auth2"><li class="{if($type == 2)} active {/if}">医生认证</li></a></span>
                     <span id="two"> <a href="#auth3"><li class="{if($type == 3)} active {/if}">医院认证</li></a></span>
                     <span id="six"> <a href="#auth4"><li class="{if($type == 4)} active {/if}">官方认证</li></a></span>
+
+
                 </div>
+                <a href="/seller/index">
+                    <div class="wl-shiming">
+                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
+                    </div>
+                </a>
             </ul>
+
 
             <div class="tab-content <?php if(count($authResult) > 0 && $recertification != 1):?>wl-hidden<?php endif;?>" style="position: relative;" >
                 <p id="fr-error-box"  style="position: fixed;width: 462px;height: 38px;top:0px;margin:auto;left:0;right:0;z-index: 2;line-height: 38px;text-align: center;border-top: 2px solid red;background-color: #fff1f1;border-radius: 0 0 5px 5px;color: #d4a6a6;display: none">
