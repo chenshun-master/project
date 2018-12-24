@@ -51,11 +51,7 @@ class Goods extends BaseController
             return $this->returnData([],'参数不符合规范',301);
         }
 
-        if($flag == 'upper'){
-            $status = 3;
-        }else if($flag == 'lower'){
-            $status = 2;
-        }else if($flag == 'normal'){
+        if($flag == 'normal'){
             $status = 0;
         }else{
             return $this->returnData([],'参数不符合规范',301);
