@@ -35,8 +35,10 @@ var listObj = {
 
         if(listObj.params.ini == false && listObj.params.page > listObj.params.page_total){
             listObj.params.page--;
-            alert('没有更多了');
+            $('#click-reload-more').find('a').addClass('layui-disabled').text('没有更多了');
             return false;
+        }else{
+            $('#click-reload-more').find('a').removeClass('layui-disabled').text('加载更多');
         }
 
         $.ajax({
