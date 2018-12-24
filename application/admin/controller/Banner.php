@@ -9,11 +9,11 @@ use think\Request;
 
 class Banner extends BaseController{
 
-    private $BannerDomain;
+    private $_bannerDomain;
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->BannerDomain = new BannerDomain();
+        $this->_bannerDomain = new BannerDomain();
     }
 
     public function index()
@@ -29,7 +29,7 @@ class Banner extends BaseController{
      */
     public function getBannerList($page=1,$page_size=10)
     {
-        $data = $this->BannerDomain->getBannerList($page,$page_size);
+        $data = $this->_bannerDomain->getBannerList($page,$page_size);
         return $this->returnData($data,'',0);
     }
     /**
@@ -116,7 +116,7 @@ class Banner extends BaseController{
     public function del()
     {
         $id = $this->request->post('id');
-        $result = $this->BannerDomain->delete($id);
+        $result = $this->_bannerDomain->delete($id);
         if($result){
             return $this->returnData([],'删除成功',200);
         }else{

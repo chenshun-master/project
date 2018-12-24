@@ -37,7 +37,7 @@ class Login extends Controller
             session('user_auth',$res);
             return json(['status' => 200, 'msg' => '登录成功！']);
         }
-        if(session::get('user_auth')){
+        if(session('user_auth')){
             $this->redirect('index/index');
         }
         return $this->fetch('login/index');

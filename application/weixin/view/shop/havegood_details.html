@@ -107,9 +107,9 @@
 
                 </div>
             </div>
-        </div>
-        <div class="cus-footer">
-            <input type="text" placeholder="据说颜值高的人都爱评论" class="wl-foot-input">
+            <div class="cus-footer">
+                <input type="text" placeholder="据说颜值高的人都爱评论" class="wl-foot-input">
+            </div>
         </div>
     </div>
     <div class="wl-zhez2">
@@ -120,7 +120,10 @@
         </div>
     </div>
 </div>
+
+
 <div class="wl-zhezhao">
+<div style="position: relative">
     <div class="wl-zhe1">
         <p class="wl-renzh">申请备注</p>
         <div class="wl-neie1">
@@ -131,6 +134,9 @@
         </div>
     </div>
 </div>
+</div>
+
+
 <input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
 <input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
 <input type="hidden" id="fr-user-id" value="{$info['user_id']}">
@@ -172,7 +178,7 @@
 </script>
 <script id="recommendedList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-remen click-to-havegoodDetails" data-id="{{item.id}}">
+    <div class="wl-remen click-to-havegoodDetails" data-id="{{item.goods_id}}">
         <div class="wl-remen-img">
             <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="图片丢失"></div>
         <div class="wl-remen-right">
