@@ -228,3 +228,6 @@ $(document).on('click', '#cus-click-collection', function () {
     myObj.goods.collection($(this), {type: type, obj_id:$(this).data('gid'), flag: 2});
 
 });
+
+$('#wl-goods-detail').find('img').removeAttr('width').removeAttr('height');
+$('#wl-goods-detail').find('table').removeAttr('width').removeAttr('height');
