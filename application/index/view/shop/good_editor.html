@@ -23,8 +23,8 @@
          style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
             <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian">
-                <img src="" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">吴永辉</span><i
+                <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
+                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i
                     class="iconfont icon-triangledownfill" style="color: white;"></i></p>
             <div class="wl-cang" style="display: none">
                 <a href="/index/user/main"><p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi"
@@ -68,6 +68,11 @@
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i
                             class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
+                <a href="/seller/index">
+                    <div class="wl-shiming" style="margin-top: 10px">
+                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
+                    </div>
+                </a>
             </div>
             <div class="wl-fabu1">
                 <div class="wl-top-title">
@@ -87,7 +92,7 @@
                         <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入商品标题" style="width: 93%;height: 36px;text-indent: 10px">
                         </div>
                     </div>
-                    <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;">
+                    <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;display: none" >
                         <div style="float: left;width: 7%; margin-left: 52px;"> 摘 要</div>
                         <div style="float: left;width: 87%;"><input type="text" value="" id="fr-zaiyao"  placeholder="请输入商品摘要"  style="width: 93%;height: 36px;text-indent: 10px">
                         </div>
@@ -188,7 +193,7 @@
                             layer.msg('创建成功...',{icon:1});
                             window.location.href='/index/shop/index';
                         }else{
-                            layer.msg('创建失败...',{icon:5});
+                            layer.msg(res.msg,{icon:5});
                         }
                     }
                 });

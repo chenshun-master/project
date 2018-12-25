@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/zhezhe1.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wkf.css"/>
     <title>{:config('conf.title')}</title>
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <!--<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>-->
@@ -327,9 +327,9 @@
             var id = obj.data('id');
             var type = obj.data('click') == 1 ?2:1;
             $.ajax({
-                url:"/weixin/article/clickZan",
-                type:'post',
-                data:{id:id,type:type},
+                url: "/weixin/user/giveFabulous",
+                type: 'post',
+                data: {obj_id: id, type: type,flag:1},
                 dataType:'json',
                 beforeSend:function(){
                     objClass.oneLoading = true;

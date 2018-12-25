@@ -40,7 +40,7 @@
             <ul class="wl-deji">
                 <li data-path="" class="click-select-category href">全部项目</li>
                 {foreach $categoryNav as $key=>$vo }
-                <li>{$vo['name']}</li>
+                    <li data-path="{$vo['id']}" class="click-select-category href" >{$vo['name']}</li>
                 {/foreach}
             </ul>
 
@@ -53,19 +53,20 @@
                                 class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
                     </div>
                     {foreach $v['subclass'] as $k2=>$v2 }
-                    <div>
-                        <span class="click-select-category href" data-path="{$v2['path']}">{$v2['name']} <i
-                                class="iconfont icon-back_left-copy" style="font-size: 13px"></i></span>
-                        <dl style="clear: both"></dl>
-                        <div class="wl-das">
-                            {foreach $v2['subclass'] as $k3=>$v3 }
-                            <div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}
-                            </div>
-                            {/foreach}
-                        </div>
-
-                    </div>
-                    <dl style="clear: both"></dl>
+                    <!--<div>-->
+                        <!--<span class="click-select-category href" data-path="{$v2['path']}">-->
+                            <!--{$v2['name']}-->
+                            <!--<i class="iconfont icon-back_left-copy" style="font-size: 13px"></i>-->
+                        <!--</span>-->
+                        <!--<dl style="clear: both"></dl>-->
+                        <!--<div class="wl-das">-->
+                            <!--{foreach $v2['subclass'] as $k3=>$v3 }-->
+                            <!--<div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}-->
+                            <!--</div>-->
+                            <!--{/foreach}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<dl style="clear: both"></dl>-->
                     {/foreach}
                 </div>
                 {/foreach}

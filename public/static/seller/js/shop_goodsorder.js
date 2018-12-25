@@ -42,8 +42,8 @@ layui.table.render({
         {field: 'username', title: '用户名',width:100},
 
         {field: 'name', title: '商品名',width:300},
-        {field: 'img', title: '商品图片',width:150,templet:function(row){
-                return '<img src="'+row.img+'" width="100" >';
+        {field: 'img', title: '商品图片',width:100,align:'center',templet:function(row){
+                return '<i class="layui-icon layui-icon-picture"></i>';
             }},
         {field: 'goods_nums', title: '购买数量',width:100},
         {field: 'goods_price', title: '销售价格',width:100},
@@ -73,7 +73,7 @@ layui.table.render({
             }},
         {field: 'order_no', title: '商品编号',width:300},
         {field: 'distribution_id', title: '分销产品',width:100,templet:function(row){
-                if(row.distribution_id == 0){
+                if(row.good_goods_id == 0){
                     return '<span class="label label-danger">否</span>';
                 }else{
                     return '<span class="label label-success">是</span>';

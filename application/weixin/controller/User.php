@@ -751,10 +751,17 @@ class User extends BaseController
             'qualification'=>'','practice_certificate'=>'',
             'enterprise_name'=>'','business_licence'=>'',
             'mobile'=>'','sms_code'=>'',
-            'address'=>'','hospital_type'=>'',
+            'hospital_type'=>'',
             'founding_time'=>'','speciality'=>'',
             'profile'=>'','scale'=>'','duties'=>'',
+
+            'province'=>'',
+            'city'=>'',
+            'area'=>'',
+            'address'=>'',
         ], 'post');
+
+
 
         $type = $request->post('type',0);
         if(!in_array($type,[1,2,3,4])){

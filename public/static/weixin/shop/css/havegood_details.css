@@ -35,11 +35,11 @@
     opacity: 0.3;
 }
 .img-gao{
-    height: 240px;
+    height:414px;
 }
 .swiper-wrapper img{
     width: 100%;
-    height: 240px;
+    height: 100%;
 }
 .wl-neirong{
     width: 100%;
@@ -520,4 +520,20 @@
 }
 .wl-goumai>button:active{
     background-color:#EEEEEE ;
+}
+#cus-myshare-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    display: none;
+}
+.wl-xiangmu-lia img{
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: .1vh;
 }

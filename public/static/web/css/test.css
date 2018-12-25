@@ -101,26 +101,31 @@ a {
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
-.wl-fabu input{
-    border-bottom: 1px solid #EEEEEE;
-    color: black;
-}
+    .wl-fabu input{
+        border-bottom: 1px solid #EEEEEE;
+        color: black;
+    }
     .wl-tijiao{
         width: 100px!important;
-        height: 40px!important;
-        line-height: 40px!important;
-        width: 130px;
-        height: 45px;
-        line-height: 45px;
-        background: #7DB0E8;
-        color: #FFfFFF;
-        font-size: 16px;
+        height: 35px!important;
+        line-height: 35px!important;
+        background:#EEEEEE;
+        color: #909090;
+        font-size: 13px;
         text-align: center;
-        border-radius: 10px;
+        border-radius: 3px;
         float: right;
-        margin-right: 50px;
+        margin-right: 10px;
         margin-top: 25px;
+        cursor: pointer;
     }
+    .wl-baozun:hover{
+        background:#F29C9F!important;
+    }
+.wl-tijiao:hover{
+    background:#7DB0E8;
+    color: #FFfFFF;
+}
     input::-webkit-input-placeholder {
                    color: #cdcdcd;
               font-size: 14px;

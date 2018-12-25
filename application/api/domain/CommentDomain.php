@@ -53,6 +53,11 @@ class CommentDomain
                 if(!$res4){
                     throw new \think\Exception('更新评论数量失败');
                 }
+            }else if($tablename == 'sp_good_goods'){
+                $res4 = Db::name('sp_good_goods')->where('id',$data['object_id'])->inc('comment')->update();
+                if(!$res4){
+                    throw new \think\Exception('更新评论数量失败');
+                }
             }
 
             Db::commit();

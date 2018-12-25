@@ -7,12 +7,18 @@ use app\api\domain\SpGoodsDomain;
 class Shop extends CController
 {
     private $_spGoodsDomain;
+    private $_userDomain;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
 
         $this->_spGoodsDomain = new SpGoodsDomain();
+        $this->_userDomain  = new \app\api\domain\UserDomain();
+        if($this->request->isGet() && !$this->request->isAjax() && $this->checkLogin()){
+            $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+            $this->assign('user_info',$user_info);
+        }
     }
 
     public function index(){
@@ -77,12 +83,17 @@ class Shop extends CController
             'article_text'=>$content
         ];
 
+        $res = false;
         if($good_goods_id == 0){
-            $res = (new \app\api\domain\SpGoodGoodsDomain())->create($data);
+            $domain = new \app\api\domain\SpGoodGoodsDomain();
+            if($domain->findGoodGoods($this->getUserId(),$gid)){
+                return $this->returnData([],'此商品不能重复发表',301);
+            }
+            $res = $domain->create($data);
         }
 
         if(!$res){
-            return $this->returnData([],'操作成功',30);
+            return $this->returnData([],'操作成功',301);
         }
 
         return $this->returnData([],'操作成功',200);
@@ -99,7 +110,6 @@ class Shop extends CController
 
         $page = $this->request->param('page/d',1);
         $page_size = $this->request->param('page_size',15);
-
         $data = (new \app\api\domain\SpGoodGoodsDomain())->getUserGoodGoodsList($this->getUserId(),$page,$page_size);
 
         $this->assign('list',$data);
@@ -117,7 +127,10 @@ class Shop extends CController
             'keywords' => $this->request->post('keywords', '')
         ];
 
-        $data = $this->_spGoodsDomain->getSearchGoods($data);
+        $page = $this->request->param('page/d',1);
+        $page_size = $this->request->param('page_size',12);
+
+        $data = $this->_spGoodsDomain->getSearchGoods($data,$page,$page_size);
         return $this->returnData($data, '', 200);
     }
 

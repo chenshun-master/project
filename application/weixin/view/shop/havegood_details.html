@@ -61,12 +61,12 @@
             </div>
         </div>
 
-        <div class="wl-content">
+        <div class="wl-content" >
             <div class="wl-content-title">
                 <p> 项目亮点</p>
                 <hr/>
             </div>
-            <div class="wl-xiangmu-lia">
+            <div class="wl-xiangmu-lia" id="wl-goods-detail">
                 <?php echo $info['article_text'] ?>
             </div>
         </div>
@@ -81,7 +81,7 @@
     </main>
     <footer>
         <div class="wl-footer">
-            <div class="cus-pinglun">
+            <div class="cus-pinglun href">
                 <ul>
                     <li class="iconfont {$info['islike']== 1?'icon-emojifill cus-sou':'icon-emojilight'}"
                         id="cus-click-fabulous" data-type="{$info['islike']}"></li>
@@ -136,7 +136,9 @@
 </div>
 </div>
 
-
+<div id="cus-myshare-box">
+    <img src="/static/weixin/shop/image/index/bjtu.png" alt="" width="100%" height="100%">
+</div>
 <input type="hidden" id="fr-goodid" value="{$info['goods_id']}">
 <input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
 <input type="hidden" id="fr-user-id" value="{$info['user_id']}">
@@ -178,7 +180,7 @@
 </script>
 <script id="recommendedList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-remen click-to-havegoodDetails" data-id="{{item.goods_id}}">
+    <div class="wl-remen click-to-havegoodDetails href" data-id="{{item.goods_id}}">
         <div class="wl-remen-img">
             <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="图片丢失"></div>
         <div class="wl-remen-right">

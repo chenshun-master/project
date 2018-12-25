@@ -72,6 +72,8 @@ $(function () {
         $(".wl-deji li").eq(2).trigger('click');
     }else if(maodian == 'complete'){
         $(".wl-deji li").eq(3).trigger('click');
+    }else{
+        $(".wl-deji li").eq(0).trigger('click');
     }
 });
 

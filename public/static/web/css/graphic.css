@@ -79,6 +79,7 @@ a {
     width: 90%;
     min-height: 200px;
     margin: 0 auto;
+    padding-bottom: 100px;
 }
 .wl-all-title{
     width: 100%;
@@ -238,6 +239,7 @@ a {
     height: 50px;
     border:1px solid #E5E5E5;
     margin-top: 20px;
+    z-index: 999999;
 }
 .wl-sorting li{
     width: 25%;
@@ -322,13 +324,13 @@ a {
     padding: 15px;
 }
 .wl-top-img{
-   width: 240px;
+   width:180px;
     height: 150px;
     float: left;
     background: #EEEEEE;
 }
 .wl-top-img img{
-    width: 240px;
+    width: 180px;
     height: 150px;
 
 }
@@ -425,6 +427,7 @@ a {
 .wl-sorting-gao{
     width: 100%!important;
     display: none;
+    position: relative;
 }
 .wl-sorting-gao li{
     width: 100%;
@@ -439,4 +442,32 @@ a {
 .wl-all-right a{
     height: 25px;
     line-height: 25px;
+}
+#wl-fenye{
+    width: 100%;
+    min-height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.wl-loading{
+    width: 100%;min-height: 50px;position: relative;top: 40px;
+}
+#click-reload-more{
+    width: 50%;position: absolute;left: 0;right: 0;margin: 0 auto
+}
+.wl-weifabiao{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+.wl-weifabiao dl{
+    margin-top: 20px;
+     font-size: 100px!important;
+    color: #7DB0E8!important;
+ }
+.wl-weifabiao dt{
+    margin-top: 20px;
+    font-size: 16px!important;
 }

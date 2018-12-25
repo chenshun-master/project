@@ -115,7 +115,6 @@ a {
     width: 180px;
     height: auto;
     float: left;
-    background: white;
     position: relative;
     top: 140px;
 }
@@ -1059,6 +1058,7 @@ width: 100%;
 height: 100px;
 line-height: 100px;
 position: absolute;
+    left: 0;
 bottom: -100px;
 margin: 0 auto;
 text-align: center;
@@ -1112,4 +1112,23 @@ top: 190px;
     font-size: 18px;
     position: absolute;
     top: 70px;
+}
+.wl-shiming {
+    width: 180px!important;
+    line-height: 60px!important;
+    font-size: 18px!important;
+    text-align: center!important;
+    cursor: pointer!important;
+    background: white;
+    position: relative;
+    top: 10px;
+    color: #333333!important;
+}
+.wl-biao {
+    position: absolute;
+    top: 0px;
+    left: 15px;
+}
+.wl-cang1{
+    background: white;
 }

@@ -15,7 +15,6 @@ class SpGoodsDomain
      */
     public function addGoods($seller_id,$data){
         $imgs           = explode(',',$data['img_ids']);
-        $category_ids   = explode(',',$data['category']);
 
         $img = Db::name('sp_goods_photo')->where('id',$imgs[0])->value('img');
         Db::startTrans();
@@ -38,32 +37,21 @@ class SpGoodsDomain
                 'seller_id'     =>$seller_id,
                 'doctor_id'     =>$data['doctor_id'],
                 'hospital_id'   =>$data['hospital_id'],
+                'category_id'   =>$data['category']
             ]);
 
             if(!$goods_id){
-                Db::rollback();
-                return false;
-            }
-
-            $category_data = [];
-            foreach ($category_ids as $val){
-                $category_data[] = ['category_id' => $val,'goods_id' => $goods_id];
-            }
-
-            $res = Db::name('sp_category_extend')->data($category_data)->insertAll();
-            if(!$res){
-                Db::rollback();
-                return false;
+                Db::rollback();return false;
             }
 
             $datas = [];
             foreach ($imgs as $v){
                 $datas[] = ['photo_id' => $v,'goods_id' => $goods_id];
             }
+
             $res1 = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
             if(!$res1){
-                Db::rollback();
-                return false;
+                Db::rollback();return false;
             }
 
             $data3 = [
@@ -77,8 +65,7 @@ class SpGoodsDomain
 
             $res2 = Db::name('sp_goods_buy_notice')->insertGetId($data3);
             if(!$res2){
-                Db::rollback();
-                return false;
+                Db::rollback();return false;
             }
 
             Db::commit();
@@ -104,7 +91,6 @@ class SpGoodsDomain
         }
 
         $imgs           = explode(',',$data['img_ids']);
-        $category_ids   = explode(',',$data['category']);
 
         Db::startTrans();
         try {
@@ -123,27 +109,11 @@ class SpGoodsDomain
                 'search_words'  =>$data['search_words'],
                 'doctor_id'     =>$data['doctor_id'],
                 'hospital_id'   =>$data['hospital_id'],
+                'category_id'   =>$data['category']
             ]);
 
             if($isTrue === false){
                 throw new \think\Exception('商品信息更新失败');
-            }
-
-            if($data['category'] !== implode(',',Db::name('sp_category_extend')->where('goods_id',$good_id)->column('category_id'))){
-                $datas = [];
-                foreach ($category_ids as $id){
-                    $datas[] = ['category_id' => $id,'goods_id' => $good_id];
-                }
-
-                $res1 = Db::name('sp_category_extend')->where('goods_id',$good_id)->delete();
-                if(!$res1){
-                    throw new \think\Exception('商品分类信息更新失败');
-                }
-
-                $res2 = Db::name('sp_category_extend')->data($datas)->insertAll();
-                if(!$res2){
-                    throw new \think\Exception('商品分类信息更新失败');
-                }
             }
 
             if($data['img_ids'] !== implode(',',Db::name('sp_goods_photo_relation')->where('goods_id',$good_id)->column('photo_id'))){
@@ -152,15 +122,14 @@ class SpGoodsDomain
                     $datas[] = ['photo_id' => $v,'goods_id' => $good_id];
                 }
 
-
                 $res3 = Db::name('sp_goods_photo_relation')->where('goods_id',$good_id)->delete();
                 if(!$res3){
-                    throw new \think\Exception('商品分类信息更新失败');
+                    throw new \think\Exception('商品图片信息更新失败');
                 }
 
                 $res4 = Db::name('sp_goods_photo_relation')->data($datas)->insertAll();
                 if(!$res4){
-                    throw new \think\Exception('商品分类信息更新失败');
+                    throw new \think\Exception('商品图片信息更新失败');
                 }
             }
 
@@ -179,8 +148,7 @@ class SpGoodsDomain
             Db::commit();
             return true;
         } catch (\Exception $e) {
-            Db::rollback();
-            return false;
+            Db::rollback();return false;
         }
     }
 
@@ -271,13 +239,19 @@ class SpGoodsDomain
     public function getSearchGoods($searchParams = [],$page=1,$page_size=15){
         $obj = Db::name('sp_goods')->alias('goods');
 
+        //分类筛选
         if(isset($searchParams['category']) && !empty($searchParams['category'])){
-            $obj->where('goods.id', 'IN', function ($query) use($searchParams) {
-                $query->table('wl_sp_category')->alias('category')->distinct(true)
-                ->leftJoin('wl_sp_category_extend c_extend','c_extend.category_id = category.id')
-                ->where('category.path','like',"{$searchParams['category']}%")
-                ->field('c_extend.goods_id');
-            });
+            $obj->where('goods.category_id', $searchParams['category']);
+        }
+
+        //城市筛选
+        if(isset($searchParams['city']) && !empty($searchParams['city'])){
+
+        }
+
+        //关键词筛选
+        if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
+            $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
         }
 
         if(isset($searchParams['sort']) && !empty($searchParams['sort'])){
@@ -289,17 +263,11 @@ class SpGoodsDomain
                 $obj->order('goods.create_time desc');
             }else if($searchParams['sort'] == 4){
                 $obj->order('goods.sell_price desc');
+            }else if($searchParams['sort'] == 5){
+                $obj->order('goods.sell_price asc');
             }else{
                 $obj->order('goods.sale_num desc');
             }
-        }
-
-        if(isset($searchParams['city']) && !empty($searchParams['city'])){
-
-        }
-
-        if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
-            $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
         }
 
         $obj->where('goods.status',0);
@@ -389,7 +357,7 @@ class SpGoodsDomain
             $data['imgs'] = SpGoodsModel::getImgs($goods_id);
 
             //查询医院信息
-            $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
+            $hospitalInfo = Db::name('hospital')->alias('hospital')->leftJoin('wl_auth auth','auth.user_id = hospital.user_id')->where('hospital.id',$goodsInfo['hospital_id'])->field('hospital.user_id,hospital.hospital_name,auth.phone,auth.province,auth.city,auth.area,auth.address')->find();
             $data['hospital_info'] = $hospitalInfo;
 
             $regionsModel = new RegionsModel();
@@ -550,9 +518,12 @@ class SpGoodsDomain
             'notice.notice',
             'notice.buyflow',
             'notice.time_slot',
+            'goods.category_id',
+            'category.name as category_name'
         ];
 
         $obj = Db::name('sp_goods')->alias('goods');
+        $obj->leftJoin('wl_sp_category category','category.id = goods.category_id');
         $obj->leftJoin('sp_goods_buy_notice notice','notice.goods_id = goods.id');
         $obj->where('goods.id',$goods_id);
         $obj->where('seller_id',$seller_id);
@@ -569,12 +540,6 @@ class SpGoodsDomain
                 ->leftJoin('wl_sp_goods_photo photo','photo.id = goods_photo.photo_id')
                 ->where('goods_photo.goods_id',$goods_id)
                 ->field('photo.id,photo.img')
-                ->select();
-            $data['goods_category'] = Db::name('sp_category_extend')
-                ->alias('c_extend')
-                ->leftJoin('wl_sp_category category','c_extend.category_id = category.id')
-                ->where('c_extend.goods_id',$goods_id)
-                ->field('category.id,category.name')
                 ->select();
         }
 

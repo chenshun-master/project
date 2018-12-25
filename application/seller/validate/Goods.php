@@ -9,7 +9,7 @@ class Goods extends Validate
         'market_price'    =>'require|float|>:0',
         'sell_price'      =>'require|float|>:0',
         'prepay_price'    =>'require|float|>:0',
-        'topay_price'     =>'require|float|>:0',
+        'topay_price'     =>'require|float|>=:0',
         'store_nums'      =>'require|integer|>:0',
         'img_ids'         =>'require',
         'status'          =>'require|integer',

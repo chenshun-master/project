@@ -21,7 +21,9 @@
     </div>
     <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="" class="wl-toux"  onerror="this.src='/static/web/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">吴永辉</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
+            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian">
+                <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
+                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
                 <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
@@ -51,6 +53,11 @@
                 <a href="/index/user/certification">
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
+                <a href="/seller/index">
+                    <div class="wl-shiming" style="margin-top: 10px">
+                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
+                    </div>
+                </a>
             </div>
 
             <div class="wl-fabu">
@@ -64,24 +71,28 @@
                             </div>
                             <div class="wl-all-center">
                                 <div class="wl-tuijian-title">{$val['title']} </div>
-                                <div class="wl-yiyuan-tuijian">上海薇琳医疗美容医院</div>
+                                <div class="wl-yiyuan-tuijian">{$val['hospital_name']}</div>
                                 <div class="wl-jiagewa"><sup style="font-size: 10px">￥</sup>{$val['sell_price']}</div>
                                 <div><span class="wl-tuijian-fabu">已发表</span><span class="wl-tuijian-time">{$val['created_time']}</span></div>
                             </div>
-                            <div class="wl-all-right" style="cursor: pointer">
-                                <span class="iconfont icon-xiugai"></span>
-                                <span style="margin-left: 2px">修改</span>
-                            </div>
+                            <!--<div class="wl-all-right"  id="web-Modify" style="cursor: pointer">-->
+                                <!--<span class="iconfont icon-xiugai"></span>-->
+                                <!--<span style="margin-left: 2px">修改</span>-->
+                            <!--</div>-->
                         </div>
                     {/foreach}
-                    </div>
                     <div id="wl-fenye" ></div>
+                    </div>
+                <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
+
                 </div>
+
             </div>
+
         </div>
     </div>
-    <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
 </div>
+
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>

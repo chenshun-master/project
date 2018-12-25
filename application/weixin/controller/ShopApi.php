@@ -163,8 +163,6 @@ class ShopApi extends BaseController
         return $this->returnData($data, '', 200);
     }
 
-
-
     /**
      * 获取支付数据
      */

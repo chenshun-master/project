@@ -22,6 +22,12 @@ class addAuth extends Validate
         'scale'                 =>'require',
         'profile'               =>'require',
         'speciality'            =>'require',
+
+
+        'province'              =>'require|integer',
+        'city'                  =>'require|integer',
+        'area'                  =>'require|integer',
+        'address'               =>'require',
     ];
 
     protected $message  =   [
@@ -61,7 +67,7 @@ class addAuth extends Validate
     protected $scene = [
         'auth1'  =>  ['username','idcard','card_img1','card_img2'],
         'auth2'  =>  ['username','idcard','card_img1','card_img2','qualification','practice_certificate','profile','speciality','duties'],
-        'auth3'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code','hospital_type','founding_time','profile','speciality','scale'],
-        'auth4'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code'],
+        'auth3'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code','hospital_type','founding_time','profile','speciality','scale','province','city','area','address'],
+        'auth4'  =>  ['username','idcard','card_img1','card_img2','enterprise_name','business_licence','mobile','sms_code','province','city','area','address'],
     ];
 }

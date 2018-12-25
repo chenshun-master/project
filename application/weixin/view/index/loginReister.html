@@ -86,7 +86,7 @@
                         },
                         success:function(res){
                             if(res.code == 200){
-                                layer.open({content: '注册成功',skin: 'msg',time: 2});
+                                redream.showTip('注册成功！');
                                 setTimeout(function(){
                                     window.location.href = '/weixin/index/login';
                                 },3000);

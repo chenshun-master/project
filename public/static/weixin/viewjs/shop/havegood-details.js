@@ -60,6 +60,12 @@ $(".wl-zhez2").click(function (event) {
     }
 });
 
+$(".wl-fenxiang").click(function () {
+    $("#cus-myshare-box").show();
+})
+$("#cus-myshare-box").click(function () {
+    $("#cus-myshare-box").hide();
+})
 
 
 var myObj = {
@@ -372,3 +378,6 @@ $(document).on('click', '.click-to-havegoodDetails', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $(this).data('id') ;
 
 });
+
+$('#wl-goods-detail').find('img').removeAttr('width').removeAttr('height');
+$('#wl-goods-detail').find('table').removeAttr('width').removeAttr('height');

@@ -21,7 +21,9 @@
     </div>
     <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian"> <img src="{$user_info['portrait']}" class="wl-toux"  onerror="this.src='/static/web/image/tou.png'"/><span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
+            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian">
+                <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
+                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
             <div class="wl-cang" style="display: none">
                 <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
@@ -29,7 +31,7 @@
         </div>
     </div>
     <div class="wl-tabc" style="width: 100%">
-        <div class="tab-box" style="position: relative;min-height: 855px;">
+        <div class="tab-box" style="position: relative;min-height:600px;">
             <div class="wl-nide">
                 <ul  class="wl-top-liebiao">
                     <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i></li>
@@ -47,12 +49,19 @@
                 <a href="/index/user/certification">
                     <div class="wl-shiming"><i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证<i class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i></div>
                 </a>
+                <a href="/seller/index">
+                    <div class="wl-shiming" style="margin-top: 10px">
+                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
+                    </div>
+                </a>
             </div>
             <div class="wl-fabu">
                 <p>我的文章</p>
                 <div class="wl-xianshi-neirong">
                     <div class="wl-all-title">
+                        {if(count($rows) > 0)}
                         <span style="display: inline-block;float: left">共 {$total} 条数据，已显示 {:count($rows)} 条</span>
+                        {/if}
                         {if($draftId > 0)}
                             <span style="cursor: pointer;display: inline-block;float: right">
                                 <a href="{:url('/index/article/article',['id'=>$draftId])}" style="color: #ff8868;" title="立即编辑">温馨提示：您有草稿还没发布哦！</a>
@@ -77,6 +86,11 @@
                                 </div>
                             </div>
                             {/foreach}
+                        {else/}
+                        <div class="wl-weifabiao">
+                            <dl class="iconfont icon-wushuju"></dl>
+                            <dt>你还没有发布过文章</dt>
+                        </div>
                         {/if}
                     </div>
                     <div id="wl-fenye" ></div>
@@ -85,7 +99,6 @@
             </div>
         </div>
     </div>
-    <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
