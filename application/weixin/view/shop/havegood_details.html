@@ -195,4 +195,43 @@
     {{#  }); }}
 </script>
 <script src="/static/weixin/viewjs/shop/havegood-details.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/static/plugin/wechat/WechatJsSdk.js"></script>
+<script type="text/javascript">
+    var config = {
+        debug:false,
+        appId: '{$weixin_config["appId"]}',
+        timestamp: '{$weixin_config["timestamp"]}',
+        nonceStr: '{$weixin_config["nonceStr"]}',
+        signature: '{$weixin_config["signature"]}',
+        jsApiList: [
+            'checkJsApi',
+            "onMenuShareTimeline",              //分享给好友
+            "onMenuShareAppMessage",            //分享到朋友圈
+            "onMenuShareQQ",                    //分享到QQ
+            "onMenuShareWeibo",                 //分享到微博
+        ]
+    };
+
+    function callbacks(){
+        var shareMessage = {
+            title: "{$info['name']}",
+            desc:  window.location.href,
+            link: window.location.href,
+            imgUrl: "{$info['img']}",
+        };
+
+        var wxCallback = {
+            success:function(){},
+            cancel:function(){},
+            fail:function(){},
+            complete:function(){}
+        };
+
+        weixinObj.onMenuShareTimeline(shareMessage,wxCallback);
+        weixinObj.onMenuShareAppMessage(shareMessage,wxCallback);
+    }
+
+    var weixinObj = new WechatSdkModel(config,callbacks);
+</script>
 {/block}

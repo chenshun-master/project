@@ -52,9 +52,20 @@ class Shop extends BaseController
             return $this->fetch('error/loss');
         }
 
+        $is_localhost = config('conf.is_localhost');
+        if($is_localhost){
+            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
+        }else{
+            $config = config('conf.sns_login.weixin');
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $weixin_config = $wechatJsSdk->getSignPackage();
+        }
+
+        $this->assign('weixin_config',$weixin_config);
+
+
         $referer = $this->request->server('HTTP_REFERER');
         $this->assign('referer', $referer);
-
         $this->assign('info', $goodsDetail);
 
         return $this->fetch('shop/goods_details');
@@ -181,6 +192,17 @@ class Shop extends BaseController
         if (empty($data['info'])) {
             return $this->fetch('error/loss');
         }
+
+        $is_localhost = config('conf.is_localhost');
+        if($is_localhost){
+            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
+        }else{
+            $config = config('conf.sns_login.weixin');
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $weixin_config = $wechatJsSdk->getSignPackage();
+        }
+
+        $this->assign('weixin_config',$weixin_config);
         $this->assign($data);
         return $this->fetch('shop/havegood_details');
     }

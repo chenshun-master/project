@@ -132,6 +132,8 @@ class SpGoodGoodsDomain
             'user.portrait',
             'user.nickname',
             'user.type',
+            'goods.name',
+            'goods.img',
             'IF(like.id > 0,1,0)'=>'islike',
             'IF(favorite.id > 0,1,0)'=>'isfavorite',
         ];
