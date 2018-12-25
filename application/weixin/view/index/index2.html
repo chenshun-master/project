@@ -30,7 +30,7 @@
                 <div class="wl-nei2">
                     <ul>
                         {{#  if(item.is_top == 1){ }}
-                            <li id="wl-zhiding">置顶</li>
+                            <li class="wl-zhiding">置顶</li>
                         {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
@@ -50,6 +50,9 @@
                 </div>
                 <div class="wl-nei2">
                     <ul>
+                        {{#  if(item.is_top == 1){ }}
+                        <li class="wl-zhiding">置顶</li>
+                        {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
@@ -68,6 +71,9 @@
                 </div>
                 <div class="wl-nei2">
                     <ul>
+                        {{#  if(item.is_top == 1){ }}
+                        <li class="wl-zhiding">置顶</li>
+                        {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
@@ -86,6 +92,9 @@
                 </div>
                 <div class="wl-nei2">
                     <ul>
+                        {{#  if(item.is_top == 1){ }}
+                        <li class="wl-zhiding">置顶</li>
+                        {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
