@@ -73,7 +73,7 @@
                             {foreach($rows as $key=>$val)}
                             <div class="wl-all-neirong">
                                 <div class="wl-all-left">
-                                    <img src="{$val['thumbnail']?$val['thumbnail']['img_1']:''}" alt="{$val['title']}">
+                                    <img src="{$val['thumbnail']?$val['thumbnail']['img_1']:''}" alt="{$val['title']}" onerror="this.src='/static/web/image/diushi.jpg'"/>
                                 </div>
                                 <div class="wl-all-center">
                                     <dl>{$val['title']}</dl>
