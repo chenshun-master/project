@@ -11,8 +11,6 @@ namespace app\admin\controller;
 
 use app\api\domain\AuthDomain;
 use think\App;
-use think\Db;
-
 class Auth extends BaseController
 {
     private $_authDomain;
@@ -25,7 +23,6 @@ class Auth extends BaseController
     public function index(){
         return $this->fetch('/auth/index');
     }
-
     /**
      * 认证列表
      * @param int $page
