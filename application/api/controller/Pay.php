@@ -55,7 +55,7 @@ class Pay extends  WxPayNotify
         //2、进行签名验证(父类已验证通过)
 
         //3、处理业务逻辑
-        $res = Db::name('sh_order')->where('order_no',$data['out_trade_no'])->field('id,status,pay_status,real_amount')->find();
+        $res = Db::name('sh_order')->where('order_no',$data['out_trade_no'])->field('id,goods_id,status,pay_status,real_amount')->find();
         if(!$res){
             \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】查询失败] ".json_encode($data));
             return false;
@@ -81,6 +81,10 @@ class Pay extends  WxPayNotify
                 throw new \think\Exception('订单状态更新失败');
             }
 
+            if(!Db::table('wl_sp_goods')->where('id', $res['goods_id'])->setInc('sale_num')){
+                throw new \think\Exception('更新商品预约数失败');
+            }
+
             $paymentRecord = [
                 'order_id'        =>$res['id'],
                 'trade_id'        =>$data['transaction_id'],
@@ -91,7 +95,6 @@ class Pay extends  WxPayNotify
                 'attch'           =>json_encode($data),
                 'created_time'    =>date('Y-m-d H:i:s'),
             ];
-
 
             if(!Db::name('payment_record')->insertGetId($paymentRecord)){
                 throw new \think\Exception('订单交易记录插入失败');

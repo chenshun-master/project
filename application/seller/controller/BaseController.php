@@ -22,8 +22,6 @@ class BaseController extends Controller
                     header('Location: /seller/index/login');exit;
                 }
             }
-
-//            halt($this->getUserInfo());
             $this->assign('user_info',$this->getUserInfo());
         }
     }
@@ -45,7 +43,6 @@ class BaseController extends Controller
         }
         return false;
     }
-
 
     /**
      * 获取用户登录信息
@@ -101,5 +98,17 @@ class BaseController extends Controller
             'msg'  =>$msg,
             'data' =>$data
         ],$httpCode);
+    }
+
+    /**
+     * 获取医院ID
+     * @return int|mixed
+     */
+    protected function getHospitalId(){
+        if(!$this->getUserId()){
+            return 0;
+        }
+
+        return (new \app\api\model\HospitalModel())->findId($this->getUserId());
     }
 }

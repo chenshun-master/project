@@ -33,6 +33,8 @@ class ShopApi extends BaseController
      */
     public function getGoodsList()
     {
+        $page = $this->request->post('page/d', 1);
+        $page_size = $this->request->post('page_size/d', 5);
         $data = [
             'category' => $this->request->post('category', ''),
             'sort' => $this->request->post('sort/d', 0),
@@ -41,7 +43,7 @@ class ShopApi extends BaseController
         ];
 
         $doamin = new \app\api\domain\SpGoodsDomain();
-        $data = $doamin->getSearchGoods($data);
+        $data = $doamin->getSearchGoods($data,$page,$page_size);
         return $this->returnData($data, '', 200);
     }
 

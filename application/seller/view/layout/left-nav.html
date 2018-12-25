@@ -13,7 +13,6 @@
         </div>
 
         <ul class="sidebar-menu" data-widget="tree">
-            <!--<li class="header">MAIN NAVIGATION</li>-->
             <li class="treeview menu-open">
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>
@@ -28,19 +27,23 @@
                     <li><a href="/seller/shop/goodsOrder"><i class="fa fa-circle-o text-aqua"></i> 订单列表</a></li>
                 </ul>
             </li>
-            <!--<li><a href="#"> <span>共享商品</span></a></li>-->
-            <!--<li class="treeview menu-open">-->
-                <!--<a href="#">-->
-                    <!--<span>账单管理</span>-->
-                    <!--<span class="pull-right-container">-->
-                        <!--<i class="fa fa-angle-left pull-right"></i>-->
-                    <!--</span>-->
-                <!--</a>-->
-                <!--<ul class="treeview-menu">-->
-                    <!--<li><a href=""><i class="fa fa-long-arrow-right"></i> 货款明细列表</a></li>-->
-                    <!--<li><a href=""><i class="fa fa-long-arrow-right"></i> 货款结算申请</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
+
+            <li class="treeview menu-open">
+                <a href="#">
+                    <i class="fa fa-fw fa-reorder"></i>
+                    <span>我的管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" >
+                    {if($user_info['type'] == 3)}
+                        <li><a href="/seller/user/myhospital"><i class="fa fa-circle-o text-aqua"></i> 所属医院</a></li>
+                    {else if($user_info['type'] == 4)}
+                        <li><a href="/seller/user/mydoctor"><i class="fa fa-circle-o text-aqua"></i> 医生管理</a></li>
+                    {/if}
+                </ul>
+            </li>
         </ul>
     </section>
 </aside>

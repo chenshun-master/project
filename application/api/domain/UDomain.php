@@ -225,4 +225,189 @@ class UDomain
 
         return $data;
     }
+
+    /**
+     * 后台获取医院的医生列表
+     * @param $user_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getMyDoctorList($user_id){
+        $obj = Db::name('doctor_hospital')->alias('dh');
+        $obj->join('wl_hospital hospital',"dh.hospital_id = hospital.id and hospital.user_id = {$user_id}");
+        $obj->join('wl_auth auth','auth.id = hospital.auth_id');
+        $obj->join('wl_user user','user.id = hospital.user_id');
+        $obj->join('wl_doctor doctor',"doctor.id = dh.doctor_id");
+
+        $field= [
+            'user.id as user_id','user.mobile','user.nickname','user.sex','user.portrait',
+            'auth.username','auth.duties','auth.speciality',
+            'dh.created_time',
+            'dh.status relation_status'
+        ];
+
+        $rows = $obj->field($field)->select();
+        return [
+            'rows' => $rows,
+            'page' => 1,
+            'page_total' => 1,
+            'total' => count($rows),
+        ];
+    }
+
+    /**
+     * 后台获取医生的所属医院
+     * @param $user_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getMyHospital($user_id){
+        $obj = Db::name('doctor_hospital')->alias('dh');
+        $obj->join('wl_doctor doctor',"dh.doctor_id = doctor.id and doctor.user_id = {$user_id}");
+        $obj->join('wl_hospital hospital','dh.hospital_id = hospital.id');
+        $obj->join('wl_auth auth','auth.id = hospital.auth_id');
+
+
+        $field= [
+            'auth.enterprise_name',
+            'auth.scale','auth.founding_time','auth.province','auth.city','auth.area','auth.address'
+        ];
+
+        $rows = $obj->field($field)->select();
+        return [
+            'rows' => $rows,
+            'page' => 1,
+            'page_total' => 1,
+            'total' => count($rows),
+        ];
+    }
+
+    /**
+     * 添加医院入住申请
+     * @param $doctor_id
+     * @param $hospital_id
+     * @param $applicant
+     * @param $remarks
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function createEnterApply($doctor_id,$hospital_id,$applicant,$remarks){
+        $result = Db::name('doctor_hospital')->where('doctor_id',$doctor_id)->where('hospital_id',$hospital_id)->find();
+        if($result && $result['status'] == 1){
+            return [false,'医生医院不能重复关联',null];
+        }else if(Db::name('hospital_enter_apply')->where('doctor_id',$doctor_id)->where('hospital_id',$hospital_id)->where('applicant',$applicant)->where('status',1)->order('id desc')->find()){
+            return [false,'不能重复添加申请',null];
+        }
+
+        if(!Db::name('hospital_enter_apply')->insertGetId(['doctor_id'=>$doctor_id,'hospital_id'=>$hospital_id,'applicant'=>$applicant,'remarks'=>$remarks,'created_time'=>date('Y-m-d H::i:s')])){
+            return [false,'申请失败',null];
+        }
+
+        return [true,'申请成功，请耐心等待医院处理...'];
+    }
+
+    /**
+     * 后台获取所有医院信息
+     * @return array|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getHospitalList(){
+        return  Db::name('hospital')->field('id,hospital_name')->select();
+    }
+
+    /**
+     * 获取医生入驻申请
+     */
+    public function getDoctorEnterApplyList($doctor_id){
+        $obj = Db::name('hospital_enter_apply')->alias('apply');
+        $obj->leftJoin('wl_hospital hospital','hospital.id = apply.hospital_id');
+        $obj->where('apply.doctor_id',$doctor_id);
+        $field= [
+            'apply.*','hospital.hospital_name'
+        ];
+
+        $rows = $obj->field($field)->select();
+        return [
+            'rows' => $rows,
+            'page' => 1,
+            'page_total' => 1,
+            'total' => count($rows),
+        ];
+    }
+
+    /**
+     * 获取医院的申请列表
+     * @param $hospital_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getHospitalEnterApplyList($hospital_id){
+        $obj = Db::name('hospital_enter_apply')->alias('apply');
+        $obj->leftJoin('wl_doctor doctor','doctor.id = apply.doctor_id');
+        $obj->leftJoin('wl_user user','user.id = doctor.user_id');
+        $obj->leftJoin('wl_auth auth','auth.id = doctor.auth_id');
+
+        $obj->where('apply.hospital_id',$hospital_id);
+        $field= [
+            'apply.*',
+            'user.mobile',
+            'user.id as user_id','user.mobile','user.nickname','user.sex','user.portrait',
+            'auth.username','auth.duties','auth.speciality',
+        ];
+        $rows = $obj->field($field)->select();
+
+        return [
+            'rows' => $rows,
+            'page' => 1,
+            'page_total' => 1,
+            'total' => count($rows),
+        ];
+    }
+
+    /**
+     * 入驻医院审核
+     */
+    public function haospitalEnterApplyExamine($id,$hospital_id,$status){
+
+        Db::startTrans();
+        try {
+            $status = (int)$status;
+            if(!Db::name('hospital_enter_apply')->where('id', $id)->where('hospital_id',$hospital_id)->where('status',1)->update(['status'=>$status])){
+                throw new \think\Exception('更新失败1');
+            }
+
+            if($status == 2){
+                $info  = Db::name('hospital_enter_apply')->where('id',$id)->field('doctor_id,hospital_id')->find();
+                if(!$info){
+                    throw new \think\Exception('更新异常');
+                }
+
+                $data = [];
+                $data['doctor_id'] =  $info['doctor_id'];
+                $data['hospital_id'] =  $info['hospital_id'];
+                $data['status'] =  1;
+                $data['created_time'] =  date('Y-m-d H:i:s');
+
+                if(!Db::name('doctor_hospital')->insertGetId($data)){
+                    throw new \think\Exception('更新异常5');
+                }
+            }
+
+            Db::commit();
+            return true;
+        } catch (\Exception $e) {
+            Db::rollback();
+            return false;
+        }
+    }
 }

@@ -9,22 +9,13 @@
         <div class="wl-liebiao">
             <ul>
                 <li class="xian">推荐</li>
-                <li>文章</li>
                 <li onclick="redream.href('/weixin/shop/haveGood')">有好货</li>
-                <!--<li>案例</li>-->
-                <!--<li>问答</li>-->
-                <!--<li>其他</li>-->
             </ul>
         </div>
 
         <div id="container" >
-            <div id="container-list" >
-
-
-            </div>
-
+            <div id="container-list" ></div>
         </div>
-
     </div>
     {include file="layout/footer" /}
 {/block}
@@ -38,7 +29,9 @@
                 <div class="wl-nei1">{{  item.title }}</div>
                 <div class="wl-nei2">
                     <ul>
-                        <li id="wl-zhiding">置顶</li>
+                        {{#  if(item.is_top == 1){ }}
+                            <li id="wl-zhiding">置顶</li>
+                        {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
                         <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
                         <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
@@ -110,6 +103,10 @@
     });
 
     function test(obj){
+        if(obj.thumbnail == '' ){
+            return 1;
+        }
+
         var thumbnail = $.parseJSON(obj.thumbnail);
         var thumbnailLength = Object.keys(thumbnail).length;
         if(thumbnailLength == 0){

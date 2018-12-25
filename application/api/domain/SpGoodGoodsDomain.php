@@ -142,8 +142,10 @@ class SpGoodGoodsDomain
             ->leftJoin('wl_user_like like',"like.user_id = {$user_id} and like.table_name='sp_good_goods' and like.status=0 and like.object_id = good_goods.id")
             ->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='sp_good_goods' and favorite.status=0 and favorite.object_id = good_goods.id")
             ->where('good_goods.id',$good_goods_id)->field($field)->find();
+
+
         if($data['info']){
-            $data['imgs'] = SpGoodsModel::getImgs($good_goods_id);
+            $data['imgs'] = SpGoodsModel::getImgs($data['info']['goods_id']);
         }
 
         return $data;

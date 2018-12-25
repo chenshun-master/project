@@ -68,7 +68,7 @@ var myObj = {
             ini: false,
             page: 0,
             page_total: 1,
-            page_size: 15,
+            page_size: 8,
             params:{
                 category:'',
                 sort:0,
