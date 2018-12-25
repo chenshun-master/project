@@ -97,7 +97,9 @@
     min-height: 110px!important;
 }
 .wl-top-img{
-    width: 20%;float: left;margin-top: 10px
+    width: 20%;
+    float: left;
+    margin-top: 10px
 }
 .wl-top-img img{
     width: 75px;
@@ -111,6 +113,7 @@
     padding: 0;float: left;margin-top: 5px;
 }
 .wl-conter-top{
-    width: 80%;
-    float: right;
+    width: 75%;
+    float: left;
+    margin-left: 15px;
 }
