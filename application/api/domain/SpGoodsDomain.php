@@ -455,12 +455,19 @@ class SpGoodsDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getGoodsList($status,$page=1,$page_size=10)
+    public function getGoodsList($status=0,$page=1,$page_size=10)
     {
+        if($status == 0){
+            $status = [0,1,2,3];
+        }else if($status == 1) {
+            $status = [3];
+        }else if($status == 2) {
+            $status = [0];
+        }
         $obj = Db::name('sp_goods')->alias('sp');
         $obj->leftJoin('wl_doctor doctor','doctor.id = sp.doctor_id');
         $obj->leftJoin('wl_hospital hospital', 'hospital.id = sp.hospital_id');
-        $obj->where("sp.status",'like',"%".trim($status)."%");
+        $obj->where("sp.status",'in',$status);
         $field = [
           'sp.id',
           'sp.name',

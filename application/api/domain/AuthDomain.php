@@ -117,4 +117,67 @@ class AuthDomain
         $res = Db::name('auth')->where('user_id',$user_id)->find();
         return $res ? :[];
     }
+
+    /**
+     * 认证列表
+     * @param int $status 1-待审核 2-审核成功 3-审核失败
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getAuthList($status=0,$page=1,$page_size=10){
+        if($status == 0){
+            $status = [1,2,3];
+        }else if($status == 1){
+            $status = [1];
+        }else if($status == 2){
+            $status = [2];
+        }else if($status == 3) {
+            $status = [3];
+        }
+        $auth = Db::name('auth')->alias('auth');
+        $auth->leftJoin('wl_user user','user.id = auth.user_id');
+        $auth->where('auth.status','in',$status);
+        $filed = [
+            'auth.id',
+            'user.mobile',
+            'user.nickname',
+            'auth.type',
+            'auth.username',
+            'auth.idcard',
+            'auth.card_img1',
+            'auth.card_img2',
+            'auth.qualification',
+            'auth.practice_certificate',
+            'auth.business_licence',
+            'auth.enterprise_name',
+            'auth.profile',
+            'auth.phone',
+            'auth.province',
+            'auth.city',
+            'auth.area',
+            'auth.address',
+            'auth.duties',
+            'auth.speciality',
+            'auth.hospital_type',
+            'auth.scale',
+            'auth.founding_time',
+            'auth.status',
+            'auth.audit_time',
+            'auth.audit_remark',
+            'auth.created_time',
+        ];
+        $total = $auth->count(1);
+
+        $rows = $auth->field($filed)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
 }
