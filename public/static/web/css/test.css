@@ -101,24 +101,31 @@ a {
     border-bottom: 1px solid #F1F1F1;
     padding-left: 60px;
 }
-.wl-fabu input{
-    border-bottom: 1px solid #EEEEEE;
-    color: black;
-}
+    .wl-fabu input{
+        border-bottom: 1px solid #EEEEEE;
+        color: black;
+    }
     .wl-tijiao{
         width: 100px!important;
         height: 35px!important;
         line-height: 35px!important;
-        background: #7DB0E8;
-        color: #FFfFFF;
-        font-size: 14px;
+        background:#EEEEEE;
+        color: #909090;
+        font-size: 13px;
         text-align: center;
-        border-radius: 10px;
+        border-radius: 3px;
         float: right;
         margin-right: 10px;
         margin-top: 25px;
-
+        cursor: pointer;
     }
+    .wl-baozun:hover{
+        background:#F29C9F!important;
+    }
+.wl-tijiao:hover{
+    background:#7DB0E8;
+    color: #FFfFFF;
+}
     input::-webkit-input-placeholder {
                    color: #cdcdcd;
               font-size: 14px;
