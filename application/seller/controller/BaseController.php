@@ -99,4 +99,16 @@ class BaseController extends Controller
             'data' =>$data
         ],$httpCode);
     }
+
+    /**
+     * 获取医院ID
+     * @return int|mixed
+     */
+    protected function getHospitalId(){
+        if(!$this->getUserId()){
+            return 0;
+        }
+
+        return (new \app\api\model\HospitalModel())->findId($this->getUserId());
+    }
 }

@@ -48,7 +48,15 @@ table.render({
     ,cols: [[ //表头
         {type:'numbers'},
         {field: 'hospital_name', title: '医院名称',width:300},
-        {field: 'status', title: '申请状态',width:100},
+        {field: 'status', title: '申请状态',width:100,templet:function(row){
+                if(row.status == 1){
+                    return '<span class="label label-warning">等待审核</span>';
+                }else if(row.status == 2){
+                    return '<span class="label label-success">已同意</span>';
+                }else if(row.status == 3){
+                    return '<span class="label label-danger">已拒绝</span>';
+                }
+        }},
         {field: 'remarks', title: '申请备注',minWidth:300},
         {field: 'created_time', title: '成立时间',width:200},
     ]],

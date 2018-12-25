@@ -87,5 +87,57 @@ table.render({
 var objClass = {
     reload:function(tableId){
         layui.table.reload(tableId);
+    },
+    adopt:function(){
+        var checkStatus = table.checkStatus('tab-reload2') ,data = checkStatus.data;
+        if(data.length == 0){
+            layer.alert('请选择需要操作的对象',{title:'温馨提示'});
+            return  false;
+        }
+
+        var id = data[0].id;
+        var index = layer.confirm('您确定要审核通过吗？', {
+            btn: ['确定','取消']
+        }, function(){
+            objClass.updateSatus(id,2,index);
+        });
+    },
+    fail:function(){
+        var checkStatus = table.checkStatus('tab-reload2') ,data = checkStatus.data;
+        if(data.length == 0){
+            layer.alert('请选择需要操作的对象',{title:'温馨提示'});
+            return  false;
+        }
+
+        var id = data[0].id;
+        var index = layer.confirm('您确定要审核失败吗？', {
+            btn: ['确定','取消']
+        }, function(){
+            objClass.updateSatus(id,3,index);
+        });
+    },
+    updateLoading:false,
+    updateSatus:function(ids,flag,index){
+        if(objClass.updateLoading == false){
+            $.ajax({
+                url: '/seller/user/updateEnterStatus',
+                type: 'POST',
+                data:{id:ids,status:flag},
+                dataType: "json",
+                success: function (res) {
+                    layer.close(index);
+                    if(res.code == 200){
+                        layer.msg('操作成功。。。', {icon: 1});
+                        layui.table.reload('tab-reload2');
+                    }else{
+                        layer.msg('操作失败。。。', {icon: 2});
+                    }
+                }
+            });
+        }
     }
 };
+
+$('#my-tab li').on('click',function(){
+    objClass.reload($(this).data('reload'))
+});

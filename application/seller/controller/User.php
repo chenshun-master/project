@@ -81,6 +81,22 @@ class User extends BaseController
         }
     }
 
+
+    public function updateEnterStatus(){
+        $id = $this->request->post('id',0);
+        $status = $this->request->post('status/d',0);
+        if(empty($id) || empty($status) || !in_array($status,[2,3])){
+            return $this->returnData([],'参数不符合规范',301);
+        }
+
+        $res = $this->_uDomain->haospitalEnterApplyExamine($id,$this->getHospitalId(),$status);
+        if($res){
+            return $this->returnData([],'操作成功',200);
+        }else{
+            return $this->returnData([],'操作失败',305);
+        }
+    }
+
     /**
      * 我的医院列表
      */

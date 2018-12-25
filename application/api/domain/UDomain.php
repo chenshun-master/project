@@ -373,4 +373,41 @@ class UDomain
             'total' => count($rows),
         ];
     }
+
+    /**
+     * 入驻医院审核
+     */
+    public function haospitalEnterApplyExamine($id,$hospital_id,$status){
+
+        Db::startTrans();
+        try {
+            $status = (int)$status;
+            if(!Db::name('hospital_enter_apply')->where('id', $id)->where('hospital_id',$hospital_id)->where('status',1)->update(['status'=>$status])){
+                throw new \think\Exception('更新失败1');
+            }
+
+            if($status == 2){
+                $info  = Db::name('hospital_enter_apply')->where('id',$id)->field('doctor_id,hospital_id')->find();
+                if(!$info){
+                    throw new \think\Exception('更新异常');
+                }
+
+                $data = [];
+                $data['doctor_id'] =  $info['doctor_id'];
+                $data['hospital_id'] =  $info['hospital_id'];
+                $data['status'] =  1;
+                $data['created_time'] =  date('Y-m-d H:i:s');
+
+                if(!Db::name('doctor_hospital')->insertGetId($data)){
+                    throw new \think\Exception('更新异常5');
+                }
+            }
+
+            Db::commit();
+            return true;
+        } catch (\Exception $e) {
+            Db::rollback();
+            return false;
+        }
+    }
 }
