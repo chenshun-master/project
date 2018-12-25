@@ -91,3 +91,6 @@ $(document).on('click','.click-find-sort',function(){
 $('#click-reload-more').on('click',function(){
     listObj.loadlist();
 });
+$('.wl-tabc').click(function () {
+    $('.wl-cang').hide();
+})

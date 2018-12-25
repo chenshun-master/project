@@ -67,17 +67,17 @@ $(window).scroll(function(){
             $('.wl-top').css('opacity','0.28');
         }else if(scrollTop < 220){
             $('.wl-top').css('opacity','0.25');
-        }else if(scrollTop < 210){
+        }else if(scrollTop < 250){
             $('.wl-top').css('opacity','0.22');
-        }else if(scrollTop < 200){
+        }else if(scrollTop < 270){
             $('.wl-top').css('opacity','0.20');
-        }else if(scrollTop < 190){
+        }else if(scrollTop < 290){
             $('.wl-top').css('opacity','0.18');
-        }else if(scrollTop < 180){
+        }else if(scrollTop < 310){
             $('.wl-top').css('opacity','0.15');
-        }else if(scrollTop < 170){
+        }else if(scrollTop < 340){
             $('.wl-top').css('opacity','0.11');
-        }else if(scrollTop < 160){
+        }else if(scrollTop < 360){
             $('.wl-top').css('opacity','0.08');
         }
     }
@@ -94,7 +94,7 @@ $(window).scroll(function(){
     }else if(scrollTop >= parseInt($('#cus-xuzi').offset().top) -75){
         $(".wl-deji li").eq(1).find('i').show().parent().siblings().find('i').hide();
         $(".wl-deji li").eq(1).addClass("active").siblings().removeClass('active');
-    }else if(scrollTop >= parseInt($('#wl-xiangqing').offset().top) - 250){
+    }else if(scrollTop >= parseInt($('#wl-xiangqing').offset().top)-75){
         $(".wl-deji li").eq(0).find('i').show().parent().siblings().find('i').hide();
         $(".wl-deji li").eq(0).addClass("active").siblings().removeClass('active');
     }

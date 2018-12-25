@@ -24,7 +24,7 @@
         <div class="swiper-container img-gao">
             <div class="swiper-wrapper ">
                 {foreach($imgs as $src)}
-                <div class="swiper-slide"><img src="{$src}" alt=""></div>
+                <div class="swiper-slide"><img src="{$src}" alt="" ></div>
                 {/foreach}
             </div>
             <div class="swiper-pagination"></div>
@@ -47,7 +47,7 @@
             <div class="wl-main href">
                 <div>
                     <div class="wl-tou-img href">
-                        <img src="{$info['portrait']}">
+                        <img src="{$info['portrait']}" onerror="this.src ='/static/image/user/tou.png'">
                     </div>
                     <div class="wl-tou-yonghu href">
                         <dl>{$info['nickname']}</dl>
@@ -151,8 +151,7 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
         <div style="float: left">
-            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src='/static/image/user/tou.png'"
-                 data-user_id="{{item.user_id}}" class="cus-touser-main">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'"  data-user_id="{{item.user_id}}" class="cus-touser-main">
         </div>
         <div class="wl-ping-xiang">
             <div>
@@ -182,14 +181,14 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-remen click-to-havegoodDetails href" data-id="{{item.goods_id}}">
         <div class="wl-remen-img">
-            <img src="http://172.16.100.85:81/goodsimgs/20181213/c3ead4524152d705f2ff8b2a77fc89b2.png" alt="图片丢失"></div>
+            <img src="{{item.img}}" alt="图片丢失"></div>
         <div class="wl-remen-right">
-            <dl>{{item.title}}</dl>
+            <dl>{{item.name}}</dl>
             <dt>{{item.title}}</dt>
             <dd>
-                <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>4784</span></span>
-                <span class="wl-quchu">￥880.00</span>
-                <span class="wl-jiage1"><span style="margin-right: 10px">已售123</span></span>
+                <span class="wl-jiageyushou"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-quchu">￥{{item.market_price}}</span>
+                <span class="wl-jiage1"><span style="margin-right: 10px">已售{{item.sale_num}}</span></span>
             </dd>
         </div>
     </div>

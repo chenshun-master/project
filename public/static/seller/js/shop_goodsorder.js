@@ -40,7 +40,6 @@ layui.table.render({
         {type: 'checkbox', fixed: 'left'},
         {field: 'mobile', title: '手机号',width:150},
         {field: 'username', title: '用户名',width:100},
-
         {field: 'name', title: '商品名',width:300},
         {field: 'img', title: '商品图片',width:100,align:'center',templet:function(row){
                 return '<i class="layui-icon layui-icon-picture"></i>';

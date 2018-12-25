@@ -1,13 +1,11 @@
 <?php
 namespace app\api\domain;
 
-
 use function PHPSTORM_META\type;
 use think\Db;
 
 class SellerDomain
 {
-
     /**
      * 商家登录验证
      * @param $mobile         手机号
@@ -55,6 +53,7 @@ class SellerDomain
      * 商户信息列表
      * @param int $page
      * @param int $page_size
+     * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
@@ -91,4 +90,6 @@ class SellerDomain
             'total' => $total,
         ];
     }
+
+
 }

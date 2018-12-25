@@ -1,0 +1,60 @@
+{extend name="layout/layout" /}
+
+{block name="css"}
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
+{/block}
+
+{block name="main"}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom" >
+                <ul class="nav nav-tabs" id="my-tab">
+                    <li class="active" data-reload="tab-reload"><a href="#tab-box1" data-toggle="tab">医生列表</a></li>
+                    <li data-reload="tab-reload2"><a href="#tab-box2" data-toggle="tab">申请列表</a></li>
+                </ul>
+                <div class="tab-content" style="min-height: 500px;">
+                    <div class="tab-pane active" id="tab-box1">
+                        <div class="dataTables_wrapper form-inline dt-bootstrap">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="layui-hide" id="table-list" ></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-box2">
+                        <div class="dataTables_wrapper form-inline dt-bootstrap">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="layui-hide" id="table-list2" ></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{/block}
+
+{block name="js"}
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm btn-refresh-bg" onclick="objClass.reload('tab-reload')" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+        <!--<button type="button" class="layui-btn layui-btn-sm layui-btn-normal" ><i class="layui-icon layui-icon-add-1" ></i>邀请医生加入</button>-->
+    </div>
+</script>
+<script type="text/html" id="toolbarDemo2">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm btn-refresh-bg" onclick="objClass.reload('tab-reload2')" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.adopt()">审核通过</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="objClass.fail()">审核失败</button>
+    </div>
+</script>
+
+{js href="/static/plugin/layui/layui.all.js" /}
+{js href="/static/seller/js/user-mydoctor.js" /}
+{/block}
