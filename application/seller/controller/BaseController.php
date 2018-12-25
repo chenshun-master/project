@@ -22,8 +22,6 @@ class BaseController extends Controller
                     header('Location: /seller/index/login');exit;
                 }
             }
-
-//            halt($this->getUserInfo());
             $this->assign('user_info',$this->getUserInfo());
         }
     }
@@ -45,7 +43,6 @@ class BaseController extends Controller
         }
         return false;
     }
-
 
     /**
      * 获取用户登录信息

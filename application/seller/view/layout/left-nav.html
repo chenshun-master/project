@@ -37,22 +37,13 @@
                     </span>
                 </a>
                 <ul class="treeview-menu" >
-                    <li><a href="/seller/shop/addGood"><i class="fa fa-circle-o text-aqua"></i> 我的医院</a></li>
-                    <li><a href="/seller/shop/index"><i class="fa fa-circle-o text-aqua"></i> 我的医生</a></li>
+                    {if($user_info['type'] == 3)}
+                        <li><a href="/seller/user/myhospital"><i class="fa fa-circle-o text-aqua"></i> 所属医院</a></li>
+                    {else if($user_info['type'] == 4)}
+                        <li><a href="/seller/user/mydoctor"><i class="fa fa-circle-o text-aqua"></i> 医生管理</a></li>
+                    {/if}
                 </ul>
             </li>
-            <!--<li class="treeview menu-open">-->
-                <!--<a href="#">-->
-                    <!--<span>账单管理</span>-->
-                    <!--<span class="pull-right-container">-->
-                        <!--<i class="fa fa-angle-left pull-right"></i>-->
-                    <!--</span>-->
-                <!--</a>-->
-                <!--<ul class="treeview-menu">-->
-                    <!--<li><a href=""><i class="fa fa-long-arrow-right"></i> 货款明细列表</a></li>-->
-                    <!--<li><a href=""><i class="fa fa-long-arrow-right"></i> 货款结算申请</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
         </ul>
     </section>
 </aside>

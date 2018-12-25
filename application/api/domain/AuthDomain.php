@@ -61,7 +61,7 @@ class AuthDomain
         Db::startTrans();
         try {
             $status = (int)$status;
-            if(!Db::name('auth')->where('id', $id)->data(['status'=>$status,'audit_time'=>date('Y-m-d H:i:s'),'audit_remark'=>htmlspecialchars($audit_remark)])->update()){
+            if(!Db::name('auth')->where('id', $id)->where('status',1)->data(['status'=>$status,'audit_time'=>date('Y-m-d H:i:s'),'audit_remark'=>htmlspecialchars($audit_remark)])->update()){
                 Db::rollback();return false;
             }
 
