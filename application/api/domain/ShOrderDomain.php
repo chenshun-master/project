@@ -152,6 +152,7 @@ class ShOrderDomain
             'user.mobile',
             'auth.username',
             'order.good_goods_id',
+            'order.pay_status'
         ];
 
         $obj = Db::name('sh_order')->alias('order');
