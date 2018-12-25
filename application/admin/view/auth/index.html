@@ -121,24 +121,15 @@
         ]]
     });
 
-    // layui.table.on('tool(auth)', function(obj){
-    //     var data = obj.data;
-    //     if(obj.event === 'detail'){
-    //         layer.open({
-    //             type: 2,
-    //             title: '查看详情',
-    //             shadeClose: false,
-    //             shade: [0.3, '#393D49'],
-    //             maxmin: false,
-    //             area: ['900px', '550px'],
-    //             btn:['确定','关闭'],
-    //             content:'#table-list',//这里需要公告查看子页面，传id在弹窗打开
-    //             success:function (layero,index) {
-    //
-    //             }
-    //         });
-    //     }
-    // });
+    layui.table.on('tool(auth)', function(obj){
+        var data = obj.data;
+        if(obj.event === 'detail'){
+            layer.alert('id：'+ data.id +'<br/>用户手机号：'+data.mobile+'<br/>用户昵称：'+data.nickname+'<br/>运营者姓名：'+data.username
+            +'<br/>运营者身份证号：'+data.idcard+'<br/>医院/组织名称：'+data.enterprise_name+'<br/>简介：'+data.profile+'<br/>联系手机号：'+data.phone+'<br/>详细地址：'+data.address
+            +'<br/>岗位职称：'+data.duties+'<br/>擅长项目：'+data.speciality+'<br/>医院类型：'+data.hospital_type+'<br/>医院/企业规模：'+data.scale+'<br/>医院机构成立时间：'+
+            data.founding_time+'<br/>审核时间：'+data.audit_time+'<br/>审核备注：'+data.audit_remark+'<br/>申请时间：'+data.created_time,{title:'详细信息'});
+        }
+    });
 
     var $ = layui.$, active = {
         getCheckId: function () { //获取选中数据
@@ -151,6 +142,7 @@
             }
         },
     };
+
     $('#my-tab-status li').on('click',function(){
         objClass.where.status = $(this).data('status');
         objClass.reload();
