@@ -206,6 +206,13 @@ class Shop extends BaseController
 
         return $this->fetch('shop/payment_order');
     }
+    /**
+     *商品搜索页面
+     */
+    public function commoditySearch()
+    {
+        return $this->fetch('shop/commodity_search');
+    }
 
     /**
      *用户相册详情页
