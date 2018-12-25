@@ -3517,7 +3517,8 @@ body .layui-table-tips .layui-layer-content {
 
 .layui-table-tips-c:before {
     position: relative;
-    right: -2px
+    right: 0px;
+    top: -3px;
 }
 
 .layui-upload-file {
