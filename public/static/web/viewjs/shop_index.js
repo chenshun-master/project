@@ -85,6 +85,7 @@ $(document).on('click','.click-find-sort',function(){
     listObj.params.ini = true;
     listObj.params.page = 0;
     listObj.loadlist();
+    $('#web-jiage').hide();
 });
 
 $('#click-reload-more').on('click',function(){

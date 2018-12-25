@@ -324,13 +324,13 @@ a {
     padding: 15px;
 }
 .wl-top-img{
-   width: 240px;
+   width:180px;
     height: 150px;
     float: left;
     background: #EEEEEE;
 }
 .wl-top-img img{
-    width: 240px;
+    width: 180px;
     height: 150px;
 
 }
