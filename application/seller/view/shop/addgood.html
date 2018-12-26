@@ -203,7 +203,7 @@
                                         </div>
 
                                         <div class="layui-inline layui-word-aux" style="margin-left: 100px;padding-top: 5px;top: 5px;">
-                                                每张图片最大限制在2M以内，最多可添加6张
+                                            每张图片最大限制在2M以内，最多可添加6张<span style="color: #ec7f7f">(商品图片建议1:1比例的图片)</span>
                                         </div>
 
                                         <div id="from-img-box">
@@ -245,7 +245,7 @@
                                 <div class="form-group">
                                     <label  class="col-sm-1 control-label">购买有效期</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="有效期多少天"  id="fr-buy_deadline" value="{$info['goods_info']['buy_deadline']?:''}">
+                                        <input type="text" class="form-control" placeholder="有效期多少天"  id="fr-buy_deadline" value="{$info['goods_info']['buy_deadline']?:''}" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="layui-form-mid layui-word-aux">商品购买日起 <span id="cus-day">xxx</span> 内有效, <font color="red">0代表永久有效</font></div>

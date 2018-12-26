@@ -29,7 +29,6 @@ class ShopApi extends BaseController
     public function uploadGoodImg(Request $request){
         $file = $request->file("goodsFile");
         $img_domain = config('conf.file_save_domain');
-
         #文件上传类型
         $fileExt   = ['jpg', 'jpeg', 'png'];
         if($file){

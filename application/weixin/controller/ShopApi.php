@@ -150,7 +150,7 @@ class ShopApi extends BaseController
             return $this->returnData([], '评论成功...', 200);
         }
 
-        return $this->returnData([], '评论失败...', 200);
+        return $this->returnData([], '评论失败...', 305);
     }
 
     /**
