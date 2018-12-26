@@ -278,7 +278,7 @@
 .wl-good{
     width: 45px;
     height: 100px;
-    position: fixed;
+    position: absolute;
     bottom: 150px;
     right: 10px;
     background: #000000;
@@ -308,7 +308,7 @@
     color: white;
     font-size: 9px;
     display: inline-block;
-    position: fixed;
+    position: absolute;
     bottom: 230px;
     right: 12px;
     border-radius: 5px;
@@ -316,4 +316,32 @@
 }
 #container{
     padding-bottom: 100px;
+}
+.wl-dingwei{
+    position: fixed;bottom: 0;max-width: 640px;margin: 0 auto;width: 100%
+}
+@media screen and (min-width:480px){
+    .wl-sp-img{
+        width: 130px;
+        height: 130px;
+        float: left;
+    }
+    .wl-sp-img img {
+        width: 130px;
+        height: 130px;
+        background: #EEEEEE;
+    }
+    .tkyy_con {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60%;
+        background: #FFFFFF;
+        margin: 0 auto;
+        overflow: hidden;
+        max-width: 640px;
+        z-index: 999;
+    }
 }

@@ -130,7 +130,7 @@ width: 100%;
     border-bottom: 1px solid #EEEEEE;
 }
 .wl-neirong1{
-    max-width: 60%;
+    max-width: 62%;
     min-height: 66px;
     float: left;
     margin-top: 10px;
@@ -196,7 +196,7 @@ width: 100%;
     min-height: 30px;
     background: white;
     border-bottom:  1px solid #EEEEEE;
-
+    padding: 15px 0 10px 0;
 }
 .wl-con-top img{
     border-radius: 50%;
@@ -212,7 +212,6 @@ width: 100%;
     color: #1F1F1F;
     font-size: 17px;
     margin: 0 auto;
-    padding: 5px 0 3px 0;
 }
 .wl-top-touxiang img{
     border-radius: 50%;
