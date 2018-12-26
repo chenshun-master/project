@@ -8,18 +8,23 @@
 
 namespace app\api\model;
 
+use think\facade\Session;
 use think\Model;
 
 class AdminModel extends Model
 {
     // 设置当前模型对应的完整数据表名称
     protected $table = 'wl_admin';
+
     /**
      * 登录操作
      * @param $username
      * @param $password
-     * @param bool $quickLogin   是否需要验证密码
-     * @return array|int|null|\PDOStatement|string|\think\Model     2:用户不存在   3:密码错误
+     * @param bool $quickLogin 是否需要验证密码
+     * @return array|int|null|\PDOStatement|string|Model 2:用户不存在   3:密码错误
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function login($username,$password,$quickLogin=false){
         $info = self::where('username',$username)->find();
