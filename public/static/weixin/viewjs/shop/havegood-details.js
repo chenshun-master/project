@@ -7,7 +7,10 @@ var mySwiper = new Swiper('.swiper-container', {
 $(".cus-ping").click(function (event) {
     event.stopPropagation(); //停止事件冒泡
     $(".marsk-container").show();
-    $("body").addClass("body");
+    $("body,html").css({
+        "height":"100%",
+        "overflow":"hidden"
+    });
 });
 
 //点击空白处隐藏弹出层
@@ -15,7 +18,6 @@ $(".marsk-container").click(function (event) {
     var _con = $('.tkyy_con'); // 设置目标区域
     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
         $('.marsk-container').hide(); //淡出消失
-        $("body").removeClass("body");
     }
 }).on('touchstart', function (event) {
     var _con = $('.tkyy_con'); // 设置目标区域
@@ -30,6 +32,10 @@ $(".marsk-container").click(function (event) {
 $(".wl-quxiao").click(function () {
     $(".marsk-container").hide();
     $("body").removeClass("body");
+    $("body,html").css({
+        "height":"100%",
+        "overflow":"auto"
+    });
 });
 
 $('.wl-tan-pinglun').on('touchstart', function (event) {
@@ -266,7 +272,7 @@ var myObj = {
                     myObj.recommended.page_total = 0;
                     redream.showTip('发布成功');
                     $('.wl-text').val('').blur();
-
+                    $('.wl-foot-gundong ').animate({scrollTop:0});
                     myObj.goods.loadList();
                 } else if (res.code == 401) {
                     redream.showTip('请先进行登录');
