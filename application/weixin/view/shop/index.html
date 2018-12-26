@@ -27,11 +27,11 @@
 </header>
 
 <main style="padding-top: 70px;background:white;">
-    <div id="container">
-        <div id="container-list">
+        <div id="container">
+            <div id="container-list">
 
+            </div>
         </div>
-    </div>
 </main>
 
 <div class="marsk-container">
@@ -74,30 +74,32 @@
         </div>
     </div>
 </div>
-<div class="marsk-container1">
-    <div class="tkyy_con1 click-select-sort">
-        <p class="wl-xiao" data-sort="0" >默认排序</p>
-        <p class="wl-xiao" data-sort="1">销量最高</p>
-        <p class="wl-xiao" data-sort="2">日记最多</p>
-        <p class="wl-xiao" data-sort="3">最新上架</p>
-        <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
-    </div>
-</div>
-<div class="marsk-container2" style="display: none">
-
-    <div class="tkyy_con2">
-        <div style="text-align: center;margin-top: 10px">
-            <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="color: white;font-size: 28px;"></i>
+    <div class="marsk-container1">
+        <div class="tkyy_con1 click-select-sort">
+            <p class="wl-xiao" data-sort="0" >默认排序</p>
+            <p class="wl-xiao" data-sort="1">销量最高</p>
+            <p class="wl-xiao" data-sort="2">日记最多</p>
+            <p class="wl-xiao" data-sort="3">最新上架</p>
+            <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
         </div>
-        <div class="wl-jiazai">加载中...</div>
     </div>
-</div>
-<span class="wl-haohuo" onclick="redream.href('/weixin/shop/haveGood')">有好货</span>
-<div class="wl-good">
-    <dl class="iconfont icon-shangpin4 " onclick="redream.href('/weixin/shop/haveGood')">
-    </dl>
-    <dd class="iconfont icon-xiangshang1 wl-tingbu "></dd>
-</div>
+    <div class="marsk-container2" style="display: none">
+
+        <div class="tkyy_con2">
+            <div style="text-align: center;margin-top: 10px">
+                <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="color: white;font-size: 28px;"></i>
+            </div>
+            <div class="wl-jiazai">加载中...</div>
+        </div>
+    </div>
+    <div class="wl-dingwei">
+        <span class="wl-haohuo" onclick="redream.href('/weixin/shop/haveGood')">有好货</span>
+        <div class="wl-good">
+            <dl class="iconfont icon-shangpin4 " onclick="redream.href('/weixin/shop/haveGood')">
+            </dl>
+            <dd class="iconfont icon-xiangshang1 wl-tingbu "></dd>
+        </div>
+    </div>
 {include file="layout/footer" /}
 {/block}
 
@@ -123,5 +125,4 @@
     {{#  }); }}
 </script>
 <script src="/static/weixin/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
-
 {/block}

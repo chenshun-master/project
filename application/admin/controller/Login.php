@@ -17,13 +17,15 @@ class Login extends Controller
     /**
      * 后台登陆
      * @return array|false|mixed|string|\think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function index()
     {
         if (request()->isPost()) {
-
-            $username = $this->request->post('username');
-            $password = $this->request->post('password');
+            $username = $this->request->post('username','');
+            $password = $this->request->post('password','');
             if (empty($username) || empty($password)) {
                 return returnData([], '请求参数不符合规范', 301);
             }
@@ -35,10 +37,10 @@ class Login extends Controller
             if ($res === 3) {
                 return $res = ['status' => 0, 'msg' => '密码错误'];
             }
-            session('user_auth',$res);
+            Session::set('user_auth',$res);
             return json(['status' => 200, 'msg' => '登录成功！']);
         }
-        if(session('?user_auth')){
+        if(Session::get('user_auth')){
             $this->redirect('index/index');
         }
         return $this->fetch('login/index');

@@ -690,3 +690,18 @@
     z-index: 999999;
     display: none;
 }
+@media screen and (min-width:480px){
+    .img-gao {
+        height: 640px;
+    }
+    .wl-sp-img{
+        width: 130px;
+        height: 130px;
+        float: left;
+    }
+    .wl-sp-img img {
+        width: 130px;
+        height: 130px;
+        background: #EEEEEE;
+    }
+}

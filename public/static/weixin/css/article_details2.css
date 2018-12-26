@@ -74,7 +74,7 @@ width: 35px;
     margin-top: 5px;
 }
 .wl-neirong{
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     min-height: 200px;
     text-indent: 30px;
@@ -266,6 +266,7 @@ width: 35px;
     background: white;
     max-width: 640px;
     margin: 0 auto;
+    border-radius: 5px;
 }
 .wl-zl2 textarea{
     border-radius: 10px;
@@ -297,8 +298,11 @@ width: 35px;
     background: white;
     margin: 0 auto;
     border-radius: 10px;
-    margin-top: 40%;
+    position: fixed;
     max-width: 640px;
+    top: 30%;
+    left: 0;
+    right: 0;
 }
 .wl-renzh {
     width: 100%;

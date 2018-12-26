@@ -1,25 +1,25 @@
 .wl-top{
     width: 100%;
-    height: 130px;
+    height: 110px;
     border-bottom: 7px solid #F4F5F6;
 }
 .wl-touxiang{
-    padding: 25px 0 0 18px;
-    width: 30%;
+    padding: 22px 0 0 18px;
+    width: 25%;
     float: left;
 }
 .wl-ttop{
     width: 100%;
     min-height: 100px;
 }
-.wl-touxiang  img {
-    width: 80px;
-    height: 80px;
+.wl-touxiang img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: none;
 }
 .wl-renzheng{
-    padding: 35px 0 0 0 ;
+    padding: 25px 0 0 0 ;
     width: 70%;
     float: left;
 }

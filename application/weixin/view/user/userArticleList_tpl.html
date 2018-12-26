@@ -4,10 +4,10 @@
         <?php if(empty($val['thumbnail'])):?>
             <div class="ont-3" data-id="{$val['id']}"  style="min-height: 315px;padding-top:20px;border-bottom: 10px solid #EEEEEE;position: relative;">
                 <div class="wx-name">
-                    <img src="{$val['nickname']?$val['portrait']:''}" alt="图片丢失" class="wx-tou cus-article-href2" data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"'>
+                    <img src="{$val['nickname']?$val['portrait']:''}"  class="wx-tou cus-article-href2" data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"'>
                     <dl class="wx-yh">
-                        <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;"   class="cus-article-href2" data-user_id="{$val['user_id']}" >{$val['nickname']}</dt>
-                        <dd style="font-size:0.24rem;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
+                        <dt style="font-size:28px;color: #1D1D1D;font-weight: bold;"   class="cus-article-href2" data-user_id="{$val['user_id']}" >{$val['nickname']}</dt>
+                        <dd style="font-size:24px;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
                     </dl>
                    <!-- <span class="wx-rig"></span>-->
                 </div>
@@ -37,17 +37,17 @@
             ?>
                     <div class="one-1" data-id="{$val['id']}" style="min-height: 360px;border-bottom: 10px solid #EEEEEE;position: relative">
                         <div class="wx-name" style="border:none;">
-                            <img src="{$val['nickname']?$val['portrait']:''}" alt="图片丢失" class="wx-tou cus-article-href2"  data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"' >
+                            <img src="{$val['nickname']?$val['portrait']:''}" class="wx-tou cus-article-href2"  data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"' >
                             <dl class="wx-yh">
-                                <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;" class="cus-article-href2" data-user_id="{$val['user_id']}">{$val['nickname']}</dt>
-                                <dd style="font-size:0.24rem;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
+                                <dt style="font-size:28px;color: #1D1D1D;font-weight: bold;" class="cus-article-href2" data-user_id="{$val['user_id']}">{$val['nickname']}</dt>
+                                <dd style="font-size:24px;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
                             </dl>
                            <!-- <span class="wx-rig"></span>-->
                         </div>
                         <div class="wx-nei1 cus-article-href" data-id="{$val['id']}">
                             <dl>
-                                <dt style="font-size: 0.34rem;color: #1F1F1F;margin-left: 36px;">{$val['title']}</dt>
-                                <dd><img src="{$thumbnail['img_1']}" alt="图片丢失" width="220" height="150"/></dd>
+                                <dt style="font-size: 34px;color: #1F1F1F;margin-left: 36px;">{$val['title']}</dt>
+                                <dd><img src="{$thumbnail['img_1']}"  width="220" height="150"/></dd>
                             </dl>
                         </div>
                         <ul class="wx-fen">
@@ -69,22 +69,22 @@
             <?php else:?>
                     <div class="one-2 " data-id="{$val['id']}" style="padding-top:20px;min-height:450px;border-bottom: 10px solid #EEEEEE;position: relative">
                         <div class="wx-name">
-                            <img src="{$val['nickname']?$val['portrait']:''}" alt="图片丢失" class="wx-tou cus-article-href2"  data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"'>
+                            <img src="{$val['nickname']?$val['portrait']:''}" class="wx-tou cus-article-href2"  data-user_id="{$val['user_id']}" onerror='this.src="/static/image/user/tou.png"'>
                             <dl class="wx-yh">
-                                <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;" class="cus-article-href2" data-user_id="{$val['user_id']}">{$val['nickname']}</dt>
-                                <dd style="font-size:0.24rem;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
+                                <dt style="font-size:28px;color: #1D1D1D;font-weight: bold;" class="cus-article-href2" data-user_id="{$val['user_id']}">{$val['nickname']}</dt>
+                                <dd style="font-size:24px;color: #898989;">{$val['published_time']|strtotime|formatTime}</dd>
                             </dl>
                             <!--<span class="wx-rig"></span>-->
                         </div>
                         <p class="on1 cus-article-href" data-id="{$val['id']}">{$val['title']}</p>
                         <div class="on1-img cus-article-href" data-id="{$val['id']}">
                             <?php foreach($thumbnail as $_v):?>
-                                <dd><img src="{$_v}" alt="图片丢失"/></dd>
+                                <dd><img src="{$_v}" /></dd>
                             <?php endforeach;?>
                         </div>
                         <ul class="wx-fen" style="bottom: 0">
                             <li><span><i class="iconfont icon-share_light cc "></i></span></li>
-                            <li style="margin-left: 100px;"><span class="iconfont icon-comment_light cc"></span><span class="ee">{$val['comment_count']?:''}</span >class="ee"></li>
+                            <li style="margin-left: 100px;"><span class="iconfont icon-comment_light cc"></span><span class="ee">{$val['comment_count']?:''}</span ></li>
                             <li style="margin-left: 100px;">
                                 <span data-click="{$val['isZan']}" data-id="{$val['id']}" class="cus-article-fabulous" >
                                     <?php if($val['isZan'] == 0):?>
