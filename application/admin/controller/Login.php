@@ -9,7 +9,6 @@
 namespace app\admin\controller;
 
 use app\api\model\AdminModel;
-use think\App;
 use think\Controller;
 use think\facade\Session;
 
