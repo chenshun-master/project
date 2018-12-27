@@ -18,13 +18,6 @@
                     <ul class="nav nav-tabs" id="my-tab-status">
                         <li class="active" data-status="0"><a href="#tab-box1" data-toggle="tab">商户信息</a></li>
                     </ul>
-                    <div class="box-header">
-                        <div class="box-tools">
-                            <div class="input-group input-group-sm" style="">
-                                <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="tab-content" style="min-height: 500px;">
                         <div class="tab-pane active" id="tab-box1">
                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -42,12 +35,18 @@
         </div>
     </div>
 </section>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+    </div>
+</script>
 {js href="/static/plugin/layui/layui.all.js" /}
 <script type="text/javascript">
     layui.table.render({
         elem: '#table-list'
         ,id:'tab-reload'
         ,url: '/admin/seller/getSellerList' //数据接口
+        ,toolbar: '#toolbarDemo'
         ,page: true
         ,request: {
             pageName: 'page' //页码的参数名称，默认：page
