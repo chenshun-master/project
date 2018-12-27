@@ -271,6 +271,8 @@ var myObj = {
                 } else if (res.code == 401) {
                     redream.showTip('请先进行登录');
                     $('.wl-zhez2').hide();
+                }else{
+                    redream.showTip('评论失败');
                 }
             }
         });
