@@ -63,8 +63,7 @@ class SellerDomain
         $sellerInfo = Db::name('sp_seller')->alias('seller');
         $sellerInfo->leftJoin('wl_user user','user.id = seller.user_id');
         $sellerInfo->leftJoin('wl_auth auth','user.id = auth.user_id');
-        $sellerInfo->where('user.type','in',[3,4]);
-        $sellerInfo->order('seller.id desc');
+        $sellerInfo->order('seller.create_time desc');
 
         $total = $sellerInfo->count(1);
 
