@@ -90,7 +90,7 @@ class Article extends CController
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
         $this->assign('user_info', $user_info);
         $this->assign('articleInfo', $articleInfo);
-        return $this->fetch('article/article_release');
+        return $this->fetch('article/published_article');
     }
 
     /**

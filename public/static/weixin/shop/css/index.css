@@ -320,6 +320,7 @@
 .wl-dingwei{
     position: fixed;bottom: 0;max-width: 640px;margin: 0 auto;width: 100%
 }
+input{ pointer-events: none; }
 @media screen and (min-width:480px){
     .wl-sp-img{
         width: 130px;

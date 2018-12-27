@@ -209,9 +209,9 @@ class Shop extends BaseController
     /**
      *商品搜索页面
      */
-    public function commoditySearch()
+    public function searchGoods()
     {
-        return $this->fetch('shop/commodity_search');
+        return $this->fetch('shop/search_goods');
     }
 
     /**

@@ -1,0 +1,285 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/shop/css/search_goods.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;min-height: 500px;" id="J-focus-btn">
+    <div class="wl-serch-dingwei">
+        <div class="wl-top">
+            <a href="/weixin/shop/index"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
+            <span>搜索商品</span>
+        </div>
+
+        <div class="wl-top1">
+            <input type="text" placeholder="搜索您感兴趣的项目"  autofocus="autofocus" id="mobile">
+            <button class="click-commodity-search">搜索</button>
+        </div>
+    </div>
+    <div class="wl-qiehuan">
+        <ul class="wl-deji">
+            <li class="active">商品</li>
+            <li>医生</li>
+            <li>医院</li>
+        </ul>
+        <div class="content">
+            <div class="wl-d active">
+                <div id="container">
+                    <div id="container-list">
+
+                    </div>
+                </div>
+            </div>
+            <div class="wl-d">
+                222
+            </div>
+            <div class="wl-d">
+                333
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
+        <div class="wl-sp-img">
+            <img src="{{item.img}}" />
+        </div>
+        <div class="wl-xiang href">
+            <div class="wl-title">{{item.name}}</div>
+            <div class="wl-yiyuan"><span class="wl-name">{{item.doctor_name}}</span><span class="wl-meirong">{{item.hospital_name}}</span></div>
+            <div class="wl-yiyuan">{{item.sale_num}}人预订</div>
+            <div class="wl-jiage">
+                <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-quchu">￥{{item.market_price}}</span>
+            </div>
+        </div>
+        <dl style="clear: both"></dl>
+    </div>
+    {{#  }); }}
+</script>
+<script>
+    $(".wl-deji li").click(function() {
+        $(this).addClass("active").siblings().removeClass("active");
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+        if(index == 0 && myObj.goods.listData.ini == false){
+
+        }
+    });
+    $(function () {
+        $('#mobile').trigger('focus');
+    });
+    // var goodsObj = {
+    //     listData: {
+    //         loading: false,
+    //         ini: false,
+    //         page: 0,
+    //         page_total: 1,
+    //         page_size: 8,
+    //         url:'asd',
+    //         params:{
+    //             keywords:''
+    //         }
+    //     },
+    // };
+    //
+    // var docs = {
+    //     listData: {
+    //         loading: false,
+    //         ini: false,
+    //         page: 0,
+    //         page_total: 1,
+    //         page_size: 8,
+    //         params:{
+    //             keywords:''
+    //         }
+    //     },
+    // };
+    //
+    // var h ={
+    //     listData: {
+    //         loading: false,
+    //         ini: false,
+    //         page: 0,
+    //         page_total: 1,
+    //         page_size: 8,
+    //         params:{
+    //
+    //         }
+    //     },
+    // };
+    //
+    // var ajax = {
+    //     loadList: function (obj,me,functions) {
+    //         if (obj.listData.loading) {
+    //             return false;
+    //         }
+    //
+    //         obj.listData.page++;
+    //         if (obj.listData.ini == true) {
+    //             if (obj.listData.page > obj.listData.page_total) {
+    //                 if(me !== null){
+    //                     me.resetload();
+    //                 }
+    //                 return false;
+    //             }
+    //         }
+    //
+    //         var data = $.extend({},{page: obj.listData.page, page_size: obj.listData.page_size}, obj.listData.params);
+    //         $.ajax({
+    //             url: obj.listData.url,
+    //             type: 'post',
+    //             data: data,
+    //             dataType: 'json',
+    //             beforeSend: function () {
+    //                 obj.listData.loading = true;
+    //             },
+    //             complete: function () {
+    //                 obj.listData.loading = false;
+    //             },
+    //             success: function (res) {
+    //                 if (res.code == 200) {
+    //                     if ( obj.listData.ini == false) {
+    //                         obj.listData.ini = true;
+    //                         obj.listData.page_total = res.data.page_total;
+    //                     }
+    //                     if ( obj.listData.page >=  obj.listData.page_total) {
+    //                         if(me !== null){
+    //                             me.noData();
+    //                         }
+    //                     }
+    //                 }
+    //
+    //                 functions(res);
+    //
+    //                 if(me !== null){
+    //                     me.resetload();
+    //                 }
+    //             },
+    //             error:function(){
+    //                 if(me !== null){
+    //                     me.resetload();
+    //                 }
+    //             }
+    //         });
+    //     }
+    // };
+
+    var myObj = {
+        goods:{
+            listData: {
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 8,
+                params:{
+                    keywords:'',
+                }
+            },
+            dropReloadList:function(){
+                myObj.goods.listData.loading = false;
+                myObj.goods.listData.ini = false;
+                myObj.goods.listData.page = 0;
+                myObj.goods.listData.page_total = 1;
+
+                this.loadList(null);
+            },
+            loadList: function (me) {
+                myObj.goods.listData.params.keywords = $("#mobile").val();
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+
+                myObj.goods.listData.page++;
+                if (myObj.goods.listData.ini == true) {
+                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
+                        if(me !== null){
+                            me.resetload();
+                        }
+                        return false;
+                    }
+                }
+
+                var data = $.extend({},{page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size}, myObj.goods.listData.params);
+                $.ajax({
+                    url: "/weixin/shopapi/getGoodsList",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if ( myObj.goods.listData.ini == false) {
+                                myObj.goods.listData.ini = true;
+                                myObj.goods.listData.page_total = res.data.page_total;
+                                $('#container-list').html('');
+                            }
+
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
+                                $('#container-list').append(html);
+                            });
+                            if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
+                                if(me !== null){
+                                    me.noData();
+                                }
+                            }
+                        }
+                        if(me !== null){
+                            me.resetload();
+                        }
+                    },
+                    error:function(){
+                        if(me !== null){
+                            me.resetload();
+                        }
+                    }
+                });
+
+            }
+        }
+    };
+    var dropload = $('#container').dropload({
+        scrollArea: window,
+        loadUpFn: function (me) {
+            myObj.goods.listData.loading = false;
+            myObj.goods.listData.ini = false;
+            myObj.goods.listData.page = 0;
+            myObj.goods.listData.page_total = 1;
+            myObj.goods.loadList(me);
+        },
+        loadDownFn: function (me) {
+            myObj.goods.loadList(me);
+        }
+    });
+
+
+
+    $('.click-commodity-search').on('click', function () {
+        var the_input = $("#mobile").val();
+        myObj.goods.dropReloadList();
+    });
+
+
+    $(document).on('click','.to-goods-detail',function(){
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+    });
+</script>
+{/block}
