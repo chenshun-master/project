@@ -255,20 +255,20 @@ class UserDomain
      * 上传用户头像
      * @param $user_id    用户ID
      * @param $imgText    图片流内容
-     * @return bool
+     * @return bool|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function uploadHead($user_id,$imgText){
-
-        $save_path = 'head/'.date('Ymd');
+        $save_path = 'head/';
         $dir = "/../uploads/{$save_path}";
         $path = $_SERVER['DOCUMENT_ROOT'] .$dir;
-
 
         if (!is_dir($path)) {
             @mkdir($path, 0755, true);
         }
 
-        $filename = date('His').uniqid().uniqid().'.png';
+        $filename = encryptPwd2($user_id).'.png';
 
         $file_res = file_put_contents($path.'/'.$filename, $imgText);
         if(!$file_res){
@@ -276,21 +276,9 @@ class UserDomain
         }
 
         $img_url = config('conf.file_save_domain').'/'.$save_path.'/'.$filename;
-
-        Db::startTrans();
-        try {
-            $isTrue = (new PictureLibraryDomain())->create(1,$img_url);
-            if(!$isTrue){
-                Db::rollback();return false;
-            }
-
-            $isTrue2 = Db::name('user')->where('id',$user_id)->update(['portrait'=>$img_url]);
-            if(!$isTrue2){
-                Db::rollback();return false;
-            }
-            Db::commit();
-        } catch (\Exception $e) {
-            Db::rollback();
+        $isTrue2 = Db::name('user')->where('id',$user_id)->update(['portrait'=>$img_url]);
+        if($isTrue2 === false){
+            return false;
         }
 
         return $img_url;
