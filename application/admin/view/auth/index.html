@@ -88,7 +88,7 @@
             {field: 'enterprise_name', title: '医院/组织名称'},
             {field: 'address', title: '详细地址'},
             {field: 'duties', title: '岗位职称'},
-            {field: 'founding_time', title: '医院机构成立时间'},
+            {field: 'founding_time', title: '医院机构成立时间',sort:true},
             {field: 'status', title: '审核状态',width:92,templet:function (res) {
                     if(res.status == 1){
                         return '<span class="label label-primary">待审核</span>';
@@ -98,9 +98,9 @@
                         return '<span class="label label-success" lay-event="success">已审核</span>';
                     }
                 }},
-            {field: 'audit_time', title: '审核时间'},
+            {field: 'audit_time', title: '审核时间',sort:true},
             {field: 'audit_remark', title: '审核备注'},
-            {field: 'created_time', title: '申请时间'},
+            {field: 'created_time', title: '申请时间',sort:true},
             {fixed: 'right', title:'操作', toolbar: '#barDemo', width:100},
         ]]
     });
