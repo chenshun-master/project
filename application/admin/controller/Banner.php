@@ -30,7 +30,7 @@ class Banner extends BaseController{
     public function getBannerList($page=1,$page_size=10)
     {
         $data = $this->_bannerDomain->getBannerList($page,$page_size);
-        return $this->returnData($data,'',0);
+        return $this->returnData($data,'',200);
     }
     /**
      * 新增轮播图页面

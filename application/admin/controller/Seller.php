@@ -38,7 +38,7 @@ class Seller extends BaseController
      */
     public function getSellerList($page=1,$page_size=10){
         $data = $this->_sellerDomain->getSellerList($page,$page_size);
-        return $this->returnData($data,'',0);
+        return $this->returnData($data,'',200);
     }
 
     /**

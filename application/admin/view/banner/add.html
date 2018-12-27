@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
+<style>
+    #from-img-box{
+        margin-top: 20px;
+    }
+</style>
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -44,16 +49,30 @@
                                         <input type="text" class="form-control" id="fr-banner-order" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" placeholder="请输入排序内容"  value="{$res.order}"  />
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-sm-1 control-label">图片</label>
+                                    <label  class="col-sm-1 control-label">轮播图片</label>
                                     <div class="col-sm-10">
-                                        {gt name="res.id" value="1"}
-                                        <img src="{$res.img}" style="height: 100px; width: 150px;">
-                                        {/gt}
-                                        <input class="form-control" id="file" value="" name="img" accept="image/*" type="file">
-                                        <p class="help-block">必须上传图片</p>
+                                        <div style="position: relative;cursor: pointer">
+                                            <div class="layui-btn layui-btn-sm layui-btn-normal" style="position: absolute;top: 0;z-index: 1;">
+                                                <i class="layui-icon layui-icon-upload-drag"></i>轮播图片
+                                            </div>
+                                            <input type="file" name="img" style="position: absolute;top: 0;z-index: 2;width: 87px;opacity: 0;"  id="fr-upload-img"  />
+                                        </div>
+
+                                        <div class="layui-inline layui-word-aux" style="margin-left: 100px;padding-top: 5px;top: 5px;">
+                                            每张图片最大限制在2M以内，必须上传图片
+                                        </div>
+                                        <div id="from-img-box">
+                                            <div class="from-img-divs">
+                                                {gt name="res.id" value="1"}
+                                                <img src="{$res.img}" data-imgid="{$res.id}" style="width: 100px;height: 100px;"  class="fr-imgs-val" >
+                                                {/gt}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="box-footer clearfix" style="padding-left: 146px;">
                                     <button type="submit" class="btn btn-success btn-embossed" onclick="objClass.releaseBanner()">提交数据</button>
                                 </div>

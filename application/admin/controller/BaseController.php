@@ -2,10 +2,10 @@
 namespace app\admin\controller;
 use think\App;
 use think\Controller;
+use think\facade\Session;
 
 class BaseController extends Controller
 {
-
     public function __construct(App $app = null)
     {
         parent::__construct($app);
@@ -15,11 +15,16 @@ class BaseController extends Controller
     {
         parent::initialize();
         //判断是否登录，没有登录跳转登录页面
-        if(!session('user_auth')){
-            return $this->redirect('login/index');
+        if($this->request->isGet() && !$this->request->isAjax()){
+            if(!Session::get('user_auth')){
+                $u =  $this->request->controller(true).'/'.$this->request->action(true);
+                if($u != 'login/index'){
+                    header('Location: /admin/login/index');exit;
+                }
+            }
+            $this->assign('user_auth',Session::get('user_auth'));
         }
     }
-
 
     /**
      * ajax返回数据
