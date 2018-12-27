@@ -60,7 +60,7 @@ class Banner extends BaseController{
         $img_domain = config('conf.file_save_domain');
         $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
         if($img){
-            $size = 1024*1024*5;              #单位字节
+            $size = 1024*1024*2;              #单位字节
             if(!$img->checkSize($size)){
                 return $this->returnData([],'上传图片大小不能超过5M',305);
             }
