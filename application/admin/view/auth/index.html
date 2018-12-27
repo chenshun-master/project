@@ -13,15 +13,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div class="box-header">
-                    <div class="box-tools">
-                        <div class="input-group input-group-sm" style="">
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="objClass.fail()">审核失败</button>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" onclick="objClass.success()">审核成功</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="nav-tabs-custom" >
                     <ul class="nav nav-tabs" id="my-tab-status">
                         <li class="active" data-status="0"><a href="#tab-box1" data-toggle="tab">认证信息</a></li>
@@ -29,6 +20,15 @@
                         <li data-status="2"><a href="#tab-box1" data-toggle="tab">审核失败</a></li>
                         <li data-status="3"><a href="#tab-box1" data-toggle="tab">已审核</a></li>
                     </ul>
+                    <div class="box-header">
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="">
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="objClass.fail()">审核失败</button>
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" onclick="objClass.success()">审核成功</button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-content" style="min-height: 500px;">
                         <div class="tab-pane active" id="tab-box1">
                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -86,21 +86,6 @@
                 }},
             {field: 'username', title: '运营者姓名'},
             {field: 'idcard', title: '运营者身份证号'},
-            // {field: 'card_img1', title: '身份证照正面照',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.card_img1+'" width="30" >';
-            //     }},
-            // {field: 'card_img2', title: '身份证照背面照',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.card_img2+'" width="30" >';
-            //     }},
-            // {field: 'qualification', title: '医师资格证书',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.qualification+'" width="30" >';
-            //     }},
-            // {field: 'practice_certificate', title: '医师执业证书',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.practice_certificate+'" width="30" >';
-            //     }},
-            // {field: 'business_licence', title: '营业执照',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.business_licence+'" width="30" >';
-            //     }},
             {field: 'enterprise_name', title: '医院/组织名称'},
             {field: 'address', title: '详细地址'},
             {field: 'duties', title: '岗位职称'},

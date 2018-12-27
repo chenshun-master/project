@@ -53,6 +53,8 @@ class Goods extends BaseController
 
         if($flag == 'normal'){
             $status = 0;
+        }else if($flag == 'lower'){
+            $status = 2;
         }else{
             return $this->returnData([],'参数不符合规范',301);
         }

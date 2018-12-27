@@ -462,6 +462,8 @@ class SpGoodsDomain
         }else if($status == 1) {
             $status = [3];
         }else if($status == 2) {
+            $status = [2];
+        }else if($status == 3){
             $status = [0];
         }
         $obj = Db::name('sp_goods')->alias('sp');
