@@ -266,21 +266,22 @@ width: 35px;
     background: white;
     max-width: 640px;
     margin: 0 auto;
-    border-radius: 5px;
 }
-.wl-zl2 textarea{
-    border-radius: 10px;
-    width: 78%;
+
+.wl-zl2 textarea {
+    border-radius: 3px;
+    width: 85%;
     height: 35px;
     background: #E5E5E5;
     color: #888888;
     resize: none;
     text-indent: 2px;
     margin: 6px;
-    padding: 6px;
+    padding: 6px 6px 4px 6px;
     font-size: 14px;
     float: left;
 }
+
 .wl-zhezhao {
     background: #FFFFFF;
     display: none;
@@ -359,7 +360,7 @@ width: 35px;
     display: none;
 }
 .wl-fabu {
-    width: 14%;
+    width: 10%;
     height: 30px;
     line-height: 30px;
     text-align: center;

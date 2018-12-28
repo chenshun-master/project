@@ -2,9 +2,6 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/shop/css/search_goods.css">
-<style>
-
-</style>
 {/block}
 
 {block name="main"}
@@ -37,15 +34,36 @@
                 </div>
             </div>
             <div class="wl-d">
-                222
+                <div class="wl-shangping href to-goods-detail" data-goodsid="2">
+                    <div class="wl-sp-img">
+                        <img src="http://172.16.100.85:81/goodsimgs/20181224/186e08e6c4360a4eaf688c722a95b484.jpg">
+                    </div>
+                    <div class="wl-xiang href">
+                    <div class="wl-title1">医生姓名 <span></span></div>
+                    <div class="wl-yiyuan">
+                        <span class="wl-name1">医生职称:医生</span>
+                        <div class="wl-yiyuan wl-yudig"><span>6人预订 </span>|<span>8案例</span>
+                    </div>
+                    <div class="wl-physicians">眼部综合、鼻部综合...</div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="wl-d">
-                333
+                <div class="wl-shangping href to-goods-detail" data-goodsid="2">
+                    <div class="wl-sp-img">
+                        <img src="http://172.16.100.85:81/goodsimgs/20181224/186e08e6c4360a4eaf688c722a95b484.jpg"> </div>
+                    <div class="wl-xiang href">
+                        <div class="wl-title1">医院名称 <span></span></div>
+                        <div class="wl-yiyuan">
+                            <span class="wl-name1">医院类型:门诊部</span>
+                        </div>
+                        <div class="wl-yiyuan wl-yudig"><span>6人预订 </span>|<span>8案例</span></div>
+                        <div class="wl-physicians">眼部综合、鼻部综合...</div>
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
-</div>
-
 {/block}
 
 {block name="script"}
@@ -74,8 +92,22 @@
         $(this).addClass("active").siblings().removeClass("active");
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
-        if(index == 0 && myObj.goods.listData.ini == false){
-
+        if(index == 1 && myObj.goods.listData.ini == false){
+            var dropload = $('#container').dropload({
+                scrollArea: window,
+                autoLoad:false,
+                // loadUpFn: function (me) {
+                //     myObj.goods.listData.loading = false;
+                //     myObj.goods.listData.ini = false;
+                //     myObj.goods.listData.page = 0;
+                //     myObj.goods.listData.page_total = 1;
+                //     myObj.goods.loadList(me);
+                // },
+                loadDownFn: function (me) {
+                    myObj.goods.loadList(me);
+                }
+            });
+            $('.dropload-down').hide();
         }
     });
     $(function () {
@@ -183,7 +215,7 @@
                 loading: false,
                 ini: false,
                 page: 0,
-                page_total: 1,
+                page_total: 0,
                 page_size: 8,
                 params:{
                     keywords:'',
@@ -194,7 +226,6 @@
                 myObj.goods.listData.ini = false;
                 myObj.goods.listData.page = 0;
                 myObj.goods.listData.page_total = 1;
-
                 this.loadList(null);
             },
             loadList: function (me) {
@@ -226,19 +257,24 @@
                         myObj.goods.listData.loading = false;
                     },
                     success: function (res) {
+
                         if (res.code == 200) {
                             if ( myObj.goods.listData.ini == false) {
                                 myObj.goods.listData.ini = true;
                                 myObj.goods.listData.page_total = res.data.page_total;
                                 $('#container-list').html('');
+
                             }
 
                             layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
                                 $('#container-list').append(html);
                             });
+
                             if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
-                                if(me !== null){
+                                if (me !== null) {
                                     me.noData();
+                            }else{
+                                    $('.dropload-down').hide();
                                 }
                             }
                         }
@@ -256,27 +292,12 @@
             }
         }
     };
-    var dropload = $('#container').dropload({
-        scrollArea: window,
-        loadUpFn: function (me) {
-            myObj.goods.listData.loading = false;
-            myObj.goods.listData.ini = false;
-            myObj.goods.listData.page = 0;
-            myObj.goods.listData.page_total = 1;
-            myObj.goods.loadList(me);
-        },
-        loadDownFn: function (me) {
-            myObj.goods.loadList(me);
-        }
-    });
-
-
 
     $('.click-commodity-search').on('click', function () {
         var the_input = $("#mobile").val();
         myObj.goods.dropReloadList();
-    });
 
+    });
 
     $(document).on('click','.to-goods-detail',function(){
         window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');

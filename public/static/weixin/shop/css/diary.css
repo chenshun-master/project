@@ -192,7 +192,6 @@
     width: 100%;
     min-height: 90px;
     margin-top: 8px;
-    margin-left: 5px;
 }
 
 .wl-imgfloat{
@@ -291,7 +290,7 @@
     float: left;
 }
 .wl-left-img img{
-    width: 204px;
+    width: 200px;
     height: 185px;
     float: left;
 }
@@ -301,10 +300,10 @@ width: 100px;
     float: left;
 }
 .wl-imgright{
-    width: 37%;
+    width: 39%;
     min-height: 50px;
     float: left;
-    margin-left: 5px;
+    padding-left: 5px;
 }
 .wl-imgright img{
     width: 100px;

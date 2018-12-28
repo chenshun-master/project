@@ -126,6 +126,6 @@ class Article extends CController
         $this->assign($data);
         $this->assign('user_info', $user_info);
         $this->assign('draftId', $draftId);
-        return $this->fetch('article/graphic');
+        return $this->fetch('article/article_lists');
     }
 }

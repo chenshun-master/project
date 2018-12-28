@@ -119,6 +119,7 @@
     top: 80px;
     max-width: 640px;
     margin: 0 auto;
+    border-bottom: 1px solid #f1f1f1;
 }
 .wl-deji li {
     width: 33%;
@@ -151,4 +152,37 @@
     position: fixed;
     max-width: 640px;
     margin: 0 auto;
+}
+.wl-title1 {
+    overflow: hidden;
+    min-height: 10px;
+    color: #1D1D1D;
+    font-size: 13px;
+    margin-bottom: 3px;
+    margin-top: 5px;
+    position: relative;
+}
+.wl-title1 span{
+    width: 20px;
+    display: inline-block;
+    height: 20px;
+    background: url('/static/image/user/lanv.png')no-repeat 2px 1px;
+    background-size: 18px;
+    position: absolute;
+}
+.wl-physicians{
+    padding: 0 5px 0 5px;
+    width:fit-content;
+    width:-moz-fit-content;
+    height:18px;
+    color: #999999;
+    font-size: 11px;
+    border: 1px solid #F2F2F2;
+    margin-top: 6px;
+}
+.wl-yudig span:nth-child(2){
+    padding-left: 5px;
+}
+.wl-name1{
+    padding-right: 5px;
 }
