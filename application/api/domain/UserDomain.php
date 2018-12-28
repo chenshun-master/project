@@ -260,7 +260,7 @@ class UserDomain
      * @throws \think\exception\PDOException
      */
     public function uploadHead($user_id,$imgText){
-        $save_path = 'head/';
+        $save_path = 'head';
         $dir = "/../uploads/{$save_path}";
         $path = $_SERVER['DOCUMENT_ROOT'] .$dir;
 

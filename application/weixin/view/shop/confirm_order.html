@@ -35,11 +35,11 @@
             <span class="wl-jiage1">{$infos['info']['num']}</span>
         </div>
 
-        <!--<div style="clear: both"></div>-->
-        <!--<div class="wl-zonghe1">-->
-            <!--<span class="wl-xiannv1 se">商家立减优惠，减1193元</span>-->
-            <!--<span class="wl-jiage2 ">-￥1193 <span class="wl-bjtu"></span></span>-->
-        <!--</div>-->
+        <!--<div style="clear: both"></div>
+        <div class="wl-zonghe1">
+            <span class="wl-xiannv1 se">商家立减优惠，减1193元</span>
+            <span class="wl-jiage2 ">-￥1193 <span class="wl-bjtu"></span></span>
+        </div>-->
 
         <div style="clear: both"></div>
         <div class="wl-zonghe1">
@@ -68,8 +68,8 @@
         </div>
 
         <div style="clear: both"></div>
-        <div class="wl-bth"  id="click-place-order" data-goodsid="{$infos['info']['id']}" data-num="{$infos['info']['num']}">
-            去支付 {$infos['calculation']['prepay_price']}元
+        <div class="wl-bth"  id="click-place-order" data-goodsid="{$infos['info']['id']}" data-num="{$infos['info']['num']}" data-gid="{$gid}">
+            立即下单 {$infos['calculation']['prepay_price']}元
         </div>
     </main>
 </div>
@@ -83,15 +83,14 @@
         $(this).toggleClass('wl-bjtu').toggleClass('wl-bjtu1');
     });
 
-
     var objClass = {
         loading:false,
-        placeOrder:function(goodsid,num){
+        placeOrder:function(goodsid,num,gid){
             if(this.loading == false){
                 $.ajax({
                     url: "/weixin/ShopApi/placeOrder",
                     type: 'post',
-                    data: {goodsid:goodsid,num:num},
+                    data: {goodsid:goodsid,num:num,gid:gid},
                     dataType: 'json',
                     beforeSend: function () {
                         objClass.loading = true
@@ -101,6 +100,7 @@
                             window.location.href = '/weixin/shop/methodpayment/?oid='+res.data.order_id
                         }else{
                             redream.showTip('下单失败');
+                            objClass.loading = false;
                         }
                     }
                 });
@@ -109,7 +109,7 @@
     };
 
     $('#click-place-order').on('click',function(){
-        objClass.placeOrder($(this).data('goodsid'),$(this).data('num'))
+        objClass.placeOrder($(this).data('goodsid'),$(this).data('num'),$(this).data('gid'))
     });
 </script>
 {/block}

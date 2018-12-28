@@ -57,6 +57,7 @@ class ShopApi extends BaseController
         }
 
         $goodsid = $this->request->post('goodsid/d', 0);
+        $gid     = $this->request->post('gid/d', 0);
         $num = $this->request->post('num/d', 0);
 
         if (empty($goodsid) || empty($num)) {
@@ -64,7 +65,7 @@ class ShopApi extends BaseController
         }
 
         $uid = $this->getUserId();
-        $order_id = $this->_spGoodsDomain->placeOrder($goodsid, $num, $uid);
+        $order_id = $this->_spGoodsDomain->placeOrder($goodsid, $num, $uid,$gid);
         if ($order_id === false) {
             return $this->returnData([], '下单失败', 305);
         }
