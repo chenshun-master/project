@@ -9,10 +9,9 @@
 namespace app\admin\controller;
 
 use app\api\model\AdminModel;
-use think\Controller;
 use think\facade\Session;
 
-class Login extends Controller
+class Login extends BaseController
 {
     /**
      * 后台登陆
@@ -37,10 +36,13 @@ class Login extends Controller
             if ($res === 3) {
                 return $res = ['status' => 0, 'msg' => '密码错误'];
             }
-            Session::set('user_auth',$res);
+            if($res === 4){
+                return $res = ['status' => 0, 'msg' => '账号已禁用'];
+            }
+            $this->saveAdminLogin($res);
             return json(['status' => 200, 'msg' => '登录成功！']);
         }
-        if(Session::get('user_auth')){
+        if($this->getAdminInfo()){
             $this->redirect('index/index');
         }
         return $this->fetch('login/index');
@@ -50,7 +52,7 @@ class Login extends Controller
      * 退出登陆
      */
     public function loginOut(){
-        session::clear();
+        $this->clearAdminLogin();
         return $this->fetch('login/index');
     }
 }
