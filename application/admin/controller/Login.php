@@ -9,7 +9,6 @@
 namespace app\admin\controller;
 
 use app\api\model\AdminModel;
-use think\facade\Session;
 
 class Login extends BaseController
 {
