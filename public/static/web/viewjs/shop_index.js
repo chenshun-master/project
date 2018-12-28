@@ -27,7 +27,7 @@ var listObj = {
     params:{
         ini:true,
         page: 0,
-        page_size: 14,
+        page_size: 16,
         category:'',
         sort:0,
         city:'',

@@ -21,6 +21,7 @@ $(".dianhua-right").click(function (event) {
     event.stopPropagation(); //停止事件冒泡
     $(".marsk-container").toggle();
 });
+
 //点击空白处隐藏弹出层
 $(".marsk-container").click(function (event) {
     var _con = $('.tkyy_con'); // 设置目标区域
@@ -35,8 +36,9 @@ $(".quxiao").click(function () {
 $(document).on('click','.dianhua-left',function(){
     window.location.href = '/weixin/index/hospital';
 });
+
 $(document).on('click','#click-place-order',function(){
-    window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid');
+    window.location.href = $(this).data('href')+'?goodsid='+$(this).data('goodsid')+'&gid='+$(this).data('gid');
 });
 
 $(window).scroll(function(){
@@ -110,6 +112,7 @@ $(".wl-zizhi").click(function (event) {
     event.stopPropagation(); //停止事件冒泡
     $(".marsk-container1").toggle();
 });
+
 //点击空白处隐藏弹出层
 $(".marsk-container1").click(function (event) {
     var _con = $('.tkyy_con1'); // 设置目标区域
@@ -117,16 +120,18 @@ $(".marsk-container1").click(function (event) {
         $('.marsk-container1').hide(); //淡出消失
     }
 });
+
 $(".wl-quxiao").click(function () {
     $(".marsk-container1").hide();
 });
 
 $(".top-right").click(function () {
     $("#cus-myshare-box").show();
-})
+});
+
 $("#cus-myshare-box").click(function () {
     $("#cus-myshare-box").hide();
-})
+});
 
 var myObj = {
     goods:{

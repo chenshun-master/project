@@ -170,7 +170,7 @@ class SpGoodsDomain
             $data['down_time'] = date('Y-m-d H:i:s');
         }
 
-        if(!Db::name('sp_goods')->where('id',"IN",$good_id)->update($data)){
+        if(!Db::name('sp_goods')->where('id',$good_id)->update($data)){
             return false;
         }
 
@@ -182,15 +182,27 @@ class SpGoodsDomain
      * @param int $goods_id    商品ID
      * @param int $goods_num   下单商品的数量
      * @param int $user_id     用户数量
+     * @param int $gid     用户数量
      * @return bool|int|string
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function placeOrder(int $goods_id,int $goods_num,int $user_id){
-        $goods_info = Db::name('sp_goods')->where('id',$goods_id)->where('status',0)->where('store_nums','>',$goods_num)->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id,doctor_id,hospital_id,name')->find();
+    public function placeOrder(int $goods_id,int $goods_num,int $user_id,$gid=0){
+        $goods_info = Db::name('sp_goods')
+            ->where('id',$goods_id)
+            ->where('status',0)
+            ->where('store_nums','>',$goods_num)
+            ->field('id,market_price,sell_price,prepay_price,topay_price,img,seller_id,doctor_id,hospital_id,name')->find();
         if(!$goods_info){
             return false;
+        }
+
+
+        if($gid > 0){
+            if(!Db::name('sp_good_goods')->where('id',$gid)->where('goods_id',$goods_id)->where('is_del',0)->value('id')){
+                return false;
+            }
         }
 
         //包装订单数据
@@ -199,9 +211,10 @@ class SpGoodsDomain
         $orderData['goods_id']          = $goods_id;
         $orderData['user_id']           = $user_id;
         $orderData['seller_id']         = $goods_info['seller_id'];
-        $orderData['img']               = $goods_info['img'];
         $orderData['hospital_id']       = $goods_info['hospital_id'];
         $orderData['doctor_id']         = $goods_info['doctor_id'];
+        $orderData['good_goods_id']     = $gid;
+        $orderData['img']               = $goods_info['img'];
         $orderData['status']            = 1;
         $orderData['is_checkout']       = 0;
         $orderData['create_time']       = date('Y-m-d H:i:s');
@@ -457,19 +470,19 @@ class SpGoodsDomain
      */
     public function getGoodsList($status=0,$page=1,$page_size=10)
     {
-        if($status == 0){
-            $status = [0,1,2,3];
-        }else if($status == 1) {
-            $status = [3];
+        if($status == 1) {
+            $status = 3;
         }else if($status == 2) {
-            $status = [2];
-        }else if($status == 3){
-            $status = [0];
+            $status = 0;
         }
+
         $obj = Db::name('sp_goods')->alias('sp');
         $obj->leftJoin('wl_doctor doctor','doctor.id = sp.doctor_id');
         $obj->leftJoin('wl_hospital hospital', 'hospital.id = sp.hospital_id');
-        $obj->where("sp.status",'in',$status);
+        if($status != 0){
+            $obj->where("sp.status",$status);
+        }
+
         $field = [
           'sp.id',
           'sp.name',
