@@ -49,7 +49,7 @@ class Login extends Controller
     /**
      * 退出登陆
      */
-    public function loginout(){
+    public function loginOut(){
         session::clear();
         return $this->fetch('login/index');
     }

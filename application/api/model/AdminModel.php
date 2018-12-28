@@ -8,7 +8,6 @@
 
 namespace app\api\model;
 
-use think\facade\Session;
 use think\Model;
 
 class AdminModel extends Model

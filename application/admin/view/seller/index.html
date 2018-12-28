@@ -13,27 +13,40 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">商户列表</h3>
-                    <div class="box-tools">
-                        <div class="input-group input-group-sm" style="">
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+
+                <div class="nav-tabs-custom" >
+                    <ul class="nav nav-tabs" id="my-tab-status">
+                        <li class="active" data-status="0"><a href="#tab-box1" data-toggle="tab">商户信息</a></li>
+                    </ul>
+                    <div class="tab-content" style="min-height: 500px;">
+                        <div class="tab-pane active" id="tab-box1">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="layui-hide" id="table-list" lay-filter="seller"></table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="box-body table-responsive no-padding">
-                    <table id="table-list" lay-filter="test"></table>
-                </div>
+
             </div>
         </div>
     </div>
 </section>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+    </div>
+</script>
 {js href="/static/plugin/layui/layui.all.js" /}
 <script type="text/javascript">
     layui.table.render({
         elem: '#table-list'
         ,id:'tab-reload'
         ,url: '/admin/seller/getSellerList' //数据接口
+        ,toolbar: '#toolbarDemo'
         ,page: true
         ,request: {
             pageName: 'page' //页码的参数名称，默认：page
@@ -41,14 +54,13 @@
         }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
-                "code": res.code, //解析接口状态
+                "code": res.code == 200?0:res.code, //解析接口状态
                 "msg": res.msg, //解析提示文本
                 "count": res.data.total, //解析数据长度
                 "data": res.data.rows //解析数据列表
             };
         }
         ,cols: [[ //表头
-            {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'mobile', title: '手机号'},
             {field: 'nickname', title: '用户昵称'},
             {field: 'portrait', title: '用户头像',width: 100,align:"center",templet:function (row) {
@@ -79,11 +91,11 @@
             {field: 'grade', title: '评分总数',sort:true},
             {field: 'sale', title: '总预约量',sort:true},
             {field: 'comments', title: '评论次数',sort:true},
-            {field: 'create_time', title: '申请加入时间'},
+            {field: 'create_time', title: '申请加入时间',sort:true},
         ]]
     });
 
-    layui.table.on('tool(test)',function (obj) {
+    layui.table.on('tool(seller)',function (obj) {
         var data = obj.data;
         var id = data.id;
         if(obj.event === 'show'){

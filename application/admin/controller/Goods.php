@@ -38,7 +38,7 @@ class Goods extends BaseController
     public function getGoodsList($page=1,$page_size=10){
         $status = $this->request->param('status/d',0);
         $data = $this->_spGoodsDomain->getGoodsList($status,$page,$page_size);
-        return $this->returnData($data,'',0);
+        return $this->returnData($data,'',200);
     }
 
     /**
@@ -53,6 +53,8 @@ class Goods extends BaseController
 
         if($flag == 'normal'){
             $status = 0;
+        }else if($flag == 'lower'){
+            $status = 2;
         }else{
             return $this->returnData([],'参数不符合规范',301);
         }

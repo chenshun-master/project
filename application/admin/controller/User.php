@@ -34,6 +34,6 @@ class User extends BaseController
      */
     public function getUserList($page=1,$page_size=10){
         $data = $this->_userDomain->userInfo($page,$page_size);
-        return $this->returnData($data,'',0);
+        return $this->returnData($data,'',200);
     }
 }
