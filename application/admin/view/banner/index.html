@@ -76,7 +76,9 @@
             {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'platform', title: '类型'},
             {field: 'name', title: 'banner名称'},
-            {field: 'url', title: '链接地址'},
+            {field: 'url', title: '链接地址',templet:function (row) {
+                    return '<a href="'+row.url+'" target="_blank">'+row.url+'</a>';
+                }},
             {field: 'img', title: '图片地址',width:100,align:"center",templet:function(row){
                     return '<img src="'+row.img+'" width="50" >';
                 }},
@@ -90,7 +92,6 @@
             }},
             {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
         ]]
-        ,limits:[10,20,30,50,100]
     });
 
     layui.table.on('tool(banner)',function (obj) {
