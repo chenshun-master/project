@@ -45,8 +45,6 @@ var listObj = {
             data: data,
             dataType: 'json',
             success: function (res) {
-
-
                 successCallback(res.data.rows);
             },
             error:errorCallback
