@@ -1,6 +1,9 @@
+{extend name="layout/layout" /}
 
+{block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
-
+{/block}
+{block name="main"}
 <div id="breadcrumb">
     <ul class="breadcrumb">
         <li><i class="home-icon fa fa-home"></i> <a href="/admin/index/index">主页</a></li>
@@ -34,6 +37,8 @@
         </div>
     </div>
 </section>
+{/block}
+{block name="js"}
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
@@ -113,3 +118,4 @@
         },
     };
 </script>
+{/block}

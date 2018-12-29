@@ -1,5 +1,9 @@
+{extend name="layout/layout" /}
 
+{block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
+{/block}
+{block name="main"}
 <div id="breadcrumb">
     <ul class="breadcrumb">
         <li><i class="home-icon fa fa-home"></i> <a href="/admin/index/index">主页</a></li>
@@ -42,10 +46,13 @@
         </div>
     </div>
 </section>
+{/block}
+{block name="js"}
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+
 {js href="/static/plugin/layui/layui.all.js" /}
 <script type="text/javascript">
     layui.table.render({
@@ -69,7 +76,9 @@
             {field: 'id', title: 'ID', fixed: 'left',width:120},
             {field: 'platform', title: '类型'},
             {field: 'name', title: 'banner名称'},
-            {field: 'url', title: '链接地址'},
+            {field: 'url', title: '链接地址',templet:function (row) {
+                    return '<a href="'+row.url+'" target="_blank">'+row.url+'</a>';
+                }},
             {field: 'img', title: '图片地址',width:100,align:"center",templet:function(row){
                     return '<img src="'+row.img+'" width="50" >';
                 }},
@@ -83,7 +92,6 @@
             }},
             {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
         ]]
-        ,limits:[10,20,30,50,100]
     });
 
     layui.table.on('tool(banner)',function (obj) {
@@ -157,3 +165,4 @@
         }
     };
 </script>
+{/block}

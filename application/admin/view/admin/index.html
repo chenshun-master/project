@@ -1,6 +1,9 @@
+{extend name="layout/layout" /}
 
+{block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
-
+{/block}
+{block name="main"}
 <div id="breadcrumb">
     <ul class="breadcrumb">
         <li><i class="home-icon fa fa-home"></i> <a href="/admin/index/index">主页</a></li>
@@ -42,6 +45,8 @@
         </div>
     </div>
 </section>
+{/block}
+{block name="js"}
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
@@ -133,3 +138,4 @@
         }
     };
 </script>
+{/block}
