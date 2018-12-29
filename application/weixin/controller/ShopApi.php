@@ -1,11 +1,11 @@
 <?php
-
 namespace app\weixin\controller;
 
 use app\api\domain\SpGoodsDomain;
 use think\App;
 use app\api\domain\SpGoodGoodsDomain;
 use mypay\MyPay;
+use app\api\domain\UDomain;
 class ShopApi extends BaseController
 {
     private $_userDomain;
@@ -57,6 +57,7 @@ class ShopApi extends BaseController
         }
 
         $goodsid = $this->request->post('goodsid/d', 0);
+        $gid     = $this->request->post('gid/d', 0);
         $num = $this->request->post('num/d', 0);
 
         if (empty($goodsid) || empty($num)) {
@@ -64,7 +65,7 @@ class ShopApi extends BaseController
         }
 
         $uid = $this->getUserId();
-        $order_id = $this->_spGoodsDomain->placeOrder($goodsid, $num, $uid);
+        $order_id = $this->_spGoodsDomain->placeOrder($goodsid, $num, $uid,$gid);
         if ($order_id === false) {
             return $this->returnData([], '下单失败', 305);
         }
@@ -150,7 +151,7 @@ class ShopApi extends BaseController
             return $this->returnData([], '评论成功...', 200);
         }
 
-        return $this->returnData([], '评论失败...', 200);
+        return $this->returnData([], '评论失败...', 305);
     }
 
     /**
@@ -201,5 +202,34 @@ class ShopApi extends BaseController
         }else{
             return $this->returnData([], '支付方式不存在', 306);
         }
+    }
+
+    /**
+     * 网站搜索
+     */
+    public function search()
+    {
+        $page = $this->request->post('page/d', 1);
+        $page_size = $this->request->post('page_size/d', 15);
+        $type = $this->request->param('type', 0);
+        $keyword = $this->request->param('keywords', '');
+
+        $data = [
+            'rows'          =>[],
+            'page'          =>1,
+            'page_total'    =>0,
+            'total'         =>0
+        ];
+        if(empty($type) || empty($keyword) || !in_array($type,[1,2,3])){
+            return $this->returnData($data,'',200);
+        }else if($type == 1){
+            $data = $this->_spGoodsDomain->getSearchGoods(['keywords'=>addslashes($keyword)],$page,$page_size);
+        }else if($type == 2){
+            $data = (new UDomain())->searchDoctor(['keywords'=>addslashes($keyword)],$page,$page_size);
+        }else if($type == 3){
+            $data = (new UDomain())->searchHospital(['keywords'=>addslashes($keyword)],$page,$page_size);
+        }
+
+        return $this->returnData($data, '', 200);
     }
 }

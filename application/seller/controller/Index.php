@@ -2,14 +2,13 @@
 namespace app\seller\controller;
 
 use think\Request;
+use app\api\domain\PictureLibraryDomain;
 
 class Index extends BaseController
 {
-
     public function index(){
         return $this->fetch('index/index');
     }
-
 
     /**
      * 商家登录页面
@@ -47,4 +46,51 @@ class Index extends BaseController
         $this->clearUserLogin();
         return redirect('/seller/index/login');
     }
+
+
+    /**
+     * 编辑器单文件上传
+     */
+    public function editUploadImgFile(Request $request){
+        $file = $request->file("imgFile");
+        $type = 6;
+
+        $pictureLibraryDomain = new PictureLibraryDomain();
+
+        $img_domain = config('conf.file_save_domain');
+        if(!$this->checkLogin()){
+            return json(array('error' => 1, 'message' =>'未授予上传权限'));
+        }
+
+        if($type == 0){
+            return json(array('error' => 1, 'message' =>'请求参数不符合规范'));
+        }
+
+        #文件上传类型
+        $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
+        if($file){
+            $size = 1024*1024*5;              #单位字节
+            if(!$file->checkSize($size)){
+                return json(['error' => 1, 'message' =>'上传图片大小不能超过5M']);
+            }
+
+            if(!$file->checkExt($fileExt)){
+                return json(['error' => 1, 'message' =>'文件格式错误只支持gif,jpg,jpeg及png格式的图片']);
+            }
+
+            $info = $file->move( '../uploads/goods_article');
+            if($info){
+                $path_dir = $img_domain.'/goods_article/'.str_replace("\\","/",$info->getSaveName());
+                $id = $pictureLibraryDomain->create($type,$path_dir);
+                if($id){
+                    return json(array('error' => 0, 'url' => $path_dir));
+                }else{
+                    return json(array('error' => 1, 'message' => '上传失败'));
+                }
+            }else{
+                return json(array('error' => 1, 'message' => $file->getError()));
+            }
+        }
+    }
+
 }

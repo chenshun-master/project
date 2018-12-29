@@ -14,24 +14,15 @@ class Pay extends  WxPayNotify
      */
     public function notify(){
         \Log::notice("微信交易记录通知 input".var_export(file_get_contents('php://input'),true));
-
         $this->Handle(new WxPayConfig(),false);
     }
 
     /**
-     *
      * 微信回调处理入口  1、进行参数校验 2、进行签名验证 3、处理业务逻辑
      * 注意： 1、微信回调超时时间为2s，建议用户使用异步处理流程，确认成功之后立刻回复微信服务器   2、微信服务器在调用失败或者接到回包为非确认包的时候，会发起重试，需确保你的回调是可以重入
      * @param WxPayNotifyResults $objData 回调解释出的参数
      * @param WxPayConfigInterface $config
      * @param string $msg 如果回调处理失败，可以将错误信息输出到该方法
-     * @return true回调出来完成不需要继续回调，false回调处理未完成需要继续回调
-     */
-
-    /**
-     * @param \mypay\lib\wechat\WxPayNotifyResults $objData
-     * @param \mypay\lib\wechat\WxPayConfigInterface $config
-     * @param string $msg
      * @return bool|\mypay\lib\wechat\true回调出来完成不需要继续回调，false回调处理未完成需要继续回调
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -40,31 +31,28 @@ class Pay extends  WxPayNotify
     public function NotifyProcess($objData, $config, &$msg)
     {
         $data = $objData->GetValues();
+        $logData = json_encode($data);
         \Log::notice('微信交易记录通知[支付跟踪]  '.var_export($data,true));
 
-
-        //1、进行参数校验
         if(!array_key_exists("return_code", $data) || (array_key_exists("return_code", $data) && $data['return_code'] != "SUCCESS")) {
-            \Log::notice('微信交易记录通知[异常订单]  '.var_export($data,true));
             $msg = "异常订单";return false;
         }else if(!array_key_exists("transaction_id", $data)){
-            \Log::notice('微信交易记录通知[输入参数不正确]  '.var_export($data,true));
             $msg = "输入参数不正确";return false;
         }
 
-        //2、进行签名验证(父类已验证通过)
+        //查询支付订单记录
+        $orderInfo = Db::name('sh_order')->alias('order')
+            ->leftJoin('wl_sp_good_goods good_goods','good_goods.id = order.good_goods_id')
+            ->leftJoin('wl_user touser','touser.id = good_goods.user_id')
+            ->where('order.order_no',$data['out_trade_no'])
+            ->field('order.id,order.goods_id,.order.good_goods_id,order.status,order.pay_status,order.payable_amount,order.real_amount,good_goods.user_id as uid,touser.type as utype')->find();
 
-        //3、处理业务逻辑
-        $res = Db::name('sh_order')->where('order_no',$data['out_trade_no'])->field('id,goods_id,status,pay_status,real_amount')->find();
-        if(!$res){
-            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】查询失败] ".json_encode($data));
-            return false;
-        }else if(floatval($res['real_amount'] * 100) !== floatval($data['total_fee'])){
-            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】支付金额异常] ".json_encode($data));
-            return false;
-        }else if($res['pay_status'] == 1){
-            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】订单状态为已支付] ".json_encode($data));
-            return true;
+        if(!$orderInfo){
+            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】查询失败] 回调数据: {$logData}");return false;
+        }else if(floatval($orderInfo['real_amount'] * 100) !== floatval($data['total_fee'])){
+            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】支付金额异常] 回调数据: {$logData}");return false;
+        }else if($orderInfo['pay_status'] == 1){
+            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】订单状态为已支付] 回调数据: {$logData}");return true;
         }
 
         Db::startTrans();
@@ -81,7 +69,7 @@ class Pay extends  WxPayNotify
                 throw new \think\Exception('订单状态更新失败');
             }
 
-            if(!Db::table('wl_sp_goods')->where('id', $res['goods_id'])->setInc('sale_num')){
+            if(!Db::table('wl_sp_goods')->where('id', $orderInfo['goods_id'])->setInc('sale_num')){
                 throw new \think\Exception('更新商品预约数失败');
             }
 
@@ -91,7 +79,7 @@ class Pay extends  WxPayNotify
                 'order_no'        =>$data['out_trade_no'],
                 'pay_type'        =>2,
                 'status'          =>2,
-                'money'           =>$res['real_amount'],
+                'money'           =>$orderInfo['real_amount'],
                 'attch'           =>json_encode($data),
                 'created_time'    =>date('Y-m-d H:i:s'),
             ];
@@ -100,12 +88,28 @@ class Pay extends  WxPayNotify
                 throw new \think\Exception('订单交易记录插入失败');
             }
 
-            Db::commit();
-            return true;
+            if($orderInfo['good_goods_id'] > 0){
+                $num = 0;
+                $type = 0;
+                if($orderInfo['utype'] === 2){
+                    /** 分销产品赠送余额返现*/
+                    $num  = formatMoney($orderInfo['payable_amount'] * 1/100);
+                    $type = 2;
+                }else if($orderInfo['utype'] === 1){
+                    /** 分销产品赠送积分*/
+                    $num  = 1;
+                    $type = 1;
+                }
+
+                if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'type'=> $type,'num'=> $num,'status'=>1,'created_time' => date('Y-m-d H:i:s')])){
+                    throw new \think\Exception('添加分销兑付记录失败');
+                }
+            }
+
+            Db::commit();return true;
         } catch (\Exception $e) {
+            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】订单状态更新失败,服务器发送错误][错误信息:{$e->getMessage()}] 回调数据:{$logData}");
             Db::rollback();
-            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】订单状态更新失败,服务器发送错误]".json_encode($e));
-            \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】订单处理失败] 提示信息：{$e->getMessage()}");
             return false;
         }
     }

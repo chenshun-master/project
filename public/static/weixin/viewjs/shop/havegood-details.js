@@ -277,6 +277,8 @@ var myObj = {
                 } else if (res.code == 401) {
                     redream.showTip('请先进行登录');
                     $('.wl-zhez2').hide();
+                }else{
+                    redream.showTip('评论失败');
                 }
             }
         });
@@ -378,7 +380,7 @@ $(".wl-zhezhao").click(function (event) {
 });
 
 $(document).on('click', '#click-place-order', function () {
-    window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $('#fr-goodid').val() + '&goodsgoodid=' + $('#fr-good-goods-id').val();
+    window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $('#fr-goodid').val() + '&gid=' + $('#fr-good-goods-id').val();
 });
 $(document).on('click', '.click-to-havegoodDetails', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $(this).data('id') ;

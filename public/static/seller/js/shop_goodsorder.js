@@ -52,11 +52,11 @@ layui.table.render({
         {field: 'topay_price', title: '到付价格',width:100},
         {field: 'real_amount', title: '实付金额',width:100},
         {field: 'pay_status', title: '支付状态',width:100,templet:function(row){
-                if(row.status == 0){
-                    return '<span class="label label-danger">未支付</span>';
-                }else if(row.status == 1){
-                    return '<span class="label label-success">已支付</span>';
-                }
+            if(row.pay_status == 0){
+                return '<span class="label label-danger">未支付</span>';
+            }else if(row.pay_status == 1){
+                return '<span class="label label-success">已支付</span>';
+            }
         }},
         {field: 'pay_time', title: '付款时间',width:200},
         {field: 'status', title: '订单状态',width:100,templet:function(row){
@@ -69,7 +69,7 @@ layui.table.render({
                 }else if(row.status == 6){
                     return '<span class="label label-warning">退款订单</span>';
                 }
-            }},
+        }},
         {field: 'order_no', title: '商品编号',width:300},
         {field: 'distribution_id', title: '分销产品',width:100,templet:function(row){
                 if(row.good_goods_id == 0){

@@ -27,7 +27,7 @@ class UserModel extends Model
     }
 
     public function info($page=1,$page_size=10){
-        $obj = Db::name('user')->order('id desc');
+        $obj = Db::name('user')->order('created_time desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();
         return [

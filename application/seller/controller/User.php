@@ -65,7 +65,7 @@ class User extends BaseController
      * 添加医院入驻申请
      */
     public function createDoctorApply(){
-        $hospital_id = $this->request->post('hospital_id',10);
+        $hospital_id = $this->request->post('hospital_id',0);
         $doctor_id = $this->_doctorModel->findId($this->getUserId());
         $applicant = $this->request->post('applicant/d',0);
         $remarks = $this->request->post('remarks','');

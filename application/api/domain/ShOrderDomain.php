@@ -1,5 +1,4 @@
 <?php
-
 namespace app\api\domain;
 
 use think\Db;
@@ -24,13 +23,13 @@ class ShOrderDomain
         if($status == 0){
             $status = [1,3,6];
         }else if($status == 1){
-            $status = [1];
+            $status = 1;
         }else if($status == 2){
-            $status = [3];
+            $status = 3;
         }else if($status == 3){
-            $status = [6];
+            $status = 6;
         }else if($status == 4){
-            $status = [5];
+            $status = 5;
         }
 
         $field = [
@@ -58,7 +57,12 @@ class ShOrderDomain
         $obj->leftJoin('wl_doctor doctor','doctor.id = order.doctor_id');
 
         $obj->where('order.user_id',$user_id);
-        $obj->where('order.status','in',$status);
+        if(is_array($status)){
+            $obj->where('order.status','in',$status);
+        }else{
+            $obj->where('order.status',$status);
+        }
+
 
         $total = $obj->count(1);
         $rows = $obj->field($field)->page($page,$page_size)->select();
@@ -124,13 +128,13 @@ class ShOrderDomain
         if($status == 0){
             $status = [1,3,6];
         }else if($status == 1){
-            $status = [1];
+            $status = 1;
         }else if($status == 2){
-            $status = [3];
+            $status = 3;
         }else if($status == 3){
-            $status = [6];
+            $status = 6;
         }else if($status == 4){
-            $status = [5];
+            $status = 5;
         }
 
         $field = [
@@ -152,6 +156,7 @@ class ShOrderDomain
             'user.mobile',
             'auth.username',
             'order.good_goods_id',
+            'order.pay_status'
         ];
 
         $obj = Db::name('sh_order')->alias('order');
@@ -161,7 +166,11 @@ class ShOrderDomain
         $obj->leftJoin('wl_auth auth','order.user_id = auth.user_id');
 
         $obj->where('order.seller_id',$seller_id);
-        $obj->where('order.status','in',$status);
+        if(is_array($status)){
+            $obj->where('order.status','in',$status);
+        }else{
+            $obj->where('order.status',$status);
+        }
 
         $total = $obj->count(1);
         $rows = $obj->field($field)->page($page,$page_size)->select();
@@ -172,39 +181,5 @@ class ShOrderDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
-    }
-
-    /**
-     * 处理支付订单
-     */
-    public function  processingOrder($data,$flag =''){
-        dump($data);
-
-        $order_no = '';
-        if($flag == 'weixin'){
-            $order_no = $data['out_trade_no'];
-        }else if($flag == 'alipay'){
-
-        }
-
-        $field = [
-            'id','real_amount','status','pay_status'
-        ];
-
-
-        $orderRes = Db::name('sh_order')->where('order_no',$order_no)->field($field)->find();
-        dump($orderRes['real_amount'] == $data['total_fee']);
-
-
-
-
-        Db::startTrans();
-        try {
-
-            Db::commit();
-        } catch (\Exception $e) {
-            Db::rollback();
-            return [false,'处理订单异常',null];
-        }
     }
 }

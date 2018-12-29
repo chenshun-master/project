@@ -1,4 +1,9 @@
+{extend name="layout/layout" /}
+
+{block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
+{/block}
+{block name="main"}
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -63,7 +68,8 @@
         </div>
     </div>
 </section>
-<script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+{/block}
+{block name="js"}
 <script src="/static/js/functions.js"></script>
 <!-- layui -->
 <script src="/static/plugin/layui/layui.all.js"></script>
@@ -119,3 +125,4 @@
         }
     }
 </script>
+{/block}

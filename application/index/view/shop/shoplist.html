@@ -126,7 +126,6 @@
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
-
 <script id="shoptemplateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
         <div class="wl-shangpin-quan" style="z-index: 1;">
@@ -137,6 +136,9 @@
             <dd class="wl-fenxiao click-to-create" data-goods_id="{{ item.id }}">推荐分销</dd>
         </div>
     {{#  }); }}
+</script>
+<script>
+    const isAuth = {$isAuth};
 </script>
 <script src="/static/web/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
 </body>

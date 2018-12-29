@@ -8,7 +8,6 @@
 
 namespace app\api\model;
 
-use think\facade\Session;
 use think\Model;
 
 class AdminModel extends Model
@@ -28,6 +27,7 @@ class AdminModel extends Model
      */
     public function login($username,$password,$quickLogin=false){
         $info = self::where('username',$username)->find();
+
         if(!$info['username']){
             return 2;
         }
@@ -37,6 +37,9 @@ class AdminModel extends Model
             if($info['password'] !== encryptPwd($password)){
                 return 3;
             }
+        }
+        if($info['status'] == 0){
+            return 4;
         }
 
         //登录用户读取属于自己的消息通知(后期会加入异步队列处理)

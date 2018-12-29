@@ -383,3 +383,33 @@ function getRedirUrl($str,$flag='E'){
         return base64_decode($str);
     }
 }
+
+
+//对emoji表情转义
+function emoji_encode($str){
+    $strEncode = '';
+    $length = mb_strlen($str,'utf-8');
+    for ($i=0; $i < $length; $i++) {
+        $_tmpStr = mb_substr($str,$i,1,'utf-8');
+        if(strlen($_tmpStr) >= 4){
+            $strEncode .= '[[EMOJI:'.rawurlencode($_tmpStr).']]';
+        }else{
+            $strEncode .= $_tmpStr;
+        }
+    }
+    return $strEncode;
+}
+
+function emoji_decode($str){
+    $strDecode = preg_replace_callback('|\[\[EMOJI:(.*?)\]\]|', function($matches){return rawurldecode($matches[1]);}, $str);
+    return $strDecode;
+}
+
+/**
+ * 格式化金额 保留两位小数(不四舍五入)
+ * @param $amount
+ * @return float|int
+ */
+function formatMoney($amount){
+    return (float)sprintf("%1.2f",(explode('.',$amount * 100)[0] / 100));
+}

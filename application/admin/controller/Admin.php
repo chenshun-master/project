@@ -53,7 +53,7 @@ class Admin extends BaseController
      */
     public function getAdminList($page=1,$page_size=10){
         $data = $this->_adminDomain->getAdminList($page,$page_size);
-        return $this->returnData($data,'',0);
+        return $this->returnData($data,'',200);
     }
 
     /**
@@ -105,9 +105,9 @@ class Admin extends BaseController
             $result = Db::name('admin')->where('id', $id)->update(['status' => 0]);
         }
         if($result){
-            return $this->returnData([],'修改成功','200');
+            return $this->returnData([],'修改成功',200);
         }else{
-            return $this->returnData([],'修改失败','301');
+            return $this->returnData([],'修改失败',301);
         }
     }
 }

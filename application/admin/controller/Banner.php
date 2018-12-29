@@ -30,7 +30,7 @@ class Banner extends BaseController{
     public function getBannerList($page=1,$page_size=10)
     {
         $data = $this->_bannerDomain->getBannerList($page,$page_size);
-        return $this->returnData($data,'',0);
+        return $this->returnData($data,'',200);
     }
     /**
      * 新增轮播图页面
@@ -60,7 +60,7 @@ class Banner extends BaseController{
         $img_domain = config('conf.file_save_domain');
         $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
         if($img){
-            $size = 1024*1024*5;              #单位字节
+            $size = 1024*1024*2;              #单位字节
             if(!$img->checkSize($size)){
                 return $this->returnData([],'上传图片大小不能超过5M',305);
             }

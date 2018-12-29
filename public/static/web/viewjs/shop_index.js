@@ -16,6 +16,10 @@ $(".wl-yingj").click(function () {
 });
 
 $(document).on('click', '.click-to-create', function () {
+    if(isAuth == 0){
+        alert('未授权操作');
+        return false;
+    }
     window.location.href = '/index/shop/shopEditor?gid='+$(this).data('goods_id');
 });
 
@@ -23,7 +27,7 @@ var listObj = {
     params:{
         ini:true,
         page: 0,
-        page_size: 14,
+        page_size: 16,
         category:'',
         sort:0,
         city:'',

@@ -1,6 +1,9 @@
+{extend name="layout/layout" /}
 
+{block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
-
+{/block}
+{block name="main"}
 <div id="breadcrumb">
     <ul class="breadcrumb">
         <li><i class="home-icon fa fa-home"></i> <a href="/admin/index/index">主页</a></li>
@@ -13,15 +16,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div class="box-header">
-                    <div class="box-tools">
-                        <div class="input-group input-group-sm" style="">
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="objClass.fail()">审核失败</button>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" onclick="objClass.success()">审核成功</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="nav-tabs-custom" >
                     <ul class="nav nav-tabs" id="my-tab-status">
                         <li class="active" data-status="0"><a href="#tab-box1" data-toggle="tab">认证信息</a></li>
@@ -45,6 +39,15 @@
         </div>
     </div>
 </section>
+{/block}
+{block name="js"}
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="objClass.fail()">审核失败</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-success" onclick="objClass.success()">审核成功</button>
+    </div>
+</script>
 <script type="text/html" id="barDemo">
     <a class="btn btn-info btn-xs btn-detail btn-dialog" lay-event="detail">查看详情</a>
 </script>
@@ -55,6 +58,7 @@
         elem: '#table-list'
         ,id:'tab-reload'
         ,url: '/admin/auth/getAuthList' //数据接口
+        ,toolbar: '#toolbarDemo'
         ,page: true
         ,request: {
             pageName: 'page' //页码的参数名称，默认：page
@@ -62,7 +66,7 @@
         }
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
-                "code": res.code, //解析接口状态
+                "code": res.code == 200?0:res.code, //解析接口状态
                 "msg": res.msg, //解析提示文本
                 "count": res.data.total, //解析数据长度
                 "data": res.data.rows //解析数据列表
@@ -86,25 +90,10 @@
                 }},
             {field: 'username', title: '运营者姓名'},
             {field: 'idcard', title: '运营者身份证号'},
-            // {field: 'card_img1', title: '身份证照正面照',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.card_img1+'" width="30" >';
-            //     }},
-            // {field: 'card_img2', title: '身份证照背面照',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.card_img2+'" width="30" >';
-            //     }},
-            // {field: 'qualification', title: '医师资格证书',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.qualification+'" width="30" >';
-            //     }},
-            // {field: 'practice_certificate', title: '医师执业证书',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.practice_certificate+'" width="30" >';
-            //     }},
-            // {field: 'business_licence', title: '营业执照',width:75,align:"center",templet:function (res) {
-            //         return '<img src="'+res.business_licence+'" width="30" >';
-            //     }},
             {field: 'enterprise_name', title: '医院/组织名称'},
             {field: 'address', title: '详细地址'},
             {field: 'duties', title: '岗位职称'},
-            {field: 'founding_time', title: '医院机构成立时间'},
+            {field: 'founding_time', title: '医院机构成立时间',sort:true},
             {field: 'status', title: '审核状态',width:92,templet:function (res) {
                     if(res.status == 1){
                         return '<span class="label label-primary">待审核</span>';
@@ -114,9 +103,9 @@
                         return '<span class="label label-success" lay-event="success">已审核</span>';
                     }
                 }},
-            {field: 'audit_time', title: '审核时间'},
+            {field: 'audit_time', title: '审核时间',sort:true},
             {field: 'audit_remark', title: '审核备注'},
-            {field: 'created_time', title: '申请时间'},
+            {field: 'created_time', title: '申请时间',sort:true},
             {fixed: 'right', title:'操作', toolbar: '#barDemo', width:100},
         ]]
     });
@@ -203,3 +192,4 @@
         }
     };
 </script>
+{/block}

@@ -46,17 +46,30 @@ class Shop extends BaseController
     public function goodsDetails()
     {
         $goodsid = $this->request->param('goodsid/d', 0);
+        $gid = $this->request->param('gid/d', 0);
+
         $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid,$this->getUserId());
 
         if (empty($goodsDetail['goods_info'])) {
             return $this->fetch('error/loss');
         }
 
+        $is_localhost = config('conf.is_localhost');
+        if($is_localhost){
+            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
+        }else{
+            $config = config('conf.sns_login.weixin');
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $weixin_config = $wechatJsSdk->getSignPackage();
+        }
+
+        $this->assign('weixin_config',$weixin_config);
+
+
         $referer = $this->request->server('HTTP_REFERER');
         $this->assign('referer', $referer);
-
         $this->assign('info', $goodsDetail);
-
+        $this->assign('gid',$gid);
         return $this->fetch('shop/goods_details');
     }
 
@@ -70,6 +83,7 @@ class Shop extends BaseController
         }
 
         $goodsid = $this->request->param('goodsid/d', 0);
+        $gid = $this->request->param('gid/d', 0);
         $num = $this->request->param('num/d', 1);
 
         $placeOrderPayInfo = $this->_spGoodsDomain->getPlaceOrderPayInfo($goodsid, $num);
@@ -77,7 +91,7 @@ class Shop extends BaseController
 
         $this->assign('mobile', mobileFilter($user_info['mobile']));
         $this->assign('infos', $placeOrderPayInfo);
-
+        $this->assign('gid',$gid);
         return $this->fetch('shop/confirm_order');
     }
 
@@ -181,6 +195,17 @@ class Shop extends BaseController
         if (empty($data['info'])) {
             return $this->fetch('error/loss');
         }
+
+        $is_localhost = config('conf.is_localhost');
+        if($is_localhost){
+            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
+        }else{
+            $config = config('conf.sns_login.weixin');
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $weixin_config = $wechatJsSdk->getSignPackage();
+        }
+
+        $this->assign('weixin_config',$weixin_config);
         $this->assign($data);
         return $this->fetch('shop/havegood_details');
     }

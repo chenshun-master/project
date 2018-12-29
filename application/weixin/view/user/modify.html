@@ -272,6 +272,7 @@
                         if(res.code == 200){
                             $('#logox').find('img').attr('src',res.data.imgUrl);
                             $(".htmleaf-container").hide();
+                            window.location.reload();
                         }else{
                             redream.showTip('上传失败');
                         }

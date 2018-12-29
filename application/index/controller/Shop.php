@@ -30,6 +30,14 @@ class Shop extends CController
         $data = $domain->getCategoryList(0);
         $this->assign('categoryList',$data);
 
+        $user_type = $this->_userDomain->getUserType($this->getUserId());
+        $auth = 0;
+        if(in_array($user_type,[1,2])){
+            $auth = 1;
+        }
+
+        $this->assign('isAuth',$auth);
+
         return $this->fetch('shop/shoplist');
     }
 
@@ -74,6 +82,11 @@ class Shop extends CController
 
         if(empty($gid) || empty($title) || empty($content)){
             return $this->returnData([],'参数不符合规范',301);
+        }
+
+        $user_type = $this->_userDomain->getUserType($this->getUserId());
+        if(!in_array($user_type,[1,2])){
+            return $this->returnData([], '未授权操作', 403);
         }
 
         $data = [

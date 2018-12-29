@@ -2,24 +2,73 @@
 namespace app\admin\controller;
 use think\App;
 use think\Controller;
+use think\facade\Session;
 
 class BaseController extends Controller
 {
-
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->view->engine->layout('layout/layout');
-    }
-    public function initialize()
-    {
-        parent::initialize();
+        //配置Session作用域
+        Session::prefix('admin');
+
         //判断是否登录，没有登录跳转登录页面
-        if(!session('user_auth')){
-            return $this->redirect('login/index');
+        if($this->request->isGet() && !$this->request->isAjax()){
+            if(!$this->checkLogin()){
+                $u =  $this->request->controller(true).'/'.$this->request->action(true);
+                if($u != 'login/index'){
+                    header('Location: /admin/login/index');exit;
+                }
+            }
+            $this->assign('user_auth',$this->getAdminInfo());
         }
     }
 
+    /**
+     * 验证用户是否登录
+     */
+    protected function checkLogin(){
+        return $this->getAdminInfo() ? true : false;
+    }
+
+    /**
+     * 获取用户登录信息
+     */
+    protected function getAdminInfo(){
+        $info = Session::get('user_auth');
+        if($info){
+            return $info;
+        }
+        return false;
+    }
+
+    /**
+     * 获取用户登录信息
+     */
+    protected function getAdminId(){
+        $info = Session::get('user_auth');
+        if($info){
+            return $info['id'];
+        }
+        return 0;
+    }
+
+    /**
+     * 用户信息
+     * @param $data
+     * @return bool
+     */
+    protected function saveAdminLogin($data){
+        Session::set('user_auth',$data);
+        return true;
+    }
+
+    /**
+     * 清除用户登录信息
+     */
+    protected function clearAdminLogin(){
+        return Session::clear();
+    }
 
     /**
      * ajax返回数据

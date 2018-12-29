@@ -22,7 +22,7 @@ class AdminDomain
      * @throws \think\exception\DbException
      */
     public function getAdminList($page=1,$page_size=10){
-        $obj = Db::name('admin')->order('id desc');
+        $obj = Db::name('admin')->order('created_at desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();
 
