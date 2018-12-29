@@ -105,9 +105,9 @@ class Banner extends BaseController{
             $result = Db::name('sp_banner')->where('id', $id)->update(['visibility' => 0]);
         }
         if($result){
-            return $this->returnData([],'修改成功','200');
+            return $this->returnData([],'修改成功',200);
         }else{
-            return $this->returnData([],'修改失败','301');
+            return $this->returnData([],'修改失败',301);
         }
     }
     /**
