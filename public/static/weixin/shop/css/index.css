@@ -1,6 +1,6 @@
 .wl-top{
     width: 100%;
-    height: 40px;
+    height: 44px;
     background: #FAFAFA;
     padding-top: 7px;
     position: relative;
@@ -15,15 +15,22 @@
 }
 .wl-top input{
     width: 90%;
-    height: 25px;
+    height: 28px;
     display: block;
-    background: url(/static/weixin/shop/image/index/sousuo.png)no-repeat 16px 5px #EEEEEE;
-    background-size: 16px;
     border-radius: 25px;
     margin: 0 auto;
     padding: 0 20px 0 38px;
     color: #999999;
-    font-size: 11px;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+}
+.wl-top i {
+    font-size: 18px!important;
+    position: absolute;
+    top: 12px;
+    left: 140px;
+    color: #999999!important;
 }
 .wl-daohang{
     width: 100%;
@@ -33,7 +40,7 @@
     border-bottom: 1px solid #f1f1f1;
     z-index: 999999 !important;
     position: fixed;
-    top: 40px;
+    top: 43px;
     left: 0;
     right: 0;
     background: white;
