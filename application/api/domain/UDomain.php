@@ -428,6 +428,7 @@ class UDomain
         $obj->where('doctor.real_name','like',"%{$searchParams['keywords']}%");
         $total = $obj->count('doctor.id');
         $field = [
+            'user.id as user_id',
             'doctor.id as doctor_id',
             'doctor.real_name',
             'user.portrait',
@@ -462,10 +463,12 @@ class UDomain
         $obj->where('hospital.hospital_name','like',"%{$searchParams['keywords']}%");
         $total = $obj->count('hospital.id');
         $field = [
+            'user.id as user_id',
             'hospital.id as hospital_id',
             'hospital.hospital_name',
             'user.portrait',
-            'auth.speciality'
+            'auth.speciality',
+            'auth.hospital_type'
         ];
 
         $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();

@@ -11,7 +11,10 @@
             <a href="/weixin/shop/index"><i class="iconfont icon-back_light top-left wl-left-return"></i></a><span>搜索商品</span>
         </div>
         <div class="wl-top1">
-            <i class="iconfont icon-sousuo"></i> <input type="text" placeholder="搜索您感兴趣的项目" autofocus="autofocus" id="fr-keywords"><button id="click-commodity-search">搜索</button>
+            <i class="iconfont icon-sousuo"></i>
+            <form onsubmit="return searchGoods()">
+                 <input type="text" placeholder="搜索您感兴趣的项目" autofocus="autofocus" id="fr-keywords"><button id="click-commodity-search">搜索</button>
+            </form >
         </div>
         <ul class="wl-deji">
             <li class="active">商品</li>
@@ -19,26 +22,12 @@
             <li>医院</li>
         </ul>
 </header>
-    <div class="content mescroll" id="container"  >
-        <div id="container-list">
-            <!--<div class="wl-shangping href to-goods-detail" data-goodsid="2">-->
-            <!--<div class="wl-sp-img">-->
-            <!--<img src="http://172.16.100.85:81/goodsimgs/20181224/186e08e6c4360a4eaf688c722a95b484.jpg">-->
-            <!--</div>-->
-            <!--<div class="wl-xiang href">-->
-            <!--<div class="wl-title1">医院名称 <span></span></div>-->
-            <!--<div class="wl-yiyuan">-->
-            <!--<span class="wl-name1">医院类型:门诊部</span>-->
-            <!--</div>-->
-            <!--<div class="wl-yiyuan wl-yudig"><span>6人预订 </span>|<span>8案例</span></div>-->
-            <!--<div class="wl-physicians">眼部综合、鼻部综合...</div>-->
-            <!--</div>-->
-            <!--</div>-->
 
-        </div>
-    </div>
+<div class="content mescroll" id="container"  >
+    <div id="container-list"></div>
+</div>
+
 {/block}
-
 {block name="script"}
 
 <script src="/static/plugin/layui/layui.all.js"></script>
@@ -64,36 +53,43 @@
     </div>
     {{#  }); }}
 </script>
-<script id="doctorTemplateList" type="text/html">
-    <div class="wl-shangping href to-goods-detail" data-goodsid="2">
-        <div class="wl-sp-img">
-            <img src="http://172.16.100.85:81/goodsimgs/20181224/186e08e6c4360a4eaf688c722a95b484.jpg">
-        </div>
-        <div class="wl-xiang href">
-            <div class="wl-title1">医生姓名 <span></span></div>
-            <div class="wl-yiyuan">
-                <span class="wl-name1">医生职称:医生</span>
-                <div class="wl-yiyuan wl-yudig"><span>6人预订 </span>|<span>8案例</span>
-                </div>
-                <div class="wl-physicians">眼部综合、鼻部综合...</div>
-            </div>
-        </div>
-    </div>
-</script>
+
 <script id="hospitalTemplateList" type="text/html">
-    <div class="wl-shangping href to-goods-detail" data-goodsid="2">
-        <div class="wl-sp-img">
-            <img src="http://172.16.100.85:81/goodsimgs/20181224/186e08e6c4360a4eaf688c722a95b484.jpg">
-        </div>
-        <div class="wl-xiang href">
-            <div class="wl-title1">医院名称 <span></span></div>
-            <div class="wl-yiyuan">
-                <span class="wl-name1">医院类型:门诊部</span>
+    {{#  layui.each(d, function(index, item){ }}
+        <div class="wl-shangping href to-goods-detail" >
+            <div class="wl-sp-img">
+                <img src="{{item.portrait}}">
             </div>
-            <div class="wl-yiyuan wl-yudig"><span>6人预订 </span>|<span>8案例</span></div>
-            <div class="wl-physicians">眼部综合、鼻部综合...</div>
+            <div class="wl-xiang href">
+                <div class="wl-title1">{{item.hospital_name}} <span></span></div>
+                <div class="wl-yiyuan">
+                    <span class="wl-name1">医院类型:{{item.hospital_type}}</span>
+                </div>
+                <div class="wl-yiyuan wl-yudig"><span>0人预订 </span>|<span>0案例</span></div>
+                <div class="wl-physicians">{{item.speciality}}</div>
+            </div>
         </div>
-    </div>
+    {{#  }); }}
 </script>
+
+<script id="doctorTemplateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+        <div class="wl-shangping href to-goods-detail" data-goodsid="2">
+            <div class="wl-sp-img">
+                <img src="{{item.portrait}}">
+            </div>
+            <div class="wl-xiang href">
+                <div class="wl-title1">{{item.real_name}} <span></span></div>
+                <div class="wl-yiyuan">
+                    <span class="wl-name1">医生职称:{{item.duties}}</span>
+                    <div class="wl-yiyuan wl-yudig"><span>0人预订 </span>|<span>0案例</span>
+                    </div>
+                    <div class="wl-physicians">{{item.speciality}}</div>
+                </div>
+            </div>
+        </div>
+    {{#  }); }}
+</script>
+
 <script src="/static/weixin/viewjs/shop/search-goods.js"></script>
 {/block}
