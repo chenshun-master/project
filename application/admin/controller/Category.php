@@ -23,7 +23,7 @@ class Category extends BaseController
     {
         $cate = new CategoryModel();
         $data = $cate->catetree();
-        $this->assign('cate',$data);
+        $this->assign('data',$data);
         return $this->fetch('/category/index');
     }
     /**
