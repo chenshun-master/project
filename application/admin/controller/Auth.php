@@ -38,6 +38,10 @@ class Auth extends BaseController
         return $this->returnData($data,'',200);
     }
 
+    /**
+     * 修改认证状态 1-待审核 2-审核失败 3-已审核
+     * @return false|string
+     */
     public function updateAuthStatus(){
         $id = $this->request->post('id','');
         $flag = $this->request->post('flag','');
