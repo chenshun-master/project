@@ -284,37 +284,7 @@
 .wl-pl{
     border-bottom: 5px solid #EEEEEE;
 }
-.wl-imgleft{
-    width: 61%;
-    min-height: 50px;
-    float: left;
-}
-.wl-left-img img{
-    width: 200px;
-    height: 185px;
-    float: left;
-}
-.wl-foot-img img{
-width: 100px;
-    height: 90px;
-    float: left;
-}
-.wl-imgright{
-    width: 39%;
-    min-height: 50px;
-    float: left;
-    padding-left: 5px;
-}
-.wl-imgright img{
-    width: 100px;
-    height: 90px;
-}
-.wl-imgright img:nth-child(2){
-    margin-top: 5px;
-}
-.wl-imgright img:nth-child(3){
-    margin-top: 5px;
-}
+
 .wl-foot-img img:nth-child(1){
     margin-top: 5px;
 }
@@ -394,6 +364,7 @@ width: 100px;
 .text{
     padding-right: 5px;
 }
+
 .swiper-pagination-bullet-active{
     background: red!important;
 }
