@@ -11,7 +11,10 @@
             <a href="/weixin/shop/index"><i class="iconfont icon-back_light top-left wl-left-return"></i></a><span>搜索商品</span>
         </div>
         <div class="wl-top1">
-            <i class="iconfont icon-sousuo"></i> <input type="text" placeholder="搜索您感兴趣的项目" autofocus="autofocus" id="fr-keywords"><button id="click-commodity-search">搜索</button>
+            <i class="iconfont icon-sousuo"></i>
+            <form onsubmit="return searchGoods()">
+                 <input type="text" placeholder="搜索您感兴趣的项目" autofocus="autofocus" id="fr-keywords"><button id="click-commodity-search">搜索</button>
+            </form >
         </div>
         <ul class="wl-deji">
             <li class="active">商品</li>

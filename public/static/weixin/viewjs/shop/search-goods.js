@@ -13,6 +13,12 @@ $(document).on('click','.to-goods-detail',function(){
     window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
 });
 
+function searchGoods(){
+    listObj.params.keywords = $('#fr-keywords').val();
+    mescroll.resetUpScroll();
+    return false;
+}
+
 var mescroll = new MeScroll("container", {
     down:{auto:true},
     up: {
@@ -39,7 +45,6 @@ var mescroll = new MeScroll("container", {
                     template = hospitalTemplateList.innerHTML;
                     $('#container').find('.empty-tip').text('亲,没有您要找的医院~');
                 }
-
                 layui.laytpl(template).render(curPageData, function(html){
                     $('#container-list').append(html);
                 });
