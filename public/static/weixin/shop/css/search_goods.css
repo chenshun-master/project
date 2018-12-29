@@ -6,20 +6,26 @@
     z-index: 999999 !important;
     max-width: 640px;
     margin: 0 auto;
+    position: relative;
 }
 .wl-top1 input {
     width: 80%;
     height: 30px;
-    line-height: 25px;
     display: block;
-    background: url('/static/weixin/shop/image/index/sousuo.png')no-repeat 16px 7px #EEEEEE;
-    background-size: 16px;
     border-radius: 23px;
     padding: 0 20px 0 38px;
     color: #999999;
     font-size: 12px;
     float: left;
     margin-left: 10px;
+
+}
+.wl-top1 i {
+    font-size: 18px!important;
+    position: absolute;
+    top: 12px;
+    left: 26px;
+    color: #999999!important;
 }
 .wl-top1 button{
     width: 15%;
