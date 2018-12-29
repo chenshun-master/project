@@ -43,7 +43,10 @@ $('.click-select-category').on('click', function () {
     $(this).addClass("wl-se1");
     window.scrollTo(0,0);
 });
-
+$('.wl-shuaxin').on('click', function () {
+    myObj.goods.dropReloadList();
+    window.scrollTo(0,0);
+});
 $('.click-select-sort > p').on('click', function () {
     myObj.goods.listData.params.sort = $(this).data('sort');
     myObj.goods.dropReloadList();
@@ -149,14 +152,14 @@ var myObj = {
 
 var dropload = $('#container').dropload({
     scrollArea: window,
-    loadUpFn: function (me) {
-        myObj.goods.listData.loading = false;
-        myObj.goods.listData.ini = false;
-        myObj.goods.listData.page = 0;
-        myObj.goods.listData.page_total = 1;
-        myObj.goods.listData.path = '';
-        myObj.goods.loadList(me);
-    },
+    // loadUpFn: function (me) {
+    //     myObj.goods.listData.loading = false;
+    //     myObj.goods.listData.ini = false;
+    //     myObj.goods.listData.page = 0;
+    //     myObj.goods.listData.page_total = 1;
+    //     myObj.goods.listData.path = '';
+    //     myObj.goods.loadList(me);
+    // },
     loadDownFn: function (me) {
         myObj.goods.loadList(me);
     }

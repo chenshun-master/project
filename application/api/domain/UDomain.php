@@ -115,7 +115,6 @@ class UDomain
         return $data;
     }
 
-
     public function getHospitalDetail($user_id){
         $obj = Db::name('hospital')->alias('hospital');
         $obj->leftJoin('wl_user user','user.id = hospital.user_id' );
@@ -409,5 +408,72 @@ class UDomain
             Db::rollback();
             return false;
         }
+    }
+
+    /**
+     * 站内搜索医生
+     * @param array $searchParams
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function searchDoctor(array $searchParams,int $page,int $page_size){
+        $obj = Db::name('doctor')->alias('doctor');
+        $obj->leftJoin('wl_user user','user.id = doctor.user_id');
+        $obj->leftJoin('wl_auth auth','doctor.user_id = auth.user_id');
+
+        $obj->where('doctor.real_name','like',"%{$searchParams['keywords']}%");
+        $total = $obj->count('doctor.id');
+        $field = [
+            'doctor.id as doctor_id',
+            'doctor.real_name',
+            'user.portrait',
+            'auth.duties',
+            'auth.speciality'
+        ];
+
+        $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
+    }
+
+    /**
+     * 站内搜索医院
+     * @param array $searchParams
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function searchHospital(array $searchParams,int $page,int $page_size){
+        $obj = Db::name('hospital')->alias('hospital');
+        $obj->leftJoin('wl_user user','user.id = hospital.user_id');
+        $obj->leftJoin('wl_auth auth','hospital.user_id = auth.user_id');
+
+        $obj->where('hospital.hospital_name','like',"%{$searchParams['keywords']}%");
+        $total = $obj->count('hospital.id');
+        $field = [
+            'hospital.id as hospital_id',
+            'hospital.hospital_name',
+            'user.portrait',
+            'auth.speciality'
+        ];
+
+        $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }

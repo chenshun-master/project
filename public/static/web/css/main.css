@@ -15,7 +15,6 @@
     border: 0px;
     outline:none;
 }
-
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     margin: 0;
     padding: 0;
@@ -28,48 +27,46 @@ ol, ul {
 }
 
 .web-header{
-    height: 50px;
+    height: 35px;
     width: 100%;
-    background-color:#7DB0E8 ;
+    border-bottom: 1px solid #dfdfdf;
+    background: #fafafa;
 }
 .web-header-content{
     width: 1200px;
-    height: 50px;
+    height: 35px;
     margin: 0 auto;
-    background-color:#7DB0E8 ;
+    background: #fafafa;
 }
 
 .web-header-body{
     height: 100%;
     width: 1200px;
     margin: 0 auto;
-    background: #70e8e2;
 }
 
 .web-header-logo{
-    width: 15%;
-    height: 50px;
+    width: 30%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
     float: left;
-    background: url("/static/web/image/logo1.png")no-repeat 10px 9px;
-    background-size: 100px;
+    color: #ee3148;
 }
 .web-head-portrait{
     width: 50%;
-    height: 50px;
+    height: 35px;
     float: right;
     color: #000000;
     /*padding-left: 10%;*/
+    font-size: 13px;
+    color:#666;!important;
 }
-.web-head-portrait img{
-    width: 40px;
-    height: 40px;
-    margin-top: 5px;
-}
-
 .web-footer{
     min-height: 50px;
     width: 100%;
     background-color: #eee;
+    clear: both;
 }
 .web-footer-content{
     width: 1200px;
@@ -77,6 +74,7 @@ ol, ul {
     line-height: 50px;
     margin: 0 auto;
     text-align: center;
+    color: #70757e;
 }
 .web-footer-content span{
     margin-right: 15px;
@@ -85,7 +83,7 @@ ol, ul {
     margin-right: 10px;
     -webkit-user-select: none;
     user-select: none;
-    color: #000000;
+    color: #70757e;
 }
 .web-footer-content a:hover{
     color: #7DB0E8;
@@ -96,49 +94,123 @@ ol, ul {
     margin: 0 auto;
     background: #70e8e2;
 }
-.web-top-center{
-    width: 35%;
-    height: 50px;
-    line-height: 50px;
-    float: left;
-    color: white;
-}
 .web-reg{
-    width: 20%;
-    float: left;
+    width: 16%;
+    float: right;
 }
 .web-reg li{
     width: 40%;
-    height: 50px;
-    line-height: 50px;
-    float: left;
+    height: 35px;
+    line-height: 35px;
+    float: right;
     text-align: center;
-    color: white;
     cursor: pointer;
 }
 .web-reg li:hover{
-    border-bottom: 2px solid #FEB091;
-    color: #FEB091;
+    color: #ff6980;
 }
 .web-article{
      width: 50%;
-    margin-left:22%;
+    float: right;
  }
 .web-article li{
-    width:30%;
-    height: 50px;
-    line-height: 50px;
+    width:25%;
+    height: 35px;
+    line-height: 35px;
     float: left;
     text-align: center;
-    color: white;
     cursor: pointer;
 }
 .web-article li:hover{
-    border-bottom: 2px solid #FEB091;
-    color: #FEB091;
+    color: #ff6980;
 }
-.web-footer-content img{
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
+.web-navigation{
+    max-width: 200px;
+    min-height: 100px;
+    font-size: 15px;
 }
+.web-navigation li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.5s linear,color 0.5s linear;
+    -webkit-transition:background-color 0.5s linear,color 0.5s linear;
+    -moz-transition: background-color 0.5s linear,color 0.5s linear;
+    -o-transition: background-color 0.5s linear,color 0.5s linear;
+
+}
+.web-daohang li{
+    cursor: pointer;
+}
+.web-daohang li:hover{
+    background-color: #7DB0E8;
+    color: white;
+}
+.web-navigation-title{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 20px;
+    border-bottom: 0;
+    margin-top: 30px;
+}
+.web-navigation i{
+    font-size: 25px!important;
+    position: absolute;
+    left: 20px;
+}
+.web-content{
+    width: 1200px;
+     min-height: 80%;
+    margin: 0 auto;
+}
+.web-content-left{
+    width: 15%;
+    float: left;
+    background-color: #fafafa;
+    clear: both;
+}
+
+.web-content-right{
+    width: 85%;
+    float: right;
+  }
+.web-wenzhangliebiao{
+    position: relative;
+    color: #888;
+    text-align: center;
+    margin:15px 0 15px 0;
+}
+.web-wenzhangliebiao span:nth-child(1){
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    width: 40px;
+    border-bottom: 2px solid #888;;
+}
+.web-wenzhangliebiao span:nth-child(2){
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    width: 40px;
+    border-bottom: 2px solid #888;;
+}
+.web-content-right-title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #EEEEEE;
+    padding-left: 35px;
+    font-size: 17px;
+}
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+       color: #aab2bd;
+       /* placeholder字体大小  */
+       font-size: 14px;
+
+  }

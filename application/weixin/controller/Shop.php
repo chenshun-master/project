@@ -234,9 +234,9 @@ class Shop extends BaseController
     /**
      *商品搜索页面
      */
-    public function commoditySearch()
+    public function searchGoods()
     {
-        return $this->fetch('shop/commodity_search');
+        return $this->fetch('shop/search_goods');
     }
 
     /**
@@ -262,4 +262,11 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/diary_second');
     }
+
+
+
+    public function test()
+        {
+            return $this->fetch('shop/index2');
+        }
 }
