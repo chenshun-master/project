@@ -263,10 +263,4 @@ class Shop extends BaseController
         return $this->fetch('shop/diary_second');
     }
 
-
-
-    public function test()
-        {
-            return $this->fetch('shop/index2');
-        }
 }

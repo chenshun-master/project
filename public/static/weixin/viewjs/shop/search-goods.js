@@ -23,7 +23,6 @@ var mescroll = new MeScroll("container", {
         callback: function(page){
             listObj.searchList(page,function(curPageData){
                 mescroll.endSuccess(curPageData.length);
-
                 layui.laytpl(goodsTemplateList.innerHTML).render(curPageData, function(html){
                     console.log(html);
                     $('#container-list').append(html);
