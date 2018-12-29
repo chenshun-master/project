@@ -4,17 +4,11 @@ $(".wl-deji li").click(function () {
     mescroll.resetUpScroll();
 });
 
-$('#click-commodity-search').click(function(){
-    listObj.params.keywords = $('#fr-keywords').val();
-    mescroll.resetUpScroll();
-});
-
 $(document).on('click','.to-goods-detail',function(){
     window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
 });
 
 function searchGoods(){
-    listObj.params.keywords = $('#fr-keywords').val();
     mescroll.resetUpScroll();
     return false;
 }
@@ -56,18 +50,19 @@ var mescroll = new MeScroll("container", {
 });
 
 var listObj = {
-    params:{keywords:'',type:1},
-    searchList:function(page,successCallback,errorCallback){
-        var data = $.extend({},{page: page.num, page_size: page.size}, listObj.params);
-        $.ajax({
-            url: "/weixin/shopapi/search",
-            type: 'post',
-            data: data,
-            dataType: 'json',
-            success: function (res) {
-                successCallback(res.data.rows);
-            },
-            error:errorCallback
-        });
-    }
-};
+        params: {keywords: '', type: 1},
+        searchList: function (page, successCallback, errorCallback) {
+            listObj.params.keywords = $('#fr-keywords').val();
+            var data = $.extend({}, {page: page.num, page_size: page.size}, listObj.params);
+            $.ajax({
+                url: "/weixin/shopapi/search",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+                error: errorCallback
+            });
+        },
+    };

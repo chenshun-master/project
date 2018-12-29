@@ -48,11 +48,6 @@ class ShOrderDomain
         ];
 
         $obj = Db::name('sh_order')->alias('order');
-        if($status == 3){
-            $obj->leftJoin('wl_sp_refund_order refund','order.id = refund.order_id');
-            $field['refund.status'] = ' refund_status';
-        }
-
         $obj->leftJoin('wl_hospital hospital','hospital.id = order.hospital_id');
         $obj->leftJoin('wl_doctor doctor','doctor.id = order.doctor_id');
 
@@ -62,7 +57,6 @@ class ShOrderDomain
         }else{
             $obj->where('order.status',$status);
         }
-
 
         $total = $obj->count(1);
         $rows = $obj->field($field)->page($page,$page_size)->select();

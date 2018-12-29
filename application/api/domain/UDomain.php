@@ -424,19 +424,24 @@ class UDomain
         $obj = Db::name('doctor')->alias('doctor');
         $obj->leftJoin('wl_user user','user.id = doctor.user_id');
         $obj->leftJoin('wl_auth auth','doctor.user_id = auth.user_id');
+        $obj->leftJoin('wl_sh_order order','order.doctor_id = doctor.id and order.pay_status = 1');
 
         $obj->where('doctor.real_name','like',"%{$searchParams['keywords']}%");
-        $total = $obj->count('doctor.id');
+        $obj->group('doctor.id');
+        $obj->order('sale_num','desc');
         $field = [
             'user.id as user_id',
             'doctor.id as doctor_id',
             'doctor.real_name',
             'user.portrait',
             'auth.duties',
-            'auth.speciality'
+            'auth.speciality',
+            'count(order.id) as sale_num'
         ];
 
         $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
+
+        $total = $obj->count('doctor.id');
         return [
             'rows'          =>$rows,
             'page'          =>$page,
