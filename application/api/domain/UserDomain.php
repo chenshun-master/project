@@ -77,12 +77,12 @@ class UserDomain
     }
 
     /**
- * 登录操作
- * @param $mobile
- * @param $password
- * @param bool $quickLogin   是否需要验证密码
- * @return array|int|null|\PDOStatement|string|\think\Model     2:用户不存在   3:密码错误
- */
+     * 登录操作
+     * @param $mobile
+     * @param $password
+     * @param bool $quickLogin   是否需要验证密码
+     * @return array|int|null|\PDOStatement|string|\think\Model     2:用户不存在   3:密码错误
+     */
     public function login($mobile,$password,$quickLogin=false){
         $info = $this->userModel->findMobile($mobile);
         if(!$info){
