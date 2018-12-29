@@ -89,52 +89,20 @@ class Pay extends  WxPayNotify
             }
 
             if($orderInfo['good_goods_id'] > 0){
-                if (!$uInfo = Db::name('user')->where('id', $orderInfo['uid'])->field('id,score,account')->find()) {
-                    throw new \think\Exception('查询分销用户信息失败');
-                }
-
-                $type = 0;
-                $getId = 0;
                 $num = 0;
+                $type = 0;
                 if($orderInfo['utype'] === 2){
                     /** 分销产品赠送余额返现*/
-                    $num = $amount = formatMoney($orderInfo['payable_amount'] * 2/100);
-
-                    if (!Db::name('user')->where('id', $orderInfo['uid'])->setInc('account', $amount)) {
-                        throw new \think\Exception('更新账户余额失败');
-                    }
-
-                    $accountRecord = ['user_id' => $orderInfo['uid'],'status' => 1,'type' => 1,'amount' => $amount, 'amount_front' => $uInfo['account'], 'amount_after' => $uInfo['account'] + $amount, 'created_time' => date('Y-m-d H:i:s')];
-                    if (!$getId = Db::name('account_record')->insertGetId($accountRecord)) {
-                        throw new \think\Exception('添加账户余额记录失败');
-                    }
-
+                    $num  = formatMoney($orderInfo['payable_amount'] * 1/100);
                     $type = 2;
                 }else if($orderInfo['utype'] === 1){
                     /** 分销产品赠送积分*/
-                    $num = $score = 5;
-                    if (!Db::name('user')->where('id', $orderInfo['uid'])->setInc('score', $score)) {
-                        throw new \think\Exception('更新账户积分失败');
-                    }
-
-                    $scoreRecord = ['user_id' => $orderInfo['uid'], 'status' => 2, 'type' => 1, 'score' => $score, 'score_front' => $uInfo['score'], 'score_after' => $uInfo['score'] + $score, 'created_time' => date('Y-m-d H:i:s')];
-                    if (!$getId = Db::name('score_record')->insertGetId($scoreRecord)) {
-                        throw new \think\Exception('添加积分记录失败');
-                    }
-
+                    $num  = 1;
                     $type = 1;
                 }
 
-                $isTrue1 = Db::name('sp_spread_record')->insertGetId([
-                    'order_id'  => $orderInfo['id'],
-                    'type'      => $type,
-                    'num'       => $num,
-                    'record_id' => $getId,
-                    'created_time' => date('Y-m-d H:i:s')
-                ]);
-
-                if(!$isTrue1){
-                    throw new \think\Exception('添加分销兑换记录失败');
+                if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'type'=> $type,'num'=> $num,'status'=>1,'created_time' => date('Y-m-d H:i:s')])){
+                    throw new \think\Exception('添加分销兑付记录失败');
                 }
             }
 
