@@ -26,10 +26,15 @@
     text-align: center;
 }
 .wl-top i {
+    width: 20px;
+    height: 20px;
     font-size: 18px!important;
     position: absolute;
     top: 12px;
-    left: 140px;
+    left: -111px;
+    right: 0;
+    margin: 0px auto;
+    display: inline-block;
     color: #999999!important;
 }
 .wl-daohang{
