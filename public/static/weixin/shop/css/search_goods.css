@@ -133,21 +133,17 @@
 }
 .content {
     width: 100%;
-    min-height: 100px;
     position: fixed;
     top: 120px;
     left: 0;
     right: 0;
+    bottom: 0;
     margin: 0 auto;
     max-width: 640px;
+    height: auto;
+    overflow-y: auto;
 }
-.content .wl-d {
-    width: 100%;
-    display: none;
-}
-.content .active {
-    display: block;
-}
+
 .wl-serch-dingwei{
     width: 100%;
     height: 120px;
@@ -187,4 +183,8 @@
 }
 .wl-name1{
     padding-right: 5px;
+}
+
+wl-left-return{
+    font-size: 25px;color: #333333
 }
