@@ -1,7 +1,7 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<link rel="stylesheet" href="/static/weixin/shop/css/search_goods.css">
+    <link rel="stylesheet" href="/static/weixin/shop/css/search_goods.css">
 {/block}
 
 {block name="main"}
@@ -68,6 +68,7 @@
 
 {block name="script"}
 <script src="/static/plugin/layui/layui.all.js"></script>
+
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
@@ -87,220 +88,12 @@
     </div>
     {{#  }); }}
 </script>
+
 <script>
     $(".wl-deji li").click(function() {
         $(this).addClass("active").siblings().removeClass("active");
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
-        if(index == 1 && myObj.goods.listData.ini == false){
-            var dropload = $('#container').dropload({
-                scrollArea: window,
-                autoLoad:false,
-                // loadUpFn: function (me) {
-                //     myObj.goods.listData.loading = false;
-                //     myObj.goods.listData.ini = false;
-                //     myObj.goods.listData.page = 0;
-                //     myObj.goods.listData.page_total = 1;
-                //     myObj.goods.loadList(me);
-                // },
-                loadDownFn: function (me) {
-                    myObj.goods.loadList(me);
-                }
-            });
-            $('.dropload-down').hide();
-        }
-    });
-    $(function () {
-        $('#mobile').trigger('focus');
-    });
-    // var goodsObj = {
-    //     listData: {
-    //         loading: false,
-    //         ini: false,
-    //         page: 0,
-    //         page_total: 1,
-    //         page_size: 8,
-    //         url:'asd',
-    //         params:{
-    //             keywords:''
-    //         }
-    //     },
-    // };
-    //
-    // var docs = {
-    //     listData: {
-    //         loading: false,
-    //         ini: false,
-    //         page: 0,
-    //         page_total: 1,
-    //         page_size: 8,
-    //         params:{
-    //             keywords:''
-    //         }
-    //     },
-    // };
-    //
-    // var h ={
-    //     listData: {
-    //         loading: false,
-    //         ini: false,
-    //         page: 0,
-    //         page_total: 1,
-    //         page_size: 8,
-    //         params:{
-    //
-    //         }
-    //     },
-    // };
-    //
-    // var ajax = {
-    //     loadList: function (obj,me,functions) {
-    //         if (obj.listData.loading) {
-    //             return false;
-    //         }
-    //
-    //         obj.listData.page++;
-    //         if (obj.listData.ini == true) {
-    //             if (obj.listData.page > obj.listData.page_total) {
-    //                 if(me !== null){
-    //                     me.resetload();
-    //                 }
-    //                 return false;
-    //             }
-    //         }
-    //
-    //         var data = $.extend({},{page: obj.listData.page, page_size: obj.listData.page_size}, obj.listData.params);
-    //         $.ajax({
-    //             url: obj.listData.url,
-    //             type: 'post',
-    //             data: data,
-    //             dataType: 'json',
-    //             beforeSend: function () {
-    //                 obj.listData.loading = true;
-    //             },
-    //             complete: function () {
-    //                 obj.listData.loading = false;
-    //             },
-    //             success: function (res) {
-    //                 if (res.code == 200) {
-    //                     if ( obj.listData.ini == false) {
-    //                         obj.listData.ini = true;
-    //                         obj.listData.page_total = res.data.page_total;
-    //                     }
-    //                     if ( obj.listData.page >=  obj.listData.page_total) {
-    //                         if(me !== null){
-    //                             me.noData();
-    //                         }
-    //                     }
-    //                 }
-    //
-    //                 functions(res);
-    //
-    //                 if(me !== null){
-    //                     me.resetload();
-    //                 }
-    //             },
-    //             error:function(){
-    //                 if(me !== null){
-    //                     me.resetload();
-    //                 }
-    //             }
-    //         });
-    //     }
-    // };
-
-    var myObj = {
-        goods:{
-            listData: {
-                loading: false,
-                ini: false,
-                page: 0,
-                page_total: 0,
-                page_size: 8,
-                params:{
-                    keywords:'',
-                }
-            },
-            dropReloadList:function(){
-                myObj.goods.listData.loading = false;
-                myObj.goods.listData.ini = false;
-                myObj.goods.listData.page = 0;
-                myObj.goods.listData.page_total = 1;
-                this.loadList(null);
-            },
-            loadList: function (me) {
-                myObj.goods.listData.params.keywords = $("#mobile").val();
-                if (myObj.goods.listData.loading) {
-                    return false;
-                }
-
-                myObj.goods.listData.page++;
-                if (myObj.goods.listData.ini == true) {
-                    if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                        if(me !== null){
-                            me.resetload();
-                        }
-                        return false;
-                    }
-                }
-
-                var data = $.extend({},{page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size}, myObj.goods.listData.params);
-                $.ajax({
-                    url: "/weixin/shopapi/getGoodsList",
-                    type: 'post',
-                    data: data,
-                    dataType: 'json',
-                    beforeSend: function () {
-                        myObj.goods.listData.loading = true;
-                    },
-                    complete: function () {
-                        myObj.goods.listData.loading = false;
-                    },
-                    success: function (res) {
-
-                        if (res.code == 200) {
-                            if ( myObj.goods.listData.ini == false) {
-                                myObj.goods.listData.ini = true;
-                                myObj.goods.listData.page_total = res.data.page_total;
-                                $('#container-list').html('');
-
-                            }
-
-                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
-                                $('#container-list').append(html);
-                            });
-
-                            if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
-                                if (me !== null) {
-                                    me.noData();
-                            }else{
-                                    $('.dropload-down').hide();
-                                }
-                            }
-                        }
-                        if(me !== null){
-                            me.resetload();
-                        }
-                    },
-                    error:function(){
-                        if(me !== null){
-                            me.resetload();
-                        }
-                    }
-                });
-
-            }
-        }
-    };
-
-    $('.click-commodity-search').on('click', function () {
-        var the_input = $("#mobile").val();
-        myObj.goods.dropReloadList();
-
-    });
-
-    $(document).on('click','.to-goods-detail',function(){
-        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
     });
 </script>
 {/block}
