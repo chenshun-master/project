@@ -269,4 +269,10 @@ class Shop extends BaseController
         {
             return $this->fetch('shop/index2');
         }
+
+
+        public function testSearch(){
+            return $this->fetch('test/test-search');
+        }
+
 }
