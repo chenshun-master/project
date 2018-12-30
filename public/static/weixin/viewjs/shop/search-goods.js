@@ -6,6 +6,10 @@ $(".wl-deji li").click(function () {
 
 $(document).on('click','.to-goods-detail',function(){
     window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+}).on('click','.to-doctor-detail',function(){
+    window.location.href = '/weixin/index/doctorDetails/uid/'+$(this).data('id');
+}).on('click','.to-hospital-detail',function(){
+    window.location.href = '/weixin/index/hospitalDetails/uid/'+$(this).data('id');
 });
 
 function searchGoods(){

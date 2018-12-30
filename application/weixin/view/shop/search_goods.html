@@ -6,6 +6,7 @@
 {/block}
 
 {block name="main"}
+
 <header class="wl-serch-dingwei">
         <div class="wl-top">
             <a href="/weixin/shop/index"><i class="iconfont icon-back_light top-left wl-left-return"></i></a><span>搜索商品</span>
@@ -13,7 +14,7 @@
         <div class="wl-top1">
             <i class="iconfont icon-sousuo"></i>
             <form onsubmit="return searchGoods()">
-                 <input type="text" placeholder="搜索您感兴趣的项目" autofocus="autofocus" id="fr-keywords"><button id="click-commodity-search">搜索</button>
+                 <input type="text" placeholder="搜索您感兴趣的项目" autofocus="autofocus" id="fr-keywords" autocomplete="off" ><button id="click-commodity-search">搜索</button>
             </form >
         </div>
         <ul class="wl-deji">
@@ -28,10 +29,9 @@
 </div>
 
 {/block}
+
 {block name="script"}
 
-<script src="/static/plugin/layui/layui.all.js"></script>
-<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="goodsTemplateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
@@ -44,8 +44,7 @@
             </div>
             <div class="wl-yiyuan">{{item.sale_num}}人预订</div>
             <div class="wl-jiage">
-                <span class="wl-jiage"><sub
-                        style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
                 <span class="wl-quchu">￥{{item.market_price}}</span>
             </div>
         </div>
@@ -56,7 +55,7 @@
 
 <script id="hospitalTemplateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-        <div class="wl-shangping href to-goods-detail" >
+        <div class="wl-shangping href to-hospital-detail" data-id="{{item.user_id}}">
             <div class="wl-sp-img">
                 <img src="{{item.portrait}}">
             </div>
@@ -74,7 +73,7 @@
 
 <script id="doctorTemplateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-        <div class="wl-shangping href to-goods-detail" data-goodsid="2">
+        <div class="wl-shangping href to-doctor-detail" data-id="{{item.user_id}}">
             <div class="wl-sp-img">
                 <img src="{{item.portrait}}">
             </div>
@@ -91,5 +90,7 @@
     {{#  }); }}
 </script>
 
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script src="/static/weixin/viewjs/shop/search-goods.js"></script>
 {/block}
