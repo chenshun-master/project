@@ -116,11 +116,6 @@ class BaseController extends Controller
                     $res = $this->weChatApiClass->refreshUserAuthorizeAccessToken($wxAuthorize['refresh_token']);
                     if(!isset($res['errcode'])){
                         $res['expires_time'] = time() + $res['expires_in'];
-                        $res['userinfo'] = [];
-                        if($res['scope'] == 'snsapi_userinfo'){
-                            $res['userinfo'] = $this->weChatApiClass->getUserAuthorizedUserInfo($res['access_token'],$res['openid']);
-                        }
-
                         Session::set('wxAuthorize',$res);
                     }
                 }
@@ -153,24 +148,19 @@ class BaseController extends Controller
             Session::set('wxAuthorize',$res);
             if($res['userinfo']){
                 $obj = new \app\api\domain\RhirdPartyUserDomain();
-                $user_info = [
-                    'openid'=>$res['userinfo']['openid'],
-                    'nick'=>$res['userinfo']['nickname']
-                ];
-
-                $myUserInfo = $obj->userHandle($user_info,'weixin');
+                $mobile = $obj->getMobile(['wx_unionid'=>$res['userinfo']['unionid']],1);
 
                 #判断第三方账号是否绑定手机号
-                if($myUserInfo['binding'] === 1){
-                    $userDomain = new \app\api\domain\UserDomain();
-                    $info = $userDomain->login($myUserInfo['mobile'],'',true);
+                if($mobile){
+                    $info = (new \app\api\domain\UserDomain())->login($mobile,'',true);
                     $this->saveUserLogin($info);
 
                     ##登录成功跳转到登录页面
                     return redirect(Session::get('previous_page'));
                 }else{
                     ##第三方登录未绑定手机号跳转到绑定手机号页面
-                    return redirect('/weixin/index/otherLoginBindingMobile')->params(['id'=>$myUserInfo['id']]);
+                    $str = encryptStr($res['userinfo']['unionid'],'E',config('conf.secret_key'));
+                    return redirect('/weixin/index/otherLoginBindingMobile')->params(['auth_token'=>urlencode($str),'type'=>1]);
                 }
             }
 
@@ -185,6 +175,7 @@ class BaseController extends Controller
      */
     public function toLogin($redir = ''){
         #记录跳转路径
+
         return redirect('index/login');
     }
 }

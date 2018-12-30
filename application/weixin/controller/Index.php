@@ -255,15 +255,17 @@ class Index extends BaseController
     public function sendOtherLoginSmsCode(Request $request)
     {
 
-        $mobile = $request->param('mobile', '');
-        $id = (int)$request->param('id', '');
-        if (empty($mobile) || !checkMobile($mobile)) {
+        $mobile    = $request->param('mobile', '');
+        $authToken = $request->param('auth_token', '');
+        $authType  = (int)$request->param('auth_type', 0);
+
+        $authToken = encryptStr(urldecode($authToken),'D',config('conf.secret_key'));
+        if (empty($mobile) || !checkMobile($mobile) || empty($authToken) || !in_array($authType,[1,2,3,4])) {
             return $this->returnData([], '请求参数不符合规范', 301);
         }
 
         $domain = new \app\api\domain\RhirdPartyUserDomain();
-
-        $res = $domain->getBindingInfo($mobile, $id);
+        $res = $domain->getBindingInfo($mobile, $authToken,$authType);
         if ($res) {
             return $this->returnData([], '手机号已绑定第三方账号', 302);
         }
@@ -331,8 +333,10 @@ class Index extends BaseController
      */
     public function otherLoginBindingMobile(Request $request)
     {
-        $id = (int)$request->param('id', 0);
-        $this->assign('id', $id);
+        $auth_token = $request->param('auth_token','');
+        $auth_type = $request->param('type',0);
+        $this->assign('auth_token', $auth_token);
+        $this->assign('auth_type', $auth_type);
         return $this->fetch('index/otherLoginBindingMobile');
     }
 
@@ -341,9 +345,14 @@ class Index extends BaseController
      */
     public function bindingMobileHandle(Request $request)
     {
-        $mobile = $request->param('mobile', '');
-        $id = $request->param('id', '');
-        $sms_code = $request->param('sms_code', '');
+        $mobile = $request->post('mobile', '');
+        $sms_code = $request->post('sms_code', '');
+        $auth_token = $request->post('auth_token','');
+        $auth_type = $request->post('auth_type',0);
+        $auth_token = encryptStr(urldecode($auth_token),'D',config('conf.secret_key'));
+        if (empty($mobile) || !checkMobile($mobile) || empty($auth_token) || !in_array($auth_type,[1,2,3,4])) {
+            return $this->returnData([], '请求参数不符合规范', 301);
+        }
 
         $smsObj = new \app\api\domain\SendSms();
         $res = $smsObj->checkSmsCode($mobile, 4, $sms_code);
@@ -354,8 +363,8 @@ class Index extends BaseController
         }
 
         $userDomain = new UserDomain();
-        $isTrue = $userDomain->bindingMobile($mobile, $id);
-
+        $wxAuthorize = Session::get('wxAuthorize');
+        $isTrue = $userDomain->bindingMobile($mobile, $auth_token,$auth_type,$wxAuthorize['openid']);
         if ($isTrue) {
             $userDomain = new UserDomain();
             $info = $userDomain->login($mobile, '', true);

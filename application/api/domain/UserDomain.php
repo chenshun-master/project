@@ -154,15 +154,20 @@ class UserDomain
 
     /**
      * 第三方登录绑定手机号
+     * @param $mobile
+     * @param $authToken
+     * @param $authType
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function bindingMobile($mobile,$id){
+    public function bindingMobile($mobile,$authToken,$authType,$openid=''){
         $domain = new \app\api\domain\RhirdPartyUserDomain();
-
-        $res = $domain->getBindingInfo($mobile,$id);
-
+        $res = $domain->getBindingInfo($mobile,$authToken,$authType);
         if($res){return false;}
 
-        $pwd = 'wl'.substr($mobile,5,6);
+        $pwd = random(8);
         $data = [
             'mobile'        =>$mobile,
             'nickname'      =>mobileFilter($mobile),
@@ -173,6 +178,17 @@ class UserDomain
 
         $user_info = Db::name('user')->where('mobile',$mobile)->field('id')->find();
 
+        $arr = [];
+        if($authType == 1){
+            $arr = ['wx_unionid'=>$authToken,'wx_openid'=>$openid];
+        }else if($authType == 2){
+            $arr = ['qq_openid'=>$authToken];
+        }else if($authType == 3){
+            $arr = ['wb_openid'=>$authToken];
+        }else if($authType == 4){
+            $arr = ['zfb_openid'=>$authToken];
+        }
+
         Db::startTrans();
         try {
             if($user_info){
@@ -180,13 +196,23 @@ class UserDomain
             }else{
                 $user_id = Db::name('user')->insertGetId($data);
                 if(!$user_id){
-                    Db::rollback();return false;
+                    throw new \think\Exception('创建用户信息失败');
                 }
             }
-            $res2 = Db::name('third_party_user')->where('id', $id)->data(['user_id' => $user_id])->update();
-            if(!$res2){
-                Db::rollback();return false;
+
+            $otherInfo = Db::name('third_party_user')->where('user_id',$user_id)->find();
+            if($otherInfo){
+                $isTrue = Db::name('third_party_user')->where('id', $otherInfo['id'])->update($arr);
+                if(!$isTrue){
+                    throw new \think\Exception('更新异常');
+                }
+            }else{
+                $arr['user_id'] = $user_id;
+                if(!Db::name('third_party_user')->insertGetId($arr)){
+                    throw new \think\Exception('更新异常');
+                }
             }
+
             Db::commit();
             return true;
         } catch (\Exception $e) {

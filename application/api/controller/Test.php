@@ -10,4 +10,21 @@ use app\api\domain\SpGoodsDomain;
 class Test
 {
 
+    public function test(){
+//        $obj = new \app\api\domain\RhirdPartyUserDomain();
+//        $user_info = [
+//            'wx_unionid' =>'omVTG0xnnNWVjStsPqvLLGyHvemg',
+//        ];
+//
+//        $mobile = $obj->getMobile($user_info,'weixin');
+//
+//        halt($mobile);
+//
+//
+
+        $str = encryptStr('TEt3AV9wEmP8MTNHTm3L7ehtKYmNbqQ9YBzP58SGJ47gh+qb','D',config('conf.secret_key'));
+
+        halt($str);
+        return redirect('/weixin/index/otherLoginBindingMobile')->params(['auth_token'=>urlencode($str),'type'=>1]);
+    }
 }

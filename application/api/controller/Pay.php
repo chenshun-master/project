@@ -74,7 +74,7 @@ class Pay extends  WxPayNotify
             }
 
             $paymentRecord = [
-                'order_id'        =>$res['id'],
+                'order_id'        =>$orderInfo['id'],
                 'trade_id'        =>$data['transaction_id'],
                 'order_no'        =>$data['out_trade_no'],
                 'pay_type'        =>2,
@@ -101,7 +101,7 @@ class Pay extends  WxPayNotify
                     $type = 1;
                 }
 
-                if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'type'=> $type,'num'=> $num,'status'=>1,'created_time' => date('Y-m-d H:i:s')])){
+                if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'uid'=>$orderInfo['uid'],'type'=> $type,'num'=> $num,'status'=>1,'created_time' => date('Y-m-d H:i:s')])){
                     throw new \think\Exception('添加分销兑付记录失败');
                 }
             }
