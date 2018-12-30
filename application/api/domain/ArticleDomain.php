@@ -346,7 +346,6 @@ class ArticleDomain extends ArticleModel
 
         $obj->order('article.published_time', 'desc');
 
-
         $obj->join('wl_user user','article.user_id = user.id');
         $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
         $total = $obj->count();
@@ -418,56 +417,6 @@ class ArticleDomain extends ArticleModel
         }
 
         $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
-
-        return [
-            'rows'          =>$rows,
-            'page'          =>$page,
-            'page_total'    =>getPageTotal($total,$page_size),
-            'total'         =>$total
-        ];
-    }
-
-    /**
-     * 获取二级以上评论
-     */
-    public function getSecondComment($object_id,$comment_id,$page,$page_size,$user_id=0){
-        $obj = Db::name('comment');
-        $obj->alias('comment');
-        $obj->where('comment.object_id',$object_id);
-        $obj->where('comment.parent_id','>',0);
-        $obj->where('comment.table_name','article');
-        $obj->where('comment.path','like',",{$comment_id},%");
-        $obj->leftJoin('wl_user user','comment.user_id = user.id');
-        $obj->order('comment.created_time', 'desc');
-        $total = $obj->count();
-        if($user_id == 0){
-            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,'0' as isZan");
-        }else{
-            $obj->field("comment.id,comment.path,comment.user_id,comment.object_id,comment.parent_id,comment.like_count,comment.content,comment.created_time,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='comment' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = comment.id) as isZan");
-        }
-
-        $rows = $obj->page($page,$page_size)->select();
-
-        if($rows){
-            //获取子评论
-            $ids = [];
-            foreach($rows as $val){
-                $ids[]  = $val['parent_id'];
-            }
-
-            $rows2 = Db::table('wl_comment')
-                ->where('wl_comment.id', 'in', $ids)
-                ->leftJoin('wl_user user','wl_comment.user_id = user.id')
-                ->column("wl_comment.id,wl_comment.content,wl_comment.created_time,user.portrait,user.nickname,user.mobile",'wl_comment.id');
-
-            foreach($rows as $_key => $_val){
-                $rows[$_key]['parent'] = $rows2[$_val['parent_id']];
-                if(!empty($rows[$_key]['parent']['mobile'])){
-                    $rows[$_key]['parent']['mobile'] = mobileFilter($rows[$_key]['parent']['mobile']);
-                }
-            }
-        }
-
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -488,26 +437,34 @@ class ArticleDomain extends ArticleModel
      */
     public function getArticleLikeData($user_id,$page,$page_size){
         $obj = Db::name('user_like')->alias('user_like');
-        $obj->where('table_name','article');
-
-
-        $obj->join('wl_article article','user_like.object_id = article.id');
+        $obj->join('wl_article article','user_like.object_id = article.id and article.status = 1 and article.type in(1,2)');
         $obj->leftJoin('wl_user user','article.user_id = user.id');
         $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
-
-        $obj->where('article.type','in',[1,2]);
-        $obj->where('article.status',1);
+        $obj->where('user_like.table_name','article');
         $obj->where('user_like.user_id',$user_id);
         $obj->where('user_like.status',0);
         $obj->order('user_like.created_time desc');
-
-
-        $total = $obj->count();
-
-        $obj->field("article.*,user.id as user_id,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
-
-        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
-
+        $field = [
+            'article.id',
+            'article.type',
+            'article.title',
+            'article.thumbnail',
+            'article.hits',
+            'article.favorites',
+            'article.like',
+            'article.comment_count',
+            'article.published_time',
+            'user.id as user_id',
+            'user.nickname',
+            'user.portrait',
+            "INSERT(user.mobile,4,4,'****') as mobile",
+            'user.type as user_type',
+            'auth.username',
+            'auth.enterprise_name',
+            '1 as isZan'
+        ];
+        $rows = $obj->field($field)->page($page,$page_size)->select();
+        $total = $obj->count(1);
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -527,24 +484,28 @@ class ArticleDomain extends ArticleModel
      * @throws \think\exception\DbException
      */
     public function getCommentArticle($user_id,$page=1,$page_size=15){
-        $obj = Db::name('comment')->alias('comment');
-        $obj->where('comment.user_id',$user_id);
+        $subQuery = "( SELECT * from ( SELECT `id`,`object_id`,content FROM `wl_comment` WHERE  user_id ={$user_id}  and  `table_name` = 'article' ORDER BY `created_time` DESC LIMIT 100000000 ) tmp GROUP BY object_id )";
+        $field = [
+            'article.id',
+            'article.type','article.title','article.like','article.video_url','article.comment_count','article.favorites','article.published_time','article.thumbnail',
+            'user.id as user_id',
+            'user.nickname',
+            'user.portrait',
+            'user.type as user_type',
+            'auth.username',
+            'auth.enterprise_name',
+            'c.content as comment_content',
+            'IF(like.id > 0,1,0)'=>'isZan',
+        ];
 
-        $obj->leftJoin('wl_article article','comment.object_id = article.id');
+        $obj = Db::table($subQuery . ' c');
+        $obj->join('wl_article article','c.object_id = article.id');
+        $obj->leftJoin('wl_user_like like',"like.object_id = article.id and like.table_name = 'article' and like.user_id = {$user_id} and like.status = 0");
         $obj->leftJoin('wl_user user','article.user_id = user.id');
         $obj->leftJoin('wl_auth auth','article.user_id = auth.user_id');
-
-        $obj->leftJoin('wl_comment comment2','comment2.id = comment.parent_id');
-        $obj->leftJoin('wl_user user2','comment2.user_id = user2.id');
-
-        $obj->where('article.type','in',[1,2]);
-        $obj->where('article.status',1);
-        $obj->order('comment.created_time desc');
-
-        $total = $obj->count();
-        $obj->field("article.id,article.type,article.title,article.like,article.video_url,article.comment_count,article.favorites,article.published_time,article.thumbnail,user.id as user_id,user.nickname,user.portrait,comment.content as comment_content,user2.nickname as huifu_nickname,user2.id as huifu_user_id,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' and wl_user_like.status =0 AND wl_user_like.user_id ={$user_id} AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name");
-
-        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+        $obj->field($field);
+        $rows = $obj->page($page,$page_size)->select();
+        $total = $obj->count(1);
         return [
             'rows'          =>$rows,
             'page'          =>$page,
