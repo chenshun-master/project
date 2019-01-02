@@ -289,7 +289,7 @@
 }
 .wl-good{
     width: 40px;
-    height: 120px;
+    height: 115px;
     position: absolute;
     bottom: 150px;
     right: 10px;
@@ -300,23 +300,36 @@
     text-align: center;
     z-index: 1;
 }
-.wl-good dl{
+.goods{
     width: 80%;
     margin: 0 auto;
+    height: 31px;
     font-size: 25px!important;
     border-bottom: 1px solid white;
-    padding: 5px 0 5px 0;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
-.wl-good dd{
+.tiaozhaun{
+    width: 80%;
     font-size: 25px!important;
-    padding: 5px 0 0px 0;
+    position: absolute;
+    top: 79px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-top: 1px solid white;
 }
 .wl-shuaxin{
     width: 80%;
-    margin: 0 auto;
     font-size: 25px!important;
-    border-bottom: 1px solid white;
-    padding: 5px 0 5px 0;
+    position: absolute;
+    top: 49px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 .wl-haohuo {
     width: 30px;
@@ -328,27 +341,20 @@
     font-size: 9px;
     display: inline-block;
     position: absolute;
-    bottom: 219px;
+    bottom: 242px;
     right: 13px;
     border-radius: 5px;
     z-index: 2;
-}.wl-haohuo {
-     width: 30px;
-     height: 13px;
-     line-height: 13px;
-     text-align: center;
-     background: #F24F4F;
-     color: white;
-     font-size: 9px;
-     display: inline-block;
-     position: absolute;
-     bottom: 214px;
-     right: 11px;
-     border-radius: 5px;
-     z-index: 2;
- }
+}
 #container{
-    padding-bottom: 100px;
+    padding-top: 75px;
+    padding-bottom: 55px;
+}
+.mescroll-empty{
+    margin-top: 50px;
+}
+.empty-tip{
+    margin-top: 20px!important;
 }
 .wl-dingwei{
     position: fixed;bottom: 0;max-width: 640px;margin: 0 auto;width: 100%

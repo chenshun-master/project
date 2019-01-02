@@ -195,3 +195,10 @@
 wl-left-return{
     font-size: 25px;color: #333333
 }
+.mescroll-empty{
+    margin-top: 50px;
+}
+
+.empty-tip{
+    margin-top: 20px!important;
+}

@@ -8,11 +8,12 @@ $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给
     $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
     var index = $(this).index();
     if(index == 0){
-        var top = parseInt($('#wl-xiangqing').offset().top) - 250;
+        var top = parseInt($('#wl-xiangqing').offset().top) - 75;
+        console.log(top);
     }else if(index == 1){
-        var top = parseInt($('#cus-xuzi').offset().top) -75;
+        var top = parseInt($('#cus-xuzi').offset().top) - 75;
     }else if(index == 2){
-        var top = parseInt($('#wl-meili-riji').offset().top) -75;
+        var top = parseInt($('#wl-meili-riji').offset().top) - 75;
     }
     $("html,body").animate({scrollTop:top+'px'}, 500);
 });
