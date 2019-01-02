@@ -8,6 +8,15 @@ use app\api\model\SpGoodsModel;
 class SpGoodsDomain
 {
     /**
+     * 更新商品浏览量
+     * @param $goods_id
+     * @throws \think\Exception
+     */
+    public function updateBrowseVolume($goods_id){
+        Db::name('sp_goods')->where('id',$goods_id)->setInc('visit');
+    }
+
+    /**
      * 创建商品
      * @param $seller_id    商家ID
      * @param $data         商品数据
@@ -170,7 +179,7 @@ class SpGoodsDomain
             $data['down_time'] = date('Y-m-d H:i:s');
         }
 
-        if(!Db::name('sp_goods')->where('id',$good_id)->update($data)){
+        if(!Db::name('sp_goods')->where('id','IN',$good_id)->update($data)){
             return false;
         }
 
@@ -321,7 +330,7 @@ class SpGoodsDomain
         $obj = Db::name('sp_goods')->alias('goods');
 
         $obj->where('goods.seller_id',$seller_id);
-
+        $obj->order('goods.create_time','desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();
         return [
@@ -473,7 +482,9 @@ class SpGoodsDomain
         if($status == 1) {
             $status = 3;
         }else if($status == 2) {
-            $status = 0;
+            $status = 2;
+        }else if($status == 3){
+            $status =0;
         }
 
         $obj = Db::name('sp_goods')->alias('sp');

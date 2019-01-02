@@ -165,6 +165,7 @@ class ShOrderDomain
         }else{
             $obj->where('order.status',$status);
         }
+        $obj->order('order.create_time','desc');
 
         $total = $obj->count(1);
         $rows = $obj->field($field)->page($page,$page_size)->select();

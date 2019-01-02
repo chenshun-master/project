@@ -62,8 +62,7 @@ class UserFavoriteDomain
 
                     Db::commit();return true;
                 } catch (\Exception $e) {
-                    Db::rollback();
-                    return false;
+                    Db::rollback();return false;
                 }
             }else{
                 return false;
@@ -73,20 +72,21 @@ class UserFavoriteDomain
         Db::startTrans();
         try {
             $res = Db::name('user_favorite')->insertGetId(['user_id' => $user_id, 'table_name' => $table_name, 'object_id' => $object_id,'created_time'=>date('Y-m-d H:i:s')]);
+            if(!$res){
+                throw new \think\Exception('异常消息');
+            }
+
             if($table_name == 'article'){
-                Db::name('article')->where('id',$object_id)->inc('favorites')->update();
-                if(!$res){
-                    Db::rollback();return false;
+                if(!Db::name('article')->where('id',$object_id)->setInc('favorites')){
+                    throw new \think\Exception('异常消息');
                 }
             }else if($table_name == 'goods'){
-                Db::name('sp_goods')->where('id',$object_id)->inc('favorites')->update();
-                if(!$res){
-                    Db::rollback();return false;
+                if(!Db::name('sp_goods')->where('id',$object_id)->setInc('favorites')){
+                    throw new \think\Exception('异常消息');
                 }
             }else if($table_name == 'sp_good_goods'){
-                Db::name('sp_good_goods')->where('id',$object_id)->inc('favorites')->update();
-                if(!$res){
-                    Db::rollback();return false;
+                if(!Db::name('sp_good_goods')->where('id',$object_id)->setInc('favorites')){
+                    throw new \think\Exception('异常消息');
                 }
             }
 

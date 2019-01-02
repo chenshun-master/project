@@ -48,6 +48,8 @@ class Shop extends BaseController
         $goodsid = $this->request->param('goodsid/d', 0);
         $gid = $this->request->param('gid/d', 0);
 
+        $this->_spGoodsDomain->updateBrowseVolume($goodsid);
+
         $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid,$this->getUserId());
 
         if (empty($goodsDetail['goods_info'])) {

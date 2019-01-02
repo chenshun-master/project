@@ -19,6 +19,7 @@ table.render({
     ,text: {
         none: '暂无相关数据'
     }
+    ,limit: 20
     ,cols: [[ //表头
         {type:'numbers'},
         {type:'checkbox',width:50,field: 'id'},
@@ -42,7 +43,7 @@ table.render({
         {field: 'topay_price', title: '到付价格',width:100},
 
         {field: 'visit', title: '浏览次数',width:100},
-        {field: 'favorite', title: '收藏次数',width:100},
+        {field: 'favorites', title: '收藏次数',width:100},
         // {field: 'comments', title: '预付价格',width:100},
         {field: 'sale_num', title: '预约数',width:100},
         {field: 'case_num', title: '案例数',width:100},
@@ -51,10 +52,8 @@ table.render({
             return '<a href="/seller/shop/addGood/goodsid/'+ row.id +'">编辑</a>';
         }},
     ]],
-    limits:[10,20,30,50,100]
+    limits:[20,30,50,100]
 });
-
-
 
 var active = {
     getCheckId: function(){ //获取选中数据
