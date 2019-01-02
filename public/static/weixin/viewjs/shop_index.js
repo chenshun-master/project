@@ -37,130 +37,67 @@ $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其�
 });
 
 $('.click-select-category').on('click', function () {
-    myObj.goods.listData.params.category = $(this).data('path');
-    myObj.goods.dropReloadList();
+    listObj.params.category = $(this).data('path');
+    mescroll.resetUpScroll();
     $('.click-select-category').removeClass('wl-se1');
     $(this).addClass("wl-se1");
-    window.scrollTo(0,0);
+    $(".marsk-container").hide();
 });
 $('.wl-shuaxin').on('click', function () {
-    myObj.goods.dropReloadList();
+    mescroll.resetUpScroll();
     window.scrollTo(0,0);
 });
 $('.click-select-sort > p').on('click', function () {
-    myObj.goods.listData.params.sort = $(this).data('sort');
-    myObj.goods.dropReloadList();
+    listObj.params.sort = $(this).data('sort');
+    listObj.params.type =  parseInt($(this).index()) + 1;
+    mescroll.resetUpScroll();
     $(this).addClass("wl-se").siblings().removeClass("wl-se");
     window.scrollTo(0, 0);
+    $(".marsk-container1").hide();
 });
 
 $(document).on('click','.to-goods-detail',function(){
     window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+}).on('click','#wl-tingbu',function(){
+    $('#container').animate({scrollTop:0},500);
 });
-
-//当点击跳转链接后，回到页面顶部位置
-$(".wl-tingbu").click(function(){
-    $('body,html').animate({scrollTop:0},500);
-    return false;
-});
-
-var myObj = {
-    goods:{
-        listData: {
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 8,
-            params:{
-                category:'',
-                sort:0,
-                city:'',
-                keywords:''
-            }
+var mescroll = new MeScroll("container", {
+    down:{auto:true},
+    up: {
+        clearEmptyId: "container-list",
+        page: {num: 0,size: 15},
+        htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+        isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
+        noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+        empty: {
+            icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
+            tip: "亲,没有您要找的商品~", //提示
         },
-        dropReloadList:function(){
-            $('.marsk-container,.marsk-container1').hide();
-            $(".marsk-container2").show();
-
-            myObj.goods.listData.loading = false;
-            myObj.goods.listData.ini = false;
-            myObj.goods.listData.page = 0;
-            myObj.goods.listData.page_total = 1;
-
-            this.loadList(null);
-        },
-        loadList: function (me) {
-            if (myObj.goods.listData.loading) {
-                return false;
-            }
-
-            myObj.goods.listData.page++;
-            if (myObj.goods.listData.ini == true) {
-                if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                    if(me !== null){
-                        me.resetload();
-                    }
-                    return false;
-                }
-            }
-
-            var data = $.extend({},{page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size}, myObj.goods.listData.params);
-            $.ajax({
-                url: "/weixin/shopapi/getGoodsList",
-                type: 'post',
-                data: data,
-                dataType: 'json',
-                beforeSend: function () {
-                    myObj.goods.listData.loading = true;
-                },
-                complete: function () {
-                    myObj.goods.listData.loading = false;
-                    $(".marsk-container2").hide();
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if ( myObj.goods.listData.ini == false) {
-                            myObj.goods.listData.ini = true;
-                            myObj.goods.listData.page_total = res.data.page_total;
-                            $('#container-list').html('');
-                        }
-
-                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
-                            $('#container-list').append(html);
-                        });
-
-                        if ( myObj.goods.listData.page >=  myObj.goods.listData.page_total) {
-                            if(me !== null){
-                                me.noData();
-                            }
-                        }
-                    }
-                    if(me !== null){
-                        me.resetload();
-                    }
-                },
-                error:function(){
-                    if(me !== null){
-                        me.resetload();
-                    }
-                }
+        callback: function(page){
+            listObj.searchList(page,function(curPageData){
+                mescroll.endSuccess(curPageData.length);
+                layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                    $('#container-list').append(html);
+                });
+            }, function(){
+                mescroll.endErr();
             });
-        }
-    }
-};
-
-var dropload = $('#container').dropload({
-    scrollArea: window,
-    // loadUpFn: function (me) {
-    //     myObj.goods.listData.loading = false;
-    //     myObj.goods.listData.ini = false;
-    //     myObj.goods.listData.page = 0;
-    //     myObj.goods.listData.page_total = 1;
-    //     myObj.goods.listData.path = '';
-    //     myObj.goods.loadList(me);
-    // },
-    loadDownFn: function (me) {
-        myObj.goods.loadList(me);
+        },
     }
 });
+var listObj = {
+    params: { category:'', sort:0, city:'', keywords:'',type:1},
+    searchList: function (page, successCallback, errorCallback) {
+        var data = $.extend({}, {page: page.num, page_size: page.size}, listObj.params);
+        $.ajax({
+            url: "/weixin/shopapi/getGoodsList",
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            success: function (res) {
+                successCallback(res.data.rows);
+            },
+            error: errorCallback
+        });
+    },
+};

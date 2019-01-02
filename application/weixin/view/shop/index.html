@@ -2,6 +2,7 @@
 
 {block name="cssOrcrsipt"}
     <link rel="stylesheet" href="/static/weixin/shop/css/index.css">
+    <link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
@@ -27,8 +28,8 @@
     </div>
 </header>
 
-<main style="padding-top: 70px;background:white;">
-        <div id="container">
+<main style="background:white;">
+        <div id="container" class="mescroll">
             <div id="container-list">
 
             </div>
@@ -97,9 +98,11 @@
         <!--<span class="iconfont icon-shuaxin wl-shuaxin"></span>-->
         <span class="wl-haohuo" onclick="redream.href('/weixin/shop/haveGood')">有好货</span>
         <div class="wl-good">
-            <dt class="iconfont icon-shuaxin wl-shuaxin "></dt>
-            <dl class="iconfont icon-shangpin4 " onclick="redream.href('/weixin/shop/haveGood')"></dl>
-            <dd class="iconfont icon-xiangshang1 wl-tingbu "></dd>
+            <ul >
+                <li class="iconfont icon-shangpin4 goods" onclick="redream.href('/weixin/shop/haveGood')"></li>
+                <li  class="iconfont icon-shuaxin wl-shuaxin icon-shangpin4 "></li>
+                <li class="iconfont icon-xiangshang1 href tiaozhaun" id="wl-tingbu"></li>
+            </ul>
         </div>
     </div>
 {include file="layout/footer" /}
@@ -107,6 +110,7 @@
 
 {block name="script"}
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
