@@ -36,6 +36,8 @@ layui.table.render({
     ,text: {
         none: '暂无相关数据'
     }
+    ,limit: 20
+    ,limits:[20,30,50,100]
     ,cols: [[
         {type: 'checkbox', fixed: 'left'},
         {field: 'mobile', title: '手机号',width:150},

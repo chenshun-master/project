@@ -236,10 +236,14 @@ class UDomain
     public function getMyDoctorList($user_id){
         $obj = Db::name('doctor_hospital')->alias('dh');
         $obj->join('wl_hospital hospital',"dh.hospital_id = hospital.id and hospital.user_id = {$user_id}");
-        $obj->join('wl_auth auth','auth.id = hospital.auth_id');
-        $obj->join('wl_user user','user.id = hospital.user_id');
-        $obj->join('wl_doctor doctor',"doctor.id = dh.doctor_id");
 
+
+
+        $obj->join('wl_doctor doctor',"doctor.id = dh.doctor_id");
+        $obj->join('wl_user user','user.id = doctor.user_id');
+        $obj->join('wl_auth auth','auth.id = doctor.auth_id');
+
+//        halt($obj->select());
         $field= [
             'user.id as user_id','user.mobile','user.nickname','user.sex','user.portrait',
             'auth.username','auth.duties','auth.speciality',

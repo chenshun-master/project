@@ -95,5 +95,8 @@ table.render({
 var objClass = {
     reload:function(tableID){
         layui.table.reload(tableID);
+    },
+    add:function(){
+        window.location.href = '/seller/user/doctorApply';
     }
 };

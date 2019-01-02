@@ -137,7 +137,7 @@ class ShopApi extends BaseController
     public function getGoodsList(){
 
         $page = $this->request->param('page',1);
-        $page_size = $this->request->param('limit',10);
+        $page_size = $this->request->param('limit',20);
 
         $data = $this->_goodsDomain->getSellerGoodsList($this->getSellerId(),$page,$page_size);
 
@@ -145,11 +145,9 @@ class ShopApi extends BaseController
     }
 
     public function getSellerOrderList(){
-
         $page = $this->request->param('page',1);
-        $page_size = $this->request->param('limit',10);
+        $page_size = $this->request->param('limit',20);
         $status = $this->request->param('status/d',0);
-
 
         $data = $this->_orderDomain->getSellerOrder($this->getSellerId(),$status,$page,$page_size);
 

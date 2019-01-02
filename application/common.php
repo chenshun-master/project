@@ -338,25 +338,19 @@ function diffBetweenTwoDays ($day1, $day2){
     return round(($second1 - $second2) / 86400);
 }
 
-
-function getHttpReferfer(){
-
-}
-
 /**
- * 获取商品编号
+ * 获取唯一订单编号
+ * @param int $n         必须大于14
+ * @return string
  */
-function getOrderNo(){
-    return date('YmdHis').getRand(6);
+function getOrderNo($n=20){
+    $m=$n-13;
+    if($m<=0) $m=1;
+    $rand_num_min=0;
+    $rand_num_max=str_repeat(9,$m);
+    $seconds=sprintf("%05d", (time() - mktime(0,0,0)) );
+    return date("Ymd",time()).$seconds. sprintf("%0".$m."d", rand($rand_num_min, $rand_num_max));
 }
-
-/**
- * 获取货品单号( 注: 货品单号根据商品编号生成)
- */
-function getProductNo($order_no){
-
-}
-
 
 
 function checkFooter($url){

@@ -43,7 +43,7 @@ table.render({
         {field: 'topay_price', title: '到付价格',width:100},
 
         {field: 'visit', title: '浏览次数',width:100},
-        {field: 'favorite', title: '收藏次数',width:100},
+        {field: 'favorites', title: '收藏次数',width:100},
         // {field: 'comments', title: '预付价格',width:100},
         {field: 'sale_num', title: '预约数',width:100},
         {field: 'case_num', title: '案例数',width:100},

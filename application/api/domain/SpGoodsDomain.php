@@ -8,6 +8,15 @@ use app\api\model\SpGoodsModel;
 class SpGoodsDomain
 {
     /**
+     * 更新商品浏览量
+     * @param $goods_id
+     * @throws \think\Exception
+     */
+    public function updateBrowseVolume($goods_id){
+        Db::name('sp_goods')->where('id',$goods_id)->setInc('visit');
+    }
+
+    /**
      * 创建商品
      * @param $seller_id    商家ID
      * @param $data         商品数据
@@ -321,7 +330,7 @@ class SpGoodsDomain
         $obj = Db::name('sp_goods')->alias('goods');
 
         $obj->where('goods.seller_id',$seller_id);
-
+        $obj->order('goods.create_time','desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();
         return [
