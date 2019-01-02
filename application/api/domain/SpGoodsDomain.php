@@ -170,7 +170,7 @@ class SpGoodsDomain
             $data['down_time'] = date('Y-m-d H:i:s');
         }
 
-        if(!Db::name('sp_goods')->where('id',$good_id)->update($data)){
+        if(!Db::name('sp_goods')->where('id','IN',$good_id)->update($data)){
             return false;
         }
 
