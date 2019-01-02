@@ -32,7 +32,7 @@ class ShopApi extends BaseController
         #文件上传类型
         $fileExt   = ['jpg', 'jpeg', 'png'];
         if($file){
-            $size = 1024*1024*2;              #单位字节
+            $size = 1024*1024*5;              #单位字节
             if(!$file->checkSize($size)){
                 return $this->returnData([],'上传图片大小不能超过2M',305);
             }
@@ -137,7 +137,7 @@ class ShopApi extends BaseController
     public function getGoodsList(){
 
         $page = $this->request->param('page',1);
-        $page_size = $this->request->param('limit',10);
+        $page_size = $this->request->param('limit',20);
 
         $data = $this->_goodsDomain->getSellerGoodsList($this->getSellerId(),$page,$page_size);
 
@@ -145,11 +145,9 @@ class ShopApi extends BaseController
     }
 
     public function getSellerOrderList(){
-
         $page = $this->request->param('page',1);
-        $page_size = $this->request->param('limit',10);
+        $page_size = $this->request->param('limit',20);
         $status = $this->request->param('status/d',0);
-
 
         $data = $this->_orderDomain->getSellerOrder($this->getSellerId(),$status,$page,$page_size);
 

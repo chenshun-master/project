@@ -203,7 +203,7 @@
                                         </div>
 
                                         <div class="layui-inline layui-word-aux" style="margin-left: 100px;padding-top: 5px;top: 5px;">
-                                            每张图片最大限制在2M以内，最多可添加6张<span style="color: #ec7f7f">(商品图片建议1:1比例的图片)</span>
+                                            每张图片最大限制在5M以内，最多可添加6张<span style="color: #ec7f7f">(商品图片建议1:1比例的图片)</span>
                                         </div>
 
                                         <div id="from-img-box">
@@ -234,7 +234,7 @@
                         <div class="box-body">
                             <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;">{$info['goods_info']['content']?:''}</textarea>
                             <div class="box-footer clearfix" style="padding-left: 0px;">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">发布商品</a>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left" onclick="objClass.releaseGoods()" >发布商品</a>
                             </div>
                         </div>
                     </div>
