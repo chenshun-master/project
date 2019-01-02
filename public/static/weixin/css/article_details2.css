@@ -41,9 +41,10 @@ width: 35px;
 }
 .wl-neirong img{
     width: 100%;
-    min-height: 80px;
-    margin: 0 auto;
     display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: .1vh;
 }
 .wl-tou-yonghu{
     width: 65%;
