@@ -21,7 +21,6 @@ class Test
 //        halt($mobile);
 //
 //
-
         $str = encryptStr('TEt3AV9wEmP8MTNHTm3L7ehtKYmNbqQ9YBzP58SGJ47gh+qb','D',config('conf.secret_key'));
 
         halt($str);

@@ -20,10 +20,11 @@ class SpreadGoods extends Command
 
     protected function execute(Input $input, Output $output)
     {
-
+        $time = date('Y-m-d 00:00:00',strtotime('-7 day'));
         $infos = Db::name('sp_spread_record')->alias('spread')
-            ->leftJoin('sh_order order','order.id = spread.order_id')
+            ->join('sh_order order','order.id = spread.order_id')
             ->where('spread.status',1)->field(['spread.id','spread.uid','spread.type','spread.num'])
+            ->where('pay_time', '<= time', $time)
             ->select();
 
         if(!$infos){

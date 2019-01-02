@@ -19,6 +19,7 @@ table.render({
     ,text: {
         none: '暂无相关数据'
     }
+    ,limit: 20
     ,cols: [[ //表头
         {type:'numbers'},
         {type:'checkbox',width:50,field: 'id'},
@@ -51,10 +52,8 @@ table.render({
             return '<a href="/seller/shop/addGood/goodsid/'+ row.id +'">编辑</a>';
         }},
     ]],
-    limits:[10,20,30,50,100]
+    limits:[20,30,50,100]
 });
-
-
 
 var active = {
     getCheckId: function(){ //获取选中数据

@@ -32,7 +32,7 @@ class ShopApi extends BaseController
         #文件上传类型
         $fileExt   = ['jpg', 'jpeg', 'png'];
         if($file){
-            $size = 1024*1024*2;              #单位字节
+            $size = 1024*1024*5;              #单位字节
             if(!$file->checkSize($size)){
                 return $this->returnData([],'上传图片大小不能超过2M',305);
             }
