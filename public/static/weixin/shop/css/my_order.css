@@ -274,3 +274,12 @@ a {text-decoration: none;color: #18B4FE;}
 }
 /*隐藏*/
 .hide{display: none;}
+.mescroll-empty .empty-icon{
+    width: 18%!important;
+    margin-top: 50px;
+}
+.mescroll-empty .empty-btn{
+    margin-top: 40px;
+    color: #7DB0E8;
+    border: 1px solid #7DB0E8;
+}

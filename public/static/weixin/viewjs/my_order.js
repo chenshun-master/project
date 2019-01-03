@@ -59,7 +59,7 @@ function initMescroll(mescrollId,clearEmptyId){
             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
             noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
             empty: {
-                icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
+                icon: "/static/weixin/image/mescroll/dingdan.png", //图标,默认null
                 tip: "亲,您还没有相关的订单~", //提示
                 btntext: "去逛逛 >",
                 btnClick: function(){

@@ -54,7 +54,7 @@
 }
 .wl-integral-list{
     position: fixed;
-    top:265px;
+    top: 225px;
     bottom: 0;
     height: auto!important;
     max-width: 640px;
@@ -147,4 +147,8 @@
 .wl-dongjie{
     width: 50%;
     float: right;
+}
+.mescroll-empty .empty-icon{
+    width: 20%!important;
+    margin-top: 50px;
 }

@@ -21,11 +21,11 @@
             <dl><i class="iconfont icon-yue"></i>可用余额</dl>
             <dt>{$uinfo['account']}</dt>
         </div>
-        <div class="wl-integral">
-            <span>现金收益</span>
-        </div>
+        <!--<div class="wl-integral">-->
+            <!--<span></span>-->
+        <!--</div>-->
         <div class="wl-benyue">
-            <div class="wl-month"><span>|</span>全部</div>
+            <div class="wl-month"><span>|</span>账单记录</div>
         </div>
     </div>
     <div class="wl-integral-list mescroll " id="container">
@@ -77,8 +77,8 @@
             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
             noMoreSize: 2, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
             empty: {
-                icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
-                tip: "您暂时没有余额消费记录", //提示
+                icon: "/static/weixin/image/mescroll/yue.png", //图标,默认null
+                tip: "您暂时没有余额记录", //提示
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
