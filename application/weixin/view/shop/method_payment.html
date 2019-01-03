@@ -2,6 +2,7 @@
 
 {block name="cssOrcrsipt"}
     <link rel="stylesheet" href="/static/weixin/shop/css/method_payment.css">
+    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
 {/block}
 
 {block name="main"}
@@ -42,7 +43,7 @@
 
 </div>
 
-<div class="wl-zhezhao" style="display: none">
+<div class="wl-zhezhao" style="display: block">
     <div class="wl-tanchu">
         <dl><i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop wl-zhifu-tu"></i></dl>
         <dt>加载中 ...</dt>
@@ -53,7 +54,6 @@
 
 {block name="script"}
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/plugin/layui/layui.all.js"></script>
 <script type="text/javascript">
     //调用微信JS api 支付
     var paymentObj = {
