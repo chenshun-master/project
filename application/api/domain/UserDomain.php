@@ -2,6 +2,7 @@
 namespace app\api\domain;
 use app\api\model\UserModel;
 use think\Db;
+use app\api\traits\DTrait;
 
 /**
  * 用户数据业务处理层
@@ -9,6 +10,8 @@ use think\Db;
  */
 class UserDomain
 {
+    use DTrait;
+
     private $userModel;
 
     public function __construct()
@@ -82,6 +85,9 @@ class UserDomain
      * @param $password
      * @param bool $quickLogin   是否需要验证密码
      * @return array|int|null|\PDOStatement|string|\think\Model     2:用户不存在   3:密码错误
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function login($mobile,$password,$quickLogin=false){
         $info = $this->userModel->findMobile($mobile);
@@ -307,6 +313,44 @@ class UserDomain
             return false;
         }
 
-        return $img_url;
+        return $img_url.'?v='.getRand(8);
+    }
+
+    /**
+     * 获取用户积分记录
+     * @param $user_id           用户ID
+     * @param int $page          当前分页
+     * @param int $page_size     分页大小     0:代表所有记录
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserScoreRecord($user_id,$page=1,$page_size=15){
+        $field = ['id','status','score','remarks','created_time'];
+        $obj = Db::name('score_record')->where('user_id',$user_id);
+
+        $total       = $obj->count('id');
+        $rows        = $obj->order('created_time','desc')->field($field)->page($page,$page_size)->select();
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
+     * 获取用户账户记录
+     * @param $user_id           用户ID
+     * @param int $page          当前分页
+     * @param int $page_size     分页大小     0:代表所有记录
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserAccountRecord($user_id,$page=1,$page_size=15){
+        $field = ['id','status','type','amount','remarks','created_time'];
+        $obj = Db::name('account_record')->where('user_id',$user_id);
+
+        $total       = $obj->count('id');
+        $rows        = $obj->order('created_time','desc')->field($field)->page($page,$page_size)->select();
+        return $this->packData($rows,$total,$page,$page_size);
     }
 }

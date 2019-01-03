@@ -6,6 +6,8 @@
     text-align: center;
     position: relative;
     border-bottom: 1px solid #EEEEEE;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .top-left {
     position: absolute;
@@ -217,6 +219,8 @@ a {text-decoration: none;color: #18B4FE;}
     border-bottom: 1px solid #ddd;
     font-size: 14px!important;
     color: #000000!important;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .header .nav p{
     display: inline-block;
@@ -231,8 +235,13 @@ a {text-decoration: none;color: #18B4FE;}
 .mescroll{
     position: fixed;
     top: 84px;
+    left: 0;
+    right: 0;
     bottom: 0;
     height: auto;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
 }
 /*展示上拉加载的数据列表*/
 .data-list li{

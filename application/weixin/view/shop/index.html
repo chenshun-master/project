@@ -1,8 +1,8 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-    <link rel="stylesheet" href="/static/weixin/shop/css/index.css">
-    <link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
+<link rel="stylesheet" href="/static/weixin/shop/css/index.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
@@ -15,13 +15,16 @@
         <div class="wl-daohang">
             <ul>
                 <li id="wl-quanbu">
-                    全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan" style="font-size: 10px;color: #888888;margin-left: 2px"></i>
+                    全部项目 <i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan"
+                            style="font-size: 10px;color: #888888;margin-left: 2px"></i>
                 </li>
                 <li>
-                    上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy"  style="font-size: 10px;color: #888888;margin-left: 4px"></i>
+                    上海<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy"
+                         style="font-size: 10px;color: #888888;margin-left: 4px"></i>
                 </li>
                 <li style="border: none;" id="wl-zhineng">
-                    智能排序<i  class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2" style="font-size: 10px;color: #888888;margin-left: 5px"></i>
+                    智能排序<i class="iconfont icon-shangsanjiaoxiangshangmianxing-copy qiehuan2"
+                           style="font-size: 10px;color: #888888;margin-left: 5px"></i>
                 </li>
             </ul>
         </div>
@@ -29,11 +32,11 @@
 </header>
 
 <main style="background:white;">
-        <div id="container" class="mescroll">
-            <div id="container-list">
+    <div id="container" class="mescroll">
+        <div id="container-list">
 
-            </div>
         </div>
+    </div>
 </main>
 
 <div class="marsk-container">
@@ -42,7 +45,7 @@
             <ul class="wl-deji">
                 <li data-path="" class="click-select-category href">全部项目</li>
                 {foreach $categoryNav as $key=>$vo }
-                    <li data-path="{$vo['id']}" class="click-select-category href" >{$vo['name']}</li>
+                <li data-path="{$vo['id']}" class="click-select-category href">{$vo['name']}</li>
                 {/foreach}
             </ul>
 
@@ -56,17 +59,17 @@
                     </div>
                     {foreach $v['subclass'] as $k2=>$v2 }
                     <!--<div>-->
-                        <!--<span class="click-select-category href" data-path="{$v2['path']}">-->
-                            <!--{$v2['name']}-->
-                            <!--<i class="iconfont icon-back_left-copy" style="font-size: 13px"></i>-->
-                        <!--</span>-->
-                        <!--<dl style="clear: both"></dl>-->
-                        <!--<div class="wl-das">-->
-                            <!--{foreach $v2['subclass'] as $k3=>$v3 }-->
-                            <!--<div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}-->
-                            <!--</div>-->
-                            <!--{/foreach}-->
-                        <!--</div>-->
+                    <!--<span class="click-select-category href" data-path="{$v2['path']}">-->
+                    <!--{$v2['name']}-->
+                    <!--<i class="iconfont icon-back_left-copy" style="font-size: 13px"></i>-->
+                    <!--</span>-->
+                    <!--<dl style="clear: both"></dl>-->
+                    <!--<div class="wl-das">-->
+                    <!--{foreach $v2['subclass'] as $k3=>$v3 }-->
+                    <!--<div class="wl-maixian click-select-category href" data-path="{$v3['path']}">{$v3['name']}-->
+                    <!--</div>-->
+                    <!--{/foreach}-->
+                    <!--</div>-->
                     <!--</div>-->
                     <!--<dl style="clear: both"></dl>-->
                     {/foreach}
@@ -76,35 +79,36 @@
         </div>
     </div>
 </div>
-    <div class="marsk-container1">
-        <div class="tkyy_con1 click-select-sort">
-            <p class="wl-xiao" data-sort="0" >默认排序</p>
-            <p class="wl-xiao" data-sort="1">销量最高</p>
-            <p class="wl-xiao" data-sort="2">日记最多</p>
-            <p class="wl-xiao" data-sort="3">最新上架</p>
-            <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
-        </div>
+<div class="marsk-container1">
+    <div class="tkyy_con1 click-select-sort">
+        <p class="wl-xiao" data-sort="0">默认排序</p>
+        <p class="wl-xiao" data-sort="1">销量最高</p>
+        <p class="wl-xiao" data-sort="2">日记最多</p>
+        <p class="wl-xiao" data-sort="3">最新上架</p>
+        <p class="wl-xiao" style="border: none;" data-sort="4">价格从高到低</p>
     </div>
-    <div class="marsk-container2" style="display: none">
+</div>
+<div class="marsk-container2" style="display: none">
 
-        <div class="tkyy_con2">
-            <div style="text-align: center;margin-top: 10px">
-                <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="color: white;font-size: 28px;"></i>
-            </div>
-            <div class="wl-jiazai">加载中...</div>
+    <div class="tkyy_con2">
+        <div style="text-align: center;margin-top: 10px">
+            <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop"
+               style="color: white;font-size: 28px;"></i>
         </div>
+        <div class="wl-jiazai">加载中...</div>
     </div>
-    <div class="wl-dingwei">
-        <!--<span class="iconfont icon-shuaxin wl-shuaxin"></span>-->
-        <span class="wl-haohuo" onclick="redream.href('/weixin/shop/haveGood')">有好货</span>
-        <div class="wl-good">
-            <ul >
-                <li class="iconfont icon-shangpin4 goods" onclick="redream.href('/weixin/shop/haveGood')"></li>
-                <li  class="iconfont icon-shuaxin wl-shuaxin icon-shangpin4 "></li>
-                <li class="iconfont icon-xiangshang1 href tiaozhaun" id="wl-tingbu"></li>
-            </ul>
-        </div>
+</div>
+<div class="wl-dingwei">
+    <!--<span class="iconfont icon-shuaxin wl-shuaxin"></span>-->
+    <span class="wl-haohuo" onclick="redream.href('/weixin/shop/haveGood')">有好货</span>
+    <div class="wl-good">
+        <ul>
+            <li class="iconfont icon-shangpin4 goods" onclick="redream.href('/weixin/shop/haveGood')"></li>
+            <li class="iconfont icon-shuaxin wl-shuaxin icon-shangpin4 "></li>
+            <li class="iconfont icon-xiangshang1 href tiaozhaun" id="wl-tingbu"></li>
+        </ul>
     </div>
+</div>
 {include file="layout/footer" /}
 {/block}
 
@@ -115,11 +119,12 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-shangping href to-goods-detail" data-goodsid="{{ item.id }}">
         <div class="wl-sp-img">
-            <img src="{{item.img}}" />
+            <img src="{{item.img}}"/>
         </div>
         <div class="wl-xiang href">
             <div class="wl-title">{{item.name}}</div>
-            <div class="wl-yiyuan"><span class="wl-name">{{item.doctor_name}}</span><span class="wl-meirong">{{item.hospital_name}}</span></div>
+            <div class="wl-yiyuan"><span class="wl-name">{{item.doctor_name}}</span><span class="wl-meirong">{{item.hospital_name}}</span>
+            </div>
             <div class="wl-yiyuan">{{item.sale_num}}人预订</div>
             <div class="wl-jiage">
                 <span class="wl-jiage"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>

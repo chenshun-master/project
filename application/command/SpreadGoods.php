@@ -65,7 +65,7 @@ class SpreadGoods extends Command
 
                     $scoreRecord = [
                         'user_id' => $data['uid'],
-                        'status' => 2,
+                        'status' => 1,
                         'type' => 1,
                         'score' => intval($data['num']),
                         'score_front' => $uInfo['score'],

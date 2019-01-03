@@ -164,4 +164,53 @@ class Upload extends CController
             return $this->returnData([],'未授权操作',403);
         }
     }
+
+
+
+    public function uploadFile(Request $request){
+        if(!$this->checkLogin()){
+            return json(array('errno' => 401, 'message' =>'未授予上传权限'));
+        }
+
+        $files = $request->file();
+
+        #文件上传类型
+        $fileExt   = ['gif', 'jpg', 'jpeg', 'png'];
+
+        $img_domain = config('conf.file_save_domain');
+
+        $size = 1024*1024*3;              #单位字节
+        $data = [];
+        if($files){
+            foreach ($files as $fileName=>$file){
+                if(!$file->checkSize($size)){
+                    return json(['errno' => 301, 'message' =>"{$fileName} 图片大小不能超过3M"]);
+                }
+
+                if(!$file->checkExt($fileExt)){
+                    return json(['errno' => 302, 'message' =>'文件格式错误只支持gif,jpg,jpeg及png格式的图片']);
+                }
+            }
+
+            foreach ($files as $fileName=>$file){
+                if(!$file->checkSize($size)){
+                    return json(['errno' => 301, 'message' =>"{$fileName} 图片大小不能超过3M"]);
+                }
+
+                if(!$file->checkExt($fileExt)){
+                    return json(['errno' => 302, 'message' =>'文件格式错误只支持gif,jpg,jpeg及png格式的图片']);
+                }
+
+                $info = $file->move( '../uploads/article');
+                if($info){
+                    $path_dir = $img_domain.'/article/'.str_replace("\\","/",$info->getSaveName());
+                    $getId = $this->_pictureLibraryDomain->create(5,$path_dir);
+                    if($getId){
+                        $data[] = $path_dir;
+                    }
+                }
+            }
+            return json(['errno' => 0, 'data' =>$data]);
+        }
+    }
 }

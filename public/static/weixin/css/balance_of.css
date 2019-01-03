@@ -1,0 +1,120 @@
+.wl-top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: white;
+    text-align: center;
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+.wl-top-jifen{
+    margin: 0 auto;
+    width: 95%;
+    height: 125px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    margin-top: 20px;
+}
+.wl-top-jifen dl{
+    color: #7DB0E8;
+    font-size: 13px;
+    padding-top: 30px;
+    padding-right: 8px;
+}
+.wl-top-jifen dt{
+    color: #7DB0E8;
+    font-size: 35px;
+    padding-top: 5px;
+}
+.wl-integral{
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    color: #000000;
+    font-size: 14px;
+    margin: 0 auto;
+}
+.wl-integral-list{
+    width: 95%;
+    min-height: 100px;
+    margin: 0 auto;
+}
+.wl-benyue{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px 0 10px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.wl-month{
+    width: 20%;
+    float: left;
+    height: 40px;
+    color: #333333;
+    font-size: 13px;
+    padding-left: 15px;
+    position: relative;
+}
+.wl-receive{
+    width: 80%;
+    float: left;
+    height: 40px;
+    color: #333333;
+    font-size: 13px;
+
+}
+.wl-top-jifen dl>i{
+    margin-right: 5px;
+}
+.wl-month>span{
+    font-size: 11px;
+    color: #7DB0E8;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+}
+.wl-balance-list{
+    width: 100%;
+    min-height: 55px;
+    border-bottom: 1px solid #EEEEEE;
+}
+.wl-bizhonhe{
+    width: 80%;
+    float: left;
+    padding-left: 15px;
+}
+.wl-bizhonhe>dl{
+    color: #000000;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-top: 10px;
+}
+.wl-bizhonhe>dt{
+     color: #F24F4F;
+     font-size: 13px;
+ }
+.wl-bizhonhe>dd{
+    color: #999999;
+    font-size: 11px;
+    margin-top: 3px;
+}
+.wl-qianshu{
+    width: 20%;
+    float: right;
+    text-align: right;
+    color: #FE9464;
+    font-size: 13px;
+    margin-top: 10px;
+    padding-right: 10px;
+}

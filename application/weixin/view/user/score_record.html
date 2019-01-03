@@ -1,0 +1,114 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/score_record.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<header>
+    <div class="wl-top">
+        <a href="/weixin/user/main"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
+        <span>我的积分</span>
+    </div>
+</header>
+<!--这里编写主体内容-->
+<div style="width: 100%;min-height: 500px;padding-bottom: 50px">
+    <div class="wl-top-jifen">
+        <div style="width: 75%;margin: 0 auto">
+            <div class="wl-jifen">
+                <dl><i class="iconfont icon-jifen1"></i>可用积分</dl>
+                <dt>191</dt>
+            </div>
+            <div class="wl-dongjie">
+                <dl><i class="iconfont icon-suo2"></i>冻结积分</dl>
+                <dt>3546</dt>
+            </div>
+        </div>
+    </div>
+    <div class="wl-integral">
+        <span>积分记录</span>
+    </div>
+    <div class="wl-integral-list">
+        <div>
+            <!--<div class="wl-benyue">-->
+                <!--<div class="wl-month"><span>|</span>本月</div>-->
+                <!--<div class="wl-obtain">获取:<span class="wl-shuzi">18</span>使用:266</div>-->
+            <!--</div>-->
+            <div class="wl-benyue">
+                <div class="wl-month"><span>|</span>全部</div>
+            </div>
+            <div style="clear: both"></div>
+            <div id="container">
+                <div id="container-list">
+
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-benyue1">
+        <div class="wl-receive">
+            <dl>积分领取_什么什么领取</dl>
+            <dt>2019-01-03</dt>
+        </div>
+        <div class="wl-obtain1"><span class="wl-shuzi1">+1</span></div>
+    </div>
+    <div style="clear: both"></div>
+    {{#  }); }}
+</script>
+<script>
+    var listObj = {
+        params: {},
+        searchList: function (page, successCallback, errorCallback) {
+            var data = $.extend({}, {page: page.num, page_size: page.size}, listObj.params);
+            $.ajax({
+                url: "/weixin/api/getScoreRecord  ",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+                error: errorCallback
+            });
+        },
+    };
+    var mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0,size: 15},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
+            noMoreSize: 2, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+            empty: {
+                icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
+                tip: "亲,没有您要找的商品~", //提示
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                        $('#container-list').append(html);
+                    });
+
+                }, function(){
+                    mescroll.endErr();
+                });
+            },
+        }
+    });
+</script>
+{/block}
