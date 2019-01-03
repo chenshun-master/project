@@ -42,11 +42,6 @@
     font-size: 14px;
     margin: 0 auto;
 }
-.wl-integral-list{
-    width: 95%;
-    min-height: 100px;
-    margin: 0 auto;
-}
 .wl-benyue{
     width: 100%;
     height: 40px;
@@ -117,4 +112,21 @@
     font-size: 13px;
     margin-top: 10px;
     padding-right: 10px;
+}
+.wl-top-dingwei{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 640px;
+    background: white;
+}
+.wl-integral-list{
+    position: fixed;
+    top:265px;
+    bottom: 0;
+    height: auto!important;
+    max-width: 640px;
+    width: 95%;
 }

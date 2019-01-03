@@ -2,66 +2,95 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/balance_of.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 <style>
 
 </style>
 {/block}
 
 {block name="main"}
-
-<header>
-    <div class="wl-top">
-        <a href="/weixin/user/main"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
-        <span>账户余额</span>
-    </div>
-</header>
 <!--这里编写主体内容-->
 <div style="width: 100%;min-height: 500px;padding-bottom: 50px">
-    <div class="wl-top-jifen">
-        <dl><i class="iconfont icon-yue"></i>可用余额</dl>
-        <dt>19</dt>
-    </div>
-    <div class="wl-integral">
-        <span>现金收益</span>
-    </div>
-    <div class="wl-integral-list">
-        <div>
-            <div class="wl-benyue">
-                <div class="wl-month"><span>|</span>全部</div>
-            </div>
-            <div class="wl-balance-list">
-                <div class="wl-bizhonhe">
-                    <dl>爆款仙女鼻综合你俩看的本基金可..俩看的本基金可..俩看的本基金可...</dl>
-                    <dd>2019-01-03</dd>
-                </div>
-                <div class="wl-qianshu">+30</div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-balance-list">
-                <div class="wl-bizhonhe">
-                    <dl>爆款仙女鼻综合你俩看的本基金可..俩看的本基金可..俩看的本基金可...</dl>
-                    <dd>2019-01-03</dd>
-                </div>
-                <div class="wl-qianshu">+30</div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-balance-list">
-                <div class="wl-bizhonhe">
-                    <dl>爆款仙女鼻综合你俩看的本基金可..俩看的本基金可..俩看的本基金可...</dl>
-                    <dd>2019-01-03</dd>
-                </div>
-                <div class="wl-qianshu">+30</div>
-            </div>
-            <div style="clear: both"></div>
+    <div class="wl-top-dingwei">
+        <div class="wl-top">
+            <a href="/weixin/user/main"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
+            <span>账户余额</span>
+        </div>
+        <div class="wl-top-jifen">
+            <dl><i class="iconfont icon-yue"></i>可用余额</dl>
+            <dt>19</dt>
+        </div>
+        <div class="wl-integral">
+            <span>现金收益</span>
+        </div>
+        <div class="wl-benyue">
+            <div class="wl-month"><span>|</span>全部</div>
         </div>
     </div>
+    <div class="wl-integral-list mescroll " id="container">
+        <div id="container-list">
 
+        </div>
 
-
+    </div>
 </div>
 
 {/block}
-
 {block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-balance-list">
+        <div class="wl-bizhonhe">
+            <dl>{{item.remarks}}</dl>
+            <dd>{{item.created_time}}</dd>
+        </div>
+        <div class="wl-qianshu">{{item.amount}}</div>
+    </div>
+    {{#  }); }}
+</script>
+<script>
+    var listObj = {
+        params: {},
+        searchList: function (page, successCallback, errorCallback) {
+            var data = $.extend({}, {page: page.num, page_size: page.size}, listObj.params);
+            $.ajax({
+                url: "/weixin/api/getAccountRecord ",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+                error: errorCallback
+            });
+        },
+    };
+    var mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0,size: 15},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
+            noMoreSize: 2, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+            empty: {
+                icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
+                tip: "您暂时没有余额消费记录", //提示
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                        $('#container-list').append(html);
+                    });
 
+                }, function(){
+                    mescroll.endErr();
+                });
+            },
+        }
+    });
+</script>
 {/block}
