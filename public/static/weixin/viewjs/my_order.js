@@ -54,7 +54,7 @@ function initMescroll(mescrollId,clearEmptyId){
         down:{auto:true},
         up: {
             clearEmptyId: clearEmptyId,
-            page: {num: 0,size: 5},
+            page: {num: 0,size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
             noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
