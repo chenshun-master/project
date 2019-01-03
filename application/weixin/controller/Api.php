@@ -391,7 +391,6 @@ class Api extends BaseController
 
         $page      = $this->request->param('page',1);
         $page_size = $this->request->param('page_size',15);
-
         $data = $this->_userDomain->getUserAccountRecord($this->getUserId(),$page,$page_size);
         if(count($data['rows']) > 0){
             foreach ($data['rows'] as $k=>$row){
@@ -404,10 +403,5 @@ class Api extends BaseController
         }
 
         return $this->returnData($data);
-    }
-
-
-    public function test(){
-        $this->_userDomain->test();
     }
 }
