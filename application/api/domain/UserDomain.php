@@ -354,5 +354,34 @@ class UserDomain
         return $this->packData($rows,$total,$page,$page_size);
     }
 
-    
+    public function test(){
+        for ($i=1; $i<=100;$i++){
+            Db::startTrans();
+            try {
+                $old_score = Db::name('user')->where('id',61)->value('account');
+                $type = 1;
+                $score = $i;
+                Db::name('user')->where('id',61)->setInc('account',$score);
+                $scoreRecord = [
+                    'user_id' => 61,
+                    'status' => 1,
+                    'type' => 1,
+                    'amount' => $score,
+                    'amount_front' => $old_score,
+                    'amount_after' => $old_score + intval($score),
+                    'remarks'    =>'积分兑换余额',
+                    'created_time' => date('Y-m-d H:i:s',strtotime("-{$i} day"))
+                ];
+
+                if (!$getId = Db::name('account_record')->insertGetId($scoreRecord)) {
+                    throw new \think\Exception('添加积分记录失败');
+                }
+
+                Db::commit();
+            } catch (\Exception $e) {
+                Db::rollback();
+                halt($e);
+            }
+        }
+    }
 }

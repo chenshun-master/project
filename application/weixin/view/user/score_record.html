@@ -22,11 +22,11 @@
             <div style="width: 75%;margin: 0 auto">
                 <div class="wl-jifen">
                     <dl><i class="iconfont icon-jifen1"></i>可用积分</dl>
-                    <dt>191</dt>
+                    <dt>{$uinfo['score']}</dt>
                 </div>
                 <div class="wl-dongjie">
                     <dl><i class="iconfont icon-suo2"></i>冻结积分</dl>
-                    <dt>3546</dt>
+                    <dt>{$uinfo['lock_score']}</dt>
                 </div>
             </div>
         </div>
@@ -37,13 +37,13 @@
             <div class="wl-month"><span>|</span>全部</div>
         </div>
     </div>
-        <div class="wl-integral-list mescroll " id="container">
+    <div class="wl-integral-list mescroll " id="container">
 
-                <div id="container-list">
-
-                </div>
+        <div id="container-list">
 
         </div>
+
+    </div>
 
 </div>
 {/block}
@@ -81,10 +81,10 @@
         },
     };
     var mescroll = new MeScroll("container", {
-        down:{auto:true},
+        down: {auto: true},
         up: {
             clearEmptyId: "container-list",
-            page: {num: 0,size: 15},
+            page: {num: 0, size: 15},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
             noMoreSize: 2, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
@@ -92,14 +92,14 @@
                 icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
                 tip: "亲,没有您要找的商品~", //提示
             },
-            callback: function(page){
-                listObj.searchList(page,function(curPageData){
+            callback: function (page) {
+                listObj.searchList(page, function (curPageData) {
                     mescroll.endSuccess(curPageData.length);
-                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                    layui.laytpl(templateList.innerHTML).render(curPageData, function (html) {
                         $('#container-list').append(html);
                     });
 
-                }, function(){
+                }, function () {
                     mescroll.endErr();
                 });
             },

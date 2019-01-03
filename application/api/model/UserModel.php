@@ -19,7 +19,8 @@ class UserModel extends Model
     }
 
     public function findUserId($user_id){
-        return  self::where('id',$user_id)->find();
+        $field = ['id','mobile','nickname','type','score','lock_score','account','sex','portrait','birthday_date','profile'];
+        return  self::where('id',$user_id)->field($field)->find();
     }
 
     public function getMobile($user_id){
