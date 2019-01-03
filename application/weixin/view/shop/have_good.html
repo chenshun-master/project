@@ -11,7 +11,7 @@
 
 {block name="main"}
 
-<div style="width: 100%;min-height: 500px;">
+<div class="wl-ding">
     <header>
         <div class="wl-top-tt">
             <div class="wl-top">
@@ -23,8 +23,10 @@
     </header>
     <main>
 
-        <div id="container" class="mescroll">
-            <div id="container-list"></div>
+        <div class="mescroll wl-integral-list" id="container" >
+          <div id="container-list">
+
+            </div>
         </div>
     </main>
 </div>
@@ -74,7 +76,7 @@
         down:{auto:true},
         up: {
             clearEmptyId: "container-list",
-            page: {num: 0,size: 15},
+            page: {num: 0,size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
             noMoreSize: 2, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
