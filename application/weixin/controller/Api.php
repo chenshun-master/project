@@ -367,4 +367,22 @@ class Api extends BaseController
         return $this->returnData($data);
     }
 
+    /**
+     * 获取用户资金记录列表
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getAccountRecord(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $page      = $this->request->param('page',1);
+        $page_size = $this->request->param('page_size',15);
+
+        $data = $this->_userDomain->getUserAccountRecord($this->getUserId(),$page,$page_size);
+        return $this->returnData($data);
+    }
 }

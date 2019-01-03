@@ -313,7 +313,7 @@ class UserDomain
             return false;
         }
 
-        return $img_url;
+        return $img_url.'?v='.getRand(8);
     }
 
     /**
@@ -330,40 +330,27 @@ class UserDomain
         $field = ['id','status','score','remarks','created_time'];
         $obj = Db::name('score_record')->where('user_id',$user_id);
 
-        $score_total = (int)$obj->sum('score');
         $total       = $obj->count('id');
         $rows        = $obj->order('created_time','desc')->field($field)->page($page,$page_size)->select();
-        return $this->packData($rows,$total,$page,$page_size,['score_total'=>$score_total]);
+        return $this->packData($rows,$total,$page,$page_size);
     }
 
-//    public function test(){
-//
-//        for ($i=1; $i<=20;$i++){
-//            Db::startTrans();
-//            try {
-//                $old_score = Db::name('score_record')->where('user_id',61)->value('score');
-//                $type = 1;
-//                $score = -$i;
-//                Db::name('user')->where('id',61)->setDec('score',$score);
-//                $scoreRecord = [
-//                    'user_id' => 61,
-//                    'status' => 2,
-//                    'type' => 2,
-//                    'score' => $score,
-//                    'score_front' => $old_score,
-//                    'score_after' => $old_score + intval($score),
-//                    'remarks'    =>'积分消费',
-//                    'created_time' => date('Y-m-d H:i:s',strtotime("-{$i} day"))
-//                ];
-//
-//                if (!$getId = Db::name('score_record')->insertGetId($scoreRecord)) {
-//                    throw new \think\Exception('添加积分记录失败');
-//                }
-//
-//                Db::commit();
-//            } catch (\Exception $e) {
-//                Db::rollback();
-//            }
-//        }
-//    }
+    /**
+     * 获取用户账户记录
+     * @param $user_id           用户ID
+     * @param int $page          当前分页
+     * @param int $page_size     分页大小     0:代表所有记录
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserAccountRecord($user_id,$page=1,$page_size=15){
+        $field = ['id','status','type','amount','remarks','created_time'];
+        $obj = Db::name('account_record')->where('user_id',$user_id);
+
+        $total       = $obj->count('id');
+        $rows        = $obj->order('created_time','desc')->field($field)->page($page,$page_size)->select();
+        return $this->packData($rows,$total,$page,$page_size);
+    }
 }
