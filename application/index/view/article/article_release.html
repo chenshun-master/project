@@ -104,7 +104,7 @@
                 </a>
             </div>
             <div class="wl-fabu">
-                <p>发表文章</p>
+                <p class="wl-fabiaowen">发表文章</p>
                 <input type="hidden" id="fr-id" value="{$articleInfo?$articleInfo['id']:0}">
                 <input type="hidden" id="fr-draft" value="{$articleInfo && $articleInfo['status'] == 2 ?1:0}">
                 <div style="height: 60px;line-height: 60px;padding-left: 10px;margin-top: 20px">
@@ -123,7 +123,9 @@
                 </div>
                 <div style="clear: both;padding-left: 10px;">
                     <div style="float: left;width: 90%;margin-top: 35px; margin-left: 44px;">
-                        <textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;"><?php echo $articleInfo?$articleInfo['content']:''; ?></textarea>
+                        <div id="wang-editor">
+                            <?php echo $articleInfo?$articleInfo['content']:''; ?>
+                        </div>
                     </div>
                 </div>
                 <div style="clear: both;min-height: 200px;padding-left: 10px;padding-top: 38px;position: relative">
@@ -178,148 +180,6 @@
 </body>
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
-<script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
-<script>
-    KindEditor.ready(function (K) {
-        // https://blog.csdn.net/qxl2012/article/details/78052128
-        K.allowImageRemote = false;
-        window.editor = K.create('#editor_id', {
-            cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
-            resizeMode: 1,
-            items: [
-                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'cut', 'copy', '|', 'justifyleft', 'justifycenter', 'justifyright',
-                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-                'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
-                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',  'hr',
-                'anchor', 'link', 'unlink'
-            ],
-            uploadJson: '/index/upload/editUploadImgFile',
-            allowFileManager: false,
-            allowImageRemote: true,
-            syncType: 'auto',
-            afterCreate: function () {
-                var self = this;
-                self.sync();
-            }
-        });
-
-        window.editor.sync();
-    });
-
-    $(document).on('focus', '#remoteUrl', function () {
-        $(this).prop("readonly", "readonly");
-        $(this).parent().hide();
-    });
-
-    var objClass = {
-        loading: false,
-        loading2: false,
-        getData:function(flag){
-            window.editor.sync();
-            var imgArr = [];
-            $.each($('.cus-fr-images'), function (key, val) {
-                imgArr.push(val.src);
-            });
-
-            return {
-                article_id:$('#fr-id').val(),
-                flag:flag,
-                title: $.trim($('#fr-title').val()),
-                tag: $('#fr-tag').val(),
-                content: $.trim($('#editor_id').val()),
-                excerpt: $('#fr-zaiyao').val(),
-                thumbnail_img: imgArr,
-                isdraft:$('#fr-draft').val(),
-            };
-        },
-        submit: function (flag) {
-            var data = this.getData(flag);
-            if (data.title == '') {
-                alert('标题不能为空');
-            }else if (!this.loading) {
-                $.ajax({
-                    url: "/index/article/releaseArticle",
-                    type: 'post',
-                    data: data,
-                    dataType: 'json',
-                    beforeSend: function () {
-                        objClass.loading = true;
-                    },
-                    complete: function () {
-                        objClass.loading = false;
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            alert('发布成功');
-                            window.location.href = '/index/article/graphic';
-                        } else {
-                            alert(res.msg);
-                        }
-                    }
-                });
-            }
-        },
-    };
-
-    $("#btn-input-file").on("change", function () {
-        if (objClass.loading2) {
-            return false;
-        }
-
-        var formData = new FormData($('#infoLogoForm')[0]);
-        formData.append('type', 5);
-        $.ajax({
-            url: '/index/upload/uploadImgFile',
-            type: 'POST',
-            cache: false,
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: "json",
-            beforeSend: function () {
-                objClass.loading2 = true;
-                $(".wl-zh1").show();
-            },
-            complete: function () {
-                objClass.loading2 = false;
-                $(".wl-zh1").hide();
-            },
-            success: function (data) {
-                if (data.code == 200) {
-                    $('#ccc').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="120" height="120" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
-                    if ($('.cus-fr-images').length >= 3) {
-                        $('#btn-input-file').prop('disabled', true);
-                    }
-                } else {
-                    alert(data.msg);
-                }
-            }
-        });
-    });
-
-    $(".wl-xian").click(function () {
-        $(".wl-cang").toggle();
-    });
-
-    $(".wl-shimin").click(function () {
-        $(".wl-cang1").toggle();
-    });
-
-    $(".wl-tabc").click(function () {
-        $(".wl-cang").hide();
-    });
-
-    $(document).on('click', '.cus-remove-img', function () {
-        $(this).parent().remove();
-        $('#btn-input-file').prop('disabled', false);
-    });
-
-    $(".wl-yingj").click(function () {
-        $(".wl-ding").toggle();
-        $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
-        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
-    });
-</script>
+<script type="text/javascript" src="/static/plugin/wangEditor/release/wangEditor.min.js"></script>
+<script type="text/javascript" src="/static/web/viewjs/article_release.js"></script>
 </html>
