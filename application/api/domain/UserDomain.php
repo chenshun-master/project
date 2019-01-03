@@ -2,6 +2,7 @@
 namespace app\api\domain;
 use app\api\model\UserModel;
 use think\Db;
+use app\api\traits\DTrait;
 
 /**
  * 用户数据业务处理层
@@ -9,6 +10,8 @@ use think\Db;
  */
 class UserDomain
 {
+    use DTrait;
+
     private $userModel;
 
     public function __construct()
@@ -82,6 +85,9 @@ class UserDomain
      * @param $password
      * @param bool $quickLogin   是否需要验证密码
      * @return array|int|null|\PDOStatement|string|\think\Model     2:用户不存在   3:密码错误
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function login($mobile,$password,$quickLogin=false){
         $info = $this->userModel->findMobile($mobile);
@@ -308,5 +314,61 @@ class UserDomain
         }
 
         return $img_url;
+    }
+
+    /**
+     * 获取用户积分记录
+     * @param $user_id           用户ID
+     * @param int $page          当前分页
+     * @param int $page_size     分页大小     0:代表所有记录
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserScoreRecord($user_id,$page=1,$page_size=15){
+        $field = ['id','status','score','remarks'];
+        $obj = Db::name('score_record')->where('user_id',$user_id);
+
+        $score_total = (int)$obj->sum('score');
+        $total       = $obj->count('id');
+        $rows        = $obj->field($field)->page($page,$page_size)->select();
+
+        return $this->packData($rows,$total,$page,$page_size,['score_total'=>$score_total]);
+    }
+
+    /**
+     * 获取分销积分记录列表
+     * @param $user_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getBusinessScoreRecord($user_id){
+        $field = [
+            'a.type','a.num','a.status',"ifnull(b.remarks,'')"=>'remarks'
+        ];
+
+        $obj = Db::name('sp_spread_record a')
+            ->leftJoin('wl_score_record b','b.id = a.record_id')
+            ->where('a.uid',$user_id)
+            ->where('a.type',1);
+
+        $rows = $obj->field($field)->select();
+
+        $available = 0;
+        $lock      = 0;
+        if(count($rows) > 0){
+            foreach ($rows as $key=>$row){
+                if($row['status'] === 1){
+                    $lock += intval($row['num']);
+                }else if($row['status'] === 2){
+                    $available += intval($row['num']);
+                }
+            }
+        }
+
+        return $this->packData($rows,count($rows),1,0,['available_score'=>$available,'lock_score'=>$lock]);
     }
 }
