@@ -66,6 +66,7 @@
                 <p class="wl-fabiaowen">我的分销商品</p>
                 <div class="wl-xianshi-neirong">
                     <!--<div class="wl-all-title">已显示全部40条内容</div>-->
+                    {if(count($list['rows']) > 0)}
                     {foreach($list['rows'] as $val)}
                         <div class="wl-all-neirong">
                             <div class="wl-all-left">
@@ -83,6 +84,12 @@
                             <!--</div>-->
                         </div>
                     {/foreach}
+                    {else/}
+                    <div class="wl-weifabiao">
+                        <dl class="iconfont icon-wushuju"></dl>
+                        <dt>你还没有发布过文章</dt>
+                    </div>
+                    {/if}
                     <div id="wl-fenye" ></div>
                     </div>
                 <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
