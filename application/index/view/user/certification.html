@@ -96,7 +96,7 @@
 
                 <!--个人认证页面-->
                 <div class="{if($type == 1 || $type == 0)} active-txt {/if} wl-geren"  id="friends-container-list" style="    min-height: 750px;">
-                    <p>个人认证</p>
+                    <p class="wl-fabiaowen">个人认证</p>
                     <p class="wl-zhen" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
                     <p class="wl-zhen">身份证号 <span class="wl-xin">*</span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"  maxlength="18" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
                     <dl style="position: relative">
@@ -140,7 +140,7 @@
 
                 <!--医生认证页面-->
                 <div class="{if($type == 2)} active-txt {/if} wl-geren1" style="min-height: 1120px" id="follow-container-list" >
-                    <p>医生认证</p>
+                    <p class="wl-fabiaowen">医生认证</p>
                     <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
                     <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"style="    margin-left: 25px;" ></p>
                     <p class="wl-zhen1" >擅长项目 <span class="wl-xin">*</span><input type="text" placeholder="请输入擅长项目" id="fr2-speciality" ></p>
@@ -224,7 +224,7 @@
 
                 <!--医院机构认证页面-->
                 <div class="{if($type == 3)} active-txt {/if} wl-geren2" style="min-height: 1400px" id="fans-container-list" >
-                    <p>医院/机构认证</p>
+                    <p class="wl-fabiaowen">医院/机构认证</p>
                     <p class="wl-zhen2" style="margin-top: 15px">医院名称 <span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
                     <p class="wl-zhen2">医院性质 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院性质 (门诊部/医院)"  style="margin-left: 76px"  id="fr3-type"></p>
                     <p class="wl-zhen2">成立时间 <span class="wl-xin">*</span> <input type="text" placeholder="请选择成立时间"  style="margin-left: 76px" id="fr3-founding-time" ></p>
@@ -313,7 +313,7 @@
 
                 <!--官方企业认证页面-->
                 <div class="{if($type == 4)} active-txt {/if} wl-geren3" style="min-height: 1255px"  id="four-container-list" >
-                    <p>官方企业认证</p>
+                    <p class="wl-fabiaowen">官方企业认证</p>
                     <p class="wl-zhen3" style="margin-top: 15px;">企业名称<span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 81px;"></p>
                     <p class="wl-zhen3">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
                     <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18" ></p>

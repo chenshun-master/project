@@ -158,7 +158,7 @@ a {
 .wl-cang1 a{
     color: black;
 }
-.tab-box li {
+.wl-cang1 span>a>li {
     width: 180px;
     height: 60px;
     line-height: 60px;
