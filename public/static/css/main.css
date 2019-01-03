@@ -230,6 +230,7 @@ position: absolute;
     height: 40px;
     float: left;
     padding-left: 40px;
+    position: relative;
 }
 
 .wx-fen li:nth-child(1) {
@@ -251,9 +252,11 @@ position: absolute;
 }
 
 .wx-fen li span {
-    width: 100px;
     color: #333333;
     font-size: 26px;
+    position: absolute;
+    left: 122px;
+    top: 1px;
 }
 
 .on1 {

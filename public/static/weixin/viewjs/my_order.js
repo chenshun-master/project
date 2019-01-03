@@ -1,335 +1,117 @@
-$(".wl-deji li").click(function(){
-    $(this).addClass("active").siblings().removeClass("active");
-    var index = $(this).index();
-    $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
-    if(index == 0 && myObj.goods.listData.ini == false){
-        var dropload = $('#container').dropload({
-            scrollArea : window,
-            loadUpFn:function(me){
-                myObj.goods.listData.loading = false;
-                myObj.goods.listData.ini = false;
-                myObj.goods.listData.page = 0;
-                myObj.goods.listData.page_total = 1;
-                myObj.goods.loadList(me);
-            },
-            loadDownFn : function(me){
-                myObj.goods.loadList(me);
-            }
-        });
-    }else if(index == 1 && myObj.paid.listData.ini == false){
-        var dropload = $('#container-one').dropload({
-            scrollArea : window,
-            loadUpFn:function(me){
-                myObj.paid.listData.loading = false;
-                myObj.paid.listData.ini = false;
-                myObj.paid.listData.page = 0;
-                myObj.paid.listData.page_total = 1;
-                myObj.paid.loadList(me);
-            },
-            loadDownFn : function(me){
-                myObj.paid.loadList(me);
-            }
-        });
-    }else if(index == 2 && myObj.consumption.listData.ini == false){
-        var dropload = $('#container-two').dropload({
-            scrollArea : window,
-            loadUpFn:function(me){
-                myObj.consumption.listData.loading = false;
-                myObj.consumption.listData.ini = false;
-                myObj.consumption.listData.page = 0;
-                myObj.consumption.listData.page_total = 1;
-                myObj.consumption.loadList(me);
-            },
-            loadDownFn : function(me){
-                myObj.consumption.loadList(me);
-            }
-        });
-    }else if(index == 3 && myObj.complete.listData.ini == false){
-        var dropload = $('#container-three').dropload({
-            scrollArea : window,
-            loadUpFn:function(me){
-                myObj.complete.listData.loading = false;
-                myObj.complete.listData.ini = false;
-                myObj.complete.listData.page = 0;
-                myObj.complete.listData.page_total = 1;
-                myObj.complete.loadList(me);
-            },
-            loadDownFn : function(me){
-                myObj.complete.loadList(me);
-            }
-        });
+
+
+var curNavIndex=0;
+var mescrollArr=new Array(4);
+var url = window.location.toString();
+var maodian = url.split('#')[1];
+$('.mescroll').addClass('hide');
+if(maodian == 'all'){
+    $('#mescroll0').removeClass('hide');
+    mescrollArr[0]= initMescroll("mescroll0", "dataList0");
+}else if(maodian  == 'paid'){
+    curNavIndex = 1;
+    $('#mescroll1').removeClass('hide');
+    mescrollArr[1]= initMescroll("mescroll1", "dataList1");
+}else if(maodian == 'consumption'){
+    curNavIndex = 2;
+    mescrollArr[2]= initMescroll("mescroll2", "dataList2");
+    $('#mescroll2').removeClass('hide');
+}else if(maodian == 'complete'){
+    curNavIndex = 3;
+    mescrollArr[3]= initMescroll("mescroll3", "dataList3");
+    $('#mescroll3').removeClass('hide');
+}else{
+    curNavIndex = 0;
+    mescrollArr[0]= initMescroll("mescroll0", "dataList0");
+    $('#mescroll0').removeClass('hide');
+}
+
+$(".nav > p").eq(curNavIndex).addClass('active').siblings().removeClass('active');
+
+
+$(".nav p").click(function(){
+    var i=Number($(this).attr("i"));
+    if(curNavIndex!=i) {
+        //更改列表条件
+        $(".nav .active").removeClass("active");
+        $(this).addClass("active");
+        //隐藏当前列表和回到顶部按钮
+        $("#mescroll"+curNavIndex).hide();
+        mescrollArr[curNavIndex].hideTopBtn();
+        //显示对应的列表
+        $("#mescroll"+i).show();
+        //取出菜单所对应的mescroll对象,如果未初始化则初始化
+        if(mescrollArr[i]==null){
+            mescrollArr[i]=initMescroll("mescroll"+i, "dataList"+i);
+        }
+        //更新标记
+        curNavIndex=i;
     }
 });
 
-$(function () {
-    var url = window.location.toString();
-    var maodian = url.split('#')[1];
-    if(maodian == 'all'){
-        $(".wl-deji li").eq(0).trigger('click');
-    }else if(maodian  == 'paid'){
-        $(".wl-deji li").eq(1).trigger('click');
-    }else if(maodian == 'consumption'){
-        $(".wl-deji li").eq(2).trigger('click');
-    }else if(maodian == 'complete'){
-        $(".wl-deji li").eq(3).trigger('click');
-    }else{
-        $(".wl-deji li").eq(0).trigger('click');
-    }
-});
-
-var myObj = {
-    //全部订单
-    goods:{
-        listData: {
-            status:0,
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 15,
-        },
-        loadList: function (me) {
-            if (myObj.goods.listData.loading) {
-                return false;
-            }
-            myObj.goods.listData.page++;
-            if (myObj.goods.listData.ini == true) {
-                if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                    me.resetload();return false;
+function initMescroll(mescrollId,clearEmptyId){
+    var mescroll = new MeScroll(mescrollId, {
+        down:{auto:true},
+        up: {
+            clearEmptyId: clearEmptyId,
+            page: {num: 0,size: 5},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
+            noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+            empty: {
+                icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
+                tip: "亲,您还没有相关的订单~", //提示
+                btntext: "去逛逛 >",
+                btnClick: function(){
+                    window.location.href = "/weixin/shop/index";
                 }
-            }
-
-            $.ajax({
-                url: "/weixin/shopapi/getUserOrder",
-                type: 'post',
-                data: {status:myObj.goods.listData.status,page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
-                dataType: 'json',
-                beforeSend: function () {
-                    myObj.goods.listData.loading = true;
-                },
-                complete: function () {
-                    myObj.goods.listData.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if ( myObj.goods.listData.ini == false) {
-                            myObj.goods.listData.ini = true;
-                            myObj.goods.listData.page_total = res.data.page_total;
-                            $('#container-list').html('');
-                            if(res.data.page_total == 0){
-                                $('#container-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
-                            }
-                        }
-
-                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                            $('#container-list').append(html);
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+                    var template = orderList.innerHTML;
+                    if(curNavIndex==0){
+                        layui.laytpl(template).render(curPageData, function(html){
+                            $('#dataList0').append(html);
                         });
-
-                        if(myObj.goods.listData.page >= myObj.goods.listData.page_total){
-                            me.noData();
-                        }
-                    }
-                    me.resetload();
-
-                    if(myObj.goods.listData.page_total == 0){
-                        $('#container-list').parent().find('.dropload-down').hide();
-                    }else{
-                        $('#container-list').parent().find('.dropload-down').show();
-                    }
-                }
-            })
-        }
-    },
-    //待支付订单
-    paid:{
-        listData: {
-            status:1,
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 10,
-        },
-        loadList: function (me) {
-            if (myObj.paid.listData.loading) {
-                return false;
-            }
-            myObj.paid.listData.page++;
-            if (myObj.paid.listData.ini == true) {
-                if (myObj.paid.listData.page > myObj.paid.listData.page_total) {
-                    me.resetload();
-                    return false;
-                }
-            }
-
-            $.ajax({
-                url: "/weixin/shopapi/getUserOrder",
-                type: 'post',
-                data: {status:myObj.paid.listData.status,page: myObj.paid.listData.page, page_size: myObj.paid.listData.page_size},
-                dataType: 'json',
-                beforeSend: function () {
-                    myObj.paid.listData.loading = true;
-                },
-                complete: function () {
-                    myObj.paid.listData.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if ( myObj.paid.listData.ini == false) {
-                            myObj.paid.listData.ini = true;
-                            myObj.paid.listData.page_total = res.data.page_total;
-                            $('#paid-list').html('');
-                            if(res.data.page_total == 0){
-                                $('#paid-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
-                            }
-                        }
-                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                            $('#paid-list').append(html);
+                    }else if(curNavIndex==1){
+                        layui.laytpl(template).render(curPageData, function(html){
+                            $('#dataList1').append(html);
                         });
-                        if(myObj.paid.listData.page >= myObj.paid.listData.page_total){
-                            me.noData();
-                        }
-                    }else if (res.code == 401) {
-                        redream.showTip('请先进行登录');
-                    }
-
-                    me.resetload();
-
-                    if(myObj.paid.listData.page_total == 0){
-                        $('#paid-list').parent().find('.dropload-down').hide();
-                    }else{
-                        $('#paid-list').parent().find('.dropload-down').show();
-                    }
-                }
-            })
-        }
-    },
-    //待消费订单
-    consumption:{
-        listData: {
-            status:2,
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 15,
-        },
-        loadList: function (me) {
-            if (myObj.consumption.listData.loading) {
-                return false;
-            }
-            myObj.consumption.listData.page++;
-            if (myObj.consumption.listData.ini == true) {
-                if (myObj.consumption.listData.page > myObj.consumption.listData.page_total) {
-                    me.resetload();return false;
-                }
-            }
-
-            $.ajax({
-                url: "/weixin/shopapi/getUserOrder",
-                type: 'post',
-                data: {status:myObj.consumption.listData.status,page: myObj.consumption.listData.page, page_size: myObj.consumption.listData.page_size},
-                dataType: 'json',
-                beforeSend: function () {
-                    myObj.consumption.listData.loading = true;
-                },
-                complete: function () {
-                    myObj.consumption.listData.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if ( myObj.consumption.listData.ini == false) {
-                            myObj.consumption.listData.ini = true;
-                            myObj.consumption.listData.page_total = res.data.page_total;
-                            $('#consumption-list').html('');
-                            if(res.data.page_total == 0){
-                                $('#consumption-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
-                            }
-                        }
-
-                        if(myObj.consumption.listData.page >= myObj.consumption.listData.page_total){
-                            me.noData();
-                        }
-
-                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                            $('#consumption-list').append(html);
+                    }else if(curNavIndex==2){
+                        layui.laytpl(template).render(curPageData, function(html){
+                            $('#dataList2').append(html);
+                        });
+                    }else if(curNavIndex==3){
+                        layui.laytpl(template).render(curPageData, function(html){
+                            $('#dataList3').append(html);
                         });
                     }
-
-                    me.resetload();
-
-                    if(myObj.consumption.listData.page_total == 0){
-                        $('#consumption-list').parent().find('.dropload-down').hide();
-                    }else{
-                        $('#consumption-list').parent().find('.dropload-down').show();
-                    }
-                }
-            })
+                }, function(){
+                    mescroll.endErr();
+                });
+            },
         }
-    },
-    //已完成订单
-    complete:{
-        listData: {
-            status:3,
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 15,
-        },
-        loadList: function (me) {
-            if (myObj.complete.listData.loading) {
-                return false;
-            }
-            myObj.complete.listData.page++;
-            if (myObj.complete.listData.ini == true) {
-                if (myObj.complete.listData.page > myObj.complete.listData.page_total) {
-                    me.resetload();return false;
-                }
-            }
+    });
 
-            $.ajax({
-                url: "/weixin/shopapi/getUserOrder",
-                type: 'post',
-                data: {status:myObj.complete.listData.status,page: myObj.complete.listData.page, page_size: myObj.complete.listData.page_size},
-                dataType: 'json',
-                beforeSend: function () {
-                    myObj.complete.listData.loading = true;
-                },
-                complete: function () {
-                    myObj.complete.listData.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if ( myObj.complete.listData.ini == false) {
-                            myObj.complete.listData.ini = true;
-                            myObj.complete.listData.page_total = res.data.page_total;
-                            $('#complete-list').html('');
-                            if(res.data.page_total == 0){
-                                $('#complete-list').html('<div class="wl-zhanwu"><dl class="iconfont icon-wushuju"></dl><dt>您还没有相关的订单</dt><dd>可以去看看有哪些想买的</dd></div>');
-                            }
-                        }
-                        layui.laytpl(orderList.innerHTML).render(res.data.rows, function(html){
-                            $('#complete-list').append(html);
-                        });
-                        if(myObj.complete.listData.page >= myObj.complete.listData.page_total){
-                            me.noData();
-                        }
-                    }
-                    me.resetload();
+    return mescroll;
+}
 
-                    if(myObj.complete.listData.page_total == 0){
-                        $('#complete-list').parent().find('.dropload-down').hide();
-                    }else{
-                        $('#complete-list').parent().find('.dropload-down').show();
-                    }
-                }
-            })
-        }
+var listObj = {
+    searchList: function (page, successCallback, errorCallback) {
+        var data = $.extend({}, {page: page.num, page_size: page.size}, {status:curNavIndex});
+        $.ajax({
+            url: "/weixin/shopapi/getUserOrder",
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            success: function (res) {
+                successCallback(res.data.rows);
+            },
+            error: errorCallback
+        });
     },
 };
-
-
 $(document).on('click','.click-to-orderpaydetail',function(){
     window.location.href = '/weixin/shop/orderDetails?oid='+$(this).data('oid');
 }).on('click','.click-to-paydetail',function(){
@@ -337,3 +119,5 @@ $(document).on('click','.click-to-orderpaydetail',function(){
 }).on('click','.to-myorder',function(){
     window.location.href = '/weixin/shop/paymentOrder/oid/'+$(this).data('oid');
 });
+
+

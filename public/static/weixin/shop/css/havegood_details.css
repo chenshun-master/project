@@ -395,7 +395,8 @@
     margin-top: 10px;
 }
 .wl-xiangmu-lia{
-    margin-top: 20px;
+    margin-top: 20px;    line-height: 25px;
+
 }
 .wl-zhez2 {
     background: #FFFFFF;
@@ -536,4 +537,10 @@
     margin: 0 auto;
     max-width: 100%;
     min-width: .1vh;
+}
+@media screen and (min-width:480px){
+    .img-gao {
+        height: 640px;
+    }
+
 }

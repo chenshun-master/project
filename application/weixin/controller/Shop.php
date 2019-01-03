@@ -240,7 +240,6 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/search_goods');
     }
-
     /**
      *用户相册详情页
      */
