@@ -15,6 +15,9 @@ body {
     margin: 0 auto;
     min-width: 1500px;
 }
+a{
+    text-decoration: none;
+}
 .de{
     background: #7DB0E8;
     color: white;
@@ -309,17 +312,22 @@ body {
     position: absolute;bottom: 90px;
 }
 .wl-btn button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
-    background:#7DB0E8;
-    color: #FFfFFF;
-    font-size: 20px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 3px;
     float: right;
-    margin-top: 40px;
-    margin-right: 100px;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn button:hover{
+    background: #7DB0E8;
+    color: #FFfFFF;
 }
 .wl-zhao1{
     font-size: 14px;
@@ -349,17 +357,22 @@ body {
     position: absolute;bottom: 65px;
 }
 .wl-btn1 button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn1 button:hover{
     background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    float: right;
-    margin-top: 40px;
-    margin-right: 100px;
 }
 .wl-sc-js{
     color: #AAAAAA;
@@ -375,17 +388,22 @@ body {
     position: absolute;bottom: 65px;
 }
 .wl-btn2 button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn2 button:hover{
     background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    float: right;
-    margin-top: 40px;
-    margin-right: 100px;
 }
 .wl-btn3{
     width: 100%;
@@ -394,17 +412,22 @@ body {
     position: absolute;bottom: 34px;
 }
 .wl-btn3 button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn3 button:hover{
     background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    float: right;
-    margin-top: 40px;
-    margin-right: 100px;
 }
 .wl-huoqu{
     width: 164px;
@@ -415,8 +438,8 @@ body {
     font-size: 14px;
     border: 1px solid #F1F1F1;
     float: right;
-    margin-right: 104px;
-    margin-top: 12px;
+    margin-right: 159px;
+    margin-top: 10px;
 }
 .wl-sxia{
     position: absolute;
@@ -1043,7 +1066,7 @@ top: 190px;
     color: #888888;
 }
 .wl-zhen1 textarea{
-    width: 72%;
+    width: 67.5%;
     min-height: 150px;
     border: 1px solid #e7e7e7;
     margin-left: 30px;
