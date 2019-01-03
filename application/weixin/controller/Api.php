@@ -364,6 +364,16 @@ class Api extends BaseController
         $page_size = $this->request->param('page_size',15);
 
         $data = $this->_userDomain->getUserScoreRecord($this->getUserId(),$page,$page_size);
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as $k=>$row){
+                if($row['status'] == 2){
+                    $data['rows'][$k]['score'] = '-'.abs($row['score']);
+                }else if($row['status'] == 1){
+                    $data['rows'][$k]['score'] = '+'.abs($row['score']);
+                }
+            }
+        }
+
         return $this->returnData($data);
     }
 
@@ -383,6 +393,16 @@ class Api extends BaseController
         $page_size = $this->request->param('page_size',15);
 
         $data = $this->_userDomain->getUserAccountRecord($this->getUserId(),$page,$page_size);
+        if(count($data['rows']) > 0){
+            foreach ($data['rows'] as $k=>$row){
+                if($row['status'] == 2){
+                    $data['rows'][$k]['amount'] = '-'.abs($row['amount']);
+                }else if($row['status'] == 1){
+                    $data['rows'][$k]['amount'] = '+'.abs($row['amount']);
+                }
+            }
+        }
+
         return $this->returnData($data);
     }
 }
