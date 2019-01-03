@@ -405,4 +405,9 @@ class Api extends BaseController
 
         return $this->returnData($data);
     }
+
+
+    public function test(){
+        $this->_userDomain->test();
+    }
 }

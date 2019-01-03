@@ -89,18 +89,8 @@ class Pay extends  WxPayNotify
             }
 
             if($orderInfo['good_goods_id'] > 0){
-                $num = 0;
-                $type = 0;
-//                if($orderInfo['utype'] === 2){
-//                    /** 分销产品赠送余额返现*/
-//                    $num  = formatMoney($orderInfo['payable_amount'] * 1/100);
-//                    $type = 2;
-//                }else if($orderInfo['utype'] === 1){
-                    /** 分销产品赠送积分*/
-                    $num  = 1;
-                    $type = 1;
-//                }
-
+                $num  = 1;
+                $type = 1;
                 if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'uid'=>$orderInfo['uid'],'type'=> $type,'num'=> $num,'status'=>1,'created_time' => date('Y-m-d H:i:s')])){
                     throw new \think\Exception('添加分销兑付记录失败');
                 }
