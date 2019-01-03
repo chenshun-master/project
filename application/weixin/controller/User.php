@@ -876,4 +876,11 @@ class User extends BaseController
     public function scoreRecord(){
       return $this->fetch('user/score_record');
     }
+     /**
+     *我的余额页面
+     */
+     public function balanceOf(){
+       return $this->fetch('user/balance_of');
+     }
+
 }

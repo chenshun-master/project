@@ -24,13 +24,13 @@
                     <?php if($user_info['type'] == 1):?>
                     <dd  onclick="redream.href('/weixin/user/certification')" ><i class="iconfont icon-renzhenghuiyuan"></i>申请认证</dd>
                     <?php elseif($user_info['type'] == 2):?>
-                    <dd> <i class="iconfont icon-renzhenghuiyuan"></i>认证用户</dd>
+                    <dd class="xian"> <i class="iconfont icon-renzhenghuiyuan"></i>认证用户</dd>
                     <?php elseif($user_info['type'] == 3):?>
-                    <dd><i class="iconfont icon-renzhenghuiyuan"></i>认证医生</dd>
+                    <dd class="xian"><i class="iconfont icon-renzhenghuiyuan"></i>认证医生</dd>
                     <?php elseif($user_info['type'] == 4):?>
-                    <dd><i class="iconfont icon-renzhenghuiyuan"></i>认证医院</dd>
+                    <dd class="xian"><i class="iconfont icon-renzhenghuiyuan"></i>认证医院</dd>
                     <?php elseif($user_info['type'] == 5):?>
-                    <dd><i class="iconfont icon-renzhenghuiyuan"></i>官方团队</dd>
+                    <dd class="xian"><i class="iconfont icon-renzhenghuiyuan"></i>官方团队</dd>
                     <?php endif;?>
                 </div>
                 <a href="/weixin/user/modify">
@@ -43,15 +43,17 @@
         </div>
         <div class="wl-reward">
             <a href="/weixin/user/scoreRecord">
-                <div class="wl-integral" style="border-right:1px solid #999090 ">
+                <div class="wl-integral" style="border-right:1px solid #d7cece ">
                     <dl class="wl-jifen">10</dl>
                     <dt>可用积分 <i class="iconfont icon-xiangyou"></i></dt>
                 </div>
             </a>
-            <div class="wl-integral">
-                <dl class="wl-yue">122</dl>
-                <dt>余额 <i class="iconfont icon-xiangyou"></i></dt>
-            </div>
+            <a href="/weixin/user/balanceOf">
+                <div class="wl-integral">
+                    <dl class="wl-yue">122</dl>
+                    <dt>余额 <i class="iconfont icon-xiangyou"></i></dt>
+                </div>
+            </a>
         </div>
     </div>
 
