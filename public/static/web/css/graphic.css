@@ -206,6 +206,7 @@ body {
     border:1px solid #E5E5E5;
     margin-top: 20px;
     z-index: 999999;
+    cursor: pointer;
 }
 .wl-sorting li{
     width: 25%;
@@ -395,6 +396,7 @@ body {
     width: 100%!important;
     display: none;
     position: relative;
+
 }
 .wl-sorting-gao li{
     width: 100%;
@@ -407,8 +409,11 @@ body {
     color:#7DB0E8;
 }
 .wl-all-right a{
+    display: inline-block;
+    width: 40px;
+    text-align: center;
     height: 25px;
-    line-height: 25px;
+    line-height:  25px;
 }
 #wl-fenye{
     width: 100%;
