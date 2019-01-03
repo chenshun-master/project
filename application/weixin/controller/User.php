@@ -925,7 +925,12 @@ class User extends BaseController
             return redirect('/weixin/index/login');
         }
 
+        if (!$this->checkLogin()) {
+            return redirect('/weixin/index/login');
+        }
+
+        $uinfo = $this->_userDomain->getUserInfo($this->getUserId());
+        $this->assign('uinfo',$uinfo);
         return $this->fetch('user/balance_of');
     }
-
 }
