@@ -39,7 +39,7 @@
     line-height: 40px;
     text-align: left;
     color: #000000;
-    font-size: 14px;
+    font-size: 15px;
     margin: 0 auto;
 }
 .wl-benyue{
@@ -55,7 +55,7 @@
     float: left;
     height: 40px;
     color: #333333;
-    font-size: 13px;
+    font-size: 14px;
     padding-left: 15px;
     position: relative;
 }
@@ -89,7 +89,7 @@
 }
 .wl-bizhonhe>dl{
     color: #000000;
-    font-size: 12px;
+    font-size: 13px;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
@@ -97,7 +97,7 @@
 }
 .wl-bizhonhe>dt{
      color: #F24F4F;
-     font-size: 13px;
+     font-size: 11px;
  }
 .wl-bizhonhe>dd{
     color: #999999;
@@ -109,7 +109,7 @@
     float: right;
     text-align: right;
     color: #FE9464;
-    font-size: 13px;
+    font-size: 14px;
     margin-top: 10px;
     padding-right: 10px;
 }

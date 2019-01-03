@@ -216,6 +216,7 @@ a {text-decoration: none;color: #18B4FE;}
 .header .nav{
     width: 100%;
     margin-top: 8px;
+    height: 27px;
     border-bottom: 1px solid #ddd;
     font-size: 14px!important;
     color: #000000!important;
