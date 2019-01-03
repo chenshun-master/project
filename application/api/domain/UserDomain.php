@@ -353,4 +353,6 @@ class UserDomain
         $rows        = $obj->order('created_time','desc')->field($field)->page($page,$page_size)->select();
         return $this->packData($rows,$total,$page,$page_size);
     }
+
+    
 }
