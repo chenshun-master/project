@@ -107,3 +107,19 @@
     margin: 0 auto;
     margin-top: 80px;
 }
+.wl-top-tt{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
+}
+#container{
+    position: fixed;
+    top: 75px;
+    left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
+}
