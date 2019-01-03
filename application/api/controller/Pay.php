@@ -95,7 +95,7 @@ class Pay extends  WxPayNotify
                     'user_id'       => $orderInfo['uid'],
                     'status'        => 0,
                     'type'          => 1,
-                    'score'         => intval($data['num']),
+                    'score'         => intval($num),
                     'score_front'   => 0,
                     'score_after'   => 0,
                     'remarks'       =>'分销商品 - 增加冻结积分',
@@ -108,6 +108,10 @@ class Pay extends  WxPayNotify
 
                 if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'uid'=>$orderInfo['uid'],'type'=> $type,'num'=> $num,'status'=>1,'frozen_record_id'=>$getId,'created_time' => date('Y-m-d H:i:s')])){
                     throw new \think\Exception('添加分销兑付记录失败');
+                }
+
+                if (!Db::name('user')->where('id', $orderInfo['uid'])->setInc('lock_score', intval($num))) {
+                    throw new \think\Exception('更新账户冻结积分失败');
                 }
             }
 
