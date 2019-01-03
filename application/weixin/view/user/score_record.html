@@ -10,46 +10,41 @@
 
 {block name="main"}
 
-<header>
-    <div class="wl-top">
-        <a href="/weixin/user/main"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
-        <span>我的积分</span>
-    </div>
-</header>
+
 <!--这里编写主体内容-->
 <div style="width: 100%;min-height: 500px;padding-bottom: 50px">
-    <div class="wl-top-jifen">
-        <div style="width: 75%;margin: 0 auto">
-            <div class="wl-jifen">
-                <dl><i class="iconfont icon-jifen1"></i>可用积分</dl>
-                <dt>191</dt>
-            </div>
-            <div class="wl-dongjie">
-                <dl><i class="iconfont icon-suo2"></i>冻结积分</dl>
-                <dt>3546</dt>
+    <div class="wl-top-dingwei">
+        <div class="wl-top">
+            <a href="/weixin/user/main"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
+            <span>我的积分</span>
+        </div>
+        <div class="wl-top-jifen">
+            <div style="width: 75%;margin: 0 auto">
+                <div class="wl-jifen">
+                    <dl><i class="iconfont icon-jifen1"></i>可用积分</dl>
+                    <dt>191</dt>
+                </div>
+                <div class="wl-dongjie">
+                    <dl><i class="iconfont icon-suo2"></i>冻结积分</dl>
+                    <dt>3546</dt>
+                </div>
             </div>
         </div>
+        <div class="wl-integral">
+            <span>积分记录</span>
+        </div>
+        <div class="wl-benyue">
+            <div class="wl-month"><span>|</span>全部</div>
+        </div>
     </div>
-    <div class="wl-integral">
-        <span>积分记录</span>
-    </div>
-    <div class="wl-integral-list">
-        <div>
-            <!--<div class="wl-benyue">-->
-                <!--<div class="wl-month"><span>|</span>本月</div>-->
-                <!--<div class="wl-obtain">获取:<span class="wl-shuzi">18</span>使用:266</div>-->
-            <!--</div>-->
-            <div class="wl-benyue">
-                <div class="wl-month"><span>|</span>全部</div>
-            </div>
-            <div style="clear: both"></div>
-            <div id="container">
+        <div class="wl-integral-list mescroll ">
+            <div id="container" class="mescroll">
                 <div id="container-list">
 
                 </div>
             </div>
         </div>
-</div>
+
 </div>
 {/block}
 
@@ -60,10 +55,10 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-benyue1">
         <div class="wl-receive">
-            <dl>积分领取_什么什么领取</dl>
-            <dt>2019-01-03</dt>
+            <dl>{{item.remarks}}</dl>
+            <dt>{{item.created_time}}</dt>
         </div>
-        <div class="wl-obtain1"><span class="wl-shuzi1">+1</span></div>
+        <div class="wl-obtain1"><span class="wl-shuzi1">{{item.score}}</span></div>
     </div>
     <div style="clear: both"></div>
     {{#  }); }}

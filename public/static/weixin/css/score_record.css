@@ -8,6 +8,15 @@
     max-width: 640px;
     margin: 0 auto;
 }
+.wl-top-dingwei{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 640px;
+    background: white;
+}
 .top-left {
     position: absolute;
     top: 0;
@@ -44,6 +53,12 @@
     margin: 0 auto;
 }
 .wl-integral-list{
+    position: fixed;
+    top:265px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 640px;
     width: 95%;
     min-height: 100px;
     margin: 0 auto;
