@@ -10,7 +10,6 @@
 
 {block name="main"}
 
-<!--这里编写主体内容-->
 <div style="width: 100%;min-height: 500px;">
     <header>
         <div class="wl-top">
@@ -21,9 +20,7 @@
     <main>
         <div class="wl-jieshao"> 爱美的仙女都在买</div>
         <div id="container">
-            <div id="container-list">
-
-            </div>
+            <div id="container-list"></div>
         </div>
     </main>
 </div>
@@ -55,21 +52,20 @@
 </script>
 <script>
     var listObj = {
-        params: {},
         searchList: function (page, successCallback, errorCallback) {
-            var data = $.extend({}, {page: page.num, page_size: page.size}, listObj.params);
             $.ajax({
                 url: "/weixin/shopapi/getGoodGoodsList",
                 type: 'post',
-                data: data,
+                data: {page: page.num, page_size: page.size},
                 dataType: 'json',
                 success: function (res) {
                     successCallback(res.data.rows);
                 },
                 error: errorCallback
             });
-        },
+        }
     };
+
     var mescroll = new MeScroll("container", {
         down:{auto:true},
         up: {
@@ -79,8 +75,8 @@
             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
             noMoreSize: 2, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
             empty: {
-                icon: "/static/weixin/shop/image/tuoian.png", //图标,默认null
-                tip: "亲,没有您要找的商品~", //提示
+                icon: "/static/weixin/shop/image/tuoian.png",
+                tip: "亲,没有您要找的商品~",
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
@@ -88,13 +84,13 @@
                     layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
                         $('#container-list').append(html);
                     });
-
                 }, function(){
                     mescroll.endErr();
                 });
             },
         }
     });
+
     $(document).on('click','.click-to-havegoodDetails',function(){
         window.location.href = '/weixin/shop/havegoodDetails?gid='+$(this).data('id');
     });

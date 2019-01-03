@@ -360,25 +360,11 @@ class Api extends BaseController
             return $this->returnData([],'用户未登录',401);
         }
 
-        $data = $this->_userDomain->getUserScoreRecord($this->getUserId(),1,2);
+        $page      = $this->request->param('page',1);
+        $page_size = $this->request->param('page_size',15);
+
+        $data = $this->_userDomain->getUserScoreRecord($this->getUserId(),$page,$page_size);
         return $this->returnData($data);
     }
 
-    /**
-     * 获取用户分销积分奖励
-     * @return false|string
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public function getBusinessScoreRecord(){
-        if(!$this->checkLogin()){
-            return $this->returnData([],'用户未登录',401);
-        }
-
-        $data = $this->_userDomain->getBusinessScoreRecord($this->getUserId(),1,2);
-
-        halt($data);
-        return $this->returnData($data);
-    }
 }

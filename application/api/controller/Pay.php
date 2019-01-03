@@ -45,7 +45,7 @@ class Pay extends  WxPayNotify
             ->leftJoin('wl_sp_good_goods good_goods','good_goods.id = order.good_goods_id')
             ->leftJoin('wl_user touser','touser.id = good_goods.user_id')
             ->where('order.order_no',$data['out_trade_no'])
-            ->field('order.id,order.goods_id,.order.good_goods_id,order.status,order.pay_status,order.payable_amount,order.real_amount,good_goods.user_id as uid,touser.type as utype')->find();
+            ->field('order.id,order.goods_id,.order.good_goods_id,order.status,order.pay_status,order.payable_amount,order.real_amount,good_goods.user_id as uid,touser.type as utype,touser.lock_score')->find();
 
         if(!$orderInfo){
             \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】查询失败] 回调数据: {$logData}");return false;

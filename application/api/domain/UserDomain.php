@@ -327,48 +327,43 @@ class UserDomain
      * @throws \think\exception\DbException
      */
     public function getUserScoreRecord($user_id,$page=1,$page_size=15){
-        $field = ['id','status','score','remarks'];
+        $field = ['id','status','score','remarks','created_time'];
         $obj = Db::name('score_record')->where('user_id',$user_id);
 
         $score_total = (int)$obj->sum('score');
         $total       = $obj->count('id');
-        $rows        = $obj->field($field)->page($page,$page_size)->select();
-
+        $rows        = $obj->order('created_time','desc')->field($field)->page($page,$page_size)->select();
         return $this->packData($rows,$total,$page,$page_size,['score_total'=>$score_total]);
     }
 
-    /**
-     * 获取分销积分记录列表
-     * @param $user_id
-     * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public function getBusinessScoreRecord($user_id){
-        $field = [
-            'a.type','a.num','a.status',"ifnull(b.remarks,'')"=>'remarks'
-        ];
-
-        $obj = Db::name('sp_spread_record a')
-            ->leftJoin('wl_score_record b','b.id = a.record_id')
-            ->where('a.uid',$user_id)
-            ->where('a.type',1);
-
-        $rows = $obj->field($field)->select();
-
-        $available = 0;
-        $lock      = 0;
-        if(count($rows) > 0){
-            foreach ($rows as $key=>$row){
-                if($row['status'] === 1){
-                    $lock += intval($row['num']);
-                }else if($row['status'] === 2){
-                    $available += intval($row['num']);
-                }
-            }
-        }
-
-        return $this->packData($rows,count($rows),1,0,['available_score'=>$available,'lock_score'=>$lock]);
-    }
+//    public function test(){
+//
+//        for ($i=1; $i<=20;$i++){
+//            Db::startTrans();
+//            try {
+//                $old_score = Db::name('score_record')->where('user_id',61)->value('score');
+//                $type = 1;
+//                $score = -$i;
+//                Db::name('user')->where('id',61)->setDec('score',$score);
+//                $scoreRecord = [
+//                    'user_id' => 61,
+//                    'status' => 2,
+//                    'type' => 2,
+//                    'score' => $score,
+//                    'score_front' => $old_score,
+//                    'score_after' => $old_score + intval($score),
+//                    'remarks'    =>'积分消费',
+//                    'created_time' => date('Y-m-d H:i:s',strtotime("-{$i} day"))
+//                ];
+//
+//                if (!$getId = Db::name('score_record')->insertGetId($scoreRecord)) {
+//                    throw new \think\Exception('添加积分记录失败');
+//                }
+//
+//                Db::commit();
+//            } catch (\Exception $e) {
+//                Db::rollback();
+//            }
+//        }
+//    }
 }
