@@ -45,7 +45,7 @@ class Pay extends  WxPayNotify
             ->leftJoin('wl_sp_good_goods good_goods','good_goods.id = order.good_goods_id')
             ->leftJoin('wl_user touser','touser.id = good_goods.user_id')
             ->where('order.order_no',$data['out_trade_no'])
-            ->field('order.id,order.goods_id,.order.good_goods_id,order.status,order.pay_status,order.payable_amount,order.real_amount,good_goods.user_id as uid,touser.type as utype')->find();
+            ->field('order.id,order.goods_id,.order.good_goods_id,order.status,order.pay_status,order.payable_amount,order.real_amount,good_goods.user_id as uid,touser.type as utype,touser.lock_score')->find();
 
         if(!$orderInfo){
             \Log::notice("微信交易记录通知【订单号[{$data['out_trade_no']}】查询失败] 回调数据: {$logData}");return false;
@@ -91,15 +91,15 @@ class Pay extends  WxPayNotify
             if($orderInfo['good_goods_id'] > 0){
                 $num = 0;
                 $type = 0;
-                if($orderInfo['utype'] === 2){
-                    /** 分销产品赠送余额返现*/
-                    $num  = formatMoney($orderInfo['payable_amount'] * 1/100);
-                    $type = 2;
-                }else if($orderInfo['utype'] === 1){
+//                if($orderInfo['utype'] === 2){
+//                    /** 分销产品赠送余额返现*/
+//                    $num  = formatMoney($orderInfo['payable_amount'] * 1/100);
+//                    $type = 2;
+//                }else if($orderInfo['utype'] === 1){
                     /** 分销产品赠送积分*/
                     $num  = 1;
                     $type = 1;
-                }
+//                }
 
                 if(!Db::name('sp_spread_record')->insertGetId(['order_id'=> $orderInfo['id'],'uid'=>$orderInfo['uid'],'type'=> $type,'num'=> $num,'status'=>1,'created_time' => date('Y-m-d H:i:s')])){
                     throw new \think\Exception('添加分销兑付记录失败');
