@@ -97,7 +97,7 @@ var listObj = {
             success: function (res) {
                 successCallback(res.data.rows);
             },
-            error: errorCallback
+
         });
     },
 };

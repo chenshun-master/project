@@ -395,7 +395,9 @@
     margin-top: 10px;
 }
 .wl-xiangmu-lia{
-    margin-top: 20px;    line-height: 25px;
+    margin-top: 20px;
+    line-height: 25px;
+    text-indent: 30px;
 
 }
 .wl-zhez2 {
@@ -537,6 +539,10 @@
     margin: 0 auto;
     max-width: 100%;
     min-width: .1vh;
+}
+.wl-xiangmu-lia>p{
+    margin-top: 10px!important;
+    font-size: 16px!important;
 }
 @media screen and (min-width:480px){
     .img-gao {

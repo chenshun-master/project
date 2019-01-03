@@ -1,0 +1,39 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/score_record.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<header>
+    <div class="wl-top">
+        <a href="/weixin/user/main"><i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"></i></a>
+        <span>我的积分</span>
+    </div>
+</header>
+<!--这里编写主体内容-->
+<div style="width: 100%;min-height: 500px;">
+    <div class="wl-top-jifen">
+        <dl><i class="iconfont icon-jifen1"></i>可用积分</dl>
+        <dt>19</dt>
+    </div>
+    <div class="wl-integral">
+        <span>积分记录</span><span style="float:right">全部</span>
+    </div>
+    <div class="wl-integral-list">
+        <div>
+            <div> <span>|</span>本月</div>
+            <div>获取:<span>18</span>使用:266</div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+
+{/block}

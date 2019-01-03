@@ -870,4 +870,10 @@ class User extends BaseController
             return $this->returnData([], '操作失败', 305);
         }
     }
+    /**
+    *我的积分页面
+    */
+    public function scoreRecord(){
+      return $this->fetch('user/score_record');
+    }
 }
