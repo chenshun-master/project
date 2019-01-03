@@ -22,26 +22,37 @@
                 <div class="wl-yonghu">
                     <dl>{$user_info['nickname']? $user_info['nickname'] : $user_info['mobile']|mobileFilter}</dl>
                     <?php if($user_info['type'] == 1):?>
-                    <dd  onclick="redream.href('/weixin/user/certification')" >申请认证</dd>
+                    <dd  onclick="redream.href('/weixin/user/certification')" ><i class="iconfont icon-renzhenghuiyuan"></i>申请认证</dd>
                     <?php elseif($user_info['type'] == 2):?>
-                    <dd>认证用户</dd>
+                    <dd> <i class="iconfont icon-renzhenghuiyuan"></i>认证用户</dd>
                     <?php elseif($user_info['type'] == 3):?>
-                    <dd>认证医生</dd>
+                    <dd><i class="iconfont icon-renzhenghuiyuan"></i>认证医生</dd>
                     <?php elseif($user_info['type'] == 4):?>
-                    <dd>认证医院</dd>
+                    <dd><i class="iconfont icon-renzhenghuiyuan"></i>认证医院</dd>
                     <?php elseif($user_info['type'] == 5):?>
-                    <dd>官方团队</dd>
+                    <dd><i class="iconfont icon-renzhenghuiyuan"></i>官方团队</dd>
                     <?php endif;?>
                 </div>
                 <a href="/weixin/user/modify">
                     <div class="wl-fanhui">
-                        <i class="iconfont icon-back_left-copy" style="font-size: 25px"></i>
+                       设置
                     </div>
                 </a>
             </div>
             <div style="clear:both;" ></div>
         </div>
-
+        <div class="wl-reward">
+            <a href="/weixin/user/scoreRecord">
+                <div class="wl-integral" style="border-right:1px solid #999090 ">
+                    <dl class="wl-jifen">10</dl>
+                    <dt>可用积分 <i class="iconfont icon-xiangyou"></i></dt>
+                </div>
+            </a>
+            <div class="wl-integral">
+                <dl class="wl-yue">122</dl>
+                <dt>余额 <i class="iconfont icon-xiangyou"></i></dt>
+            </div>
+        </div>
     </div>
 
 </header>
