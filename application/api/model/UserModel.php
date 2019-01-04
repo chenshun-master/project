@@ -19,7 +19,7 @@ class UserModel extends Model
     }
 
     public function findUserId($user_id){
-        $field = ['id','mobile','nickname','type','score','lock_score','account','sex','portrait','birthday_date','profile'];
+        $field = ['id','mobile','nickname','type','score','usable_score','account','sex','portrait','birthday_date','profile'];
         return  self::where('id',$user_id)->field($field)->find();
     }
 

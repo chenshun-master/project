@@ -327,7 +327,7 @@ class UserDomain
      * @throws \think\exception\DbException
      */
     public function getUserScoreRecord($user_id,$page=1,$page_size=15){
-        $field = ['id','status','score','remarks','created_time'];
+        $field = ['id','status','style','score','remarks','created_time'];
         $obj = Db::name('score_record')->where('user_id',$user_id);
 
         $total       = $obj->count('id');

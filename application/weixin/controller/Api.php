@@ -366,9 +366,9 @@ class Api extends BaseController
         $data = $this->_userDomain->getUserScoreRecord($this->getUserId(),$page,$page_size);
         if(count($data['rows']) > 0){
             foreach ($data['rows'] as $k=>$row){
-                if($row['status'] == 2){
+                if($row['style'] == 2){
                     $data['rows'][$k]['score'] = '-'.abs($row['score']);
-                }else if($row['status'] == 1){
+                }else if($row['style'] == 1){
                     $data['rows'][$k]['score'] = '+'.abs($row['score']);
                 }
             }
