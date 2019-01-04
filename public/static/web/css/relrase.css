@@ -16,7 +16,7 @@ body {
     min-width: 1500px;
 }
 a{
-    text-decoration: none;
+    text-decoration: none!important;
 }
 .de{
     background: #7DB0E8;
