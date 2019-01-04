@@ -15,9 +15,11 @@
 <header>
     <div class="wl-top">
         <div class="wl-ttop">
+            <a href="/weixin/user/modify">
             <div class="wl-touxiang">
                 <img src="{$user_info['portrait']}" alt=""  onerror='this.src="/static/image/user/tou.png"'>
             </div>
+            </a>
             <div class="wl-renzheng">
                 <div class="wl-yonghu">
                     <dl>{$user_info['nickname']? $user_info['nickname'] : $user_info['mobile']|mobileFilter}</dl>
