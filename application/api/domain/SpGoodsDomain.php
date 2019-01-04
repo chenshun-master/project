@@ -243,8 +243,8 @@ class SpGoodsDomain
         //到付总金额
         $orderData['topay_price']       = $goods_info['topay_price'] * $goods_num;
         //实付商品总金额
-//        $orderData['real_amount']       = $orderData['prepay_price'];
-        $orderData['real_amount']       = 0.02;
+        $orderData['real_amount']       = $orderData['prepay_price'];
+//        $orderData['real_amount']       = 0.02;
         return  Db::name('sh_order')->insertGetId($orderData);
     }
 
