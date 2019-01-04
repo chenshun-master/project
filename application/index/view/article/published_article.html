@@ -38,84 +38,88 @@
             </div>
             <div>
                 <div style="width: 95%; margin: 35px auto;">
-                    <textarea id="editor_id" name="content"
-                              style="width:99% !important;height:300px;background: white;"><?php echo $articleInfo?$articleInfo['content']:''; ?></textarea>
+                    <div id="wang-editor">
+                        <?php echo $articleInfo?$articleInfo['content']:''; ?>
+                    </div>
                 </div>
             </div>
             <div class="web-ded">
-                <div class="web-suolue">
-                    <div class="web-suoluetu">
-                        <form id="infoLogoForm" enctype='multipart/form-data'>
-                            <input type="file" name="imgFile" accept="image/*" id="btn-input-file"/>
-                        </form>
-                        <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
-                        <dt>添加缩略图</dt>
-                    </div>
+                  <div class="web-suolue">
+                      <div class="web-suoluetu">
+                          <form id="infoLogoForm" enctype='multipart/form-data'>
+                              <input type="file" name="imgFile" accept="image/*" id="btn-input-file"/>
+                          </form>
+                          <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                          <dt>添加缩略图</dt>
+                      </div>
+                  </div>
+                <div class="web-tianjiai">
+
                     {if($articleInfo && count($articleInfo['thumbnail']) > 0)}
-                    {foreach($articleInfo['thumbnail'] as $src)}
-                    <div class="cus-remove-img-list">
-                        <img src="{$src}" class="cus-fr-images" width="120" height="120">
-                        <span class="iconfont icon-roundclosefill cus-remove-img"></span>
-                    </div>
-                    {/foreach}
+                        {foreach($articleInfo['thumbnail'] as $src)}
+                        <div class="cus-remove-img-list">
+                            <img src="{$src}" class="cus-fr-images" width="120" height="120">
+                            <span class="iconfont icon-roundclosefill cus-remove-img"></span>
+                        </div>
+                        {/foreach}
                     {/if}
-                </div>
-            </div>
+                 </div>
+        </div>
             <div class="web-shangchaun"><span style="color: red">注:</span>缩略图最多只能上传三张</div>
             <div class="web-btn">
                 <div class="web-btn-right">
-                    <button  onclick="objClass.submit(1)">发表文章</button>
+                    <button  onclick="objClass.submit(1)" class="wl-fabiao">发表文章</button>
                     {if(!$articleInfo || ($articleInfo && $articleInfo['status'] == 2))}
 
-                    <button onclick="objClass.submit(2)">保存草稿</button>
+                    <button onclick="objClass.submit(2)" class="wl-fabiao1">保存草稿</button>
 
                     {/if}
 
                 </div>
             </div>
+    </div>
+        <div class="wl-zh1" id="wl-loading-box" style="display: none">
+            <div class="wl-z1">
+                <dl>
+                    <img src="/static/image/user/timg.gif" alt="" width="60px" style="margin: 0 auto;position: absolute;left: -10px;right: 0;">
+                </dl>
+                <dt  class="wl-shangzhong">上传中...</dt>
+            </div>
         </div>
     </div>
-<div class="wl-zh1" id="wl-loading-box" style="display: none">
-    <div class="wl-z1">
-        <dl>
-            <img src="/static/image/user/timg.gif" alt="" width="60px" style="margin: 0 auto;position: absolute;left: -10px;right: 0;">
-        </dl>
-        <dt  class="wl-shangzhong">上传中...</dt>
-    </div>
-</div>
 {/block}
 
 {block name="script"}
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
-<script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
+<script type="text/javascript" src="/static/plugin/wangEditor/release/wangEditor.min.js"></script>
+<!--<script type="text/javascript" src="/static/web/viewjs/article_release.js"></script>-->
 <script>
-    KindEditor.ready(function (K) {
-        K.allowImageRemote = false;
-        window.editor = K.create('#editor_id', {
-            cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
-            resizeMode: 1,
-            items: [
-                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-                'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
-                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'pagebreak',
-                'anchor', 'link', 'unlink'
-            ],
-            uploadJson: '/index/upload/editUploadImgFile',
-            allowFileManager: false,
-            allowImageRemote: true,
-            syncType: 'auto',
-            afterCreate: function () {
-                var self = this;
-                self.sync();
-            }
-        });
-
-        window.editor.sync();
-    });
+    var E = window.wangEditor;
+    var editor = new E('#wang-editor');
+    editor.customConfig.uploadImgServer = '/index/upload/uploadFile';
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+    editor.customConfig.uploadImgMaxLength = 3;
+    editor.customConfig.showLinkImg = false;
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'image',  // 插入图片
+        'table',  // 表格
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
+    editor.create();
 
     $(document).on('focus', '#remoteUrl', function () {
         $(this).prop("readonly", "readonly");
@@ -197,7 +201,7 @@
             },
             success: function (data) {
                 if (data.code == 200) {
-                    $('.web-suolue').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="120" height="120" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
+                    $('.web-tianjiai').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="120" height="120" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
                     if ($('.cus-fr-images').length >= 3) {
                         $('#btn-input-file').prop('disabled', true);
                     }

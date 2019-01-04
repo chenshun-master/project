@@ -1,0 +1,69 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/my_article.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+        <div class="web-content-right-title">我的文章</div>
+        <div class="wl-xianshi-neirong">
+            <!--<div class="wl-all-title">已显示全部40条内容</div>-->
+            {if(count($list['rows']) > 0)}
+            {foreach($list['rows'] as $val)}
+            <div class="wl-all-neirong">
+                <div class="wl-all-left">
+                    <img src="{$val['img']}" alt="">
+                </div>
+                <div class="wl-all-center">
+                    <div class="wl-tuijian-title">{$val['title']} </div>
+                    <div class="wl-yiyuan-tuijian">{$val['hospital_name']}</div>
+                    <div class="wl-jiagewa"><sup style="font-size: 10px">￥</sup>{$val['sell_price']}</div>
+                    <div><span class="wl-tuijian-fabu">已发表</span><span class="wl-tuijian-time">{$val['created_time']}</span></div>
+                </div>
+                <!--<div class="wl-all-right"  id="web-Modify" style="cursor: pointer">-->
+                <!--<span class="iconfont icon-xiugai"></span>-->
+                <!--<span style="margin-left: 2px">修改</span>-->
+                <!--</div>-->
+            </div>
+            {/foreach}
+            {else/}
+            <div class="wl-weifabiao">
+                <dl class="iconfont icon-wushuju"></dl>
+                <dt>你还没有分销过商品</dt>
+            </div>
+            {/if}
+            <div id="wl-fenye" ></div>
+        </div>
+    </div>
+
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage,layer = layui.layer;
+        laypage.render({
+            elem: 'wl-fenye'
+            ,limit:15
+            ,count:{$list['total']}
+            ,curr:{$list['page']}
+            ,jump: function(obj, first){
+                if(!first){
+                    window.location.href = '/index/shop/myshoplist/page/'+obj.curr;
+                }
+            }
+        });
+    });
+</script>
+{/block}

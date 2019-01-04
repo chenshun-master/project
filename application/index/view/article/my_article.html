@@ -1,0 +1,79 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/my_article.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+        <div class="web-content-right-title">我的文章</div>
+        <div class="wl-xianshi-neirong">
+            <div class="wl-all-title">
+                {if(count($rows) > 0)}
+                <span style="display: inline-block;float: left">共 {$total} 条数据，已显示 {:count($rows)} 条</span>
+                {/if}
+                {if($draftId > 0)}
+                <span style="cursor: pointer;display: inline-block;float: right">
+                                <a href="{:url('/index/article/article',['id'=>$draftId])}" style="color: #ff8868;" title="立即编辑">温馨提示：您有草稿还没发布哦！</a>
+                            </span>
+                {/if}
+            </div>
+            <div id="container-list">
+                {if(count($rows) > 0)}
+                {foreach($rows as $key=>$val)}
+                <div class="wl-all-neirong">
+                    <div class="wl-all-left">
+                        <img src="{$val['thumbnail']?$val['thumbnail']['img_1']:''}" alt="{$val['title']}" onerror="this.src='/static/web/image/diushi.jpg'"/>
+                    </div>
+                    <div class="wl-all-center">
+                        <dl>{$val['title']}</dl>
+                        <dt>已发表</dt>
+                        <dd>{$val['published_time']}</dd>
+                    </div>
+                    <div class="wl-all-right" style="cursor: pointer;float: right">
+                        <span style="margin-left: 2px"><a href="{:url('/index/article/article',['id'=>$val['id']])}" target="_blank">修改</a></span>
+                        <span style="margin-left: 2px"><a href="{:url('/weixin/article/articleDetails',['id'=>$val['id']])}" target="_blank">查看</a></span>
+                    </div>
+                </div>
+                {/foreach}
+                {else/}
+                <div class="wl-weifabiao">
+                    <dl class="iconfont icon-wushuju"></dl>
+                    <dt>你还没有发布过文章</dt>
+                </div>
+                {/if}
+            </div>
+            <div id="wl-fenye" ></div>
+        </div>
+    </div>
+
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage,layer = layui.layer;
+        laypage.render({
+            elem: 'wl-fenye'
+            ,limit:15
+            ,count:{$total}
+            ,curr:{$page}
+            ,jump: function(obj, first){
+                if(!first){
+                    window.location.href = '/index/article/graphic/page/'+obj.curr;
+                }
+            }
+        });
+    });
+</script>
+{/block}
