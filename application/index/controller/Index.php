@@ -190,8 +190,9 @@ class Index extends CController
             }
         }
 
-        $sign = 9715;
-        $template_id = 12318;
+        $smsConfig = config('conf.sms_config.yzm');
+        $sign = $smsConfig['sign'];
+        $template_id = $smsConfig['template_id'];
 
         switch ($type){
             case 1:
