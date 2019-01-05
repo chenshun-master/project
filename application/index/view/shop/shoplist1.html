@@ -13,7 +13,7 @@
         {include file="layout:navigation" /}
     </div>
     <div class="web-content-right">
-        <div class="web-content-right-title">我的文章</div>
+        <div class="web-content-right-title" style="border: 0"><span class="web-top-title">我的商品</span></div>
         <div class="wl-xianshi-neirong">
             <div class="wl-list" id="category-container">
                 <div class="wl-project category-hierarchy" data-hierarchy="1" >
@@ -80,6 +80,12 @@
     const isAuth = {$isAuth};
 </script>
 <script>
+    $(".wl-sorting li").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
+    });
+    $(".wl-price").click(function () {
+        $(".wl-sorting-gao").toggle();
+    });
 
     $(document).on('click', '.click-to-create', function () {
         if(isAuth == 0){

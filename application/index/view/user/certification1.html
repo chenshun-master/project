@@ -1,0 +1,398 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/certification1.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+            <ul class="wl-deji">
+                <li class="active">个人认证</li>
+                <li>医生认证</li>
+                <li>医院认证</li>
+                <li>官方认证</li>
+            </ul>
+        <div style="clear: both"></div>
+            <div class="content">
+                <!--个人认证-->
+                <div class="wl-d active">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>真实姓名<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入真实姓名"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></li>
+                        </ul>
+                    </div>
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                        </div>
+
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证背面</dt>
+                            </div>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                  <div class="wl-top-btn">
+                      <div class="web-btn">提交申请</div>
+                  </div>
+                </div>
+                <!--医生认证-->
+                <div class="wl-d">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>真实姓名<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入真实姓名"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>擅长项目<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入擅长项目"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                    <ul>
+                        <li>岗位职称<span class="web-se">*</span></li>
+                        <li><input type="text" placeholder="请输入岗位职称"></li>
+                    </ul>
+                     </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>岗位职称<span class="web-se">*</span></li>
+                            <li><textarea type="text" placeholder="请输入岗位职称"></textarea></li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--上传身份证照片-->
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                        </div>
+
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证背面</dt>
+                            </div>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--上传医生资质证明-->
+                    <div class="web-shang">
+                        <span>上传医生资质证明 <span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加资格证</dt>
+                            </div>
+                        </div>
+
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加执业证</dt>
+                            </div>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+
+                    <div class="wl-top-btn">
+                        <div class="web-btn">提交申请</div>
+                    </div>
+                </div>
+                <!--医院认证-->
+                <div class="wl-d">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院名称 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院性质 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入医院性质 (门诊部/医院)"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>成立时间 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请选择成立时间"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院规模 <span class="web-se">*</span></li>
+                            <li>
+                                <select>
+                                    <option value="请选择医院规模">请选择医院规模</option>
+                                    <option value="50人以下">50人以下</option>
+                                    <option value="50-100人 ">50~100人 </option>
+                                    <option value="100~200人 ">100~200人 </option>
+                                    <option value="200~500人 ">200~500人 </option>
+                                    <option value="500~1000人 ">500~1000人 </option>
+                                    <option value="1000人以上 ">1000人以上 </option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院擅长 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>运营者姓名 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者姓名"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>手机号 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者手机号码" style="width:60%"><span class="wl-huqou">获取验证码</span></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>短信验证码 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入验证码"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>所在地址 <span class="web-se">*</span></li>
+                            <li>
+                                <select id="fr3-province" class="wl-liandong fr-province"><option value="" >请选择省</option></select>
+                                <select id="fr3-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
+                                <select id="fr3-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                                <input type="text" placeholder="请输入详细地址">
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医生简介<span class="web-se">*</span></li>
+                            <li><textarea type="text" placeholder="请填写医院简介(注:个人简介必须真实有效)"></textarea></li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--上传身份证照片-->
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                        </div>
+
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证背面</dt>
+                            </div>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--上传医院营业证件-->
+                    <div class="web-shang">
+                        <span>上传医院营业证件 <span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加营业执照</dt>
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <div class="wl-top-btn">
+                        <div class="web-btn">提交申请</div>
+                    </div>
+                </div>
+                <!--官方认证-->
+                <div class="wl-d">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>企业名称 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请与组织机构代码证或营业执照名称一致"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>运营者姓名  <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者姓名"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号  <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>手机号 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者手机号码" style="width:60%"><span class="wl-huqou">获取验证码</span></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>短信验证码 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入验证码"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>所在地址 <span class="web-se">*</span></li>
+                            <li>
+                                <select id="fr4-province" class="wl-liandong fr-province"><option value="" >请选择省</option></select>
+                                <select id="fr4-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
+                                <select id="fr4-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                                <input type="text" placeholder="请输入详细地址">
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--上传身份证照片-->
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                        </div>
+
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证背面</dt>
+                            </div>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--上传企业工商营业执照 -->
+                    <div class="web-shang">
+                        <span>上传企业工商营业执照  <span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form  enctype="multipart/form-data">
+                                    <input type="file" name="imgFile" accept="image/*" >
+                                </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加营业执照</dt>
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <div class="wl-top-btn">
+                        <div class="web-btn">提交申请</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+</script>
+{/block}

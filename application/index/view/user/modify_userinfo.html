@@ -1,0 +1,46 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/certification1.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+        <ul class="wl-deji">
+            <li class="active">基本资料</li>
+            <li>修改头像</li>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="content">
+            <!--个人认证-->
+            <div class="wl-d active">
+发顺丰
+            </div>
+            <!--医生认证-->
+            <div class="wl-d">
+222
+            </div>
+
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+</script>
+{/block}

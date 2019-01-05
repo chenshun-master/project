@@ -64,7 +64,7 @@ class User extends CController
 
         $this->assign('type',isset($authResult['type'])? $authResult['type'] :0);
 
-        return $this->fetch('user/certification');
+        return $this->fetch('user/certification1');
     }
 
     /**
@@ -197,7 +197,9 @@ class User extends CController
         $this->clearUserLogin();
         return redirect('/login');
     }
-
+    public function modifyUserInfo(Request $request){
+            return $this->fetch('user/modify_userinfo');
+    }
     /**
     * 提交修改信息页面
     */
