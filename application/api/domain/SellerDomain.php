@@ -15,13 +15,13 @@ class SellerDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function login($mobile,$password){
+    public function login($mobile,$password,$noPassword = false){
         $user_info = Db::name('user')->where('mobile',$mobile)->where('type','in',[3,4])->field('id,mobile,password,type,portrait')->find();
         if(!$user_info){
             return 1;
         }
 
-        if($user_info['password'] !== encryptPwd($password)){
+        if(!$noPassword && $user_info['password'] !== encryptPwd($password)){
             return 2;
         }
 

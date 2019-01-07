@@ -18,7 +18,7 @@ class BaseController extends Controller
         if($this->request->isGet() && !$this->request->isAjax()){
             if(!$this->checkLogin()){
                 $u =  $this->request->controller(true).'/'.$this->request->action(true);
-                if($u != 'index/login'){
+                if($u != 'index/login' && $u != 'index/onekeyLogin'){
                     header('Location: /seller/index/login');exit;
                 }
             }

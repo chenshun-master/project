@@ -4,6 +4,7 @@ editor.customConfig.uploadImgServer = '/index/upload/uploadFile';
 editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
 editor.customConfig.uploadImgMaxLength = 3;
 editor.customConfig.showLinkImg = false;
+editor.customConfig.zIndex = 1;
 editor.customConfig.menus = [
     'head',  // 标题
     'bold',  // 粗体
@@ -24,7 +25,6 @@ editor.customConfig.menus = [
     'redo'  // 重复
 ];
 editor.create();
-
 
 var objClass = {
     loading: false,
@@ -73,6 +73,24 @@ var objClass = {
             });
         }
     },
+    getGoodsHtml:function(data){
+        var html = '<div style="max-width: 400px;margin: 20px auto;">' +
+            '<div style="width:100%;margin: 0 auto;height: 110px;border: 1px solid #d3d3d3;padding:5px 0 0 5px">' +
+            '<div style="float: left;width: 30%;height: 100px;">' +
+            '<img src="https://img.alicdn.com/imgextra/i3/667038546/TB2a_f_XGe5V1BjSspkXXcoqpXa_!!667038546.jpg_140x140.jpg" width="100" height="100"/">' +
+            '</div>' +
+            '<div style="float: right;width: 69%;height: 100px;">' +
+            '<dl style="font-size: 15px;margin: 0;padding: 0 5px 0 5px;width: 95%;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">一片式无痕无钢圈文胸聚拢调整型小胸罩厚薄款少女士隐形性感内衣</dl>' +
+            '<dt  style="font-size: 11px;padding:5px 5px 0 5px;">' +
+            '<span style="text-decoration: line-through;">市场价￥999</span>' +
+            '<span style="margin-left: 10px;color: #f50;">销售价<sub style="font-size: 11px;">￥</sub>120</span>' +
+            '</dt>' +
+            '<span style="color:#da0d15;float: right;margin-right: 20px;font-size: 13px;width: 60px;height:20px;line-height: 20px;border: 1px solid #da0d15;;text-align: center;border-radius: 3px;">去购买</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+        editor.cmd.do('insertHTML', html);
+    }
 };
 
 $("#btn-input-file").on("change", function () {
@@ -132,4 +150,11 @@ $(".wl-yingj").click(function () {
     $(".wl-ding").toggle();
     $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
     $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
+});
+
+$(function(){
+    $('#wang-editor > .w-e-toolbar').append('<p class="w-e-menu" id="taobao-plugin" style="z-index:10001;padding: 3px !important;"><i class="iconfont icon-changyonglogo25" style="font-size: 23px;"></i></p>');
+    $(document).on('click','#taobao-plugin',function () {
+        alert('功能还在开发中，请耐心等待...');
+    });
 });

@@ -268,4 +268,23 @@ class User extends CController
             ]
         ],'',200);
     }
+
+    /**
+     * 获取一键登录授权码
+     */
+    public function getAuthCode(){
+        if(!$this->checkLogin()){
+            return $this->returnData([],'用户未登录',401);
+        }
+
+        $type = $this->_userDomain->getUserType($this->getUserId());
+        if(!in_array($type,[3,4])){
+            return $this->returnData([],'未授权操作',403);
+        }
+
+        $authCode = encryptStr(json_encode(['uid'=>$this->getUserId(),'time'=>time()]),'E',config('conf.secret_key'));
+
+
+        return $this->returnData(['authCode'=>urlencode($authCode)],'',200);
+    }
 }

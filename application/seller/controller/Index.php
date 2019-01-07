@@ -93,4 +93,29 @@ class Index extends BaseController
         }
     }
 
+    /**
+     * 一键登录
+     */
+    public function onekeyLogin(){
+        if($this->checkLogin()){
+            return $this->redirect('/seller');
+        }
+
+        $token = $this->request->param('c','');
+        $token = json_decode(encryptStr($token,'D',config('conf.secret_key')),true);
+        if(!empty($token) && ($token['time'] + 60 * 2) >= time()){
+            $model = new \app\api\model\UserModel();
+            $mobile = $model->getMobile($token['uid']);
+            if($mobile){
+                $domain = new \app\api\domain\SellerDomain();
+                $loginRes = $domain->login($mobile,'',true);
+                if(is_array($loginRes) && count($loginRes)){
+                    $this->saveUserLogin($loginRes);
+                    return $this->redirect('/seller');
+                }
+            }
+        }
+
+        return $this->redirect('/seller/index/login');
+    }
 }
