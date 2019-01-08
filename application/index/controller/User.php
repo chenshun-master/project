@@ -36,7 +36,7 @@ class User extends CController
 
         $this->assign('user_info',$user_info);
         $this->assign('auth_info',$authInfo);
-        return $this->fetch('user/main');
+        return $this->fetch('user/main1');
     }
 
     /**
@@ -197,9 +197,6 @@ class User extends CController
         $this->clearUserLogin();
         return redirect('/login');
     }
-    public function modifyUserInfo(Request $request){
-            return $this->fetch('user/modify_userinfo');
-    }
     /**
     * 提交修改信息页面
     */
@@ -270,4 +267,33 @@ class User extends CController
             ]
         ],'',200);
     }
+    /**
+     * 修改资料页面
+     */
+     public function modifyUserInfo(Request $request){
+             $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+             $authInfo = $this->_userDomain->getAuthInfo($this->getUserId());
+
+             $this->assign('user_info',$user_info);
+             $this->assign('auth_info',$authInfo);
+
+             return $this->fetch('user/modify_userinfo');
+     }
+
+    /**
+     * 安全中心页面
+     */
+     public function security(Request $request){
+             if(!$this->checkLogin()){
+                 return redirect('/login');
+             }
+
+             $user_info = $this->_userDomain->getUserInfo($this->getUserId());
+             $authInfo = $this->_userDomain->getAuthInfo($this->getUserId());
+
+             $this->assign('user_info',$user_info);
+             $this->assign('auth_info',$authInfo);
+
+             return $this->fetch('user/security');
+     }
 }

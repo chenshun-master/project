@@ -21,11 +21,14 @@
     float: left;
 }
 .web-fabiao li>input{
-    width: 100%;
+    width: 93%;
     height: 35px;
     line-height: 35px;
     border-bottom: 1px solid #EEEEEE;
     margin-top: 5px;
+}
+#fr-title{
+    font-size: 16px;
 }
 .web-suolue{
     width: 138px;
@@ -77,13 +80,14 @@
     position: relative;
 }
 .web-ded{
-    min-width: 150px;
-    height: auto;
+    min-width: 160px;
+    padding-top: 35px;
+    height: 185px;
     position: relative;
 }
 .cus-remove-img-list > img{
     border-radius: 25px;
-    margin: 7px 0 0 9px;
+    margin: 6px 0 0 7px;
 }
 .cus-remove-img-list .cus-remove-img{
     width:50px;height:50px;color: red;
@@ -112,7 +116,7 @@
     border-top: 2px solid #f1f1f1;
 }
 .web-btn-right{
-    width: 30%;
+    min-width: 28%;
     float: right;
     margin-top: 30px;
 }
@@ -157,16 +161,179 @@
     right: 0;
     top: 80px;
 }
-.wl-fabiao:hover{
-    background:#7DB0E8;
-    color: #FFfFFF;
-}
 .wl-fabiao1:hover{
     background: #F29C9F!important;
     color: #FFfFFF;
 }
 .web-tianjiai{
     position: absolute;
-    top: 0px;
+    top: 35px;
     left: 190px;
+}
+.toolbar {
+    background-color: white!important;
+    border: 1px solid #ccc;
+}
+.w-e-text {
+    padding: 0 10px;
+}
+.wl-zhez2 {
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .7);
+    z-index: 99999;
+}
+.wl-zl2 {
+    width: 375px;
+    height: 700px;
+    background: white;
+    margin: 0 auto;
+    margin-top: 100px;
+    background: url("/static/web/image/zhe.png")no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.web-conter-gundong{
+    width: 301.5px;
+    height: 503px;
+    background: white;
+    position: absolute;
+    top: 90px;
+    left: 37px;
+    border-top: 1px solid #f1f1f1;
+    overflow-y: auto;
+}
+
+.web-preview-title {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 15px;
+    min-height: 30px;
+    color: #1D1D1D;
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.web-preview-main {
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 15px;
+    overflow: hidden;
+}
+.web-preview-img img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    border-radius: 50%;
+}
+.web-preview-user {
+    width: 65%;
+    height: 40px;
+    float: left;
+    text-align: left;
+    margin-left: 10px;
+}
+.web-preview-user dl {
+    font-size: 11px;
+    color: #1D1D1D;
+}
+.web-preview-user dt {
+    color: #898989;
+    font-size: 9px;
+}
+.web-preview-friends button {
+    width: 18%;
+    float: right;
+    height: 20px;
+    line-height: 20px;
+    background: #7DB0E8;
+    color: #FFFFFF;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+.web-preview-content {
+    width: 95%;
+    margin: 0 auto;
+    min-height: 200px;
+    line-height: 20px;
+    font-size: 13px;
+    text-indent: 30px;
+    overflow: auto;
+}
+.web-preview-content img {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: .1vh;
+}
+.web-preview-end {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    text-align: center;
+    margin: 20px 0 30px 0;
+    color: #858585;
+}
+.web-cancel{
+    cursor: pointer;
+    position: fixed;
+    top: 50px;
+    right: 80px;
+}
+
+.web-conter-gundong::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+/*正常情况下滑块的样式*/
+
+.web-conter-gundong::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .05);
+    border-radius: 10px;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+/*鼠标悬浮在该类指向的控件上时滑块的样式*/
+
+.web-conter-gundong:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+/*鼠标悬浮在滑块上时滑块的样式*/
+
+.web-conter-gundong::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .4);
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+/*正常时候的主干部分*/
+
+.web-conter-gundong::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+    background-color: white;
+}
+/*鼠标悬浮在滚动条上的主干部分*/
+
+.web-conter-gundong::-webkit-scrollbar-track:hover {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, .01);
+}
+.w-e-text-container{
+    height: 500px!important;
+}
+.web-preview-content>p{
+    margin-top: 10px!important;
 }

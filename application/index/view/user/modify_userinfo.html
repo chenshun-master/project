@@ -1,9 +1,12 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
-<link rel="stylesheet" href="/static/web/css1/certification1.css">
+<link rel="stylesheet" href="/static/web/css1/modify_userinfo.css">
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+<link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link href="/static/web/dis/head/sitelogo.css" rel="stylesheet">
+<link href="/static/web/dis/head/cropper.min.css" rel="stylesheet">
 {/block}
 
 {block name="main"}
@@ -15,32 +18,266 @@
     <div class="web-content-right">
         <ul class="wl-deji">
             <li class="active">基本资料</li>
-            <li>修改头像</li>
+            <!--<li>修改头像</li>-->
         </ul>
         <div style="clear: both"></div>
         <div class="content">
-            <!--个人认证-->
+            <!--基本资料-->
             <div class="wl-d active">
-发顺丰
-            </div>
-            <!--医生认证-->
-            <div class="wl-d">
-222
-            </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>修改头像<span class="web-se">*</span></li>
+                        <li class="web-touxiang" ><img src="{$user_info['portrait']}" alt=""  onerror="this.src='/static/web/image/tou.png'" class=" btn-primary" data-toggle="modal" data-target="#avatar-modal" ></li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>昵称<span class="web-se">*</span></li>
+                        <li><input type="text" placeholder="请输入你的昵称" class="web-input"></li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>性别<span class="web-se">*</span></li>
+                        <li>
+                            <input type="radio" name="sex" class="web-radio" checked><span class="web-sex">男</span>
+                            <input type="radio" name="sex" class="web-radio"><span class="web-sex">女</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>生日<span class="web-se">*</span></li>
+                        <li>
+                            <input type="text" class="layui-input web-day" id="test1" placeholder="请输入你的生日">
+                        </li>
+                    </ul>
+                </div>
 
+                <div class="web-top-name">
+                    <ul>
+                        <li>所在地址 <span class="web-se">*</span></li>
+                        <li>
+                            <select id="fr3-province" class="wl-liandong fr-province"><option value="">请选择省</option></select>
+                            <select id="fr3-city" class="wl-liandong fr-city"><option value="">请选择市</option></select>
+                            <select id="fr3-area-county" class="wl-liandong fr-area-county"><option value="">请选择县</option></select>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="web-top-name">
+                    <ul>
+                        <li>个人简介<span class="web-se">*</span></li>
+                        <li><textarea type="text" placeholder="请输入个人简介"></textarea></li>
+                    </ul>
+                </div>
+                <div style="clear: both"></div>
+                <div class="wl-top-btn">
+                    <div class="web-btn">提交申请</div>
+                </div>
+            </div>
+            <!--修改头像-->
+            <div class="wl-d">
+
+           </div>
         </div>
+        <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <form class="avatar-form">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal" type="button">&times;</button>
+                            <h4 class="modal-title" id="avatar-modal-label">上传图片</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="avatar-body">
+                                <div class="avatar-upload">
+                                    <input class="avatar-src" name="avatar_src" type="hidden">
+                                    <input class="avatar-data" name="avatar_data" type="hidden">
+                                    <label for="avatarInput" style="line-height: 35px;">图片上传</label>
+                                    <button class="btn btn-danger" type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
+                                    <span id="avatar-name"></span>
+                                    <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file"></div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="avatar-wrapper"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="avatar-preview preview-lg" id="imageHead"></div>
+
+                                    </div>
+                                </div>
+                                <div class="row avatar-btns">
+                                    <div class="col-md-4">
+                                        <div class="btn-group">
+                                            <button class="btn btn-danger fa fa-undo" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"> 向左旋转</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn  btn-danger fa fa-repeat" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"> 向右旋转</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: right;">
+                                        <button class="btn btn-danger fa fa-arrows" data-method="setDragMode" data-option="move" type="button" title="移动">
+<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger fa fa-search-plus" data-method="zoom" data-option="0.1" title="放大图片">
+<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
+
+</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger fa fa-search-minus" data-method="zoom" data-option="-0.1" title="缩小图片">
+<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
+
+</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
+<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
+                                       </span> </button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-danger btn-block avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
     </div>
 </div>
 {/block}
-
 {block name="script"}
+<script src="/static/web/dis/head/jquery.min.js"></script>
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.js"></script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src="/static/web/dis/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/web/dis/head/cropper.js"></script>
+<script src="/static/web/dis/head/sitelogo.js"></script>
 <script>
     $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
         $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
         var index = $(this).index();
         $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
     });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
+</script>
+<script>
+    var myAddressObj ={
+        requestParams:{
+            region_path :',',
+            region_grade:'1',
+        },
+        loadAddressList:function(region_path,region_grade){
+            myAddressObj.requestParams = {region_path :region_path,region_grade:region_grade};
+            $.ajax({
+                url:"/weixin/api/getAddress",
+                type:'post',
+                data:myAddressObj.requestParams,
+                dataType:'json',
+                success:function(res){
+                    if(res.code == 200){
+                        var data = res.data;
+                        if(data.request_params.region_path == myAddressObj.requestParams.region_path && data.request_params.region_grade == myAddressObj.requestParams.region_grade){
+                            var html = '';
+                            $.each(data.infos,function(k,v){
+                                html += myAddressObj.getSelectOptions(v);
+                            });
+                            if(data.request_params.region_grade == 1){
+                                $('.fr-province').empty().append('<option value="" >请选择省</option>').append(html);
+                            }else if(data.request_params.region_grade == 2){
+                                $('.fr-city').empty().append('<option value="" >请选择市</option>').append(html);
+                                $('.fr-area-county').empty().append('<option value="" >请选择县</option>');
+                            }else if(data.request_params.region_grade == 3){
+                                $('.fr-area-county').empty().append('<option value="" >请选择县</option>').append(html);
+                            }
+                        }
+                    }
+                }
+            });
+        },
+        getSelectOptions:function(data){
+            return '<option value="'+ data.id +'"  data-region_path="'+ data.region_path +'"  data-region_grade="'+ data.find_next_region_grade +'" >'+ data.local_name +'</option>';
+        }
+    };
+
+    myAddressObj.loadAddressList(myAddressObj.requestParams.region_path,myAddressObj.requestParams.region_grade);
+
+    $('.fr-province,.fr-city,.fr-area-county').on('change',function(){
+        var obj = $(this).find("option:selected");
+        myAddressObj.loadAddressList(obj.data('region_path'),obj.data('region_grade'));
+    });
+</script>
+<script type="text/javascript">
+    //做个下简易的验证  大小 格式
+    $('#avatarInput').on('change', function(e) {
+        var filemaxsize = 1024 * 5;//5M
+        var target = $(e.target);
+        var Size = target[0].files[0].size / 1024;
+        if(Size > filemaxsize) {
+            alert('图片过大，请重新选择!');
+            $(".avatar-wrapper").childre().remove;
+            return false;
+        }
+        if(!this.files[0].type.match(/image.*/)) {
+            alert('请选择正确的图片!')
+        } else {
+            var filename = document.querySelector("#avatar-name");
+            var texts = document.querySelector("#avatarInput").value;
+            var teststr = texts; //你这里的路径写错了
+            testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
+            filename.innerHTML = testend;
+        }
+
+    });
+
+    $(".avatar-save").on("click", function() {
+        var img_lg = document.getElementById('imageHead');
+        // 截图小的显示框内的内容
+        html2canvas(img_lg, {
+            allowTaint: true,
+            taintTest: false,
+            onrendered: function(canvas) {
+                canvas.id = "mycanvas";
+                //生成base64图片数据
+                var dataUrl = canvas.toDataURL("image/jpeg");
+                var newImg = document.createElement("img");
+                newImg.src = dataUrl;
+                imagesAjax(dataUrl)
+            }
+        });
+    });
+
+    function imagesAjax(src) {
+        var data = {};
+        data.img = src;
+        data.jid = $('#jid').val();
+        $.ajax({
+            url: "/index/user/uploadHead",
+            data: data,
+            type: "POST",
+            dataType: 'json',
+            success: function(res) {
+                if(res.code == 200){
+                    redream.showTip('头像修改成功');
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
+                }else{
+                    redream.showTip('头像修改失败');
+                }
+            }
+        });
+    }
 </script>
 {/block}

@@ -448,3 +448,12 @@
     margin-top: 50px;
     cursor: pointer;
 }
+.web-btn {
+    width: 100%;
+    min-height: 95px;
+    border-top: 2px solid #f1f1f1;
+    margin-top: 100px;
+}
+.w-e-text-container{
+    height: 500px!important;
+}

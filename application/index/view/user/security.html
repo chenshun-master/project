@@ -1,10 +1,322 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/modify_userinfo.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+        <ul class="wl-deji">
+            <li class="active">修改手机号</li>
+            <li>修改密码</li>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="content">
+            <!--基本资料-->
+            <div class="wl-d active">
+                <div>1请输入你的旧手机号            2请输入你要绑定的手机号                    3修改成功</div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>更换手机号<span class="web-se">*</span></li>
+                        <li>
+                            <input type="text" placeholder="请输入您的手机号" class="web-input"  id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11">
+                            <span class="web-error" id="error"><i class="iconfont icon-tishi"></i><span class="web-code">手机号不能为空</span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>验证码 <span class="web-se">*</span></li>
+                        <li>
+                            <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 25%" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6">
+                            <span class="wl-huqou" id="code-btn" onclick="objClass.sendSms()" >获取验证码</span>
+                            <span class="web-error" id="error1"><i class="iconfont icon-tishi"></i><span class="web-code1">验证码不能为空</span></span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div style="clear: both"></div>
+                <div class="wl-top-btn1">
+                    <div class="web-btn1" onclick="objClass.submit()" id="fr-box-btn">立即修改</div>
+                </div>
+            </div>
+            <!--修改密码-->
+            <div class="wl-d">
+                <div class="web-queren">请通过已绑定手机<span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
+                <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
+                <div class="web-top-name">
+                    <ul>
+                        <li>输入验证码 <span class="web-se">*</span></li>
+                        <li>
+                            <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 40%"id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6">
+                            <span class="wl-huqou" id="code-btn1" onclick="objClass1.sendSms()">获取验证码</span>
+                            <span class="web-error" id="error2"><i class="iconfont icon-tishi"></i><span class="web-code2">验证码不能为空</span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>设置新密码 <span class="web-se">*</span></li>
+                        <li><input type="text" placeholder="请输入新密码" class="web-input" style="width: 60.5%" id="fr-box1-password" maxlength="18">
+                            <span class="web-error" id="error3"><i class="iconfont icon-tishi"></i><span class="web-code3">请输入新密码</span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li>确认新密码 <span class="web-se">*</span></li>
+                        <li><input type="text" placeholder="请确认您的新密码" class="web-input" style="width: 60.5%"  id="fr-box1-password2" maxlength="18">
+                            <span class="web-error" id="error4"><i class="iconfont icon-tishi"></i><span class="web-code4">请确认您的新密码</span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="wl-top-btn1">
+                    <div class="web-btn1" onclick="objClass1.submit()" id="fr-box2-btn">立即修改</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script src="/static/plugin/jquery.smscode.js"></script>
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+
+    //获取修改手机号验证码
+    var codeObj = new Code('code-btn','获取验证码','code-hui','pc-sms-edit-mobile',60);
+    var codeObj1 = new Code('code-btn1','获取验证码','code-hui','pc-sms-edit-pwd',60);
+    var objClass = {
+        loading:false,
+        sendSmsCode:false,
+        errr1:function(msg){
+            $('#cus-change-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
+        },
+        submit:function () {
+            var mobile = $.trim($('#fr-box-mobile').val());
+            var sms_code = $.trim($('#fr-box-sms-code').val());
+            $('#cus-from-box1-err').html('');
+            $('.web-error').hide();
+            if(!redream.checkMobile(mobile)){
+                if(mobile == ''){
+                    $("#error").show();
+                    $('.web-code').text('手机号不能为空');
+                    return false;
+                }else if(mobile.length <= 11 ){
+                    $("#error").show();
+                    $('.web-code').text('手机号格式不正确！');
+                    return false;
+                }
+            }else if(sms_code == ''){
+                $("#error1").show();
+                $('.web-code1').text('验证码不能为空！');
+                return false;
+            }else if(!this.loading){
+                $.ajax({
+                    url:"/index/user/modifyMobile",
+                    type:'post',
+                    data:{mobile:mobile,sms_code:sms_code},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass.loading = true;
+                        $('#fr-box-btn').text('修改中...');
+                    },
+                    complete:function(){
+                        objClass.loading = false;
+                        $('#fr-box-btn').text('立即修改');
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            objClass.loading = true;
+                            setTimeout(function(){
+                                window.location.reload();
+
+                            },5000);
+                        }else if(res.code == 302){
+                            $("#error1").show();
+                            $('.web-code1').text('验证码输入错误');
+                            return false;
+                        }else if(res.code == 303){
+                            $("#error1").show();
+                            $('.web-code1').text('验证码已过期！');
+                            return false;
+                        }
+                    }
+                });
+            }
+        },
+        sendSms:function () {
+            var mobile = $.trim($('#fr-box-mobile').val());
+            $('.web-error').hide();
+            if(codeObj.checkTime()){
+                return false;
+            }else if(!redream.checkMobile(mobile)){
+                $("#error").show();
+                $('.web-code').text('请正确填写手机号!');
+                return false;
+            }else if(!this.sendSmsCode){
+                $.ajax({
+                    url:"/index/index/sendSmsCode",
+                    type:'post',
+                    data:{mobile:mobile,type:6},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass.sendSmsCode = true;
+                    },
+                    complete:function(){
+                        objClass.sendSmsCode = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            codeObj.trigger();
+                        }else if(res.code == 301){
+                            objClass.errr1('请求参数错误！');
+                        }else if(res.code == 302){
+                            $("#error").show();
+                            $('.web-code').text('手机号已被他人使用!');
+                        }else{
+                            $("#error1").show();
+                            $('.web-code1').text('验证码发送失败!');
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+    var objClass1 = {
+        loading:false,
+        sendSmsCode:false,
+        errr:function(msg){
+            $('#cus-changepwd-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
+        },
+        submit:function () {
+            var sms_code  = $('#fr-box1-sms-code').val();
+            var password  = $('#fr-box1-password').val();
+            var password1 = $('#fr-box1-password2').val();
+            $('.web-error').hide();
+            if (sms_code ==''){
+                $('#error2').show();return false;
+            }else if(password == ''){
+                $('#error3').show();return false;
+            }else if(password1 == ''){
+                $('#error4').show();return false;
+            }else if(password != password1){
+                $('#error4').show();
+                $('.web-code4').text('两次密码输入不一致!');
+                return false;
+            }else if(!this.loading){
+                $.ajax({
+                    url:"/index/user/modifyPassword",
+                    type:'post',
+                    data:{password:password,sms_code:sms_code},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass1.loading = true;
+                        $('#fr-box2-btn').text('修改中...');
+                    },
+                    complete:function(){
+                        objClass1.loading = false;
+                        $('#fr-box2-btn').text('立即修改');
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            objClass1.loading = true;
+                            $('#fr-box1-sms-code').val('');
+                            $('#fr-box1-password').val('');
+                            $('#fr-box1-password2').val('');
+                            $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
+                        }else if(res.code == 302){
+                            return false;
+                        }else if(res.code == 303){
+                            return false;
+                        }
+                    }
+                });
+            }
+        },
+        sendSms:function(){
+            var mobile = $('#fr-box1-mobile').val();
+            if(!redream.checkMobile(mobile)){
+                this.errr('手机号格式错误！');return false;
+                return false;
+            }else if(codeObj1.checkTime()){
+                return false;
+            }else if(!this.sendSmsCode){
+                $.ajax({
+                    url:"/index/index/sendSmsCode",
+                    type:'post',
+                    data:{mobile:mobile,type:5},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass1.sendSmsCode = true;
+                    },
+                    complete:function(){
+                        objClass1.sendSmsCode = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            codeObj1.trigger();
+                            $('#error2').show();
+                            $('.web-code2').text('验证码发送成功!');
+                        }else{
+                            $('#error2').show();
+                            $('.web-code2').text('验证码发送失败!');
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+    var editProfile ={
+        loading:false,
+        submit:function(){
+            var nickname = $.trim($('#fr-box2-nickname').val());
+            var profile = $.trim($('#fr-box2-profile').val());
+
+            if(nickname == ''){
+                alert('昵称不能为空');
+                return false;
+            }else if(!this.loading){
+                $.ajax({
+                    url:"/index/user/editProfile",
+                    type:'post',
+                    data:{nickname:nickname,profile:profile},
+                    dataType:'json',
+                    beforeSend:function(){
+                        editProfile.loading = true;
+                    },
+                    complete:function(){
+                        editProfile.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            $('#cus-nickname').html(nickname);
+                            $('#cus-profile').html(profile);
+                            $(".wl-zhez2").hide();
+                        }else {
+                            alert('修改失败');
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+</script>
+{/block}

@@ -8,16 +8,13 @@
 
 a{
     text-decoration:none;
-    color:#333;
+    color:#333!important;
 }
 body {
     font-family: "微软雅黑 CN";
     color: #221815;
-    background: white;
-}
-body {
+    background: #f4f5f6;
     margin: 0 auto;
-    min-width: 1500px;
 }
 .web-header{
     height: 35px;
@@ -55,6 +52,11 @@ body {
     font-size: 13px;
     color:#666;!important;
 }
+.web-top-rigth{
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
 .web-footer{
     min-height: 50px;
     width: 100%;
@@ -64,7 +66,7 @@ body {
 .web-footer-content{
     width: 1200px;
     min-height: 50px;
-    line-height: 50px;
+    line-height: 35px;
     margin: 0 auto;
     text-align: center;
     color: #70757e;
@@ -87,6 +89,25 @@ body {
     margin: 0 auto;
     background: #70e8e2;
 }
+.web-zhengxing{
+    width: 150px;
+    float: right;
+    text-align: center;
+}
+.web-zhengxing dl{
+    margin-top: 8px;
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 0!important;
+}
+.web-zhengxing dt{
+    margin-top: 5px;
+    font-size: 12px;
+    color: #95272f;
+
+
+}
+
 .web-reg{
     width: 16%;
     float: right;
@@ -142,7 +163,7 @@ body {
 }
 .web-daohang li:hover{
     background-color: #7DB0E8;
-    color: white;
+    color: white!important;
 }
 .web-navigation a{
     text-decoration: none!important;
@@ -156,10 +177,13 @@ body {
     text-align: center;
 }
 .web-navigation i{
-    font-size: 21px!important;
+    font-size: 18px!important;
     position: absolute;
-    left: 25px;
+    left: 28px;
 }
+/*.web-daohang i:nth-child(1){*/
+    /*color: #FFA0A0*/
+/*}*/
 .web-content{
     width: 1200px;
     height: 100%;
@@ -179,6 +203,7 @@ body {
     line-height: 40px;
     border-bottom: 1px solid #EEEEEE;
     font-size: 17px;
+
 }
 .web-content-right{
     width: 83%;
@@ -187,6 +212,7 @@ body {
     margin-top: 30px;
     border: 1px solid #e8e8e8;
     margin-bottom: 50px;
+    background: white;
   }
 .web-wenzhangliebiao{
     position: relative;
@@ -212,11 +238,25 @@ body {
     width: 1200px;
     height: 80px;
     margin: 0 auto;
+    position: relative;
 }
 .wl-logo-one{
     width: 170px;
-    height: 100px;
-
+    height: 80px;
+    float: left;
+}
+.web-top-input{
+    width:40%;
+    min-height: 40px;
+    margin: 0 auto;
+}
+.web-top-input input{
+    width: 100%;
+    min-height: 40px;
+    background: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
 }
 .wl-logo-one img{
     margin-top: 20px;
@@ -226,11 +266,15 @@ body {
     display: inline-block;
     margin-left: 25px;
 }
+.web-tinjain{
+    background: #7DB0E8;
+    color: white;
+}
 .web-bold{
     color: #333;
 }
 input::-webkit-input-placeholder {
        /* placeholder字体大小  */
        font-size: 14px!important;
-
+        color: #c0c0c0;
   }
