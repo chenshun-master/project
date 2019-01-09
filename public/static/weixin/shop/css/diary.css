@@ -162,7 +162,7 @@
     border-left: 1px solid #BFBFBF;
 }
 .wl-riji-shuhou{
-    width: 50%;
+    width: 100%;
     float: left;
     color: #1D1D1D;
     font-size: 13px;
@@ -238,6 +238,7 @@
     font-size: 10px;
     padding: 0 10px 0 10px;
     margin-left: 10px;
+    resize:none
 }
 .wl-pinglun1{
     width: 95%;
