@@ -1,5 +1,5 @@
 .img-gao {
-    height:55%;
+    height:60%;
     border-bottom: 1px solid #eee8d5;
     padding: 0 5px 10px 5px;
 }
@@ -80,6 +80,7 @@
 .wl-diary-content{
     width: 100%;
     min-height: 100px;
+    line-height: 25px;
     color:#000000;
     margin: 0 auto;
     margin-top: 15px;
@@ -97,8 +98,8 @@
     font-size: 11px;
 }
 .wl-img {
-    width: 18%;
-    height: 75%;
+    width: 20%;
+    height: 70%;
     float: left;
 }
 .wl-img img {
