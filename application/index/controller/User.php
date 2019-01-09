@@ -295,7 +295,10 @@ class User extends CController
         }
 
         $authCode = encryptStr(json_encode(['uid' => $this->getUserId(), 'time' => time()]), 'E', config('conf.secret_key'));
-        return $this->returnData(['authCode' => urlencode($authCode)], '', 200);
+
+
+        $url = url('/seller/index/onekeyLogin',['c'=>urlencode($authCode)],'',true);
+        return $this->returnData(['authCode' => urlencode($authCode),'url'=>$url], '', 200);
     }
 
     /**
@@ -309,7 +312,6 @@ class User extends CController
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
         $this->assign('user_info', $user_info);
 
-//        halt($user_info);
         return $this->fetch('user/modify_userinfo');
     }
 
