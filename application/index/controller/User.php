@@ -65,9 +65,7 @@ class User extends CController
 
         $this->assign('authResult', $authResult);
         $this->assign('user_info', $user_info);
-
         $this->assign('type', isset($authResult['type']) ? $authResult['type'] : 0);
-
         return $this->fetch('user/certification1');
     }
 
@@ -219,15 +217,14 @@ class User extends CController
             return $this->returnData([], '用户未登录', 401);
         }
 
-        $nickname = $request->post('nickname', '');
         $profile = $request->post('profile', '');
-        if (empty($nickname)) {
-            return $this->returnData([], '请求参数不符合规范', 301);
-        }
+        $sex  = $request->post('sex', '');
+        $date = $request->post('date', '');
 
         $res = $this->_userDomain->editProfile($this->getUserId(), [
-            'nickname' => $nickname,
-            'profile' => $profile
+            'profile'         => $profile,
+            'sex'             =>$sex,
+            'birthday_date'   =>$date
         ]);
 
         if (!$res) {
@@ -310,11 +307,9 @@ class User extends CController
             return redirect('/login');
         }
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
-        $authInfo = $this->_userDomain->getAuthInfo($this->getUserId());
-
         $this->assign('user_info', $user_info);
-        $this->assign('auth_info', $authInfo);
 
+//        halt($user_info);
         return $this->fetch('user/modify_userinfo');
     }
 
