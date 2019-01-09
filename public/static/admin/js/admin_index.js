@@ -62,7 +62,7 @@ layui.table.on('tool(admin)',function (obj) {
             }
         })
     }else if(obj.event === 'edit'){
-        window.location.href = "/admin/admin/newAdmin/id/"+id;
+        window.location.href = "/admin/admin/updateAdmin/id/"+id;
     }
 });
 var objClass = {
