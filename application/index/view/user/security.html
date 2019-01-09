@@ -110,37 +110,41 @@
             </div>
             <!--修改密码-->
             <div class="wl-d">
-                <div class="web-queren">请通过已绑定手机<span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
+                <div class="web-queren">请通过已绑定手机<span>{$user_info['mobile']|mobileFilter}</span> 进行验证！</div>
                 <input type="hidden" value="{$user_info['mobile']}" id="fr-box1-mobile"/>
                 <div class="web-top-name">
                     <ul>
                         <li class="web-information">输入验证码 <span class="web-se">*</span></li>
                         <li>
-                            <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 40%"
-                                   id="fr-box1-sms-code" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="6">
-                            <span class="wl-huqou" id="code-btn3" onclick="objClass.sendSms()">获取验证码</span>
-                            <span class="web-error" id="error2"><i class="iconfont icon-tishi"></i><span
-                                    class="web-code2">验证码不能为空</span></span>
+                            <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 40%" id="fr-box1-sms-code" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="6">
+                            <span class="wl-huqou" id="code-btn3" onclick="objClass.sendSms3()" style="width: 18%;">获取验证码</span>
+                            <span class="web-error" id="error2">
+                                <i class="iconfont icon-tishi"></i>
+                                <span class="web-code2">验证码不能为空</span>
+                            </span>
                         </li>
                     </ul>
                 </div>
                 <div class="web-top-name">
                     <ul>
                         <li class="web-information">设置新密码 <span class="web-se">*</span></li>
-                        <li><input type="text" placeholder="请输入新密码" class="web-input" style="width: 60.5%"
-                                   id="fr-box1-password" maxlength="18">
-                            <span class="web-error" id="error3"><i class="iconfont icon-tishi"></i><span
-                                    class="web-code3">请输入新密码</span></span>
+                        <li>
+                            <input type="password" placeholder="请输入新密码" class="web-input" style="width: 60.5%" id="fr-box1-password" maxlength="18">
+                            <span class="web-error" id="error3"><i class="iconfont icon-tishi"></i>
+                                <span class="web-code3">请输入新密码</span>
+                            </span>
                         </li>
                     </ul>
                 </div>
                 <div class="web-top-name">
                     <ul>
                         <li class="web-information">确认新密码 <span class="web-se">*</span></li>
-                        <li><input type="text" placeholder="请确认您的新密码" class="web-input" style="width: 60.5%"
-                                   id="fr-box1-password2" maxlength="18">
-                            <span class="web-error" id="error4"><i class="iconfont icon-tishi"></i><span
-                                    class="web-code4">请确认您的新密码</span></span>
+                        <li>
+                            <input type="password" placeholder="请确认您的新密码" class="web-input" style="width: 60.5%" id="fr-box1-password2" maxlength="18">
+                            <span class="web-error" id="error4">
+                                <i class="iconfont icon-tishi"></i>
+                                <span class="web-code4">请确认您的新密码</span>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -181,6 +185,7 @@
             $('#cus-changepwd-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
         },
         submit: function () {
+
             var sms_code = $('#fr-box1-sms-code').val();
             var password = $('#fr-box1-password').val();
             var password1 = $('#fr-box1-password2').val();
@@ -189,17 +194,18 @@
                 $('#error2').show();
                 return false;
             }else if(sms_code.length !=6 ){
-                $('#error2').show();
-                $('.web-code2').text('验证码格式错误');
+                $('#error2').show().find('.web-code2').text('验证码格式错误');
             } else if (password == '') {
                 $('#error3').show();
+                return false;
+            } else if (!redream.checkPassword(password)) {
+                $('#error3').show().find('span').text('密码格式错误');
                 return false;
             } else if (password1 == '') {
                 $('#error4').show();
                 return false;
             } else if (password != password1) {
-                $('#error4').show();
-                $('.web-code4').text('两次密码输入不一致!');
+                $('#error4').show().find('.web-code4').text('两次密码输入不一致!');
                 return false;
             } else if (!this.loading) {
                 $.ajax({
@@ -222,26 +228,24 @@
                             $('#fr-box1-password').val('');
                             $('#fr-box1-password2').val('');
                             $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled', true);
-                        } else if (res.code == 302) {
-                            return false;
-                        } else if (res.code == 303) {
-                            return false;
+                            alert('恭喜您，密码修改成功！！！');
                         }else{
-                            $('#error2').show();
-                            $('#error2').text('验证码错误');
+                            $('#error2').show().find('.web-code2').text('验证码错误');
                         }
                     }
                 });
             }
         },
         sendSms1:function(){
-            this.send(8,mobile,function(res){
-                if(res.code == 200){
-                    code1.trigger();
-                }else{
-                    $('#fr-sms-code-tip').text('验证码发送失败');
-                }
-            });
+            if(!code1.checkTime()){
+                this.send(8,mobile,function(res){
+                    if(res.code == 200){
+                        code1.trigger();
+                    }else{
+                        $('#error2').show().find('.web-code2').text('验证码发送失败');
+                    }
+                });
+            }
         },
         sendSms2:function(){
             var mobile = $('#fr-new-mobile').val();
@@ -250,13 +254,26 @@
                 return false;
             }
 
-            this.send(6,mobile,function(res){
-                if(res.code == 200){
-                    code2.trigger();
-                }else{
-                    $('#fr-sms-code-tip').text('验证码发送失败');
-                }
-            });
+            if(!code2.checkTime()){
+                this.send(6,mobile,function(res){
+                    if(res.code == 200){
+                        code2.trigger();
+                    }else{
+                        $('#fr-sms-code-tip').text('验证码发送失败');
+                    }
+                });
+            }
+        },
+        sendSms3:function(){
+            if(!code3.checkTime()){
+                this.send(5,mobile,function(res){
+                    if(res.code == 200){
+                        code3.trigger();
+                    }else{
+                        $('#fr-sms-code-tip').text('验证码发送失败');
+                    }
+                });
+            }
         },
         //验证手机号
         verify1:function(){
