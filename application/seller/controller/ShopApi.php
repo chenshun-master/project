@@ -34,7 +34,7 @@ class ShopApi extends BaseController
         if($file){
             $size = 1024*1024*5;              #单位字节
             if(!$file->checkSize($size)){
-                return $this->returnData([],'上传图片大小不能超过2M',305);
+                return $this->returnData([],'上传图片大小不能超过5M',305);
             }
 
             if(!$file->checkExt($fileExt)){
@@ -135,12 +135,19 @@ class ShopApi extends BaseController
      * 获取商品列表
      */
     public function getGoodsList(){
-
         $page = $this->request->param('page',1);
         $page_size = $this->request->param('limit',20);
 
-        $data = $this->_goodsDomain->getSellerGoodsList($this->getSellerId(),$page,$page_size);
+        $searchParams = [];
+        if($this->request->has('keywords')){
+            $searchParams['keywords'] = $this->request->param('keywords/s','');
+        }
 
+        if($this->request->has('status')){
+            $searchParams['status'] = $this->request->param('status/d',0);
+        }
+
+        $data = $this->_goodsDomain->getSellerGoodsList($this->getSellerId(),$page,$page_size,$searchParams);
         return $this->returnData($data,'',200);
     }
 

@@ -37,12 +37,6 @@ class User extends BaseController
         return $this->returnData($data,'',200);
     }
 
-    public function doctorApply(){
-        $data = $this->_uDomain->getHospitalList();
-        $this->assign('list',$data);
-        return $this->fetch('user/doctor-apply');
-    }
-
     public function getDoctorEnterApplyList(){
         if(!$this->checkLogin()){
             return $this->returnData([],'用户未登录',401);
@@ -101,6 +95,9 @@ class User extends BaseController
      * 我的医院列表
      */
     public function myHospital(){
+        $data = $this->_uDomain->getHospitalList();
+        $this->assign('list',$data);
+
         return $this->fetch('user/my-hospital');
     }
 

@@ -274,10 +274,14 @@ class UDomain
         $obj->join('wl_hospital hospital','dh.hospital_id = hospital.id');
         $obj->join('wl_auth auth','auth.id = hospital.auth_id');
 
+        $obj->leftJoin('wl_regions regions1','auth.province = regions1.id');
+        $obj->leftJoin('wl_regions regions2','auth.city = regions2.id');
+        $obj->leftJoin('wl_regions regions3','auth.area = regions3.id');
 
         $field= [
             'auth.enterprise_name',
-            'auth.scale','auth.founding_time','auth.province','auth.city','auth.area','auth.address'
+            'auth.scale','auth.founding_time','auth.province','auth.city','auth.area','auth.address',
+            'regions1.local_name as province','regions2.local_name as city','regions3.local_name as area',
         ];
 
         $rows = $obj->field($field)->select();

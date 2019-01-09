@@ -326,10 +326,22 @@ class SpGoodsDomain
     /**
      * 获取商户商品列表
      */
-    public function getSellerGoodsList($seller_id,$page = 1,$page_size = 15){
+    public function getSellerGoodsList($seller_id,$page = 1,$page_size = 15,$searchParams=[]){
         $obj = Db::name('sp_goods')->alias('goods');
 
         $obj->where('goods.seller_id',$seller_id);
+
+        if(!empty($searchParams) && is_array($searchParams)){
+            //关键词筛选
+            if(isset($searchParams['keywords']) && !empty($searchParams['keywords'])){
+                $obj->where('goods.name|goods.keywords','like',"%{$searchParams['keywords']}%");
+            }
+
+            if(isset($searchParams['status'])){
+                $obj->where('goods.status',$searchParams['status']);
+            }
+        }
+
         $obj->order('goods.create_time','desc');
         $total = $obj->count(1);
         $rows = $obj->page($page,$page_size)->select();

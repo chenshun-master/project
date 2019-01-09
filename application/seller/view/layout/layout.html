@@ -23,15 +23,12 @@
     {include file="layout/left-nav" /}
 
     <div class="content-wrapper">
-        <div id="breadcrumb">
-            <ul class="breadcrumb">
-                <li><i class="home-icon fa fa-home"></i> <a href="#">主页</a></li>
-                <li><a href="#">商品模块</a></li>
-                <li class="active">添加商品</li>
-            </ul>
-        </div>
+        {include file="layout/breadcrumb-nav" /}
 
-        {block name="main"}{/block}
+
+        {block name="main"}
+
+        {/block}
     </div>
 
     <footer class="main-footer">
@@ -46,6 +43,19 @@
 <script src="/static/plugin/admin/dist/js/adminlte.min.js"></script>
 <script>
     $('.treeview-menu').css('display','block');
+
+    var layuiTable =  {
+        getCheckId: function(tableId,id){
+            var checkStatus = table.checkStatus(tableId) ,data = checkStatus.data;
+            if(data.length > 0){
+                var ids = [];
+                $.each(data,function(k,v){ids.push(v[id]);});
+                return ids;
+            }else{
+                return [];
+            }
+        }
+    };
 </script>
 
 {block name="js"}{/block}

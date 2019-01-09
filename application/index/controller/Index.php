@@ -44,6 +44,9 @@ class Index extends CController
      * @route('index/index/postLogin','post')
      * @param Request $request
      * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function postLogin(Request $request){
         if($this->checkLogin()){
@@ -190,8 +193,9 @@ class Index extends CController
             }
         }
 
-        $sign = 9715;
-        $template_id = 12318;
+        $smsConfig = config('conf.sms_config.yzm');
+        $sign = $smsConfig['sign'];
+        $template_id = $smsConfig['template_id'];
 
         switch ($type){
             case 1:
