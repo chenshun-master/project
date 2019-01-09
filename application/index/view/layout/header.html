@@ -4,15 +4,16 @@
             <div class="web-header">
                 <div class="web-header-content">
                     <div class="web-header-logo">
-                        欢迎来到薇琳医美-个人中心！
+                         欢迎 {$u['nickname']} 来到薇琳医美！
                     </div>
                     <div class="web-head-portrait">
                         <ul class="web-article">
-                            <a href="/index/shop/myshoplist"><li>分销商品</li></a>
                             <a href="/index/user/certification"><li>实名认证</li></a>
-                            <a href="/seller/index/login"><li>商户管理</li></a>
+                            {if($u && in_array($u['type'],[3,4]))}
+                                <a   id="click-to-merchant"><li>商户管理</li></a>
+                            {/if}
                             <a href="/index/user/modifyUserInfo"><li>账号设置</li></a>
-                            <li onclick="redream.href('/index/user/signOut')">退出登录</li>
+                            <a href="/index/user/signOut"><li>退出登录</li></a>
                         </ul>
 
                         <!--<ul class="web-reg">-->

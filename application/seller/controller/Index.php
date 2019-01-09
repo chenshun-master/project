@@ -102,7 +102,7 @@ class Index extends BaseController
         }
 
         $token = $this->request->param('c','');
-        $token = json_decode(encryptStr($token,'D',config('conf.secret_key')),true);
+        $token = json_decode(encryptStr(urldecode($token),'D',config('conf.secret_key')),true);
         if(!empty($token) && ($token['time'] + 60 * 2) >= time()){
             $model = new \app\api\model\UserModel();
             $mobile = $model->getMobile($token['uid']);

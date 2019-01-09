@@ -281,10 +281,14 @@ input::-webkit-input-placeholder {
         color: #c0c0c0;
   }
 
-.wl-hidden{
+.wl-hidden {
     display: none;
 }
 
-.wl-sms-disable{
+.wl-sms-disable {
     color: #CCCCCC !important;
+}
+
+button {
+    cursor: pointer;
 }

@@ -29,6 +29,20 @@
     {/block}
 
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $('#click-to-merchant').on('click',function(){
+            $.ajax({
+                url: "/index/user/getAuthCode",
+                type: 'post',
+                dataType: 'json',
+                success: function (res) {
+                    if(res.code == 200){
+                        window.open(res.data.url,'_blank');
+                    }
+                }
+            });
+        });
+    </script>
     {block name="script"}
 
     {/block}

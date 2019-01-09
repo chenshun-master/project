@@ -1,7 +1,6 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
 <link rel="stylesheet" href="/static/web/css1/certification1.css">
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
 {/block}
@@ -14,7 +13,7 @@
     </div>
 
     <div class="web-content-right">
-            <ul class="wl-deji">
+            <ul class="wl-deji {if($type != 0 && $recertification ==0)}  wl-hidden{/if}">
                 <li class="{if($type == 1 || $type == 0)}  active{/if}">个人认证</li>
                 <li class="{if($type == 2)} active {/if}">医生认证</li>
                 <li class="{if($type == 3)} active {/if}">医院认证</li>
@@ -24,7 +23,7 @@
             <div class="content ">
 
                 <!--个人认证-->
-                <div class="{if($type == 1 || $type == 0)} active-txt {/if} wl-d active">
+                <div class="{if(($type == 1 && $recertification !=0) || $type == 0)} active {/if} wl-d ">
                     <div class="web-top-name">
                         <ul>
                             <li>真实姓名<span class="web-se">*</span></li>
@@ -70,7 +69,7 @@
                   </div>
                 </div>
                 <!--医生认证-->
-                <div class="{if($type == 2)} active-txt {/if} wl-d">
+                <div class="{if($type == 2 && $recertification !=0 )} active {/if} wl-d">
                     <div class="web-top-name">
                         <ul>
                             <li>真实姓名<span class="web-se">*</span></li>
@@ -165,7 +164,7 @@
                     </div>
                 </div>
                 <!--医院认证-->
-                <div class="{if($type == 3)} active-txt {/if} wl-d">
+                <div class="{if($type == 3 && $recertification !=0)} active {/if} wl-d">
                     <div class="web-top-name">
                         <ul>
                             <li>医院名称 <span class="web-se">*</span></li>
@@ -302,7 +301,7 @@
                     </div>
                 </div>
                 <!--官方认证-->
-                <div class="{if($type == 4)} active-txt {/if} wl-d">
+                <div class="{if($type == 4 && $recertification !=0)} active {/if} wl-d">
                     <div class="web-top-name">
                         <ul>
                             <li>企业名称 <span class="web-se">*</span></li>
@@ -399,62 +398,58 @@
                     </div>
                 </div>
 
-
-                <?php if(count($authResult) > 0 && $recertification === 0):?>
-                {switch name="authResult.status" }
-                {case value="1"}
-                <!--等待审核信息页面-->
-                <div class="wl-liucheng">
-                    <div class="wl-jindu">
-                        <span style="float: left;margin-top: -3px;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">提交认证信息</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                        <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                        <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8;float: left"></span><span style="float: left;margin-top: -2px">认证结果发布</span></span>
-                    </div>
-                    <div class="wl-jieguo">
-                        <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
-                        <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请联系客服</dd>
-                        <dt style="font-size: 16px;color: #999999;margin-top: 20px">与我们取得联系。</dt>
-                        <button onclick="window.location.reload()">刷新</button>
-                    </div>
-                </div>
-                {/case}
-                {case value="2"}
-                <!--认证信息失败页面-->
-                <div class="wl-liucheng"  >
-                    <div class="wl-jindu">
-                        <span style="float: left;margin-top: -5px;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                        <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                        <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left"></span><sapn><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
-                    </div>
-                    <div class="wl-jieguo1">
-                        <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
-                        <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
-                        <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
-                        <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
-                        <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
-                        <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
-                        <button ><a href="/index/user/certification?recertification=1" style="color: #ffffff">重新申请认证</a></button>
-                    </div>
-                </div>
-                {/case}
-                {case value="3"}
-                <!--认证信息通过页面-->
-                <div class="wl-liucheng" style="">
-                    <div class="wl-jindu">
-                        <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">提交认证信息</span></sapn></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                        <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px;float: left "></span><span style="float: left;margin-top: -2px">等待审核结果</span></sapn></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                        <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left"></span><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
-                    </div>
-                    <div class="wl-jieguo2">
-                        <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
-                        <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
-                        <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
-                        <!--<button>知道了</button>-->
-                    </div>
-                </div>
-                {/case}
-                {/switch}
-                <?php endif;?>
+                {if(count($authResult) > 0 && $recertification === 0)}
+                    {switch name="authResult.status" }
+                        {case value="1"}
+                             <div class="wl-liucheng">
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-top: -3px;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">提交认证信息</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8;float: left"></span><span style="float: left;margin-top: -2px">认证结果发布</span></span>
+                            </div>
+                            <div class="wl-jieguo">
+                                <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
+                                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请联系客服</dd>
+                                <dt style="font-size: 16px;color: #999999;margin-top: 20px">与我们取得联系。</dt>
+                                <button onclick="window.location.reload()" >刷新</button>
+                            </div>
+                        </div>
+                        {/case}
+                        {case value="2"}
+                            <div class="wl-liucheng"  >
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-top: -5px;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left"></span><sapn><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
+                            </div>
+                            <div class="wl-jieguo1">
+                                <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
+                                <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
+                                <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
+                                <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
+                                <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
+                                <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
+                                <button ><a href="/index/user/certification?recertification=1" style="color: #ffffff !important;">重新申请认证</a></button>
+                            </div>
+                        </div>
+                        {/case}
+                        {case value="3"}
+                            <div class="wl-liucheng" style="">
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">提交认证信息</span></sapn></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px;float: left "></span><span style="float: left;margin-top: -2px">等待审核结果</span></sapn></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left"></span><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
+                            </div>
+                            <div class="wl-jieguo2">
+                                <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
+                                <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
+                                <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
+                                <!--<button>知道了</button>-->
+                            </div>
+                        </div>
+                        {/case}
+                    {/switch}
+                {/if}
             </div>
     </div>
 
@@ -470,10 +465,12 @@
 <script src="/static/plugin/layui/layui.js"></script>
 <script src="/static/plugin/jquery.smscode.js"></script>
 <script>
-    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
-        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
-        var index = $(this).index();
-        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    $(".wl-deji li").click(function () {
+        if(objClass.type == 0){
+            $(this).addClass("active").siblings().removeClass("active");
+            var index = $(this).index();
+            $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+        }
     });
 </script>
 <script>
@@ -805,19 +802,19 @@
         formData.append('type',2);
         objClass.ajaxUploadImg('#fr'+frid+'-img',formData);
     });
-    $(function(){
-        var maodian = window.location.toString().split('#')[1];
-        if(maodian == 'auth1'){
-            $('.wl-deji li:nth-child(1)').trigger('click');
-        }else if(maodian == 'auth2'){
-            $('.wl-deji li:nth-child(2)').trigger('click');
-        }else if(maodian == 'auth3'){
-            $('.wl-deji li:nth-child(3)').trigger('click');
-        } else if(maodian == 'auth4'){
-            $('.wl-deji li:nth-child(4)').trigger('click');
-        }else{
-            $(".wl-deji li:first-child").trigger('click');
-        }
-    });
+    // $(function(){
+    //     var maodian = window.location.toString().split('#')[1];
+    //     if(maodian == 'auth1'){
+    //         $('.wl-deji li:nth-child(1)').trigger('click');
+    //     }else if(maodian == 'auth2'){
+    //         $('.wl-deji li:nth-child(2)').trigger('click');
+    //     }else if(maodian == 'auth3'){
+    //         $('.wl-deji li:nth-child(3)').trigger('click');
+    //     } else if(maodian == 'auth4'){
+    //         $('.wl-deji li:nth-child(4)').trigger('click');
+    //     }else{
+    //         $(".wl-deji li:first-child").trigger('click');
+    //     }
+    // });
 </script>
 {/block}
