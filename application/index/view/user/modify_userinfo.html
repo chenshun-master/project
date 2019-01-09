@@ -1,12 +1,13 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<link rel="stylesheet" href="/static/web/css1/modify_userinfo.css">
+
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
 <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
 <link href="/static/web/dis/head/sitelogo.css" rel="stylesheet">
 <link href="/static/web/dis/head/cropper.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/web/css1/modify_userinfo.css">
 {/block}
 
 {block name="main"}
@@ -26,19 +27,19 @@
             <div class="wl-d active">
                 <div class="web-top-name">
                     <ul>
-                        <li>修改头像<span class="web-se">*</span></li>
+                        <li class="web-information">修改头像<span class="web-se">*</span></li>
                         <li class="web-touxiang" ><img src="{$user_info['portrait']}" alt=""  onerror="this.src='/static/web/image/tou.png'" class=" btn-primary" data-toggle="modal" data-target="#avatar-modal" ></li>
                     </ul>
                 </div>
                 <div class="web-top-name">
                     <ul>
-                        <li>昵称<span class="web-se">*</span></li>
+                        <li class="web-information">昵称<span class="web-se">*</span></li>
                         <li><input type="text" placeholder="请输入你的昵称" class="web-input"></li>
                     </ul>
                 </div>
                 <div class="web-top-name">
                     <ul>
-                        <li>性别<span class="web-se">*</span></li>
+                        <li class="web-information">性别<span class="web-se">*</span></li>
                         <li>
                             <input type="radio" name="sex" class="web-radio" checked><span class="web-sex">男</span>
                             <input type="radio" name="sex" class="web-radio"><span class="web-sex">女</span>
@@ -47,7 +48,7 @@
                 </div>
                 <div class="web-top-name">
                     <ul>
-                        <li>生日<span class="web-se">*</span></li>
+                        <li class="web-information">生日<span class="web-se">*</span></li>
                         <li>
                             <input type="text" class="layui-input web-day" id="test1" placeholder="请输入你的生日">
                         </li>
@@ -56,7 +57,7 @@
 
                 <div class="web-top-name">
                     <ul>
-                        <li>所在地址 <span class="web-se">*</span></li>
+                        <li class="web-information">所在地址 <span class="web-se">*</span></li>
                         <li>
                             <select id="fr3-province" class="wl-liandong fr-province"><option value="">请选择省</option></select>
                             <select id="fr3-city" class="wl-liandong fr-city"><option value="">请选择市</option></select>
@@ -67,7 +68,7 @@
 
                 <div class="web-top-name">
                     <ul>
-                        <li>个人简介<span class="web-se">*</span></li>
+                        <li class="web-information">个人简介<span class="web-se">*</span></li>
                         <li><textarea type="text" placeholder="请输入个人简介"></textarea></li>
                     </ul>
                 </div>
@@ -279,5 +280,8 @@
             }
         });
     }
+    $(document).ready(function(){
+        $('bady').remove(style)
+    });
 </script>
 {/block}

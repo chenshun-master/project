@@ -21,39 +21,90 @@
         <div class="content">
             <!--基本资料-->
             <div class="wl-d active">
-                <div>1请输入你的旧手机号            2请输入你要绑定的手机号                    3修改成功</div>
-                <div class="web-top-name">
+                <div class="web-validation">
                     <ul>
-                        <li>更换手机号<span class="web-se">*</span></li>
-                        <li>
-                            <input type="text" placeholder="请输入您的手机号" class="web-input"  id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11">
-                            <span class="web-error" id="error"><i class="iconfont icon-tishi"></i><span class="web-code">手机号不能为空</span></span>
+                        <li class="web-line">
+                            <dl class="web-radius">1<span class="web-henxian-right"></span></dl>
+                            <dt>请验证你的旧手机号</dt>
+                        </li>
+                        <li class="web-line1">
+                            <dl class="web-radius1"><span class="web-henxian-left1"></span>2<span class="web-henxian-right1"></span></dl>
+                            <dt>请绑定新的手机号码</dt>
+                        </li>
+                        <li class="web-line2">
+                            <dl class="web-radius2"><span class="web-henxian-left2"></span>3</dl>
+                            <dt>完成</dt>
                         </li>
                     </ul>
                 </div>
-                <div class="web-top-name">
-                    <ul>
-                        <li>验证码 <span class="web-se">*</span></li>
-                        <li>
-                            <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 25%" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6">
-                            <span class="wl-huqou" id="code-btn" onclick="objClass.sendSms()" >获取验证码</span>
-                            <span class="web-error" id="error1"><i class="iconfont icon-tishi"></i><span class="web-code1">验证码不能为空</span></span>
-                        </li>
+                <!--第一步，请通过已绑定手机进行验证-->
+                <div class="web-phone">
+                    <div class="web-top-name">
+                        <ul>
+                            <li class="web-binding-phone">已绑定的手机号<span class="web-se">*</span></li>
+                            <li>
+                                <span id="fr-box-mobile"  onkeyup = "value=value.replace(/[^\d]/g,'')" >{$user_info['mobile']|mobileFilter}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li class="web-binding-phone">验证码 <span class="web-se">*</span></li>
+                            <li>
+                                <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 45%" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6">
+                                <span class="wl-huqou" id="code-btn" onclick="objClass.sendSms()" >获取验证码</span>
+                                <span class="web-error" id="error1"><i class="iconfont icon-tishi"></i><span class="web-code1">验证码不能为空</span></span>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="wl-top-btn1">
+                        <div class="web-btn1" onclick="objClass.submit()" id="fr-box-btn">立即修改</div>
+                    </div>
                 </div>
-                <div style="clear: both"></div>
-                <div class="wl-top-btn1">
-                    <div class="web-btn1" onclick="objClass.submit()" id="fr-box-btn">立即修改</div>
+                <!--第二步,请输入要绑定的手机号-->
+                <div class="web-phone">
+                    <div class="web-top-name">
+                        <ul>
+                            <li class="web-binding-phone">更换手机号<span class="web-se">*</span></li>
+                            <li>
+                                <input type="text" placeholder="请输入您的手机号" class="web-input"  id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11">
+                                <span class="web-error" id="error"><i class="iconfont icon-tishi"></i><span class="web-code">手机号不能为空</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li class="web-binding-phone">验证码 <span class="web-se">*</span></li>
+                            <li>
+                                <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 45%" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6">
+                                <span class="wl-huqou" id="code-btn" onclick="objClass.sendSms()" >获取验证码</span>
+                                <span class="web-error" id="error1"><i class="iconfont icon-tishi"></i><span class="web-code1">验证码不能为空</span></span>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="wl-top-btn1">
+                        <div class="web-btn1" onclick="objClass.submit()" id="fr-box-btn">立即修改</div>
+                    </div>
                 </div>
+                <!--修改成功-->
+                <div class="web-phone1">
+                <dl><i class="iconfont icon-roundcheck web-phone-success"></i></dl>
+                <dt>恭喜你手机号修改成功！</dt>
+                <dd>完成</dd>
+                </div>
+                <!--修改密码-->
             </div>
-            <!--修改密码-->
+
             <div class="wl-d">
                 <div class="web-queren">请通过已绑定手机<span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
                 <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
                 <div class="web-top-name">
                     <ul>
-                        <li>输入验证码 <span class="web-se">*</span></li>
+                        <li  class="web-information">输入验证码 <span class="web-se">*</span></li>
                         <li>
                             <input type="text" placeholder="请输入你收到的验证码" class="web-input" style="width: 40%"id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6">
                             <span class="wl-huqou" id="code-btn1" onclick="objClass1.sendSms()">获取验证码</span>
@@ -63,7 +114,7 @@
                 </div>
                 <div class="web-top-name">
                     <ul>
-                        <li>设置新密码 <span class="web-se">*</span></li>
+                        <li  class="web-information">设置新密码 <span class="web-se">*</span></li>
                         <li><input type="text" placeholder="请输入新密码" class="web-input" style="width: 60.5%" id="fr-box1-password" maxlength="18">
                             <span class="web-error" id="error3"><i class="iconfont icon-tishi"></i><span class="web-code3">请输入新密码</span></span>
                         </li>
@@ -71,7 +122,7 @@
                 </div>
                 <div class="web-top-name">
                     <ul>
-                        <li>确认新密码 <span class="web-se">*</span></li>
+                        <li  class="web-information">确认新密码 <span class="web-se">*</span></li>
                         <li><input type="text" placeholder="请确认您的新密码" class="web-input" style="width: 60.5%"  id="fr-box1-password2" maxlength="18">
                             <span class="web-error" id="error4"><i class="iconfont icon-tishi"></i><span class="web-code4">请确认您的新密码</span></span>
                         </li>
@@ -81,8 +132,10 @@
                     <div class="web-btn1" onclick="objClass1.submit()" id="fr-box2-btn">立即修改</div>
                 </div>
             </div>
-        </div>
+
     </div>
+        <div style="clear: both"></div>
+</div>
 </div>
 {/block}
 
@@ -317,6 +370,5 @@
             }
         }
     };
-
 </script>
 {/block}
