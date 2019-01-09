@@ -1,0 +1,305 @@
+{extend name="layout/layout" /}
+
+{block name="css"}
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css" media="all">
+<style>
+    .diary-img-boxs {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        float: left !important;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .diary-img-boxs-remove {
+        position: absolute;
+        top: 0;
+        right: 0px;
+        z-index: 2;
+        color: red;
+        background: white;
+        width: 20px;
+        height: 20px;
+        display: none;
+    }
+
+    .diary-img-boxs:hover .diary-img-boxs-remove {
+        display: block;
+    }
+
+    .fr-diary-submit{
+        background: #f1ebeb;
+        color: white;
+        border: none !important;
+    }
+</style>
+
+{/block}
+
+{block name="main"}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-widget widget-user">
+                <div class="widget-user-header" style="background-color: #53c5e1;color: white;">
+                    <p class="widget-user-username" style="font-size: 16px !important;">{$diaryInfo['title']}</p>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-4 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">0</h5><span class="description-text">浏览数</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">0</h5><span class="description-text">点赞数</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="description-block">
+                                <h5 class="description-header">0</h5><span class="description-text">日记数</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">相关商品</h3>
+                </div>
+                <div class="box-body">
+                    <ul>
+                        {if(count($goodsInfo) > 0)}
+                        {foreach($goodsInfo as $goods)}
+                        <li style="padding-bottom: 5px;">
+                            <div class="col-sm-2" style="width: 50px">
+                                <img src="{$goods['img']}" width="50">
+                            </div>
+                            <div class="col-sm-10">
+                                <p style="padding-left: 5px;height: 20px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis">
+                                    {$goods['name']}</p>
+
+                                <p style="padding-left: 5px;height: 20px;"> ￥ {$goods['sell_price']}</p>
+                            </div>
+                            <div style="clear: both"></div>
+                        </li>
+                        {/foreach}
+                        {/if}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#timeline" data-toggle="tab" aria-expanded="true">我的日记</a></li>
+                    <li ><a href="#settings" data-toggle="tab" aria-expanded="false" class="edit-tab">添加/编辑日记</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="timeline">
+                        <ul class="timeline">
+                            <li>
+                                <i class="fa fa-picture-o bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <h4 class="timeline-header no-border"> 术前&术后对比图</h4>
+                                    <div class="timeline-body">
+                                        <blockquote><p>&nbsp;术前</p></blockquote>
+                                        {if(count($diaryInfo['before_imgs']) > 0)}
+                                            {foreach($diaryInfo['before_imgs'] as $src1)}
+                                                <img src="{$src1}" class="margin" width="120" height="120"/>
+                                            {/foreach}
+                                        {/if}
+                                    </div>
+                                    <div class="timeline-body">
+                                        <blockquote><p>&nbsp;术后</p></blockquote>
+                                        {if(count($diaryInfo['after_imgs']) > 0)}
+                                            {foreach($diaryInfo['after_imgs'] as $src2)}
+                                                <img src="{$src2}" class="margin" width="120" height="120"/>
+                                            {/foreach}
+                                        {/if}
+                                    </div>
+                                </div>
+                            </li>
+
+                            {if(count($list) > 0)}
+                            {foreach($list as $row)}
+                            <li>
+                                <i class="fa fa-clock-o bg-gray"></i>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> {$row['created_time']|date='Y-m-d H:i'}</span>
+                                    <h3 class="timeline-header">术后 <span style="font-size: 20px;color: red">{$row['day']}</span>天 <span class="pointer edit-diary" data-json="{$row['json']}" >编辑</span></h3>
+                                    <div class="timeline-body">{$row['content']}</div>
+                                    <div class="timeline-body">
+                                        {if(count($row['imgs']) > 0)}
+                                        {foreach($row['imgs'] as $src)}
+                                        <img src="{$src}" class="margin" width="120" height="120"/>
+                                        {/foreach}
+                                        {/if}
+                                    </div>
+                                </div>
+                            </li>
+                            {/foreach}
+                            {/if}
+                            <li><i class="fa fa-clock-o bg-gray"></i></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal" id="form-diary" onsubmit="return false;">
+                            <input type="hidden" id="fr-diary-id" value="{$diary_id}">
+                            <input type="hidden" id="fr-id" value="0">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">术后时间</label>
+                                <div class="col-sm-11">
+                                    术后 <input type="text" id="fr-input-day" class="form-control" style="width: 50px;padding-left: 2px;padding-right: 2px;display: inline-block;text-align: center" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 天
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">日记描述</label>
+                                <div class="col-sm-11">
+                                    <textarea class="form-control" placeholder="日记描述(必填)" rows="10" style="resize: none" id="fr-textarea-content"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-1 col-sm-11" id="img-container">
+                                    <div style="width: 100px;height: 100px;border:1px solid #CCCCCC;cursor: pointer;float: left;position: relative;margin-bottom: 10px;margin-right: 10px;">
+                                        <div style="width: 100%;height: 100%;">
+                                            <img src="/static/seller/image/plus.png"  width="20" height="20" style="margin-left: 40px;margin-top: 40px;" class="cus-img">
+                                        </div>
+                                        <div style="position: absolute;z-index: 2;top: 0px">
+                                            <input type="file" name="imgFile"  style="width: 100px;height: 100px;border: none;opacity: 0;cursor: pointer" id="fr-diary-img-upload"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-1 col-sm-11">
+                                    <span type="submit" class="btn fr-diary-submit" id="fr-submit">立即添加</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{/block}
+
+{block name="js"}
+{js href="/static/plugin/layui/layui.all.js" /}
+<script>
+    $('#fr-diary-img-upload').on('change', function () {
+        var formData = new FormData($('#form-diary')[0]);
+        $.ajax({
+            url: '/seller/diary/uploadImgFile',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            beforeSend:function(){
+                // objClass.uploadLoading = true;
+            },
+            complete:function(){
+                // objClass.uploadLoading = false;
+            },
+            success: function (res) {
+                if(res.code == 200){
+                    $('#img-container').append('<div class="diary-img-boxs"><img src="'+ res.data.url +'" width="100"  /><div class="diary-img-boxs-remove"><i class="fa fa-fw fa-trash"></i></div></div>');
+                }else{
+                    layer.msg(res.msg);
+                }
+            }
+        });
+    });
+
+    $(document).on('click','.diary-img-boxs-remove',function(){
+        $(this).parent().remove();
+    });
+
+    $('.edit-diary').on('click',function(){
+        var o = $(this).data('json');
+        $('#fr-id').val(o.id);
+        $('#fr-input-day').val(o.day).attr('disabled',true);
+        $('#fr-textarea-content').val(o.content);
+        $('#img-container').find('.diary-img-boxs').remove();
+        $.each(o.imgs,function(k,src){
+            $('#img-container').append('<div class="diary-img-boxs"><img src="'+ src +'" width="100"  /><div class="diary-img-boxs-remove"><i class="fa fa-fw fa-trash"></i></div></div>');
+        });
+
+        $('.nav-tabs-custom .nav-tabs li').removeClass('active').find('a').attr('aria-expanded',false);
+        $('.edit-tab').attr('aria-expanded',true).parent().addClass('active');
+        $('.nav-tabs-custom .tab-pane').removeClass('active');
+        $('#settings').addClass('active');
+        $('#fr-submit').text('编辑日记');
+    });
+
+    $('.edit-tab').on('click',function(){
+        if($(this).attr('aria-expanded') == 'false'){
+            $('#fr-id').val(0);
+            $('#fr-input-day').val('').attr('disabled',false);
+            $('#fr-textarea-content').val('');
+            $('#img-container').find('.diary-img-boxs').remove();
+            $('#fr-submit').text('添加日记');
+        }
+    });
+
+    var classObj = {
+        loading:false,
+        getImgs:function(){
+            var arr = [];
+            $.each($('.diary-img-boxs > img'),function(k,v){
+                arr.push($('.diary-img-boxs > img')[k].src);
+            });
+            return arr;
+        }
+    };
+
+    $('#fr-submit').on('click',function(){
+        var data = {
+            diary_id:$('#fr-diary-id').val(),
+            id:$('#fr-id').val(),
+            day: $('#fr-input-day').val() == '' ?0:parseInt($('#fr-input-day').val()),
+            content:$.trim($('#fr-textarea-content').val()),
+            imgs:classObj.getImgs(),
+        };
+
+        if(data.day == 0){
+            layer.msg('术后时间不能为空');
+        }else if(data.content == ''){
+            layer.msg('日记描述不能为空');
+        }else if(data.imgs.length == 0){
+            layer.msg('图片不能为空');
+        }else if(classObj.loading == false){
+            $.ajax({
+                url: '/seller/diary/editDiaryDetail',
+                type: 'POST',
+                data:data,
+                dataType: "json",
+                beforeSend:function(){
+                    classObj.loading = true;
+                },
+                complete:function(){
+                    classObj.loading = false;
+                },
+                success: function (res) {
+                    if(res.code == 200){
+                        layer.msg('编辑成功...', {icon: 1});
+                        setTimeout(function(){
+                            window.location.reload();
+                        },2000);
+                    }else{
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+        }
+    });
+</script>
+{/block}

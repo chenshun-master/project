@@ -9,3 +9,9 @@
 .skin-black-light .sidebar-menu>li>a{
     font-weight: none !important;
 }
+
+
+
+.pointer{
+    cursor: pointer
+}
