@@ -160,6 +160,11 @@ body {
     line-height: 40px;
     margin-left: 15%;
     margin-top:20px ;
+    color: #6d6d6d;
+}
+.web-queren>span{
+    color: #7DB0E8;
+    margin:  0 5px 0 5px;
 }
 .web-btn1:hover{
     background: #7DB0E8;
@@ -353,4 +358,8 @@ body {
 }
 .web-radius{
     border: 2px solid  #7DB0E8;
+}
+.web-btn:hover{
+    background: #7DB0E8;
+    color: white;
 }
