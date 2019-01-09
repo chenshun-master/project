@@ -1,0 +1,350 @@
+body {
+    font-family: "微软雅黑 CN";
+    color: #221815;
+    background: #f4f5f6 !important;
+    margin: 0 auto;
+}
+
+.wl-deji{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #f1f1f1;
+}
+.wl-deji li{
+    width: 10%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+}
+.wl-deji li.active{
+    color: #7DB0E8;
+    border-bottom: 2px solid #7DB0E8;
+}
+.content .wl-d{
+    width: 100%;
+    min-height: 100px;
+    display: none;
+}
+.content .active {
+    display: block;
+}
+
+.web-top-name{
+    width: 100%;
+    min-height: 50px;
+   margin: 15px 0 15px 0;
+    clear: both;
+}
+.web-top-name li{
+    float: left;
+    min-height: 50px;
+    line-height: 50px;
+
+}
+.web-information{
+    width: 10%;
+    margin-left: 30px;
+    text-align: right;
+}
+.web-binding-phone{
+    width: 25%;
+    margin-left: 30px;
+    text-align: right;
+}
+.web-top-name li:nth-child(2){
+    width: 60%;
+    margin-left: 20px;
+}
+.web-input{
+    width: 45.6%;
+    height: 40px;
+    border: 1px solid #f1f1f1;
+    color: #888888;
+    padding-left: 15px;
+}
+.web-top-name li>select{
+    width: 80%;
+    height: 40px;
+    border: 1px solid #f1f1f1;
+    padding-left: 10px;
+    color: #888888;
+}
+.wl-liandong{
+    width: 25.4%!important;
+    float: left;
+    margin-right: 15px;
+}
+.web-top-name li>select>option{
+    color: #888888;
+}
+.web-top-name li>textarea{
+    width: 80%;
+    min-height: 150px;
+    border: 1px solid #f1f1f1;
+    resize: none;
+    padding-left: 10px;
+    color: #888888;
+}
+.web-se{
+    margin-left: 10px;
+    color: #FD7D7D;
+}
+.web-shang{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #F1F1F1;
+}
+.web-shang span{
+    margin-left: 30px;
+}
+.web-radio{
+    border: 0;
+    margin-left: 20px;
+}
+.web-sex{
+    margin-left: 8px;
+}
+.web-radio input:checked {
+    background: #821134;
+}
+.web-day{
+    width: 30%!important;
+}
+.wl-top-btn {
+    width: 100%;
+    border-top: 2px solid #F1F1F1;
+}
+.web-btn {
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin: 20px 20px 20px 0;
+    cursor: pointer;
+}
+
+.wl-huqou{
+    width: 25%;
+    height: 38px;
+    margin-left: 10px;
+    line-height: 38px;
+    display: inline-block;
+    border: 1px solid #f1f1f1;
+    text-align: center;
+    color: #FC7D7D;
+    cursor: pointer;
+}
+.web-btn1 {
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    margin: 30px 0 20px 150px;
+    cursor: pointer;
+}
+.web-queren{
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 15%;
+    margin-top:20px ;
+}
+.web-btn1:hover{
+    background: #7DB0E8;
+    color: white;
+}
+.web-error{
+    color: #ff5370!important;
+    display: none;
+}
+.web-error i{
+    margin: 0 8px 0 10px;
+}
+.wl-xgxx{
+    width: 100px;
+    height: 35px;
+    font-size: 14px;
+    line-height:35px;
+    color: #909090;
+    background: #EEEEEE;
+    border-radius: 4px;
+    float: right;
+    margin-top: 30px;
+    cursor: pointer
+}
+.wl-xgxx:hover{
+    background: #7DB0E8;
+    color: white;
+}
+.wl-deji li:nth-child(1){
+     margin-left: 15px;
+ }
+.web-leixing{
+    margin-left: 20px;
+}
+.web-genghuan{
+    float: right;
+    margin-right: 50px;
+}
+.web-renzheng{
+    margin-left: 50px;
+}
+.web-touxiang{
+    height: 100px;
+}
+.web-touxiang img {
+    width: 80px;
+    height: 80px;
+    border-radius:50% ;
+}
+.btn-primary{
+    background: none!important;
+    border:none!important;
+}
+.btn-danger{
+    color: #fff;
+    background-color: #7DB0E8!important;
+    border-color: #7DB0E8!important;
+}
+.modal-content{
+    margin-top: 20%;
+}
+.web-validation{
+    width: 100%;
+    height:50px ;
+    margin-top: 30px;
+}
+.web-validation li{
+    width: 33.3%;
+    float: left;
+    text-align: center;
+}
+.web-radius{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid #7DB0E8;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.web-radius1{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid #EEEEEE;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.web-radius2{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid #EEEEEE;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.web-line{
+    position: relative;
+}
+.web-line1{
+    position: relative;
+}
+.web-line2{
+    position: relative;
+}
+.web-henxian-right{
+    width: 150px;
+    height: 5px;
+    border-bottom: 2px solid #7DB0E8;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.web-henxian-left{
+    width: 150px;
+    height: 5px;
+    border-bottom: 2px solid #7DB0E8;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+.web-henxian-left1{
+    width: 149px;
+    height: 5px;
+    border-bottom: 2px solid #EEEEEE;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+.web-henxian-right1{
+    width: 150px;
+    height: 5px;
+    border-bottom: 2px solid #EEEEEE;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.web-henxian-left2{
+    width: 149px;
+    height: 5px;
+    border-bottom: 2px solid #EEEEEE;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+.web-validation li>dt{
+    margin-top: 15px;
+}
+.web-phone{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.web-phone1{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+.web-footer dl{
+    margin-bottom:0px!important;
+    font-size: 16px!important;
+}
+.web-footer dt{
+    font-weight:normal!important;
+    line-height: 35px!important;
+    font-size: 16px!important;
+}
+.web-phone-success{
+    color: #7DB0E8;
+    font-size: 90px;
+}
+.web-phone1>dt{
+    font-size: 20px;
+    margin-top: 20px;
+    padding-left: 10px;
+    color: #919191;
+}
+.web-phone1>dd{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    background: #7DB0E8;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    margin: 0 auto;
+    margin-top: 30px
+}

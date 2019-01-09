@@ -1,20 +1,63 @@
 <content>
-    <div class="web-navigation-title">个人中心</div>
+    <div class="web-navigation-title web-bold">个人中心</div>
     <ul class="web-navigation">
-        <li class="web-wenzhangliebiao"> <span></span>文章列表 <span></span></li>
+        <li class="web-wenzhangliebiao web-bold"> <span></span>文章列表 <span></span></li>
     <ul class="web-daohang">
-        <a href="/index/article/article"> <li><i class="iconfont icon-fabiao"></i>发表文章</li></a>
-        <a href="/index/article/graphic"><li><i class="iconfont icon-wode1"></i>我的文章</li></a>
+        {if (checkFooter('/index/article/article')) }
+        <a href="/index/article/article"> <li class="web-tinjain"><i class="iconfont icon-fabiaowenzhang1" style="color: white"></i>发表文章</li></a>
+        {else /}
+        <a href="/index/article/article"> <li><i class="iconfont icon-fabiaowenzhang1" style="color: #FC9E9E"></i>发表文章</li></a>
+        {/if}
+
+        {if (checkFooter('/index/article/graphic')) }
+        <a href="/index/article/graphic"><li class="web-tinjain"><i class="iconfont icon-wodewenzhang" style="color: white"></i>我的文章</li></a>
+       {else /}
+        <a href="/index/article/graphic"><li><i class="iconfont icon-wodewenzhang" style="color:#FE9F88"></i>我的文章</li></a>
+        {/if}
+
     </ul>
-        <li class="web-wenzhangliebiao"> <span></span>分销商品 <span></span></li>
+        <li class="web-wenzhangliebiao web-bold"> <span></span>分销商品 <span></span></li>
         <ul class="web-daohang">
-        <li><i class="iconfont icon-shangpinliebiao"></i>商品列表</li>
-        <li><i class="iconfont icon-fenxiaozhongxin"></i>分销列表</li>
+            {if (checkFooter('/index/shop/index')) }
+            <a href="/index/shop/index"><li class="web-tinjain"><i class="iconfont icon-shangpinliebiao2" style="color: white"></i>商品列表</li></a>
+            {else /}
+            <a href="/index/shop/index"><li><i class="iconfont icon-shangpinliebiao2" style="color: #FFAC9C"></i>商品列表</li></a>
+            {/if}
+            {if (checkFooter('/index/shop/myshoplist')) }
+            <a href="/index/shop/myshoplist"><li class="web-tinjain"><i class="iconfont icon-fenxiaoliebiao1" style="color: white"></i>分销列表</li></a>
+            {else /}
+            <a href="/index/shop/myshoplist"><li><i class="iconfont icon-fenxiaoliebiao1" style="color:#FF988A"></i>分销列表</li></a>
+            {/if}
+
     </ul>
-        <li class="web-wenzhangliebiao"> <span></span>我的认证 <span></span></li>
+        <li class="web-wenzhangliebiao web-bold"> <span></span>我的认证 <span></span></li>
         <ul class="web-daohang">
-        <li><i class="iconfont icon-shimingrenzheng1"></i>实名认证</li>
-        <li><i class="iconfont icon-shanghuguanli"></i>商户管理</li>
+            {if (checkFooter('/index/user/certification')) }
+            <a href="/index/user/certification"><li  class="web-tinjain"><i class="iconfont icon-shimingrenzheng2" style="color: white"></i>实名认证</li></a>
+            {else /}
+            <a href="/index/user/certification"><li><i class="iconfont icon-shimingrenzheng2" style="color: #FFAC9C"></i>实名认证</li></a>
+            {/if}
     </ul>
+        <li class="web-wenzhangliebiao web-bold"> <span></span>账号设置 <span></span></li>
+        <ul class="web-daohang">
+            {if (checkFooter('/index/user/main')) }
+            <a href="/index/user/main"><li  class="web-tinjain"><i class="iconfont icon-yonghuxinxi" style="color: white"></i>用户信息</li></a>
+            {else /}
+            <a href="/index/user/main"><li><i class="iconfont icon-yonghuxinxi" style="color: #FF917B"></i>用户信息</li></a>
+            {/if}
+            {if (checkFooter('/index/user/modifyUserInfo')) }
+            <a href="/index/user/modifyUserInfo"><li  class="web-tinjain"><i class="iconfont icon-xiugaiziliao" style="color: white"></i>修改资料</li></a>
+            {else /}
+            <a href="/index/user/modifyUserInfo"><li><i class="iconfont icon-xiugaiziliao" style="color: #FE9F88"></i>修改资料</li></a>
+            {/if}
+            {if (checkFooter('/index/user/security')) }
+            <a href="/index/user/security"><li  class="web-tinjain"><i class="iconfont icon-anquanzhongxin" style="color: white"></i>安全中心</li></a>
+            {else /}
+            <a href="/index/user/security"><li><i class="iconfont icon-anquanzhongxin" style="color: #FF917B"></i>安全中心</li></a>
+            {/if}
+
+        </ul>
+    </ul>
+
     </ul>
 </content>

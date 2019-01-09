@@ -1,0 +1,93 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/main.css">
+<link rel="stylesheet" href="/static/web/css1/modify_userinfo.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+        <ul class="wl-deji">
+            <li class="active">用户信息</li>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="content">
+            <!--基本资料-->
+            <div class="wl-d active">
+                <div class="one-1">
+                    <div style="width: 80%;margin: 0 auto">
+                        <img src="{$user_info['portrait']}"  onerror="this.src='/static/web/image/tou.png'" >
+                        <div style="float: left">
+                            <dt id="cus-nickname">{$user_info['nickname']}</dt>
+                            <dd id="cus-profile" title="{$user_info['profile']}">
+                                {$user_info['profile']?:'<span style="color: #CCCCCC">您还没有设置您的简介信息...</span>'}
+                            </dd>
+
+                        </div>
+                        <a href="/index/user/modifyUserInfo"><button class="wl-xgxx">修改信息</button></a>
+                    </div>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li class="web-information">账号信息</li>
+                        <li>
+                         <span  class="web-leixing">用户类型</span>
+                            <span class="web-renzheng">
+                                <?php if($user_info['type'] == 1):?>
+                            <a href="/index/user/certification" style="color:#7DB0E8">申请认证</a>
+                            <?php elseif($user_info['type'] == 2):?>
+                            认证会员
+                            <?php elseif($user_info['type'] == 3):?>
+                            认证医生
+                            <?php elseif($user_info['type'] == 4):?>
+                            认证医院
+                            <?php elseif($user_info['type'] == 5):?>
+                            官方团队
+                            <?php endif;?>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li  class="web-information"></li>
+                        <li>
+                            <span  class="web-leixing">用户账号</span><span class="web-renzheng">{$user_info['mobile']|mobileFilter}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li  class="web-information">登录方式</li>
+                        <li>
+                            <span  class="web-leixing">绑定手机</span>
+                            <span class="web-renzheng">{$user_info['mobile']|mobileFilter}</span>
+                            <span class="web-genghuan">如需更换,<a href="/index/user/security"><span style="color: #FD7D7D;cursor: pointer">请前往"安全中心"</span></a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+
+</script>
+{/block}

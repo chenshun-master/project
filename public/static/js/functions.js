@@ -209,7 +209,6 @@
             }
             return len;
         },
-
         toReferer(){
             if(document.referrer == ''){
                 window.location.href = '/weixin';

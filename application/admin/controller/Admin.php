@@ -36,14 +36,42 @@ class Admin extends BaseController
     /**
      * 新增管理员页面
      */
-    public function newAdmin()
-    {
-        $id = input('param.id');
-        $data = $this->_adminDomain->getOne($id);
-        $this->assign('data',$data);
+    public function newAdmin(){
         return $this->fetch('/admin/add');
     }
 
+    /**
+     *修改管理员信息页面
+     */
+    public function updateAdmin(){
+        $id = input('param.id');
+        $data = $this->_adminDomain->getOne($id);
+        $this->assign('data',$data);
+        return $this->fetch('/admin/update');
+    }
+
+    /**
+     *修改管理员信息
+     * @param Request $request
+     */
+    public function updateInfo(Request $request){
+        $id = $request->post('id');
+        $username = $request->post('username');
+        $password = $request->post('password');
+        $status = $request->post('status');
+        $data = [
+            'username' => $username,
+            'password' => encryptPwd($password),
+            'status' => $status,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        $result = $this->_adminDomain->getUpdate($id,$data);
+        if (!$result) {
+            return $this->returnData([], '修改失败', 301);
+        } else {
+            return $this->returnData([], '修改成功', 200);
+        }
+    }
     /**
      * 管理员列表
      * @param $page
@@ -62,7 +90,6 @@ class Admin extends BaseController
      */
     public function releaseAdmin(Request $request)
     {
-        $id = $request->post('id');
         $username = $request->post('username');
         $password = $request->post('password');
         $status = $request->post('status');
@@ -72,21 +99,16 @@ class Admin extends BaseController
             'status' => $status,
             'created_at' => date('Y-m-d H:i:s'),
         ];
-        if ($id) {
-            $data = [
-                'username' => $username,
-                'password' =>encryptPwd($password),
-                'status' => $status,
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
-            $result = $this->_adminDomain->getUpdate($id,$data);
-        } else {
+        $res = Db::name('admin')->where('username',$data['username'])->find();
+        if(!$res){
             $result = $this->_adminDomain->createAdmin($data);
-        }
-        if (!$result) {
-            return $this->returnData([], '新增失败', 301);
-        } else {
-            return $this->returnData([], '新增成功', 200);
+            if (!$result) {
+                return $this->returnData([], '新增失败', 301);
+            } else {
+                return $this->returnData([], '新增成功', 200);
+            }
+        }else{
+            return $this->returnData([],'管理员名称重复',302);
         }
     }
 

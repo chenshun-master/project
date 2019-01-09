@@ -1,0 +1,149 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/my_article.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
+    </div>
+    <div class="web-content-right">
+        <div class="wl-fabu1">
+            <div class="wl-top-title">
+                <div class="wl-top-img">
+                    <img src="{$goods_info['img']}" alt="">
+                </div>
+                <div class="wl-top-right">
+                    <dt class="wl-shang-title">{$goods_info['name']}</dt>
+                    <dt class="wl-yiyuan" style="margin-top: 10px">{$goods_info['hospital_name']}</dt>
+                    <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>{$goods_info['sell_price']}</dd>
+                </div>
+            </div>
+            <div>
+                <input type="hidden" id="fr-goods_id" value="{$goods_info['id']}">
+                <div class="web-fabiao">
+                    <ul>
+                        <li>标题</li>
+                        <li><input type="text" value=""id="fr-title" placeholder="请输入商品标题"></li>
+                    </ul>
+                </div>
+                <!--<div class="web-fabiao">-->
+                    <!--<ul>-->
+                        <!--<li>摘要</li>-->
+                        <!--<li><input type="text" value="" id="fr-zaiyao" placeholder="请输入商品摘要"></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+                <div style="clear: both;padding-left: 10px;padding-bottom: 80px">
+                    <div style="float: left;width: 90%;margin-top: 35px; margin-left: 44px;height: 500px">
+                        <!--<textarea id="editor_id" name="content" style="width:99% !important;height:300px;background: white;"></textarea>-->
+                        <div id="wang-editor"></div>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="web-btn">
+                    <div class="web-btn-right">
+                        <button onclick="objClass.submit()" class="wl-tijiao" style="cursor: pointer">发表</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script type="text/javascript" src="/static/plugin/wangEditor/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#wang-editor');
+    editor.customConfig.uploadImgServer = '/index/upload/uploadFile';
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+    editor.customConfig.uploadImgMaxLength = 3;
+    editor.customConfig.showLinkImg = false;
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'image',  // 插入图片
+        'table',  // 表格
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
+    editor.create();
+
+    $(".wl-xian").click(function () {
+        $(".wl-cang").toggle();
+    });
+    $('.wl-tabc').click(function () {
+        $('.wl-cang').hide();
+    });
+
+
+    $(".wl-yingj").click(function () {
+        $(".wl-ding").toggle();
+        $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
+        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
+    });
+
+
+    var objClass ={
+        loading:false,
+        submit:function(){
+            var data = {
+                gid:$('#fr-goods_id').val(),
+                title:$.trim($('#fr-title').val()),
+                content:$.trim(editor.txt.html())
+            };
+
+            if(data.title == ''){
+                redream.msg('标题不能为空');
+            }else if(data.content == ''){
+                redream.msg('正文不能为空');
+            }else if(objClass.loading == false){
+                var index = layer.msg('提交中，请耐心等待...', {icon: 16 ,shade: 0.01,time:0});
+                $.ajax({
+                    url: "/index/shop/createGoodGoods",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        objClass.loading = true;
+                    },
+                    complete: function () {
+                        objClass.loading = false;
+                        layer.close(index);
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            layer.msg('创建成功...',{icon:1});
+                            window.location.href='/index/shop/myshoplist';
+                        }else{
+                            layer.msg(res.msg,{icon:5});
+                        }
+                    }
+                });
+            }
+        }
+    };
+    $('.w-e-toolbar').css('background-color','white');
+</script>
+{/block}

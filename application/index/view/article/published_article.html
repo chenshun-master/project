@@ -12,14 +12,16 @@
             {include file="layout:navigation" /}
         </div>
         <div class="web-content-right">
-            <div class="web-content-right-title">发表文章</div>
+            <div class="web-content-right-title"><span class="web-top-title">发表文章</span></div>
             <input type="hidden" id="fr-id" value="{$articleInfo?$articleInfo['id']:0}">
             <input type="hidden" id="fr-draft" value="{$articleInfo && $articleInfo['status'] == 2 ?1:0}">
             <div class="web-fabiao">
                 <ul>
                     <li>标题</li>
-                    <li><input type="text" value="{$articleInfo?$articleInfo['title']:''}" id="fr-title"
-                               placeholder="请输入文章标题"></li>
+                    <li>
+                        <input type="text" value="{$articleInfo?$articleInfo['title']:''}" id="fr-title" placeholder="请输入文章标题" maxlength="50">
+                        <span style="color: #FF917B;"><span id="title-lenght">0</span>/50</span>
+                    </li>
                 </ul>
             </div>
             <div class="web-fabiao">
@@ -37,117 +39,147 @@
                 </ul>
             </div>
             <div>
-                <div style="width: 95%; margin: 35px auto;">
-                    <textarea id="editor_id" name="content"
-                              style="width:99% !important;height:300px;background: white;"><?php echo $articleInfo?$articleInfo['content']:''; ?></textarea>
+                <div style="width: 95%; margin: 35px auto;height: 500px">
+                    <div id="wang-editor" style="">
+                        <?php echo $articleInfo?$articleInfo['content']:''; ?>
+                    </div>
                 </div>
             </div>
             <div class="web-ded">
-                <div class="web-suolue">
-                    <div class="web-suoluetu">
-                        <form id="infoLogoForm" enctype='multipart/form-data'>
-                            <input type="file" name="imgFile" accept="image/*" id="btn-input-file"/>
-                        </form>
-                        <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
-                        <dt>添加缩略图</dt>
-                    </div>
+                  <div class="web-suolue">
+                      <div class="web-suoluetu">
+                          <form id="infoLogoForm" enctype='multipart/form-data'>
+                              <input type="file" name="imgFile" accept="image/*" id="btn-input-file"/>
+                          </form>
+                          <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                          <dt>添加缩略图</dt>
+                      </div>
+                  </div>
+                <div class="web-tianjiai">
                     {if($articleInfo && count($articleInfo['thumbnail']) > 0)}
-                    {foreach($articleInfo['thumbnail'] as $src)}
-                    <div class="cus-remove-img-list">
-                        <img src="{$src}" class="cus-fr-images" width="120" height="120">
-                        <span class="iconfont icon-roundclosefill cus-remove-img"></span>
-                    </div>
-                    {/foreach}
+                        {foreach($articleInfo['thumbnail'] as $src)}
+                        <div class="cus-remove-img-list">
+                            <img src="{$src}" class="cus-fr-images" width="125" height="125">
+                            <span class="iconfont icon-roundclosefill cus-remove-img"></span>
+                        </div>
+                        {/foreach}
                     {/if}
-                </div>
-            </div>
+                 </div>
+        </div>
             <div class="web-shangchaun"><span style="color: red">注:</span>缩略图最多只能上传三张</div>
             <div class="web-btn">
                 <div class="web-btn-right">
-                    <button  onclick="objClass.submit(1)">发表文章</button>
+                    <button  class="wl-fabiao1 web-yulan"><i class="iconfont icon-shouji01" style="font-size: 13px"></i>预览文章</button>
+                    <button  onclick="objClass.submit(1)" class="wl-fabiao1">发表文章</button>
                     {if(!$articleInfo || ($articleInfo && $articleInfo['status'] == 2))}
 
-                    <button onclick="objClass.submit(2)">保存草稿</button>
+                    <button onclick="objClass.submit(2)" class="wl-fabiao1">保存草稿</button>
 
                     {/if}
 
                 </div>
             </div>
+    </div>
+        <div class="wl-zh1" id="wl-loading-box" style="display: none">
+            <div class="wl-z1">
+                <dl>
+                    <img src="/static/image/user/timg.gif" alt="" width="60px" style="margin: 0 auto;position: absolute;left: -10px;right: 0;">
+                </dl>
+                <dt  class="wl-shangzhong">上传中...</dt>
+            </div>
         </div>
     </div>
-<div class="wl-zh1" id="wl-loading-box" style="display: none">
-    <div class="wl-z1">
-        <dl>
-            <img src="/static/image/user/timg.gif" alt="" width="60px" style="margin: 0 auto;position: absolute;left: -10px;right: 0;">
-        </dl>
-        <dt  class="wl-shangzhong">上传中...</dt>
+    <div class="wl-zhez2">
+        <div class="web-cancel">
+            <i class="iconfont icon-close" style="font-size: 50px;color: white  "></i>
+        </div>
+        <div class="wl-zl2">
+            <div class="web-conter-gundong">
+                <div>
+                    <div class="web-preview-title href"></div>
+                </div>
+                <div class="web-preview-main href">
+                    <div>
+                        <div class="web-preview-img href">
+                            <img src="/static/image/user/tou.png" alt=""onerror="this.src=/static/image/user/tou.png;" class="cus-touser-main"></div>
+                        <div class="web-preview-user href">
+                            <dl>上海xxxxxx</dl>
+                            <dt>昨天 15:14分</dt>
+                        </div>
+                    </div>
+                    <div class="web-preview-friends href">
+                        <button onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="web-preview-content" >
+
+                </div>
+
+                <div class="web-preview-end">-&nbsp;THE END&nbsp;-</div>
+            </div>
+
+        </div>
     </div>
-</div>
 {/block}
 
 {block name="script"}
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script charset="utf-8" src="/static/plugin/kindeditor/kindeditor-all.js"></script>
-<script charset="utf-8" src="/static/plugin/kindeditor/lang/zh-CN.js"></script>
+<script type="text/javascript" src="/static/plugin/wangEditor/release/wangEditor.min.js"></script>
 <script>
-    KindEditor.ready(function (K) {
-        K.allowImageRemote = false;
-        window.editor = K.create('#editor_id', {
-            cssPath: '/static/plugin/kindeditor/plugins/code/prettify.css',
-            resizeMode: 1,
-            items: [
-                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-                'superscript', 'clearhtml', 'quickformat', 'selectall', '|',
-                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'pagebreak',
-                'anchor', 'link', 'unlink'
-            ],
-            uploadJson: '/index/upload/editUploadImgFile',
-            allowFileManager: false,
-            allowImageRemote: true,
-            syncType: 'auto',
-            afterCreate: function () {
-                var self = this;
-                self.sync();
-            }
-        });
+    var E = window.wangEditor;
+    var editor = new E('#wang-editor');
+    editor.customConfig.uploadImgServer = '/index/upload/uploadFile';
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+    editor.customConfig.uploadImgMaxLength = 3;
+    editor.customConfig.showLinkImg = false;
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'image',  // 插入图片
+        'table',  // 表格
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
+    editor.create();
 
-        window.editor.sync();
-    });
-
-    $(document).on('focus', '#remoteUrl', function () {
-        $(this).prop("readonly", "readonly");
-        $(this).parent().hide();
-    });
 
     var objClass = {
         loading: false,
         loading2: false,
-        getData: function (flag) {
-            window.editor.sync();
+        getData:function(flag){
             var imgArr = [];
             $.each($('.cus-fr-images'), function (key, val) {
                 imgArr.push(val.src);
             });
 
             return {
-                article_id: $('#fr-id').val(),
-                flag: flag,
+                article_id:$('#fr-id').val(),
+                flag:flag,
                 title: $.trim($('#fr-title').val()),
                 tag: $('#fr-tag').val(),
-                content: $.trim($('#editor_id').val()),
+                content: $.trim(editor.txt.html()),
                 excerpt: $('#fr-zaiyao').val(),
                 thumbnail_img: imgArr,
-                isdraft: $('#fr-draft').val(),
+                isdraft:$('#fr-draft').val(),
             };
         },
         submit: function (flag) {
             var data = this.getData(flag);
             if (data.title == '') {
                 alert('标题不能为空');
-            } else if (!this.loading) {
+            }else if (!this.loading) {
                 $.ajax({
                     url: "/index/article/releaseArticle",
                     type: 'post',
@@ -171,6 +203,10 @@
             }
         },
     };
+
+    $('#fr-title').on('keyup',function(){
+        $('#title-lenght').text($(this).val().length);
+    });
 
     $("#btn-input-file").on("change", function () {
         if (objClass.loading2) {
@@ -197,7 +233,7 @@
             },
             success: function (data) {
                 if (data.code == 200) {
-                    $('.web-suolue').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="120" height="120" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
+                    $('.web-tianjiai').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="125" height="125" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
                     if ($('.cus-fr-images').length >= 3) {
                         $('#btn-input-file').prop('disabled', true);
                     }
@@ -212,5 +248,28 @@
         $(this).parent().remove();
         $('#btn-input-file').prop('disabled', false);
     });
+    $('.w-e-toolbar').css('background-color','white');
+    // 修改信息遮罩层
+    $(".web-yulan").click(function(event) {
+        if($("#fr-title").val()==''){
+            alert('请输入标题！');
+            return false;
+        }
+        event.stopPropagation(); //停止事件冒泡
+        $(".wl-zhez2").toggle();
+       $('.web-preview-title').text($("#fr-title").val());
+        $('.web-preview-content').html(editor.txt.html());
+        $('.wl-zl2').offset().top;
+        console.log($('.wl-zl2').offset().top);
+    });
+    //点击空白处隐藏弹出层
+    $(".wl-zhez2").click(function(event) {
+        var _con = $('.wl-zl2'); // 设置目标区域
+        if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhez2').hide(); //淡出消失
+        }
+    });
+    $('.w-e-toolbar').css("border",'1px solid #eeeeee');
+    $('.w-e-text-container').css("border",'1px solid #eeeeee')
 </script>
 {/block}
