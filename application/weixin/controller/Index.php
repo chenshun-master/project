@@ -715,6 +715,7 @@ class Index extends BaseController
                 }
                 break;
             case 2:
+            case 8:
                 $userModel = new UserModel();
                 if (!$userModel->findMobileExists($mobile)) {
                     return $this->returnData([], '该用户未被使用', 302);

@@ -277,3 +277,11 @@ input::-webkit-input-placeholder {
        font-size: 14px!important;
         color: #c0c0c0;
   }
+
+.wl-hidden{
+    display: none;
+}
+
+.wl-sms-disable{
+    color: #CCCCCC !important;
+}
