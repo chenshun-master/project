@@ -272,6 +272,9 @@ body {
 .web-bold{
     color: #333;
 }
+.web-top-rigth>img{
+    margin-top: 5px;
+}
 input::-webkit-input-placeholder {
        /* placeholder字体大小  */
        font-size: 14px!important;

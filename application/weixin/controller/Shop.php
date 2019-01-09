@@ -241,7 +241,7 @@ class Shop extends BaseController
         return $this->fetch('shop/search_goods');
     }
     /**
-     *用户相册详情页
+     *用户美丽日记
      */
     public function diary()
     {
@@ -249,19 +249,11 @@ class Shop extends BaseController
     }
 
     /**
-     *用户相册详情页二
+     * 用户美丽日记详情页
      */
-    public function diaryOf()
+    public function diaryDetails()
     {
-        return $this->fetch('shop/diary_of');
-    }
-
-    /**
-     * 用户相册详情页三
-     */
-    public function diarySecond()
-    {
-        return $this->fetch('shop/diary_second');
+        return $this->fetch('shop/diary_details');
     }
 
 }
