@@ -363,3 +363,11 @@ body {
     background: #7DB0E8;
     color: white;
 }
+.web-pwd-format{
+    width: 50%;
+    margin-left: 15%;
+    color: #d8d8d8;
+}
+.web-kok{
+    margin: 0;
+}

@@ -389,6 +389,7 @@
     height: 25%;
     float: left;
 }
+
 .swiper-pagination-bullet-active{
     background: red!important;
 }
