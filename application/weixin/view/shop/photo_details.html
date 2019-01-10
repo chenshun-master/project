@@ -1,10 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/shop/css/photo_details.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<!--这里编写主体内容-->
+<div style="width: 100%;min-height: 500px;padding-bottom: 100px">
+
+    <header>
+        <div class="wl-top">
+            <i class="iconfont icon-back_light top-left"  onclick="redream.toReferer()"></i>
+            <span>术后恢复相册</span>
+            <i class="iconfont icon-favor_light top-right1"></i>
+            <i class="iconfont icon-share_light top-right"></i>
+        </div>
+    </header>
+    <main>
+        <!--术前照片-->
+        <div class="wl-top-preoperative">
+            <h2 class="wl-preoperative-title">术前照片</h2>
+            <div class="wl-preoperative">
+                <div class="wl-preoperative-rolling">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt=""> <img src="" alt="">
+                    <img src="" alt=""> <img src="" alt=""> <img src="" alt=""> <img src="" alt="">
+                </div>
+            </div>
+
+            <!--推荐商品-->
+            <div class="wl-preoperative-goods">
+                <div class="wl-preoperative-goods-left">
+                    <img src="" alt="">
+                    <div class="wl-top-goods">
+                        <dl>【鼻综合】爆款仙女鼻综合...</dl>
+                        <dt><sup>￥</sup>4784</dt>
+                    </div>
+                </div>
+                <div class="wl-preoperative-goods-left wl-preoperative-goods-right">
+                    <img src="" alt="">
+                    <div class="wl-top-goods">
+                        <dl>【鼻综合】爆款仙女鼻综合...</dl>
+                        <dt><sup>￥</sup>4784</dt>
+                    </div>
+                </div>
+            </div>
+            <!--相册-->
+            <div class="wl-xiangce">
+                <div class="web-photo">
+                    <img src="http://5b0988e595225.cdn.sohucs.com/images/20190110/4e271ab910e74dca93c5b2377cfc2131.jpeg" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <div style="clear: both"></div>
+                </div>
+                <div class="web-photo wl-top-ge">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <div style="clear: both"></div>
+                </div>
+            </div>
+            <h2 class="wl-preoperative-title">术后一百天</h2>
+            <div class="wl-xiangce">
+                <div class="web-photo">
+                    <img src="http://5b0988e595225.cdn.sohucs.com/images/20190110/4e271ab910e74dca93c5b2377cfc2131.jpeg" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <div style="clear: both"></div>
+                </div>
+                <div class="web-photo wl-top-ge">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <div style="clear: both"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+{/block}
+
+{block name="script"}
+
+{/block}

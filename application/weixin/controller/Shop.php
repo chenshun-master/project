@@ -255,5 +255,12 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/diary_details');
     }
+    /**
+     * 用户美丽日记相册页面
+     */
+    public function photoDetails()
+    {
+        return $this->fetch('shop/photo_details');
+    }
 
 }

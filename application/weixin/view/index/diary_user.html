@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/main.css">-->
+<link rel="stylesheet" href="/static/weixin/css/diary_user.css">
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+{include file="layout:header" /}
+<div class="wl-body">
+    <header>
+        <div class="wl-liebiao">
+            <ul>
+                <a href="/weixin/index/index"><li>推荐</li></a>
+                <a href=/weixin/shop/haveGood""><li>有好货</li></a>
+                <a href="/weixin/index/diaryUser"> <li class="actice" >日记</li></a>
+            </ul>
+        </div>
+    </header>
+    <!--这里编写主体内容-->
+    <div style="width: 100%;min-height: 500px;background: #F4F7F7">
+
+        <div class="wl-diary-center">
+            <div class="wl-diary-top">
+                <dl><img src="" alt=""  class="wl-diary-img"></dl>
+                <dt>我的退你哦按微整史，不想刀的小仙女来看看</dt>
+                <dd>
+                    <img src="" alt=""  onerror='this.src="/static/image/user/tou.png"'>
+                    <span><span class="wl-diary-name">用户名称</span> <span class="wl-diary-like"><i class="iconfont icon-like"></i>66</span></span>
+                </dd>
+            </div>
+            <div class="wl-diary-top">
+                <dl><img src="" alt="" class="wl-diary-img"></dl>
+                <dt>我的退你哦按微整史，不想刀的小仙女来看看</dt>
+                <dd>
+                    <img src="" alt=""  onerror='this.src="/static/image/user/tou.png"'>
+                    <span><span class="wl-diary-name">用户名称1</span> <span class="wl-diary-like"><i class="iconfont icon-like"></i>&nbsp;&nbsp;66</span></span>
+                </dd>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+{include file="layout/footer" /}
+{/block}
+
+{block name="script"}
+
+{/block}

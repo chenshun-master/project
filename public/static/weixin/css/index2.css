@@ -12,6 +12,15 @@
     width:16.6%;
     float: left;
     text-align: center;
+    cursor: pointer;
+}
+.content .wl-d{
+    width: 100%;
+    min-height: 100px;
+    display: none;
+}
+.content .active {
+    display: block;
 }
 .wl-neirong{
     width: 100%;
@@ -104,8 +113,10 @@
 .wl-jri{
     float: left;
 }
-.xian{
-    color: #7DB0E8;;
+.actice{
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .to-datail-href{

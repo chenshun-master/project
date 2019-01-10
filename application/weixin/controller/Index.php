@@ -768,4 +768,13 @@ class Index extends BaseController
 
         return $this->fetch('index/map');
     }
+    /**
+     * 日记页面
+     * @return mixed
+     */
+    public function diaryUser()
+    {
+
+        return $this->fetch('index/diary_user');
+    }
 }

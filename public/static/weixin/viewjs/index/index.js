@@ -107,7 +107,9 @@ $(document).on('click','.to-datail-href',function () {
         window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
     }
 });
+
 $(".wl-liebiao li").click(function () {
-    var index=$(this).index();
-    $(".wl-liebiao li").eq(index).addClass("xian").siblings().removeClass("xian")
+    $(this).addClass("actice").siblings().removeClass("actice");
+    var index = $(this).index();
+    $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 });
