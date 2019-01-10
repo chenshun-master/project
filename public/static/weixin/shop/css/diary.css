@@ -360,7 +360,7 @@
 }
 .wl-zanl li{
     text-align: center;
-    width: 25%;
+    width: 33%;
     height: 15px;
     line-height: 15px;
     border-right: 1px solid #DFDFDF;
@@ -379,7 +379,7 @@
 }
 .wl-img-top-left{
     width: 65.5%;
-    height: 28%;
+    height: 31%;
     background: #EEEEEE;
     float: left;
     margin-right: 5px;
@@ -404,7 +404,7 @@
 }
 .wl-top-two-img{
     width: 32%;
-    height: 13%;
+    height: 15.2%;
     float: left;
     margin-top: 5px;
 }
@@ -427,8 +427,9 @@
 .wl-img-top-right img:nth-child(2){
     margin-top: 5px;
     width: 100%;
-    height: 48.5%;
+    height: 60.5%;
     background: #EEEEEE;
+    outline: none;
 
 }
 .wl-top-two-img img{
@@ -579,5 +580,8 @@
         right: 14px;
         font-size: 13px;
         border-radius: 0 0 10px 10px;
+    }
+    .wl-top-two-img{
+        margin-left: 2px;
     }
 }
