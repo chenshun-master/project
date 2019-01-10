@@ -1,0 +1,201 @@
+.wl-top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: white;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #EEEEEE;
+}
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    font-size: 25px!important;
+    color: #333333;
+}
+.top-right1 {
+    position: absolute;
+    top: 0;
+    right: 50px;
+    font-size: 25px!important;
+    color: #333333;
+}
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 25px!important;
+    color: #333333;
+}
+.wl-top-preoperative{
+    width: 100%;
+    min-height: 300px;
+}
+.wl-preoperative-title{
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+}
+.wl-preoperative{
+    width: 95%;
+    height: 92px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.wl-preoperative-rolling{
+    width: 100%;
+    height: 98px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+
+}
+.wl-preoperative-rolling img{
+    width: 100px;
+    height: 80px;
+    display: inline-block;
+}
+.wl-preoperative-goods{
+    width: 95%;
+    min-height: 65px;
+    margin: 0 auto;
+}
+.wl-preoperative-goods-left{
+    width: 47%;
+    height: 65px;
+    float: left;
+}
+.wl-preoperative-goods-right{
+    width: 47%;
+    height: 65px;
+    float: right;
+}
+.wl-preoperative-goods-left img {
+    width: 36%;
+    height: 60px;
+    background: #EEEEEE;
+    float: left;
+}
+.wl-top-goods {
+    width: 62%;
+    float: right;
+}
+.wl-top-goods dl{
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-left: 2px;
+}
+.wl-top-goods dt{
+    color: #F24F4F;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 2px;
+}
+.wl-top-goods dt>sup{
+    font-size: 8px;
+}
+.wl-xiangce{
+    width: 100%;
+    min-height: 150px;
+    margin-top: 20px;
+}
+.web-photo{
+    width: 95%;
+    min-height: 100px;
+    margin: 0 auto;
+}
+.wl-top-ge{
+    margin-top: 5px;
+}
+.web-photo img{
+    width: 32.3%;
+    height: 114px;
+    background: #EEEEEE;
+    display: inline-block;
+    float: left;
+}
+.web-photo img:nth-child(1){
+    margin-right: 5px;
+}
+.web-photo img:nth-child(2){
+    margin-right: 5px;
+}
+
+@media screen and (min-width:480px){
+    .wl-preoperative {
+        width: 95%;
+        height: 140px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .wl-preoperative-rolling {
+        width: 100%;
+        height: 130px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+    .wl-preoperative-rolling img {
+        width: 110px;
+        height: 100px;
+        display: inline-block;
+    }
+    .wl-preoperative-goods {
+        width: 95%;
+        min-height: 90px;
+        margin: 0 auto;
+    }
+    .wl-preoperative-goods-left {
+        width: 47%;
+        height: 90px;
+        float: left;
+    }
+
+    .wl-top-goods dl {
+        font-size: 14px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin-left: 2px;
+    }
+    .wl-preoperative-goods-left img {
+        width: 30%;
+        height: 70px;
+        background: grey;
+        float: left;
+    }
+    .wl-top-goods dl {
+        font-size: 14px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin-left: 2px;
+        margin-top: 6px;
+    }
+    .wl-top-goods dt {
+        color: #F24F4F;
+        font-size: 13px;
+        margin-top: 5px;
+        margin-left: 2px;
+    }
+    .wl-top-goods dt>sup {
+        font-size: 10px;
+    }
+    .web-photo img {
+        width: 32.3%;
+        height: 150px;
+        background: #EEEEEE;
+        display: inline-block;
+        float: left;
+    }
+}
