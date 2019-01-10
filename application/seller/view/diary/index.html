@@ -32,10 +32,36 @@
     .diary-img-boxs:hover .diary-img-boxs-remove {
         display: block;
     }
+
+    .diary-goods{
+        min-height: 20px;margin-top: 10px;
+    }
+
+    .diary-goods > ul > li {
+        padding: 5px 5px 5px 0;border-bottom: 1px solid #f5eeee;position: relative
+    }
+
+    .diary-goods > ul > li > span:first-child{
+        padding-left: 5px;color: #787070
+    }
+
+    .diary-goods > ul > li .diary-goods-remove{
+        display: inline-block;width: 50px;height: 20px;background: #ff5722;color: white;position: absolute;right: 0px;top: 10px;padding: 0 3px 0 3px;cursor: pointer;display: none;
+    }
+
+    .diary-goods > ul > li:hover .diary-goods-remove{
+        display: block;
+    }
 </style>
 {/block}
 
 {block name="main"}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
+        <li><a >美丽日记</a></li>
+    </ul>
+</div>
 <section class="content" >
     <div class="row">
         <div class="col-xs-12">
@@ -72,28 +98,32 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label" >日记标题</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" placeholder="请填写案例标题 ...">
+                            <input type="text" class="form-control" placeholder="请填写案例标题 ..." id="fr-diary-title">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">相关产品</label>
                         <div class="col-sm-11">
-                             <p style="margin-top: 7px;color: #0b93d5;cursor: pointer" onclick="objClass.choiceGoods()">选择相关商品</p>
-                            <div style="min-height: 20px;">
-
+                            <p style="margin-top: 7px;color: #0b93d5;cursor: pointer" onclick="objClass.choiceGoods()">选择相关商品</p>
+                            <div class="diary-goods">
+                                <ul>
+                                    <!--<li>-->
+                                        <!--<img src="http://172.16.100.85:81/goodsimgs/20181224/35f53f15cccbd8a5ac70aac082a8018d.jpg" width="30">-->
+                                        <!--<span>撒旦法你 看来可能 那看来是你 奥卡福男生看到了你爱看的看法 你拉克丝你奥克兰师傅你阿卡拉水电费 那老师看到</span>-->
+                                        <!--<span  class="diary-goods-remove"><i class="layui-icon layui-icon-delete"></i>删除</span>-->
+                                    <!--</li>-->
+                                </ul>
                             </div>
                         </div>
                     </div>
 
-                    <hr style="margin-top: 10px;" />
-
                     <div class="box-header with-border">
-                        <h3 class="box-title">术前&术后</h3>
+                        <h3 class="box-title">术前照片</h3>
                     </div>
                     <br />
 
                     <div class="form-group">
-                        <label class="col-sm-1 control-label">术前照</label>
+                        <label class="col-sm-1 control-label"></label>
                         <div class="col-sm-11" id="img-container">
                             <div style="width: 100px;height: 100px;border:1px solid #CCCCCC;cursor: pointer;float: left;position: relative;margin-bottom: 10px;margin-right: 10px;">
                                 <div style="width: 100%;height: 100%;">
@@ -109,8 +139,8 @@
                 </div>
                 <div class="box-footer">
                     <span style="color: #f39292;font-size: 14px;">温馨提示:变美过程日记请在日记创建后到详情页面添加</span>
-                    <button class="layui-btn layui-btn-sm layui-btn-normal pull-right" onclick="operationObj.submit()" style="margin-left: 10px !important;">立即发布</button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger pull-right" onclick="layer.close(operationObj.boxIndex)">取消</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-normal pull-right" onclick="objClass.addDiary()" style="margin-left: 10px !important;">立即发布</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger pull-right" onclick="layer.close(objClass.addDiaryBoxIndex)">取消</button>
                 </div>
             </form>
         </div>
