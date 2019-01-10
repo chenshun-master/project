@@ -189,5 +189,71 @@ class DiaryDomain
         return $this->packData($rows,$total,$page,$page_size);
     }
 
+    /**
+     * 获取日记信息
+     */
+    public function getDiaryInfo($diaryId,$user_id =0){
+        $data = [
+            'info'=>[],
+            'goods_infos'=>[],
+            'diaryList'=>[],
+            'commentList'=>[],
+        ];
 
+        $data['info'] = Db::name('diary')->alias('diary')
+            ->leftJoin('wl_user user','user.id = diary.user_id')
+            ->where('diary.id',$diaryId)
+            ->field('diary.id,diary.user_id,diary.goods_ids,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait')
+            ->find();
+
+        if($data['info']){
+            $data['info']['before_imgs'] = !empty($data['info']['before_imgs']) ?  json_decode($data['info']['before_imgs'],true) : [];
+            $data['info']['after_imgs']  = !empty($data['info']['after_imgs']) ?  json_decode($data['info']['after_imgs'],true) : [];
+
+            $data['goods_infos'] = Db::name('sp_goods')->where('id','in',$data['info']['goods_ids'])->field(['id','name','sell_price','img'])->select();
+
+            $data['diaryList'] = Db::name('diary_detail')->where('diary_id',$diaryId)->order('day','desc')->select();
+
+            if($data['diaryList']){
+                foreach ($data['diaryList'] as $key=>$row){
+                    $data['diaryList'][$key]['imgs'] = !empty($row['imgs']) ?  json_decode($row['imgs'],true) : [];
+                }
+            }
+
+            $data['commentList'] = Db::name('comment')->where('table_name','diary')->where('parent_id',0)->where('object_id',$diaryId)->limit(5)->select();
+        }
+
+        return $data;
+    }
+
+    public function getDiaryDetail($diaryId,$diaryDetailId){
+        $data = [
+            'info'=>[],
+            'goods_infos'=>[],
+            'diaryDetail'=>[],
+            'commentList'=>[],
+        ];
+
+        $data['info'] = Db::name('diary')->alias('diary')
+            ->leftJoin('wl_user user','user.id = diary.user_id')
+            ->where('diary.id',$diaryId)
+            ->field('diary.id,diary.user_id,diary.goods_ids,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait')
+            ->find();
+
+        if($data['info']){
+            $data['info']['before_imgs'] = !empty($data['info']['before_imgs']) ?  json_decode($data['info']['before_imgs'],true) : [];
+            $data['info']['after_imgs']  = !empty($data['info']['after_imgs']) ?  json_decode($data['info']['after_imgs'],true) : [];
+
+            $data['goods_infos'] = Db::name('sp_goods')->where('id','in',$data['info']['goods_ids'])->field(['id','name','sell_price','img'])->select();
+
+            $data['diaryDetail'] = Db::name('diary_detail')->where('id',$diaryDetailId)->find();
+            if($data['diaryDetail']){
+                $data['diaryDetail']['imgs'] = !empty($data['diaryDetail']['imgs']) ?  json_decode($data['diaryDetail']['imgs'],true) : [];
+            }
+
+            $data['commentList'] = Db::name('comment')->where('table_name','diary_detail')->where('parent_id',0)->where('object_id',$diaryId)->limit(5)->select();
+        }
+
+        return $data;
+    }
 }

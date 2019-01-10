@@ -430,6 +430,9 @@ class Api extends BaseController
     }
 
 
+    public function test(){
+        $data = (new \app\api\domain\DiaryDomain())->getDiaryDetail(9,23);
 
-
+        halt($data);
+    }
 }
