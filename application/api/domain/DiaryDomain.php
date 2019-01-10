@@ -117,7 +117,6 @@ class DiaryDomain
         return [false,'编辑失败',null];
     }
 
-
     /**
      * 添加案例
      * @param $data      案例数据
@@ -130,4 +129,65 @@ class DiaryDomain
 
         return true;
     }
+
+    /**
+     * 获取微信端列表数据
+     */
+    public function getListData($page,$page_size){
+        $obj = Db::name('diary')->alias('diary');
+        $obj->leftJoin('wl_user user','user.id = diary.user_id');
+        $rows = $obj->order('diary.created_time','desc')->field([
+            'diary.id,diary.title,diary.user_id,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait'
+        ])->page($page,$page_size)->select();
+
+
+        if($rows){
+            foreach ($rows as $key=>$row){
+                $rows[$key]['before_imgs'] = !empty($row['before_imgs']) ?  json_decode($row['before_imgs'],true) : [];
+                $rows[$key]['after_imgs']  = !empty($row['after_imgs']) ?  json_decode($row['after_imgs'],true) : [];
+            }
+        }
+
+        $total       = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
+     * 获取美丽日记的相关推荐
+     * @param $diaryId
+     * @param $page
+     * @param $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getRelevantDiaryList($diaryId,$page,$page_size){
+        $obj = Db::name('diary')->alias('diary');
+        $obj->leftJoin('wl_user user','user.id = diary.user_id');
+        if($ids = Db::name('diary')->where('id',$diaryId)->value('goods_ids')){
+            $ids = explode(',',$ids);
+            foreach ($ids as $k=>$goods_id){
+                if($k <= 1){
+                    $obj->whereOrRaw("FIND_IN_SET({$goods_id},diary.goods_ids)");
+                }
+            }
+        }
+
+        $rows = $obj->order('diary.created_time','desc')->field([
+            'diary.id,diary.title,diary.user_id,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait'
+        ])->page($page,$page_size)->select();
+
+        if($rows){
+            foreach ($rows as $key=>$row){
+                $rows[$key]['before_imgs'] = !empty($row['before_imgs']) ?  json_decode($row['before_imgs'],true) : [];
+                $rows[$key]['after_imgs']  = !empty($row['after_imgs']) ?  json_decode($row['after_imgs'],true) : [];
+            }
+        }
+
+        $total       = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+
 }
