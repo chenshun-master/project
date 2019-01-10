@@ -404,4 +404,32 @@ class Api extends BaseController
 
         return $this->returnData($data);
     }
+
+    /**
+     * 获取美丽日记列表
+     */
+    public function getDiaryList(){
+        $page      = $this->request->param('page',1);
+        $page_size = $this->request->param('page_size',15);
+
+        $data = (new \app\api\domain\DiaryDomain())->getListData($page,$page_size);
+        return $this->returnData($data);
+    }
+
+    public function getRelevantDiaryList(){
+        $id      = $this->request->param('id/d',6);
+
+        if($id == 0){
+            return $this->returnData([],'请求参数不符合规范',301);
+        }
+
+        $page      = $this->request->param('page',1);
+        $page_size = $this->request->param('page_size',15);
+        $data = (new \app\api\domain\DiaryDomain())->getRelevantDiaryList($id,$page,$page_size);
+        return $this->returnData($data);
+    }
+
+
+
+
 }

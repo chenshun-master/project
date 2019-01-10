@@ -2,7 +2,7 @@
 
 
 {block name="main"}
-<div class="layui-card">
+
     <form class="layui-form" onsubmit="return false;">
         <div class="layui-form-item">
             <div >
@@ -11,7 +11,9 @@
         </div>
     </form>
     <table id="search-goods-list" ></table>
-</div>
+
+    <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" onclick="choiceGoods()">选 择</span>
+    <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" onclick="cancel()">取 消</span>
 {/block}
 
 {block name="js"}
@@ -25,7 +27,7 @@
         ,url: '/seller/shopapi/getGoodsList' //数据接口
         ,page: true
         ,loading:true
-        ,height: 580
+        ,height: 540
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
                 "code": res.code == 200?0:res.code, //解析接口状态
@@ -53,6 +55,23 @@
             where:{status:0,keywords:$.trim($(this).val())}
         });
     });
+
+    function choiceGoods(){
+        var checkStatus = layui.table.checkStatus('search-goods-reload') ,data = checkStatus.data;
+        if(data.length > 0){
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.objClass.choiceGoodsList = data;
+            parent.layer.close(index);
+        }else{
+            layer.msg('您还没有选择商品...');
+        }
+    }
+
+    function cancel(){
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.objClass.choiceGoodsList = [];
+        parent.layer.close(index);
+    }
 </script>
 
 {/block}

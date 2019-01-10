@@ -48,7 +48,6 @@ class Diary extends BaseController
      * 日记详情
      */
     public function diaryDetail($id){
-
         $info = $this->_diaryDomain->getDiaryDetailList($this->getUserId(),$id);
         $this->assign('list',$info['rows']);
         $this->assign('diaryInfo',$info['diaryInfo']);
@@ -119,5 +118,33 @@ class Diary extends BaseController
                 return $this->returnData([],$file->getError(),305);
             }
         }
+    }
+
+    /**
+     * 添加案例
+     */
+    public function addDiary(){
+        $title  = $this->request->post('title','');
+        $ids    = $this->request->post('ids/a',[]);
+        $imgs   = $this->request->post('imgs/a',[]);
+
+        if(empty($title) || empty($ids) || empty($imgs)){
+            return $this->returnData([],'参数不符合规范',301);
+        }
+
+        $isTrue = $this->_diaryDomain->addDiary([
+            'user_id'      =>$this->getUserId(),
+            'goods_ids'    =>implode(',',$ids),
+            'title'        =>$title,
+            'before_imgs'  =>json_encode($imgs),
+            'created_time' =>date('Y-m-d H:i:s'),
+            'updated_time' =>date('Y-m-d H:i:s'),
+        ]);
+
+        if($isTrue){
+            return $this->returnData([],'添加成功',200);
+        }
+
+        return $this->returnData([],'添加失败',305);
     }
 }

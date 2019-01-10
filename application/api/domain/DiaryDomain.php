@@ -69,19 +69,26 @@ class DiaryDomain
      * @param $user_id
      * @param $data
      * @return array
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function addDiaryDetail($diaryId,$user_id,$data){
         if(!Db::name('diary')->where('id',$diaryId)->where('user_id',$user_id)->value('id')){
             return [false,'案例不存在',null];
         }
 
-        if(Db::name('diary_detail')->where('diary_id',$diaryId)->where('user_id',$user_id)->where('day',$data['day'])->value('id')){
+        $days = Db::name('diary_detail')->where('diary_id',$diaryId)->where('user_id',$user_id)->order('day','desc')->column('day');
+        if(in_array($data['day'],$days)){
             return [false,'术后时间不能重复',null];
         }
 
         $data['created_time'] = date('Y-m-d H:i:s');
         if(!$insertId = Db::name('diary_detail')->insertGetId($data)){
             return [false,'添加失败',null];
+        }
+
+        if($insertId && current($days) < $data['day']){
+            Db::name('diary')->where('id',$diaryId)->where('user_id',$user_id)->update(['after_imgs'=>$data['imgs']]);
         }
 
         return [true,'添加成功',$insertId];
@@ -100,9 +107,87 @@ class DiaryDomain
     public function editDiaryDetail($diaryId,$diaryDetailId,$user_id,$data){
         $count = Db::name('diary_detail')->where('id',$diaryDetailId)->where('diary_id',$diaryId)->where('user_id',$user_id)->update($data);
         if($count !== false){
+            $info = Db::name('diary_detail')->field('id,day')->where('diary_id',$diaryId)->where('user_id',$user_id)->order('day','desc')->find();
+            if($info['id'] == $diaryDetailId){
+                Db::name('diary')->where('id',$diaryId)->where('user_id',$user_id)->update(['after_imgs'=>$data['imgs']]);
+            }
             return [true,'编辑成功',null];
         }
 
         return [false,'编辑失败',null];
     }
+
+    /**
+     * 添加案例
+     * @param $data      案例数据
+     * @return bool
+     */
+    public function addDiary($data){
+        if(!$insertId = Db::name('diary')->insertGetId($data)){
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 获取微信端列表数据
+     */
+    public function getListData($page,$page_size){
+        $obj = Db::name('diary')->alias('diary');
+        $obj->leftJoin('wl_user user','user.id = diary.user_id');
+        $rows = $obj->order('diary.created_time','desc')->field([
+            'diary.id,diary.title,diary.user_id,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait'
+        ])->page($page,$page_size)->select();
+
+
+        if($rows){
+            foreach ($rows as $key=>$row){
+                $rows[$key]['before_imgs'] = !empty($row['before_imgs']) ?  json_decode($row['before_imgs'],true) : [];
+                $rows[$key]['after_imgs']  = !empty($row['after_imgs']) ?  json_decode($row['after_imgs'],true) : [];
+            }
+        }
+
+        $total       = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
+     * 获取美丽日记的相关推荐
+     * @param $diaryId
+     * @param $page
+     * @param $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getRelevantDiaryList($diaryId,$page,$page_size){
+        $obj = Db::name('diary')->alias('diary');
+        $obj->leftJoin('wl_user user','user.id = diary.user_id');
+        if($ids = Db::name('diary')->where('id',$diaryId)->value('goods_ids')){
+            $ids = explode(',',$ids);
+            foreach ($ids as $k=>$goods_id){
+                if($k <= 1){
+                    $obj->whereOrRaw("FIND_IN_SET({$goods_id},diary.goods_ids)");
+                }
+            }
+        }
+
+        $rows = $obj->order('diary.created_time','desc')->field([
+            'diary.id,diary.title,diary.user_id,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait'
+        ])->page($page,$page_size)->select();
+
+        if($rows){
+            foreach ($rows as $key=>$row){
+                $rows[$key]['before_imgs'] = !empty($row['before_imgs']) ?  json_decode($row['before_imgs'],true) : [];
+                $rows[$key]['after_imgs']  = !empty($row['after_imgs']) ?  json_decode($row['after_imgs'],true) : [];
+            }
+        }
+
+        $total       = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+
 }

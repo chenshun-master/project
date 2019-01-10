@@ -30,15 +30,20 @@ layui.table.render({
     limits:[30,50,100]
 });
 
-
-
 $(document).on('click','.to-diary-detail',function(){
     window.location.href = '/seller/diary/diaryDetail/id/'+$(this).data('id');
 });
 
 var objClass = {
+    reload:function(){
+        layui.table.reload('tab-reload', {
+            page: {curr: 1},
+        });
+    },
+
+    addDiaryBoxIndex:null,
     add:function(){
-        layer.open({
+        this.addDiaryBoxIndex = layer.open({
             type: 1,
             shade: false,
             title: '添加美丽日记',
@@ -49,6 +54,8 @@ var objClass = {
             }
         });
     },
+
+    choiceGoodsList:[],
     choiceGoods:function(){
         layer.open({
             type: 2,
@@ -56,10 +63,73 @@ var objClass = {
             title: '选择相关商品',
             area: ['1200px', '700px'],
             content: '/seller/diary/searchGoodsBox',
-            cancel: function(){
+            cancel:function(){
+                objClass.choiceGoodsList = [];
+            },
+            end:function(){
+                if(objClass.choiceGoodsList.length > 0){
+                    console.log(objClass.choiceGoodsList);
+                    var html = '';
 
+                    $.each(objClass.choiceGoodsList,function(k,v){
+                        html  += '<li data-goodis="'+ v.id +'">' +
+                                    '<img src="'+ v.img +'" width="30">' +
+                                    '<span>'+ v.name+'</span>' +
+                                    '<span  class="diary-goods-remove"><i class="layui-icon layui-icon-delete"></i>删除</span>' +
+                                 '</li>';
+                    });
+
+                    $('.diary-goods > ul').append(html);
+                }
             }
         });
+    },
+
+
+    getGoodsId:function(){
+        var arr = [];
+        $.each($('.diary-goods >ul li'),function(k,v){
+            arr.push($('.diary-goods >ul li')[k].dataset.goodis);
+        });
+
+        return arr;
+    },
+    getImgs:function(){
+        var arr = [];
+        $.each($('.diary-img-boxs > img'),function(k,v){
+            arr.push($('.diary-img-boxs > img')[k].src);
+        });
+        return arr;
+    },
+    addDiary:function(){
+        var data = {title:$.trim($('#fr-diary-title').val()),ids:this.getGoodsId(),imgs:this.getImgs()};
+        if(data.ids.length == 0){
+            layer.msg('相关产品不能为空');
+            return false;
+        }else if(data.imgs.length == 0){
+            layer.msg('术前照不能为空');
+            return false;
+        }else{
+            var loadIndex = layer.msg('提交中...', {icon: 16,shade: 0.01,time:0});
+            $.ajax({
+                url: '/seller/diary/addDiary',
+                type: 'POST',
+                data:data,
+                dataType: "json",
+                complete:function(){
+                    layer.close(loadIndex);
+                },
+                success: function (res) {
+                    if(res.code == 200){
+                        layer.msg('添加成功...', {icon: 1});
+                        layer.close(objClass.addDiaryBoxIndex);
+                        objClass.reload();
+                    }else{
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+        }
     }
 };
 
@@ -90,9 +160,6 @@ $(document).on('change','#fr-diary-img-upload', function () {
     });
 });
 
-
-
-
-$(document).on('click','.diary-img-boxs-remove',function(){
+$(document).on('click','.diary-img-boxs-remove,.diary-goods-remove',function(){
     $(this).parent().remove();
 });
