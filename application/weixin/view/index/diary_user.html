@@ -12,6 +12,7 @@
 
 {block name="main"}
 {include file="layout:header" /}
+
 <div class="wl-body">
     <header>
         <div class="wl-liebiao">
@@ -40,7 +41,7 @@
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-diary-top">
+    <div class="wl-diary-top" data-id="{{item.id}}">
 
         <dl>
             {{#if(item.after_imgs.length > 0){ }}
@@ -54,7 +55,7 @@
         <dt>{{item.title}}</dt>
         <dd>
             <img src="{{item.portrait}}" alt=""  onerror='this.src="/static/image/user/tou.png"'>
-            <span><span class="wl-diary-name">{{item.nickname}}</span> <span class="wl-diary-like"><i class="iconfont icon-like"></i>66</span></span>
+            <span><span class="wl-diary-name">{{item.nickname}}</span></span>
         </dd>
         <div style="clear: both"></div>
     </div>
@@ -99,5 +100,8 @@
             }
         }
     });
+    $(document).on('click','.wl-diary-top',function () {
+        window.location.href ='/weixin/shop/diary?id='+$(this).data('id');
+    })
 </script>
 {/block}

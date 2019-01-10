@@ -139,7 +139,8 @@
     width: 100%;
     min-height: 100px;
     padding: 10px;
-    border-bottom: 5px solid #F2F2F2    ;
+    border-bottom: 5px solid #F2F2F2;
+    background: #F5F5F5;
 }
 .wl-bianmei-title{
     width: 100%;
@@ -149,25 +150,39 @@
 .wl-daoxu{
     float: right;
     color: #1D1D1D;
-    font-size: 11px;
+    font-size: 13px!important;
+}
+.wl-daoxu i{
+    color: #00b600;
+    font-size: 12px!important;
 }
 .wl-riji{
     color: #1D1D1D;
     font-size: 14px;
     float: left;
 }
+.wl-beijing{
+    width: 95%;
+    min-height: 100px;
+    background: white;
+    float: right;
+}
 .wl-riji-neirong{
-    margin-top: 25px;
-    padding-left: 20px;
+    margin-top: 40px;
+    padding-left: 11px;
     border-left: 1px solid #BFBFBF;
 }
+
+.wl-riji-xiang{
+    width: 100%;float: right;background: white;padding: 10px;box-shadow:5px 5px 7px #d9d9d9;border-radius: 3px;margin-top: 10px
+                                                                                                                         }
 .wl-riji-shuhou{
     width: 100%;
     float: left;
     color: #1D1D1D;
     font-size: 13px;
-    margin-left: 20px;
-    padding-top: 5px;
+    margin-left: 5px;
+    margin-top: -20px;
 }
 .wl-riji-title{
     padding: 5px 10px 0px 0;
@@ -183,12 +198,12 @@
 .wl-zhong{
     position: absolute;
     top: -17px;
-    left: -26px;
+    left: -17px;
 }
 .wl-dian{
     position: absolute;
     top: -9px;
-    left: -28.5px;
+    left: -19.5px;
 }
 .wl-neirong-img{
     width: 100%;
@@ -204,10 +219,13 @@
 }
 .wl-zan{
     float: right;
-    margin-right: 27px;
+    margin-right: 10px;
     margin-top: 6px;
     color: #999999;
     font-size: 12px;
+}
+.wl-zan span{
+    padding: 0 0 0 20px;
 }
 .wl-pinglun{
     width: 100%;
@@ -231,12 +249,11 @@
 .wl-pinglun-img textarea{
     width: 80%;
     height: 26px;
-    line-height: 26px;
     background: #EEEEEE;
     border-radius: 25px;
     color: #999999;
-    font-size: 10px;
-    padding: 0 10px 0 10px;
+    font-size: 12px;
+    padding: 4px 10px 0 10px;
     margin-left: 10px;
     resize:none
 }
@@ -268,6 +285,13 @@
     float: left;
     font-size: 13px;
     margin: 5px 0;
+}
+.wl-chakna{
+    background: #f8f8f8;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
 }
 .wl-pji {
     height: 30px;
