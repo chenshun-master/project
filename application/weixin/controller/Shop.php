@@ -15,7 +15,7 @@ class Shop extends BaseController
     private $_spGoodGoodsDomain;
     private $_userDomain;
     private $_orderDomain;
-
+    private $_diaryDomain;
 
     public function __construct(App $app = null)
     {
@@ -23,8 +23,9 @@ class Shop extends BaseController
         $this->_spGoodsDomain = new SpGoodsDomain();
         $this->_spGoodGoodsDomain = new SpGoodGoodsDomain();
         $this->_userDomain = new \app\api\domain\UserDomain();
-
         $this->_orderDomain = new \app\api\domain\ShOrderDomain();
+
+        $this->_diaryDomain = new \app\api\domain\DiaryDomain();
     }
 
 
@@ -243,8 +244,11 @@ class Shop extends BaseController
     /**
      *用户美丽日记
      */
-    public function diary()
+    public function diary($id)
     {
+        $data = $this->_diaryDomain->getDiaryInfo($id);//halt($data);
+        $this->assign($data);
+
         return $this->fetch('shop/diary');
     }
 

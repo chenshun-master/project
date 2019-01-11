@@ -121,11 +121,16 @@
     width: 78%;
     float: left;
     min-height: 10px;
-    color: #FF615C;
+    color: #FF615C !important;
     font-size: 12px;
     padding: 0 8px 0 8px;
     margin-top: 8px;
 }
+
+.wl-goumai > a{
+    color: #FF615C !important;
+}
+
 .wl-qugoumai{
     width: 50px;
     height: 20px;
