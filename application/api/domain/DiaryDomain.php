@@ -202,18 +202,18 @@ class DiaryDomain
 
         $data['info'] = Db::name('diary')->alias('diary')
             ->leftJoin('wl_user user','user.id = diary.user_id')
+            ->leftJoin('wl_user_like like',"like.object_id = diary.id and like.table_name = 'diary' and like.user_id = {$user_id} and like.status = 0")
             ->where('diary.id',$diaryId)
-            ->field('diary.id,diary.user_id,diary.goods_ids,diary.before_imgs,diary.after_imgs,user.nickname,user.portrait')
+            ->field('diary.id,diary.user_id,diary.goods_ids,diary.before_imgs,diary.after_imgs,diary.like,user.nickname,user.portrait,IF(like.id > 0,1,0) as isZan')
             ->find();
 
         if($data['info']){
+            $data['info']['comment'] = Db::name('comment')->where('table_name','diary')->where('object_id',$diaryId)->count('id');
             $data['info']['before_imgs'] = !empty($data['info']['before_imgs']) ?  json_decode($data['info']['before_imgs'],true) : [];
             $data['info']['after_imgs']  = !empty($data['info']['after_imgs']) ?  json_decode($data['info']['after_imgs'],true) : [];
 
             $data['goods_infos'] = Db::name('sp_goods')->where('id','in',$data['info']['goods_ids'])->field(['id','name','sell_price','img'])->select();
-
             $data['diaryList'] = Db::name('diary_detail')->where('diary_id',$diaryId)->order('day','desc')->select();
-
             if($data['diaryList']){
                 foreach ($data['diaryList'] as $key=>$row){
                     $data['diaryList'][$key]['imgs'] = !empty($row['imgs']) ?  json_decode($row['imgs'],true) : [];
@@ -264,5 +264,29 @@ class DiaryDomain
      */
     public function updateDiaryVisit($id){
         Db::name('diary')->where('id',$id)->setInc('visit');
+    }
+
+    public function getDiaryCommentList($diaryId,$user_id=0,$page=1,$page_size=15){
+        $field = [
+            'comment.id','comment.user_id','comment.like_count','comment.content','comment.created_time','user.nickname',
+            'user.portrait',
+            'IF(like.id > 0,1,0)'=>'islike',
+        ];
+
+        $obj = Db::name('comment')->alias('comment');
+        $obj->leftJoin('wl_user user','comment.user_id = user.id');
+        $obj->leftJoin('wl_user_like like',"like.object_id = comment.id and like.table_name = 'diary' and like.user_id = {$user_id} and like.status = 0");
+        $obj->where('comment.object_id',$diaryId);
+        $obj->where('comment.table_name','diary');
+        $obj->order('comment.created_time', 'desc');
+
+        $total = $obj->count();
+        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
+        return [
+            'rows'          =>$rows,
+            'page'          =>$page,
+            'page_total'    =>getPageTotal($total,$page_size),
+            'total'         =>$total
+        ];
     }
 }

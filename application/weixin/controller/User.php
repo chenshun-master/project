@@ -829,7 +829,7 @@ class User extends BaseController
     /**
      * 用户点赞操作
      * @param  obj_id        点赞的对象id
-     * @param  flag          点赞对象的标识   1:文章点赞  2:评论点赞   3:分销商品点赞
+     * @param  flag          点赞对象的标识   1:文章点赞  2:评论点赞   3:分销商品点赞 4:日记点赞
      * @param  type          点赞操作方式  1:点赞  2:取消点赞
      * @return false|string
      * @throws \think\db\exception\DataNotFoundException

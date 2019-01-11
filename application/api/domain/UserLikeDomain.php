@@ -8,12 +8,12 @@ use think\Db;
  */
 class UserLikeDomain
 {
-
     public static function getTypeName($val){
         $config = [
             1=>'article',
             2=>'comment',
             3=>'sp_good_goods',
+            4=>'diary',
         ];
 
         return isset($config[$val]) ? $config[$val] :'';
@@ -54,6 +54,11 @@ class UserLikeDomain
                         if(!$res2){
                             throw new \think\Exception('异常消息');
                         }
+                    }else  if($likeRes['table_name'] == 'diary'){
+                        $res2 = Db::name('diary')->where('id',$likeRes['object_id'])->inc('like',1)->update();
+                        if(!$res2){
+                            throw new \think\Exception('异常消息');
+                        }
                     }
 
                     Db::commit();
@@ -81,6 +86,11 @@ class UserLikeDomain
                     }
                 }else  if($tablename == 'comment'){
                     $res2 = Db::name('comment')->where('id',$object_id)->inc('like_count',1)->update();
+                    if(!$res2){
+                        throw new \think\Exception('异常消息');
+                    }
+                }else  if($tablename == 'diary'){
+                    $res2 = Db::name('diary')->where('id',$object_id)->inc('like',1)->update();
                     if(!$res2){
                         throw new \think\Exception('异常消息');
                     }
@@ -139,7 +149,6 @@ class UserLikeDomain
             return false;
         }
     }
-
 
     public function isLike($user_id,$tablename,$object_id){
         $likeRes = Db::name('user_like')->where('object_id',$object_id)->where('user_id',$user_id)->where('table_name',$tablename)->where('status',0)->field('id,object_id,table_name')->find();
