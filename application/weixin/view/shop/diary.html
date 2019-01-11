@@ -171,7 +171,9 @@
                 <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
             </div>
         </div>
+        <div style="clear: both"></div>
     </div>
+
 </main>
 
 <footer>
@@ -205,7 +207,6 @@
         <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
     </div>
 </div>
-<input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
 {/block}
 
 {block name="script"}
@@ -322,29 +323,30 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
         <div style="float: left">
-            <img src="" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65" class="cus-touser-main">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65" class="cus-touser-main">
         </div>
         <div class="wl-ping-xiang">
             <div>
-                <div class="wl-name cus-touser-main">吴永辉</div>
+                <div class="wl-name cus-touser-main">{{item.nickname}}</div>
                 <div class=" wl-dianzan cus-comment-fabulous" data-id="160" data-type="0">
                     <dl class="iconfont icon-likefill wl-font-size"></dl>
                     <dt class="wl-dian-one" style="font-size: 13px">0</dt>
                 </div>
             </div>
             <div style="clear:both"></div>
-            <div class="wl-ping-neirong"> 割发代首光度法地方</div>
-            <div class="wl-pji">2019-01-11 13:36:23</div>
+            <div class="wl-ping-neirong"> {{item.content}}</div>
+            <div class="wl-pji">{{item.created_time}}</div>
         </div>
         <div style="clear:both"></div>
     </div>
     {{#  }); }}
 </script>
 <script>
+    const id = {$info['id']};
     var myObj = {
         goods: {
             listData: {
-                diary_id: 1,
+                diary_id: id,
                 loading: false,
                 ini: false,
                 page: 0,
@@ -355,7 +357,6 @@
                 if (myObj.goods.listData.loading) {
                     return false;
                 }
-
                 $.ajax({
                     url: "/weixin/api/getDiaryComment",
                     type: 'post',
@@ -387,6 +388,49 @@
                 });
             }
         },
+        giveLikeLoading: false,
+        giveLike: function (o, dataObj) {
+            if (myObj.giveLikeLoading == false) {
+                $.ajax({
+                    url: "/weixin/user/giveFabulous",
+                    type: 'post',
+                    data: dataObj,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.giveLikeLoading = true;
+                    },
+                    complete: function () {
+                        myObj.giveLikeLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (dataObj.flag == 2) {
+                                var num = parseInt(o.find('.wl-dian-one').text());
+                                if (dataObj.type == 1) {
+                                    o.data('type', 1).find('.iconfont').addClass("cus-red");
+                                    num++;
+                                    o.find('.wl-dian-one').text(num);
+                                } else {
+                                    o.data('type', 0).find('.iconfont').removeClass('cus-red');
+                                    num--;
+                                    o.find('.wl-dian-one').text(num);
+                                }
+                            } else if (dataObj.flag == 3) {
+                                if (dataObj.type == 1) {
+                                    o.data('type', 1).removeClass('icon-emojilight').addClass("icon-emojifill").addClass('cus-sou');
+                                } else {
+                                    o.data('type', 0).removeClass('cus-sou').removeClass('icon-emojifill').addClass("icon-emojilight");
+                                }
+                            }
+                        } else if (res.code == 401) {
+                            redream.showTip('请登录后操作...');
+                        }
+                    }
+                });
+            }
+        },
+
     }
+    myObj.goods.loadList();
 </script>
 {/block}
