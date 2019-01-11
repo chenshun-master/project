@@ -12,396 +12,336 @@
 
 
 <!--这里编写主体内容-->
-    <header>
-        <div class="wl-top">
-            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
-            <!--<span>仙女鼻综合</span>-->
+<header>
+    <div class="wl-top">
+        <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"
+           onclick="redream.toReferer()"></i>
+        <!--<span>仙女鼻综合</span>-->
+    </div>
+</header>
+<main style="width: 100%;min-height: 500px;padding-bottom: 45px">
+    <div class="wl-meili">
+        <div class="wl-meili-top">
+            <div class="wl-meili-left">
+                <img src="/static/image/user/tou.png" alt="">
+                <span class="wl-yonghu-ming">用户名称</span>
+                <span class="wl-yonghu">用户</span>
+            </div>
+            <div class="wl-meili-right">
+                <button>+ 关注</button>
+            </div>
         </div>
-    </header>
-    <main style="width: 100%;min-height: 500px;padding-bottom: 45px">
-    <main >
-        <div class="wl-meili">
-            <div class="wl-meili-top">
-                <div class="wl-meili-left">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <span class="wl-yonghu-ming">用户名称</span>
-                    <span class="wl-yonghu">用户</span>
+
+        <!--用户术前术后照片-->
+        <div class="wl-meili-img">
+            <div class="wl-img-left">
+                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2465844716,831325137&fm=26&gp=0.jpg"
+                     alt="">
+                <div class="wl-preoperative">
+                    <span>术前相册</span>
+                    <span>1<i class="iconfont icon-xiangce1"></i></span>
                 </div>
-                <div class="wl-meili-right">
-                    <button>+ 关注</button>
+                <img src="/static/weixin/shop/image/index/db4.png" alt="" style="margin-left: 10px">
+                <div class="wl-preoperative1">
+                    <span>术后相册</span>
+                    <span>13<i class="iconfont icon-xiangce1"></i></span>
                 </div>
             </div>
+        </div>
 
-            <!--用户术前术后照片-->
-            <div class="wl-meili-img">
-                <div class="wl-img-left">
-                    <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2465844716,831325137&fm=26&gp=0.jpg" alt="">
-                    <div class="wl-preoperative">
-                        <span>术前相册</span>
-                        <span >1<i class="iconfont icon-xiangce1"></i></span>
-                    </div>
-                    <img src="/static/weixin/shop/image/index/db4.png" alt="" style="margin-left: 10px">
-                    <div class="wl-preoperative1">
-                        <span>术后相册</span>
-                        <span >13<i class="iconfont icon-xiangce1"></i></span>
+        {if($goods_infos)}
+        <div class="swiper-container ">
+            <div class="swiper-wrapper img-gao">
+                {foreach($goods_infos as $goods)}
+                <div class="swiper-slide  dd">
+                    <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;"></i>下单商品</div>
+                    <div class="wl-shang">
+                        <div class="wl-img"><img src="{$goods['img']}"></div>
+                        <div class="wl-title">{$goods['name']}</div>
+                        <div class="wl-goumai">
+                            <span><sub style="font-size: 9px">￥</sub>{$goods['sell_price']}</span>
+                            <a href="{:url('/weixin/shop/goodsDetails',['goodsid'=>$goods['id']])}" class="wl-qugoumai">去购买</a>
+                        </div>
                     </div>
                 </div>
+                {/foreach}
             </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        {/if}
 
-            {if($goods_infos)}
-                <div class="swiper-container ">
-                    <div class="swiper-wrapper img-gao">
-                        {foreach($goods_infos as $goods)}
-                            <div class="swiper-slide  dd">
-                                <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;"></i>下单商品</div>
-                                <div class="wl-shang">
-                                    <div class="wl-img"><img src="{$goods['img']}" ></div>
-                                    <div class="wl-title">{$goods['name']}</div>
-                                    <div class="wl-goumai">
-                                        <span><sub style="font-size: 9px">￥</sub>{$goods['sell_price']}</span>
-                                        <a href="{:url('/weixin/shop/goodsDetails',['goodsid'=>$goods['id']])}" class="wl-qugoumai">去购买</a>
-                                    </div>
-                                </div>
+    </div>
+    <!--我的变美日记-->
+    <div class="wl-bianmei">
+        <div class="wl-bianmei-title">
+            <span class="wl-riji">我的变美日记</span>
+            <span class="wl-daoxu">时间倒序 <i class="iconfont icon-iconsort"></i></span>
+        </div>
+
+        <div>
+
+            <div class="wl-riji-neirong">
+                <div style="position: relative">
+                    <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing "
+                        style="font-size: 12px;color: #F24F4F"></dl>
+                    <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
+                </div>
+                <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
+                <div style="" class="wl-riji-xiang">
+                    <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
+                    <div class="wl-neirong-img">
+                        <div class="wl-img-top">
+                            <div class="wl-img-top-left">
+                                <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060"
+                                     alt="">
                             </div>
-                        {/foreach}
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            {/if}
-
-        </div>
-        <!--我的变美日记-->
-        <div class="wl-bianmei">
-            <div class="wl-bianmei-title">
-                <span class="wl-riji">我的变美日记</span>
-                <span class="wl-daoxu">时间倒序 <i class="iconfont icon-iconsort"></i></span>
-            </div>
-
-<div>
-
-    <div class="wl-riji-neirong">
-        <div style="position: relative">
-            <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing " style="font-size: 12px;color: #F24F4F"></dl>
-            <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-        </div>
-        <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
-        <div style="" class="wl-riji-xiang">
-            <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
-            <div class="wl-neirong-img">
-                <div class="wl-img-top">
-                    <div class="wl-img-top-left">
-                        <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060" alt="">
-                    </div>
-                    <div  class="wl-img-top-right">
-                        <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0" alt="">
-                        <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3" alt="">
+                            <div class="wl-img-top-right">
+                                <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0"
+                                     alt="">
+                                <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3"
+                                     alt="">
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="wl-top-two">
+                            <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2"
+                                 alt="">
+                            <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E"
+                                 alt="">
+                            <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042"
+                                 alt="">
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="wl-zan">
+                            <span><i class="iconfont icon-attention wl-fenge"></i>5</span>
+                            <span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>
+                            <span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>
+                        </div>
                     </div>
                 </div>
                 <div style="clear: both"></div>
-                <div class="wl-top-two">
-                   <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2" alt="">
-                    <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E" alt="">
-                    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042" alt="">
-                </div>
-                <div style="clear: both"></div>
-                <div class="wl-zan">
-                    <span><i class="iconfont icon-attention wl-fenge"></i>5</span>
-                    <span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>
-                    <span><i class="iconfont icon-zantong wl-fenge" ></i>3</span>
-                </div>
             </div>
-        </div>
-        <div style="clear: both"></div>
-    </div>
-    <div class="wl-riji-neirong">
-        <div style="position: relative">
-            <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing " style="font-size: 12px;color: #F24F4F"></dl>
-            <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-        </div>
-        <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
-        <div style="" class="wl-riji-xiang">
-            <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
-            <div class="wl-neirong-img">
-                <div class="wl-img-top">
-                    <div class="wl-img-top-left">
-                        <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060" alt="">
+            <div class="wl-riji-neirong">
+                <div style="position: relative">
+                    <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing "
+                        style="font-size: 12px;color: #F24F4F"></dl>
+                    <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
+                </div>
+                <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
+                <div style="" class="wl-riji-xiang">
+                    <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
+                    <div class="wl-neirong-img">
+                        <div class="wl-img-top">
+                            <div class="wl-img-top-left">
+                                <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060"
+                                     alt="">
+                            </div>
+                            <div class="wl-img-top-right">
+                                <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0"
+                                     alt="">
+                                <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3"
+                                     alt="">
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="wl-top-two">
+                            <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2"
+                                 alt="">
+                            <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E"
+                                 alt="">
+                            <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042"
+                                 alt="">
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="wl-zan">
+                            <span><i class="iconfont icon-attention wl-fenge"></i>5</span>
+                            <span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>
+                            <span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>
+                        </div>
                     </div>
-                    <div  class="wl-img-top-right">
-                        <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0" alt="">
-                        <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3" alt="">
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div class="wl-riji-neirong">
+                <div style="position: relative">
+                    <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing "
+                        style="font-size: 12px;color: #F24F4F"></dl>
+                    <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
+                </div>
+                <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
+                <div style="" class="wl-riji-xiang">
+                    <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
+                    <div class="wl-neirong-img">
+                        <div class="wl-img-top">
+                            <div class="wl-img-top-left">
+                                <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060"
+                                     alt="">
+                            </div>
+                            <div class="wl-img-top-right">
+                                <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0"
+                                     alt="">
+                                <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3"
+                                     alt="">
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="wl-top-two">
+                            <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2"
+                                 alt="">
+                            <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E"
+                                 alt="">
+                            <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042"
+                                 alt="">
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="wl-zan">
+                            <span><i class="iconfont icon-attention wl-fenge"></i>5</span>
+                            <span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>
+                            <span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>
+                        </div>
                     </div>
                 </div>
                 <div style="clear: both"></div>
-                <div class="wl-top-two">
-                    <div class="wl-top-two-img"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2" alt=""></div>
-                    <div  class="wl-top-two-img"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E" alt=""></div>
-                    <div  class="wl-top-two-img"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042" alt=""></div>
-                </div>
-                <div style="clear: both"></div>
-                <div class="wl-zan">
-                    <span><i class="iconfont icon-attention  "></i>5</span>
-                    <span><i class="iconfont icon-comment_light  "></i>5</span>
-                    <span><i class="iconfont icon-zantong" style=""></i>3</span>
-                </div>
-            </div>
-        </div>
-        <div style="clear: both"></div>
-    </div>
-    <div class="wl-riji-neirong">
-    <div style="position: relative">
-        <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing " style="font-size: 12px;color: #F24F4F"></dl>
-        <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-    </div>
-    <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
-    <div style="" class="wl-riji-xiang">
-        <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
-        <div class="wl-neirong-img">
-            <div class="wl-img-top">
-                <div class="wl-img-top-left">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060" alt="">
-                </div>
-                <div  class="wl-img-top-right">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0" alt="">
-                    <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3" alt="">
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-top-two">
-                <div class="wl-top-two-img"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042" alt=""></div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-zan">
-                <span><i class="iconfont icon-attention  "></i>5</span>
-                <span><i class="iconfont icon-comment_light  "></i>5</span>
-                <span><i class="iconfont icon-zantong" style=""></i>3</span>
-            </div>
-        </div>
-    </div>
-    <div style="clear: both"></div>
-</div>
-    <div class="wl-riji-neirong">
-    <div style="position: relative">
-        <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing " style="font-size: 12px;color: #F24F4F"></dl>
-        <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-    </div>
-    <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
-    <div style="" class="wl-riji-xiang">
-        <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
-        <div class="wl-neirong-img">
-            <div class="wl-img-top">
-                <div class="wl-img-top-left">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060" alt="">
-                </div>
-                <div  class="wl-img-top-right">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0" alt="">
-                    <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3" alt="">
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-top-two">
-                <div class="wl-top-two-img"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042" alt=""></div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-zan">
-                <span><i class="iconfont icon-attention  "></i>5</span>
-                <span><i class="iconfont icon-comment_light  "></i>5</span>
-                <span><i class="iconfont icon-zantong" style=""></i>3</span>
-            </div>
-        </div>
-    </div>
-    <div style="clear: both"></div>
-</div>
-    <div class="wl-riji-neirong">
-    <div style="position: relative">
-        <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing " style="font-size: 12px;color: #F24F4F"></dl>
-        <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-    </div>
-    <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
-    <div style="" class="wl-riji-xiang">
-        <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
-        <div class="wl-neirong-img">
-            <div class="wl-img-top">
-                <div class="wl-img-top-left">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060" alt="">
-                </div>
-                <div  class="wl-img-top-right">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0" alt="">
-                    <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3" alt="">
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-top-two">
-                <div class="wl-top-two-img"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042" alt=""></div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-zan">
-                <span><i class="iconfont icon-attention  "></i>5</span>
-                <span><i class="iconfont icon-comment_light  "></i>5</span>
-                <span><i class="iconfont icon-zantong" style=""></i>3</span>
-            </div>
-        </div>
-    </div>
-    <div style="clear: both"></div>
-</div>
-    <div class="wl-riji-neirong">
-    <div style="position: relative">
-        <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing " style="font-size: 12px;color: #F24F4F"></dl>
-        <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-    </div>
-    <div class="wl-riji-shuhou">术后 <span style="color: #F24F4F">199</span>天</div>
-    <div style="" class="wl-riji-xiang">
-        <div class="wl-riji-title">【鼻综合第178天】【武汉诠美鼻综合】hello，各位小仙女们好久不见哦，前段时间太忙啦一直没有更新，今天想起来上新氧上看看.</div>
-        <div class="wl-neirong-img">
-            <div class="wl-img-top">
-                <div class="wl-img-top-left">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1546931599,3383416243&fm=173&app=25&f=JPEG?w=640&h=640&s=2BB3E307C0F27F96BF3C48DC0300C060" alt="">
-                </div>
-                <div  class="wl-img-top-right">
-                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3604667911,2923950177&fm=173&app=25&f=JPEG?w=640&h=640&s=88E272239AB3569E8A808C93010080E0" alt="">
-                    <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1203710861,2383520597&fm=173&app=25&f=JPEG?w=640&h=640&s=901CA37C4603274D96946C23030030C3" alt="">
-                </div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-top-two">
-                <div class="wl-top-two-img"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=857004121,1803461145&fm=173&app=25&f=JPEG?w=640&h=640&s=CFBB3FC5DE330E9CB62C4C8E0300E0C2" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4143313955,1159096987&fm=173&app=25&f=JPEG?w=640&h=640&s=8229D2074A636E172C9509BC0300800E" alt=""></div>
-                <div  class="wl-top-two-img"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3584463795,1822975702&fm=173&app=25&f=JPEG?w=640&h=640&s=F8A0C55F4E0216551EEC4C320300C042" alt=""></div>
-            </div>
-            <div style="clear: both"></div>
-            <div class="wl-zan">
-                <span><i class="iconfont icon-attention  "></i>5</span>
-                <span><i class="iconfont icon-comment_light  "></i>5</span>
-                <span><i class="iconfont icon-zantong" style=""></i>3</span>
-            </div>
-        </div>
-    </div>
-    <div style="clear: both"></div>
-</div>
-</div>
-
-
-
-        </div>
-
-
-        <div class="wl-pinglun">
-            <div class="wl-pinglun-top">热门评论</div>
-            <div class="wl-pinglun-img">
-                <img src="/static/weixin/shop/image/nvhai.png" alt=""/>
-                <textarea name="" id="" cols="30" rows="10"placeholder="据说颜值高的人都爱评论" readonly class="wl-comments"></textarea>
             </div>
         </div>
 
 
-       <div class="wl-pl">
-           <div class="wl-pinglun1">
-               <div style="float: left">
-                   <img src="http://172.16.100.85:81/head/20181210/1439235c0e0a1b035775c0e0a1b03579.png" alt="" width="30" height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
-               <div class="wl-ping-xiang">
-                   <div>
-                       <div class="wl-name cus-touser-main" data-user_id="46">饶远东</div>
-                   </div>
-                   <div style="clear:both"></div>
-                   <div class="wl-ping-neirong">你好咯呀</div>
-                   <div class="wl-pji">昨天 14:29分</div>
-               </div>
-               <div style="clear:both"></div>
-           </div>
-           <div class="wl-pinglun1">
-               <div style="float: left">
-                   <img src="http://172.16.100.85:81/head/20181210/1439235c0e0a1b035775c0e0a1b03579.png" alt="" width="30" height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
-               <div class="wl-ping-xiang">
-                   <div>
-                       <div class="wl-name cus-touser-main" data-user_id="46">饶远东</div>
-                   </div>
-                   <div style="clear:both"></div>
-                   <div class="wl-ping-neirong">你好咯呀</div>
-                   <div class="wl-pji">昨天 14:29分</div>
-               </div>
-               <div style="clear:both"></div>
-           </div>
-           <div class="wl-chakna">查看更多 <i class="iconfont icon-pull_down"></i> </div>
-       </div>
-        <div class="wl-xiangguan">相关推荐</div>
-        <div class="wl-tuijian">
-            <div class="wl-tui1">
-                <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-                <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-                <div class="wl-tui-xaing">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <span>用户名称</span>
-                    <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
-                </div>
-            </div>
+    </div>
 
-            <div class="wl-tui1">
-                <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-                <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-                <div class="wl-tui-xaing">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <span>用户名称</span>
-                    <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
-                </div>
-            </div>
 
-            <div class="wl-tui1">
-                <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-                <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-                <div class="wl-tui-xaing">
-                    <img src="/static/image/user/tou.png" alt="">
-                    <span>用户名称</span>
-                    <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
+    <div class="wl-pinglun">
+        <div class="wl-pinglun-top">热门评论</div>
+        <div class="wl-pinglun-img">
+            <img src="/static/weixin/shop/image/nvhai.png" alt=""/>
+            <textarea name="" id="" cols="30" rows="10" placeholder="据说颜值高的人都爱评论" readonly
+                      class="wl-comments"></textarea>
+        </div>
+    </div>
+
+
+    <div class="wl-pl">
+        <div class="wl-pinglun1">
+            <div style="float: left">
+                <img src="http://172.16.100.85:81/head/20181210/1439235c0e0a1b035775c0e0a1b03579.png" alt="" width="30"
+                     height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
+            <div class="wl-ping-xiang1">
+                <div>
+                    <div class="wl-name cus-touser-main" data-user_id="46">饶远东</div>
                 </div>
+                <div style="clear:both"></div>
+                <div class="wl-ping-neirong">你好咯呀</div>
+                <div class="wl-pji">昨天 14:29分</div>
             </div>
             <div style="clear:both"></div>
         </div>
-    </main>
-    <footer>
-        <div class="wl-footerzan">
-            <ul class="wl-zanl">
-                <li><span class="wl-islike"><i class="iconfont icon-dianzan text"></i>4</span></li>
-                <li><span class="wl-islike"><i class="iconfont icon-comment_light text"></i>4</span></li>
-                <li style="border: none;color: #7DB0E8">商品详情</li>
-            </ul>
+        <div class="wl-pinglun1">
+            <div style="float: left">
+                <img src="http://172.16.100.85:81/head/20181210/1439235c0e0a1b035775c0e0a1b03579.png" alt="" width="30"
+                     height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
+            <div class="wl-ping-xiang1">
+                <div>
+                    <div class="wl-name cus-touser-main" data-user_id="46">饶远东</div>
+                </div>
+                <div style="clear:both"></div>
+                <div class="wl-ping-neirong">你好咯呀</div>
+                <div class="wl-pji">昨天 14:29分</div>
+            </div>
             <div style="clear:both"></div>
         </div>
-    </footer>
-
-
-    <div class="marsk-container"  >
-        <div class="tkyy_con">
-            <div>
-                <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span
-                        class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
-            </div>
-            <div class="wl-foot-gundong " style="overflow-x:hidden" >
-                <div id="container-list">
-
-                </div>
-            </div>
-            <div class="cus-footer">
-                <input type="text" placeholder="据说颜值高的人都爱评论" class="wl-foot-input">
+        <div class="wl-chakna wl-comments-num">查看更多 <i class="iconfont icon-pull_down"></i></div>
+    </div>
+    <div class="wl-xiangguan">相关推荐</div>
+    <div class="wl-tuijian">
+        <div class="wl-tui1">
+            <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
+            <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
+            <div class="wl-tui-xaing">
+                <img src="/static/image/user/tou.png" alt="">
+                <span>用户名称</span>
+                <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
             </div>
         </div>
+
+        <div class="wl-tui1">
+            <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
+            <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
+            <div class="wl-tui-xaing">
+                <img src="/static/image/user/tou.png" alt="">
+                <span>用户名称</span>
+                <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
+            </div>
+        </div>
+
+        <div class="wl-tui1">
+            <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
+            <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
+            <div class="wl-tui-xaing">
+                <img src="/static/image/user/tou.png" alt="">
+                <span>用户名称</span>
+                <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
+            </div>
+        </div>
+        <div style="clear:both"></div>
     </div>
-    <div class="wl-zhez2">
-        <div class="wl-zl2">
+</main>
+<footer>
+    <div class="wl-footerzan">
+        <ul class="wl-zanl">
+            <li><span class="wl-islike"></span><i class="iconfont icon-dianzan text"></i>4</li>
+            <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>4</li>
+            <li style="border: none;color: #7DB0E8">商品详情</li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+</footer>
+
+
+<div class="marsk-container">
+    <div class="tkyy_con">
+        <div>
+            <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span
+                    class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
+        </div>
+        <div class="wl-foot-gundong " style="overflow-x:hidden">
+            <div id="container-list">
+                <div class="wl-pinglun">
+                    <div style="float: left">
+                        <img src="http://172.16.100.118:81/head/ec2e0a9c495d79d66f92138c52a0ee90.png" alt="" width="30"
+                             height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65"
+                             class="cus-touser-main"></div>
+                    <div class="wl-ping-xiang">
+                        <div>
+                            <div class="wl-name cus-touser-main">吴永辉</div>
+                            <div class=" wl-dianzan cus-comment-fabulous" data-id="160" data-type="0">
+                                <dl class="iconfont icon-likefill wl-font-size"></dl>
+                                <dt class="wl-dian-one" style="font-size: 13px">0</dt>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="wl-ping-neirong"> 割发代首光度法地方</div>
+                        <div class="wl-pji">2019-01-11 13:36:23</div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cus-footer">
+            <input type="text" placeholder="据说颜值高的人都爱评论" class="wl-foot-input">
+        </div>
+    </div>
+</div>
+<div class="wl-zhez2">
+    <div class="wl-zl2">
             <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid"
                       placeholder="有爱评论，说点好听的..."></textarea>
-            <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
-        </div>
+        <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
     </div>
+</div>
 
 {/block}
 
 {block name="script"}
-<script src="/static/js/swiper.min.js"  type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
@@ -413,11 +353,18 @@
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").show();
         $("body,html").css({
-            "height":"100%",
-            "overflow":"hidden"
+            "height": "100%",
+            "overflow": "hidden"
         });
-    }).on('click','');
-
+    })
+    $(".wl-comments-num").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").show();
+        $("body,html").css({
+            "height": "100%",
+            "overflow": "hidden"
+        });
+    })
     //点击空白处隐藏弹出层
     $(".marsk-container").click(function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
@@ -438,8 +385,8 @@
         $(".marsk-container").hide();
         $("body").removeClass("body");
         $("body,html").css({
-            "height":"100%",
-            "overflow":"auto"
+            "height": "100%",
+            "overflow": "auto"
         });
     });
     $('.wl-tan-pinglun').on('touchstart', function (event) {
