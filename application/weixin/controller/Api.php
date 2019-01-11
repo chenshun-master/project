@@ -417,8 +417,14 @@ class Api extends BaseController
         return $this->returnData($data);
     }
 
+    /**
+     * 获取日记推荐
+     * @param  int diary_id   日记id
+     * @return false|string
+     * @throws \think\Exception
+     */
     public function getRelevantDiaryList(){
-        $id      = $this->request->param('id/d',6);
+        $id      = $this->request->param('diary_id/d',6);
 
         if($id == 0){
             return $this->returnData([],'请求参数不符合规范',301);
@@ -426,12 +432,15 @@ class Api extends BaseController
 
         $page      = $this->request->param('page',1);
         $page_size = $this->request->param('page_size',15);
-        $data = (new \app\api\domain\DiaryDomain())->getRelevantDiaryList($id,$page,$page_size);
+        $data = Singleton::getDomain('diarydomain')->getRelevantDiaryList($id,$page,$page_size);
         return $this->returnData($data);
     }
 
     /**
      * 获取日记评论列表
+     * @param  int diary_id   日记id
+     * @return false|string
+     * @throws \think\Exception
      */
     public function getDiaryComment()
     {
@@ -440,7 +449,6 @@ class Api extends BaseController
         $page_size = $this->request->param('page_size/d', 15);
 
         $data = Singleton::getDomain('diarydomain')->getDiaryCommentList($id,$this->getUserId(),$page,$page_size);
-
         return $this->returnData($data);
     }
 }

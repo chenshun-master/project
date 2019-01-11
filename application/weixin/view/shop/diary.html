@@ -133,12 +133,12 @@
             {foreach($commentList as $comment)}
                 <div class="wl-pinglun1">
                     <div style="float: left">
-                        <img src="http://172.16.100.85:81/head/20181210/1439235c0e0a1b035775c0e0a1b03579.png"  width="30"  height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
+                        <img src="{$comment['portrait']}"  width="30"  height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
                     <div class="wl-ping-xiang1">
-                        <div><div class="wl-name cus-touser-main" data-user_id="46">饶远东</div></div>
+                        <div><div class="wl-name cus-touser-main" data-user_id="46">{$comment['content']}</div></div>
                         <div style="clear:both"></div>
-                        <div class="wl-ping-neirong">你好咯呀</div>
-                        <div class="wl-pji">昨天 14:29分</div>
+                        <div class="wl-ping-neirong">{$comment['nickname']}</div>
+                        <div class="wl-pji">{:formatTime(strtotime($comment['created_time']))}</div>
                     </div>
                     <div style="clear:both"></div>
                 </div>
@@ -171,17 +171,6 @@
                 <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
             </div>
         </div>
-
-        <div class="wl-tui1">
-            <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-            <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-            <div class="wl-tui-xaing">
-                <img src="/static/image/user/tou.png" alt="">
-                <span>用户名称</span>
-                <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
-            </div>
-        </div>
-        <div style="clear:both"></div>
     </div>
 </main>
 

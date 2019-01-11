@@ -220,7 +220,7 @@ class DiaryDomain
                 }
             }
 
-            $data['commentList'] = Db::name('comment')->where('table_name','diary')->where('parent_id',0)->where('object_id',$diaryId)->limit(5)->select();
+            $data['commentList'] = $this->getDiaryCommentList($diaryId,$user_id,1,5)['rows'];
         }
 
         return $data;
