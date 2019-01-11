@@ -83,7 +83,6 @@
 
 }
 .dd{
-    background-color: #EEEEEE;
     padding: 8px 0 8px 8px;
     width: 100%!important;
 }
@@ -125,6 +124,9 @@
     font-size: 12px;
     padding: 0 8px 0 8px;
     margin-top: 8px;
+}
+.wl-fenge{
+    margin-right: 3px;
 }
 .wl-qugoumai{
     width: 50px;
@@ -174,7 +176,10 @@
 }
 
 .wl-riji-xiang{
-    width: 100%;float: right;background: white;padding: 10px;box-shadow:5px 5px 7px #d9d9d9;border-radius: 3px;margin-top: 10px
+    width: 100%;float: right;
+    background: white;
+    padding: 10px;box-shadow:5px 5px 7px #e2e2e2;
+    border-radius: 3px;margin-top: 10px
                                                                                                                          }
 .wl-riji-shuhou{
     width: 100%;
@@ -287,11 +292,11 @@
     margin: 5px 0;
 }
 .wl-chakna{
-    background: #f8f8f8;
     width: 100%;
     height: 40px;
     line-height: 40px;
     text-align: center;
+    font-size: 15px;
 }
 .wl-pji {
     height: 30px;
@@ -301,8 +306,8 @@
     float: left;
 }
 .wl-xiangguan{
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     color: #000000;
     font-size: 13px;
     padding: 0 10px 0 10px;
@@ -325,7 +330,7 @@
 .wl-tuijian{
     width: 100%;
     min-height: 100px;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     background: #F5F5F5;
 }
 .wl-tui1{
@@ -334,7 +339,7 @@
     background: white;
     margin-top: 10px;
     padding: 5px;
-    box-shadow: 5px 5px 7px #d9d9d9;
+    box-shadow: 2px 2px 7px #e2e2e2;
     border-radius: 3px;
 }
 .wl-tui1:nth-child(odd){
@@ -399,10 +404,10 @@
 }
 .wl-islike{
     width: 100%;
-    height: 15px;
-    border: 1px solid red;
+    line-height: 20px;
+    height: 20px;
+    border-right: 1px solid #DCDCDC;
     display: inline-block;
-    clear: both;
 }
 .text{
     padding-right: 5px;
@@ -466,6 +471,12 @@
     background: #EEEEEE;
     outline: none;
 
+}
+.wl-top-two img{
+    width: 117px;
+    height: 112px;
+    display: inline-block;
+    margin-top: 5px;
 }
 .wl-top-two-img img{
     width: 100%;
