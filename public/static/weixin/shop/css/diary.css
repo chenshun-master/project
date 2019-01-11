@@ -38,6 +38,7 @@
     height: 27px;
     float: left;
     margin: 12px 11px 0 5px;
+    border-radius: 50%;
 }
 .wl-meili-left {
     width: 80%;

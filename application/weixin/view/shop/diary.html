@@ -316,7 +316,6 @@
                     asc[parseInt($('.diary-list')[k].dataset.day)] = html;
                     desc.push(html);
                 });
-
                 wlObj.desc = desc;
                 wlObj.asc  = asc;
             }
@@ -356,12 +355,12 @@
     var myObj = {
         goods: {
             listData: {
-                gid: $('#fr-good-goods-id').val(),
+                diary_id: 1,
                 loading: false,
                 ini: false,
                 page: 0,
                 page_total: 1,
-                page_size: 1000,
+                page_size: 10,
             },
             loadList: function () {
                 if (myObj.goods.listData.loading) {
@@ -372,7 +371,7 @@
                     url: "/weixin/api/getDiaryComment",
                     type: 'post',
                     data: {
-                        gid: myObj.goods.listData.gid,
+                        diary_id: myObj.goods.listData.diary_id,
                         page: myObj.goods.listData.page,
                         page_size: myObj.goods.listData.page_size
                     },
