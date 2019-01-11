@@ -9,13 +9,15 @@ use mypay\MyPay;
 
 use app\api\domain\UserLikeDomain;
 
+
+use app\api\domain\Singleton;
+
 class Shop extends BaseController
 {
     private $_spGoodsDomain;
     private $_spGoodGoodsDomain;
     private $_userDomain;
     private $_orderDomain;
-    private $_diaryDomain;
 
     public function __construct(App $app = null)
     {
@@ -24,8 +26,6 @@ class Shop extends BaseController
         $this->_spGoodGoodsDomain = new SpGoodGoodsDomain();
         $this->_userDomain = new \app\api\domain\UserDomain();
         $this->_orderDomain = new \app\api\domain\ShOrderDomain();
-
-        $this->_diaryDomain = new \app\api\domain\DiaryDomain();
     }
 
 
@@ -246,9 +246,11 @@ class Shop extends BaseController
      */
     public function diary($id)
     {
-        $data = $this->_diaryDomain->getDiaryInfo($id);//halt($data);
-        $this->assign($data);
 
+        Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
+        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id);
+//        halt($data);
+        $this->assign($data);
         return $this->fetch('shop/diary');
     }
 

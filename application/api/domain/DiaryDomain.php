@@ -256,4 +256,13 @@ class DiaryDomain
 
         return $data;
     }
+
+    /**
+     * 更新日记阅读量
+     * @param $id
+     * @throws \think\Exception
+     */
+    public function updateDiaryVisit($id){
+        Db::name('diary')->where('id',$id)->setInc('visit');
+    }
 }
