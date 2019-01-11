@@ -4,11 +4,11 @@ namespace app\api\domain;
 class Singleton
 {
 
-    public static $list= [
+    public static $list = [
         'diarydomain'=>'app\\api\\domain\\DiaryDomain',
     ];
 
-    static public $instance = [];
+    static private $instance = [];
 
     public static function getDomain($domainName){
         if(!isset(self::$instance[strtolower($domainName)])){

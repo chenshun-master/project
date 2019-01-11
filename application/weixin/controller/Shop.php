@@ -246,6 +246,8 @@ class Shop extends BaseController
      */
     public function diary($id)
     {
+
+        Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
         $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id);
 
         $this->assign($data);
