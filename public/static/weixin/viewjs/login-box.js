@@ -15,7 +15,7 @@
             if(this.ini === false){
                 this.loadBoxHtml();
             }else{
-
+                $('#wl-login-box').show();
             }
         };
 

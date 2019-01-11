@@ -179,9 +179,10 @@
 <footer>
     <div class="wl-footerzan">
         <ul class="wl-zanl">
-            <li  id="cus-click-fabulous">
-                <span class="wl-islike" data-type="{$info['like']}" data-id="{$info['id']}"></span>
-                <i class="iconfont icon-dianzan text"></i>{$info['like']}
+            <li  id="cus-click-fabulous" data-type="{$info['isZan']}">
+                <span class="wl-islike"  data-id="{$info['id']}"></span>
+                <i class="iconfont {$info['isZan']== 1?'icon-dianzan1 cus-sou':'icon-dianzan'} text"></i>
+                <font>{$info['like']}</font>
             </li>
             <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}</li>
             <li style="border: none;color: #7DB0E8">商品详情</li>
@@ -413,7 +414,6 @@
                         myObj.giveLikeLoading = false;
                     },
                     success: function (res) {
-
                         if (res.code == 200) {
                             if (dataObj.flag == 2) {
                                 var num = parseInt(o.find('.wl-dian-one').text());
@@ -427,11 +427,15 @@
                                     o.find('.wl-dian-one').text(num);
                                 }
                             } else if (dataObj.flag == 4) {
+                                var num = parseInt(o.find('font').text());
                                 if (dataObj.type == 1) {
-                                    o.data('type', 1).removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-sou');
+                                    num++;
+                                    o.data('type', 1).find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-sou');
                                 } else {
-                                    o.data('type', 0).removeClass('cus-sou').removeClass('icon-dianzan1').addClass("icon-dianzan");
+                                    num--;
+                                    o.data('type', 0).find('i').removeClass('cus-sou').removeClass('icon-dianzan1').addClass("icon-dianzan");
                                 }
+                                o.find('font').text(num);
                             }
                         } else if (res.code == 401) {
                             redream.showTip('请登录后操作...');
