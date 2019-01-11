@@ -83,41 +83,106 @@
 </header>
 
 <main>
+
+
+
     {if (count($info['hospital_info']) > 0)}
-        <div class="wl-con-top">
-            <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
-                <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="40" height="40" style="float: left">
-                <div style="position: relative"><dl class="wl-renz1" ></dl></div>
-                <dl  class="wl-yiyuan">
-                    <dd>{$info['hospital_info'][0]['hospital_name']}</dd>
-                    <dt> {$info['hospital_info'][0]['profile']}</dt>
-                </dl>
-                <dl style="float: right;margin-top: 5px">
-                    <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
-                </dl>
-            </div>
-
-            <div class="wl-jiu" style="line-height: 42px">
-                <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 13px"></i>
-                <dl  class="wl-yiyuan" style="margin-left: 15px">
-                    <dd >{$info['hospital_info'][0]['address']}</dd>
-                </dl>
-                <dl style="float: right;margin-top: 2px">
-                    <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
-                </dl>
-            </div>
-
-            <div style="clear: both"></div>
+    <div class="wl-con-top">
+        <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
+            <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="40" height="40" style="float: left">
+            <div style="position: relative"><dl class="wl-renz1" ></dl></div>
+            <dl  class="wl-yiyuan">
+                <dd>{$info['hospital_info'][0]['hospital_name']}</dd>
+                <dt> {$info['hospital_info'][0]['profile']}</dt>
+            </dl>
+            <dl style="float: right;margin-top: 5px">
+                <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
+            </dl>
         </div>
+
+        <div class="wl-jiu" style="line-height: 42px">
+            <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 13px"></i>
+            <dl  class="wl-yiyuan" style="margin-left: 15px">
+                <dd >{$info['hospital_info'][0]['address']}</dd>
+            </dl>
+            <dl style="float: right;margin-top: 2px">
+                <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
+            </dl>
+        </div>
+
+        <div style="clear: both"></div>
+    </div>
     {/if}
 
-    <div id="wl-box" style="display: none">
-        <p class="wl-biaoti">我的文章</p>
-        <div class="wl-conter">
+        <div class="wl-liebiao">
+            <ul>
+                <li class="active">项目</li>
+                <li>文章</li>
+                <li>日记</li>
+            </ul>
+            <div style="clear: both"></div>
+            <div class="content">
+                <div class="wl-project active">
+                    <div class="wl-project-one">
+                        <dl class="wl-plastic-img"><img src="" alt=""></dl>
+                       <div class="wl-top-title">
+                           <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
+                           <dt class="wl-plastic-prepaid">
+                               <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
+                               <span class="wl-plastic-booking">11人预订</span>
+                           </dt>
+                           <div style="clear:both"></div>
+                           <dd class="wl-plastic-actual">
+                               <span><sup style="font-size: 10px">￥</sup>4845 </span>
+                               <span>￥2515</span>
+                           </dd>
+                       </div>
+                    </div>
+                    <div class="wl-project-one">
+                        <dl class="wl-plastic-img"><img src="" alt=""></dl>
+                        <div class="wl-top-title">
+                            <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
+                            <dt class="wl-plastic-prepaid">
+                                <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
+                                <span class="wl-plastic-booking">11人预订</span>
+                            </dt>
+                            <div style="clear:both"></div>
+                            <dd class="wl-plastic-actual">
+                                <span><sup style="font-size: 10px">￥</sup>4845 </span>
+                                <span>￥2515</span>
+                            </dd>
+                        </div>
+                    </div>
+                    <div class="wl-project-one">
+                        <dl class="wl-plastic-img"><img src="" alt=""></dl>
+                        <div class="wl-top-title">
+                            <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
+                            <dt class="wl-plastic-prepaid">
+                                <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
+                                <span class="wl-plastic-booking">11人预订</span>
+                            </dt>
+                            <div style="clear:both"></div>
+                            <dd class="wl-plastic-actual">
+                                <span><sup style="font-size: 10px">￥</sup>4845 </span>
+                                <span>￥2515</span>
+                            </dd>
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="wl-project">
+                    <div id="wl-box" style="display: none">
+                        <p class="wl-biaoti">我的文章</p>
+                        <div class="wl-conter">
 
+                        </div>
+                        <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
+                    </div>
+                </div>
+                <div class="wl-project">789</div>
+            </div>
         </div>
-        <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
-    </div>
+    <div style="clear: both"></div>
 </main>
 
 <footer>
@@ -288,5 +353,11 @@
     };
 
     objClass.recommend.loadList();
+    $(".wl-liebiao li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+
 </script>
 </html>
