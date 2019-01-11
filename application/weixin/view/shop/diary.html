@@ -9,6 +9,9 @@
 {/block}
 
 {block name="main"}
+
+
+<!--这里编写主体内容-->
     <header>
         <div class="wl-top">
             <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333" onclick="redream.toReferer()"></i>
@@ -16,6 +19,7 @@
         </div>
     </header>
     <main style="width: 100%;min-height: 500px;padding-bottom: 45px">
+    <main >
         <div class="wl-meili">
             <div class="wl-meili-top">
                 <div class="wl-meili-left">
@@ -27,6 +31,7 @@
                     <button>+ 关注</button>
                 </div>
             </div>
+
             <!--用户术前术后照片-->
             <div class="wl-meili-img">
                 <div class="wl-img-left">
@@ -42,34 +47,28 @@
                     </div>
                 </div>
             </div>
-            <!--轮播商品部分-->
-            <div class="swiper-container ">
-                <div class="swiper-wrapper img-gao">
-                    <div class="swiper-slide  dd">
-                        <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;"></i>下单商品</div>
-                        <div class="wl-shang">
-                            <div class="wl-img"><img src="" alt=""></div>
-                            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</div>
-                            <div class="wl-goumai">
-                                <span><sub style="font-size: 9px">￥</sub>4784</span>
-                                <span class="wl-qugoumai">去购买</span>
+
+            {if($goods_infos)}
+                <div class="swiper-container ">
+                    <div class="swiper-wrapper img-gao">
+                        {foreach($goods_infos as $goods)}
+                            <div class="swiper-slide  dd">
+                                <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;"></i>下单商品</div>
+                                <div class="wl-shang">
+                                    <div class="wl-img"><img src="{$goods['img']}" ></div>
+                                    <div class="wl-title">{$goods['name']}</div>
+                                    <div class="wl-goumai">
+                                        <span><sub style="font-size: 9px">￥</sub>{$goods['sell_price']}</span>
+                                        <a href="{:url('/weixin/shop/goodsDetails',['goodsid'=>$goods['id']])}" class="wl-qugoumai">去购买</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        {/foreach}
                     </div>
-                    <div class="swiper-slide dd" style="margin-left: 5px">
-                        <div class="wl-top-title"><i class="iconfont icon-shangpin4" style="font-size: 10px;"></i>下单商品</div>
-                        <div class="wl-shang">
-                            <div class="wl-img"><img src="" alt=""></div>
-                            <div class="wl-title">【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 </div>
-                            <div class="wl-goumai">
-                                <span><sub style="font-size: 9px">￥</sub>4784</span>
-                                <span class="wl-qugoumai">去购买</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper-pagination"></div>
-            </div>
+            {/if}
+
         </div>
         <!--我的变美日记-->
         <div class="wl-bianmei">
