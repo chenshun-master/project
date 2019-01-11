@@ -1,5 +1,4 @@
 <?php
-
 namespace app\weixin\controller;
 
 use think\App;
@@ -248,8 +247,7 @@ class Shop extends BaseController
     {
 
         Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
-        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id);
-//        halt($data);
+        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id,$this->getUserId());
         $this->assign($data);
         return $this->fetch('shop/diary');
     }

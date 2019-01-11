@@ -3,6 +3,7 @@ namespace app\weixin\controller;
 
 use think\App;
 use think\Request;
+use app\api\domain\Singleton;
 
 /**
  * ajax 请求接口
@@ -429,10 +430,17 @@ class Api extends BaseController
         return $this->returnData($data);
     }
 
+    /**
+     * 获取日记评论列表
+     */
+    public function getDiaryComment()
+    {
+        $id = $this->request->param('diary_id/d', 0);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
 
-    public function test(){
-        $data = (new \app\api\domain\DiaryDomain())->getDiaryDetail(9,23);
+        $data = Singleton::getDomain('diarydomain')->getDiaryCommentList($id,$this->getUserId(),$page,$page_size);
 
-        halt($data);
+        return $this->returnData($data);
     }
 }

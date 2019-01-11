@@ -9,9 +9,6 @@
 {/block}
 
 {block name="main"}
-
-
-<!--这里编写主体内容-->
 <header>
     <div class="wl-top">
         <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"
@@ -19,13 +16,14 @@
         <!--<span>仙女鼻综合</span>-->
     </div>
 </header>
+
 <main style="width: 100%;min-height: 500px;padding-bottom: 45px">
     <div class="wl-meili">
         <div class="wl-meili-top">
             <div class="wl-meili-left">
-                <img src="/static/image/user/tou.png" alt="">
-                <span class="wl-yonghu-ming">用户名称</span>
-                <span class="wl-yonghu">用户</span>
+                <img src="{$info['portrait']}" onerror="this.src='/static/image/user/tou.png'">
+                <span class="wl-yonghu-ming">{$info['nickname']}</span>
+                <!--<span class="wl-yonghu">用户</span>-->
             </div>
             <div class="wl-meili-right">
                 <button>+ 关注</button>
@@ -35,16 +33,15 @@
         <!--用户术前术后照片-->
         <div class="wl-meili-img">
             <div class="wl-img-left">
-                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2465844716,831325137&fm=26&gp=0.jpg"
-                     alt="">
+                <img src="{:isset($info['before_imgs'][0])?$info['before_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
                 <div class="wl-preoperative">
                     <span>术前相册</span>
-                    <span>1<i class="iconfont icon-xiangce1"></i></span>
+                    <span>{:count($info['before_imgs'])}<i class="iconfont icon-xiangce1"></i></span>
                 </div>
-                <img src="/static/weixin/shop/image/index/db4.png" alt="" style="margin-left: 10px">
+                <img src="{:isset($info['after_imgs'][0])?$info['after_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}" style="margin-left: 10px">
                 <div class="wl-preoperative1">
                     <span>术后相册</span>
-                    <span>13<i class="iconfont icon-xiangce1"></i></span>
+                    <span>{:count($info['after_imgs'])}<i class="iconfont icon-xiangce1"></i></span>
                 </div>
             </div>
         </div>
@@ -109,11 +106,11 @@
                                     </div>
                                 {/if}
                                 <div style="clear: both"></div>
-                                <div class="wl-zan">
-                                    <span><i class="iconfont icon-attention wl-fenge"></i>5</span>
-                                    <span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>
-                                    <span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>
-                                </div>
+                                <!--<div class="wl-zan">-->
+                                    <!--<span><i class="iconfont icon-attention wl-fenge"></i>5</span>-->
+                                    <!--<span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>-->
+                                    <!--<span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>-->
+                                <!--</div>-->
                             </div>
                         </div>
                         <div style="clear: both"></div>
@@ -187,30 +184,27 @@
         <div style="clear:both"></div>
     </div>
 </main>
+
 <footer>
     <div class="wl-footerzan">
         <ul class="wl-zanl">
-            <li><span class="wl-islike"></span><i class="iconfont icon-dianzan text"></i>4</li>
-            <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>4</li>
+            <li><span class="wl-islike" data-type="{$info['isZan']}"></span><i class="iconfont icon-dianzan text"></i>{$info['like']}</li>
+            <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}</li>
             <li style="border: none;color: #7DB0E8">商品详情</li>
         </ul>
         <div style="clear:both"></div>
     </div>
 </footer>
 
-
 <div class="marsk-container">
     <div class="tkyy_con">
-        <div>
-            <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
-        </div>
+        <div><div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao href"></span></div></div>
         <div class="wl-foot-gundong " style="overflow-x:hidden">
             <div id="container-list">
                 <div class="wl-pinglun">
                     <div style="float: left">
-                        <img src="http://172.16.100.118:81/head/ec2e0a9c495d79d66f92138c52a0ee90.png" alt="" width="30"
-                             height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65"
-                             class="cus-touser-main"></div>
+                        <img src="" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65" class="cus-touser-main">
+                    </div>
                     <div class="wl-ping-xiang">
                         <div>
                             <div class="wl-name cus-touser-main">吴永辉</div>
@@ -232,10 +226,10 @@
         </div>
     </div>
 </div>
+
 <div class="wl-zhez2">
     <div class="wl-zl2">
-            <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid"
-                      placeholder="有爱评论，说点好听的..."></textarea>
+            <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid" placeholder="有爱评论，说点好听的..."></textarea>
         <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
     </div>
 </div>
