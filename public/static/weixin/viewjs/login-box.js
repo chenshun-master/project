@@ -53,6 +53,9 @@
                     success:function(res){
                         if(res.code == 200){
                             _this.showTip('登录成功');
+                            setTimeout(function(){
+                                window.location.reload();
+                            },1500);
                         }else {
                             _this.showTip('登录失败');
                         }
@@ -79,6 +82,9 @@
                     success:function(res){
                         if(res.code == 200){
                             _this.showTip('登录成功');
+                            setTimeout(function(){
+                                window.location.reload();
+                            },1500);
                         }else {
                             _this.showTip('登录失败');
                         }
@@ -91,7 +97,25 @@
          * 发送短信登录验证码
          */
         this.sendSms = function(){
-
+            var _this = this,mobile = $('#login-mobile1').val();
+            if(!redream.checkMobile(mobile)){
+                _this.showTip('手机号格式错误');
+            }else{
+                $.ajax({
+                    url:"/weixin/index/sendQuickLoginSmsCode",
+                    type:'post',
+                    data:{mobile:mobile},
+                    dataType:'json',
+                    success:function(res){
+                        if(res.code == 200){
+                            _this.showTip('验证码发送成功');
+                            _this.smsObj.trigger();
+                        }else {
+                            _this.showTip(res.msg);
+                        }
+                    }
+                });
+            }
         };
 
         /**
@@ -109,16 +133,21 @@
             var _this = this;
             $(document).on('click','#wl-login-box-sendsms',function(){
                 if(!_this.smsObj.checkTime()){
-                    _this.showTip('验证码发送成功');
-
-                    //这里是登录处理
-                    _this.smsObj.trigger();
+                    _this.sendSms();
                 }
             });
 
-
             $(document).on('click','.wl-login-box-close',function(){
                 _this.hideBox();
+            });
+
+            $(document).on('click','.wl-login-box-btn1',function(){
+                alert('asd');
+                _this.smsLogin();
+            });
+
+            $(document).on('click','.wl-login-box-btn2',function(){
+                _this.pwdLogin();
             });
         };
     }
