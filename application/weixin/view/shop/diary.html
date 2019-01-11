@@ -11,7 +11,7 @@
 {block name="main"}
 
 <!--这里编写主体内容-->
-<div style="width: 100%;min-height: 500px;padding-bottom: 100px">
+<div style="width: 100%;min-height: 500px;padding-bottom: 45px">
 
     <header>
         <div class="wl-top">
@@ -299,7 +299,7 @@
             <div class="wl-pinglun-top">热门评论</div>
             <div class="wl-pinglun-img">
                 <img src="/static/weixin/shop/image/nvhai.png" alt=""/>
-                <textarea name="" id="" cols="30" rows="10"placeholder="据说颜值高的人都爱评论" readonly></textarea>
+                <textarea name="" id="" cols="30" rows="10"placeholder="据说颜值高的人都爱评论" readonly class="wl-comments"></textarea>
             </div>
         </div>
 
@@ -370,13 +370,38 @@
     <footer>
         <div class="wl-footerzan">
             <ul class="wl-zanl">
-                <li><i class="iconfont icon-dianzan text"></i>4</li>
-                <li><i class="iconfont icon-comment_light text"></i>4</li>
+                <li><span class="wl-islike"><i class="iconfont icon-dianzan text"></i>4</span></li>
+                <li><span class="wl-islike"><i class="iconfont icon-comment_light text"></i>4</span></li>
                 <li style="border: none;color: #7DB0E8">商品详情</li>
             </ul>
             <div style="clear:both"></div>
         </div>
     </footer>
+
+
+    <div class="marsk-container"  >
+        <div class="tkyy_con">
+            <div>
+                <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span
+                        class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
+            </div>
+            <div class="wl-foot-gundong " style="overflow-x:hidden" >
+                <div id="container-list">
+
+                </div>
+            </div>
+            <div class="cus-footer">
+                <input type="text" placeholder="据说颜值高的人都爱评论" class="wl-foot-input">
+            </div>
+        </div>
+    </div>
+    <div class="wl-zhez2">
+        <div class="wl-zl2">
+            <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid"
+                      placeholder="有爱评论，说点好听的..."></textarea>
+            <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
+        </div>
+    </div>
 </div>
 
 {/block}
@@ -390,5 +415,64 @@
             el: '.swiper-pagination',
         },
     })
+    $(".wl-comments").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").show();
+        $("body,html").css({
+            "height":"100%",
+            "overflow":"hidden"
+        });
+    }).on('click','');
+
+    //点击空白处隐藏弹出层
+    $(".marsk-container").click(function (event) {
+        var _con = $('.tkyy_con'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.marsk-container').hide(); //淡出消失
+        }
+    }).on('touchstart', function (event) {
+        var _con = $('.tkyy_con'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.marsk-container').hide(); //淡出消失
+            $("body").removeClass("body");
+        }
+        event.stopPropagation(); //停止事件冒泡
+    });
+
+
+    $(".wl-quxiao").click(function () {
+        $(".marsk-container").hide();
+        $("body").removeClass("body");
+        $("body,html").css({
+            "height":"100%",
+            "overflow":"auto"
+        });
+    });
+    $('.wl-tan-pinglun').on('touchstart', function (event) {
+        $('.wl-foot-gundong').css('overflowY', "auto");
+    });
+
+    $('.wl-tan-pinglun').on('click', function (event) {
+        $('.wl-foot-gundong').css('overflowY', "auto");
+    });
+    $(".wl-foot-input").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".wl-zhez2").toggle();
+        $('.wl-text').focus();
+    });
+    $(document).on('input', 'textarea', function () {
+        if (($.trim($('.wl-text').val()) !== "")) {
+            $('.wl-fabu').css({'color': '#7DB0E8'});
+        } else {
+            $('.wl-fabu').css({'color': '#B7B7B9'});
+        }
+    });
+    $(".wl-zhez2").click(function (event) {
+        var _con = $('.wl-zl2'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhez2').hide(); //淡出消失
+        }
+    });
+
 </script>
 {/block}

@@ -13,6 +13,8 @@
     float: left;
     text-align: center;
     cursor: pointer;
+    color: #333333;
+    font-size: 16px;
 }
 .content .wl-d{
     width: 100%;
@@ -114,9 +116,8 @@
     float: left;
 }
 .actice{
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
+    color: black!important;
+    font-size: 18px!important;
 }
 
 .to-datail-href{
