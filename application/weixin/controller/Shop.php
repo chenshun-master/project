@@ -249,7 +249,7 @@ class Shop extends BaseController
 
         Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
         $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id);
-
+//        halt($data);
         $this->assign($data);
         return $this->fetch('shop/diary');
     }
