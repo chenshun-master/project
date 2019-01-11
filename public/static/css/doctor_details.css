@@ -216,6 +216,38 @@ width: 100%;
 .wl-top-touxiang img{
     border-radius: 50%;
 }
+.wl-liebiao{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #DFDFDF;
+}
+.content{
+    
+}
+.wl-liebiao li {
+    width: 33.3%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+}
+.wl-liebiao li.active {
+    color: #7DB0E8;
+    border-bottom: 2px solid #7DB0E8;
+}
+.content .wl-d {
+    width: 100%;
+    min-height: 100px;
+    display: none;
+}
+.content .active {
+    display: block;
+}
+
+
+
+
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{
         color: #1D1D1D;

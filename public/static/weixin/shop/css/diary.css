@@ -412,7 +412,7 @@
     height: 20px;
     border-right: 1px solid #DCDCDC;
     position: absolute;
-    top: 12px;
+    top: 10px;
     right: 0;
 }
 .text{
@@ -715,22 +715,6 @@
     font-size: 13px;
     color: #505052!important;
     text-align: center;
-}
-.wl-ping-neirong {
-    width: 100%;
-    min-height: 20px;
-    float: left;
-    font-size: 13px;
-    margin: 5px 0;
-    color: #E7E4E6;
-}
-.wl-ping-neirong {
-    width: 100%;
-    min-height: 20px;
-    float: left;
-    font-size: 13px;
-    margin: 5px 0;
-    color: #E7E4E6;
 }
 .wl-dianzan {
     width: 10%;

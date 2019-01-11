@@ -83,6 +83,21 @@
 </header>
 
 <main>
+    <header>
+        <div class="wl-liebiao">
+            <ul>
+                <li class="active">项目</li>
+                <li>文章</li>
+                <li>日记</li>
+            </ul>
+            <div class="content">
+                <div class="wl-d active">123</div>
+                <div class="wl-d">456</div>
+                <div class="wl-d">789</div>
+            </div>
+        </div>
+    </header>
+
     {if (count($info['hospital_info']) > 0)}
         <div class="wl-con-top">
             <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
@@ -288,5 +303,11 @@
     };
 
     objClass.recommend.loadList();
+    $(".wl-liebiao li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+
 </script>
 </html>
