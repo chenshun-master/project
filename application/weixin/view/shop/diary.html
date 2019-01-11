@@ -201,24 +201,7 @@
         <div><div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao href"></span></div></div>
         <div class="wl-foot-gundong " style="overflow-x:hidden">
             <div id="container-list">
-                <div class="wl-pinglun">
-                    <div style="float: left">
-                        <img src="" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65" class="cus-touser-main">
-                    </div>
-                    <div class="wl-ping-xiang">
-                        <div>
-                            <div class="wl-name cus-touser-main">吴永辉</div>
-                            <div class=" wl-dianzan cus-comment-fabulous" data-id="160" data-type="0">
-                                <dl class="iconfont icon-likefill wl-font-size"></dl>
-                                <dt class="wl-dian-one" style="font-size: 13px">0</dt>
-                            </div>
-                        </div>
-                        <div style="clear:both"></div>
-                        <div class="wl-ping-neirong"> 割发代首光度法地方</div>
-                        <div class="wl-pji">2019-01-11 13:36:23</div>
-                    </div>
-                    <div style="clear:both"></div>
-                </div>
+
             </div>
         </div>
         <div class="cus-footer">
@@ -233,11 +216,12 @@
         <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
     </div>
 </div>
-
+<input type="hidden" id="fr-good-goods-id" value="{$info['id']}">
 {/block}
 
 {block name="script"}
 <script src="/static/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
@@ -345,5 +329,76 @@
             $(this).data('order','desc').find('i').removeClass('icon-iconsort').addClass('icon-iconasc');
         }
     });
+</script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-pinglun">
+        <div style="float: left">
+            <img src="" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65" class="cus-touser-main">
+        </div>
+        <div class="wl-ping-xiang">
+            <div>
+                <div class="wl-name cus-touser-main">吴永辉</div>
+                <div class=" wl-dianzan cus-comment-fabulous" data-id="160" data-type="0">
+                    <dl class="iconfont icon-likefill wl-font-size"></dl>
+                    <dt class="wl-dian-one" style="font-size: 13px">0</dt>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="wl-ping-neirong"> 割发代首光度法地方</div>
+            <div class="wl-pji">2019-01-11 13:36:23</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    {{#  }); }}
+</script>
+<script>
+    var myObj = {
+        goods: {
+            listData: {
+                gid: $('#fr-good-goods-id').val(),
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 1000,
+            },
+            loadList: function () {
+                if (myObj.goods.listData.loading) {
+                    return false;
+                }
+
+                $.ajax({
+                    url: "/weixin/api/getDiaryComment",
+                    type: 'post',
+                    data: {
+                        gid: myObj.goods.listData.gid,
+                        page: myObj.goods.listData.page,
+                        page_size: myObj.goods.listData.page_size
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.goods.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.goods.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            $('#container-list').html('');
+                            if (res.data.page_total == 0) {
+                                $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
+                            }
+
+                            $("#cus-pinglun-num").html(res.data.total);
+                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                                $('#container-list').append(html);
+                            });
+                        }
+                    }
+                });
+            }
+        },
+    }
 </script>
 {/block}
