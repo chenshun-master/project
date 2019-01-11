@@ -135,7 +135,7 @@
                     <div style="float: left">
                         <img src="{$comment['portrait']}"  width="30"  height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
                     <div class="wl-ping-xiang1">
-                        <div><div class="wl-name cus-touser-main" data-user_id="46">{$comment['content']}</div></div>
+                        <div><div class="wl-name1 cus-touser-main" data-user_id="46">{$comment['content']}</div></div>
                         <div style="clear:both"></div>
                         <div class="wl-ping-neirong">{$comment['nickname']}</div>
                         <div class="wl-pji">{:formatTime(strtotime($comment['created_time']))}</div>
@@ -179,7 +179,10 @@
 <footer>
     <div class="wl-footerzan">
         <ul class="wl-zanl">
-            <li><span class="wl-islike" data-type="{$info['isZan']}"></span><i class="iconfont icon-dianzan text"></i>{$info['like']}</li>
+            <li  id="cus-click-fabulous">
+                <span class="wl-islike" data-type="{$info['like']}" data-id="{$info['id']}"></span>
+                <i class="iconfont icon-dianzan text"></i>{$info['like']}
+            </li>
             <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}</li>
             <li style="border: none;color: #7DB0E8">商品详情</li>
         </ul>
@@ -323,14 +326,21 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
         <div style="float: left">
-            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'" data-user_id="65" class="cus-touser-main">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'">
         </div>
         <div class="wl-ping-xiang">
             <div>
-                <div class="wl-name cus-touser-main">{{item.nickname}}</div>
-                <div class=" wl-dianzan cus-comment-fabulous" data-id="160" data-type="0">
+                <div class="wl-name " >{{item.nickname}}</div>
+                <div class=" wl-dianzan cus-comment-fabulous" data-id="{{item.id}}" data-type="{{item.islike}}">
+                    {{# if(item.islike == 0){ }}
                     <dl class="iconfont icon-likefill wl-font-size"></dl>
-                    <dt class="wl-dian-one" style="font-size: 13px">0</dt>
+                    {{# } }}
+
+                    {{# if(item.islike == 1){ }}
+                    <dl class="iconfont icon-likefill wl-font-size cus-red"></dl>
+                    {{# } }}
+
+                    <dt class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</dt>
                 </div>
             </div>
             <div style="clear:both"></div>
@@ -403,6 +413,7 @@
                         myObj.giveLikeLoading = false;
                     },
                     success: function (res) {
+
                         if (res.code == 200) {
                             if (dataObj.flag == 2) {
                                 var num = parseInt(o.find('.wl-dian-one').text());
@@ -415,11 +426,11 @@
                                     num--;
                                     o.find('.wl-dian-one').text(num);
                                 }
-                            } else if (dataObj.flag == 3) {
+                            } else if (dataObj.flag == 4) {
                                 if (dataObj.type == 1) {
-                                    o.data('type', 1).removeClass('icon-emojilight').addClass("icon-emojifill").addClass('cus-sou');
+                                    o.data('type', 1).removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-sou');
                                 } else {
-                                    o.data('type', 0).removeClass('cus-sou').removeClass('icon-emojifill').addClass("icon-emojilight");
+                                    o.data('type', 0).removeClass('cus-sou').removeClass('icon-dianzan1').addClass("icon-dianzan");
                                 }
                             }
                         } else if (res.code == 401) {
@@ -432,5 +443,25 @@
 
     }
     myObj.goods.loadList();
+    $(document).on('click', '.cus-comment-fabulous', function () {
+        var type = $(this).data('type');
+        if (type == 0) {
+            type = 1;
+        } else {
+            type = 2;
+        }
+        myObj.giveLike($(this), {type: type, obj_id: $(this).data('id'), flag: 2});
+    });
+
+    $('#cus-click-fabulous').on('click', function () {
+        var type = $(this).data('type');
+        if (type == 0) {
+            type = 1;
+        } else {
+            type = 2;
+        }
+        myObj.giveLike($(this), {type: type, obj_id: id, flag: 4});
+    });
+
 </script>
 {/block}

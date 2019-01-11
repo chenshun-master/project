@@ -284,6 +284,11 @@
     border-bottom: 1px solid #EEEEEE;
 }
 .wl-name {
+    color: #A79FA1;
+    font-size: 16px;
+    float: left;
+}
+.wl-name1 {
     color: #7DB0E8;
     font-size: 16px;
     float: left;
@@ -710,13 +715,7 @@
     font-size: 16px;
     float: left;
 }
-.wl-dianzan {
-    width: 10%;
-    float: right;
-    font-size: 13px;
-    color: #505052!important;
-    text-align: center;
-}
+
 .wl-dianzan {
     width: 10%;
     float: right;
@@ -734,11 +733,30 @@
     float: left;
     color: #5A5253;
 }
+.cus-red {
+    color: #ee3148;
+}
 
+.cus-sou {
+    color: #FF615C;
+}
 
-
-
-
+.wl-no-shuju {
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #69686D;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.wl-no-shuju dl {
+    font-size: 60px!important;
+    color: #69686D!important;
+}
+.wl-no-shuju dt {
+    margin-top: 10px;
+}
 
 
 
