@@ -6,6 +6,7 @@ class Singleton
 
     public static $list = [
         'diarydomain'=>'app\\api\\domain\\DiaryDomain',
+        'commentdomain'=>'app\\api\\domain\\CommentDomain',
     ];
 
     static private $instance = [];
