@@ -97,6 +97,7 @@
             }else if(pwd == ''){
                 _this.showTip('请输入登录密码');
             }else{
+                $('.wl-login-box-btn2').html('<i class="iconfont icon-jiazai" ></i>登录中...');
                 $.ajax({
                     url:"/weixin/index/postLogin",
                     type:'post',
@@ -109,6 +110,7 @@
                                 window.location.reload();
                             },1500);
                         }else {
+                            $('.wl-login-box-btn2').html('登录');
                             _this.showTip(res.msg);
                         }
                     }
@@ -126,6 +128,7 @@
             }else if(sms_code.length !== 6){
                 _this.showTip('验证码错误');
             }else{
+                $('.wl-login-box-btn1').html('<i class="iconfont icon-jiazai" ></i>登录中...');
                 $.ajax({
                     url:"/weixin/index/codeLogin",
                     type:'post',
@@ -138,6 +141,7 @@
                                 window.location.reload();
                             },1500);
                         }else {
+                            $('.wl-login-box-btn1').html('登录');
                             _this.showTip(res.msg);
                         }
                     }
