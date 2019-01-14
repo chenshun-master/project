@@ -45,17 +45,6 @@ class BaseController extends Controller
     }
 
     /**
-     * 获取用户登录信息
-     */
-    protected function getSellerId(){
-        $info = Session::get('user_info');
-        if($info){
-            return $info['seller_id'];
-        }
-        return 0;
-    }
-
-    /**
      * 获取用户ID
      * @return int
      */

@@ -4,9 +4,13 @@ namespace app\api\domain;
 use think\Db;
 use app\api\model\RegionsModel;
 use app\api\model\SpGoodsModel;
+use app\api\traits\DTrait;
 
 class SpGoodsDomain
 {
+
+    use DTrait;
+
     /**
      * 更新商品浏览量
      * @param $goods_id
@@ -615,5 +619,38 @@ class SpGoodsDomain
         }
 
         return true;
+    }
+
+    /**
+     * 获取前端用户发布的商品列表
+     * @param int $user_id
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserGoods($user_id=0,$page=1,$page_size=10){
+        $obj = Db::name('sp_goods')->alias('goods');
+        $obj->where('goods.seller_id',$user_id);
+        $obj->where('goods.status',0);
+        $total = $obj->count('goods.id');
+        $field = [
+            'goods.id',
+            'goods.name',
+            'goods.market_price',
+            'goods.sell_price',
+            'goods.prepay_price',
+            'goods.img',
+            'goods.visit',
+            'goods.favorites',
+            'goods.sale_num',
+            'goods.case_num',
+            'goods.grade'
+        ];
+
+        $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
+        return $this->packData($rows,$total,$page,$page_size);
     }
 }
