@@ -1,7 +1,6 @@
 {extend name="layout/layout" /}
 
 {block name="cssOrcrsipt"}
-<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
 <link rel="stylesheet" href="/static/web/css1/my_article.css">
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
 {/block}
@@ -17,12 +16,17 @@
         <div class="wl-xianshi-neirong">
             <div class="wl-all-title">
                 {if(count($rows) > 0)}
-                <span style="display: inline-block;float: left">共 {$total} 条数据，已显示 {:count($rows)} 条</span>
+                    <span style="display: inline-block;float: left">共 {$total} 条数据，已显示 {:count($rows)} 条</span>
                 {/if}
+
                 {if($draftId > 0)}
-                <span style="cursor: pointer;display: inline-block;float: right">
-                                <a href="{:url('/index/article/article',['id'=>$draftId])}" style="color: #ff8868;" title="立即编辑">温馨提示：您有草稿还没发布哦！</a>
-                            </span>
+                    <span style="cursor: pointer;display: inline-block;float: right">
+                        <a href="{:url('/index/article/article',['id'=>$draftId])}" style="color: #ff8868 !important;" title="立即编辑">温馨提示：您有草稿还没发布哦！</a>
+                    </span>
+                {else/}
+                    <span style="cursor: pointer;display: inline-block;float: right">
+                        <a href="{:url('/index/article/article')}" style="color: #ff8868 !important;" title="立即编辑"><i class="iconfont icon-add"></i>添加文章</a>
+                    </span>
                 {/if}
             </div>
             <div id="container-list">
@@ -61,8 +65,8 @@
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.js"></script>
 <script>
-    layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage,layer = layui.layer;
+    layui.use(['laypage'], function(){
+        var laypage = layui.laypage;
         laypage.render({
             elem: 'wl-fenye'
             ,limit:15
