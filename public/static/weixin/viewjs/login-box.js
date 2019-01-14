@@ -14,9 +14,9 @@
         this.showBox= function(){
             if(this.ini === false){
                 this.loadBoxHtml();
-            }else{
-                $('#wl-login-box').show();
             }
+
+            $('.wl-mask').show();
         };
 
         /**
@@ -148,6 +148,34 @@
 
             $(document).on('click','.wl-login-box-btn2',function(){
                 _this.pwdLogin();
+            });
+
+            $(".wl-qiehuan li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+                $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+                var index = $(this).index();
+                $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+            });
+
+            $('.wl-sms').on('input',function(){
+                if(($.trim($('#login-mobile1').val())!=="")&&($.trim($('#login-sms-code').val())!=="")){
+                    $('.wl-login-box-btn1').css({'background':'#7DB0E8'});
+                }else{
+                    $('.wl-login-box-btn1').css({'background':'#EBEBEB'});
+                }
+            }).on('input',function(){
+                if(($.trim($('#login-mobile2').val())!=="")&&($.trim($('#login-pwd').val())!=="")){
+                    $('.wl-login-box-btn2').css({'background':'#7DB0E8'});
+                }else{
+                    $('.wl-login-box-btn2').css({'background':'#EBEBEB'});
+                }
+            });
+
+            //点击空白处隐藏弹出层
+            $(".wl-mask").click(function (event) {
+                var _con = $('.wl-login-mask'); // 设置目标区域
+                if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+                    $('.wl-mask').hide(); //淡出消失
+                }
             });
         };
     }

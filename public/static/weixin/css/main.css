@@ -227,7 +227,7 @@ img{
     bottom: 0;
     background-color: rgba(0,0,0,.6);
     z-index: 99999;
-    /*display: none;*/
+    display: none;
 }
 .wl-login-mask{
     width: 100%;
