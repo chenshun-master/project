@@ -109,7 +109,7 @@
                                 window.location.reload();
                             },1500);
                         }else {
-                            _this.showTip('登录失败');
+                            _this.showTip(res.msg);
                         }
                     }
                 });
@@ -138,7 +138,7 @@
                                 window.location.reload();
                             },1500);
                         }else {
-                            _this.showTip('登录失败');
+                            _this.showTip(res.msg);
                         }
                     }
                 });

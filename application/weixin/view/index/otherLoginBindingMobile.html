@@ -42,6 +42,7 @@
 
     const authToken = "{$auth_token}";
     const authType  = "{$auth_type}";
+    const redir     =  "{$redir}";
 
     var  objClass = {
         loading:false,
@@ -71,20 +72,19 @@
                     },
                     success:function(res){
                         if(res.code == 200){
-                            window.location.href = '/weixin/user/main';
-                            return false;
+                            if(redir == ''){
+                                window.location.href = '/weixin/user/main';
+                            }
+
+                            window.location.href = redir;
                         }else if(res.code == 301){
                             redream.showTip('请求参数错误！');
-                            return false;
                         }else if(res.code == 302){
                             redream.showTip('验证码错误！');
-                            return false;
                         }else if(res.code == 303){
                             redream.showTip('验证码已过期！');
-                            return false;
                         }else {
                             redream.showTip('验证码错误！');
-                            return false;
                         }
                     }
                 });
@@ -94,9 +94,7 @@
             var mobile = $('#mobile').val();
             if(!this.checkMobile(mobile)){
                 redream.showTip('手机号格式不正确！');
-                return false;
-            }
-            if(!this.sendSmsCode){
+            }else if(!this.sendSmsCode){
                 $.ajax({
                     url:"/weixin/index/sendOtherLoginSmsCode",
                     type:'post',

@@ -81,7 +81,7 @@ class Shop extends BaseController
     public function confirmOrder()
     {
         if (!$this->checkLogin()) {
-            return $this->redirect('index/login');
+            return $this->redirect('index/login',['redir'=>base64url_encode($this->request->server('HTTP_REFERER'))]);
         }
 
         $goodsid = $this->request->param('goodsid/d', 0);
@@ -247,9 +247,19 @@ class Shop extends BaseController
     {
 
         Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
+
         $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id,$this->getUserId());
 
-//        halt($data);
+        $myID = $this->getUserId();
+        $uid = $data['info']['user_id'];
+        $isFollow = 0;
+        if ($uid == $myID) {
+            $isFollow = 2;
+        } else if ($uid != $myID) {
+            $isFollow = Singleton::getDomain('userfrienddomain')->checkFollow((int)$uid, (int)$myID, $myID) ? 1 : 0;
+        }
+
+        $this->assign('isFollow', $isFollow);
         $this->assign($data);
         return $this->fetch('shop/diary');
     }

@@ -97,7 +97,7 @@ class BaseController extends Controller
      */
     public function wxAuthorize($snsapi_userinfo = false,$redir){
         $this->weChatApiClass = new \wechat\WeChatApi();
-        $redir = base64_encode($redir);
+        $redir = base64url_encode($redir);
 
         //微信授权回调地址
         $url = Url('/weixin/index/authCallback','','',true);
@@ -153,7 +153,7 @@ class BaseController extends Controller
                     $this->saveUserLogin($info);
 
                     ##登录成功跳转到登录之前的页面
-                    return redirect(base64_decode($state));
+                    return redirect(base64url_decode($state));
                 }else{
                     ##第三方登录未绑定手机号跳转到绑定手机号页面
                     $str = encryptStr($res['userinfo']['unionid'],'E',config('conf.secret_key'));
