@@ -15,7 +15,7 @@
             if(this.ini === false){
                 this.loadBoxHtml();
             }else{
-
+                $('#wl-login-box').show();
             }
         };
 
@@ -23,7 +23,7 @@
          * 关闭隐藏登录窗口
          */
         this.hideBox= function(){
-            $('#wl-login-box').hide();
+            $('.wl-zhez').hide();
         };
 
         /**

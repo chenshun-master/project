@@ -141,7 +141,13 @@ class UserLikeDomain
                 if(!$res2){
                     throw new \think\Exception('异常消息');
                 }
+            }else  if($likeRes['table_name'] == 'diary'){
+                $res2 = Db::name('diary')->where('id',$likeRes['object_id'])->dec('like',1)->update();
+                if(!$res2){
+                    throw new \think\Exception('异常消息');
+                }
             }
+
             Db::commit();
             return true;
         } catch (\Exception $e) {

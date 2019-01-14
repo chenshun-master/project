@@ -329,8 +329,18 @@ width: 100%;
     font-size: 10px;
     text-decoration:line-through
 }
+.wl-diary img{
+    width: 48.5%;
+    float: left;
+    height: 100px;
+    background: grey;
+}
+.wl-diary img:nth-child(2){
+    margin-left: 5px;
+}
+.wl-diary-project{
 
-
+}
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{
         color: #1D1D1D;
