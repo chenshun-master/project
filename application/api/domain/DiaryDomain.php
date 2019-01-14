@@ -266,6 +266,17 @@ class DiaryDomain
         Db::name('diary')->where('id',$id)->setInc('visit');
     }
 
+    /**
+     * 获取日记评论列表
+     * @param $diaryId
+     * @param int $user_id
+     * @param int $page
+     * @param int $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function getDiaryCommentList($diaryId,$user_id=0,$page=1,$page_size=15){
         $field = [
             'comment.id','comment.user_id','comment.like_count','comment.content','comment.created_time','user.nickname',
@@ -288,5 +299,30 @@ class DiaryDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+    /**
+     * 获取前端用户发表的日记列表
+     * @param $user_id
+     * @param $page
+     * @param $page_size
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserDiary($user_id,$page,$page_size){
+        $obj = Db::name('diary')->where('user_id',$user_id);
+        $total       = $obj->count('id');
+
+        $rows        = $obj->order('created_time','desc')->page($page,$page_size)->select();
+        if($rows){
+            foreach ($rows as $k=>$row){
+                $rows[$k]['before_imgs'] = !empty($row['before_imgs']) ? json_decode($row['before_imgs'],true) : [];
+                $rows[$k]['after_imgs']  = !empty($row['after_imgs']) ? json_decode($row['after_imgs'],true) : [];
+            }
+        }
+
+        return $this->packData($rows,$total,$page,$page_size);
     }
 }

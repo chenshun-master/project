@@ -5,9 +5,10 @@ class Singleton
 {
 
     public static $list = [
-        'diarydomain'=>'app\\api\\domain\\DiaryDomain',
-        'commentdomain'=>'app\\api\\domain\\CommentDomain',
-        'userfrienddomain'=>'app\\api\\domain\\UserFriendDomain',
+        'diarydomain'           =>'app\\api\\domain\\DiaryDomain',
+        'commentdomain'         =>'app\\api\\domain\\CommentDomain',
+        'userfrienddomain'      =>'app\\api\\domain\\UserFriendDomain',
+        'spgoodsdomain'         =>'app\\api\\domain\\SpGoodsDomain',
     ];
 
     static private $instance = [];

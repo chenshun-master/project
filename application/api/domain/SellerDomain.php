@@ -16,35 +16,24 @@ class SellerDomain
      * @throws \think\exception\DbException
      */
     public function login($mobile,$password,$noPassword = false){
-        $user_info = Db::name('user')->where('mobile',$mobile)->where('type','in',[3,4])->field('id,mobile,password,type,portrait')->find();
-        if(!$user_info){
-            return 1;
-        }
+        $user_info = Db::name('user')->alias('user')
+            ->leftJoin('wl_auth auth','user.id = auth.user_id')
+            ->where('user.mobile',$mobile)
+            ->where('user.type','in',[3,4])
+            ->field('user.id,user.mobile,user.password,user.type,user.portrait,auth.username,auth.enterprise_name')
+            ->find();
+
+        if(!$user_info){return 1;}
 
         if(!$noPassword && $user_info['password'] !== encryptPwd($password)){
             return 2;
         }
 
-        $seller_info = Db::name('sp_seller')->where('user_id',$user_info['id'])->field('id as seller_id,is_lock,user_id')->find();
-        if($seller_info){
-            $seller_id = $seller_info['seller_id'];
-            if($seller_info['is_lock'] == 1){
-                return 4;
-            }
-        }else{
-            $seller_id = Db::name('sp_seller')->insertGetId(['user_id'=>$user_info['id'],'is_lock'=>0,'create_time'=>date('Y-m-d H:i:s')]);
-            if(!$seller_id){
-                return 3;
-            }
-        }
-
-        $auth_info = Db::name('auth')->where('user_id',$user_info['id'])->field('username,enterprise_name')->find();
         return [
-            'seller_id'     =>$seller_id,
             'user_id'       =>$user_info['id'],
             'type'          =>$user_info['type'],
-            'hospital_name' =>$auth_info['enterprise_name'],
-            'real_name'     =>$auth_info['username'],
+            'hospital_name' =>$user_info['enterprise_name'],
+            'real_name'     =>$user_info['username'],
             'portrait'      =>$user_info['portrait']
         ];
     }
@@ -60,26 +49,24 @@ class SellerDomain
      */
     public function getSellerList($page=1,$page_size=10)
     {
-        $sellerInfo = Db::name('sp_seller')->alias('seller');
-        $sellerInfo->leftJoin('wl_user user','user.id = seller.user_id');
-        $sellerInfo->leftJoin('wl_auth auth','user.id = auth.user_id');
-        $sellerInfo->order('seller.create_time desc');
+        $sellerInfo = Db::name('user');
+        $sellerInfo->order('created_time desc');
 
         $total = $sellerInfo->count(1);
 
         $field  = [
-          'seller.id',
-          'user.mobile',
-          'user.nickname',
-          'user.portrait',
-          'user.type',
-          'auth.enterprise_name',
-          'seller.is_lock',
-          'seller.account',
-          'seller.grade',
-          'seller.sale',
-          'seller.comments',
-          'seller.create_time',
+            'mobile',
+            'nickname',
+            'portrait',
+            'type',
+            'sex',
+            'score',
+            'usable_score',
+            'account',
+            'usable_account',
+            'birthday_date',
+            'profile',
+            'created_time',
         ];
         $rows = $sellerInfo->field($field)->page($page,$page_size)->select();
         return [

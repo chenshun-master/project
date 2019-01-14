@@ -107,9 +107,9 @@ class ShopApi extends BaseController
 
         $domain = new \app\api\domain\SpGoodsDomain();
         if($goods_id > 0){
-            $res = $domain->editGoods($goods_id,$this->getSellerId(),$data);
+            $res = $domain->editGoods($goods_id,$this->getUserId(),$data);
         }else{
-            $res = $domain->addGoods($this->getSellerId(),$data);
+            $res = $domain->addGoods($this->getUserId(),$data);
         }
 
         if(!$res){
@@ -147,7 +147,7 @@ class ShopApi extends BaseController
             $searchParams['status'] = $this->request->param('status/d',0);
         }
 
-        $data = $this->_goodsDomain->getSellerGoodsList($this->getSellerId(),$page,$page_size,$searchParams);
+        $data = $this->_goodsDomain->getSellerGoodsList($this->getUserId(),$page,$page_size,$searchParams);
         return $this->returnData($data,'',200);
     }
 
@@ -156,7 +156,7 @@ class ShopApi extends BaseController
         $page_size = $this->request->param('limit',20);
         $status = $this->request->param('status/d',0);
 
-        $data = $this->_orderDomain->getSellerOrder($this->getSellerId(),$status,$page,$page_size);
+        $data = $this->_orderDomain->getSellerOrder($this->getUserId(),$status,$page,$page_size);
 
         return $this->returnData($data,'',200);
     }
@@ -180,7 +180,7 @@ class ShopApi extends BaseController
             return $this->returnData([],'参数不符合规范',301);
         }
 
-        $isTrue = $this->_goodsDomain->updateStatus($this->getSellerId(),$ids,$status);
+        $isTrue = $this->_goodsDomain->updateStatus($this->getUserId(),$ids,$status);
 
         if($isTrue){
             return $this->returnData([],'更新成功',200);
