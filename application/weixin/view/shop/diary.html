@@ -18,7 +18,7 @@
     </div>
 </header>
 
-<main style="width: 100%;min-height: 500px;padding-bottom: 45px">
+<main style="width: 100%;min-height: 500px;padding-bottom: 45px"  id="container" class="mescroll">
     <div class="wl-meili">
         <div class="wl-meili-top">
             <div class="wl-meili-left">
@@ -27,7 +27,7 @@
                 <!--<span class="wl-yonghu">用户</span>-->
             </div>
             <div class="wl-meili-right">
-                <button data-isFollow="{$isFollow}"> {$isFollow == 1?'已关注':'＋关注'}</button>
+                <button id="click-to-follow" data-isFollow="{$isFollow}" > {$isFollow == 1?'已关注':'＋关注'}</button>
             </div>
         </div>
 
@@ -155,9 +155,9 @@
         {/if}
     </div>
     {/if}
-
+        <!--相关推荐数据-->
     <div class="wl-xiangguan">相关推荐</div>
-    <div id="container">
+    <div>
         <div class="wl-tuijian " id="container-recommend">
 
         </div>
@@ -190,7 +190,7 @@
                     class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
         </div>
         <div class="wl-foot-gundong " style="overflow-x:hidden">
-            <div id="container-list">
+            <div id="container-list" >
 
             </div>
         </div>
@@ -244,16 +244,26 @@
     </div>
     {{#  }); }}
 </script>
-<script id="templateList-recommend" type="text/html">
+<script id="templateListrecommend" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-tui1">
-        <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-        <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-        <div class="wl-tui-xaing">
-            <img src="/static/image/user/tou.png" alt="">
-            <span>用户名称</span>
-            <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
+        <div class="wl-tui-img">
+            {{#if(item.after_imgs.length > 0){ }}
+            <img src="{{item.after_imgs[0]}}" alt=""  class="wl-diary-img">
+            {{# } }}
+
+            {{#if(item.after_imgs.length == 0){ }}
+            <img src="{{item.before_imgs[0]}}" alt=""  class="wl-diary-img">
+            {{# } }}
+
         </div>
+        <div class="wl-tui-title">{{item.title}}</div>
+        <div class="wl-tui-xaing">
+            <img src="{{item.portrait}}" alt="">
+            <span>{{item.nickname}}</span>
+            <!--<span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>-->
+        </div>
+        <div style="clear: both"></div>
     </div>
 
     {{#  }); }}
@@ -547,6 +557,42 @@
                 }
             });
         },
+
+        follow: {
+            followLoading: false,
+            clickFollow: function (obj) {
+                if (myObj.follow.followLoading) {
+                    return false;
+                }
+
+                var type = obj.data('isfollow') == 0 ? 1 : 2;
+                $.ajax({
+                    url: "/weixin/api/followUser",
+                    type: 'post',
+                    data: {uid: id, type: type},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.follow.followLoading = true;
+                    },
+                    complete: function () {
+                        myObj.follow.followLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (obj.data('isfollow') == 0) {
+                                obj.addClass('isfollow').html('<i class="iconfont icon-check"></i>已关注').data('isfollow', 1);
+                            } else if (obj.data('isfollow') == 1) {
+                                obj.removeClass('isfollow').html('+ 关注').data('isfollow', 0);
+                            }
+                        } else if (res.code == 401) {
+                            redream.showTip(res.msg);
+                        } else {
+                            redream.showTip('操作失败');
+                        }
+                    }
+                });
+            }
+        },
     }
     myObj.goods.loadList();
     $(document).on('click', '.cus-comment-fabulous', function () {
@@ -568,6 +614,16 @@
         }
         myObj.giveLike($(this), {type: type, obj_id: id, flag: 4});
     });
+
+
+    $('#click-to-follow').on('click', function () {
+        if ($(this).data('isfollow') != 1 && $(this).data('isfollow') != 0) {
+            redream.showTip('不能关注自己');
+            return false;
+        }
+        myObj.follow.clickFollow($(this));
+    });
+
     var mescroll = new MeScroll("container", {
         down:{auto:true},
         up: {
@@ -583,7 +639,7 @@
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
                     mescroll.endSuccess(curPageData.length);
-                    layui.laytpl(templateList-recommend.innerHTML).render(curPageData, function(html){
+                    layui.laytpl(templateListrecommend.innerHTML).render(curPageData, function(html){
                         $('#container-recommend').append(html);
                     });
                 }, function(){
@@ -596,7 +652,7 @@
         searchList: function (page, successCallback, errorCallback) {
             var data = $.extend({}, {diary_id:id,page: page.num, page_size: page.size});
             $.ajax({
-                url: "/weixin/shopapi/getRelevantDiaryList",
+                url: "/weixin/api/getRelevantDiaryList",
                 type: 'post',
                 data: data,
                 dataType: 'json',

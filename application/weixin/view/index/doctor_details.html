@@ -87,8 +87,8 @@
     </div>
     {/if}
 
-    <div class="wl-liebiao">
-        <ul>
+    <div >
+        <ul class="wl-liebiao">
             <li class="active">项目</li>
             <li>文章</li>
             <li>日记</li>
@@ -145,7 +145,6 @@
             </div>
             <div class="wl-project">
                 <div id="wl-box" style="display: none">
-                    <p class="wl-biaoti">我的文章</p>
                     <div class="wl-conter">
 
                     </div>
@@ -199,7 +198,6 @@
     $(document).on('click', '.cus-click-href', function () {
         window.location.href = $(this).data('href');
     });
-
     $(document).on('click', '.click-to-article', function () {
         window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
     });
@@ -240,9 +238,6 @@
                         '<div class="wl-deml">' + data.title + '</div>' +
                         '</div>' +
                         '</div>';
-                },
-                template3: function (data, thumbnail) {
-                    return;
                 },
             },
             loadList: function () {
@@ -339,7 +334,6 @@
         },
 
     };
-
     objClass.recommend.loadList();
     $(".wl-liebiao li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
         $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标

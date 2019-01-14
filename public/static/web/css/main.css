@@ -41,7 +41,7 @@ body {
     line-height: 35px;
     font-size: 13px;
     float: left;
-    color: #ee3148;
+    color: #FD7D7D;
 }
 .web-head-portrait{
     width: 50%;
@@ -96,14 +96,14 @@ body {
 }
 .web-zhengxing dl{
     margin-top: 8px;
-    color: #333;
+    color: #402283;
     font-size: 14px;
     margin-bottom: 0!important;
 }
 .web-zhengxing dt{
     margin-top: 5px;
     font-size: 12px;
-    color: #95272f;
+    color: white;
 
 
 }
@@ -139,7 +139,7 @@ body {
     list-style: none;
 }
 .web-article li:hover{
-    color: #ff6980;
+    color:#7DB0E8;
 }
 .web-navigation{
     max-width: 200px;

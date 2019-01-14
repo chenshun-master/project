@@ -120,17 +120,17 @@ width: 100%;
     border-bottom: 1px solid #EEEEEE;
 }
 .wl-neirong1{
-    max-width: 62%;
-    min-height: 66px;
+    max-width: 60%;
+    min-height: 50px;
     float: left;
     margin-top: 10px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
     color: #1F1F1F;
-    font-size: 17px;
+    font-size: 14px;
 
 }
 .wl-neirong2{
