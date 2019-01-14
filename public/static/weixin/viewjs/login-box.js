@@ -42,8 +42,8 @@
             var _this = this,mobile = $('#login-mobile2').val(),pwd = $('#login-pwd').val();
             if(!redream.checkMobile(mobile)){
                 _this.showTip('手机号格式错误');
-            }else if(sms_code.length !== 6){
-                _this.showTip('验证码错误');
+            }else if(pwd == ''){
+                _this.showTip('请输入登录密码');
             }else{
                 $.ajax({
                     url:"/weixin/index/postLogin",
@@ -142,7 +142,7 @@
             });
 
             $(document).on('click','.wl-login-box-btn1',function(){
-                alert('asd');
+
                 _this.smsLogin();
             });
 
