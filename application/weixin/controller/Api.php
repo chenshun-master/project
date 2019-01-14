@@ -451,4 +451,28 @@ class Api extends BaseController
         $data = Singleton::getDomain('diarydomain')->getDiaryCommentList($id,$this->getUserId(),$page,$page_size);
         return $this->returnData($data);
     }
+
+
+    /**
+     * 获取分销商品评论
+     */
+    public function addDiaryComment()
+    {
+        $data  = [
+            'parent_id'=>$this->request->post('pid/d', 0),
+            'user_id'=>$this->getUserId(),
+            'object_id'=>$this->request->post('obj_id/d', 0),
+            'content'=>$this->request->post('content', ''),
+        ];
+
+        if(!$this->checkLogin()){
+            return $this->returnData([], '用户未登录', 401);
+        }else if(empty($data['object_id']) || empty($data['content'])){
+            return $this->returnData([], '参数不符合规范', 301);
+        }else if(Singleton::getDomain('CommentDomain')->createComment($data,'diary')){
+            return $this->returnData([], '评论成功...', 200);
+        }
+
+        return $this->returnData([], '评论失败...', 305);
+    }
 }

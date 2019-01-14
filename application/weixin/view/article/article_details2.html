@@ -36,7 +36,7 @@
         <div class="wl-neirong">
             <?php echo $article_info['content'] ?>
         </div>
-        <div class="wl-end">-&nbsp;THE END&nbsp;-</div>
+        <div class="wl-end">--&nbsp;THE END&nbsp;--</div>
         <div class="wl-fengxiang">
             <div class="wl-xiang" style="position: relative" id="cus-click-fabulous"  data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()" >
                 <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" style="font-size: 20px;color: #E0E0E0;float: left;margin-left: 25%;"></i>
@@ -221,7 +221,6 @@
 
         //用户点赞操作
         clickFabulous: function () {
-
             var type = $('#cus-click-fabulous').data('fabulous');
             $.ajax({
                 url: "/weixin/user/giveFabulous",
@@ -235,12 +234,10 @@
                     objClass.oneLoading = false;
                 },
                 success: function (res) {
-
                     if (res.code == 200) {
                         var num = parseInt($('#cus-click-fabulous').find('span').text());
                         if(type == 1){
                             $('#cus-click-fabulous').data('fabulous', 2);
-
                             $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
                             $('#cus-click-fabulous').find('span').text( num + 1);
                         }else{
@@ -250,6 +247,7 @@
                         }
                     } else if (res.code == 401) {
                         redream.showTip('请先进行登录');
+                        LoginBox.showBox();
                     }
                 }
             });
@@ -344,6 +342,7 @@
                                 }
                             }else if(res.code == 401){
                                 redream.showTip('请先进行登录');
+                                LoginBox.showBox();
                             }else if(res.code == 403){
                                 redream.showTip('您还没有该权限');
                             }
@@ -474,6 +473,7 @@
                         $('.neirong').val('');
                     }else if (res.code == 401){
                         redream.showTip('请先进行登录');
+                        LoginBox.showBox();
                     }else if (res.code == 403){
                         redream.showTip('您还没有授权');
                     }else{
@@ -555,6 +555,7 @@
                             redream.showTip('收藏成功...');
                         }else if(res.code == 401){
                             redream.showTip('请登录后操作...');
+                            LoginBox.showBox();
                         }
                     }
                 });

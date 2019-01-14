@@ -32,6 +32,59 @@
         this.loadBoxHtml = function(){
             this.ini = true;
 
+            var box = `<div class="wl-mask" >
+                            <div class="wl-login-mask">
+                                <div id="wl-login-box" >
+                                    <div class="wl-login-box-header">
+                                        <div id="wl-login-box-tip"></div>
+                                        <div class="wl-login-box-close">
+                                            <i class="iconfont icon-guanbi1" style="font-size: 34px;color: #cec2c2"></i>
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                    
+                                    <div class="wl-login-box-body">
+                                        <div class="wl-login-box-tab">
+                                            <ul class="wl-qiehuan">
+                                                <li  class="active">短信验证码登录</li>
+                                                <li>账号密码登录</li>
+                                            </ul>
+                                            <div style="clear:both"></div>
+                                            <div class="wl-content">
+                                                <div class="wl-qie active">
+                                                    <div class="wl-sms">
+                                                        <div class="wl-phone">
+                                                            <input type="text" id="login-mobile1" placeholder="请输入你的手机号" style="width: 70%;" >
+                                                            <span id="wl-login-box-sendsms">获取验证码</span>
+                                                        </div>
+                                                        <div class="wl-phone">
+                                                            <input type="text" id="login-sms-code" maxlength="6"  placeholder="短信验证码" onkeyup="this.value=this.value.replace(/\\D/g,'')" onafterpaste="this.value=this.value.replace(/\\D/g,'')" >
+                                                        </div>
+                                                        <div class="wl-login-box-btn1  wl-login-box-btn">登录</div>
+                                                    </div>
+                                                    <div style="clear:both"></div>
+                                                </div>
+                    
+                                                <div class="wl-qie">
+                                                    <div class="wl-sms">
+                                                        <div class="wl-phone">
+                                                            <input type="text" id="login-mobile2" placeholder="请输入您的账号">
+                                                        </div>
+                                                        <div class="wl-phone">
+                                                            <input type="password" id="login-pwd" placeholder="请输入您的密码">
+                                                        </div>
+                                                        <div class="wl-login-box-btn2 wl-login-box-btn">登录</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wl-key-log"><i class="iconfont  icon-weixin1"></i>微信授权登录>></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+
+            $('body').append(box);
             this.loadEvent();
         };
 
