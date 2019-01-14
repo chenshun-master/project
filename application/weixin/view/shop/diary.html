@@ -341,7 +341,6 @@
         }
     });
 
-
     var wlObj = {
         desc: [],
         asc: [],
@@ -369,13 +368,13 @@
             $.each(wlObj.asc, function (k, html) {
                 $('.diary-list-box').append(html);
             });
-
             $(this).data('order', 'desc').find('i').removeClass('icon-iconsort').addClass('icon-iconasc');
         }
     });
 </script>
 <script>
     const id = {$info['id']};
+
     var myObj = {
         goods: {
             listData: {
@@ -467,60 +466,6 @@
                 });
             }
         },
-        recommended: {
-            listData: {
-                diary_id: id,
-                loading: false,
-                ini: false,
-                page: 0,
-                page_total: 1,
-                page_size: 3,
-            },
-            loadList: function () {
-                if (myObj.recommended.listData.loading) {
-                    return false;
-                }
-                myObj.recommended.listData.page++;
-                if (myObj.recommended.listData.ini == true) {
-                    if (myObj.recommended.listData.page > myObj.recommended.listData.page_total) {
-                        return false;
-                    }
-                }
-                $.ajax({
-                    url: "/weixin/shopapi/getGoodGoodsRelevant",
-                    type: 'post',
-                    data: {
-                        gid: myObj.recommended.listData.diary_id,
-                        page: myObj.recommended.listData.page,
-                        page_size: myObj.recommended.listData.page_size
-                    },
-                    dataType: 'json',
-                    beforeSend: function () {
-                        myObj.recommended.listData.loading = true;
-                    },
-                    complete: function () {
-                        myObj.recommended.listData.loading = false;
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            if (myObj.recommended.listData.ini == false) {
-                                myObj.recommended.listData.ini = true;
-                                myObj.recommended.listData.page_total = res.data.page_total;
-                                $('#recommended-List').html('');
-                                if (res.data.page_total == 0) {
-                                    $('#container-list').html(' <div class="wl-no-shuju" style="margin-top: 40px"> <dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl> <dt style="margin: 0">暂无商品</dt></div>');
-                                }
-                            }
-                            layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
-                                $('#container-list').append(html);
-                            });
-                        }
-                    }
-                });
-            }
-        },
-
-
         publishCommentConf: {
             loading: false,
         },
@@ -564,7 +509,6 @@
                 if (myObj.follow.followLoading) {
                     return false;
                 }
-
                 var type = obj.data('isfollow') == 0 ? 1 : 2;
                 $.ajax({
                     url: "/weixin/api/followUser",
@@ -648,11 +592,12 @@
             }
         }
     });
+    mescroll.lockDownScroll(true);
     var listObj = {
         searchList: function (page, successCallback, errorCallback) {
             var data = $.extend({}, {diary_id:id,page: page.num, page_size: page.size});
             $.ajax({
-                url: "/weixin/api/getRelevantDiaryList",
+                url: "/weixin/api/getUserGoods",
                 type: 'post',
                 data: data,
                 dataType: 'json',
