@@ -249,6 +249,7 @@
 .wl-pinglun-img img{
     width: 32px;
     height: 32px;
+    float: left;
 }
 .wl-pinglun-top{
     height: 35px;
@@ -256,16 +257,21 @@
     color: #1B1B1B;
     font-size: 13px;
 }
-.wl-pinglun-img textarea{
+.wl-comments{
     width: 80%;
-    height: 26px;
+    height: 27px;
+    line-height: 27px;
     background: #EEEEEE;
     border-radius: 25px;
     color: #999999;
     font-size: 12px;
-    padding: 4px 10px 0 10px;
     margin-left: 10px;
-    resize:none
+    padding-left: 15px;
+    resize:none;
+    float: left;
+}
+.wl-pinglun img {
+    border-radius: 50%;
 }
 .wl-pinglun1{
     width: 95%;
@@ -698,9 +704,6 @@
     min-height: 85px;
     margin: 0 auto;
     margin-top: 15px;
-}
-.wl-pinglun img {
-    border-radius: 50%;
 }
 .wl-ping-xiang{
     width: 85%;
