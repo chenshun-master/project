@@ -1,47 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
-    <meta name="applicable-device" content="pc,mobile">
-    <link rel="stylesheet" href="/static/css/hospital_details.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
-    <title>{:config('conf.title')} - 医院简介</title>
-    <style>
-        .ckgd{
-            width: 100%;
-            min-height: 40px;
-            line-height: 40px;
-            text-align: center;
-            color: #222222;
-            font-size: 16px;
-        }
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/css/hospital_details.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
+{/block}
+{block name="main"}
 
-        .wl-v{
-            color: white;
-            position: absolute;
-            top: 0px;
-            left: 0;
-            right: 0;
-            font-size: 18px;
-        }
-        .href{cursor: pointer}
-        .isfollow{background-color: #CCCCCC !important;color: white;}
-        input,button,a {
-            outline:0 none !important; blr:expression(this.onFocus=this.blur());
-        }
-        .wl-d{
-            color: white;position: absolute;top: -1px; left:7px;font-size: 13px;
-        }
-    </style>
-</head>
-<body style="background-color:#F2F2F2;padding-bottom: 150px">
 <header>
     <div class="wl-top">
         <div class="wl-top-neirong">
@@ -141,35 +104,10 @@
     </div>
         </div>
 </main>
-
-<footer>
-    <div class="wl-foot" style="max-width: 750px">
-        <dl onclick="redream.href('/weixin/index/index')" class="dianji">
-            <dd><i class="iconfont icon-home_light" style="font-size: 25px"></i></dd>
-            <dt>首页</dt>
-        </dl>
-        <dl class="dianji" onclick="redream.href('/weixin/index/doctor')">
-            <dd><i class="iconfont icon-yishengkkongxin" style="font-size: 25px;"></i></dd>
-            <dt>医生</dt>
-        </dl>
-        <dl class="dianji" onclick="redream.href('/weixin/shop/index')">
-            <dd><i class="iconfont icon-shoplight" style="font-size: 25px;"></i></dd>
-            <dt>商城</dt>
-        </dl>
-        <dl class="dianji" onclick="redream.href('/weixin/index/hospital')">
-            <dd><i class="iconfont icon-chakanyiyuan" style="font-size: 25px;"></i></dd>
-            <dt>医院</dt>
-        </dl>
-        <dl onclick="redream.href('/weixin/user/main')" class="dianji">
-            <dd><i class="iconfont icon-my_light" style="font-size: 25px"></i></dd>
-            <dt>我的</dt>
-        </dl>
-    </div>
-</footer>
-</body>
+{include file="layout/footer" /}
+{/block}
+{block name="script"}
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).on('click','.cus-click-href,.click-to-doctor-details',function(){
         window.location.href = $(this).data('href');
@@ -309,21 +247,6 @@
     };
 
     objClass.recommend.loadList();
-    //
-    // $('#cus-container').dropload({
-    //     scrollArea: window,
-    //     loadUpFn: function (me) {
-    //         objClass.recommend.conf.loading = false;
-    //         objClass.recommend.conf.ini = false;
-    //         objClass.recommend.conf.page = 0;
-    //         objClass.recommend.conf.page_total = 1;
-    //         objClass.recommend.loadList(me);
-    //     },
-    //     loadDownFn: function (me) {
-    //         objClass.recommend.loadList(me);
-    //     }
-    // });
-
 
 </script>
-</html>
+{/block}

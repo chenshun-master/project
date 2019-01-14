@@ -246,3 +246,18 @@ img{
 #wl-login-box-sendsms{
     font-size: 14px;
 }
+
+.wl-header-top {
+    width: 100%;
+    height: 40px;
+    background: #7DB0E8;
+    max-width: 640px;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    line-height: 40px;
+    z-index: 99999
+}

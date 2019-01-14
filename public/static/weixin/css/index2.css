@@ -1,12 +1,17 @@
-
 .wl-body{
-    width: 100%;min-height: 200px;background: white;
+    width: 100%;
+    height: 100%;
+
 }
 .wl-liebiao{
     width: 100%;
     height: 40px;
     line-height: 40px;
     border-bottom: 1px solid #F1F1F1;
+    background: white;
+    position: fixed;
+    top: 37px;
+    z-index: 999;
 }
 .wl-liebiao li{
     width:16.6%;
@@ -15,6 +20,11 @@
     cursor: pointer;
     color: #333333;
     font-size: 16px;
+}
+#container {
+    padding-top: 75px;
+    padding-bottom: 50px;
+    -webkit-overflow-scrolling: touch;
 }
 .content .wl-d{
     width: 100%;

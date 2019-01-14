@@ -1,79 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
-    <meta name="applicable-device" content="pc,mobile">
-    <link rel="stylesheet" href="/static/css/doctor_details.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/dropload.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
-    <title>{:config('conf.title')} - 医生简介</title>
-    <style>
-        .ckgd{
-            width: 100%;
-            min-height: 40px;
-            line-height: 40px;
-            text-align: center;
-            color: #222222;
-            font-size: 16px;
-        }
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/css/doctor_details.css">
+<link rel="stylesheet" href="/static/css/iconfont.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
+{/block}
 
-        .href{cursor: pointer}
-
-        .isfollow{background-color: #CCCCCC !important;color: white;}
-        input,button,a {
-            outline:0 none !important; blr:expression(this.onFocus=this.blur());
-        }
-        .wl-v{
-            color: white;
-            position: absolute;
-            top: 0px;
-            left: 0;
-            right: 0;
-            font-size: 18px;
-        }
-        .wl-d{
-            color: white;position: absolute;top: -1px; left:7px;font-size: 13px;
-        }
-    </style>
-</head>
-<body style="background-color:#F2F2F2;padding-bottom: 150px">
+{block name="main"}
 <header>
     <div class="wl-top">
         <div class="wl-top-neirong">
             <div class="wl-top-touxiang">
-                <img src="{$info['doctor_info']['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="71" height="71">
+                <img src="{$info['doctor_info']['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="71"
+                     height="71">
             </div>
-           <div class="wl-top-yisheng">
-               <div style="position: relative"><dl class="wl-renz" ></dl></div>
+            <div class="wl-top-yisheng">
+                <div style="position: relative">
+                    <dl class="wl-renz"></dl>
+                </div>
                 <dd>{$info['doctor_info']['real_name']}</dd>
-                <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
+                <dt>
+                    <button id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}">
+                        {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}
+                    </button>
+                </dt>
             </div>
             <div class="wl-top-anli">
                 <div class="wl-am">
                     <div style="width: 170px;margin: 0 auto">
-                        <span><i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: left">&nbsp;{$statistics['type_3']['total']}案例</span></span>
-                        <span><i class="iconfont icon-ziliao" style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: right">&nbsp;{$statistics['type_1']['total']}文章</span></span>
+                        <span><i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i><span
+                                style="float: left">&nbsp;{$statistics['type_3']['total']}案例</span></span>
+                        <span><i class="iconfont icon-ziliao"
+                                 style="font-size: 18px;color: #7DB0E8;float: left"></i><span style="float: right">&nbsp;{$statistics['type_1']['total']}文章</span></span>
                     </div>
                     <div style="clear: both"></div>
                 </div>
             </div>
             <div class="wl-top-yishneg">
-                 <dl data-href="/weixin/index/detailsDoctor/uid/{$uid}" class="href cus-click-href">
-                     <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
-                     <dt>医生资料</dt>
-                 </dl>
-                <dl  data-href="/weixin/index/doctorCertificate/uid/{$uid}" class="href cus-click-href">
-                    <dd class="iconfont icon-zhengjian"  style="font-size: 25px;color: #7DB0E8;"></dd>
+                <dl data-href="/weixin/index/detailsDoctor/uid/{$uid}" class="href cus-click-href">
+                    <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
+                    <dt>医生资料</dt>
+                </dl>
+                <dl data-href="/weixin/index/doctorCertificate/uid/{$uid}" class="href cus-click-href">
+                    <dd class="iconfont icon-zhengjian" style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生证件</dt>
                 </dl>
-                <dl  data-href="/weixin/index/honor/uid/{$uid}/type/2" class="href cus-click-href">
-                    <dd class="iconfont icon-rongyu"  style="font-size: 25px;color: #7DB0E8;"></dd>
+                <dl data-href="/weixin/index/honor/uid/{$uid}/type/2" class="href cus-click-href">
+                    <dd class="iconfont icon-rongyu" style="font-size: 25px;color: #7DB0E8;"></dd>
                     <dt>医生荣誉</dt>
                 </dl>
                 <div style="clear: both"></div>
@@ -81,17 +53,18 @@
         </div>
     </div>
 </header>
-
 <main>
-
 
 
     {if (count($info['hospital_info']) > 0)}
     <div class="wl-con-top">
-        <div class="wl-jiu href click-to-hospital-details" data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
-            <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="40" height="40" style="float: left">
-            <div style="position: relative"><dl class="wl-renz1" ></dl></div>
-            <dl  class="wl-yiyuan">
+        <div class="wl-jiu href click-to-hospital-details"  data-href="/weixin/index/hospitalDetails/uid/{$info['hospital_info'][0]['uid']}">
+            <img src="{$info['hospital_info'][0]['portrait']}" onerror="this.src='/static/image/user/tou.png'"
+                 width="40" height="40" style="float: left">
+            <div style="position: relative">
+                <dl class="wl-renz1"></dl>
+            </div>
+            <dl class="wl-yiyuan">
                 <dd>{$info['hospital_info'][0]['hospital_name']}</dd>
                 <dt> {$info['hospital_info'][0]['profile']}</dt>
             </dl>
@@ -102,8 +75,8 @@
 
         <div class="wl-jiu" style="line-height: 42px">
             <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 13px"></i>
-            <dl  class="wl-yiyuan" style="margin-left: 15px">
-                <dd >{$info['hospital_info'][0]['address']}</dd>
+            <dl class="wl-yiyuan" style="margin-left: 15px">
+                <dd>{$info['hospital_info'][0]['address']}</dd>
             </dl>
             <dl style="float: right;margin-top: 2px">
                 <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
@@ -114,152 +87,129 @@
     </div>
     {/if}
 
-        <div class="wl-liebiao">
-            <ul>
-                <li class="active">项目</li>
-                <li>文章</li>
-                <li>日记</li>
-            </ul>
-            <div style="clear: both"></div>
-            <div class="content">
-                <div class="wl-project active">
-                    <div class="wl-project-one">
-                        <dl class="wl-plastic-img"><img src="" alt=""></dl>
-                       <div class="wl-top-title">
-                           <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
-                           <dt class="wl-plastic-prepaid">
-                               <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
-                               <span class="wl-plastic-booking">11人预订</span>
-                           </dt>
-                           <div style="clear:both"></div>
-                           <dd class="wl-plastic-actual">
-                               <span><sup style="font-size: 10px">￥</sup>4845 </span>
-                               <span>￥2515</span>
-                           </dd>
-                       </div>
-                    </div>
-                    <div class="wl-project-one">
-                        <dl class="wl-plastic-img"><img src="" alt=""></dl>
-                        <div class="wl-top-title">
-                            <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
-                            <dt class="wl-plastic-prepaid">
-                                <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
-                                <span class="wl-plastic-booking">11人预订</span>
-                            </dt>
-                            <div style="clear:both"></div>
-                            <dd class="wl-plastic-actual">
-                                <span><sup style="font-size: 10px">￥</sup>4845 </span>
-                                <span>￥2515</span>
-                            </dd>
-                        </div>
-                    </div>
-                    <div class="wl-project-one">
-                        <dl class="wl-plastic-img"><img src="" alt=""></dl>
-                        <div class="wl-top-title">
-                            <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
-                            <dt class="wl-plastic-prepaid">
-                                <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
-                                <span class="wl-plastic-booking">11人预订</span>
-                            </dt>
-                            <div style="clear:both"></div>
-                            <dd class="wl-plastic-actual">
-                                <span><sup style="font-size: 10px">￥</sup>4845 </span>
-                                <span>￥2515</span>
-                            </dd>
-                        </div>
-                    </div>
-                    <div style="clear: both"></div>
-                </div>
-                <div class="wl-project">
-                    <div id="wl-box" style="display: none">
-                        <p class="wl-biaoti">我的文章</p>
-                        <div class="wl-conter">
-
-                        </div>
-                        <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
+    <div class="wl-liebiao">
+        <ul>
+            <li class="active">项目</li>
+            <li>文章</li>
+            <li>日记</li>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="content">
+            <div class="wl-project active">
+                <div class="wl-project-one">
+                    <dl class="wl-plastic-img"><img src="" alt=""></dl>
+                    <div class="wl-top-title">
+                        <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
+                        <dt class="wl-plastic-prepaid">
+                            <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
+                            <span class="wl-plastic-booking">11人预订</span>
+                        </dt>
+                        <div style="clear:both"></div>
+                        <dd class="wl-plastic-actual">
+                            <span><sup style="font-size: 10px">￥</sup>4845 </span>
+                            <span>￥2515</span>
+                        </dd>
                     </div>
                 </div>
-                <div class="wl-project">
-                    <div class="wl-project-one">
-                        <div class="wl-diary">
-                            <img src="" alt="">
-                            <img src="" alt="">
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-diary-project">全切双眼皮+自体自体脂肪自体脂肪自体脂肪自体脂肪脂肪</div>
-                        <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>2</div>
+                <div class="wl-project-one">
+                    <dl class="wl-plastic-img"><img src="" alt=""></dl>
+                    <div class="wl-top-title">
+                        <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
+                        <dt class="wl-plastic-prepaid">
+                            <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
+                            <span class="wl-plastic-booking">11人预订</span>
+                        </dt>
+                        <div style="clear:both"></div>
+                        <dd class="wl-plastic-actual">
+                            <span><sup style="font-size: 10px">￥</sup>4845 </span>
+                            <span>￥2515</span>
+                        </dd>
                     </div>
+                </div>
+                <div class="wl-project-one">
+                    <dl class="wl-plastic-img"><img src="" alt=""></dl>
+                    <div class="wl-top-title">
+                        <dt class="wl-plastic-title">[眼部整形]全切双眼皮</dt>
+                        <dt class="wl-plastic-prepaid">
+                            <span class="wl-plastic-btn"><span>预付</span><span>￥1254</span></span>
+                            <span class="wl-plastic-booking">11人预订</span>
+                        </dt>
+                        <div style="clear:both"></div>
+                        <dd class="wl-plastic-actual">
+                            <span><sup style="font-size: 10px">￥</sup>4845 </span>
+                            <span>￥2515</span>
+                        </dd>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div class="wl-project">
+                <div id="wl-box" style="display: none">
+                    <p class="wl-biaoti">我的文章</p>
+                    <div class="wl-conter">
 
-                    <div class="wl-project-one">
-                        <div class="wl-diary">
-                            <img src="" alt="">
-                            <img src="" alt="">
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-diary-project">全切双眼皮+自体自体脂肪自体脂肪自体脂肪自体脂肪脂肪</div>
-                        <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>2</div>
                     </div>
-
-                    <div class="wl-project-one">
-                        <div class="wl-diary">
-                            <img src="" alt="">
-                            <img src="" alt="">
-                        </div>
-                        <div style="clear: both"></div>
-                        <div class="wl-diary-project">全切双眼皮+自体自体脂肪自体脂肪自体脂肪自体脂肪脂肪</div>
-                        <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>2</div>
-                    </div>
-                    <div style="clear: both"></div>
+                    <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
                 </div>
             </div>
+            <div class="wl-project">
+
+                <div class="wl-project-one">
+                    <div class="wl-diary">
+                        <img src="" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="wl-diary-project">全切双眼皮+自体自体脂肪自体脂肪自体脂肪自体脂肪脂肪</div>
+                    <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>2</div>
+                </div>
+
+                <div class="wl-project-one">
+                    <div class="wl-diary">
+                        <img src="" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="wl-diary-project">全切双眼皮+自体自体脂肪自体脂肪自体脂肪自体脂肪脂肪</div>
+                    <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>2</div>
+                </div>
+
+                <div class="wl-project-one">
+                    <div class="wl-diary">
+                        <img src="" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="wl-diary-project">全切双眼皮+自体自体脂肪自体脂肪自体脂肪自体脂肪脂肪</div>
+                    <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>2</div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
         </div>
+    </div>
 
 </main>
 
-<footer>
-    <div class="wl-foot" style="max-width: 750px">
-        <dl onclick="redream.href('/weixin/index/index')" class="dianji">
-            <dd> <i class="iconfont icon-home_light" style="font-size: 25px"></i></dd>
-            <dt>首页</dt>
-        </dl>
-        <dl class="dianji"  onclick="redream.href('/weixin/index/doctor')">
-            <dd><i class="iconfont icon-yishengkkongxin" style="font-size: 25px;"></i></dd>
-            <dt  >医生</dt>
-        </dl>
-        <dl class="dianji" onclick="redream.href('/weixin/shop/index')">
-            <dd><i class="iconfont icon-shoplight" style="font-size: 25px;"></i></dd>
-            <dt>商城</dt>
-        </dl>
-        <dl class="dianji" onclick="redream.href('/weixin/index/hospital')">
-            <dd><i class="iconfont icon-chakanyiyuan" style="font-size: 25px;"></i></dd>
-            <dt >医院</dt>
-        </dl>
-        <dl onclick="redream.href('/weixin/user/main')" class="dianji">
-            <dd><i class="iconfont icon-my_light" style="font-size: 25px"></i></dd>
-            <dt>我的</dt>
-        </dl>
-    </div>
-</footer>
-</body>
+{include file="layout/footer" /}
+{/block}
+{block name="script"}
 <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-    $(document).on('click','.cus-click-href',function(){
+    $(document).on('click', '.cus-click-href', function () {
         window.location.href = $(this).data('href');
     });
 
-    $(document).on('click','.click-to-article',function(){
-        window.location.href = '/weixin/article/articleDetails/id/' +$(this).data('id');
+    $(document).on('click', '.click-to-article', function () {
+        window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
     });
 
-    $(document).on('click','.click-to-hospital-details',function(){
+    $(document).on('click', '.click-to-hospital-details', function () {
         window.location.href = $(this).data('href');
     });
 
-    $('#click-to-follow').on('click',function(){
-        if($(this).data('isfollow') != 1 && $(this).data('isfollow') != 0){
+    $('#click-to-follow').on('click', function () {
+        if ($(this).data('isfollow') != 1 && $(this).data('isfollow') != 0) {
             redream.showTip('不能关注自己');
             return false;
         }
@@ -267,39 +217,42 @@
     });
 
     var objClass = {
-        uid:{$uid},
-        recommend:{
-            conf:{
+        uid: {$uid},
+        recommend: {
+            conf: {
                 loading: false,
                 ini: false,
                 page: 0,
                 page_total: 1,
                 page_size: 3,
             },
-            template:{
-                template1:function(data,thumbnail){
-                    return   '<div class="wl-nei1 href click-to-article" data-id="'+ data.id +'" >'+
-                                '<div class="wl-neirong1">' +data.title+'</div>'+
-                                '<div class="wl-neirong2">'+
-                                   '<img src="'+thumbnail+'" alt="" width="128" height="90">'+
-                                '</div>'+
-                              '</div>'
+            template: {
+                template1: function (data, thumbnail) {
+                    return '<div class="wl-nei1 href click-to-article" data-id="' + data.id + '" >' +
+                        '<div class="wl-neirong1">' + data.title + '</div>' +
+                        '<div class="wl-neirong2">' +
+                        '<img src="' + thumbnail + '" alt="" width="128" height="90">' +
+                        '</div>' +
+                        '</div>'
                 },
-                template2:function(data,thumbnail){
-                    return   ' <div class="wl-wenzhnga  href click-to-article" data-id="'+ data.id +'">' +
-                                    '<div class="wl-deml">' +data.title+'</div>'+
-                                    '</div>'+
-                               '</div>';
+                template2: function (data, thumbnail) {
+                    return ' <div class="wl-wenzhnga  href click-to-article" data-id="' + data.id + '">' +
+                        '<div class="wl-deml">' + data.title + '</div>' +
+                        '</div>' +
+                        '</div>';
+                },
+                template3: function (data, thumbnail) {
+                    return;
                 },
             },
-            loadList:function(){
+            loadList: function () {
 
-                if(objClass.recommend.conf.loading){
+                if (objClass.recommend.conf.loading) {
                     return false;
                 }
 
                 objClass.recommend.conf.page++;
-                if(objClass.recommend.conf.page > objClass.recommend.conf.page_total){
+                if (objClass.recommend.conf.page > objClass.recommend.conf.page_total) {
                     $('#cus-recommend-loading-btn').text('没有了');
                     return false;
                 }
@@ -307,7 +260,11 @@
                 $.ajax({
                     url: "/weixin/Article/getUserPublishArticle",
                     type: 'post',
-                    data: {user_id: objClass.uid,page: objClass.recommend.conf.page, page_size: objClass.recommend.conf.page_size},
+                    data: {
+                        user_id: objClass.uid,
+                        page: objClass.recommend.conf.page,
+                        page_size: objClass.recommend.conf.page_size
+                    },
                     dataType: 'json',
                     beforeSend: function () {
                         objClass.recommend.conf.loading = true;
@@ -330,11 +287,11 @@
                             }
                             $.each(res.data.rows, function (k, val) {
                                 var thumbnail = '';
-                                if(val.thumbnail != '' && val.thumbnail != undefined){
-                                    var obj  = $.parseJSON(val.thumbnail);
+                                if (val.thumbnail != '' && val.thumbnail != undefined) {
+                                    var obj = $.parseJSON(val.thumbnail);
                                     thumbnail = obj.img_1;
-                                    $('.wl-conter').append(objClass.recommend.template.template1(val,thumbnail));
-                                }else{
+                                    $('.wl-conter').append(objClass.recommend.template.template1(val, thumbnail));
+                                } else {
                                     $('.wl-conter').append(objClass.recommend.template.template2(val));
                                 }
 
@@ -345,18 +302,18 @@
             },
 
         },
-        follow:{
-            followLoading:false,
-            clickFollow:function(obj){
-                if(objClass.follow.followLoading){
+        follow: {
+            followLoading: false,
+            clickFollow: function (obj) {
+                if (objClass.follow.followLoading) {
                     return false;
                 }
 
-                var type =  obj.data('isfollow') == 0 ? 1 : 2;
+                var type = obj.data('isfollow') == 0 ? 1 : 2;
                 $.ajax({
                     url: "/weixin/api/followUser",
                     type: 'post',
-                    data: {uid: objClass.uid,type:type},
+                    data: {uid: objClass.uid, type: type},
                     dataType: 'json',
                     beforeSend: function () {
                         objClass.follow.followLoading = true;
@@ -366,14 +323,14 @@
                     },
                     success: function (res) {
                         if (res.code == 200) {
-                            if(obj.data('isfollow') == 0){
-                                obj.addClass('isfollow').html('<i class="iconfont icon-check"></i>已关注').data('isfollow',1);
-                            }else if(obj.data('isfollow') == 1){
-                                obj.removeClass('isfollow').html('+ 关注').data('isfollow',0);
+                            if (obj.data('isfollow') == 0) {
+                                obj.addClass('isfollow').html('<i class="iconfont icon-check"></i>已关注').data('isfollow', 1);
+                            } else if (obj.data('isfollow') == 1) {
+                                obj.removeClass('isfollow').html('+ 关注').data('isfollow', 0);
                             }
-                        }else if(res.code == 401){
+                        } else if (res.code == 401) {
                             redream.showTip(res.msg);
-                        }else{
+                        } else {
                             redream.showTip('操作失败');
                         }
                     }
@@ -391,4 +348,4 @@
     });
 
 </script>
-</html>
+{/block}

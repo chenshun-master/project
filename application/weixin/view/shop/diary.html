@@ -124,7 +124,7 @@
         <div class="wl-pinglun-top">热门评论</div>
         <div class="wl-pinglun-img">
             <img src="/static/weixin/shop/image/nvhai.png" alt=""/>
-            <textarea name="" id="" cols="30" rows="10" placeholder="据说颜值高的人都爱评论" readonly class="wl-comments"></textarea>
+            <div class="wl-comments">据说颜值高的人都爱评论</div>
         </div>
     </div>
 
@@ -440,6 +440,7 @@
                             }
                         } else if (res.code == 401) {
                             redream.showTip('请登录后操作...');
+                            LoginBox.showBox();
                         }
                     }
                 });
@@ -508,7 +509,7 @@
             $('.wl-text').val('');
             var pid = $('#cus-comment-pid').val();
             $.ajax({
-                url: "/weixin/shopapi/createGoodGoodsComment",
+                url: "/weixin/api/addDiaryComment",
                 type: 'post',
                 data: {
                     obj_id: id,
