@@ -12,6 +12,7 @@
         margin-right: 10px;
         margin-bottom: 10px;
         overflow: hidden;
+        background-color: #f9f3f3;
     }
 
     .diary-img-boxs-remove {
@@ -19,7 +20,7 @@
         top: 0;
         right: 0px;
         z-index: 2;
-        color: red;
+        color: #ff808d;
         background: white;
         width: 20px;
         height: 20px;
@@ -34,6 +35,23 @@
         background: #f1ebeb;
         color: white;
         border: none !important;
+    }
+    .fr-diary-submit:hover{
+        background: #F29C9F!important;
+        color: white;
+        border: none !important;
+    }
+
+    #fr-input-day{
+        width: 50px;padding-left: 2px;padding-right: 2px;display: inline-block;text-align: center;
+    }
+
+    #upload-file-box{
+        width: 100px;height: 100px;border:1px solid #CCCCCC;cursor: pointer;float: left;position: relative;margin-bottom: 10px;margin-right: 10px;
+    }
+
+    #fr-diary-img-upload{
+    width: 100px;height: 100px;border: none;opacity: 0;cursor: pointer
     }
 </style>
 
@@ -52,23 +70,23 @@
         <div class="col-md-3">
             <div class="box box-widget widget-user">
                 <div class="widget-user-header" style="background-color: #53c5e1;color: white;">
-                    <p class="widget-user-username" style="font-size: 16px !important;">{$diaryInfo['title']}</p>
+                    <p class="widget-user-username" style="font-size: 16px !important;">【标题】{$diaryInfo['title']}</p>
                 </div>
                 <div class="box-footer">
                     <div class="row">
                         <div class="col-sm-4 border-right">
                             <div class="description-block">
-                                <h5 class="description-header">0</h5><span class="description-text">浏览数</span>
+                                <h5 class="description-header">{$diaryInfo['visit']}</h5><span class="description-text">浏览数</span>
                             </div>
                         </div>
                         <div class="col-sm-4 border-right">
                             <div class="description-block">
-                                <h5 class="description-header">0</h5><span class="description-text">点赞数</span>
+                                <h5 class="description-header">{$diaryInfo['like']}</h5><span class="description-text">点赞数</span>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="description-block">
-                                <h5 class="description-header">0</h5><span class="description-text">日记数</span>
+                                <h5 class="description-header">{:count($list)}</h5><span class="description-text">日记数</span>
                             </div>
                         </div>
                     </div>
@@ -131,8 +149,8 @@
                                 <i class="fa fa-clock-o bg-aqua"></i>
                                 <div class="timeline-item">
                                     <span class="time"><i class="fa fa-clock-o"></i> {$row['created_time']|date='Y-m-d H:i'}</span>
-                                    <h3 class="timeline-header">术后 <span style="font-size: 20px;color: red">{$row['day']}</span>天 <span class="pointer edit-diary" data-json="{$row['json']}" >编辑</span></h3>
-                                    <div class="timeline-body">{$row['content']}</div>
+                                    <h3 class="timeline-header">术后 <span style="font-size: 20px;color: red">{$row['day']}</span>天 </h3>
+                                    <div class="timeline-body">{$row['content']} <span class="pointer edit-diary" data-json="{$row['json']}" style="color: #0b93d5" >编辑</span></div>
                                     <div class="timeline-body">
                                         {if(count($row['imgs']) > 0)}
                                         {foreach($row['imgs'] as $src)}
@@ -154,7 +172,7 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">术后时间</label>
                                 <div class="col-sm-11">
-                                    术后 <input type="text" id="fr-input-day" class="form-control" style="width: 50px;padding-left: 2px;padding-right: 2px;display: inline-block;text-align: center" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 天
+                                    术后 <input type="text" id="fr-input-day" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 天
                                 </div>
                             </div>
                             <div class="form-group">
@@ -165,12 +183,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-1 col-sm-11" id="img-container">
-                                    <div style="width: 100px;height: 100px;border:1px solid #CCCCCC;cursor: pointer;float: left;position: relative;margin-bottom: 10px;margin-right: 10px;">
+                                    <div  id="upload-file-box" >
                                         <div style="width: 100%;height: 100%;">
                                             <img src="/static/seller/image/plus.png"  width="20" height="20" style="margin-left: 40px;margin-top: 40px;" class="cus-img">
                                         </div>
                                         <div style="position: absolute;z-index: 2;top: 0px">
-                                            <input type="file" name="imgFile"  style="width: 100px;height: 100px;border: none;opacity: 0;cursor: pointer" id="fr-diary-img-upload"/>
+                                            <input type="file" name="imgFile" id="fr-diary-img-upload"/>
                                         </div>
                                     </div>
                                 </div>
@@ -178,6 +196,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-1 col-sm-11">
                                     <span type="submit" class="btn fr-diary-submit" id="fr-submit">立即添加</span>
+                                    <span style="color: #efdddd !important;">图片最多只能上传6张,图片大小不超过3M</span>
                                 </div>
                             </div>
                         </form>
@@ -211,6 +230,11 @@
             success: function (res) {
                 if(res.code == 200){
                     $('#img-container').append('<div class="diary-img-boxs"><img src="'+ res.data.url +'" width="100"  /><div class="diary-img-boxs-remove"><i class="fa fa-fw fa-trash"></i></div></div>');
+                    if($('.diary-img-boxs > img').length >=6){
+                        $('#fr-diary-img-upload').prop('disabled', true);
+                    }else{
+                        $('#fr-diary-img-upload').prop('disabled', false);
+                    }
                 }else{
                     layer.msg(res.msg);
                 }
@@ -220,6 +244,7 @@
 
     $(document).on('click','.diary-img-boxs-remove',function(){
         $(this).parent().remove();
+        $('#fr-diary-img-upload').prop('disabled', false);
     });
 
     $('.edit-diary').on('click',function(){
