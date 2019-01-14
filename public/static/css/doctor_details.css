@@ -329,6 +329,10 @@ width: 100%;
     font-size: 10px;
     text-decoration:line-through
 }
+.wl-diary{
+    width: 100%;
+    min-height: 50px;
+}
 .wl-diary img{
     width: 48.5%;
     float: left;
@@ -339,7 +343,25 @@ width: 100%;
     margin-left: 5px;
 }
 .wl-diary-project{
-
+    width: 95%;
+    min-height: 20px;
+    margin: 0 auto;
+    margin-top: 8px;
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.wl-diary-tubiao{
+    width: 95%;
+    min-height: 20px;
+    font-size: 13px!important;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.wl-diary-tubiao i{
+    font-size: 13px!important;
 }
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{
