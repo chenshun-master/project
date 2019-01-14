@@ -31,7 +31,6 @@
          */
         this.loadBoxHtml = function(){
             this.ini = true;
-
             var box = `<div class="wl-mask" >
                             <div class="wl-login-mask">
                                 <div id="wl-login-box" >
@@ -77,7 +76,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="wl-key-log"><i class="iconfont  icon-weixin1"></i>微信授权登录>></div>
+                                            <div class="wl-key-log wl-login-box-type" data-type="weixin"><i class="iconfont  icon-weixin1"></i>微信授权登录>></div>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +109,7 @@
                                 window.location.reload();
                             },1500);
                         }else {
-                            _this.showTip('登录失败');
+                            _this.showTip(res.msg);
                         }
                     }
                 });
@@ -139,7 +138,7 @@
                                 window.location.reload();
                             },1500);
                         }else {
-                            _this.showTip('登录失败');
+                            _this.showTip(res.msg);
                         }
                     }
                 });
@@ -195,12 +194,16 @@
             });
 
             $(document).on('click','.wl-login-box-btn1',function(){
-
                 _this.smsLogin();
             });
 
             $(document).on('click','.wl-login-box-btn2',function(){
                 _this.pwdLogin();
+            });
+
+
+            $(document).on('click','.wl-login-box-type',function(){
+                window.location.href = '/weixin/index/otherLogin?platform='+$(this).data('type');
             });
 
             $(".wl-qiehuan li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除

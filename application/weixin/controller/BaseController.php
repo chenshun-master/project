@@ -91,22 +91,20 @@ class BaseController extends Controller
 
     /**
      * 微信授权登录
-     * @return type
+     * @param bool $snsapi_userinfo
+     * @param string $redir
+     * @return bool
      */
-    public function wxAuthorize($snsapi_userinfo = false){
+    public function wxAuthorize($snsapi_userinfo = false,$redir){
         $this->weChatApiClass = new \wechat\WeChatApi();
-
-        //获取当前页面
-        $redirect = Request::url(true);
-        Session::set('previous_page',$redirect);
-
+        $redir = base64url_encode($redir);
 
         //微信授权回调地址
         $url = Url('/weixin/index/authCallback','','',true);
         if(Session::has('wxAuthorize')){
             $wxAuthorize = Session::get('wxAuthorize');
             if($snsapi_userinfo === true && $wxAuthorize['scope'] != 'snsapi_userinfo'){
-                $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redirect,$snsapi_userinfo);
+                $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redir,$snsapi_userinfo);
                 $this->weChatApiClass->redirect($redirect);exit;
             }else{
                 #1.检验用户网页授权凭证（access_token）是否有效
@@ -123,7 +121,7 @@ class BaseController extends Controller
 
             return true;
         }else{
-            $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redirect,true);
+            $redirect = $this->weChatApiClass->getWeChatAuthCode($url,$redir,true);
             $this->weChatApiClass->redirect($redirect);exit;
         }
     }
@@ -133,7 +131,6 @@ class BaseController extends Controller
      */
     public function authCallback(Request $request){
         $this->weChatApiClass = new \wechat\WeChatApi();
-
         $code   = $_GET['code'];
         $state  = $_GET['state'];
 
@@ -155,16 +152,14 @@ class BaseController extends Controller
                     $info = (new \app\api\domain\UserDomain())->login($mobile,'',true);
                     $this->saveUserLogin($info);
 
-                    ##登录成功跳转到登录页面
-                    return redirect(Session::get('previous_page'));
+                    ##登录成功跳转到登录之前的页面
+                    return redirect(base64url_decode($state));
                 }else{
                     ##第三方登录未绑定手机号跳转到绑定手机号页面
                     $str = encryptStr($res['userinfo']['unionid'],'E',config('conf.secret_key'));
-                    return redirect('/weixin/index/otherLoginBindingMobile')->params(['auth_token'=>urlencode($str),'type'=>1]);
+                    return redirect('/weixin/index/otherLoginBindingMobile')->params(['auth_token'=>urlencode($str),'type'=>1,'redir'=>$state]);
                 }
             }
-
-            return redirect(Session::get('previous_page'));
         }
     }
 

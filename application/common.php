@@ -439,3 +439,21 @@ function random($length = 6, $type = 'string', $convert = 0)
     }
     return $code;
 }
+
+/**
+ * url 加密处理
+ * @param $data
+ * @return string
+ */
+function base64url_encode($data) {
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
+
+/**
+ * url 解密处理
+ * @param $data
+ * @return string
+ */
+function base64url_decode($data) {
+    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+}
