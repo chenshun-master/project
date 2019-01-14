@@ -138,7 +138,7 @@ img{
     border-radius: 0 0 5px 5px;
     text-align: center;
     color: white;
-    display: block;
+    display: none;
 }
 .wl-deji{
     width: 100%;
@@ -228,4 +228,8 @@ img{
     right: 0;
     left: 0;
     bottom: 0;
+}
+
+#wl-login-box-sendsms{
+    font-size: 14px;
 }
