@@ -216,6 +216,36 @@
 {block name="script"}
 <script src="/static/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-pinglun">
+        <div style="float: left">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'"  data-user_id="{{item.user_id}}" class="cus-touser-main">
+        </div>
+        <div class="wl-ping-xiang">
+            <div>
+                <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
+                <div class=" wl-dianzan cus-comment-fabulous" data-id="{{item.id}}" data-type="{{item.islike}}">
+                    {{# if(item.islike == 0){ }}
+                    <dl class="iconfont icon-likefill wl-font-size"></dl>
+                    {{# } }}
+
+                    {{# if(item.islike == 1){ }}
+                    <dl class="iconfont icon-likefill wl-font-size cus-red"></dl>
+                    {{# } }}
+
+                    <dt class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</dt>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="wl-ping-neirong">{{item.content}}</div>
+            <div class="wl-pji">{{item.created_time}}</div>
+        </div>
+        <div style="clear:both">
+        </div>
+    </div>
+    {{#  }); }}
+</script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
@@ -323,35 +353,6 @@
         }
     });
 </script>
-<script id="templateList" type="text/html">
-    {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-pinglun">
-        <div style="float: left">
-            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'">
-        </div>
-        <div class="wl-ping-xiang">
-            <div>
-                <div class="wl-name " >{{item.nickname}}</div>
-                <div class=" wl-dianzan cus-comment-fabulous" data-id="{{item.id}}" data-type="{{item.islike}}">
-                    {{# if(item.islike == 0){ }}
-                    <dl class="iconfont icon-likefill wl-font-size"></dl>
-                    {{# } }}
-
-                    {{# if(item.islike == 1){ }}
-                    <dl class="iconfont icon-likefill wl-font-size cus-red"></dl>
-                    {{# } }}
-
-                    <dt class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</dt>
-                </div>
-            </div>
-            <div style="clear:both"></div>
-            <div class="wl-ping-neirong"> {{item.content}}</div>
-            <div class="wl-pji">{{item.created_time}}</div>
-        </div>
-        <div style="clear:both"></div>
-    </div>
-    {{#  }); }}
-</script>
 <script>
     const id = {$info['id']};
     var myObj = {
@@ -444,7 +445,96 @@
                 });
             }
         },
+        recommended: {
+            listData: {
+                diary_id: id,
+                loading: false,
+                ini: false,
+                page: 0,
+                page_total: 1,
+                page_size: 3,
+            },
+            loadList: function () {
+                if (myObj.recommended.listData.loading) {
+                    return false;
+                }
+                myObj.recommended.listData.page++;
+                if (myObj.recommended.listData.ini == true) {
+                    if (myObj.recommended.listData.page > myObj.recommended.listData.page_total) {
+                        return false;
+                    }
+                }
+                $.ajax({
+                    url: "/weixin/shopapi/getGoodGoodsRelevant",
+                    type: 'post',
+                    data: {
+                        gid: myObj.recommended.listData.diary_id,
+                        page: myObj.recommended.listData.page,
+                        page_size: myObj.recommended.listData.page_size
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.recommended.listData.loading = true;
+                    },
+                    complete: function () {
+                        myObj.recommended.listData.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (myObj.recommended.listData.ini == false) {
+                                myObj.recommended.listData.ini = true;
+                                myObj.recommended.listData.page_total = res.data.page_total;
+                                $('#recommended-List').html('');
+                                if (res.data.page_total == 0) {
+                                    $('#container-list').html(' <div class="wl-no-shuju" style="margin-top: 40px"> <dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl> <dt style="margin: 0">暂无商品</dt></div>');
+                                }
+                            }
+                            layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
+                                $('#container-list').append(html);
+                            });
+                        }
+                    }
+                });
+            }
+        },
 
+
+        publishCommentConf: {
+            loading: false,
+        },
+        publishComment: function (type, flag) {
+            var content = $('.wl-text').val();
+            $('.wl-text').focus();
+            $('.wl-text').val('');
+            var pid = $('#cus-comment-pid').val();
+            $.ajax({
+                url: "/weixin/shopapi/createGoodGoodsComment",
+                type: 'post',
+                data: {
+                    obj_id: id,
+                    content: content
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.publishCommentConf.loading = true;
+                },
+                success: function (res) {
+                    myObj.publishCommentConf.loading = false;
+                    if (res.code == 200) {
+                        $('.wl-zhez2').hide();
+                        redream.showTip('发布成功');
+                        $('.wl-text').val('').blur();
+                        $('.wl-foot-gundong ').animate({scrollTop:0});
+                        myObj.goods.loadList();
+                    } else if (res.code == 401) {
+                        redream.showTip('请先进行登录');
+                        $('.wl-zhez2').hide();
+                    }else{
+                        redream.showTip('评论失败');
+                    }
+                }
+            });
+        },
     }
     myObj.goods.loadList();
     $(document).on('click', '.cus-comment-fabulous', function () {
