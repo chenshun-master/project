@@ -508,7 +508,7 @@
             $('.wl-text').val('');
             var pid = $('#cus-comment-pid').val();
             $.ajax({
-                url: "/weixin/shopapi/createGoodGoodsComment",
+                url: "/weixin/api/addDiaryComment",
                 type: 'post',
                 data: {
                     obj_id: id,
