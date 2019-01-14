@@ -424,7 +424,7 @@ class Api extends BaseController
      * @throws \think\Exception
      */
     public function getRelevantDiaryList(){
-        $id      = $this->request->param('diary_id/d',6);
+        $id      = $this->request->param('diary_id/d',0);
 
         if($id == 0){
             return $this->returnData([],'请求参数不符合规范',301);
