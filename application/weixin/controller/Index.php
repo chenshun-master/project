@@ -80,9 +80,8 @@ class Index extends BaseController
         if ($this->checkLogin()) {
             return redirect('/weixin/user/main');
         } else if (is_weixin() && config('conf.weixin_automatic_logon')) {
-            // return $this->redirect('weixin/index/otherLogin?platform=weixin');
             Session::delete('wxAuthorize');
-            $this->wxAuthorize(true);
+            $this->wxAuthorize(true,Request::url(true));
         }
 
         return $this->fetch('index/login');
@@ -285,13 +284,16 @@ class Index extends BaseController
     public function otherLogin(Request $request)
     {
         $platform = $request->param('platform', '');
+        if($platform == 'weixin'){
+            Session::delete('wxAuthorize');
+            $this->wxAuthorize(true,$request->server('HTTP_REFERER'));
+            exit;
+        }
 
-        //获取配置
         $confData = Config('conf.sns_login.' . $platform);
 
         //设置回跳地址
         $confData['callback'] = 'https://weixin.alimx.cn/weixin/index/otherLoginCallback?platform=' . $platform;
-
 
         /**
          * 对于微博，如果登录界面要适用于手机，则需要设定->setDisplay('mobile')
