@@ -258,7 +258,7 @@ width: 100%;
     min-height: 100px;
     margin: 0 auto;
     padding-top: 5px;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
 }
 .wl-project-one{
     width: 49%;
@@ -382,5 +382,10 @@ width: 100%;
     .wl-jiu i{
         font-size: 50px;
     }
-
+    .wl-diary img {
+        width: 49.2%;
+        float: left;
+        height: 170px;
+        background: grey;
+    }
 }
