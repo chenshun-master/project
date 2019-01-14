@@ -132,10 +132,10 @@
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false,
             noMoreSize: 5,
-            empty: {
-                icon: "/static/weixin/shop/image/tuoian.png",
-                tip: "亲,没有您要找的商品~", //提示
-            },
+            // empty: {
+            //     icon: "/static/weixin/shop/image/tuoian.png",
+            //     tip: "亲,没有您要找的商品~", //提示
+            // },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
                     mescroll.endSuccess(curPageData.length);

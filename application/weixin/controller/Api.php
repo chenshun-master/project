@@ -424,7 +424,7 @@ class Api extends BaseController
      * @throws \think\Exception
      */
     public function getRelevantDiaryList(){
-        $id      = $this->request->param('diary_id/d',6);
+        $id      = $this->request->param('diary_id/d',0);
 
         if($id == 0){
             return $this->returnData([],'请求参数不符合规范',301);
@@ -452,7 +452,6 @@ class Api extends BaseController
         return $this->returnData($data);
     }
 
-
     /**
      * 获取分销商品评论
      */
@@ -474,5 +473,29 @@ class Api extends BaseController
         }
 
         return $this->returnData([], '评论失败...', 305);
+    }
+
+    /**
+     * 获取用户发布的项目
+     */
+    public function getUserGoods(){
+        $uid       = $this->request->param('uid/d', 0);
+        $page      = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
+
+        $data = Singleton::getDomain('spgoodsdomain')->getUserGoods($uid,$page,$page_size);
+        return $this->returnData($data);
+    }
+
+    /**
+     * 获取用户发布的项目
+     */
+    public function getUserDiary(){
+        $uid       = $this->request->param('uid/d', 0);
+        $page      = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
+
+        $data = Singleton::getDomain('DiaryDomain')->getUserDiary($uid,$page,$page_size);
+        return $this->returnData($data);
     }
 }

@@ -43,7 +43,7 @@ class Shop extends BaseController
         $goodsid = $this->request->param('goodsid/d',0);
 
 
-        $goods_info = $this->_goodsDomain->getEditGoodsInfo($goodsid,$this->getSellerId());
+        $goods_info = $this->_goodsDomain->getEditGoodsInfo($goodsid,$this->getUserId());
         $user_info = $this->getUserInfo();
         $type = $user_info['type'];
 
