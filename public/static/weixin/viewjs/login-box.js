@@ -23,7 +23,7 @@
          * 关闭隐藏登录窗口
          */
         this.hideBox= function(){
-            $('#wl-login-box').hide();
+            $('.wl-zhez').hide();
         };
 
         /**

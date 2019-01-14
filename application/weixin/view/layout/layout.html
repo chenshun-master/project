@@ -23,75 +23,99 @@
     {/block}
 
 
-    <style>
-        #wl-login-box{
-            width: 100%;max-width: 640px;height: 400px;background: red;position: fixed;z-index: 999999;bottom: 0;left: 0;right: 0;margin: 0 auto;border: 1px solid black;display: block;
-        }
-        .wl-login-box-header{
-            width: 100%;height: 38px;background: white;position: relative;
-        }
-        .wl-login-box-close{
-            width: 38px;height: 100%;position:absolute;right: 3px;top: 0px;
-        }
-
-        .wl-login-box-body{
-            width: 90%;height: 200px;margin: 0 auto;
-        }
-
-        .wl-login-box-tab > ul > li {
-            float: left;text-align: center;width: 50%;
-        }
-        #wl-login-box-tip{
-            position: absolute;top: 0;left: 0;width: 80%;height: 30px;background: #fec4ba;z-index: 1;margin: 0 auto;right: 0;border-radius: 0 0 5px 5px;text-align: center;color: #5f3535;display: block;
-        }
-    </style>
-    <div id="wl-login-box" >
-        <div id="wl-login-box-tip">asdfa sd </div>
-        <div class="wl-login-box-header">
-            <div class="wl-login-box-close">
-                <i class="iconfont icon-guanbi1" style="font-size: 34px;color: #cec2c2"></i>
-            </div>
-        </div>
-        <div class="wl-login-box-body">
-            <div class="wl-login-box-tab">
-                <ul>
-                    <li>账号密码登录</li>
-                    <li>短信验证码登录</li>
-                </ul>
-                <div style="clear:both"></div>
-            </div>
-            <div>
-                <div>
-                    <div>
-                        <input type="text" id="login-mobile1">
-                        <span id="wl-login-box-sendsms">获取验证码</span>
+    <div class="wl-mask" >
+        <div class="wl-login-mask">
+            <div id="wl-login-box" >
+                <div class="wl-login-box-header">
+                    <div id="wl-login-box-tip">asdfa sd </div>
+                    <div class="wl-login-box-close">
+                        <i class="iconfont icon-guanbi1" style="font-size: 34px;color: #cec2c2"></i>
                     </div>
-                    <div>
-                        <input type="text" id="login-sms-code">
-                    </div>
-                    <div class="wl-login-box-btn1">登录</div>
+                    <div style="clear:both"></div>
                 </div>
-                <div>
-                    <div>
-                        <input type="text" id="login-mobile2">
+
+                <div class="wl-login-box-body">
+                    <div class="wl-login-box-tab">
+                        <ul class="wl-qiehuan">
+                            <li  class="active">短信验证码登录</li>
+                            <li>账号密码登录</li>
+                        </ul>
+                        <div style="clear:both"></div>
+                        <div class="wl-content">
+                            <div class="wl-qie active">
+                                <div class="wl-sms">
+                                    <div class="wl-phone">
+                                        <input type="text" id="login-mobile1" placeholder="请输入你的手机号" style="width: 72%;">
+                                        <span id="wl-login-box-sendsms">获取验证码</span>
+                                    </div>
+                                    <div class="wl-phone">
+                                        <input type="text" id="login-sms-code" placeholder="请输入你的验证码">
+                                    </div>
+                                    <div class="wl-login-box-btn1  wl-btn">登录</div>
+                                    <div class="wl-key-log">微信授权登录>></div>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+
+                            <div class="wl-qie">
+                                <div class="wl-sms">
+                                    <div class="wl-phone">
+                                        <input type="text" id="login-mobile2" placeholder="请输入您的账号">
+                                    </div>
+                                    <div class="wl-phone">
+                                        <input type="text" id="login-pwd" placeholder="请输入您的密码">
+                                    </div>
+                                    <div class="wl-login-box-btn2 wl-btn">登录</div>
+                                    <div class="wl-key-log">微信授权登录>></div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-                    <div>
-                        <input type="text" id="login-pwd">
-                    </div>
-                    <div class="wl-login-box-btn2">登录</div>
+                </div>
+
+
+                <div class="wl-login-box-footer">
+                    <!--这里放第三方登录-->
                 </div>
             </div>
-        </div>
-        <div class="wl-login-box-footer">
-            <!--这里放第三方登录-->
         </div>
     </div>
+
 
     <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/functions.js"></script>
     <script src="/static/weixin/viewjs/login-box.js"></script>
     <script>
         LoginBox.showBox();
+
+        $(".wl-qiehuan li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+            $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+            var index = $(this).index();
+            $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+        });
+
+         $('.wl-sms').on('input',function(){
+             if(($.trim($('#login-mobile1').val())!=="")&&($.trim($('#login-sms-code').val())!=="")){
+                 $('.wl-login-box-btn1').css({'background':'#7DB0E8'});
+             }else{
+                 $('.wl-login-box-btn1').css({'background':'#EBEBEB'});
+             }
+         }).on('input',function(){
+            if(($.trim($('#login-mobile2').val())!=="")&&($.trim($('#login-pwd').val())!=="")){
+                $('.wl-login-box-btn2').css({'background':'#7DB0E8'});
+            }else{
+                $('.wl-login-box-btn2').css({'background':'#EBEBEB'});
+            }
+        });
+        //点击空白处隐藏弹出层
+        $(".wl-mask").click(function (event) {
+            var _con = $('.wl-login-mask'); // 设置目标区域
+            if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+                $('.wl-mask').hide(); //淡出消失
+            }
+        });
     </script>
     {block name="script"}
 
