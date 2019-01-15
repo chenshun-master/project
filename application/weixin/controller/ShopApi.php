@@ -6,7 +6,8 @@ use think\App;
 use app\api\domain\SpGoodGoodsDomain;
 use mypay\MyPay;
 use app\api\domain\UDomain;
-class ShopApi extends BaseController
+
+class Shopapi extends BaseController
 {
     private $_userDomain;
     private $_spGoodsDomain;
@@ -18,7 +19,6 @@ class ShopApi extends BaseController
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-
         $this->_spGoodsDomain = new SpGoodsDomain();
         $this->_spGoodGoodsDomain = new SpGoodGoodsDomain();
         $this->_userDomain = new \app\api\domain\UserDomain();
@@ -231,5 +231,10 @@ class ShopApi extends BaseController
         }
 
         return $this->returnData($data, '', 200);
+    }
+
+
+    public function test(){
+        halt('ads');
     }
 }
