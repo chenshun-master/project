@@ -253,3 +253,12 @@
 .wl-deji li:nth-child(1){
     margin-left: 15px;
 }
+.wl-submit{
+    float: left;margin-left: 210px;margin-right: 20px
+}
+.wl-submit-one{
+    color:#7DB0E8 ;font-size: 25px;float: left;margin-top: -2px;
+}
+.wl-submit-one-hengxian{
+    color:#7DB0E8 ;font-size: 57px;float: left;
+}

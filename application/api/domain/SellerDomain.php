@@ -49,26 +49,24 @@ class SellerDomain
      */
     public function getSellerList($page=1,$page_size=10)
     {
-        $sellerInfo = Db::name('sp_seller')->alias('seller');
-        $sellerInfo->leftJoin('wl_user user','user.id = seller.user_id');
-        $sellerInfo->leftJoin('wl_auth auth','user.id = auth.user_id');
-        $sellerInfo->order('seller.create_time desc');
+        $sellerInfo = Db::name('user');
+        $sellerInfo->order('created_time desc');
 
         $total = $sellerInfo->count(1);
 
         $field  = [
-          'seller.id',
-          'user.mobile',
-          'user.nickname',
-          'user.portrait',
-          'user.type',
-          'auth.enterprise_name',
-          'seller.is_lock',
-          'seller.account',
-          'seller.grade',
-          'seller.sale',
-          'seller.comments',
-          'seller.create_time',
+            'mobile',
+            'nickname',
+            'portrait',
+            'type',
+            'sex',
+            'score',
+            'usable_score',
+            'account',
+            'usable_account',
+            'birthday_date',
+            'profile',
+            'created_time',
         ];
         $rows = $sellerInfo->field($field)->page($page,$page_size)->select();
         return [

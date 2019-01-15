@@ -1,8 +1,15 @@
 {extend name="layout/layout" /}
+<!--使用webkit内核-->
+<meta name="renderer" content="webkit">
+<meta name="renderer" content="ie-stand">
+<!--避免IE使用兼容模式-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,IE=9" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/css/swiper.min.css">
 <link rel="stylesheet" href="/static/weixin/shop/css/diary.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 <style>
 
 </style>
@@ -17,7 +24,7 @@
     </div>
 </header>
 
-<main style="width: 100%;min-height: 500px;padding-bottom: 45px">
+<main style="width: 100%;min-height: 500px;padding-bottom: 45px"  id="container" class="mescroll">
     <div class="wl-meili">
         <div class="wl-meili-top">
             <div class="wl-meili-left">
@@ -26,7 +33,7 @@
                 <!--<span class="wl-yonghu">用户</span>-->
             </div>
             <div class="wl-meili-right">
-                <button data-isFollow="{$isFollow}" > {$isFollow == 1?'已关注':'＋关注'}</button>
+                <button id="click-to-follow" data-isFollow="{$isFollow}" > {$isFollow == 1?'已关注':'＋关注'}</button>
             </div>
         </div>
 
@@ -38,7 +45,8 @@
                     <span>术前相册</span>
                     <span>{:count($info['before_imgs'])}<i class="iconfont icon-xiangce1"></i></span>
                 </div>
-                <img src="{:isset($info['after_imgs'][0])?$info['after_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}" style="margin-left: 10px">
+                <img src="{:isset($info['after_imgs'][0])?$info['after_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}"
+                     style="margin-left: 10px">
                 <div class="wl-preoperative1">
                     <span>术后相册</span>
                     <span>{:count($info['after_imgs'])}<i class="iconfont icon-xiangce1"></i></span>
@@ -72,50 +80,51 @@
     <div class="wl-bianmei">
         <div class="wl-bianmei-title">
             <span class="wl-riji">我的变美日记</span>
-            <span class="wl-daoxu" data-order="asc" id="diary-order-by">时间排序 <i class="iconfont icon-iconsort"></i></span>
+            <span class="wl-daoxu" data-order="asc" id="diary-order-by">时间排序 <i
+                    class="iconfont icon-iconsort"></i></span>
         </div>
         <div class="diary-list-box">
             {if($diaryList)}
-                {foreach($diaryList as $diary)}
-                    <div class="wl-riji-neirong diary-list" data-day="{$diary['day']}">
-                        <div style="position: relative">
-                            <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing "
-                                style="font-size: 12px;color: #F24F4F"></dl>
-                            <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
-                        </div>
-                        <div class="wl-riji-shuhou">术后<span style="color: #F24F4F">{$diary['day']}</span>天</div>
-                        <div style="" class="wl-riji-xiang">
-                            <div class="wl-riji-title">{$diary['content']}</div>
-                            <div class="wl-neirong-img">
-                                <div class="wl-img-top">
-                                    <div class="wl-img-top-left">
-                                        <img src="{:isset($diary['imgs'][0])?$diary['imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}" >
-                                    </div>
-                                    <div class="wl-img-top-right">
-                                        <img src="{:isset($diary['imgs'][1])?$diary['imgs'][1]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}" >
-                                        <img src="{:isset($diary['imgs'][2])?$diary['imgs'][2]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}" >
-                                    </div>
-                                </div>
-
-                                {if(count($diary['imgs']) >= 6)}
-                                    <div style="clear: both"></div>
-                                    <div class="wl-top-two">
-                                        <img src="{$diary['imgs'][3]}" alt="">
-                                        <img src="{$diary['imgs'][4]}" alt="">
-                                        <img src="{$diary['imgs'][5]}" alt="">
-                                    </div>
-                                {/if}
-                                <div style="clear: both"></div>
-                                <!--<div class="wl-zan">-->
-                                    <!--<span><i class="iconfont icon-attention wl-fenge"></i>5</span>-->
-                                    <!--<span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>-->
-                                    <!--<span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>-->
-                                <!--</div>-->
+            {foreach($diaryList as $diary)}
+            <div class="wl-riji-neirong diary-list" data-day="{$diary['day']}">
+                <div style="position: relative">
+                    <dl class="wl-zhong iconfont icon-shijianlishijilujishizhongbiaomianxing "
+                        style="font-size: 12px;color: #F24F4F"></dl>
+                    <dt class="wl-dian iconfont icon-yuandian" style="color: #BFBFBF"></dt>
+                </div>
+                <div class="wl-riji-shuhou">术后<span style="color: #F24F4F">{$diary['day']}</span>天</div>
+                <div style="" class="wl-riji-xiang">
+                    <div class="wl-riji-title">{$diary['content']}</div>
+                    <div class="wl-neirong-img">
+                        <div class="wl-img-top">
+                            <div class="wl-img-top-left">
+                                <img src="{:isset($diary['imgs'][0])?$diary['imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
+                            </div>
+                            <div class="wl-img-top-right">
+                                <img src="{:isset($diary['imgs'][1])?$diary['imgs'][1]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
+                                <img src="{:isset($diary['imgs'][2])?$diary['imgs'][2]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
                             </div>
                         </div>
+
+                        {if(count($diary['imgs']) >= 6)}
                         <div style="clear: both"></div>
+                        <div class="wl-top-two">
+                            <img src="{$diary['imgs'][3]}" alt="">
+                            <img src="{$diary['imgs'][4]}" alt="">
+                            <img src="{$diary['imgs'][5]}" alt="">
+                        </div>
+                        {/if}
+                        <div style="clear: both"></div>
+                        <!--<div class="wl-zan">-->
+                        <!--<span><i class="iconfont icon-attention wl-fenge"></i>5</span>-->
+                        <!--<span><i class="iconfont icon-comment_light  wl-fenge"></i>5</span>-->
+                        <!--<span><i class="iconfont icon-dianzan2 wl-fenge"></i>3</span>-->
+                        <!--</div>-->
                     </div>
-                {/foreach}
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            {/foreach}
             {/if}
         </div>
     </div>
@@ -129,49 +138,37 @@
     </div>
 
     {if($commentList)}
-        <div class="wl-pl">
-            {foreach($commentList as $comment)}
-                <div class="wl-pinglun1">
-                    <div style="float: left">
-                        <img src="{$comment['portrait']}"  width="30"  height="30" class="cus-touser-main " onerror="this.src='/static/image/user/tou.png'"></div>
-                    <div class="wl-ping-xiang1">
-                        <div><div class="wl-name1 cus-touser-main" data-user_id="46">{$comment['content']}</div></div>
-                        <div style="clear:both"></div>
-                        <div class="wl-ping-neirong">{$comment['nickname']}</div>
-                        <div class="wl-pji">{:formatTime(strtotime($comment['created_time']))}</div>
-                    </div>
-                    <div style="clear:both"></div>
+    <div class="wl-pl">
+        {foreach($commentList as $comment)}
+        <div class="wl-pinglun1">
+            <div style="float: left">
+                <img src="{$comment['portrait']}" width="30" height="30" class="cus-touser-main "
+                     onerror="this.src='/static/image/user/tou.png'"></div>
+            <div class="wl-ping-xiang1">
+                <div>
+                    <div class="wl-name1 cus-touser-main" data-user_id="46">{$comment['nickname']}</div>
                 </div>
-            {/foreach}
-
-            {if(count($commentList) ==5)}
-                <div class="wl-chakna wl-comments-num">查看更多 <i class="iconfont icon-pull_down"></i></div>
-            {/if}
+                <div style="clear:both"></div>
+                <div class="wl-ping-neirong">{$comment['content']}</div>
+                <div class="wl-pji">{:formatTime(strtotime($comment['created_time']))}</div>
+            </div>
+            <div style="clear:both"></div>
         </div>
+        {/foreach}
+
+        {if(count($commentList) ==5)}
+        <div class="wl-chakna wl-comments-num">查看更多 <i class="iconfont icon-pull_down"></i></div>
+        {/if}
+    </div>
     {/if}
-
+        <!--相关推荐数据-->
     <div class="wl-xiangguan">相关推荐</div>
-    <div class="wl-tuijian">
-        <div class="wl-tui1">
-            <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-            <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-            <div class="wl-tui-xaing">
-                <img src="/static/image/user/tou.png" alt="">
-                <span>用户名称</span>
-                <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
-            </div>
-        </div>
+    <div>
+        <div class="wl-tuijian " id="container-recommend">
 
-        <div class="wl-tui1">
-            <div class="wl-tui-img"><img src="https://inews.gtimg.com/newsapp_bt/0/7046310058/641" alt=""></div>
-            <div class="wl-tui-title">【鼻综合】哈喽，宝宝们好久不见呀~今天天气完全变冷了呢，突然觉得...</div>
-            <div class="wl-tui-xaing">
-                <img src="/static/image/user/tou.png" alt="">
-                <span>用户名称</span>
-                <span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>
-            </div>
         </div>
-        <div style="clear: both"></div>
+    </div>
+    <div style="clear: both"></div>
     </div>
 
 </main>
@@ -179,13 +176,14 @@
 <footer>
     <div class="wl-footerzan">
         <ul class="wl-zanl">
-            <li  id="cus-click-fabulous" data-type="{$info['isZan']}">
-                <span class="wl-islike"  data-id="{$info['id']}"></span>
+            <li id="cus-click-fabulous" data-type="{$info['isZan']}">
+                <span class="wl-islike" data-id="{$info['id']}"></span>
                 <i class="iconfont {$info['isZan']== 1?'icon-dianzan1 cus-sou':'icon-dianzan'} text"></i>
                 <font>{$info['like']}</font>
             </li>
-            <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}</li>
-            <li style="border: none;color: #7DB0E8">商品详情</li>
+            <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}
+            </li>
+            <li style="border: none;color: #7DB0E8" class="wl-goods-article">商品详情</li>
         </ul>
         <div style="clear:both"></div>
     </div>
@@ -193,9 +191,12 @@
 
 <div class="marsk-container">
     <div class="tkyy_con">
-        <div><div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span class="iconfont icon-guanbi1 wl-quxiao href"></span></div></div>
+        <div>
+            <div class="wl-tan-pinglun"><i id="cus-pinglun-num">0</i>条评论 <span
+                    class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
+        </div>
         <div class="wl-foot-gundong " style="overflow-x:hidden">
-            <div id="container-list">
+            <div id="container-list" >
 
             </div>
         </div>
@@ -207,7 +208,8 @@
 
 <div class="wl-zhez2">
     <div class="wl-zl2">
-            <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid" placeholder="有爱评论，说点好听的..."></textarea>
+        <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid"
+                  placeholder="有爱评论，说点好听的..."></textarea>
         <i class="wl-fabu iconfont icon-fabu" onclick="myObj.publishComment()"></i>
     </div>
 </div>
@@ -216,11 +218,14 @@
 {block name="script"}
 <script src="/static/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script src="/static/plugin/fly-zomm/fly-zomm-img.min.js"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
         <div style="float: left">
-            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'"  data-user_id="{{item.user_id}}" class="cus-touser-main">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" onerror="this.src ='/static/image/user/tou.png'"
+                 data-user_id="{{item.user_id}}" class="cus-touser-main">
         </div>
         <div class="wl-ping-xiang">
             <div>
@@ -246,14 +251,47 @@
     </div>
     {{#  }); }}
 </script>
+<script id="templateListrecommend" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-tui1">
+        <div class="wl-tui-img">
+            {{#if(item.after_imgs.length > 0){ }}
+            <img src="{{item.after_imgs[0]}}" alt=""  class="wl-diary-img">
+            {{# } }}
+
+            {{#if(item.after_imgs.length == 0){ }}
+            <img src="{{item.before_imgs[0]}}" alt=""  class="wl-diary-img">
+            {{# } }}
+
+        </div>
+        <div class="wl-tui-title">{{item.title}}</div>
+        <div class="wl-tui-xaing">
+            <img src="{{item.portrait}}" alt="">
+            <span>{{item.nickname}}</span>
+            <!--<span class="wl-liulan"><i class="iconfont icon-yanjing1"></i>1121</span>-->
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    {{#  }); }}
+</script>
 <script>
+    $(function() {
+        $('.wl-img-top').FlyZommImg({
+            closeBtn: true, //是否打开右上角关闭按钮
+            rollSpeed: 200, //切换速度
+            miscellaneous: true, //是否显示底部辅助按钮
+            slitherCallback: function(direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
+                console.log(direction, DOM);
+            }
+        });
+    })
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
         pagination: {
             el: '.swiper-pagination',
         },
     });
-
     $(".wl-comments").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").show();
@@ -320,41 +358,40 @@
         }
     });
 
-
     var wlObj = {
-        desc:[],
-        asc:[],
+        desc: [],
+        asc: [],
     };
-    $('#diary-order-by').on('click',function(){
-        if($(this).data('order') == 'desc'){
+    $('#diary-order-by').on('click', function () {
+        if ($(this).data('order') == 'desc') {
             $('.diary-list-box').html('');
-            $.each(wlObj.desc,function(k,html){
+            $.each(wlObj.desc, function (k, html) {
                 $('.diary-list-box').append(html);
             });
-            $(this).data('order','asc').find('i').removeClass('icon-iconasc').addClass('icon-iconsort');
-        }else{
-            if(wlObj.desc.length == 0 && wlObj.asc.length == 0){
-                var asc  = [];
+            $(this).data('order', 'asc').find('i').removeClass('icon-iconasc').addClass('icon-iconsort');
+        } else {
+            if (wlObj.desc.length == 0 && wlObj.asc.length == 0) {
+                var asc = [];
                 var desc = [];
-                $.each($('.diary-list'),function(k,html){
+                $.each($('.diary-list'), function (k, html) {
                     asc[parseInt($('.diary-list')[k].dataset.day)] = html;
                     desc.push(html);
                 });
                 wlObj.desc = desc;
-                wlObj.asc  = asc;
+                wlObj.asc = asc;
             }
 
             $('.diary-list-box').html('');
-            $.each(wlObj.asc,function(k,html){
+            $.each(wlObj.asc, function (k, html) {
                 $('.diary-list-box').append(html);
             });
-
-            $(this).data('order','desc').find('i').removeClass('icon-iconsort').addClass('icon-iconasc');
+            $(this).data('order', 'desc').find('i').removeClass('icon-iconsort').addClass('icon-iconasc');
         }
     });
 </script>
 <script>
     const id = {$info['id']};
+
     var myObj = {
         goods: {
             listData: {
@@ -446,60 +483,6 @@
                 });
             }
         },
-        recommended: {
-            listData: {
-                diary_id: id,
-                loading: false,
-                ini: false,
-                page: 0,
-                page_total: 1,
-                page_size: 3,
-            },
-            loadList: function () {
-                if (myObj.recommended.listData.loading) {
-                    return false;
-                }
-                myObj.recommended.listData.page++;
-                if (myObj.recommended.listData.ini == true) {
-                    if (myObj.recommended.listData.page > myObj.recommended.listData.page_total) {
-                        return false;
-                    }
-                }
-                $.ajax({
-                    url: "/weixin/shopapi/getGoodGoodsRelevant",
-                    type: 'post',
-                    data: {
-                        gid: myObj.recommended.listData.diary_id,
-                        page: myObj.recommended.listData.page,
-                        page_size: myObj.recommended.listData.page_size
-                    },
-                    dataType: 'json',
-                    beforeSend: function () {
-                        myObj.recommended.listData.loading = true;
-                    },
-                    complete: function () {
-                        myObj.recommended.listData.loading = false;
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            if (myObj.recommended.listData.ini == false) {
-                                myObj.recommended.listData.ini = true;
-                                myObj.recommended.listData.page_total = res.data.page_total;
-                                $('#recommended-List').html('');
-                                if (res.data.page_total == 0) {
-                                    $('#container-list').html(' <div class="wl-no-shuju" style="margin-top: 40px"> <dl class="iconfont icon-tianxierenzhengxinxi" style="font-size: 30px"></dl> <dt style="margin: 0">暂无商品</dt></div>');
-                                }
-                            }
-                            layui.laytpl(recommendedList.innerHTML).render(res.data.rows, function (html) {
-                                $('#container-list').append(html);
-                            });
-                        }
-                    }
-                });
-            }
-        },
-
-
         publishCommentConf: {
             loading: false,
         },
@@ -525,16 +508,53 @@
                         $('.wl-zhez2').hide();
                         redream.showTip('发布成功');
                         $('.wl-text').val('').blur();
-                        $('.wl-foot-gundong ').animate({scrollTop:0});
+                        $('.wl-foot-gundong ').animate({scrollTop: 0});
                         myObj.goods.loadList();
                     } else if (res.code == 401) {
                         redream.showTip('请先进行登录');
+                        LoginBox.showBox();
                         $('.wl-zhez2').hide();
-                    }else{
+                    } else {
                         redream.showTip('评论失败');
                     }
                 }
             });
+        },
+
+        follow: {
+            followLoading: false,
+            clickFollow: function (obj) {
+                if (myObj.follow.followLoading) {
+                    return false;
+                }
+                var type = obj.data('isfollow') == 0 ? 1 : 2;
+                $.ajax({
+                    url: "/weixin/api/followUser",
+                    type: 'post',
+                    data: {uid: id, type: type},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.follow.followLoading = true;
+                    },
+                    complete: function () {
+                        myObj.follow.followLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            if (obj.data('isfollow') == 0) {
+                                obj.addClass('isfollow').html('<i class="iconfont icon-check"></i>已关注').data('isfollow', 1);
+                            } else if (obj.data('isfollow') == 1) {
+                                obj.removeClass('isfollow').html('+ 关注').data('isfollow', 0);
+                            }
+                        } else if (res.code == 401) {
+                            redream.showTip(res.msg);
+                        } else {
+                            redream.showTip('操作失败');
+                            LoginBox.showBox();
+                        }
+                    }
+                });
+            }
         },
     }
     myObj.goods.loadList();
@@ -558,5 +578,54 @@
         myObj.giveLike($(this), {type: type, obj_id: id, flag: 4});
     });
 
+
+    $('#click-to-follow').on('click', function () {
+        if ($(this).data('isfollow') != 1 && $(this).data('isfollow') != 0) {
+            redream.showTip('不能关注自己');
+            return false;
+        }
+        myObj.follow.clickFollow($(this));
+    });
+
+    var mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "container-recommend",
+            page: {num: 0,size: 20},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {
+                icon: "/static/weixin/shop/image/tuoian.png",
+                tip: "暂无推荐商品~", //提示
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+                    layui.laytpl(templateListrecommend.innerHTML).render(curPageData, function(html){
+                        $('#container-recommend').append(html);
+                    });
+                }, function(){
+                    mescroll.endErr();
+                });
+            }
+        }
+    });
+    mescroll.lockDownScroll(true);
+    var listObj = {
+        searchList: function (page, successCallback, errorCallback) {
+            var data = $.extend({}, {diary_id:id,page: page.num, page_size: page.size});
+            $.ajax({
+                url: "/weixin/api/getUserGoods",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+
+            });
+        },
+    };
 </script>
 {/block}

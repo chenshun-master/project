@@ -35,19 +35,22 @@ layui.table.render({
                     return '<span class="label label-info">官方团队</span>';
                 }
             }},
-        {field: 'enterprise_name', title: '医院名称'},
-        {field: 'is_lock', title: '是否锁定',templet:function (res) {
-                if(res.is_lock ==0){
-                    return '<span class="label label-success" lay-event="show">未锁定</span>';
-                }else if(res.is_lock == 1){
-                    return '<span class="label label-danger" lay-event="end">已锁定</span>';
+        {field: 'sex', title: '用户性别',templet:function (res) {
+                if(res.sex == 0){
+                    return '<span class="label label-success">未知</span>';
+                }else if(res.sex == 1){
+                    return '<span class="label label-danger">男</span>';
+                }else if(res.sex == 2){
+                    return '<span class="label label-warning">女</span>';
                 }
             }},
-        {field: 'account', title: '收款账号信息'},
-        {field: 'grade', title: '评分总数',sort:true},
-        {field: 'sale', title: '总预约量',sort:true},
-        {field: 'comments', title: '评论次数',sort:true},
-        {field: 'create_time', title: '申请加入时间',sort:true},
+        {field: 'score', title: '总积分'},
+        {field: 'usable_score', title: '可用积分'},
+        {field: 'account', title: '账户总金额',sort:true},
+        {field: 'usable_account', title: '账户可用余额',sort:true},
+        {field: 'birthday_date', title: '出生日期',sort:true},
+        {field: 'profile', title: '用户简介',sort:true},
+        {field: 'created_time', title: '申请加入时间',sort:true},
     ]]
 });
 
