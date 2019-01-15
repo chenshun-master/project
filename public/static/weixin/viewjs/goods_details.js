@@ -4,6 +4,7 @@ var mySwiper = new Swiper('.swiper-container', {
         el: '.swiper-pagination',
     }
 });
+
 $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
     $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
     var index = $(this).index();
@@ -30,6 +31,7 @@ $(".marsk-container").click(function (event) {
         $('.marsk-container').hide(); //淡出消失
     }
 });
+
 $(".quxiao").click(function () {
     $('.marsk-container').hide(); //淡出消失
 });
@@ -44,7 +46,6 @@ $(document).on('click','#click-place-order',function(){
 
 $(window).scroll(function(){
     var scrollTop = parseInt($(this).scrollTop());
-
     if(scrollTop == 0 || scrollTop > 414){
         $('.wl-top').css('opacity','1');
     }else if(scrollTop < 414){
@@ -106,15 +107,30 @@ $(window).scroll(function(){
 $(document).on('click','.to-goods-detai',function(){
     window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
 });
+
+$(document).on('click','.to-diary-datail',function(){
+    window.location.href = '/weixin/shop/diary?id='+$(this).data('diaryid');
+});
+
+$(document).on('click','.to-user-detail',function(){
+    if($(this).data('type') == 4){
+        window.location.href = '/weixin/index/hospitalDetails/uid/'+$(this).data('uid');
+    }else{
+        window.location.href = '/weixin/index/doctorDetails/uid/'+$(this).data('uid');
+    }
+});
+
+
+
 $('#click-to-referer').on('click',function(){
     window.location.href = $(this).data('href');
 });
+
 $(".wl-zizhi").click(function (event) {
     event.stopPropagation(); //停止事件冒泡
     $(".marsk-container1").toggle();
 });
 
-//点击空白处隐藏弹出层
 $(".marsk-container1").click(function (event) {
     var _con = $('.tkyy_con1'); // 设置目标区域
     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
@@ -135,94 +151,73 @@ $("#cus-myshare-box").click(function () {
 });
 
 var myObj = {
-    goods:{
-        listData: {
-            sellerid:0,
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 3,
-        },
-        loadList: function () {
-            if (myObj.goods.listData.loading) {
-                return false;
-            }
-            myObj.goods.listData.page++;
-            if (myObj.goods.listData.ini == true) {
-                if (myObj.goods.listData.page > myObj.goods.listData.page_total) {
-                    $('#cus-recommend-loading-btn').text('没有了');
-                    return false;
+    loadGoodsList: function () {
+        $.ajax({
+            url: "/weixin/shopapi/getSellerHotGoods",
+            type: 'post',
+            data: {uid:uid,page: 1, page_size: 5},
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 200 && res.data.page_total != 0) {
+                    $('#goods-container-list').html('');
+                    $('.wl-gengduo').show();
+                    layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
+                        $('#goods-container-list').append(html);
+                    });
                 }
             }
+        });
+    },
+    loadDiaryList: function () {
+        $.ajax({
+            url: "/weixin/api/getUserDiary",
+            type: 'post',
+            data: {uid:uid,goodsid:goodsid,page: 1, page_size: 5},
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 200 && res.data.page_total != 0) {
+                    $('#diary-container-list').html('');
+                    layui.laytpl(diaryTemplateList.innerHTML).render(res.data.rows, function(html){
+                        $('#diary-container-list').append(html);
+                    });
+                }
+            }
+        });
+    },
+    collectionLoading: false,
+    collection: function (o, dataObj) {
+        if (myObj.collectionLoading == false) {
             $.ajax({
-                url: "/weixin/shopapi/getSellerHotGoods",
+                url: "/weixin/user/giveFavorite",
                 type: 'post',
-                data: {page:myObj.goods.listData.sellerid,page: myObj.goods.listData.page, page_size: myObj.goods.listData.page_size},
+                data: dataObj,
                 dataType: 'json',
                 beforeSend: function () {
-                    myObj.goods.listData.loading = true;
-                    $('#cus-recommend-loading-btn').text('加载中...');
+                    myObj.collectionLoading = true;
                 },
                 complete: function () {
-                    myObj.goods.listData.loading = false;
-                    // $(".marsk-container2").hide();
-                    $('#cus-recommend-loading-btn').text('查看更多');
+                    myObj.collectionLoading = false;
                 },
                 success: function (res) {
                     if (res.code == 200) {
-                        if ( myObj.goods.listData.ini == false) {
-                            $('#container-list').html('');
-                            myObj.goods.listData.ini = true;
-                            myObj.goods.listData.page_total = res.data.page_total;
-                            if ( res.data.page_total == 0) {
-                                $('.wl-gengduo').hide();
+                        if (dataObj.flag == 2) {
+                            if (dataObj.type == 1) {
+                                o.data('type', 1).removeClass('icon-favor_light').addClass("icon-favor_fill_light").addClass('cus-sou');
                             } else {
-                                $('.wl-gengduo').show();
+                                o.data('type', 0).removeClass('icon-favor_fill_light').removeClass('cus-sou').addClass("icon-favor_light");
                             }
                         }
-                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function(html){
-                            $('#container-list').append(html);
-                        });
+                    } else if (res.code == 401) {
+                        LoginBox.showBox();
                     }
                 }
             });
-        },
-
-        collectionLoading: false,
-        collection: function (o, dataObj) {
-            if (myObj.goods.collectionLoading == false) {
-                $.ajax({
-                    url: "/weixin/user/giveFavorite",
-                    type: 'post',
-                    data: dataObj,
-                    dataType: 'json',
-                    beforeSend: function () {
-                        myObj.collectionLoading = true;
-                    },
-                    complete: function () {
-                        myObj.collectionLoading = false;
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            if (dataObj.flag == 2) {
-                                if (dataObj.type == 1) {
-                                    o.data('type', 1).removeClass('icon-favor_light').addClass("icon-favor_fill_light").addClass('cus-sou');
-                                } else {
-                                    o.data('type', 0).removeClass('icon-favor_fill_light').removeClass('cus-sou').addClass("icon-favor_light");
-                                }
-                            }
-                        } else if (res.code == 401) {
-                            redream.showTip('请登录后操作...');
-                        }
-                    }
-                });
-            }
-        },
+        }
     },
-
 };
-myObj.goods.loadList();
+
+myObj.loadGoodsList();
+myObj.loadDiaryList();
 
 $(document).on('click', '#cus-click-collection', function () {
     var type = $(this).data('type');
@@ -231,9 +226,10 @@ $(document).on('click', '#cus-click-collection', function () {
     } else {
         type = 2;
     }
-    myObj.goods.collection($(this), {type: type, obj_id:$(this).data('gid'), flag: 2});
-
+    myObj.collection($(this), {type: type, obj_id:$(this).data('gid'), flag: 2});
 });
 
 $('#wl-goods-detail').find('img').removeAttr('width').removeAttr('height');
 $('#wl-goods-detail').find('table').removeAttr('width').removeAttr('height');
+
+

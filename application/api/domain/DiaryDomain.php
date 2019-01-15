@@ -311,15 +311,38 @@ class DiaryDomain
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getUserDiary($user_id,$page,$page_size){
-        $obj = Db::name('diary')->where('user_id',$user_id);
-        $total       = $obj->count('id');
+    public function getUserDiary($user_id,$page,$page_size,$searchParams=[]){
+        $obj = Db::name('diary')->alias('diary')->leftJoin('wl_user user','user.id = diary.user_id')->where('diary.user_id',$user_id);
 
-        $rows        = $obj->order('created_time','desc')->page($page,$page_size)->select();
+        if($searchParams && isset($searchParams['goods_id'])){
+            $obj->whereOrRaw("FIND_IN_SET({$searchParams['goods_id']},diary.goods_ids)");
+        }
+
+        $total       = $obj->count('diary.id');
+        $rows        = $obj->order('diary.created_time','desc')->page($page,$page_size)->field('diary.*,user.nickname,user.profile,user.type as userType')->select();
+
         if($rows){
+            $goodsIds = [];
             foreach ($rows as $k=>$row){
                 $rows[$k]['before_imgs'] = !empty($row['before_imgs']) ? json_decode($row['before_imgs'],true) : [];
                 $rows[$k]['after_imgs']  = !empty($row['after_imgs']) ? json_decode($row['after_imgs'],true) : [];
+
+                $rows[$k]['goodsList']   = [];
+
+                $goodsIds = array_merge($goodsIds,explode(',',$row['goods_ids']));
+            }
+
+            $goodsIds = array_unique($goodsIds);
+            if($goodsList = Db::name('sp_goods')->alias('goods')->leftJoin('wl_sp_category category','goods.category_id = category.id')->where('goods.id','in',$goodsIds)->field('goods.id,goods.name,goods.category_id,goods.sell_price,category.name as category_name')->select()){
+                foreach ($rows as $k=>$row){
+                    foreach (explode(',',$row['goods_ids']) as $val){
+                        foreach ($goodsList as $val2){
+                            if($val == $val2['id']){
+                                $rows[$k]['goodsList'][] =  $val2;
+                            }
+                        }
+                    }
+                }
             }
         }
 

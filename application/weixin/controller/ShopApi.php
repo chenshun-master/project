@@ -82,11 +82,11 @@ class ShopApi extends BaseController
      */
     public function getSellerHotGoods()
     {
-        $sellerid = $this->request->param('sellerid/d', 0);
+        $uid = $this->request->param('uid/d', 0);
         $page = $this->request->param('page/d', 1);
         $page_size = $this->request->param('page_size/d', 5);
 
-        $data = $this->_spGoodsDomain->getSellerHotGoods($sellerid, $page, $page_size);
+        $data = $this->_spGoodsDomain->getSellerHotGoods($uid, $page, $page_size);
         return $this->returnData($data, '', 200);
     }
 

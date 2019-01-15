@@ -492,10 +492,17 @@ class Api extends BaseController
      */
     public function getUserDiary(){
         $uid       = $this->request->param('uid/d', 0);
+        $goodsid   = $this->request->param('goodsid/d', 0);
+
         $page      = $this->request->param('page/d', 1);
         $page_size = $this->request->param('page_size/d', 15);
 
-        $data = Singleton::getDomain('DiaryDomain')->getUserDiary($uid,$page,$page_size);
+        $searchParams = [];
+        if(empty($goodsid)){
+            $searchParams['goods_id'] = $goodsid;
+        }
+
+        $data = Singleton::getDomain('DiaryDomain')->getUserDiary($uid,$page,$page_size,$searchParams);
         return $this->returnData($data);
     }
 }
