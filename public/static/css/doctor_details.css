@@ -379,7 +379,7 @@ input,button,a {
     height: 170px;
 }
 .wl-img-left img {
-    width: 48%;
+    width: 100%;
     height: 100%;
     float: left;
 }
@@ -448,9 +448,49 @@ input,button,a {
     color: #7DB0E8;
     font-size: 11px;
 }
+.wl-before{
+    position: relative;
+    width: 49%;
+    min-height: 100px;
+    float: left;
+}
+.wl-after{
+    position: relative;
+    width: 49%;
+    min-height: 100px;
+    float: left;
+    margin-left: 5px
+}
 
+.wl-before-one{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #444444;
+    color: white;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+    opacity: 0.5;
+}
+.wl-after-one{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #7DB0E8;
+    color: white;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+    /*opacity: 1;*/
 
-
+}
 
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{
