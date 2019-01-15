@@ -220,17 +220,19 @@
             </div>
             <div class="wl-meili-img href to-diary-datail" data-diaryid="{{ item.id}}">
                 <div class="wl-img-left">
-                    <img src="{{ item.before_imgs[0]}}" />
+                    <div class="wl-before">
+                        <img src="{{ item.before_imgs[0]}}"/>
+                        <div class="wl-before-one">Before</div>
+                    </div>
 
                     {{#if(item.after_imgs.length > 0){ }}
-                        <img src="{{item.after_imgs[0]}}" alt="" style="margin-left: 10px" />
-                    {{# } }}
-
-                    {{#if(item.after_imgs.length == 0){ }}
-                        <img src="" alt=""  style="margin-left: 10px" />
+                    <div class="wl-after">
+                        <img src="{{item.after_imgs[0]}}" alt=""/>
+                        <div class="wl-after-one">After</div>
+                    </div>
                     {{# } }}
                 </div>
-            </div>
+                </div>
             <div class="wl-title">
                 {{ item.title }}
             </div>
