@@ -131,14 +131,43 @@
 
 <script id="templateListDiary" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-project-one">
-        <div class="wl-diary">
-            <img src="{{item.after_imgs[0]}}" alt="">
-            <img src="{{item.before_imgs[0]}}" alt="">
+    <!--<div class="wl-project-one">-->
+        <!--<div class="wl-diary">-->
+            <!--<img src="{{item.after_imgs[0]}}" alt="">-->
+            <!--<img src="{{item.before_imgs[0]}}" alt="">-->
+        <!--</div>-->
+        <!--<div style="clear: both"></div>-->
+        <!--<div class="wl-diary-project">{{item.title}}</div>-->
+        <!--<div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>{{item.visit}}</div>-->
+    <!--</div>-->
+    <div class="wl-meili">
+        <div class="wl-meili-img">
+            <div class="wl-img-left">
+                <img src="/static/weixin/shop/image/index/db2.png" alt="">
+                <img src="/static/weixin/shop/image/index/db4.png" alt=""
+                     style="margin-left: 10px">
+            </div>
         </div>
-        <div style="clear: both"></div>
-        <div class="wl-diary-project">{{item.title}}</div>
-        <div class="wl-diary-tubiao"><i class="iconfont icon-attention"></i>{{item.visit}}</div>
+        <div class="wl-title">
+            {{item.title}}
+        </div>
+        <div class="wl-long-top ">
+            <div class="wl-meili-left1">
+            <span class="iconfont icon-news_hot_fill_light" style="font-size: 20px;color: #7DB0E8;float: left;margin: 3px 7px 0 0;"></span>
+                <span class="wl-longxioang">#假体隆胸</span>
+                <span class="wl-longxioang">#隆胸</span>
+                <span class="wl-longxioang">#胸部</span>
+            </div>
+            <div class="wl-meili-right1">
+                <span>{{item.visit}}人浏览</span>
+            </div>
+        </div>
+        <div class="wl-xiang bottom">
+                                    <span class="iconfont icon-goumaiicon"
+                                          style="float: left;font-size: 14px;color: #F29C9F"></span>
+            <span class="wl-jie"> 【鼻综合】爆款仙女鼻综合@马金荣院长 预约18抵300元 半肋隆鼻9999</span>
+            <span class="wl-fenshu se">￥4784元</span>
+        </div>
     </div>
     <div style="clear: both"></div>
     {{#  }); }}
