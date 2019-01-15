@@ -103,7 +103,7 @@
 }
 .wl-jiu{
     min-height: 62px;
-    border-bottom: 1px solid #f1f1f1;padding: 10px;
+    border-bottom: 1px solid #f1f1f1;padding: 0 10px 0 10px;
 }
 .wl-biaoti{
     width: 100%;
@@ -115,7 +115,7 @@
 }
 .wl-nei1{
     width: 100%;
-    min-height: 105px;
+    min-height: 50px;
     background: white;
     padding: 10px;
     border-bottom: 1px solid #EEEEEE;
@@ -172,7 +172,7 @@
 .wl-con-top img{
     border-radius: 50%;
 }
-.wl-deml{
+.wl-dem2{
     width: 95%;
     min-height: 30px;
     overflow: hidden;
@@ -183,6 +183,7 @@
     color: #1F1F1F;
     font-size: 17px;
     margin: 0 auto;
+
 }
 .wl-top-touxiang img{
     border-radius: 50%;
@@ -507,7 +508,7 @@ input,button,a {
         font-size: 18px;
     }
     .wl-jiu{
-        height: 90px;border-bottom: 1px solid #f1f1f1;padding: 10px;
+        height: 90px;border-bottom: 1px solid #f1f1f1;padding: 0 10px 0 10px;
     }
     .wl-jiu img{
         width: 60px;

@@ -5,7 +5,7 @@
 {/block}
 
 {block name="main"}
-<div id="container" class="mescroll">
+<div id="container">
     <header>
         <div class="wl-top">
             <div class="wl-top-neirong">
@@ -177,15 +177,25 @@
 
 <script id="templateListArticle" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
+
+    {{# if(item.thumbnail == 0){ }}
+    <div class="wl-nei1 href click-to-article" data-id="{{item.id}}">
+        <div class="wl-dem2">{{item.title}}</div>
+    </div>
+    {{# } }}
+
+    {{# if(item.thumbnail != 0 ){ }}
     <div class="wl-nei1 href click-to-article" data-id="{{item.id}}" >
         <div class="wl-neirong1">{{item.title}}</div>
         <div class="wl-neirong2">
-
-            <img src="" alt="" width="128" height="90">
-
+            <img src="{{item.thumbnail}}" alt="" width="128" height="90">
         </div>
-        </div>
-    <div style="clear: both"></div>
+        <div style="clear: both"></div>
+    </div>
+
+    {{# } }}
+
+
     {{#  }); }}
 </script>
 
@@ -362,6 +372,14 @@
                             $('#goodslist').append(html);
                         });
                     }else if(listObj.index == 1){
+                        $.each(curPageData, function (k, val) {
+                            if(val.thumbnail != '' && val.thumbnail != undefined){
+                                var obj  = $.parseJSON(val.thumbnail);
+                                curPageData[k].thumbnail = obj.img_1;
+                            }
+                        });
+
+
                         layui.laytpl(templateListArticle.innerHTML).render(curPageData, function(html){
                             $('#goodslist').append(html);
                         });
@@ -412,6 +430,7 @@
     $(document).on('click','.to-goods-project',function(){
         window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('project-id');
     });
+
 
 </script>
 {/block}

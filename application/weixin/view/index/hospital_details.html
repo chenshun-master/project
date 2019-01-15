@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 {block name="main"}
-<div  id="container">
+<div>
     <header>
         <div class="wl-top">
             <div class="wl-top-neirong">
@@ -99,7 +99,7 @@
                 </ul>
                 <div style="clear: both"></div>
 
-                <div class="content">
+                <div class="content"   id="container">
                     <div id="goodslist" class="mescroll">
 
                     </div>
@@ -196,13 +196,27 @@
 
 <script id="templateListArticle" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
+
+
+
+    {{# if(item.thumbnail == 0){ }}
+    <div class="wl-nei1 href click-to-article" data-id="{{item.id}}">
+        <div class="wl-dem2">{{item.title}}</div>
+    </div>
+    {{# } }}
+
+    {{# if(item.thumbnail != 0 ){ }}
     <div class="wl-nei1 href click-to-article" data-id="{{item.id}}" >
         <div class="wl-neirong1">{{item.title}}</div>
         <div class="wl-neirong2">
-            <img src="" alt="" width="128" height="90">
+            <img src="{{item.thumbnail}}" alt="" width="128" height="90">
         </div>
+        <div style="clear: both"></div>
     </div>
-    <div style="clear: both"></div>
+
+    {{# } }}
+
+
     {{#  }); }}
 </script>
 
@@ -373,6 +387,13 @@
                             $('#goodslist').append(html);
                         });
                     }else if(listObj.index == 1){
+                        $.each(curPageData, function (k, val) {
+                            if(val.thumbnail != '' && val.thumbnail != undefined){
+                                var obj  = $.parseJSON(val.thumbnail);
+                                curPageData[k].thumbnail = obj.img_1;
+                            }
+                        });
+
                         layui.laytpl(templateListArticle.innerHTML).render(curPageData, function(html){
                             $('#goodslist').append(html);
                         });
@@ -404,9 +425,9 @@
                 data: data,
                 dataType: 'json',
                 success: function (res) {
+
                     successCallback(res.data.rows);
                 },
-
             });
         },
     };
@@ -425,24 +446,7 @@
         window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('project-id');
 
     });
-    function getImgNum(listObj){
-        if(listObj.thumbnail == '' ){
-            return 1;
-        }
-        var thumbnail = $.parseJSON(listObj.thumbnail);
-        console.log(thumbnail);
-        var thumbnailLength = Object.keys(thumbnail).length;
-        if(thumbnailLength == 0){
-            return 1;
-        }else if(thumbnailLength > 0 && thumbnailLength < 3){
-            if(obj.is_top != 0 || obj.recommended !=0){
-                return 2;
-            }else{
-                return 3;
-            }
-        }else{
-            return 4;
-        }
-    }
+
+
 </script>
 {/block}
