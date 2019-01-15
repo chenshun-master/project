@@ -150,7 +150,6 @@
     width: 100%;
     min-height: 100px;
     background: white;
-    padding-bottom: 80px;
 }
 .wl-ystd{
     width: 100%;
@@ -171,7 +170,7 @@
 .wl-biau{
     position: absolute;
     top: 24px;
-    left: 57px;
+    left: 48px;
     right: 0;
     z-index: 99;
     width: 30px;
@@ -186,15 +185,15 @@
     padding-top: 30px;
 
 }
-.wl-xiang{
-    width: 28%;
+.wl-xiang1{
+    width: 28%!important;
     min-height: 130px;
-    background: #f4f8f8;
+    background: #f4f8f8!important;
     position: relative;
     margin: 0 0px 0 5px;
     text-align: center;
 }
-.wl-xiang img {
+.wl-xiang1 img {
     width: 53px;
     height: 53px;
     border-radius: 50%;
@@ -204,15 +203,15 @@
     right: 0;
     margin: 0 auto;
 }
-.wl-xiang:nth-child(1){
+.wl-xiang1:nth-child(1){
     margin-left: 2px;
 }
-.wl-xiang dl{
+.wl-xiang1 dl{
 font-size: 13px;
     color: #1D1D1D;
     margin-top: 40px;
 }
-.wl-xiang dt{
+.wl-xiang1 dt{
     font-size: 10px;
     color: #333333;
     margin-top: 5px;
@@ -235,7 +234,7 @@ font-size: 13px;
     margin-bottom: 10px;
     border-bottom:  1px solid #EEEEEE;
 }
-.wl-deml{
+.wl-dem2{
     width: 95%;
     min-height: 30px;
     overflow: hidden;
@@ -246,7 +245,6 @@ font-size: 13px;
     color: #1F1F1F;
     font-size: 17px;
     margin: 0 auto;
-    padding: 15px 0 14px 0;
 
 }
 .ckgd{
@@ -274,6 +272,12 @@ input,button,a {
 .wl-d{
     color: white;position: absolute;top: -1px; left:7px;font-size: 13px;
 }
+
+.mescroll-empty .empty-icon{
+    width: 25%!important;
+    margin-top: 30px;
+}
+
 @media screen and (min-width: 418px) {
     .wl-yiyuan dd{
         color: #1D1D1D;

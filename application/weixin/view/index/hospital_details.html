@@ -1,110 +1,225 @@
 {extend name="layout/layout" /}
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/css/hospital_details.css">
+<link rel="stylesheet" href="/static/css/doctor_details.css">
 <link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 {block name="main"}
-
-<header>
-    <div class="wl-top">
-        <div class="wl-top-neirong">
-            <div class="wl-top-touxiang">
-                <img src="{$info['hospital']['portrait']}" onerror="this.src='/static/image/user/tou.png'"  width="71" height="71">
-            </div>
-            <div class="wl-top-yisheng">
-                <div style="position: relative"><dl class="wl-renz"></dl></div>
-                <dd>{$info['hospital']['hospital_name']}</dd>
-                <dt>
-                <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
-                </dt>
-            </div>
-            <div class="wl-top-anli">
-                <div class="wl-am">
-                    <div style="width: 170px;margin: 0 auto">
+<div>
+    <header>
+        <div class="wl-top">
+            <div class="wl-top-neirong">
+                <div class="wl-top-touxiang">
+                    <img src="{$info['hospital']['portrait']}" onerror="this.src='/static/image/user/tou.png'"  width="71" height="71">
+                </div>
+                <div class="wl-top-yisheng">
+                    <div style="position: relative"><dl class="wl-renz"></dl></div>
+                    <dd>{$info['hospital']['hospital_name']}</dd>
+                    <dt>
+                    <dt><button  id="click-to-follow" data-isFollow="{$isFollow}" class="{$isFollow == 1?'isfollow':''}"   > {$isFollow == 1?'<i class="iconfont icon-check"></i>已关注':'＋关注'}</button></dt>
+                    </dt>
+                </div>
+                <div class="wl-top-anli">
+                    <div class="wl-am">
+                        <div style="width: 170px;margin: 0 auto">
                         <span>
                             <i class="iconfont icon-anli" style="font-size: 18px;color: #7DB0E8;float: left"></i>
                             <span style="float: left">&nbsp;{$statistics['type_3']['total']}案例</span>
                         </span>
-                        <span>
+                            <span>
                             <i class="iconfont icon-ziliao" style="font-size: 18px;color: #7DB0E8;float: left"></i>
                             <span style="float: right">&nbsp;{$statistics['type_1']['total']}文章</span>
                         </span>
+                        </div>
+                        <div style="clear: both"></div>
                     </div>
+                </div>
+                <div class="wl-top-yishneg">
+                    <dl data-href="/weixin/index/hospitalDertificate/uid/{$uid}" class="href cus-click-href">
+                        <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
+                        <dt>医疗营业证件</dt>
+                    </dl>
+                    <dl data-href="/weixin/index/detailsHospital/uid/{$uid}" class="href cus-click-href">
+                        <dd class="iconfont icon-renzheng3" style="font-size: 25px;color: #7DB0E8;"></dd>
+                        <dt>医院认证</dt>
+                    </dl>
+                    <dl  data-href="/weixin/index/honor/uid/{$uid}/type/1" class="href cus-click-href">
+                        <dd class="iconfont icon-rongyu" style="font-size: 25px;color: #7DB0E8;"></dd>
+                        <dt>荣誉展示</dt>
+                    </dl>
                     <div style="clear: both"></div>
                 </div>
             </div>
-            <div class="wl-top-yishneg">
-                <dl data-href="/weixin/index/hospitalDertificate/uid/{$uid}" class="href cus-click-href">
-                    <dd class="iconfont icon-wenjian" style="font-size: 45px;color: #7DB0E8;"></dd>
-                    <dt>医疗营业证件</dt>
+        </div>
+    </header>
+    <main>
+        <div class="wl-con-top">
+            <div class="wl-jiu href " >
+                <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 5px"></i>
+                <dl class="wl-yiyuan" >
+                    <dd>{$info['hospital']['address']}</dd>
                 </dl>
-                <dl data-href="/weixin/index/detailsHospital/uid/{$uid}" class="href cus-click-href">
-                    <dd class="iconfont icon-renzheng3" style="font-size: 25px;color: #7DB0E8;"></dd>
-                    <dt>医院认证</dt>
+                <dl style="float: right">
+                    <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
                 </dl>
-                <dl  data-href="/weixin/index/honor/uid/{$uid}/type/1" class="href cus-click-href">
-                    <dd class="iconfont icon-rongyu" style="font-size: 25px;color: #7DB0E8;"></dd>
-                    <dt>荣誉展示</dt>
-                </dl>
-                <div style="clear: both"></div>
             </div>
+            <div style="clear: both"></div>
         </div>
-    </div>
-</header>
-<main>
-    <div class="wl-con-top">
-        <div class="wl-jiu href " >
-        <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 5px"></i>
-            <dl class="wl-yiyuan" >
-                 <dd>{$info['hospital']['address']}</dd>
-            </dl>
-            <dl style="float: right">
-                <span class="iconfont icon-back_left-copy" style="font-size: 25px;color: #AAAAAA"></span>
-            </dl>
-        </div>
-        <div style="clear: both"></div>
-    </div>
 
-    {if (count($info['doctor_list']) > 0) }
+        {if (count($info['doctor_list']) > 0) }
         <div class="wl-tuandui" style="display: block;">
             <p class="wl-ystd"><span style="font-size: 15px;color: #1D1D1D;">医生团队</span>
                 <!--<span style="float: right;margin-top: -2px">-->
-                    <!--&lt;!&ndash;<span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;<i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>&ndash;&gt;-->
                 <!--</span>-->
             </p>
             <div style="clear: both"></div>
             <div style="height: 165px;overflow: hidden;border-bottom: 20px solid white;">
-            <div class="wl-demo">
-                {foreach $info['doctor_list'] as $vo }
-                <div class="wl-xiang">
-                    <span class=" wl-biau" ></span>
-                    <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
-                         class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
-                    <dl>{$vo['real_name']}</dl>
-                    <dt>{$vo['duties']}</dt>
+                <div class="wl-demo">
+                    {foreach $info['doctor_list'] as $vo }
+                    <div class="wl-xiang1">
+                        <span class=" wl-biau" ></span>
+                        <img src="{$vo['portrait']}" onerror="this.src='/static/image/user/tou.png'" width="53" height="53"
+                             class="href click-to-doctor-details" data-href="/weixin/index/doctorDetails/uid/{$vo['uid']}">
+                        <dl>{$vo['real_name']}</dl>
+                        <dt>{$vo['duties']}</dt>
+                    </div>
+                    {/foreach}
                 </div>
-                {/foreach}
             </div>
+            <div style="clear: both" ></div>
+            {/if}
+
+            <div >
+                <ul class="wl-liebiao">
+                    <li class="active" i="0">项目</li>
+                    <li i="1">文章</li>
+                    <li i="2">日记</li>
+                </ul>
+                <div style="clear: both"></div>
+
+                <div class="content"   id="container">
+                    <div id="goodslist" class="mescroll">
+
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
             </div>
-                    <div style="clear: both" ></div>
-    {/if}
+            <!--<div id="wl-box" style="display: none   ;">-->
+            <!--<p class="wl-ystd" ><span style="font-size: 15px;color: #1D1D1D;">我的文章</span>-->
 
-    <div id="wl-box" style="display: none   ;">
-        <p class="wl-ystd" ><span style="font-size: 15px;color: #1D1D1D;">我的文章</span>
+            <!--</p>-->
+            <!--<div class="wl-conter">-->
 
-        </p>
-        <div class="wl-conter">
-
+            <!--</div>-->
+            <!--<p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>-->
+            <!--</div>-->
         </div>
-        <p class="ckgd" onclick="objClass.recommend.loadList()" id="cus-recommend-loading-btn">查看更多</p>
-    </div>
-        </div>
-</main>
+    </main>
+
+</div>
+
 {include file="layout/footer" /}
 {/block}
 {block name="script"}
-<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-project-one to-goods-project href" data-project-id="{{ item.id }}">
+        <dl class="wl-plastic-img"><img src="{{item.img}}" alt=""></dl>
+        <div class="wl-top-title">
+            <dt class="wl-plastic-title">{{item.name}}</dt>
+            <dt class="wl-plastic-prepaid">
+                <span class="wl-plastic-btn"><span>预付</span><span>￥{{item.prepay_price}}</span></span>
+                <span class="wl-plastic-booking">{{item.sale_num}}人预订</span>
+            </dt>
+            <div style="clear:both"></div>
+            <dd class="wl-plastic-actual">
+                <span><sup style="font-size: 10px">￥</sup>{{item.sell_price}}</span>
+                <span>￥{{item.market_price}}</span>
+            </dd>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+
+<script id="diaryTemplateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-meili">
+        <div class="wl-meili-img href to-diary-datail" data-diaryid="{{ item.id}}">
+            <div class="wl-img-left">
+                <div class="wl-before">
+                    <img src="{{ item.before_imgs[0]}}"/>
+                    <div class="wl-before-one">Before</div>
+                </div>
+
+                {{#if(item.after_imgs.length > 0){ }}
+                <div class="wl-after">
+                    <img src="{{item.after_imgs[0]}}" alt=""/>
+                    <div class="wl-after-one">After</div>
+                </div>
+                {{# } }}
+            </div>
+        </div>
+        <div class="wl-title">
+            {{ item.title }}
+        </div>
+        <div class="wl-long-top ">
+            <div class="wl-meili-left1">
+                <span class="iconfont icon-news_hot_fill_light" style="font-size: 20px;color: #7DB0E8;float: left;margin: 3px 7px 0 0;"></span>
+
+                <span class="wl-longxioang">#隆胸</span>
+                <span class="wl-longxioang">#胸部</span>
+
+                {{#  layui.each(item.goodsList, function(index, goods1){ }}
+                <span class="wl-longxioang">#{{ goods1.category_name }}</span>
+                {{#  }); }}
+            </div>
+            <div class="wl-meili-right1">
+                <span>{{ item.visit }}人浏览</span>
+            </div>
+        </div>
+
+        {{#  layui.each(item.goodsList, function(index, goods){ }}
+        <div class="wl-xiang bottom href to-goods-detai"  data-goodsid="{{ goods.id }}">
+            <span class="iconfont icon-goumaiicon" style="float: left;font-size: 14px;color: #F29C9F"></span>
+            <span class="wl-jie"> {{ goods.name }}</span>
+            <span class="wl-fenshu se">￥{{ goods.sell_price }}元</span>
+        </div>
+        {{#  }); }}
+    </div>
+    {{#  }); }}
+</script>
+
+<script id="templateListArticle" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+
+
+
+    {{# if(item.thumbnail == 0){ }}
+    <div class="wl-nei1 href click-to-article" data-id="{{item.id}}">
+        <div class="wl-dem2">{{item.title}}</div>
+    </div>
+    {{# } }}
+
+    {{# if(item.thumbnail != 0 ){ }}
+    <div class="wl-nei1 href click-to-article" data-id="{{item.id}}" >
+        <div class="wl-neirong1">{{item.title}}</div>
+        <div class="wl-neirong2">
+            <img src="{{item.thumbnail}}" alt="" width="128" height="90">
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    {{# } }}
+
+
+    {{#  }); }}
+</script>
+
 <script type="text/javascript">
     $(document).on('click','.cus-click-href,.click-to-doctor-details',function(){
         window.location.href = $(this).data('href');
@@ -125,91 +240,90 @@
     });
     var objClass = {
         uid:{$uid},
-        recommend:{
-            conf:{
-                loading: false,
-                ini: false,
-                page: 0,
-                page_total: 1,
-                page_size: 3,
-            },
-            template:{
-                template1:function(data,thumbnail){
-                    return   '<div class="wl-nei1 href click-to-article" data-id="'+ data.id +'" >'+
-                        '  <div class="wl-neirong1">' +data.title+'</div>'+
-                        ' <div class="wl-neirong2">'+
-                        '  <img src="'+thumbnail+'" alt="" width="128" height="90">'+
-                        ' </div>'+
-                        '  </div>'
-                },
-                template2:function(data,thumbnail){
-                    return   ' <div class="wl-wenzhnga  href click-to-article" data-id="'+ data.id +'">' +
-                        ' <div class="wl-deml">' +data.title+'</div>'  +
-                        '</div>' +
-                        '</div>';
-                },
-            },
-            loadList:function(){
-                if(objClass.recommend.conf.loading){
-                    return false;
-                }
-
-                objClass.recommend.conf.page++;
-                if(objClass.recommend.conf.page > objClass.recommend.conf.page_total){
-                    $('#cus-recommend-loading-btn').text('没有了');
-                    return false;
-                }
-
-                $.ajax({
-                    url: "/weixin/Article/getUserPublishArticle",
-                    type: 'post',
-                    data: {user_id: objClass.uid,page: objClass.recommend.conf.page, page_size: objClass.recommend.conf.page_size},
-                    dataType: 'json',
-                    beforeSend: function () {
-                        objClass.recommend.conf.loading = true;
-                        $('#cus-recommend-loading-btn').text('加载中...');
-                    },
-                    complete: function () {
-                        objClass.recommend.conf.loading = false;
-                        $('#cus-recommend-loading-btn').text('查看更多');
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            if (objClass.recommend.conf.ini == false) {
-                                objClass.recommend.conf.ini = true;
-                                objClass.recommend.conf.page_total = res.data.page_total;
-                                if (res.data.page_total == 0) {
-
-                                    $('#wl-box').hide();
-                                } else {
-                                    $('#wl-box').show();
-                                }
-                            }
-
-                            $.each(res.data.rows, function (k, val) {
-                                var thumbnail = '';
-                                if(val.thumbnail != '' && val.thumbnail != undefined){
-                                    var obj  = $.parseJSON(val.thumbnail);
-                                    thumbnail = obj.img_1;
-                                    $('.wl-conter').append(objClass.recommend.template.template1(val,thumbnail));
-                                }else{
-                                    $('.wl-conter').append(objClass.recommend.template.template2(val));
-                                }
-
-                            });
-                        }
-                    }
-                });
-            },
-
-        },
+        // recommend:{
+        //     conf:{
+        //         loading: false,
+        //         ini: false,
+        //         page: 0,
+        //         page_total: 1,
+        //         page_size: 3,
+        //     },
+        //     template:{
+        //         template1:function(data,thumbnail){
+        //             return   '<div class="wl-nei1 href click-to-article" data-id="'+ data.id +'" >'+
+        //                 '  <div class="wl-neirong1">' +data.title+'</div>'+
+        //                 ' <div class="wl-neirong2">'+
+        //                 '  <img src="'+thumbnail+'" alt="" width="128" height="90">'+
+        //                 ' </div>'+
+        //                 '  </div>'
+        //         },
+        //         template2:function(data,thumbnail){
+        //             return   ' <div class="wl-wenzhnga  href click-to-article" data-id="'+ data.id +'">' +
+        //                 ' <div class="wl-deml">' +data.title+'</div>'  +
+        //                 '</div>' +
+        //                 '</div>';
+        //         },
+        //     },
+        //     loadList:function(){
+        //         if(objClass.recommend.conf.loading){
+        //             return false;
+        //         }
+        //
+        //         objClass.recommend.conf.page++;
+        //         if(objClass.recommend.conf.page > objClass.recommend.conf.page_total){
+        //             $('#cus-recommend-loading-btn').text('没有了');
+        //             return false;
+        //         }
+        //
+        //         $.ajax({
+        //             url: "/weixin/Article/getUserPublishArticle",
+        //             type: 'post',
+        //             data: {user_id: objClass.uid,page: objClass.recommend.conf.page, page_size: objClass.recommend.conf.page_size},
+        //             dataType: 'json',
+        //             beforeSend: function () {
+        //                 objClass.recommend.conf.loading = true;
+        //                 $('#cus-recommend-loading-btn').text('加载中...');
+        //             },
+        //             complete: function () {
+        //                 objClass.recommend.conf.loading = false;
+        //                 $('#cus-recommend-loading-btn').text('查看更多');
+        //             },
+        //             success: function (res) {
+        //                 if (res.code == 200) {
+        //                     if (objClass.recommend.conf.ini == false) {
+        //                         objClass.recommend.conf.ini = true;
+        //                         objClass.recommend.conf.page_total = res.data.page_total;
+        //                         if (res.data.page_total == 0) {
+        //
+        //                             $('#wl-box').hide();
+        //                         } else {
+        //                             $('#wl-box').show();
+        //                         }
+        //                     }
+        //
+        //                     $.each(res.data.rows, function (k, val) {
+        //                         var thumbnail = '';
+        //                         if(val.thumbnail != '' && val.thumbnail != undefined){
+        //                             var obj  = $.parseJSON(val.thumbnail);
+        //                             thumbnail = obj.img_1;
+        //                             $('.wl-conter').append(objClass.recommend.template.template1(val,thumbnail));
+        //                         }else{
+        //                             $('.wl-conter').append(objClass.recommend.template.template2(val));
+        //                         }
+        //
+        //                     });
+        //                 }
+        //             }
+        //         });
+        //     },
+        //
+        // },
         follow:{
             followLoading:false,
             clickFollow:function(obj){
                 if(objClass.follow.followLoading){
                     return false;
                 }
-
                 var type =  obj.data('isfollow') == 0 ? 1 : 2;
                 $.ajax({
                     url: "/weixin/api/followUser",
@@ -232,18 +346,107 @@
 
                         }else if(res.code == 401){
                             redream.showTip(res.msg);
+                            LoginBox.showBox();
                         }else{
                             redream.showTip('操作失败');
                         }
-
                     }
                 });
             }
         },
 
     };
+    //
+    // objClass.recommend.loadList();
 
-    objClass.recommend.loadList();
+    $(".wl-liebiao li").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        listObj.index  = $(this).index();
+        mescroll.resetUpScroll();
+    });
+
+
+    var mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "goodslist",
+            page: {num: 0,size: 20},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {
+                icon: "/static/weixin/image/wenzhnag.png",
+                tip: "该医院尚未发布~", //提示
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+
+                    if(listObj.index == 0){
+                        layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                            $('#goodslist').append(html);
+                        });
+                    }else if(listObj.index == 1){
+                        $.each(curPageData, function (k, val) {
+                            if(val.thumbnail != '' && val.thumbnail != undefined){
+                                var obj  = $.parseJSON(val.thumbnail);
+                                curPageData[k].thumbnail = obj.img_1;
+                            }
+                        });
+
+                        layui.laytpl(templateListArticle.innerHTML).render(curPageData, function(html){
+                            $('#goodslist').append(html);
+                        });
+                    }else if(listObj.index == 2){
+                        layui.laytpl(diaryTemplateList.innerHTML).render(curPageData, function(html){
+                            $('#goodslist').append(html);
+                        });
+                    }
+
+                }, function(){
+                    mescroll.endErr();
+                });
+            }
+        }
+    });
+
+    var listObj = {
+        index:0,
+        url:[
+            '/weixin/api/getUserGoods',
+            '/weixin/Article/getUserPublishArticle',
+            '/weixin/api/getUserDiary'
+        ],
+        searchList: function (page, successCallback, errorCallback) {
+            var data = $.extend({}, {user_id:objClass.uid,uid:objClass.uid,page: page.num, page_size: page.size});
+            $.ajax({
+                url: listObj.url[listObj.index],
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+
+                    successCallback(res.data.rows);
+                },
+            });
+        },
+    };
+    mescroll.lockDownScroll(true);
+
+    $(document).on('click','.to-diary-datail',function(){
+        window.location.href = '/weixin/shop/diary?id='+$(this).data('diaryid');
+    });
+
+
+    $(document).on('click','.to-goods-detai',function(){
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('goodsid');
+    });
+
+    $(document).on('click','.to-goods-project',function(){
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('project-id');
+
+    });
+
 
 </script>
 {/block}

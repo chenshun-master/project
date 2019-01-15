@@ -259,7 +259,7 @@ dianhua-left dl>a{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
+    padding-left: 10px;
 }
 .wl-menshi{
     float: right;
@@ -590,9 +590,9 @@ dianhua-left dl>a{
 }
 
 .wl-img-left img{
-    width: 48%;
+    width: 100%;
     height: 100%;
-    float: left;
+    float: left;border-radius: 5px;
 }
 .wl-title{
     width: 100%;
@@ -698,6 +698,50 @@ dianhua-left dl>a{
 .wl-container-list-empty{
     width: 100%;height: 100px;text-align: center;padding-top: 50px;color: #CCCCCC
 }
+.wl-before{
+    position: relative;
+    width: 49%;
+    min-height: 100px;
+    float: left;
+}
+.wl-after{
+    position: relative;
+    width: 49%;
+    min-height: 100px;
+    float: left;
+    margin-left: 5px
+}
+
+.wl-before-one{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #444444;
+    color: white;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+.wl-after-one{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #7DB0E8;
+    color: white;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+    opacity: 0.8;
+
+}
+
 
 
 
