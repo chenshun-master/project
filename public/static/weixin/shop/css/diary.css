@@ -765,7 +765,9 @@ input,button,a {outline:0 none !important}
 .wl-no-shuju dt {
     margin-top: 10px;
 }
-
+.fly-zoom-box{
+    -webkit-overflow-scrolling: touch;
+}
 
 
 

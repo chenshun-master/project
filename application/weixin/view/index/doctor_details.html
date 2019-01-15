@@ -143,6 +143,18 @@
     <div style="clear: both"></div>
     {{#  }); }}
 </script>
+
+<script id="templateListArticle" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-nei1 href click-to-article" data-id="{{item.id}}" >
+        <div class="wl-neirong1">{{item.title}}</div>
+        <div class="wl-neirong2">
+            <img src="" alt="" width="128" height="90">
+        </div>
+        </div>
+    <div style="clear: both"></div>
+    {{#  }); }}
+</script>
 <script type="text/javascript">
 
     $(document).on('click', '.cus-click-href', function () {
@@ -226,7 +238,7 @@
                                 objClass.recommend.conf.page_total = res.data.page_total;
                                 if (res.data.page_total == 0) {
                                     $('#wl-box').hide();
-                                } else {q
+                                } else {
                                     $('#wl-box').show();
                                 }
                             }
@@ -303,7 +315,7 @@
             noMoreSize: 5,
             empty: {
                 icon: "/static/weixin/shop/image/tuoian.png",
-                tip: "亲,没有您要找的商品~", //提示
+                tip: "该医生尚未发布~", //提示
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
@@ -314,7 +326,7 @@
                             $('#goodslist').append(html);
                         });
                     }else if(listObj.index == 1){
-                        layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                        layui.laytpl(templateListArticle.innerHTML).render(curPageData, function(html){
                             $('#goodslist').append(html);
                         });
                     }else if(listObj.index == 2){
@@ -329,6 +341,7 @@
             }
         }
     });
+
     var listObj = {
         index:0,
         url:[
@@ -345,6 +358,7 @@
                 dataType: 'json',
                 success: function (res) {
                     successCallback(res.data.rows);
+
                 },
 
             });

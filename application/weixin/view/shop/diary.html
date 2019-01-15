@@ -1,4 +1,10 @@
 {extend name="layout/layout" /}
+<!--使用webkit内核-->
+<meta name="renderer" content="webkit">
+<meta name="renderer" content="ie-stand">
+<!--避免IE使用兼容模式-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,IE=9" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/css/swiper.min.css">
@@ -140,10 +146,10 @@
                      onerror="this.src='/static/image/user/tou.png'"></div>
             <div class="wl-ping-xiang1">
                 <div>
-                    <div class="wl-name1 cus-touser-main" data-user_id="46">{$comment['content']}</div>
+                    <div class="wl-name1 cus-touser-main" data-user_id="46">{$comment['nickname']}</div>
                 </div>
                 <div style="clear:both"></div>
-                <div class="wl-ping-neirong">{$comment['nickname']}</div>
+                <div class="wl-ping-neirong">{$comment['content']}</div>
                 <div class="wl-pji">{:formatTime(strtotime($comment['created_time']))}</div>
             </div>
             <div style="clear:both"></div>
@@ -177,7 +183,7 @@
             </li>
             <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}
             </li>
-            <li style="border: none;color: #7DB0E8">商品详情</li>
+            <li style="border: none;color: #7DB0E8" class="wl-goods-article">商品详情</li>
         </ul>
         <div style="clear:both"></div>
     </div>
@@ -213,6 +219,7 @@
 <script src="/static/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script src="/static/plugin/fly-zomm/fly-zomm-img.min.js"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
@@ -269,6 +276,16 @@
     {{#  }); }}
 </script>
 <script>
+    $(function() {
+        $('.wl-img-top').FlyZommImg({
+            closeBtn: true, //是否打开右上角关闭按钮
+            rollSpeed: 200, //切换速度
+            miscellaneous: true, //是否显示底部辅助按钮
+            slitherCallback: function(direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
+                console.log(direction, DOM);
+            }
+        });
+    })
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
         pagination: {
@@ -495,6 +512,7 @@
                         myObj.goods.loadList();
                     } else if (res.code == 401) {
                         redream.showTip('请先进行登录');
+                        LoginBox.showBox();
                         $('.wl-zhez2').hide();
                     } else {
                         redream.showTip('评论失败');
@@ -532,6 +550,7 @@
                             redream.showTip(res.msg);
                         } else {
                             redream.showTip('操作失败');
+                            LoginBox.showBox();
                         }
                     }
                 });
@@ -578,7 +597,7 @@
             noMoreSize: 5,
             empty: {
                 icon: "/static/weixin/shop/image/tuoian.png",
-                tip: "亲,没有您要找的商品~", //提示
+                tip: "暂无推荐商品~", //提示
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
