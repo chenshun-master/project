@@ -12,6 +12,9 @@ class Http extends Handle
             return parent::render($e);
         }else{
             $module = request()->module();
+            if($module == 'api'){
+               return json(['code'=>$e->getStatusCode(),'msg'=>'','http_code'=>$e->getStatusCode()]);
+            }
 
             //错误码 $e->getStatusCode()
             header("Location:".url($module.'/index/error404'));
