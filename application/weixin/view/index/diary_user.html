@@ -18,8 +18,8 @@
         <div class="wl-liebiao">
             <ul>
                 <a href="/weixin/index/index"><li>推荐</li></a>
-                <a href="/weixin/shop/haveGood"><li>有好货</li></a>
                 <a href="/weixin/index/diaryUser"> <li class="actice" >日记</li></a>
+                <a href="/weixin/shop/haveGood"><li>有好货</li></a>
             </ul>
         </div>
     </header>
@@ -45,11 +45,11 @@
 
         <dl>
             {{#if(item.after_imgs.length > 0){ }}
-                <img src="{{item.after_imgs[0]}}" alt=""  class="wl-diary-img">
+                <img src="{{item.after_imgs[0]}}"  onerror="this.src='/static/weixin/image/img-diushi.png'" class="wl-diary-img">
             {{# } }}
 
             {{#if(item.after_imgs.length == 0){ }}
-                <img src="{{item.before_imgs[0]}}" alt=""  class="wl-diary-img">
+                <img src="{{item.before_imgs[0]}}"  onerror="this.src='/static/weixin/image/img-diushi.png'" class="wl-diary-img">
             {{# } }}
         </dl>
         <dt>{{item.title}}</dt>
