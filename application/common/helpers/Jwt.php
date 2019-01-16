@@ -1,12 +1,15 @@
 <?php
-namespace app\common\classs;
+namespace app\common\helpers;
 
 /**
- * PHP实现jwt
+ * Json Web Token 加密及验证方法
  */
-class MyJwt
+class Jwt
 {
-    //使用HMAC生成信息摘要时所使用的密钥
+
+    /**
+     * @var string  使用HMAC生成信息摘要时所使用的密钥
+     */
     private static $key = 'wl-webtoken-sha256';
 
     private static $header = array(
@@ -16,50 +19,46 @@ class MyJwt
 
     /**
      * 获取jwt token
-     * @param array $payload jwt载荷  格式如下非必须
-     * [
-     * 'iss'=>'jwt_admin', //该JWT的签发者
-     * 'iat'=>time(), //签发时间
-     * 'exp'=>time()+7200, //过期时间
-     * 'nbf'=>time()+60, //该时间之前不接收处理该Token
-     * 'sub'=>'www.admin.com', //面向的用户
-     * 'jti'=>md5(uniqid('JWT').time()) //该Token唯一标识
-     * ]
+     * @param array $private      私有加密数据
+     * @param array $payload      jwt载荷  格式如下非必须
      * @return bool|string
      */
-    public static function getToken(array $payload)
+    public static function getToken(array $private,$payload=[])
     {
-        if (is_array($payload)) {
-            $base64header = self::base64UrlEncode(json_encode(self::$header, JSON_UNESCAPED_UNICODE));
-
-            $base64payload = self::base64UrlEncode(json_encode($payload, JSON_UNESCAPED_UNICODE));
-
-            $token = $base64header . '.' . $base64payload . '.' . self::signature($base64header . '.' . $base64payload, self::$key, self::$header['alg']);
-            return $token;
-        } else {
+        if(!is_array($payload)){
             return false;
         }
+
+        $payload = self::getPayload($private,$payload);
+
+        $base64header = self::base64UrlEncode(json_encode(self::$header, JSON_UNESCAPED_UNICODE));
+
+        $base64payload = self::base64UrlEncode(json_encode($payload, JSON_UNESCAPED_UNICODE));
+
+        $token = $base64header . '.' . $base64payload . '.' . self::signature($base64header . '.' . $base64payload, self::$key, self::$header['alg']);
+        return $token;
     }
 
     /**
-     * 存放实际需要传递的数据
-     * @param $uid
-     * @return string
+     * 包装实际需要传递的数据
+     * @param array $private          私有加密数据
+     * @param array $payload          jwt载荷
+     * @return array
      */
-    public static  function getPayload($payload)
+    private static function getPayload(array $private,$payload=[])
     {
         $detaultPayload = [
-            'iss' => 'admin', //该JWT的签发者
-            'exp' => time() + 60 * 60 * 2, //过期时间
-            'sub' => 'test', //主题
-            'aud' => 'every',//用户
-            'nbf' => time(), //生效时间
-            'iat' => time(), //签发时间
-            'jti' =>md5(uniqid('JWT').time()), //该Token唯一标识
-            'uid' => '',  //私有信息
+            'iss'       => 'jwt-admin', //该JWT的签发者
+            'exp'       => time() + 60 * 60 * 2, //过期时间
+            'sub'       => 'wl-user', //主题 面向的用户
+            'aud'       => 'every',//用户
+            'nbf'       => time(), //生效时间
+            'iat'       => time(), //签发时间
+            'jti'       => md5(uniqid('JWT') . time()), //该Token唯一标识
+            'private'   => $private,  //私有信息
         ];
 
-        return array_merge($detaultPayload,$payload);
+        return array_merge($detaultPayload, $payload);
     }
 
     /**
@@ -73,18 +72,19 @@ class MyJwt
         if (count($tokens) != 3)
             return false;
 
-        list($base64header, $base64payload, $sign) = $tokens;
+        list($base64Header, $base64Payload, $sign) = $tokens;
 
         //获取jwt算法
-        $base64decodeheader = json_decode(self::base64UrlDecode($base64header), JSON_OBJECT_AS_ARRAY);
-        if (empty($base64decodeheader['alg']))
+        $base64DecodeHeader = json_decode(self::base64UrlDecode($base64Header), JSON_OBJECT_AS_ARRAY);
+
+        if (empty($base64DecodeHeader['alg']))
             return false;
 
         //签名验证
-        if (self::signature($base64header . '.' . $base64payload, self::$key, $base64decodeheader['alg']) !== $sign)
+        if (self::signature($base64Header . '.' . $base64Payload, self::$key, $base64DecodeHeader['alg']) !== $sign)
             return false;
 
-        $payload = json_decode(self::base64UrlDecode($base64payload), JSON_OBJECT_AS_ARRAY);
+        $payload = json_decode(self::base64UrlDecode($base64Payload), JSON_OBJECT_AS_ARRAY);
 
         //签发时间大于当前服务器时间验证失败
         if (isset($payload['iat']) && $payload['iat'] > time())
@@ -100,7 +100,6 @@ class MyJwt
 
         return $payload;
     }
-
 
     /**
      * base64UrlEncode  https://jwt.io/ 中base64UrlEncode编码实现
@@ -133,9 +132,9 @@ class MyJwt
     {
         $alg_config = array(
             'HS256' => 'sha256',
-            'HS384' => 'sha384'
         );
 
         return self::base64UrlEncode(hash_hmac($alg_config[$alg], $input, $key, true));
     }
+
 }

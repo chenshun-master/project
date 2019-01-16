@@ -1,13 +1,10 @@
 <?php
 namespace app\api\controller;
 
-use app\api\model\SpCategoryModel;
 use think\Db;
-use app\api\domain\ShOrderDomain;
-use app\api\domain\SpGoodsDomain;
 
-use app\common\classs\MyJwt;
-use app\common\classs\Jwt;
+use app\common\helpers\Jwt;
+use think\Request;
 
 class Test
 {
@@ -19,16 +16,7 @@ class Test
 //        }
     }
 
-
-
-    public function t2(){
-        $payload_test = array('iss' => 'adminsdfasd');
-
-
-
-        halt(MyJwt::getPayload($payload_test));
+    public function t2(Request $request){
 
     }
-
-
 }
