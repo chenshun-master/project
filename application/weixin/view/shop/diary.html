@@ -391,6 +391,7 @@
 </script>
 <script>
     const id = {$info['id']};
+    const user_id = {$info['user_id']};
 
     var myObj = {
         goods: {
@@ -531,7 +532,7 @@
                 $.ajax({
                     url: "/weixin/api/followUser",
                     type: 'post',
-                    data: {uid: id, type: type},
+                    data: {uid: user_id, type: type},
                     dataType: 'json',
                     beforeSend: function () {
                         myObj.follow.followLoading = true;
