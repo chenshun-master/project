@@ -52,7 +52,6 @@ class Shop extends BaseController
 
         $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid, $this->getUserId());
 
-
         if (empty($goodsDetail['goods_info'])) {
             return $this->fetch('error/loss');
         }
@@ -68,12 +67,10 @@ class Shop extends BaseController
 
         $this->assign('weixin_config', $weixin_config);
 
-
         $referer = $this->request->server('HTTP_REFERER');
         $this->assign('referer', $referer);
         $this->assign('info', $goodsDetail);
         $this->assign('gid', $gid);
-//        halt($goodsDetail);
         return $this->fetch('shop/goods_details');
     }
 
@@ -249,7 +246,6 @@ class Shop extends BaseController
      */
     public function diary($id)
     {
-
         Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
 
         $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id, $this->getUserId());
