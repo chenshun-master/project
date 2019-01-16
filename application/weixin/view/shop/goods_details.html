@@ -156,10 +156,19 @@
             <dd>到院尾付:￥{$info['goods_info']['topay_price']}</dd>
         </div>
         <input type="hidden" value="{$info['goods_info']['seller_id']}" id="fr-seller-id">
+
+
+
+        {if($info['goods_info']['status'] == 0)}
         <div class="wl-qianggou href" data-href="/weixin/shop/confirmOrder" id="click-place-order"
              data-goodsid="{$info['goods_info']['id']}" data-gid="{$gid}" >
             立即抢购
         </div>
+        {else /}
+        <div class="wl-qianggou href" style="background: #f2e9e9;color: white" >
+            已下架
+        </div>
+        {/if}
     </div>
 </footer>
 
