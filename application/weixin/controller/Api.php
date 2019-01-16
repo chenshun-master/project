@@ -448,7 +448,7 @@ class Api extends BaseController
         $page = $this->request->param('page/d', 1);
         $page_size = $this->request->param('page_size/d', 15);
 
-        $data = Singleton::getDomain('diarydomain')->getDiaryCommentList($id,$this->getUserId(),$page,$page_size);
+        $data = Singleton::getDomain('diarydomain')->getDiaryCommentList($id,$this->getUserId(),$page,$page_size,$this->getUserId());
         return $this->returnData($data);
     }
 
