@@ -1,11 +1,10 @@
 <?php
-
 namespace app\api\controller;
 
-use app\api\model\SpCategoryModel;
 use think\Db;
-use app\api\domain\ShOrderDomain;
-use app\api\domain\SpGoodsDomain;
+
+use app\common\helpers\Jwt;
+use think\Request;
 
 class Test
 {
@@ -15,5 +14,9 @@ class Test
 //            Db::name('sp_goods')->where('id',$v['id'])->update(['seller_id'=>$v['user_id']]);
 //            Db::name('sh_order')->where('goods_id',$v['id'])->update(['seller_id'=>$v['user_id']]);
 //        }
+    }
+
+    public function t2(Request $request){
+
     }
 }

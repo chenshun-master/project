@@ -1,4 +1,5 @@
 <?php
+
 namespace app\weixin\controller;
 
 use think\App;
@@ -27,7 +28,6 @@ class Shop extends BaseController
         $this->_orderDomain = new \app\api\domain\ShOrderDomain();
     }
 
-
     /**
      *商城首页
      */
@@ -50,29 +50,30 @@ class Shop extends BaseController
 
         $this->_spGoodsDomain->updateBrowseVolume($goodsid);
 
-        $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid,$this->getUserId());
+        $goodsDetail = $this->_spGoodsDomain->getGoodsDetail($goodsid, $this->getUserId());
+
 
         if (empty($goodsDetail['goods_info'])) {
             return $this->fetch('error/loss');
         }
 
         $is_localhost = config('conf.is_localhost');
-        if($is_localhost){
-            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
-        }else{
+        if ($is_localhost) {
+            $weixin_config = ['appId' => '', 'timestamp' => '', 'nonceStr' => '', 'signature' => ''];
+        } else {
             $config = config('conf.sns_login.weixin');
-            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'], $config['app_secret']);
             $weixin_config = $wechatJsSdk->getSignPackage();
         }
 
-        $this->assign('weixin_config',$weixin_config);
+        $this->assign('weixin_config', $weixin_config);
 
 
         $referer = $this->request->server('HTTP_REFERER');
         $this->assign('referer', $referer);
         $this->assign('info', $goodsDetail);
-        $this->assign('gid',$gid);
-
+        $this->assign('gid', $gid);
+//        halt($goodsDetail);
         return $this->fetch('shop/goods_details');
     }
 
@@ -82,7 +83,7 @@ class Shop extends BaseController
     public function confirmOrder()
     {
         if (!$this->checkLogin()) {
-            return $this->redirect('index/login',['redir'=>base64url_encode($this->request->server('HTTP_REFERER'))]);
+            return $this->redirect('index/login', ['redir' => base64url_encode($this->request->server('HTTP_REFERER'))]);
         }
 
         $goodsid = $this->request->param('goodsid/d', 0);
@@ -94,7 +95,7 @@ class Shop extends BaseController
 
         $this->assign('mobile', mobileFilter($user_info['mobile']));
         $this->assign('infos', $placeOrderPayInfo);
-        $this->assign('gid',$gid);
+        $this->assign('gid', $gid);
         return $this->fetch('shop/confirm_order');
     }
 
@@ -194,21 +195,21 @@ class Shop extends BaseController
     {
 
         $gid = $this->request->param('gid/d', 0);
-        $data = $this->_spGoodGoodsDomain->getGoodGoodsDetail($gid,$this->getUserId());
+        $data = $this->_spGoodGoodsDomain->getGoodGoodsDetail($gid, $this->getUserId());
         if (empty($data['info'])) {
             return $this->fetch('error/loss');
         }
 
         $is_localhost = config('conf.is_localhost');
-        if($is_localhost){
-            $weixin_config = ['appId'=>'','timestamp'=>'','nonceStr'=>'','signature'=>''];
-        }else{
+        if ($is_localhost) {
+            $weixin_config = ['appId' => '', 'timestamp' => '', 'nonceStr' => '', 'signature' => ''];
+        } else {
             $config = config('conf.sns_login.weixin');
-            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'],$config['app_secret']);
+            $wechatJsSdk = new \wechat\WeChatJsSDK($config['app_id'], $config['app_secret']);
             $weixin_config = $wechatJsSdk->getSignPackage();
         }
 
-        $this->assign('weixin_config',$weixin_config);
+        $this->assign('weixin_config', $weixin_config);
         $this->assign($data);
         return $this->fetch('shop/havegood_details');
     }
@@ -219,7 +220,7 @@ class Shop extends BaseController
     public function paymentOrder()
     {
 
-        $oid = $this->request->param('oid/d',0);
+        $oid = $this->request->param('oid/d', 0);
         if (empty($oid)) {
             return $this->fetch('error/loss');
         }
@@ -229,11 +230,12 @@ class Shop extends BaseController
             return $this->fetch('error/loss');
         }
 
-        $this->assign('order_info',$data);
-        $this->assign('mobile',$this->getUserInfo()['mobile']);
+        $this->assign('order_info', $data);
+        $this->assign('mobile', $this->getUserInfo()['mobile']);
 
         return $this->fetch('shop/payment_order');
     }
+
     /**
      *商品搜索页面
      */
@@ -241,6 +243,7 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/search_goods');
     }
+
     /**
      *用户美丽日记
      */
@@ -249,7 +252,7 @@ class Shop extends BaseController
 
         Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
 
-        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id,$this->getUserId());
+        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id, $this->getUserId());
 
         $myID = $this->getUserId();
         $uid = $data['info']['user_id'];
@@ -272,6 +275,7 @@ class Shop extends BaseController
     {
         return $this->fetch('shop/diary_details');
     }
+
     /**
      * 用户美丽日记相册页面
      */

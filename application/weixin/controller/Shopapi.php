@@ -209,7 +209,7 @@ class Shopapi extends BaseController
      */
     public function search()
     {
-        $page = $this->request->post('page/d', 1);
+        $page = $this->request->param('page/d', 1);
         $page_size = $this->request->param('page_size/d', 15);
         $type = $this->request->param('type', 0);
         $keyword = $this->request->param('keywords', '');
@@ -233,8 +233,4 @@ class Shopapi extends BaseController
         return $this->returnData($data, '', 200);
     }
 
-
-    public function test(){
-        halt('ads');
-    }
 }

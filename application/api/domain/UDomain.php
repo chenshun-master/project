@@ -26,16 +26,13 @@ class UDomain
         $obj->order('user.created_time', 'desc');
 
         $total = $obj->count();
-        $field = 'user.portrait,
-                  doctor.real_name,
-                  doctor.user_id,
-                  hospital.id as hospital_id,
-                  hospital.hospital_name,
-                  ( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,
-                  0 AS case_num';
+        $field = [
+            'user.portrait','doctor.real_name','doctor.user_id','hospital.id as hospital_id','hospital.hospital_name',
+            '(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1)'=>'article_num',
+            '(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id)'=>'case_num',
+        ];
 
-        $obj->field($field);
-        $rows = $obj->page($page,$page_size)->fetchSql(false)->select();
+        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -60,8 +57,16 @@ class UDomain
         $obj->where('user.type', 4);
         $total = $obj->count();
 
-        $obj->field("hospital.user_id,hospital.hospital_name,auth.hospital_type as type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num");
-        $rows = $obj->page($page,$page_size)->select();
+        $field = [
+            'hospital.user_id',
+            'hospital.hospital_name',
+            'auth.hospital_type as type',
+            'user.portrait',
+            '(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1)'=>'article_num',
+            '(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id)'=>'case_num',
+        ];
+
+        $rows = $obj->field($field)->page($page,$page_size)->select();
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -237,13 +242,10 @@ class UDomain
         $obj = Db::name('doctor_hospital')->alias('dh');
         $obj->join('wl_hospital hospital',"dh.hospital_id = hospital.id and hospital.user_id = {$user_id}");
 
-
-
         $obj->join('wl_doctor doctor',"doctor.id = dh.doctor_id");
         $obj->join('wl_user user','user.id = doctor.user_id');
         $obj->join('wl_auth auth','auth.id = doctor.auth_id');
 
-//        halt($obj->select());
         $field= [
             'user.id as user_id','user.mobile','user.nickname','user.sex','user.portrait',
             'auth.username','auth.duties','auth.speciality',
@@ -481,7 +483,8 @@ class UDomain
             'hospital.hospital_name',
             'user.portrait',
             'auth.speciality',
-            'auth.hospital_type'
+            'auth.hospital_type',
+            '(select SUM(sale_num) from  wl_sp_goods where wl_sp_goods.seller_id = hospital.user_id)'=>'sale_num'
         ];
 
         $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();

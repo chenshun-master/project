@@ -5,7 +5,7 @@ namespace app\seller\controller;
 use think\App;
 use think\Request;
 
-class ShopApi extends BaseController
+class Shopapi extends BaseController
 {
     private $_goodsDomain;
     private $_orderDomain;

@@ -1,7 +1,7 @@
 <?php
 namespace app\http\middleware;
 
-use app\common\classs\Jwt;
+use app\common\helpers\Jwt;
 
 /**
  * Api 接口token 验证中间件
@@ -31,6 +31,7 @@ class CheckToken
     private function chencToken($request){
         $jwt = new Jwt();
 
+//        $token = $request->header('token','');
         $token = $request->param('token','');
         if(empty($token)){
             return [false,'token 参数验证失败',null];

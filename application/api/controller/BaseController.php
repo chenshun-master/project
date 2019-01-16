@@ -3,7 +3,7 @@ namespace app\api\controller;
 use think\Request;
 use app\api\model\UserModel;
 
-use app\common\classs\Jwt;
+use app\common\helpers\Jwt;
 
 /**
  * 接口基类控制器
