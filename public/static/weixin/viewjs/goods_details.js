@@ -242,4 +242,3 @@ $(document).on('click', '#cus-click-collection', function () {
 $('#wl-goods-detail').find('img').removeAttr('width').removeAttr('height');
 $('#wl-goods-detail').find('table').removeAttr('width').removeAttr('height');
 
-
