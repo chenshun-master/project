@@ -69,10 +69,10 @@
         {if (count($info['doctor_list']) > 0) }
         <div class="wl-tuandui" style="display: block;">
             <p class="wl-ystd"><span style="font-size: 15px;color: #1D1D1D;">医生团队</span>
-                <!--<span style="float: right;margin-top: -2px">-->
-                <!--&lt;!&ndash;<span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;<i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>&ndash;&gt;-->
-                <!--</span>-->
+                <span style="float: right;margin-top: -2px">
+                <span style="color: #1D1D1D;font-size: 13px">查看全部医生</span>
+                <i class="iconfont icon-back_left-copy" style="color: #AAAAAA;font-size: 15px"></i>
+                </span>
             </p>
             <div style="clear: both"></div>
             <div style="height: 165px;overflow: hidden;border-bottom: 20px solid white;">
@@ -129,7 +129,7 @@
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-project-one to-goods-project href" data-project-id="{{ item.id }}">
-        <dl class="wl-plastic-img"><img src="{{item.img}}" alt=""></dl>
+        <dl class="wl-plastic-img"><img src="{{item.img}}" onerror="this.src='/static/weixin/image/img-diushi.png'"></dl>
         <div class="wl-top-title">
             <dt class="wl-plastic-title">{{item.name}}</dt>
             <dt class="wl-plastic-prepaid">
@@ -152,16 +152,15 @@
         <div class="wl-meili-img href to-diary-datail" data-diaryid="{{ item.id}}">
             <div class="wl-img-left">
                 <div class="wl-before">
-                    <img src="{{ item.before_imgs[0]}}"/>
+                    <img src="{{ item.before_imgs[0]}}" onerror="this.src='/static/weixin/image/img-diushi.png'"/>
                     <div class="wl-before-one">Before</div>
                 </div>
 
-                {{#if(item.after_imgs.length > 0){ }}
                 <div class="wl-after">
-                    <img src="{{item.after_imgs[0]}}" alt=""/>
+                    <img src="{{item.after_imgs[0]}}" onerror="this.src='/static/weixin/image/img-diushi.png'"/>
                     <div class="wl-after-one">After</div>
                 </div>
-                {{# } }}
+
             </div>
         </div>
         <div class="wl-title">

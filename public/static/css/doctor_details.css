@@ -181,7 +181,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     color: #1F1F1F;
-    font-size: 17px;
+    font-size: 14px;
     margin: 0 auto;
 
 }
@@ -254,6 +254,8 @@
     border-radius: 5px 5px 0 0 ;
 }
 .wl-plastic-title{
+    height: 17px;
+    line-height: 17px;
     font-size: 13px;
     color: #333333;
     overflow: hidden;
@@ -299,7 +301,7 @@
     font-size: 17px;
 }
 .wl-plastic-actual span:nth-child(2){
-    color: #333333;
+    color: #CCCCCC;
     font-size: 10px;
     text-decoration:line-through
 }

@@ -38,7 +38,7 @@
         </div>
 
         <!--用户术前术后照片-->
-        <div class="wl-meili-img">
+        <div class="wl-meili-img wl-showimg">
             <div class="wl-img-left">
                 <img src="{:isset($info['before_imgs'][0])?$info['before_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
                 <div class="wl-preoperative">
@@ -94,8 +94,9 @@
                 </div>
                 <div class="wl-riji-shuhou">术后<span style="color: #F24F4F">{$diary['day']}</span>天</div>
                 <div style="" class="wl-riji-xiang">
-                    <div class="wl-riji-title">{$diary['content']}</div>
-                    <div class="wl-neirong-img">
+                    <div class="wl-riji-title wl-content">{$diary['content']}   </div>
+                    <div class="wl-view">查看更多</div>
+                    <div class="wl-neirong-img wl-showimg">
                         <div class="wl-img-top">
                             <div class="wl-img-top-left">
                                 <img src="{:isset($diary['imgs'][0])?$diary['imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
@@ -277,8 +278,8 @@
 </script>
 <script>
     $(function() {
-        $('.wl-img-top').FlyZommImg({
-            closeBtn: true, //是否打开右上角关闭按钮
+        $('.wl-showimg').FlyZommImg({
+            closeBtn: false, //是否打开右上角关闭按钮
             rollSpeed: 200, //切换速度
             miscellaneous: false, //是否显示底部辅助按钮
             slitherCallback: function(direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
@@ -627,5 +628,25 @@
             });
         },
     };
+</script>
+
+<script>
+    var btns = document.getElementsByClassName('wl-view');
+    var objs = document.getElementsByClassName('wl-content');
+    $.each(objs,function (index, obj) {
+        var total_height = obj.scrollHeight; //文章总高度
+        var show_height = 38; //定义原始显示高度
+        if(total_height > show_height) {
+            btns[index].style.display = 'block';
+            btns[index].onclick = function() {
+                objs[index].style.height = total_height + 'px';
+                $('.wl-view').text('收起');
+                $('.wl-view').click(function () {
+                    objs[index].style.height= 38 +'px';
+                    $('.wl-view').text('查看更多');
+                })
+            }
+        }
+    })
 </script>
 {/block}
