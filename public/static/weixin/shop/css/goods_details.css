@@ -294,7 +294,6 @@ dianhua-left dl>a{
 }
 .wl-deji li.active {
     color: #7DB0E8!important;
-    font-size: 14px;
 }
 .wl-youshi{
     width: 100%;
@@ -359,6 +358,9 @@ dianhua-left dl>a{
     line-height: 20px;
     color: #999999;
     font-size: 10px;
+}
+.dianhua-left dl>a{
+    color:#333333!important;
 }
 .wl-xuzhi dt{
     width: 100%;

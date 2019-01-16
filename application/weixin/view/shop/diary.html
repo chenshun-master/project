@@ -40,12 +40,14 @@
         <!--用户术前术后照片-->
         <div class="wl-meili-img wl-showimg">
             <div class="wl-img-left">
-                <img src="{:isset($info['before_imgs'][0])?$info['before_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
+                <img src="{:isset($info['before_imgs'][0])?$info['before_imgs'][0]:''}">
+
+
                 <div class="wl-preoperative">
                     <span>术前相册</span>
                     <span>{:count($info['before_imgs'])}<i class="iconfont icon-xiangce1"></i></span>
                 </div>
-                <img src="{:isset($info['after_imgs'][0])?$info['after_imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}"
+                <img src="{:isset($info['after_imgs'][0])?$info['after_imgs'][0]:''}"
                      style="margin-left: 10px">
                 <div class="wl-preoperative1">
                     <span>术后相册</span>
@@ -95,26 +97,27 @@
                 <div class="wl-riji-shuhou">术后<span style="color: #F24F4F">{$diary['day']}</span>天</div>
                 <div style="" class="wl-riji-xiang">
                     <div class="wl-riji-title wl-content">{$diary['content']}   </div>
-                    <div class="wl-view">查看更多</div>
+                    <div class="wl-view">查看全文</div>
                     <div class="wl-neirong-img wl-showimg">
                         <div class="wl-img-top">
                             <div class="wl-img-top-left">
-                                <img src="{:isset($diary['imgs'][0])?$diary['imgs'][0]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
+                                <img src="{:isset($diary['imgs'][0])?$diary['imgs'][0]:''}">
                             </div>
                             <div class="wl-img-top-right">
-                                <img src="{:isset($diary['imgs'][1])?$diary['imgs'][1]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
-                                <img src="{:isset($diary['imgs'][2])?$diary['imgs'][2]:'http://172.16.100.85/static/weixin/shop/image/index/db4.png'}">
+                                {if(isset($diary['imgs'][1]))}<img src="{$diary['imgs'][1]}">{/if}
+                                {if(isset($diary['imgs'][2]))}<img src="{$diary['imgs'][2]}">{/if}
                             </div>
                         </div>
+                        <div style="clear: both"></div>
 
-                        {if(count($diary['imgs']) >= 6)}
+
                         <div style="clear: both"></div>
                         <div class="wl-top-two">
-                            <img src="{$diary['imgs'][3]}" alt="">
-                            <img src="{$diary['imgs'][4]}" alt="">
-                            <img src="{$diary['imgs'][5]}" alt="">
+                            {if(isset($diary['imgs'][3]))}<img src="{$diary['imgs'][3]}">{/if}
+                            {if(isset($diary['imgs'][4]))}<img src="{$diary['imgs'][4]}">{/if}
+                            {if(isset($diary['imgs'][5]))}<img src="{$diary['imgs'][5]}">{/if}
                         </div>
-                        {/if}
+
                         <div style="clear: both"></div>
                         <!--<div class="wl-zan">-->
                         <!--<span><i class="iconfont icon-attention wl-fenge"></i>5</span>-->
@@ -184,7 +187,7 @@
             </li>
             <li class="wl-comments-num"><span class="wl-islike "></span><i class="iconfont icon-comment_light text"></i>{$info['comment']}
             </li>
-            <li style="border: none;color: #7DB0E8" class="wl-goods-article">商品详情</li>
+            <li style="border: none;color: #7DB0E8" class="wl-goods-article" data-id="{$goods_infos[0]['id']}">商品详情</li>
         </ul>
         <div style="clear:both"></div>
     </div>
@@ -277,16 +280,16 @@
     {{#  }); }}
 </script>
 <script>
-    $(function() {
-        $('.wl-showimg').FlyZommImg({
-            closeBtn: false, //是否打开右上角关闭按钮
-            rollSpeed: 200, //切换速度
-            miscellaneous: false, //是否显示底部辅助按钮
-            slitherCallback: function(direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
-                console.log(direction, DOM);
-            }
-        });
-    })
+    var flyZommImg = $(document).find('.wl-showimg').FlyZommImg({
+        closeBtn: true, //是否打开右上角关闭按钮
+        rollSpeed: 200, //切换速度
+        miscellaneous: false, //是否显示底部辅助按钮
+        slitherCallback: function(direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
+            console.log(direction, DOM);
+        }
+    });
+
+
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
         pagination: {
@@ -388,11 +391,13 @@
             });
             $(this).data('order', 'desc').find('i').removeClass('icon-iconsort').addClass('icon-iconasc');
         }
+
+        flyZommImg._bindDom();
     });
+
 </script>
 <script>
     const id = {$info['id']};
-
     var myObj = {
         goods: {
             listData: {
@@ -549,9 +554,9 @@
                             }
                         } else if (res.code == 401) {
                             redream.showTip(res.msg);
+                            LoginBox.showBox();
                         } else {
                             redream.showTip('操作失败');
-                            LoginBox.showBox();
                         }
                     }
                 });
@@ -597,8 +602,8 @@
             isBounce: false,
             noMoreSize: 5,
             empty: {
-                icon: "/static/weixin/shop/image/tuoian.png",
-                tip: "暂无推荐商品~", //提示
+                icon: "/static/weixin/shop/image/wl-imgloss.png",
+                tip: "暂无推荐日记~", //提示
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
@@ -628,25 +633,32 @@
             });
         },
     };
+
+    $(document).on('click','.wl-goods-article',function(){
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('id');
+    });
+
 </script>
 
 <script>
-    var btns = document.getElementsByClassName('wl-view');
-    var objs = document.getElementsByClassName('wl-content');
-    $.each(objs,function (index, obj) {
+
+    $.each(document.getElementsByClassName('wl-content'),function (index, obj) {
         var total_height = obj.scrollHeight; //文章总高度
-        var show_height = 38; //定义原始显示高度
+        var show_height = 40; //定义原始显示高度
         if(total_height > show_height) {
-            btns[index].style.display = 'block';
-            btns[index].onclick = function() {
-                objs[index].style.height = total_height + 'px';
-                $('.wl-view').text('收起');
-                $('.wl-view').click(function () {
-                    objs[index].style.height= 38 +'px';
-                    $('.wl-view').text('查看更多');
-                })
-            }
+            document.getElementsByClassName('wl-view')[index].style.display = 'block';
         }
-    })
+    });
+
+    $(document).on('click','.wl-view',function(){
+        if($(this).text() == '查看全文'){
+            $(this).text('收起').prev().css('height','auto');
+        }else{
+            $(this).text('查看全文').prev().css('height','40px');
+        }
+    });
+
+
+
 </script>
 {/block}

@@ -5,6 +5,7 @@ var mySwiper = new Swiper('.swiper-container', {
     }
 });
 
+var scrollTopLock = false;
 $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
     $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
     var index = $(this).index();
@@ -15,7 +16,13 @@ $(".wl-deji li").click(function()　　 {　　　　 //获取点击的元素给
     }else if(index == 2){
         var top = parseInt($('#wl-meili-riji').offset().top) -70;
     }
+
+    scrollTopLock = true;
+
     $("html,body").animate({scrollTop:top+'px'}, 500);
+    setTimeout(function(){
+        scrollTopLock = false;
+    },500)
 });
 
 $(".dianhua-right").click(function (event) {
@@ -91,16 +98,20 @@ $(window).scroll(function(){
         $(".wl-deji").removeClass("wl-deji-show").fadeOut('slow');
     }
 
-    if(scrollTop >= parseInt($('#wl-meili-riji').offset().top) -75){
-        $(".wl-deji li").eq(2).find('i').show().parent().siblings().find('i').hide();
-        $(".wl-deji li").eq(2).addClass("active").siblings().removeClass('active');
-    }else if(scrollTop >= parseInt($('#cus-xuzi').offset().top) -75){
-        $(".wl-deji li").eq(1).find('i').show().parent().siblings().find('i').hide();
-        $(".wl-deji li").eq(1).addClass("active").siblings().removeClass('active');
-    }else if(scrollTop >= parseInt($('#wl-xiangqing').offset().top)-75){
-        $(".wl-deji li").eq(0).find('i').show().parent().siblings().find('i').hide();
-        $(".wl-deji li").eq(0).addClass("active").siblings().removeClass('active');
+
+    if(scrollTopLock == false){
+        if(scrollTop >= parseInt($('#wl-meili-riji').offset().top) -75){
+            $(".wl-deji li").eq(2).find('i').show().parent().siblings().find('i').hide();
+            $(".wl-deji li").eq(2).addClass("active").siblings().removeClass('active');
+        }else if(scrollTop >= parseInt($('#cus-xuzi').offset().top) -75){
+            $(".wl-deji li").eq(1).find('i').show().parent().siblings().find('i').hide();
+            $(".wl-deji li").eq(1).addClass("active").siblings().removeClass('active');
+        }else if(scrollTop >= parseInt($('#wl-xiangqing').offset().top)-75){
+            $(".wl-deji li").eq(0).find('i').show().parent().siblings().find('i').hide();
+            $(".wl-deji li").eq(0).addClass("active").siblings().removeClass('active');
+        }
     }
+
 });
 
 $(document).on('click','.to-goods-detai',function(){
