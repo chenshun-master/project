@@ -286,13 +286,14 @@ class DiaryDomain
 
         $obj = Db::name('comment')->alias('comment');
         $obj->leftJoin('wl_user user','comment.user_id = user.id');
-        $obj->leftJoin('wl_user_like like',"like.object_id = comment.id and like.table_name = 'diary' and like.user_id = {$user_id} and like.status = 0");
+        $obj->leftJoin('wl_user_like like',"like.object_id = comment.id and like.table_name = 'comment' and like.user_id = {$user_id} and like.status = 0");
         $obj->where('comment.object_id',$diaryId);
         $obj->where('comment.table_name','diary');
         $obj->order('comment.created_time', 'desc');
 
         $total = $obj->count();
         $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,
