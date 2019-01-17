@@ -263,12 +263,11 @@
     margin-top: 5px;
 }
 .web-preview-content {
-    width: 95%;
+    width: 93%;
     margin: 0 auto;
     min-height: 200px;
     line-height: 20px;
     font-size: 13px;
-    text-indent: 30px;
     overflow: auto;
 }
 .web-preview-content img {
