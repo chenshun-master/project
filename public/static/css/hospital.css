@@ -17,6 +17,9 @@
     float: right;
     cursor: pointer
 }
+.wl-conter:active{
+    background: #dddddd;
+}
 .wl-pingjia dl{
     color: #1D1D1D;
     width: 50%;

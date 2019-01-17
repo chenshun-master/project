@@ -96,7 +96,7 @@
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名" name="username" id="fr2-username"></p>
                 <p class="wl-input"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致" name="idcard" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
                 <p class="wl-input" ><span>擅长项目<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入擅长项目" name="speciality" id="fr2-speciality"></p>
-                <p class="wl-input"><span>岗位职称<i style="color: #F24F4F">*</i></span>
+                <p class="wl-input"><span style="border: 0">岗位职称<i style="color: #F24F4F">*</i></span>
                     <!--<input type="text" placeholder="请输入岗位职称" name="duties" id="fr2-duties">-->
                     <select id="fr2-duties" >
                         <option value="">请选择岗位职称</option>
@@ -177,7 +177,7 @@
                 <p class="wl-input"><span>医院性质<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入医院性质 (门诊部/医院)" id="fr3-type" name="hospital_type"></p>
                 <p class="wl-input" ><span>成立时间<i style="color: #F24F4F">*</i></span><input readonly="readonly" placeholder="请选择成立时间" id="fr3-founding-time" name="founding_time"></p>
                 <p class="wl-input"><span style="border: none;">医院规模<i style="color: #F24F4F">*</i></span>
-                    <select id="fr3-scale" name="scale" style="height: 35px;width: 75%;border: 1px solid #F1F1F1;color: #888888;">
+                    <select id="fr3-scale" name="scale" >
                     <option value ="请选择医院规模">请选择医院规模</option>
                     <option value ="50人以下">50人以下</option>
                     <option value="50-100人 ">50~100人 </option>

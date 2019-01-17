@@ -41,12 +41,13 @@
 .wl-top-yisheng button{
     width: 22%;
     height: 20px;
-    line-height: 20px;
+    line-height: 21px;
     background: #7DB0E8;
     color: #EEEEEE;
     border-radius: 10px;
     font-size: 14px;
     margin-top: 10px;
+    text-align: center;
 }
 .wl-top-anli{
     width: 70%;

@@ -67,7 +67,9 @@ input,button,a,textarea,select{outline:0 none !important; blr:expression(this.on
     background: white !important;
     z-index: 999;
 }
-
+select,option{
+    background: white;
+}
 .se {
     background: #7DB0E8;
     color: white;
@@ -84,7 +86,18 @@ input,button,a,textarea,select{outline:0 none !important; blr:expression(this.on
     width: 100%;
     min-height: 400px;
 }
-
+#fr2-duties{
+    width: 60%;
+    border: 0;
+    height: 30px;
+    width: 75%;
+    border: 1px solid #F1F1F1;
+    color: #8a8989;
+    text-indent: 3px;
+}
+#fr3-scale{
+    height: 35px;width: 75%;border: 1px solid #F1F1F1;color: #8a8989; text-indent: 3px;
+}
 .wl-input {
 
     width: 100%;

@@ -49,82 +49,6 @@
 </script>
 
 <script type="text/javascript">
-    // var myObj = {
-    //     doctor:{
-    //         listData: {
-    //             loading: false,
-    //             ini: false,
-    //             page: 0,
-    //             page_total: 1,
-    //             page_size: 15,
-    //         },
-    //         template:function(data){
-    //             var head_img      =  (data.portrait == null) ? '':data.portrait;
-    //             var type =  (data.type == null) ? '':data.type;
-    //
-    //         },
-    //         loadList: function (me) {
-    //             if (myObj.doctor.listData.loading) {
-    //                 return false;
-    //             }
-    //
-    //             myObj.doctor.listData.page++;
-    //             if (myObj.doctor.listData.ini == true) {
-    //                 if (myObj.doctor.listData.page > myObj.doctor.listData.page_total) {
-    //                     me.resetload();
-    //                     return false;
-    //                 }
-    //             }
-    //
-    //             $.ajax({
-    //                 url: "/weixin/api/getHospitalList",
-    //                 type: 'post',
-    //                 data: {page: myObj.doctor.listData.page, page_size: myObj.doctor.listData.page_size},
-    //                 dataType: 'json',
-    //                 beforeSend: function () {
-    //                     myObj.doctor.listData.loading = true;
-    //                 },
-    //                 complete: function () {
-    //                     myObj.doctor.listData.loading = false;
-    //                 },
-    //                 success: function (res) {
-    //                     if (res.code == 200) {
-    //                         if ( myObj.doctor.listData.ini == false) {
-    //                             myObj.doctor.listData.ini = true;
-    //                             myObj.doctor.listData.page_total = res.data.page_total;
-    //                             $('#cus-container-list').html('');
-    //                         }
-    //
-    //                         // $.each(res.data.rows,function(k,val){
-    //                         //     $('#cus-container-list').append(myObj.doctor.template(val));
-    //                         // });
-    //                         layui.laytpl(demo.innerHTML).render(res.data.rows, function(html){
-    //                             $('#cus-container-list').append(html);
-    //                         });
-    //                         if ( myObj.doctor.listData.page >=  myObj.doctor.listData.page_total) {
-    //                             me.noData();
-    //                         }
-    //                     }
-    //                     me.resetload();
-    //                 }
-    //             });
-    //         }
-    //     }
-    // };
-    //
-    // $('#cus-container').dropload({
-    //     scrollArea: window,
-    //     loadUpFn: function (me) {
-    //         myObj.doctor.listData.loading = false;
-    //         myObj.doctor.listData.ini = false;
-    //         myObj.doctor.listData.page = 0;
-    //         myObj.doctor.listData.page_total = 1;
-    //         myObj.doctor.loadList(me);
-    //     },
-    //     loadDownFn: function (me) {
-    //         myObj.doctor.loadList(me);
-    //     }
-    // });
 
     var mescroll = new MeScroll("container", {
         down:{auto:true},
@@ -133,7 +57,7 @@
             page: {num: 0,size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false,
-            noMoreSize: 5,
+            noMoreSize: 10,
             empty: {
                 icon: "/static/weixin/shop/image/tuoian.png",
                 tip: "亲,没有您要找的商品~", //提示
