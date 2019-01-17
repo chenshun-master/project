@@ -1,0 +1,40 @@
+{extend name="layout/layout" /}
+
+{block name="main"}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
+        <li class="active"> 我的管理</li>
+        <li class="active">荣誉证书</li>
+    </ul>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">荣誉证书</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            上传荣誉证书
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <div style="width: 100%;min-height: 400px">
+                        <div style="width: 20%;height: auto;float: left;padding: 5px;">
+                            <img src="https://inews.gtimg.com/newsapp_bt/0/7318120578/1000"  style="width: 100%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{/block}
+
+{block name="js"}
+
+{js href="/static/plugin/layui/layui.all.js" /}
+{/block}

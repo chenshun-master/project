@@ -156,11 +156,12 @@ $(".wl-zhez2").click(function(event) {
     }
 });
 $('.w-e-toolbar').css("border",'1px solid #eeeeee');
-$('.w-e-text-container').css("border",'1px solid #eeeeee')
+$('.w-e-text-container').css("border",'1px solid #eeeeee');
 
 $(function(){
     $('#wang-editor > .w-e-toolbar').append('<p class="w-e-menu" id="taobao-plugin" style="z-index:10001;padding: 3px !important;"><i class="iconfont icon-changyonglogo25" style="font-size: 23px;"></i></p>');
     $(document).on('click','#taobao-plugin',function () {
         alert('功能还在开发中，请耐心等待...');
+        // objClass.getGoodsHtml();
     });
 });
