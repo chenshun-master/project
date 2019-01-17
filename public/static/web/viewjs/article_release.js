@@ -4,7 +4,6 @@ editor.customConfig.uploadImgServer = '/index/upload/uploadFile';
 editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
 editor.customConfig.uploadImgMaxLength = 3;
 editor.customConfig.showLinkImg = false;
-editor.customConfig.zIndex = 1;
 editor.customConfig.menus = [
     'head',  // 标题
     'bold',  // 粗体
@@ -93,6 +92,10 @@ var objClass = {
     }
 };
 
+$('#fr-title').on('keyup',function(){
+    $('#title-lenght').text($(this).val().length);
+});
+
 $("#btn-input-file").on("change", function () {
     if (objClass.loading2) {
         return false;
@@ -118,7 +121,7 @@ $("#btn-input-file").on("change", function () {
         },
         success: function (data) {
             if (data.code == 200) {
-                $('#ccc').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="120" height="120" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
+                $('.web-tianjiai').append('<div  class="cus-remove-img-list"><img src="' + data.data.url + '" class="cus-fr-images" width="125" height="125" ><span class="iconfont icon-roundclosefill cus-remove-img" ></span></div>');
                 if ($('.cus-fr-images').length >= 3) {
                     $('#btn-input-file').prop('disabled', true);
                 }
@@ -129,28 +132,31 @@ $("#btn-input-file").on("change", function () {
     });
 });
 
-$(".wl-xian").click(function () {
-    $(".wl-cang").toggle();
-});
-
-$(".wl-shimin").click(function () {
-    $(".wl-cang1").toggle();
-});
-
-$(".wl-tabc").click(function () {
-    $(".wl-cang").hide();
-});
-
 $(document).on('click', '.cus-remove-img', function () {
     $(this).parent().remove();
     $('#btn-input-file').prop('disabled', false);
 });
-
-$(".wl-yingj").click(function () {
-    $(".wl-ding").toggle();
-    $(".qiehuan").toggleClass('iconfont  icon-triangledownfill');
-    $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
+$('.w-e-toolbar').css('background-color','white');
+// 修改信息遮罩层
+$(".web-yulan").click(function(event) {
+    if($("#fr-title").val()==''){
+        alert('请输入标题！');
+        return false;
+    }
+    event.stopPropagation(); //停止事件冒泡
+    $(".wl-zhez2").toggle();
+    $('.web-preview-title').text($("#fr-title").val());
+    $('.web-preview-content').html(editor.txt.html());
 });
+//点击空白处隐藏弹出层
+$(".wl-zhez2").click(function(event) {
+    var _con = $('.wl-zl2'); // 设置目标区域
+    if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+        $('.wl-zhez2').hide(); //淡出消失
+    }
+});
+$('.w-e-toolbar').css("border",'1px solid #eeeeee');
+$('.w-e-text-container').css("border",'1px solid #eeeeee')
 
 $(function(){
     $('#wang-editor > .w-e-toolbar').append('<p class="w-e-menu" id="taobao-plugin" style="z-index:10001;padding: 3px !important;"><i class="iconfont icon-changyonglogo25" style="font-size: 23px;"></i></p>');

@@ -233,7 +233,7 @@ class SpGoodGoodsDomain
      */
     public function getUserGoodGoodsList($user_id,$page=1,$page_size=15){
         $obj = Db::name('sp_good_goods')->alias('good_goods');
-        $obj->leftJoin('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status = 0');
+        $obj->join('wl_sp_goods goods','goods.id = good_goods.goods_id and goods.status = 0');
         $obj->leftJoin('wl_hospital hospital','hospital.id = goods.hospital_id');
 
         $obj->where('good_goods.user_id',$user_id);
