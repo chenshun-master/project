@@ -60,7 +60,7 @@ class Index extends BaseController
             return redirect('/weixin/user/main');
         }
 
-        return $this->fetch('index/loginReister');
+        return $this->fetch('index/loginReister1');
     }
 
     /**
@@ -93,7 +93,7 @@ class Index extends BaseController
         $this->assign('redir',$redir);
 
 
-        return $this->fetch('index/login');
+        return $this->fetch('index/login1');
     }
 
     /**
@@ -101,7 +101,7 @@ class Index extends BaseController
      */
     public function backpwd()
     {
-        return $this->fetch('index/backpwd');
+        return $this->fetch('index/backpwd1');
     }
 
     /**
@@ -448,7 +448,7 @@ class Index extends BaseController
             'verify_code' => $request->param('verify_code')
         ]);
 
-        return $this->fetch('index/resetpwd');
+        return $this->fetch('index/resetpwd1');
     }
 
     /**

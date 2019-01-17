@@ -1,0 +1,93 @@
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/login.css">
+<link rel="stylesheet" type="text/css" href="/static/css/function.css" />
+{/block}
+
+{block name="main"}
+<!--这里编写主体内容-->
+<div class="wl-login">
+    <a href="/weixin/index/login" class="wl-jump-left"><i class="iconfont icon-back_light"></i></a>
+    <div class="wl-logo"><img src="/static/weixin/image/bg-logo.png" alt=""></div>
+    <div class="wl-dialog">
+        <div class="wl-backpwd">设置密码</div>
+        <div style="clear: both"></div>
+        <div class="content">
+            <div class="wl-d active one">
+                <div class="wl-input-box wl-back-pwd">
+                    <input type="text" placeholder="新密码" id="password1" type="password"></div>
+                <div class="wl-input-box"><input type="text" placeholder="重复密码"  id="password2" type="password" ></div>
+                <button class="wl-the-login" id="btn"  onclick="objClass.submit()">完成</button>
+                <input id="mobile" type="hidden"  value="{$mobile}"  />
+                <input id="verify_code" type="hidden" value="{$verify_code}"  />
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+
+</div>
+
+{/block}
+{block name="script"}
+<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var  objClass = {
+        loading:false,
+        submit:function(){
+            var password1 = $('#password1').val();
+            var password2 = $('#password2').val();
+            var mobile = $('#mobile').val();
+            var verify_code = $('#verify_code').val();
+
+            if(password1 == ''){
+                redream.showTip('请填写新的密码！');
+                return false;
+            }
+
+            if(password1 != password2){
+                redream.showTip('两次密码不一致！');
+                return false;
+            }
+
+            if(!this.loading){
+                $.ajax({
+                    url:"/weixin/index/postResetPwd",
+                    type:'post',
+                    data:{mobile:mobile,password1:password1,password2:password2,verify_code:verify_code},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass.loading = true;
+                    },
+                    complete:function(){
+                        objClass.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            redream.showTip('重置成功！');
+                            window.location.href = '/weixin/index/login';
+                            return false;
+                        }else if(res.code == 301){
+                            redream.showTip('请求参数错误！');
+                            return false;
+                        }else if(res.code == 302){
+                            redream.showTip('两次密码不一致！');
+                            return false;
+                        }else {
+                            redream.showTip('密码重置失败！');
+                            return false;
+                        }
+                    }
+                });
+            }
+        }
+    };
+        $('.one input').on('input ',function(){
+            if(($.trim($('#password1').val())!=="")&&($.trim($('#password2').val())!=="")){
+                $('#btn').css({'background':'#7DB0E8'});
+            }else{
+                $('#btn').css({'background':'#EBEBEB'});
+            }
+        });
+</script>
+{/block}

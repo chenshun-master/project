@@ -8,7 +8,6 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta content="telephone=no" name="format-detection" />
 		<link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/plugin/layer_mobile/need/layer.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/wkf.css" />
 		<title>{:config('conf.title')} - 账号找回</title>
@@ -17,17 +16,15 @@
                 color: #cccccc !important;
             }
         </style>
-		<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>
-	
+
 	</head>
 
 	<body style="background-color: #fff;">
 		<div class="con">
 			<div class="wx-top">
 			<a href="login.html"  class="iconfont icon-back_light" style="font-size: 40px;padding-top: 10px;margin-left: 25px;"></a>
-				<div class="wx-reg">		
-					<h3 style="font-size:0.38rem;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">找回密码</h3>
+				<div class="wx-reg">
+					<h3 style="font-size:38px;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">找回密码</h3>
 			     	<p style="margin-top: 40px;"><input id="mobile" type="text"  placeholder="请输入你的手机号" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
 					<p style="margin-top: 40px;"><input id="sms_code" type="text" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 555px"></p>
 					<button id="btn" style="margin-top: 100px;" onclick="objClass.submit()">找回密码</button>
@@ -36,7 +33,7 @@
 			</div>
 		</div>
 	</body>
-    <script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>>
 	<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
