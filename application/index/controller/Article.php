@@ -39,17 +39,12 @@ class Article extends CController
         $data['user_id']       = $this->getUserId();
         $data['thumbnail']     = array_unique(array_slice(array_merge($data['thumbnail'], get_html_images($data['content'])), 0, 3));
         if($this->request->post('flag/d',0) == 2){
-            //保存草稿信息
-
             if ($this->_articleDomain->saveArticleDraft($this->getUserId(),1,$data)) {
                 return $this->returnData([], '保存草稿成功', 200);
             }
         }else if (!checkUserAuth($this->_userDomain->getUserType($data['user_id']), 7)) {
-            //判断权限
-
             return $this->returnData([], '未授权操作', 403);
         }else if($article_id){
-            //编辑文章
             $isdraft = $this->request->post('isdraft/d',0) == 1? 1 : 0 ;
             if($this->_articleDomain->edit($data['user_id'],$article_id,$data,$isdraft)){
                 return $this->returnData([], '操作成功', 200);
