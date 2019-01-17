@@ -484,7 +484,7 @@ class UDomain
             'user.portrait',
             'auth.speciality',
             'auth.hospital_type',
-            '(select SUM(sale_num) from  wl_sp_goods where wl_sp_goods.seller_id = hospital.user_id)'=>'sale_num'
+            'ifnull((select SUM(sale_num) from  wl_sp_goods where wl_sp_goods.seller_id = hospital.user_id),0)'=>'sale_num'
         ];
 
         $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();

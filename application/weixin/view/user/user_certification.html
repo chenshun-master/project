@@ -96,7 +96,17 @@
                 <p class="wl-input" style="border-top: 3px solid #F1F1F1;"><span>真实姓名<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入正式姓名" name="username" id="fr2-username"></p>
                 <p class="wl-input"><span>身份证号<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请务必于上传的身份证件号码一致" name="idcard" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></p>
                 <p class="wl-input" ><span>擅长项目<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入擅长项目" name="speciality" id="fr2-speciality"></p>
-                <p class="wl-input"><span>岗位职称<i style="color: #F24F4F">*</i></span><input type="text" placeholder="请输入岗位职称" name="duties" id="fr2-duties"></p>
+                <p class="wl-input"><span>岗位职称<i style="color: #F24F4F">*</i></span>
+                    <!--<input type="text" placeholder="请输入岗位职称" name="duties" id="fr2-duties">-->
+                    <select id="fr2-duties" >
+                        <option value="">请选择岗位职称</option>
+                        <option value="住院医师">住院医师</option>
+                        <option value="主任医师">主任医师</option>
+                        <option value="副主任医师">副主任医师</option>
+                        <option value="医师">医师</option>
+                        <option value="主治医师">主治医师</option>
+                    </select>
+                </p>
                 <p class="wl-textarea"><span>医生简介<i style="color: #F24F4F">*</i></span>
                     <textarea type="text" placeholder="请填写个人简介(注:个人简介必须真实有效)" id="fr2-profile" name="profile"></textarea>
                 </p>
