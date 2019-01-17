@@ -18,11 +18,11 @@ layui.table.render({
     }
     ,cols: [[ //表头
         {field: 'mobile', title: '手机号'},
-        {field: 'nickname', title: '用户昵称'},
-        {field: 'portrait', title: '用户头像',width: 100,align:"center",templet:function (row) {
+        {field: 'nickname', title: '商户昵称'},
+        {field: 'portrait', title: '商户头像',width: 100,align:"center",templet:function (row) {
                 return '<img src="'+row.portrait+'" width="30">'
             }},
-        {field: 'type', title: '用户类型',templet:function(row){
+        {field: 'type', title: '商户类型',templet:function(row){
                 if(row.type == 1){
                     return '<span class="label label-success">普通用户</span>';
                 }else if(row.type == 2){
@@ -35,21 +35,7 @@ layui.table.render({
                     return '<span class="label label-info">官方团队</span>';
                 }
             }},
-        {field: 'sex', title: '用户性别',templet:function (res) {
-                if(res.sex == 0){
-                    return '<span class="label label-success">未知</span>';
-                }else if(res.sex == 1){
-                    return '<span class="label label-danger">男</span>';
-                }else if(res.sex == 2){
-                    return '<span class="label label-warning">女</span>';
-                }
-            }},
-        {field: 'score', title: '总积分'},
-        {field: 'usable_score', title: '可用积分'},
-        {field: 'account', title: '账户总金额',sort:true},
-        {field: 'usable_account', title: '账户可用余额',sort:true},
-        {field: 'birthday_date', title: '出生日期',sort:true},
-        {field: 'profile', title: '用户简介',sort:true},
+        {field: 'profile', title: '商户简介',sort:true},
         {field: 'created_time', title: '申请加入时间',sort:true},
     ]]
 });

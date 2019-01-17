@@ -55,7 +55,8 @@ class ArticleDomain extends ArticleModel
             $data['updated_time'] = $data['published_time'] = date('Y-m-d H:i:s');
         }
 
-        return self::where('id', $article_id)->where('user_id', $user_id)->update($data);
+        $istrue = self::where('id', $article_id)->where('user_id', $user_id)->update($data);
+        return $istrue === false ? false:true;
     }
 
     /**

@@ -108,4 +108,9 @@ class User extends BaseController
         $data = $this->_uDomain->getMyHospital($this->getUserId());
         return $this->returnData($data,'',200);
     }
+
+
+    public function honor(){
+        return $this->fetch('user/my-honor');
+    }
 }

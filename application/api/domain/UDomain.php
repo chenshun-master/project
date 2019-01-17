@@ -20,6 +20,7 @@ class UDomain
         $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
         $obj->leftJoin('wl_doctor_hospital dh','doctor.id = dh.doctor_id');
         $obj->leftJoin('wl_hospital hospital','hospital.id = dh.hospital_id');
+        $obj->leftJoin('wl_auth auth','auth.user_id = user.id');
 
         $obj->where("user.type = '3' and IFNULL(dh.status,0) != 2");
         $obj->group('user.id');
@@ -27,7 +28,7 @@ class UDomain
 
         $total = $obj->count();
         $field = [
-            'user.portrait','doctor.real_name','doctor.user_id','hospital.id as hospital_id','hospital.hospital_name',
+            'user.portrait','doctor.real_name','doctor.user_id','hospital.id as hospital_id','hospital.hospital_name','auth.duties',
             '(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1)'=>'article_num',
             '(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id)'=>'case_num',
         ];
@@ -484,7 +485,7 @@ class UDomain
             'user.portrait',
             'auth.speciality',
             'auth.hospital_type',
-            '(select SUM(sale_num) from  wl_sp_goods where wl_sp_goods.seller_id = hospital.user_id)'=>'sale_num'
+            'ifnull((select SUM(sale_num) from  wl_sp_goods where wl_sp_goods.seller_id = hospital.user_id),0)'=>'sale_num'
         ];
 
         $rows = $obj->fetchSql(false)->field($field)->page($page,$page_size)->select();
