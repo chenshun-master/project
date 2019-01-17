@@ -43,6 +43,11 @@ body {
     float: left;
     color: #FD7D7D;
 }
+.web-footer-content img{
+    width: 15px;
+    display: inline-block;
+    margin-top: -3px;
+}
 .web-head-portrait{
     width: 50%;
     height: 35px;
@@ -60,7 +65,7 @@ body {
 .web-footer{
     min-height: 50px;
     width: 100%;
-    background-color: #eee;
+    background-color: #e6e6e6;
     clear: both;
 }
 .web-footer-content{
@@ -70,6 +75,7 @@ body {
     margin: 0 auto;
     text-align: center;
     color: #5d5e61;
+    font-size: 14px;
 }
 .web-footer-content span{
     margin-right: 15px;

@@ -12,6 +12,7 @@
     position: fixed;
     top: 37px;
     z-index: 999;
+    max-width: 640px;
 }
 .wl-liebiao li{
     width:16.6%;

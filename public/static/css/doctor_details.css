@@ -83,11 +83,15 @@
 }
 .wl-con-top{
     width: 100%;
-    height: 40px!important;
+    height: 60px!important;
     background: white;
 }
 .wl-yiyuan{
-    float: left;margin-left: 10px;width: 75%;
+    float: left;
+    margin-left: 10px;
+    width: 75%;
+    height: 50px;
+    padding-top: 10px;
 }
 .wl-yiyuan dd{
     color: #1D1D1D;
@@ -102,7 +106,7 @@
     margin-top: 5px;
 }
 .wl-jiu{
-    min-height: 50px;
+    min-height: 60px;
     border-bottom: 1px solid #f1f1f1;padding: 0 10px 0 10px;
 }
 .wl-biaoti{
@@ -151,9 +155,12 @@
     background: url('/static/image/user/lanv.png')no-repeat;
     background-size: 30px;
 }
+.wl-goushop{
+    float: left;font-size: 14px;color: #F29C9F
+}
 .wl-renz1{
     position: absolute;
-    top: 30px;
+    top: 37px;
     left: 19px;
     right: 0;
     z-index: 99;
@@ -171,6 +178,14 @@
 }
 .wl-con-top img{
     border-radius: 50%;
+    display: inline-block;
+    margin-top: 10px;
+}
+.wl-fanhui{
+    font-size: 25px;
+    color: #AAAAAA;
+    display: inline-block;
+    margin-top: 5px;
 }
 .wl-dem2{
     width: 95%;

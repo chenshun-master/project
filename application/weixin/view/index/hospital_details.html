@@ -56,7 +56,7 @@
         <div class="wl-con-top1">
             <div class="wl-jiu href " >
                 <i class="iconfont icon-dingwei" style="font-size: 16px;float: left;color: #7DB0E8;margin-left: 5px"></i>
-                <dl class="wl-yiyuan" >
+                <dl class="wl-yiyuan1" >
                     <dd>{$info['hospital']['address']}</dd>
                 </dl>
                 <dl style="float: right">
@@ -184,9 +184,9 @@
 
         {{#  layui.each(item.goodsList, function(index, goods){ }}
         <div class="wl-xiang bottom href to-goods-detai"  data-goodsid="{{ goods.id }}">
-            <span class="iconfont icon-goumaiicon" style="float: left;font-size: 14px;color: #F29C9F"></span>
+            <span class="iconfont icon-goumaiicon wl-goushop"></span>
             <span class="wl-jie"> {{ goods.name }}</span>
-            <span class="wl-fenshu se">￥{{ goods.sell_price }}元</span>
+            <span class="wl-fenshu se">￥{{ goods.sell_price }}</span>
         </div>
         {{#  }); }}
     </div>
