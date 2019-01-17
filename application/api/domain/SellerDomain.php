@@ -50,8 +50,8 @@ class SellerDomain
     public function getSellerList($page=1,$page_size=10)
     {
         $sellerInfo = Db::name('user');
+        $sellerInfo->where('type','in',[3,4]);
         $sellerInfo->order('created_time desc');
-
         $total = $sellerInfo->count(1);
 
         $field  = [
@@ -59,12 +59,6 @@ class SellerDomain
             'nickname',
             'portrait',
             'type',
-            'sex',
-            'score',
-            'usable_score',
-            'account',
-            'usable_account',
-            'birthday_date',
             'profile',
             'created_time',
         ];
