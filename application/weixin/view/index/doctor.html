@@ -28,7 +28,7 @@
                 <div class="wl-toux"><img src="{{item.portrait}}" onerror="this.src ='/static/image/user/tou.png'" width="41" height="41"></div>
                 <div style="position: relative"><span class="wl-biao"></span></div>
                 <div class="wl-pingjia">
-                    <dl>{{item.real_name}}</dl>
+                    <dl>{{item.real_name}} <span style="color: #7DB0E8;border: 1px solid #CCCCCC;border-radius: 3px;display: inline-block;font-size: 12px;">{{ item.duties}}</span></dl>
                     <dd>
                         {{#  if(item.hospital_name != null){ }}
                         {{ item.hospital_name}}

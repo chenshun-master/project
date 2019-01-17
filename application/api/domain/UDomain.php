@@ -20,6 +20,7 @@ class UDomain
         $obj->leftJoin('wl_doctor doctor','user.id = doctor.user_id');
         $obj->leftJoin('wl_doctor_hospital dh','doctor.id = dh.doctor_id');
         $obj->leftJoin('wl_hospital hospital','hospital.id = dh.hospital_id');
+        $obj->leftJoin('wl_auth auth','auth.user_id = user.id');
 
         $obj->where("user.type = '3' and IFNULL(dh.status,0) != 2");
         $obj->group('user.id');
@@ -27,7 +28,7 @@ class UDomain
 
         $total = $obj->count();
         $field = [
-            'user.portrait','doctor.real_name','doctor.user_id','hospital.id as hospital_id','hospital.hospital_name',
+            'user.portrait','doctor.real_name','doctor.user_id','hospital.id as hospital_id','hospital.hospital_name','auth.duties',
             '(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1)'=>'article_num',
             '(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id)'=>'case_num',
         ];
