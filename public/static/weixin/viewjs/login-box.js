@@ -18,8 +18,15 @@
 
             $('.wl-mask').show();
 
+            if(window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger' && baseConfig.autoLogin == 1){
+                var _this = this;
+                setTimeout(function(){
+                    _this.showTip('微信自动登录中...',5000);
+                    $('.wl-login-box-type[data-type="weixin"]').trigger('click');
+                },3000);
+            }
 
-
+            return this;
         };
 
         /**
@@ -44,7 +51,6 @@
                                         </div>
                                         <div style="clear:both"></div>
                                     </div>
-                    
                                     <div class="wl-login-box-body">
                                         <div class="wl-login-box-tab">
                                             <ul class="wl-qiehuan">
@@ -66,7 +72,6 @@
                                                     </div>
                                                     <div style="clear:both"></div>
                                                 </div>
-                    
                                                 <div class="wl-qie">
                                                     <div class="wl-sms">
                                                         <div class="wl-phone">
@@ -180,8 +185,12 @@
         /**
          * 显示错误提示信息
          */
-        this.showTip = function(msg){
-            $('#wl-login-box-tip').fadeIn("slow").delay(2000).fadeOut().text(msg);
+        this.showTip = function(msg,time){
+            if(arguments.length == 1){
+                time = 2000;
+            }
+
+            $('#wl-login-box-tip').fadeIn("slow").delay(time).fadeOut().text(msg);
         };
 
         /**
@@ -233,7 +242,6 @@
                 }
             });
 
-            //点击空白处隐藏弹出层
             $(".wl-mask").click(function (event) {
                 var _con = $('.wl-login-mask'); // 设置目标区域
                 if (!_con.is(event.target) && _con.has(event.target).length == 0) {
