@@ -388,5 +388,3 @@ $('.wl-guanbi1').click(function () {
 
 objClass.loadRecommendList();
 objClass.loadCommentList();
-
-LoginBox.showBox().showTip('请先进行登录操作',2000);
