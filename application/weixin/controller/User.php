@@ -405,7 +405,7 @@ class User extends BaseController
 
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
 
-        $this->assign('publishStatistics', app('domain')->getDomain('udomain')->statistics($user_id));
+        $this->assign('publishStatistics', app('domain')->getDomain('udomain')->statistics($this->getUserId()));
 
         $this->assign('user_info', $user_info);
 
