@@ -9,6 +9,7 @@ class Singleton
         'commentdomain'         =>'app\\api\\domain\\CommentDomain',
         'userfrienddomain'      =>'app\\api\\domain\\UserFriendDomain',
         'spgoodsdomain'         =>'app\\api\\domain\\SpGoodsDomain',
+        'udomain'               =>'app\\api\\domain\\UDomain',
     ];
 
     static private $instance = [];

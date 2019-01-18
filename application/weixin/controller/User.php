@@ -48,7 +48,7 @@ class User extends BaseController
 
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
 
-        $this->_publishTotal($this->getUserId());
+
 
         $isSignOut = is_weixin() && config('conf.weixin_automatic_logon') ? false : true;
         $this->assign([
@@ -404,74 +404,12 @@ class User extends BaseController
         }
 
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
-        $this->_publishTotal($this->getUserId());
+
+        $this->assign('publishStatistics', app('domain')->getDomain('udomain')->statistics($user_id));
 
         $this->assign('user_info', $user_info);
 
         return $this->fetch('user/userArticleList');
-    }
-
-    /**
-     * 用户视频列表页面
-     */
-    public function userVideoList()
-    {
-        if (!$this->checkLogin()) {
-            return redirect('/weixin/index/login');
-        }
-
-        $user_info = $this->getUserInfo();
-
-        $this->_publishTotal($this->getUserId());
-    }
-
-    /**
-     * 用户案例列表页面
-     */
-    public function userCaseList()
-    {
-        if (!$this->checkLogin()) {
-            return redirect('/weixin/index/login');
-        }
-
-        $this->_publishTotal($this->getUserId());
-    }
-
-    /**
-     * 用户问答列表页面
-     */
-    public function userProblemList()
-    {
-        if (!$this->checkLogin()) {
-            return redirect('/weixin/index/login');
-        }
-
-        $this->_publishTotal($this->getUserId());
-    }
-
-    /**
-     * 获取用户统计数据
-     * @param $user_id
-     */
-    private function _publishTotal($user_id)
-    {
-        $res = $this->_articleDomain->getArticleStatisticsData($user_id);
-
-        $data = [
-            'type_1' => ['type' => 1, 'total' => 0],
-            'type_2' => ['type' => 2, 'total' => 0],
-            'type_3' => ['type' => 3, 'total' => 0],
-            'type_4' => ['type' => 4, 'total' => 0]
-        ];
-
-        if ($res) {
-            foreach ($res as $val) {
-                $type = 'type_' . $val['type'];
-                $data[$type] = $val;
-            }
-        }
-
-        $this->assign('publishStatistics', $data);
     }
 
     /**

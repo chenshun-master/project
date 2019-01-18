@@ -496,4 +496,44 @@ class UDomain
             'total'         =>$total
         ];
     }
+
+    /**
+     * 用户数据统计
+     * @param int $user_id
+     * @return array
+     */
+    public function statistics(int $user_id){
+        $data = [
+            'article'   =>0,
+            'video'     =>0,
+            'goodsgood' =>0,
+            'diary'     =>0,
+        ];
+
+        $date = date('Y-m-d H:i:s');
+
+        $sql = "
+                SELECT 'article' as type,count(1) as total from wl_article where user_id = {$user_id} AND  status=1 and published_time <='{$date}' and type =1
+
+                union all
+                
+                select 'video' as type,0 as total
+                
+                union all 
+                
+                SELECT 'diary' as type,count(1) as total from wl_diary where user_id = {$user_id}
+                
+                union all 
+                
+                SELECT 'goodsgood' as type,count(1) as total from wl_sp_good_goods where user_id = {$user_id}
+              ";
+
+        if($rows = Db::query($sql)){
+            foreach ($rows as $val){
+                $data[$val['type']] = $val['total'];
+            }
+        }
+
+        return $data;
+    }
 }
