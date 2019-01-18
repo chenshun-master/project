@@ -224,7 +224,7 @@ class Article extends BaseController
             'is_friend' =>$is_friend,
             'uid'       =>$user_info['id'],
         ]);
-        return $this->fetch('article/userMain');
+        return $this->fetch('article/userme');
     }
 
     /**

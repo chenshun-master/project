@@ -315,8 +315,14 @@ width: 35px;
     font-size: 17px;
     background: #EDEDED;
     color: #333333;
-    padding-left: 30px;
+    padding-left: 20px;
+    position: relative;
     /*border-radius: 10px 10px 0 0;*/
+}
+.wl-renzh i{
+    position: absolute;
+    right: 10px;
+    font-size: 25px!important;
 }
 .wl-neie1 {
     width: 85%;
