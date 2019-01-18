@@ -18,8 +18,7 @@
 
             $('.wl-mask').show();
 
-
-
+            return this;
         };
 
         /**
