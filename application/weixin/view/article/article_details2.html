@@ -91,7 +91,7 @@
 
     <div class="wl-zhezhao">
         <div class="wl-zhe1">
-        <p class="wl-renzh">备注信息</p>
+        <p class="wl-renzh">备注信息 <i class="iconfont icon-guanbi1 wl-guanbi1"></i></p>
         <div class="wl-neie1">
             <p>你需要发送验证申请，等待对方通过</p>
             <textarea class="wl-neie2" style="resize: none" placeholder="(必填)填写备注信息..." id="fr-friend-remarks"></textarea>
@@ -703,5 +703,8 @@
         }
     };
     $('.wl-neirong').find('p').removeAttr('style');
+    $('.wl-guanbi1').click(function () {
+        $('.wl-zhezhao').hide();
+    })
 </script>
 {/block}

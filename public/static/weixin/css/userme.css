@@ -1,0 +1,40 @@
+.wl-con{
+    width: 100%;
+    min-height: 200px;
+}
+.wl-top{
+    width: 100%;
+    min-height: 250px;
+    background: url('/static/image/user/bj-1.png') no-repeat center;
+    background-sise:100%;
+}
+.wl-top dl{
+    padding-top: 20px;
+}
+.wl-top dl>img{
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+.wl-top dt{
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+.wl-top dd{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    color: #7DB0E8;
+    background: white;
+    text-align: center;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.wl-top p{
+    width: 80%;
+    
+}
