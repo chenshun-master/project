@@ -1,20 +1,323 @@
 {extend name="layout/layout" /}
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/userme.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
 <!--这里编写主体内容-->
 
-<div class="wl-con">
+<div class="wl-con" id="container">
     <div class="wl-top">
-        <dl><img src="" alt="" onerror="this.src='/static/image/user/tou.png '" ></dl>
-        <dt>无用第三</dt>
-        <p>个人简介</p>
-        <dd>加好友</dd>
+        <i class="iconfont icon-back_light wl-back" onClick="redream.toReferer()"></i>
+        <dl><img src="{$user_info['portrait']}" alt="" onerror="this.src='/static/image/user/tou.png '" ></dl>
+        <dt>{$user_info['nickname']}</dt>
+        <p>{$user_info['profile']}</p>
+
+
+        <?php if($is_friend === true):?>
+        <dd><a href="/weixin/user/userDialogue/uid/{$user_info['id']}">私信</a></dd>
+        <?php elseif($is_friend === false):?>
+        <dd onclick="myObj.showAddFriend()">加好友</dd>
+        <?php endif;?>
+
+    </div>
+    <div class="wl-main">
+        <div class="nav">
+            <p class="active" i="0">文章</p>
+            <p i="1">视频</p>
+            <p i="2">热门项目</p>
+            <p i="3">提问</p>
+        </div>
+        <div id="mescroll0" class="mescroll">
+            <ul id="dataList0" class="data-list">
+            </ul>
+        </div>
+        <div id="mescroll1" class="mescroll hide">
+            <div class="wl-weisahng">
+                <div><i class="iconfont icon-icon-test wl-shangwei"></i></div>
+                <div>尚未上传内容</div>
+            </div>
+            <ul id="dataList1" class="data-list">
+
+            </ul>
+        </div>
+
+        <div id="mescroll2" class="mescroll hide">
+            <div class="wl-weisahng">
+                <div><i class="iconfont icon-icon-test wl-shangwei"></i></div>
+                <div>尚未上传内容</div>
+            </div>
+            <ul id="dataList2" class="data-list">
+            </ul>
+        </div>
+        <div id="mescroll3" class="mescroll hide">
+            <div class="wl-weisahng">
+                <div><i class="iconfont icon-icon-test wl-shangwei"></i></div>
+                <div>尚未上传内容</div>
+            </div>
+            <ul id="dataList3" class="data-list">
+            </ul>
+        </div>
+        </div>
+</div>
+<div class="wl-zhezhao" style="display: none;">
+    <div class="wl-zhe1">
+        <p class="wl-renzh">备注信息 <i class="iconfont icon-guanbi1 wl-guanbi1"></i></p>
+        <div class="wl-neie1">
+            <p>你需要发送验证申请，等待对方通过</p>
+            <textarea class="wl-neie2" style="resize: none" placeholder="(必填)填写备注信息..." id="fr-friend-remarks"></textarea>
+            <button class="wl-btn" onclick="myObj.submitFriendApply()">立即申请</button>
+        </div>
     </div>
 </div>
 {/block}
 {block name="script"}
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-neirong" >
+        <div class="wl-user-xinxi">
+            <img src="{{item.portrait }}" alt="" onerror="this.src='/static/image/user/tou.png '">
+            <div class="wl-user-time" >
+                <dl>{{ item.nickname }}</dl>
+                <dt>{{ item.published_time }}</dt>
+            </div>
+        </div>
 
+        {{# if(redream.getObjLength(item.thumbnail) == 0){ }}
+
+            <div class="wl-nei1 cus-article-href" data-id="{{item.id}}">{{ item.title }}</div>
+
+        {{# } else if(redream.getObjLength(item.thumbnail) > 0 && redream.getObjLength(item.thumbnail) < 3) { }}
+
+            <div class="cus-article-href" data-id="{{item.id}}">
+                <div class="wl-neirong1 ">{{ item.title }}</div>
+                <div class="wl-img-right " >
+                    <img src="{{item.thumbnail.img_1}}" alt="">
+                 </div>
+            </div>
+        <div style="clear: both"></div>
+        {{# } else if(redream.getObjLength(item.thumbnail) >= 3){  }}
+        <div class="cus-article-href" data-id="{{item.id}}">
+            <div class="wl-nei1">{{ item.title }}</div>
+            <div class="wl-img-left">
+                <img src="{{item.thumbnail.img_1}}" alt="">
+                <img src="{{item.thumbnail.img_2}}" alt="">
+                <img src="{{item.thumbnail.img_3}}" alt="">
+            </div>
+        </div>
+            <div style="clear: both"></div>
+        {{# } }}
+
+        <div class="wl-nei2">
+            <ul class="wl-some-praise">
+                <li><i class="iconfont icon-share_light"></i></li>
+                <li><i class="iconfont icon-comment_light"></i>{{ item.comment_count }}</li>
+                <li><i class="iconfont icon-zantong"></i>{{ item.isZan }}</li>
+            </ul>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+<script id="isnoTemplateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-weisahng">
+        <div><i class="iconfont icon-icon-test wl-shangwei"></i></div>
+        <div>尚未上传内容</div>
+    </div>
+    {{#  }); }}
+</script>
+<script>
+    var listObj = {
+        index:0,
+        user_id:{$user_info['id']},
+        url:[
+            '/weixin/Article/getUserPublishArticle',
+            '',
+            '',
+            ''
+        ],
+        searchList: function (page, successCallback, errorCallback) {
+            var data = $.extend({}, {user_id:listObj.user_id,uid:listObj.user_id,page: page.num, page_size: page.size});
+            $.ajax({
+                url: listObj.url[listObj.index],
+                // url:'/weixin/Article/getUserPublishArticle',
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+            });
+        },
+    };
+
+
+    var curNavIndex=0;
+    var mescrollArr=new Array(4);
+    var url = window.location.toString();
+    var maodian = url.split('#')[1];
+    $('.mescroll').addClass('hide');
+    if(maodian == 'all'){
+        $('#mescroll0').removeClass('hide');
+        mescrollArr[0]= initMescroll("mescroll0", "dataList0");
+    }else if(maodian  == 'paid'){
+        curNavIndex = 1;
+        $('#mescroll1').removeClass('hide');
+        mescrollArr[1]= initMescroll("mescroll1", "dataList1");
+    }else if(maodian == 'consumption'){
+        curNavIndex = 2;
+        mescrollArr[2]= initMescroll("mescroll2", "dataList2");
+        $('#mescroll2').removeClass('hide');
+    }else if(maodian == 'complete'){
+        curNavIndex = 3;
+        mescrollArr[3]= initMescroll("mescroll3", "dataList3");
+        $('#mescroll3').removeClass('hide');
+    }else{
+        curNavIndex = 0;
+        mescrollArr[0]= initMescroll("mescroll0", "dataList0");
+        $('#mescroll0').removeClass('hide');
+    }
+
+    $(".nav > p").eq(curNavIndex).addClass('active').siblings().removeClass('active');
+
+    $(".nav p").click(function(){
+        var i=Number($(this).attr("i"));
+        if(curNavIndex!=i) {
+            //更改列表条件
+            $(".nav .active").removeClass("active");
+            $(this).addClass("active");
+            //隐藏当前列表和回到顶部按钮
+            $("#mescroll" + curNavIndex).hide();
+                mescrollArr[curNavIndex].hideTopBtn();
+                //显示对应的列表
+                $("#mescroll"+i).show();
+                // 取出菜单所对应的mescroll对象,如果未初始化则初始化
+                if(mescrollArr[i]==null) {
+                    mescrollArr[i] = initMescroll("mescroll" + i, "dataList" + i);
+                }
+                //更新标记
+                curNavIndex=i;
+        }
+    });
+
+
+    function initMescroll(mescrollId,clearEmptyId){
+        var mescroll = new MeScroll(mescrollId, {
+            down:{auto:true},
+            up: {
+                clearEmptyId: clearEmptyId,
+                page: {num: 0,size: 20},
+                htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+                isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
+                noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+                empty: {
+                    icon: "/static/weixin/image/mescroll/dingdan.png", //图标,默认null
+                    tip: "亲,您还没有相关的订单~", //提示
+                    btntext: "去逛逛 >",
+                    btnClick: function(){
+                        window.location.href = "/weixin/shop/index";
+                    }
+                },
+                callback: function(page){
+                    listObj.searchList(page,function(curPageData){
+                        mescroll.endSuccess(curPageData.length);
+                        var template = templateList.innerHTML;
+                        if(curNavIndex==0){
+                            $.each(curPageData, function (k, val) {
+                                if (val.thumbnail != '' && val.thumbnail != undefined) {
+                                    curPageData[k].thumbnail = $.parseJSON(val.thumbnail);
+                                }
+                            });
+                            layui.laytpl(templateList.innerHTML).render(curPageData, function (html) {
+                                $('#dataList0').append(html);
+                            });
+                        }else if(curNavIndex==1){
+                            layui.laytpl(isnoTemplateList.innerHTML).render( function(html){
+                                $('#dataList1').append(html);
+                            });
+                        }else if(curNavIndex==2){
+                            layui.laytpl(isnoTemplateList.innerHTML).render( function(html){
+                                $('#dataList2').append(html);
+                            });
+                        }else if(curNavIndex==3){
+                            layui.laytpl(isnoTemplateList.innerHTML).render(function(html){
+                                $('#dataList3').append(html);
+                            });
+                        }
+                    }, function(){
+                        mescroll.endErr();
+                    });
+                },
+            }
+        });
+
+        return mescroll;
+    }
+    var myObj = {
+        isAdd:false,
+        addFriendLoading:false,
+        showAddFriend:function(){
+            if(!this.isAdd){
+                $(".wl-zhezhao").toggle();
+            }else{
+                redream.showTip('不能重复申请...');
+            }
+        },
+        submitFriendApply:function(){
+            var remarks = $.trim($('#fr-friend-remarks').val());
+            if(redream.isEmptyStr(remarks)){
+                redream.showTip('申请备注不能为空...');
+                return false;
+            }else if(!this.addFriendLoading){
+                $.ajax({
+                    url: "/weixin/user/addFriend",
+                    type: 'post',
+                    data: {friend_id:{$uid},remarks:remarks},
+                    dataType: 'json',
+                    beforeSend:function(){
+                        myObj.addFriendLoading = true;
+                    },
+                    complete:function(){
+                        myObj.addFriendLoading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            myObj.isAdd = true;
+                            $(".wl-zhezhao").toggle();
+                            redream.showTip('申请提交成功...');
+                        }else if (res.code == 401){
+                            redream.showTip('请先进行登录');
+                            $('.wl-zhezhao').hide();
+                            LoginBox.showBox();
+                        }else if (res.code == 403){
+                            redream.showTip('您还没有授权');
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    $(document).on('click','.cus-article-href',function(){
+        window.location.href = '/weixin/article/articleDetails/id/'+ $(this).data('id');
+    });
+    
+    $('.wl-guanbi1').click(function () {
+        $('.wl-zhezhao').hide();
+    })
+
+
+    $(".wl-zhezhao").click(function (event) {
+        var _con = $('.wl-zhe1'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhezhao').hide(); //淡出消失
+        }
+    });
+
+</script>
 {/block}

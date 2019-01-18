@@ -522,6 +522,8 @@
                             $(".wl-zhezhao").toggle();
                         }else if (res.code == 401){
                             redream.showTip('请先进行登录');
+                            $('.wl-zhezhao').hide();
+                            LoginBox.showBox();
                         }else if (res.code == 403){
                             redream.showTip('您还没有授权');
                         }else{
@@ -618,6 +620,8 @@
             $('.wl-zhezhao').hide(); //淡出消失
         }
     });
+
+
     $(document).on('click', '.cus-recommend-href', function () {
         window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
     });
@@ -713,6 +717,7 @@
         }
     };
     $('.wl-neirong').find('p').removeAttr('style');
+
     $('.wl-guanbi1').click(function () {
         $('.wl-zhezhao').hide();
     })

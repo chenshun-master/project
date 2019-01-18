@@ -218,6 +218,7 @@ class Article extends BaseController
             }
         }
 
+
         $this->assign([
             'statistics'=>$data,
             'user_info' =>$user_info,

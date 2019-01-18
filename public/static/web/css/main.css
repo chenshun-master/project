@@ -43,6 +43,9 @@ body {
     float: left;
     color: #FD7D7D;
 }
+.w-e-text {
+    overflow-y: auto!important;
+}
 .web-footer-content img{
     width: 15px;
     display: inline-block;
@@ -297,4 +300,9 @@ input::-webkit-input-placeholder {
 
 button {
     cursor: pointer;
+}
+.editor-toolbar{
+    border:1px solid #e2e2e2 !important;
+    background: #f9f9f9 !important;
+    /*background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#f2f2f2))!important;*/
 }
