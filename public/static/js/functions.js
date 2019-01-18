@@ -216,5 +216,9 @@
                 history.go(-1);
             }
         },
+        getObjLength:function (obj) {
+            if(obj == '' ){return 0;}
+            return  Object.keys(obj).length;
+        }
 }
 })(window,jQuery);

@@ -155,7 +155,7 @@ $(".wl-zhez2").click(function(event) {
         $('.wl-zhez2').hide(); //淡出消失
     }
 });
-$('.w-e-toolbar').css("border",'1px solid #eeeeee');
+$('.w-e-toolbar').addClass('editor-toolbar');
 $('.w-e-text-container').css("border",'1px solid #eeeeee');
 
 $(function(){

@@ -285,6 +285,7 @@ var objClass = {
                         $('#cus-add-friend').text('已申请');
                         $(".wl-zhezhao").toggle();
                     }else if (res.code == 401){
+                        $('.wl-zhezhao').hide();
                         LoginBox.showBox().showTip('请先进行登录操作');
                     }else if (res.code == 403){
                         redream.showTip('您还没有授权');
