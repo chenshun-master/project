@@ -1,684 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{:config('conf.title')} - 用户中心</title>
-    <link rel="stylesheet" href="/static/web/css/relrase.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link href="/static/web/dis/head/sitelogo.css" rel="stylesheet">
-    <link href="/static/web/dis/head/cropper.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/function.css">
+{extend name="layout/layout" /}
 
-    <style>
-        button {cursor: pointer}
-        .wl-main-bg-color {background:#7db0e8 !important;}
-        .code-hui{
-            color: #cccccc !important;
-        }
-        .wl-zheque{
-            color: #cccccc !important;
-        }
-    </style>
-</head>
-<body  style="background: #F8F8F8"   >
-<div class="wl-con" >
-    <div class="wl-top" >
-        <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
-            <img src="/static/web/image/logo1.png" alt="" >
-        </div>
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/main.css">
+<link rel="stylesheet" href="/static/web/css1/modify_userinfo.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
     </div>
-    <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
-        <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;background: #7DB0E8;" class="wl-xian">
-                <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: 8px;">{$user_info['nickname']}</span>
-                <i class="iconfont icon-triangledownfill" style="color: white;display: inline-block;margin-top: 7px;"></i>
-            </p>
-            <div class="wl-cang" style="display: none">
-                <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p>
-                <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="wl-tabc" style="width: 100%">
-        <div class="tab-box" >
-            <a href="/index/article/article" style="color: #333333">
-            <div class="wl-fabiao" style="cursor: pointer" >
-
-                    <i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i>
-            </div>
-            </a>
-            <ul class="renzheng" style="background: #F8F8F8;top: 70px;">
-                <a href="/index/shop/index">
-                    <div class="wl-xian1"  style="position:relative;">
-                        <span class="wl-shimin1"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px"></i>分销商品<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></span>
-                    </div>
-                </a>
-
-                <a href="/index/user/certification">
-                    <div class="wl-xian1" style="position:relative;margin-top: 10px">
-                        <span class="wl-shimin1"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px"></i>实名认证<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></span>
-                    </div>
-                </a>
-
-                <a href="/seller/index">
-                    <div class="wl-shiming" style="margin-top: 10px">
-                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
-                    </div>
-                </a>
-            </ul>
-            <div class="wl-qiehuan" >
-                <div class="top" style="cursor: pointer">
-                    <span class="wl-anquan">账号信息</span>
-                    <span  class="wl-zhongxon">安全中心</span>
-                </div>
-                <div class="xia">
-                    <div class="one">
-                        <div class="one-1">
-                            <img src="{$user_info['portrait']}"  onerror="this.src='/static/web/image/tou.png'" >
+    <div class="web-content-right">
+        <ul class="wl-deji">
+            <li class="active">用户信息</li>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="content">
+            <!--基本资料-->
+            <div class="wl-d active">
+                <div class="one-1">
+                    <div style="width: 80%;margin: 0 auto">
+                        <img src="{$user_info['portrait']}"  onerror="this.src='/static/web/image/tou.png'" >
+                        <div style="float: left">
                             <dt id="cus-nickname">{$user_info['nickname']}</dt>
                             <dd id="cus-profile" title="{$user_info['profile']}">
                                 {$user_info['profile']?:'<span style="color: #CCCCCC">您还没有设置您的简介信息...</span>'}
                             </dd>
-                            <button style="float: right;margin-top: 48px;cursor: pointer" class="wl-xgxx">修改信息</button>
+
                         </div>
-                        <div style="width: 100px;height: 666px;float: left;color:#333333;font-size: 16px; ">
-                            <dl style="margin-top:31px;">账号信息</dl>
-                            <dl style="margin-top:138px;">登录方式</dl>
-                            <dl style="margin-top:60px;">运营人信息</dl>
-                        </div>
-                        <div class="wl-grxx">
-                            <div>
-                                <span>用户类型</span>
-                                <span>
+                        <a href="/index/user/modifyUserInfo"><button class="wl-xgxx">修改信息</button></a>
+                    </div>
+                </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li class="web-information">账号信息</li>
+                        <li>
+                         <span  class="web-leixing">用户类型</span>
+                            <span class="web-renzheng">
                                 <?php if($user_info['type'] == 1):?>
-                                    <a href="/index/user/certification" style="color:#7DB0E8">申请认证</a>
-                                    <?php elseif($user_info['type'] == 2):?>
-                                    认证会员
-                                    <?php elseif($user_info['type'] == 3):?>
-                                    认证医生
-                                    <?php elseif($user_info['type'] == 4):?>
-                                    认证医院
-                                    <?php elseif($user_info['type'] == 5):?>
-                                    官方团队
-                                    <?php endif;?>
+                            <a href="/index/user/certification" style="color:#7DB0E8">申请认证</a>
+                            <?php elseif($user_info['type'] == 2):?>
+                            认证会员
+                            <?php elseif($user_info['type'] == 3):?>
+                            认证医生
+                            <?php elseif($user_info['type'] == 4):?>
+                            认证医院
+                            <?php elseif($user_info['type'] == 5):?>
+                            官方团队
+                            <?php endif;?>
                             </span>
-                            </div>
-                            <div><span>用户账号</span> <span>{$user_info['mobile']|mobileFilter}</span></div>
-                            <div><span>绑定手机</span> <span>{$user_info['mobile']|mobileFilter}</span><span style="float: right">如需更换,<i style="color: #FD7D7D;cursor: pointer" onclick="deme()" >请前往"安全中心"</i></span></div>
-                            <div><span>运营人</span>
-                                {if condition="count($auth_info) > 0 && $auth_info['status'] == 3"}
-                                <span>{$auth_info['username']|userNameTuoming}</span>
-                                {else /}
-                                <span>-</span>
-                                {/if}
-                            </div>
-                            <div><span>联系邮箱</span> <span>-</span></div>
-                            <div><span>所在地</span>   <span>-</span></div>
-                        </div>
-                    </div>
-                    <div class="two">
-                        <div class="two-1">
-                            <img src="/static/web/image/wl-dunpai.png" alt="">
-                        </div>
-                        <div class="two-2">
-                            <div><span>绑定手机</span><span style="color: #888888;margin-left: 100px" >当前已绑定</span><span style="color: #7DB0E8;margin-left: 210px;cursor: pointer" class="wl-hf">更改手机</span></div>
-                            <div><span>登录密码</span><span style="color: #7DB0E8;margin-left: 391px;cursor: pointer" class="wl-xgmm">修改密码</span></div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="wl-zhez">
-                <div class="wl-zl" id="cus-from-box1" style="position: relative" >
-                    <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-change-err-tip"></p>
-                    <div class="wl-title">手机号修改</div>
-                    <div class="cus-from-box1-1">
-                        <div class="wl-zheh " ><span style="margin-left: 96px">更换号码</span><input type="text" placeholder="请输入手机号"   id="fr-box-mobile" onkeyup = "value=value.replace(/[^\d]/g,'')" maxlength="11"></div>
-                        <div class="wl-zheh" ><span>手机验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"  style="margin-left: 43px;"  /><button id="code-btn" onclick="objClass.sendSms()"  style="color: #7DB0E8">发送验证码</button></div>
-                        <p style="padding-right: 182px;padding-top: 4px;color: red;font-size: 12px;text-align: right" id="cus-from-box1-err" ></p>
-                        <div class="wl-zheque"><button  onclick="objClass.submit()" id="fr-box-btn" disabled >立即修改</button></div>
-                    </div>
-                    <div class="cus-from-box1-2">
-                        <div style="text-align: center;"style="display: none">
-                            <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
-                            <p style="color: #333333;font-size: 18px;margin-top: 20px">手机号修改成功</p>
-                            </div>
-                        </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li  class="web-information"></li>
+                        <li>
+                            <span  class="web-leixing">用户账号</span><span class="web-renzheng">{$user_info['mobile']|mobileFilter}</span>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="wl-zhez1">
-                <div class="wl-zl1"  id="cus-from-box2" style="position: relative">
-                    <p style="position: absolute;top: 0px;left:160px;width: 270px;height: 30px;text-align: center;background-color: #f0e7e7;border-radius: 0 0 5px 5px;color: #e48484;display: none" id="cus-changepwd-err-tip"></p>
-                    <div class="wl-title1">密码修改</div>
-                    <div class="cus-from-box2-1">
-                        <div class="wl-yibang">通过已绑定手机 <span>{$user_info['mobile']|mobileFilter}</span> 进行验证</div>
-                        <input type="hidden"  value="{$user_info['mobile']}" id="fr-box1-mobile" />
-                        <div class="wl-zhes"><span>输入验证码</span><input type="text" placeholder="请输入短信验证码" id="fr-box1-sms-code" onkeyup = "value=value.replace(/[^\d]/g,'')"  maxlength="6"><button id="code-btn1" onclick="objClass1.sendSms()" style="color: #7DB0E8">发送验证码</button></div>
-                        <div class="wl-zhes"><span>设置新密码</span><input type="password" placeholder="请输入新密码" id="fr-box1-password" maxlength="18"></div>
-                        <div class="wl-zhes"><span>确认新密码</span><input type="password" placeholder="再次输入新密码" id="fr-box1-password2" maxlength="18" style="z-index: 1;"></div>
-                        <div style="margin-left: 195px;font-size: 12px;color: #CCCCCC;float: left; margin-top: 10px;">注：密码格式为8~16位字母+数字</div>
-                        <div class="wl-zheque" style="position: absolute;bottom: -7px;"><button onclick="objClass1.submit()" id="fr-box2-btn" disabled>立即修改</button> </div>
-                    </div>
-
-                    <div class="cus-from-box2-2" style="display: none;">
-                        <div style="text-align: center;">
-                            <p class="iconfont icon-roundcheck" style="font-size: 80px;color: #7DB0E8;margin-top: 50px"></p>
-                            <p style="color: #333333;font-size: 18px;margin-top: 20px">新密码修改成功</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="wl-zhez2">
-                <div class="wl-zl2">
-                    <div class="wl-gexx">修改个人信息</div>
-                    <div class="wl-gerenl">
-                        <div class="cd" style="cursor: pointer" data-toggle="modal" data-target="#avatar-modal" id="wl-da">
-                            <img src="{$user_info['portrait']}"  width="73px"  height="73px" onerror="this.src='/static/web/image/tou.png'"  />
-                            <div class="dd" >更换头像</div>
-                        </div>
-                        <div class="wl-ri">
-                            <input type="text" placeholder="用户名称" style="text-indent: 5px;" value="{$user_info['nickname']}" id="fr-box2-nickname">
-                            <p>2-10个汉字，请勿使用包含特殊符号</p>
-                            <textarea  cols="30" rows="10" style="text-indent: 5px;resize: none;padding: 5px;" id="fr-box2-profile"  >{$user_info['profile']}</textarea>
-                            <p>30个汉字，无特殊符号</p>
-                            <button class="wl-que1"  onclick="editProfile.submit()" >确认</button> <button  class="wl-que2">取消</button>
-                        </div>
-                    </div>
+                <div class="web-top-name">
+                    <ul>
+                        <li  class="web-information">登录方式</li>
+                        <li>
+                            <span  class="web-leixing">绑定手机</span>
+                            <span class="web-renzheng">{$user_info['mobile']|mobileFilter}</span>
+                            <span class="web-genghuan">如需更换,<a href="/index/user/security"><span style="color: #FD7D7D;cursor: pointer">请前往"安全中心"</span></a></span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
+{/block}
 
-</div>
-<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!--<form class="avatar-form" action="upload-logo.php" enctype="multipart/form-data" method="post">-->
-            <form class="avatar-form">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal" type="button">&times;</button>
-                    <h4 class="modal-title" id="avatar-modal-label">上传图片</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="avatar-body">
-                        <div class="avatar-upload">
-                            <input class="avatar-src" name="avatar_src" type="hidden">
-                            <input class="avatar-data" name="avatar_data" type="hidden">
-                            <label for="avatarInput" style="line-height: 35px;">图片上传</label>
-                            <button class="btn btn-danger"  type="button" style="height: 35px;" onClick="$('input[id=avatarInput]').click();">请选择图片</button>
-                            <span id="avatar-name"></span>
-                            <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file"></div>
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="avatar-wrapper"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="avatar-preview preview-lg" id="imageHead"></div>
-                                <!--<div class="avatar-preview preview-md"></div>
-                        <div class="avatar-preview preview-sm"></div>-->
-                            </div>
-                        </div>
-                        <div class="row avatar-btns">
-                            <div class="col-md-4">
-                                <div class="btn-group">
-                                    <button class="btn btn-danger fa fa-undo" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"> 向左旋转</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn  btn-danger fa fa-repeat" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"> 向右旋转</button>
-                                </div>
-                            </div>
-                            <div class="col-md-5" style="text-align: right;">
-                                <button class="btn btn-danger fa fa-arrows" data-method="setDragMode" data-option="move" type="button" title="移动">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
-							            </span>
-                                </button>
-                                <button type="button" class="btn btn-danger fa fa-search-plus" data-method="zoom" data-option="0.1" title="放大图片">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
-							              <!--<span class="fa fa-search-plus"></span>-->
-							            </span>
-                                </button>
-                                <button type="button" class="btn btn-danger fa fa-search-minus" data-method="zoom" data-option="-0.1" title="缩小图片">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
-							              <!--<span class="fa fa-search-minus"></span>-->
-							            </span>
-                                </button>
-                                <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
-								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
-                                            </span>
-                                </button>
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-danger btn-block avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
-<footer class="wl-foot" style="bottom: -150px;">{:config('conf.copyright')}</footer>
-</body>
-<!--<script src="/static/js/jquery.min.js"></script>-->
-<script src="/static/web/dis/head/jquery.min.js"></script>
-<script src="/static/web/dis/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/web/dis/head/bootstrap.min.js"></script>
-<script src="/static/web/dis/head/cropper.js"></script>
-<script src="/static/web/dis/head/sitelogo.js"></script>
+{block name="script"}
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/plugin/jquery.smscode.js"></script>
-<script type="text/javascript">
-    //获取修改手机号验证码
-    var codeObj = new Code('code-btn','获取验证码','code-hui','pc-sms-edit-mobile',60);
-    var codeObj1 = new Code('code-btn1','获取验证码','code-hui','pc-sms-edit-pwd',60);
-    var objClass = {
-        loading:false,
-        sendSmsCode:false,
-        errr1:function(msg){
-            $('#cus-change-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
-        },
-        submit:function () {
-            var mobile = $.trim($('#fr-box-mobile').val());
-            var sms_code = $.trim($('#fr-box-sms-code').val());
-            $('#cus-from-box1-err').html('');
-            if(!redream.checkMobile(mobile)){
-                this.errr1('手机号格式不正确');return false;
-            }else if(sms_code == ''){
-                this.errr1('验证码不能为空！');return false;
-            }else if(!this.loading){
-                $.ajax({
-                    url:"/index/user/modifyMobile",
-                    type:'post',
-                    data:{mobile:mobile,sms_code:sms_code},
-                    dataType:'json',
-                    beforeSend:function(){
-                        objClass.loading = true;
-                        $('#fr-box-btn').text('修改中...');
-                    },
-                    complete:function(){
-                        objClass.loading = false;
-                        $('#fr-box-btn').text('立即修改');
-                    },
-                    success:function(res){
-                        if(res.code == 200){
-                            objClass.loading = true;
-                            $('.cus-from-box1-1').hide();
-                            $('.cus-from-box1-2').show();
-                            setTimeout(function(){
-                                window.location.reload();
-                            },5000);
-                        }else if(res.code == 302){
-                            objClass.errr1('验证码错误！');return false;
-                        }else if(res.code == 303){
-                            objClass.errr1('验证码已过期！');return false;
-                        }
-                    }
-                });
-            }
-        },
-        sendSms:function () {
-            var mobile = $.trim($('#fr-box-mobile').val());
-            if(codeObj.checkTime()){
-                return false;
-            }else if(!redream.checkMobile(mobile)){
-                this.errr1('请正确填写手机号！');return false;
-            }else if(!this.sendSmsCode){
-                $.ajax({
-                    url:"/index/index/sendSmsCode",
-                    type:'post',
-                    data:{mobile:mobile,type:6},
-                    dataType:'json',
-                    beforeSend:function(){
-                        objClass.sendSmsCode = true;
-                    },
-                    complete:function(){
-                        objClass.sendSmsCode = false;
-                    },
-                    success:function(res){
-                        if(res.code == 200){
-                            codeObj.trigger();
-                            objClass.errr1('验证码发送成功！');
-                        }else if(res.code == 301){
-                            objClass.errr1('请求参数错误！');
-                        }else if(res.code == 302){
-                            objClass.errr1('手机号已被他人使用！');
-                        }else{
-                            objClass.errr1('验证码发送失败！');
-                        }
-                    }
-                });
-            }
-        }
-    };
-
-    var objClass1 = {
-        loading:false,
-        sendSmsCode:false,
-        errr:function(msg){
-            $('#cus-changepwd-err-tip').fadeIn("slow").delay(3000).fadeOut().text(msg);
-        },
-        submit:function () {
-            var sms_code  = $('#fr-box1-sms-code').val();
-            var password  = $('#fr-box1-password').val();
-            var password1 = $('#fr-box1-password2').val();
-            if(password == ''){
-                this.errr('请输入新密码！');return false;
-            }else if(password1 == ''){
-                this.errr('请输入确认新密码！');return false;
-            }else if(password != password1){
-                this.errr('两次密码输入不一致！');return false;
-            }else if(!this.loading){
-                $.ajax({
-                    url:"/index/user/modifyPassword",
-                    type:'post',
-                    data:{password:password,sms_code:sms_code},
-                    dataType:'json',
-                    beforeSend:function(){
-                        objClass1.loading = true;
-                        $('#fr-box2-btn').text('修改中...');
-                    },
-                    complete:function(){
-                        objClass1.loading = false;
-                        $('#fr-box2-btn').text('立即修改');
-                    },
-                    success:function(res){
-                        if(res.code == 200){
-                            objClass1.loading = true;
-                            $('.cus-from-box2-1').hide();
-                            $('.cus-from-box2-2').show();
-
-                            $('#fr-box1-sms-code').val('');
-                            $('#fr-box1-password').val('');
-                            $('#fr-box1-password2').val('');
-                            $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
-                        }else if(res.code == 302){
-                            return false;
-                        }else if(res.code == 303){
-                            return false;
-                        }
-                    }
-                });
-            }
-        },
-        sendSms:function(){
-            var mobile = $('#fr-box1-mobile').val();
-            if(!redream.checkMobile(mobile)){
-                this.errr('手机号格式错误！');return false;
-                return false;
-            }else if(codeObj1.checkTime()){
-                return false;
-            }else if(!this.sendSmsCode){
-                $.ajax({
-                    url:"/index/index/sendSmsCode",
-                    type:'post',
-                    data:{mobile:mobile,type:5},
-                    dataType:'json',
-                    beforeSend:function(){
-                        objClass1.sendSmsCode = true;
-                    },
-                    complete:function(){
-                        objClass1.sendSmsCode = false;
-                    },
-                    success:function(res){
-                        if(res.code == 200){
-                            codeObj1.trigger();
-                            objClass1.errr('验证码发送成功！');
-                        }else{
-                            objClass1.errr('验证码发送失败！');
-                        }
-                    }
-                });
-            }
-        }
-    };
-
-    var editProfile ={
-        loading:false,
-        submit:function(){
-            var nickname = $.trim($('#fr-box2-nickname').val());
-            var profile = $.trim($('#fr-box2-profile').val());
-            if(nickname == ''){
-                alert('昵称不能为空');
-                return false;
-            }else if(!this.loading){
-                $.ajax({
-                    url:"/index/user/editProfile",
-                    type:'post',
-                    data:{nickname:nickname,profile:profile},
-                    dataType:'json',
-                    beforeSend:function(){
-                        editProfile.loading = true;
-                    },
-                    complete:function(){
-                        editProfile.loading = false;
-                    },
-                    success:function(res){
-                        if(res.code == 200){
-                            $('#cus-nickname').html(nickname);
-                            $('#cus-profile').html(profile);
-                            $(".wl-zhez2").hide();
-                        }else {
-                            alert('修改失败');
-                        }
-                    }
-                });
-            }
-        }
-    };
-
-    $(".tab-box li").each(function(index) {
-        $(this).click(function() {
-            $("li.active").removeClass("active"); //注意这里
-            $(this).addClass("active");
-            $(".tab-content div.active-txt").removeClass("active-txt");
-            $(".tab-content div").eq(index).addClass("active-txt");
-        });
+<script src="/static/plugin/layui/layui.js"></script>
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
     });
 
-    $('.nav-item>a').on('click',function(){
-        if (!$('.nav').hasClass('nav-mini')) {
-            if ($(this).next().css('display') == "none") {
-
-                $('.nav-item').children('ul').slideUp(300);
-                $(this).next('ul').slideDown(300);
-                $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
-            }else{
-                $(this).next('ul').slideUp(300);
-                $('.nav-item.nav-show').removeClass('nav-show');
-            }
-        }
-    });
-
-    $(".wl-xian").click(function () {
-        $(".wl-cang").toggle();
-    });
-
-    $(".wl-xian1").click(function () {
-        $(".wl-cang1").toggle();
-    });
-
-    $('#cus-from-box1 input').on('input',function(){
-        var mobile = $.trim($('#fr-box-mobile').val());
-        var sms_code = $.trim($('#fr-box-sms-code').val());
-        if(mobile != '' && sms_code != ''){
-            $('#fr-box-btn').addClass('wl-main-bg-color').prop('disabled',false);
-        }else{
-            $('#fr-box-btn').removeClass('wl-main-bg-color').prop('disabled',true);
-        }
-        $('#cus-from-box1-err').html('');
-    });
-
-    $('#cus-from-box2 input').on('input',function(){
-        var sms_code = $.trim($('#fr-box1-sms-code').val());
-        var password = $.trim($('#fr-box1-password').val());
-        var password2 = $.trim($('#fr-box1-password2').val());
-
-        if(sms_code != '' && password != '' && password2 != ''){
-            $('#fr-box2-btn').addClass('wl-main-bg-color').prop('disabled',false);
-        }else{
-            $('#fr-box2-btn').removeClass('wl-main-bg-color').prop('disabled',true);
-        }
-    });
 </script>
-<script type="text/javascript">
-    $(function(){
-        $(".one").show();
-        $(".top span").eq(0).addClass("se");
-        var a,b,index=0;
-        $(".top span").click(function(){
-            index=$(this).index();
-            $(".one,.two").eq(index).show().siblings().hide();
-            $(".top span").eq(index).addClass("se").siblings().removeClass("se");
-            if(index==0){
-                a=1
-            }
-            if(index==1){
-                b=1
-            }
-            if(a==1 && b==1){
-                $("#xiao").hide();
-            }
-        });
-    });
-
-    $("#wl-anquan").click(function () {
-        $(".wl-qiehuan").show();
-        $(".tab-content").hide();
-    });
-
-    $(".renzheng").click(function () {
-        $(".tab-content").show();
-        $(".wl-qiehuan").hide();
-    });
-
-    $(".wl-que2").click(function () {
-        $(".wl-zhez2").hide();
-    });
-
-    // 更换手机遮罩层
-    $(document).ready(function() {
-        $(".wl-hf").click(function(event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".wl-zhez").toggle();
-        });
-        //点击空白处隐藏弹出层
-        $(".wl-zhez").click(function(event) {
-            var _con = $('.wl-zl'); // 设置目标区域
-            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.wl-zhez').hide(); //淡出消失
-            }
-        });
-    });
-
-    // 修改密码遮罩层
-    $(document).ready(function() {
-        $(".wl-xgmm").click(function(event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".wl-zhez1").toggle();
-            $('.cus-from-box2-1').show();
-            $('.cus-from-box2-2').hide();
-        });
-        //点击空白处隐藏弹出层
-        $(".wl-zhez1").click(function(event) {
-            var _con = $('.wl-zl1'); // 设置目标区域
-            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.wl-zhez1').hide(); //淡出消失
-            }
-        });
-    });
-
-    // 修改信息遮罩层
-    $(document).ready(function() {
-        $(".wl-xgxx").click(function(event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".wl-zhez2").toggle();
-        });
-        //点击空白处隐藏弹出层
-        $(".wl-zhez2").click(function(event) {
-            var _con = $('.wl-zl2'); // 设置目标区域
-            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.wl-zhez2').hide(); //淡出消失
-            }
-        });
-    });
-
-    function deme() {
-        $('.wl-zhongxon').trigger("click");
-    }
-</script>
-<script type="text/javascript">
-    //做个下简易的验证  大小 格式
-    $('#avatarInput').on('change', function(e) {
-        var filemaxsize = 1024 * 5;//5M
-        var target = $(e.target);
-        var Size = target[0].files[0].size / 1024;
-        if(Size > filemaxsize) {
-            alert('图片过大，请重新选择!');
-            $(".avatar-wrapper").childre().remove;
-            return false;
-        }
-        if(!this.files[0].type.match(/image.*/)) {
-            alert('请选择正确的图片!')
-        } else {
-            var filename = document.querySelector("#avatar-name");
-            var texts = document.querySelector("#avatarInput").value;
-            var teststr = texts; //你这里的路径写错了
-            testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
-            filename.innerHTML = testend;
-        }
-
-    });
-
-    $(".avatar-save").on("click", function() {
-        var img_lg = document.getElementById('imageHead');
-        // 截图小的显示框内的内容
-        html2canvas(img_lg, {
-            allowTaint: true,
-            taintTest: false,
-            onrendered: function(canvas) {
-                canvas.id = "mycanvas";
-                //生成base64图片数据
-                var dataUrl = canvas.toDataURL("image/jpeg");
-                var newImg = document.createElement("img");
-                newImg.src = dataUrl;
-                imagesAjax(dataUrl)
-            }
-        });
-    });
-
-    function imagesAjax(src) {
-        var data = {};
-        data.img = src;
-        data.jid = $('#jid').val();
-        $.ajax({
-            url: "/index/user/uploadHead",
-            data: data,
-            type: "POST",
-            dataType: 'json',
-            success: function(res) {
-                if(res.code == 200){
-                    redream.showTip('头像修改成功');
-                    setTimeout(function () {
-                        window.location.reload();
-                    },2000)
-                }else{
-                    redream.showTip('头像修改失败');
-                }
-            }
-        });
-    }
-
-    $("#wl-da").click(function () {
-        $(".wl-zhez2").hide();
-    });
-    $(".wl-tabc").click(function () {
-        $(".wl-cang").hide();
-    })
-</script>
-</html>
+{/block}

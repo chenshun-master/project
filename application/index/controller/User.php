@@ -39,7 +39,7 @@ class User extends CController
 
         $this->assign('user_info', $user_info);
         $this->assign('auth_info', $authInfo);
-        return $this->fetch('user/main1');
+        return $this->fetch('user/main');
     }
 
     /**
@@ -66,7 +66,7 @@ class User extends CController
         $this->assign('authResult', $authResult);
         $this->assign('user_info', $user_info);
         $this->assign('type', isset($authResult['type']) ? $authResult['type'] : 0);
-        return $this->fetch('user/certification1');
+        return $this->fetch('user/certification');
     }
 
     /**

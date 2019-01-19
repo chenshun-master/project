@@ -1,146 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>发表文章</title>
-    <link rel="stylesheet" href="/static/web/css/test.css">
-    <link rel="stylesheet" href="/static/web/css/relrase.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
-    <link rel="stylesheet" href="/static/web/css/graphic.css">
-    <link rel="stylesheet" href="/static/css/function.css">
-    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
-</head>
-<body style="background: #F8F8F8">
-<div class="wl-con">
-    <div class="wl-top">
-        <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
-            <img src="/static/web/image/logo1.png" alt="">
-        </div>
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<!--<link rel="stylesheet" href="/static/web/css1/published_article.css">-->
+<link rel="stylesheet" href="/static/web/css1/my_article.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
+
+{block name="main"}
+
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
     </div>
-    <div class="wl-zhanghao-box"
-         style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
-        <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;background: #7DB0E8;" class="wl-xian">
-                <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: 8px;">{$user_info['nickname']}</span>
-                <i class="iconfont icon-triangledownfill" style="color: white;display: inline-block;margin-top: 7px;"></i>
-            </p>
-            <div class="wl-cang" style="display: none">
-                <a href="/index/user/main"><p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置
-                </p></a>
-                <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="wl-tabc" style="width: 100%">
-        <div class="tab-box" style="position: relative">
-            <div class="wl-nide">
-                <ul class="wl-top-liebiao">
-                    <a href="/index/article/article">
-                        <li class=""><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>文章列表<i
-                                class="iconfont icon-triangledownfill wl-xiala " style="font-size: 20px;top: 0;"></i>
-                        </li>
-                    </a>
-                    <div class="wl-ding">
-                        <!-- <li >发表文章</li> </a>-->
-                        <!--<a href="/index/article/graphic"> <li >我的文章 </li></a>-->
-                    </div>
-                </ul>
-                <ul class="wl-top-liebiao" style="margin-top: 10px">
-                    <li class="wl-yingj"><i class="iconfont icon-quanbu2 wl-biao" style="font-size: 25px;"></i>分销商品
-                        <i  class="iconfont icon-triangleupfill wl-xiala qiehuan" style="font-size: 20px;top: 0;"></i>
-                    </li>
-                    <div class="wl-ding">
-                        <a href="/index/shop/index">
-                            <li class="action">商品列表</li>
-                        </a>
-                        <a href="/index/shop/myshoplist">
-                            <li>分销列表</li>
-                        </a>
-                    </div>
-                </ul>
-                <a href="/index/user/certification">
-                    <div class="wl-shiming">
-                        <i class="iconfont icon-medal_light wl-biao" style="font-size: 25px;"></i>实名认证
-                        <i  class="iconfont icon-triangledownfill wl-xiala" style="font-size: 20px;top: 0;"></i>
-                    </div>
-                </a>
-                <a href="/seller/index">
-                    <div class="wl-shiming" style="margin-top: 10px">
-                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
-                    </div>
-                </a>
-            </div>
-            <div class="wl-fabu padding">
-                <p class="wl-fabiaowen" style="border: 0">全部项目</p>
-                <div class="wl-xianshi-neirong">
-                    <div class="wl-list" id="category-container">
-                        <div class="wl-project category-hierarchy" data-hierarchy="1" >
-                            <div>项目</div>
-                            <div class="wl-liebiao">
-                                <span class="se myselecte click-find-category">全部</span>
-                                {foreach($categoryList as $k=>$val)}
-                                    <span  data-pid="{$val['id']}"  data-id="{$val['id']}" class="click-find-category">{$val['name']}</span>
-                                {/foreach}
-                            </div>
-                            <div style="clear: both"></div>
-                        </div>
+    <div class="web-content-right">
+        <div class="web-content-right-title" style="border: 0"><span class="web-top-title">我的商品</span></div>
+        <div class="wl-xianshi-neirong">
+            <div class="wl-list" id="category-container">
+                <div class="wl-project category-hierarchy" data-hierarchy="1" >
+                    <div>项目</div>
+                    <div class="wl-liebiao">
+                        <span class="se myselecte click-find-category">全部</span>
+                        {foreach($categoryList as $k=>$val)}
+                        <span  data-pid="{$val['id']}"  data-id="{$val['id']}" class="click-find-category">{$val['name']}</span>
+                        {/foreach}
                     </div>
                     <div style="clear: both"></div>
-
-                    <div>
-                        <ul class="wl-sorting">
-                            <li class="active click-find-sort" data-sort="0">智能排序</li>
-                            <li data-sort="3" class="click-find-sort">最新上架</li>
-                            <li data-sort="1" class="click-find-sort">销量最高</li>
-                            <li class="wl-price" data-sort="4">
-                                价格排序
-                                <ul class="wl-sorting-gao" id="web-jiage">
-                                    <li data-sort="4" class="click-find-sort">价格最高</li>
-                                    <li data-sort="5" class="click-find-sort">价格最低</li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <div style="clear: both"></div>
-                    <div id="content">
-
-                    </div>
-                    <div style="clear: both"></div>
-
-                    <div class="wl-loading" style="">
-                        <div class="layui-box layui-laypage layui-laypage-default" id="click-reload-more">
-                            <a href="javascript:;" class="layui-laypage-next " data-page="2"  >加载更多</a>
-                        </div>
-                    </div>
-                    <div style="clear: both"></div>
-                    <footer class="wl-foot" style="bottom: -110px">{:config('conf.copyright')}</footer>
                 </div>
             </div>
+            <div style="clear: both"></div>
+
+            <div>
+                <ul class="wl-sorting">
+                    <li class="active click-find-sort" data-sort="0">智能排序</li>
+                    <li data-sort="3" class="click-find-sort">最新上架</li>
+                    <li data-sort="1" class="click-find-sort">销量最高</li>
+                    <li class="wl-price" data-sort="4">
+                        价格排序
+                        <ul class="wl-sorting-gao" id="web-jiage">
+                            <li data-sort="4" class="click-find-sort">价格最高</li>
+                            <li data-sort="5" class="click-find-sort">价格最低</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div style="clear: both"></div>
+            <div id="content">
+
+            </div>
+            <div style="clear: both"></div>
+
+            <div class="wl-loading" style="">
+                <div class="layui-box layui-laypage layui-laypage-default" id="click-reload-more">
+                    <a href="javascript:;" class="layui-laypage-next " data-page="2"  >加载更多</a>
+                </div>
+            </div>
+            <div style="clear: both"></div>
         </div>
     </div>
+
 </div>
-<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+{/block}
+
+{block name="script"}
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script id="shoptemplateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-        <div class="wl-shangpin-quan" style="z-index: 1;">
-            <dl><img src="{{ item.img }}" alt=""></dl>
-            <dt class="wl-shang-title">{{item.name}}</dt>
-            <dt class="wl-yiyuan">{{item.hospital_name}}</dt>
-            <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>{{item.sell_price}}</dd>
-            <dd class="wl-fenxiao click-to-create" data-goods_id="{{ item.id }}">推荐分销</dd>
-        </div>
+    <div class="wl-shangpin-quan" style="z-index: 1;">
+        <dl><img src="{{ item.img }}" alt=""></dl>
+        <dt class="wl-shang-title">{{item.name}}</dt>
+        <dt class="wl-yiyuan">{{item.hospital_name}}</dt>
+        <dd class="wl-jiage"><sup style="font-size: 10px">￥</sup>{{item.sell_price}}</dd>
+        <dd class="wl-fenxiao click-to-create" data-goods_id="{{ item.id }}">推荐分销</dd>
+    </div>
     {{#  }); }}
 </script>
 <script>
     const isAuth = {$isAuth};
 </script>
-<script src="/static/web/viewjs/shop_index.js" type="text/javascript" charset="utf-8"></script>
-</body>
-</html>
+<script>
+    $(".wl-sorting li").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");//获取选中元素的下标
+    });
+    $(".wl-price").click(function () {
+        $(".wl-sorting-gao").toggle();
+    });
+
+    $(document).on('click', '.click-to-create', function () {
+        if(isAuth == 0){
+            alert('未授权操作');
+            return false;
+        }
+        window.location.href = '/index/shop/shopEditor?gid='+$(this).data('goods_id');
+    });
+
+    var listObj = {
+        params:{
+            ini:true,
+            page: 0,
+            page_size: 16,
+            category:'',
+            sort:0,
+            city:'',
+            keywords:'',
+            page_total:0,
+        },
+        loadlist:function(laypageObj){
+            listObj.params.page++;
+
+            if(listObj.params.ini == false && listObj.params.page > listObj.params.page_total){
+                listObj.params.page--;
+                $('#click-reload-more').find('a').addClass('layui-disabled').text('没有更多了');
+                return false;
+            }else{
+                $('#click-reload-more').find('a').removeClass('layui-disabled').text('加载更多');
+            }
+
+            $.ajax({
+                url: "/index/shop/getShopList",
+                type: 'post',
+                data: listObj.params,
+                dataType: 'json',
+                success: function (res) {
+                    if(res.code == 200){
+                        listObj.params.page_total = res.data.page_total;
+
+                        layui.laytpl(shoptemplateList.innerHTML).render(res.data.rows, function(html){
+                            console.log(listObj.params.ini);
+                            if(listObj.params.ini){
+                                $('#content').html(html);
+                            }else{
+                                $('#content').append(html);
+                            }
+                            listObj.params.ini = false;
+                        });
+                    }
+                }
+            });
+        }
+    };
+
+    listObj.loadlist();
+
+    var objClass = {
+        categoryList:[],
+        loading:false,
+    };
+
+    $(document).on('click','.click-find-category',function(){
+        $(this).addClass("se").siblings().removeClass("se");
+        listObj.params.ini = true;
+        listObj.params.page = 0;
+        listObj.params.category = $(this).data('id');
+        listObj.loadlist();
+    });
+
+    $(document).on('click','.click-find-sort',function(){
+        listObj.params.sort = $(this).data('sort');
+        listObj.params.ini = true;
+        listObj.params.page = 0;
+        listObj.loadlist();
+        $('#web-jiage').hide();
+    });
+
+    $('#click-reload-more').on('click',function(){
+        listObj.loadlist();
+    });
+</script>
+{/block}

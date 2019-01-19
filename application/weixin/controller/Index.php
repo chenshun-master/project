@@ -32,7 +32,7 @@ class Index extends BaseController
      */
     public function index(Request $request)
     {
-        return $this->fetch('index/index2');
+        return $this->fetch('index/index');
     }
 
     /**
@@ -60,7 +60,7 @@ class Index extends BaseController
             return redirect('/weixin/user/main');
         }
 
-        return $this->fetch('index/loginReister1');
+        return $this->fetch('index/loginReister');
     }
 
     /**
@@ -93,7 +93,7 @@ class Index extends BaseController
         $this->assign('redir',$redir);
 
 
-        return $this->fetch('index/login1');
+        return $this->fetch('index/login');
     }
 
     /**
@@ -101,7 +101,7 @@ class Index extends BaseController
      */
     public function backpwd()
     {
-        return $this->fetch('index/backpwd1');
+        return $this->fetch('index/backpwd');
     }
 
     /**

@@ -1,487 +1,496 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{:config('conf.title')} - 实名认证</title>
-    <link rel="stylesheet" href="/static/web/css/relrase.css">
-    <link rel="stylesheet" href="/static/css/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="/static/plugin/layui/css/layui.css"/>
-    <!--<link rel="stylesheet" href="/static/web/css/graphic.css">-->
-    <style>
-        button{cursor: pointer;}
-        .cus-icon-tip{color: red;display: none;}
-        .cus-input-err-tip{border: 1px solid red !important;}
-        .code-hui{color: #cccccc;}
+{extend name="layout/layout" /}
 
-        .fr-file-btn-list{
-            position: absolute;
-            top: 0px;
-        }
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/web/css1/certification1.css">
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+{/block}
 
-        .wl-hidden{display: none !important;};
-        .xian{
-            color: #7DB0E8;
-        }
-        .wl-xz{
-            position: absolute;
-            top: 2px;
-            left: 16px;
-        }
-        .wl-xin{
-            color: #FD7D7D;
-        }
-        .se{
-            color: #7DB0E8;
-        }
-        .wl-liandong{
-            padding-left: 5px;
-        }
-    </style>
-</head>
-<body  style="background: #F8F8F8"   >
+{block name="main"}
 
-<div class="wl-con" >
-    <div class="wl-top" >
-        <div style="position:relative;width:1265px;margin:0 auto;top:20px;left: 10px">
-            <img src="/static/web/image/logo1.png" alt="" >
-        </div>
+<div class="web-content">
+    <div class="web-content-left">
+        {include file="layout:navigation" /}
     </div>
-    <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
-        <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;background: #7DB0E8;" class="wl-xian">
-                <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: 8px;">{$user_info['nickname']}</span>
-                <i class="iconfont icon-triangledownfill" style="color: white;display: inline-block;margin-top: 7px;"></i>
-            </p>
-            <div class="wl-cang" style="display: none">
-                <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
-                <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</p>
-            </div>
-        </div>
-    </div>
-    <div class="wl-tabc" style="width: 100%">
-        <div class="tab-box" >
-            <div class="wl-fabiao" style="cursor: pointer" onclick="redream.href('/index/article/article')"><i class="iconfont icon-form_light wl-xz" style="font-size: 30px;"></i>文章列表<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>
-  
-                <a href="/index/shop/index" style="color: #333333">
-                    <div class="wl-fabiaoa" style="cursor: pointer" >
-                        <i class="iconfont icon-quanbu2 wl-xz" style="font-size: 27px;"></i>分销商品<i class="iconfont icon-triangledownfill wl-sxia" style="font-size: 20px;top: 0;"></i></div>
-                </a>
 
-            <ul class="renzheng">
-                <div class="wl-xian1">
-                    <span class="wl-shimin"><i class="iconfont icon-medal_light wl-xz" style="font-size: 30px;"></i>实名认证</span><i class="iconfont icon-triangleupfill wl-sxia qiehuan" style="font-size: 20px"></i>
-                </div>
-                <div class="wl-cang1" >
-                    <span id="san"> <a href="#auth1"><li class="{if($type == 1 || $type == 0)} active {/if}">个人认证</li></a></span>
-                    <span id="one"> <a href="#auth2"><li class="{if($type == 2)} active {/if}">医生认证</li></a></span>
-                    <span id="two"> <a href="#auth3"><li class="{if($type == 3)} active {/if}">医院认证</li></a></span>
-                    <span id="six"> <a href="#auth4"><li class="{if($type == 4)} active {/if}">官方认证</li></a></span>
-
-
-                </div>
-                <a href="/seller/index">
-                    <div class="wl-shiming">
-                        <i class="iconfont icon-wodexingqiu_shoucangdeshangpin wl-biao" style="font-size: 25px;"></i>商户管理
-                    </div>
-                </a>
+    <div class="web-content-right">
+            <ul class="wl-deji {if($type != 0 && $recertification ==0)}  wl-hidden{/if}">
+                <li class="{if($type == 1 || $type == 0)}  active{/if}">个人认证</li>
+                <li class="{if($type == 2)} active {/if}">医生认证</li>
+                <li class="{if($type == 3)} active {/if}">医院认证</li>
+                <li class="{if($type == 4)} active {/if}">官方认证</li>
             </ul>
+        <div style="clear: both"></div>
+            <div class="content ">
 
-
-            <div class="tab-content <?php if(count($authResult) > 0 && $recertification != 1):?>wl-hidden<?php endif;?>" style="position: relative;" >
-                <p id="fr-error-box"  style="position: fixed;width: 462px;height: 38px;top:0px;margin:auto;left:0;right:0;z-index: 2;line-height: 38px;text-align: center;border-top: 2px solid red;background-color: #fff1f1;border-radius: 0 0 5px 5px;color: #d4a6a6;display: none">
-                    <span class="fr-error-box-text"></span>
-                    <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
-                </p>
-
-                <!--个人认证页面-->
-                <div class="{if($type == 1 || $type == 0)} active-txt {/if} wl-geren"  id="friends-container-list" style="    min-height: 750px;">
-                    <p class="wl-fabiaowen">个人认证</p>
-                    <p class="wl-zhen" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr1-username" ><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
-                    <p class="wl-zhen">身份证号 <span class="wl-xin">*</span><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"  maxlength="18" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"><span class="cus-icon-tip">&nbsp;<i class="iconfont icon-info" style="font-size: 20px;"></i></span></p>
-                    <dl style="position: relative">
-                        <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px;cursor: pointer ">
-                                <dl style="position: absolute;width: 123px;height: 120px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt">
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面 </dt>
-                                </dl>
-
-                                <img id="fr1-img"   width="125" height="125" class="wl-nui"/>
-                                <form id="fr1-from" enctype='multipart/form-data'>
-                                    <input type="file"  id="fr1-file-btn"  data-frid="1" name="imgFile" class="file  fr-file-btn-list"   style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
+                <!--个人认证-->
+                <div class="{if(($type == 1 && $recertification !=0) || $type == 0)} active {/if} wl-d ">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>真实姓名<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入真实姓名" id="fr1-username"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr1-idcard"  maxlength="18" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"></li>
+                        </ul>
+                    </div>
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form id="fr1-from" enctype="multipart/form-data">
+                                    <input  type="file"  id="fr1-file-btn"  data-frid="1" name="imgFile" class="file  fr-file-btn-list" >
                                 </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                            <img id="fr1-img"   width="125" height="125" class="wl-nui"/>
+                        </div>
 
-                            </dt>
-                            </dt>
-                            <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                        </dl>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt1">
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
-                                </dl>
-
-                                <img id="fr2-img"    width="125" height="125" class="wl-nui"/>
-                                <form id="fr2-from" enctype='multipart/form-data'>
-                                    <input type="file"  id="fr2-file-btn"  data-frid="2"    name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
+                                <form id="fr2-from"  enctype="multipart/form-data">
+                                    <input type="file"  id="fr2-file-btn"  data-frid="2"    name="imgFile" class="file fr-file-btn-list" >
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                    </dl>
-                    <p class="wl-btn"><button onclick="objClass.submit1()">提交申请</button></p>
-                    <p class="wl-foot">{:config('conf.copyright')}</p>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证背面</dt>
+                            </div>
+                            <img id="fr2-img"   width="125" height="125" class="wl-nui"/>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                  <div class="wl-top-btn">
+                      <div class="web-btn" onclick="objClass.submit1()">提交申请</div>
+                  </div>
                 </div>
-
-                <!--医生认证页面-->
-                <div class="{if($type == 2)} active-txt {/if} wl-geren1" style="min-height: 1120px" id="follow-container-list" >
-                    <p class="wl-fabiaowen">医生认证</p>
-                    <p class="wl-zhen1" style="margin-top: 15px">真实姓名 <span class="wl-xin">*</span><input type="text" placeholder="请输入真实姓名" id="fr2-username"></p>
-                    <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"style="    margin-left: 25px;" ></p>
-                    <p class="wl-zhen1" >擅长项目 <span class="wl-xin">*</span><input type="text" placeholder="请输入擅长项目" id="fr2-speciality" ></p>
-                    <p class="wl-zhen1" >岗位职称 <span class="wl-xin">*</span><input type="text" placeholder="请输入岗位职称" id="fr2-duties"></p>
-                    <p class="wl-zhen1" style="margin-top: 15px"><span style="float: left;margin-top:-20px">医生简介 <span class="wl-xin">*</span></span>
-                        <textarea type="text" placeholder="请填写个人简介(注:个人简介必须真实有效)" id="fr2-profile" ></textarea></p>
-                    <dl style="position: relative;height: 300px" >
-                        <p class="wl-zhen" >上传身份证照片 <span class="wl-xin">*</span></p>
-                        <dl style="min-width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"  class="wl-dt3">
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
-                                </dl>
-                                <img id="fr3-img"  width="125" height="125"class="wl-nui"/>
+                <!--医生认证-->
+                <div class="{if($type == 2 && $recertification !=0 )} active {/if} wl-d">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>真实姓名<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入真实姓名" id="fr2-username"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致"id="fr2-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>擅长项目<span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入擅长项目" id="fr2-speciality"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                    <ul>
+                        <li>岗位职称<span class="web-se">*</span></li>
+                        <li>
+                            <select id="fr2-duties" >
+                                <option value="">请选择岗位职称</option>
+                                <option value="住院医师">住院医师</option>
+                                <option value="主任医师">主任医师</option>
+                                <option value="副主任医师">副主任医师</option>
+                                <option value="医师">医师</option>
+                                <option value="主治医师">主治医师</option>
+                            </select>
+                        </li>
+                    </ul>
+                     </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医生简介<span class="web-se">*</span></li>
+                            <li><textarea type="text" placeholder="请输入医生简介" id="fr2-profile"></textarea></li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--上传身份证照片-->
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr3-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr3-file-btn" data-frid="3"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer;position: absolute"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-dt4">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
-                                </dl>
-
-                                <img id="fr4-img"  width="125" height="125"class="wl-nui"/>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                            <img id="fr3-img"  width="125" height="125"class="wl-nui"/>
+                        </div>
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr4-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr4-file-btn" data-frid="4"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                    </dl>
-                    <dl style="position: relative;">
-                        <p class="wl-zhen" >上传医生资质证明 <span class="wl-xin">*</span></p>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 30px; " class="wl-dt5">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 8px;cursor: pointer">添加资格证</dt>
-                                </dl>
-
-                                <img id="fr5-img" width="125" height="125"class="wl-nui"/>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证反面</dt>
+                            </div>
+                            <img id="fr4-img"  width="125" height="125"class="wl-nui"/>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--上传医生资质证明-->
+                    <div class="web-shang">
+                        <span>上传医生资质证明 <span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr5-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr5-file-btn"  data-frid="5" name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <dl style="min-width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 29px;"class="wl-dt6">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 13px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加执业证</dt>
-                                </dl>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加资格证</dt>
+                            </div>
+                            <img id="fr5-img" width="125" height="125"class="wl-nui"/>
+                        </div>
 
-                                <img id="fr6-img"    width="125" height="125"class="wl-nui"/>
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr6-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr6-file-btn"  data-frid="6" name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加执业证</dt>
+                            </div>
+                            <img id="fr6-img"    width="125" height="125"class="wl-nui"/>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
 
-                            </dt>
-                            </dt>
-                        </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                    </dl>
-                    <p class="wl-btn1"><button onclick="objClass.submit2()">提交申请</button></p>
-                    <p class="wl-foot">{:config('conf.copyright')}</p>
+                    <div class="wl-top-btn">
+                        <div class="web-btn" onclick="objClass.submit2()">提交申请</div>
+                    </div>
                 </div>
-
-                <!--医院机构认证页面-->
-                <div class="{if($type == 3)} active-txt {/if} wl-geren2" style="min-height: 1400px" id="fans-container-list" >
-                    <p class="wl-fabiaowen">医院/机构认证</p>
-                    <p class="wl-zhen2" style="margin-top: 15px">医院名称 <span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"   style="margin-left: 75px"></p>
-                    <p class="wl-zhen2">医院性质 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院性质 (门诊部/医院)"  style="margin-left: 76px"  id="fr3-type"></p>
-                    <p class="wl-zhen2">成立时间 <span class="wl-xin">*</span> <input type="text" placeholder="请选择成立时间"  style="margin-left: 76px" id="fr3-founding-time" ></p>
-                    <p class="wl-zhen2">医院规模 <span class="wl-xin">*</span>
-                        <select type="text"  style="margin-left: 76px;width: 69%;height: 40px;z-index: 999999; border: 1px solid #e7e7e7;color: #888888;" id="fr3-scale">
-                        <option value ="请选择医院规模">请选择医院规模</option>
-                        <option value ="50人以下">50人以下</option>
-                        <option value="50-100人 ">50~100人 </option>
-                        <option value="100~200人 ">100~200人 </option>
-                        <option value="200~500人 ">200~500人 </option>
-                        <option value="500~1000人 ">500~1000人 </option>
-                        <option value="1000人以上 ">1000人以上 </option>
-                        </select>
-                    </p>
-                    <p class="wl-zhen2">医院擅长 <span class="wl-xin">*</span> <input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)"  style="margin-left: 76px" id="fr3-speciality"></p>
-                    <p class="wl-zhen2">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr3-username" style="margin-left: 61px"></p>
-                    <p class="wl-zhen2">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" style="margin-left: 78px;"></p>
-                    <p class="wl-zhen3">手机号 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" id="fr3-mobile" style="width: 679px;margin-left: 93px" maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" ><span class="wl-huoqu " id="code-btn" style="cursor: pointer" onclick="objClass.sendSms1()">获取验证码</span></p>
-                    <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入验证码" id="fr3-sms-code" style="width: 500px ;margin-left: 62px" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" ></p>
-                    <dl class="wl-zhen2">所在地址<span class="wl-xin">*</span>
-                        <select id="fr3-province" class="wl-liandong fr-province" style="margin-left: 82px"><option value="" >请选择省</option></select>
-                        <select id="fr3-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
-                        <select id="fr3-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
-                        <input type="text" placeholder="详细地址" id="fr3-detail-address" style="width: 32.5% ; margin-left: 10px;padding-left: 5px;">
-                    </dl>
-                    <p class="wl-zhen1" style="margin-top: 15px"><span style="float: left;margin-top:-20px">医院简介 <span class="wl-xin">*</span></span><textarea type="text" placeholder="请填写医院简介(注:个人简介必须真实有效)" style="margin-left: 82px"  id="fr3-profile"></textarea></p>
-                    <dl style="position: relative;height: 300px" >
-                        <p class="wl-zhen" >上传身份证照片 <span class="wl-xin">*</span></p>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"class="wl-dt7">
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
-                                </dl>
-
-                                <img id="fr7-img" width="125" height="125"class="wl-nui"/>
+                <!--医院认证-->
+                <div class="{if($type == 3 && $recertification !=0)} active {/if} wl-d">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院名称 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr3-enterprise-name"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院性质 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入医院性质 (门诊部/医院)"  id="fr3-type"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>成立时间 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请选择成立时间" id="fr3-founding-time"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院规模 <span class="web-se">*</span></li>
+                            <li>
+                                <select id="fr3-scale">
+                                    <option value="请选择医院规模">请选择医院规模</option>
+                                    <option value="50人以下">50人以下</option>
+                                    <option value="50-100人 ">50~100人 </option>
+                                    <option value="100~200人 ">100~200人 </option>
+                                    <option value="200~500人 ">200~500人 </option>
+                                    <option value="500~1000人 ">500~1000人 </option>
+                                    <option value="1000人以上 ">1000人以上 </option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医院擅长 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入医院擅长项目 (注: 多个用 ','分割)" id="fr3-speciality"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>运营者姓名 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者姓名" id="fr3-username"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr3-idcard"  onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')"  maxlength="18" ></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>手机号 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者手机号码" style="width:60%" id="fr3-mobile"  maxlength="11"  onkeyup = "value=value.replace(/[^\d]/g,'')" >
+                                <span class="wl-huqou" id="code-btn"  onclick="objClass.sendSms1()">获取验证码</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>短信验证码 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入验证码" id="fr3-sms-code"  maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>所在地址 <span class="web-se">*</span></li>
+                            <li>
+                                <select id="fr3-province" class="wl-liandong fr-province"><option value="" >请选择省</option></select>
+                                <select id="fr3-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
+                                <select id="fr3-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                                <input type="text" placeholder="请输入详细地址"  id="fr3-detail-address" >
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>医生简介<span class="web-se">*</span></li>
+                            <li><textarea type="text" placeholder="请填写医院简介(注:个人简介必须真实有效)" id="fr3-profile"></textarea></li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--上传身份证照片-->
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr7-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr7-file-btn" data-frid="7"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                            <img id="fr7-img" width="125" height="125"class="wl-nui"/>
+                        </div>
 
-                            </dt>
-                            </dt>
-                        </dl>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;"class="wl-dt8">
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
-                                </dl>
-
-                                <img id="fr8-img"   width="125" height="125"class="wl-nui"/>
-
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr8-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr8-file-btn" data-frid="8"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                    </dl>
-                    <dl style="position: relative;height: 450px" >
-                        <p class="wl-zhen">上传医院营业证件 <span class="wl-xin">*</span></p>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 20px;"class="wl-dt9">
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
-                                </dl>
-
-
-                                <img id="fr9-img"   width="125" height="125"class="wl-nui"/>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证反面</dt>
+                            </div>
+                            <img id="fr8-img"   width="125" height="125"class="wl-nui"/>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--上传医院营业证件-->
+                    <div class="web-shang">
+                        <span>上传医院营业证件 <span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr9-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr9-file-btn" data-frid="9"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <span class="wl-sc-js" style=" left: 243px;">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                    </dl>
-                    <p class="wl-btn2"><button onclick="objClass.submit3()">提交申请</button></p>
-                    <p class="wl-foot">{:config('conf.copyright')}</p>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加营业执照</dt>
+                            </div>
+                            <img id="fr9-img"   width="125" height="125"class="wl-nui"/>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <div class="wl-top-btn">
+                        <div class="web-btn" onclick="objClass.submit3()">提交申请</div>
+                    </div>
                 </div>
-
-                <!--官方企业认证页面-->
-                <div class="{if($type == 4)} active-txt {/if} wl-geren3" style="min-height: 1255px"  id="four-container-list" >
-                    <p class="wl-fabiaowen">官方企业认证</p>
-                    <p class="wl-zhen3" style="margin-top: 15px;">企业名称<span class="wl-xin">*</span> <input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name" style="margin-left: 81px;"></p>
-                    <p class="wl-zhen3">运营者姓名 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者姓名" id="fr4-username" style="width: 679px;margin-left: 61px" ></p>
-                    <p class="wl-zhen1">身份证号 <span class="wl-xin">*</span> <input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" style="margin-left: 76px" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18" ></p>
-                    <p class="wl-zhen3">手机号码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入运营者手机号码" style="width: 679px;margin-left: 77px" id="fr4-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" >
-                        <span class="wl-huoqu " id="code-btn2" style="cursor: pointer" onclick="objClass.sendSms2()">获取验证码</span></p>
-                    <p class="wl-zhen3">短信验证码 <span class="wl-xin">*</span> <input type="text" placeholder="请输入验证码"   style="width: 495px ;margin-left: 62px" id="fr4-sms-code" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></p>
-                    <dl class="wl-zhen2">所在地址<span class="wl-xin">*</span>
-                        <select id="fr4-province" class="wl-liandong fr-province" style="margin-left: 82px"><option value="" >请选择省</option></select>
-                        <select id="fr4-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
-                        <select id="fr4-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
-                        <input type="text" placeholder="详细地址" id="fr4-detail-address" style="width: 32.5% ; margin-left: 10px;padding-left: 5px;">
-                    </dl>
-                    <dl style="position: relative;height: 300px" >
-                        <p class="wl-zhen">上传身份证照片 <span class="wl-xin">*</span></p>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-d1">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证正面</dt>
-                                </dl>
-                                <img id="fr10-img"   width="125" height="125"class="wl-nui"/>
+                <!--官方认证-->
+                <div class="{if($type == 4 && $recertification !=0)} active {/if} wl-d">
+                    <div class="web-top-name">
+                        <ul>
+                            <li>企业名称 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请与组织机构代码证或营业执照名称一致" id="fr4-enterprise-name"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>运营者姓名  <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入运营者姓名" id="fr4-username"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>身份证号  <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请务必与上传的身份证件号码保持一致" id="fr4-idcard" onkeyup = "value=value.replace(/[^\d{15,17}Xx]/g,'')" maxlength="18"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>手机号 <span class="web-se">*</span></li>
+                            <li>
+                                <input type="text" placeholder="请输入运营者手机号码" style="width:60%" id="fr4-mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')">
+                                <span class="wl-huqou" id="code-btn2" onclick="objClass.sendSms2()">获取验证码</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>短信验证码 <span class="web-se">*</span></li>
+                            <li><input type="text" placeholder="请输入验证码"  id="fr4-sms-code" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')"></li>
+                        </ul>
+                    </div>
+                    <div class="web-top-name">
+                        <ul>
+                            <li>所在地址 <span class="web-se">*</span></li>
+                            <li>
+                                <select id="fr4-province" class="wl-liandong fr-province"><option value="" >请选择省</option></select>
+                                <select id="fr4-city" class="wl-liandong fr-city" ><option value="" >请选择市</option></select>
+                                <select id="fr4-area-county" class="wl-liandong fr-area-county" ><option value="" >请选择县</option></select>
+                                <input type="text" placeholder="请输入详细地址"  id="fr4-detail-address">
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--上传身份证照片-->
+                    <div class="web-shang">
+                        <span>上传身份证照片<span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr10-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr10-file-btn" data-frid="10"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 220px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 23px;left: 13px;" class="wl-d2">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 30px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加身份证反面</dt>
-                                </dl>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证正面</dt>
+                            </div>
+                            <img id="fr10-img"   width="125" height="125"class="wl-nui"/>
+                        </div>
 
-                                <img id="fr11-img"  width="125" height="125"class="wl-nui"/>
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr11-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr11-file-btn"  data-frid="11" name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-
-                            </dt>
-                            </dt>
-                        </dl>
-                        <span class="wl-sc-js">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                    </dl>
-                    <dl style="position: relative;height: 450px" >
-                        <p class="wl-zhen">上传企业工商营业执照 <span class="wl-xin">*</span></p>
-                        <dl style="width:300px;clear: both;min-height: 200px;padding-left: 10px;">
-                            <dt style="float: left;width: 87%;margin-left: 47px;" >
-                            <dt style="width: 138px;height: 138px;border:2px dashed #cdcdcd; border-radius: 25px; position: absolute;top: 118px;left: 56px; ">
-                                <dl style="position: absolute;width: 134px;height: 134px;cursor: pointer;  top: 17px;left: 19px;"  class="wl-d3">
-                                    <!--padding-left: 30px;padding-top: 20px;-->
-                                    <dd class="iconfont icon-xiangji" style="font-size: 50px;color:#cdcdcd;margin-left: 22px;z-index: 2"></dd>
-                                    <dt style="color: #cdcdcd;margin-right: 10px;cursor: pointer">添加营业执照</dt>
-                                </dl>
-
-                                <img id="fr12-img"  width="125" height="125" class="wl-nui"/>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加身份证背面</dt>
+                            </div>
+                            <img id="fr11-img"  width="125" height="125"class="wl-nui"/>
+                        </div>
+                        <div class="web-tishi">支持绝大多数的图片格式，单张图片大小不超过5M。</div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--上传企业工商营业执照 -->
+                    <div class="web-shang">
+                        <span>上传企业工商营业执照  <span class="web-se">*</span></span>
+                    </div>
+                    <div class="web-suolue-top">
+                        <div class="web-suolue">
+                            <div class="web-suoluetu">
                                 <form id="fr12-from" enctype='multipart/form-data'>
                                     <input type="file"  id="fr12-file-btn" data-frid="12"  name="imgFile" class="file fr-file-btn-list"  style="width: 134px;height: 134px;opacity: 0;z-index: 3;cursor: pointer"  />
                                 </form>
-                            </dt>
-                            </dt>
-                        </dl>
-                        <span class="wl-sc-js" style="left: 243px">支持绝大多数的图片格式，单张图片大小不超过5M。</span>
-                    </dl>
-                    <p class="wl-btn3"><button onclick="objClass.submit4()">提交申请</button></p>
-                    <p class="wl-foot">{:config('conf.copyright')}</p>
+                                <dl><i class="iconfont icon-xiangji web-xiangji"></i></dl>
+                                <dt>添加营业执照</dt>
+                            </div>
+                            <img id="fr12-img"  width="125" height="125" class="wl-nui"/>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <div class="wl-top-btn">
+                        <div class="web-btn" onclick="objClass.submit4()">提交申请</div>
+                    </div>
                 </div>
-            </div>
 
-            <?php if(count($authResult) > 0 && $recertification === 0):?>
-            {switch name="authResult.status" }
-            {case value="1"}
-            <!--等待审核信息页面-->
-            <div class="wl-liucheng" >
-                <div class="wl-jindu">
-                    <span style="float: left;margin-top: -3px;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">提交认证信息</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                    <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                    <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8;float: left"></span><span style="float: left;margin-top: -2px">认证结果发布</span></span>
-                </div>
-                <div class="wl-jieguo">
-                    <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
-                    <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请联系客服</dd>
-                    <dt style="font-size: 16px;color: #999999;margin-top: 20px">与我们取得联系。</dt>
-                    <button onclick="window.location.reload()">刷新</button>
-                </div>
+                {if(count($authResult) > 0 && $recertification === 0)}
+                    {switch name="authResult.status" }
+                        {case value="1"}
+                             <div class="wl-liucheng">
+                            <div class="wl-jindu">
+                                <span class="wl-submit" >
+                                    <span class="iconfont icon-shuziyi wl-submit-one" ></span>
+                                    <span style="float: left;margin-top: -2px">提交认证信息</span>
+                                </span> <i class="iconfont icon-hengxian wl-submit-one-hengxian" ></i>
+                                <span style="float: left;margin-left: 30px;margin-right: 40px">
+                                    <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left;margin-top: -2px;"></span>
+                                    <span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
+                                <span style="float: left;margin-left: 30px">
+                                    <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #C8C8C8;float: left;margin-top: -2px;"></span>
+                                    <span style="float: left;margin-top: -2px">认证结果发布</span></span>
+                            </div>
+                            <div class="wl-jieguo">
+                                <dl style="font-size: 28px;color: #333333">正在审核中，请耐心等待2-5个工作日</dl>
+                                <dd style="font-size: 16px;color: #999999;margin-top: 56px">如在2-5个工作日未得到认证结果，请联系客服</dd>
+                                <dt style="font-size: 16px;color: #999999;margin-top: 20px">与我们取得联系。</dt>
+                                <button onclick="window.location.reload()" >刷新</button>
+                            </div>
+                        </div>
+                        {/case}
+                        {case value="2"}
+                            <div class="wl-liucheng"  >
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left;margin-top: -2px"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left;"></i>
+                                <span style="float: left;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left;margin-top: -2px"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left;"></span>
+                                <span style="float: left;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left;margin-top: -2px"></span><sapn><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
+                            </div>
+                            <div class="wl-jieguo1">
+                                <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
+                                <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
+                                <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
+                                <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
+                                <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
+                                <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
+                                <button ><a href="/index/user/certification?recertification=1" style="color: #ffffff !important;">重新申请认证</a></button>
+                            </div>
+                        </div>
+                        {/case}
+                        {case value="3"}
+                            <div class="wl-liucheng" style="">
+                            <div class="wl-jindu">
+                                <span style="float: left;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left;margin-top: -2px"></span><span style="float: left;margin-top: -2px">提交认证信息</span></sapn></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left;"></i>
+                                <span style="float: left;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px;float: left;margin-top: -2px "></span><span style="float: left;: margin-top-2px">等待审核结果</span></sapn></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left;"></span>
+                                <span style="float: left;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left;margin-top: -2px"></span><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
+                            </div>
+                            <div class="wl-jieguo2">
+                                <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
+                                <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
+                                <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
+                                <!--<button>知道了</button>-->
+                            </div>
+                        </div>
+                        {/case}
+                    {/switch}
+                {/if}
             </div>
-            {/case}
-            {case value="2"}
-            <!--认证信息失败页面-->
-            <div class="wl-liucheng" style="display: block" >
-                <div class="wl-jindu">
-                    <span style="float: left;margin-top: -5px;margin-left: 210px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                    <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px ;float: left"></span><span style="float: left;margin-top: -2px">等待审核结果</span></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                    <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left"></span><sapn><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
-                </div>
-                <div class="wl-jieguo1">
-                    <dl style="font-size: 28px;text-align: center">很遗憾，您认证审核未通过</dl>
-                    <dd style="font-size: 16px;margin-top: 66px">很遗憾您的认证申请未通过审核，请完善认证信息并再次提交审核，谢谢！</dd>
-                    <dd style="font-size: 20px;margin-top: 44px">未通过原因:</dd>
-                    <dt style="font-size: 16px;margin-top: 27px">1.确认提交照片是否清晰，与绑定手机用户是否一致。</dt>
-                    <dt style="font-size: 16px;margin-top: 19px">2.确认提交姓名与身份证姓名是否一致。</dt>
-                    <dt style="font-size: 16px;margin-top: 19px">3.手机号绑定用户与身份证姓名是否一致</dt>
-                    <button ><a href="/index/user/certification?recertification=1" style="color: #ffffff">重新申请认证</a></button>
-                </div>
-            </div>
-            {/case}
-            {case value="3"}
-            <!--认证信息通过页面-->
-            <div class="wl-liucheng" >
-                <div class="wl-jindu">
-                    <span style="float: left;margin-top: -5px;margin-left: 190px;margin-right: 20px"> <span class="iconfont icon-shuziyi" style="color:#7DB0E8 ;font-size: 25px;float: left"></span><span style="float: left;margin-top: -2px">提交认证信息</span></sapn></span> <i class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></i>
-                    <span style="float: left;margin-top: -5px;margin-left: 30px;margin-right: 40px">  <span class="iconfont icon-shuzier" style="color:#7DB0E8;font-size: 25px;float: left "></span><span style="float: left;margin-top: -2px">等待审核结果</span></sapn></span><span class="iconfont icon-hengxian" style="color:#7DB0E8 ;font-size: 57px;float: left"></span>
-                    <span style="float: left;margin-top: -5px;margin-left: 30px"> <span class="iconfont icon-shuzisan-copy" style="font-size: 25px;color: #7DB0E8;float: left"></span><span style="float: left;margin-top: -2px">认证结果发布</span></sapn></span>
-                </div>
-                <div class="wl-jieguo2">
-                    <dl class="iconfont icon-roundcheck" style="color: #7DB0E8;font-size: 90px"></dl>
-                    <dd style="font-size: 28px;margin-top: 51px">恭喜你，您的认证审核已通过</dd>
-                    <dt style="font-size: 16px;margin-top: 29px">您已成为薇琳医美认证会员</dt>
-                    <!--<button>知道了</button>-->
-                </div>
-            </div>
-            {/case}
-            {/switch}
-            <?php endif;?>
-        </div>
     </div>
 
+    <p id="fr-error-box">
+        <span class="fr-error-box-text"></span>
+        <span class="iconfont icon-roundclosefill" style="float: right;margin-right: 5px;cursor: pointer;" id="cus-fr-error-close" onclick="$(this).parent().fadeOut('slow')"></span>
+    </p>
 </div>
-</body>
-<script src="/static/js/jquery.min.js"></script>
+{/block}
+
+{block name="script"}
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<!--<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="/static/plugin/layui/layui.js"></script>
 <script src="/static/plugin/jquery.smscode.js"></script>
-<script type="text/javascript">
-    // var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
-    // codeObj.run();
-    //
-    // var codeObj2 = new VerificationCode('code-btn2','获取验证码','code-hui');
-    // codeObj2.run();
+<script>
 
-    var codeObj = new Code('code-btn','获取验证码','code-hui','pc-sms-auth3',60);
-    var codeObj2 = new Code('code-btn2','获取验证码','code-hui','pc-sms-auth4',60);
-
-    $('.wl-cang1 span').on('click',function(){
+    $(".wl-deji li").click(function () {
         if(objClass.type == 0){
-            $(".wl-cang1 span").find("li").removeClass("active");
-            $(this).find("li").addClass("active");
-            $(".tab-content div.active-txt").removeClass("active-txt");
-            $(".tab-content div").eq($(this).index()).addClass("active-txt");
+            $(this).addClass("active").siblings().removeClass("active");
+            var index = $(this).index();
+            $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
         }
     });
-
-    $(".wl-xian").click(function () {
-        $(".wl-cang").toggle();
-    });
-
-    $(".wl-shimin").click(function () {
-        $(".wl-cang1").toggle();
-        $(".qiehuan").toggleClass('iconfont icon-triangleupfill');
-        $(".qiehuan").toggleClass('iconfont icon-triangledownfill');
-    });
-
+</script>
+<script>
     var objClass = {
         type:{$type},
         loading:false,
@@ -810,39 +819,19 @@
         formData.append('type',2);
         objClass.ajaxUploadImg('#fr'+frid+'-img',formData);
     });
-
-    $('.tab-box').on('click',function(){
-        $(".wl-cang").hide();
-    });
-
-    $(function(){
-        var maodian = window.location.toString().split('#')[1];
-        if(maodian == 'auth1'){
-            $('.wl-cang1 span:nth-child(1)').trigger('click');
-        }else if(maodian == 'auth2'){
-            $('.wl-cang1 span:nth-child(2)').trigger('click');
-        }else if(maodian == 'auth3'){
-            $('.wl-cang1 span:nth-child(3)').trigger('click');
-        } else if(maodian == 'auth4'){
-            $('.wl-cang1 span:nth-child(4)').trigger('click');
-        }else{
-            $(".wl-cang1 span:first-child").trigger('click');
-        }
-    });
-    $(".wl-tabc").click(function () {
-        $(".wl-cang").hide();
-    })
+    // $(function(){
+    //     var maodian = window.location.toString().split('#')[1];
+    //     if(maodian == 'auth1'){
+    //         $('.wl-deji li:nth-child(1)').trigger('click');
+    //     }else if(maodian == 'auth2'){
+    //         $('.wl-deji li:nth-child(2)').trigger('click');
+    //     }else if(maodian == 'auth3'){
+    //         $('.wl-deji li:nth-child(3)').trigger('click');
+    //     } else if(maodian == 'auth4'){
+    //         $('.wl-deji li:nth-child(4)').trigger('click');
+    //     }else{
+    //         $(".wl-deji li:first-child").trigger('click');
+    //     }
+    // });
 </script>
-<script src="/static/plugin/layui/layui.js"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        //常规用法
-        laydate.render({
-            elem: '#fr3-founding-time',
-
-        });
-    });
-</script>
-</html>
+{/block}
