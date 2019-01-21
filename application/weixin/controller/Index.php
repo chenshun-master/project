@@ -761,4 +761,13 @@ class Index extends BaseController
 
         return $this->fetch('index/diary_user');
     }
+     /**
+      * 问答页面
+      * @return mixed
+      */
+     public function inquiry()
+     {
+
+         return $this->fetch('index/inquiry');
+     }
 }
