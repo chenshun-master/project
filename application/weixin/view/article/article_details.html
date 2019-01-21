@@ -1,721 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta content="telephone=no" name="format-detection"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/article_details.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/zhezhao.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-    <title>{$article_info['title']}</title>
-    <style>
-        .wkf {
-            display: none;
-            position: fixed;
-            top: 300px;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: 180px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            background: #7DB0E8;
-            color: #FFFFFF;
-            font-size:0.28rem;
-            border-radius: 10px;
-            z-index: 999999999;
-        }
-        .cus-blue {
-            color: #7DB0E8 !important;
-        }
-        .cus-favorite{color: #7db0e8 !important;}
-        .wl-zhez {
-            background: #FFFFFF;
-            display: none;
-            position: absolute;
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0px;
-            background: rgba(0, 0, 0, .1);
-            z-index: 10;
-        }
-        .cus-reply-btn,.cus-comment-fabulous,.cus-pinglun-click,.cus-recommend-href,.cus-touser-main{
-            cursor: pointer !important;
+{extend name="layout/layout" /}
 
-        }
-    </style>
-</head>
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/article_details2.css">
+{/block}
+{block name="main"}
 
-<body style="background:#ffffff;">
-<div class="con">
-    <div class="ding" onclick="redream.toReferer()" ><p></p></div>
-    <div class="wx-top"  style="position: relative">
-        <p class="top1">{$article_info['title']}</p>
-        <div class="wx-name">
-            <img src="{$article_info['portrait']}" alt="" class="wx-tou cus-touser-main"   data-user_id="{$article_info['user_id']}" onerror='this.src="/static/image/user/tou.png"' >
-            <dl class="wx-yh">
-                <dt style="font-size:0.28rem;color: #1D1D1D;font-weight: bold;" class="cus-touser-main"
-                    data-user_id="{$article_info['user_id']}">{$article_info['nickname']}
-                </dt>
-                <dd style="font-size:0.24rem;color: #898989;">{$article_info['published_time']|strtotime|formatTime|}
-                </dd>
-            </dl>
-            <?php if($isFriend === true):?>
-                <button class="wx-rig" ><a href="/weixin/user/userDialogue/uid/{$article_info['user_id']}" style="color: #ffffff">私信</a></button>
-            <?php elseif($isFriend === false):?>
-                <button class="wx-rig" onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
-            <?php else:?>
-            <?php endif;?>
+<div class="wl-body " style="padding-bottom: 100px;background: white">
+<header>
+    <div class="wl-top" >
+        <i class="iconfont icon-back_light " style="position: absolute;top: 0px;left: 5px;font-size: 25px" onclick="redream.toReferer()"></i>
+    </div>
+</header>
+    <main>
+        <div class="wl-title href">{$article_info['title']}</div>
+        <div class="wl-main href">
+            <div>
+                <div class="wl-tou-img href"><img src="{$article_info['portrait']}" alt="" data-user_id="{$article_info['user_id']}" onerror='this.src="/static/image/user/tou.png"' class="cus-touser-main"></div>
+                <div class="wl-tou-yonghu href">
+                    <dl>
+                        {$article_info['user_type'] ==3 ? $article_info['username'] : ($article_info['user_type'] == 4 || $article_info['user_type'] ==5 ? $article_info['enterprise_name'] : $article_info['nickname'])}
+                    </dl>
+                    <dt>{$article_info['published_time']|strtotime|formatTime|}</dt>
+                </div>
+            </div>
+            <div class="wl-jiahy href">
+                <?php if($isFriend === true):?>
+                <button ><a href="/weixin/user/userDialogue/uid/{$article_info['user_id']}" style="color: #ffffff">私信</a></button>
+                <?php elseif($isFriend === false):?>
+                <button onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
+                <?php else:?>
+                <?php endif;?>
+            </div>
+            <div style="clear:both"></div>
         </div>
-        <div style="   font-size: 0.32rem;padding: 0 15px;overflow-x: hidden;" class="mp"><?php echo $article_info['content'] ?></div>
-        <p class="wx-fx" style="min-height: 50px;margin-top: 20px;position: relative">
-            <button style="margin-left: 15px;" id="cus-click-fabulous"    class=""     data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()">
-                <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" ></i>
-                <span>{$article_info['like']}</span>
-            </button>
-            <button onclick="myShare.wechatTimeline()">分享朋友圈</button>
-            <button onclick="myShare.wechatFriend()" ><i class="iconfont icon-weixin1" style="font-size: 25px;color: #0dc323;float: left;margin-left: 13%"></i>
-                <span style="float: left;margin-left: 10%">分享微信</span></button>
-        <div style="display: none;" id="cus-recommend">
-            <p class="wx-xg">相关推荐</p>
+        <div class="wl-neirong">
+            <?php echo $article_info['content'] ?>
+        </div>
+        <div class="wl-end">--&nbsp;THE END&nbsp;--</div>
+        <div class="wl-fengxiang">
+            <div class="wl-xiang" style="position: relative" id="cus-click-fabulous"  data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()" >
+                <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" style="font-size: 20px;color: #E0E0E0;float: left;margin-left: 30%;"></i>
+                <span class="wl-weixn" style="left: 7px;">{$article_info['like']}</span>
+            </div>
+            <div class="wl-xiang pengyouqua" onclick="myShare.wechatTimeline()">
+                <span>分享朋友圈</span>
+            </div>
+            <div class="wl-xiang" style="position: relative" onclick="myShare.wechatFriend()">
+                <i class="iconfont  icon-weixin1" style="font-size: 25px;color: #0dc323;float: left;margin-left: 14%;"></i>
+                <span class="wl-weixn">分享微信</span>
+            </div>
+        </div>
+        <div class="wl-tuijian" style="display: none">
+            <div class="wl-xiangguan">相关推荐</div>
             <div id="cus-recommend-content">
 
             </div>
             <p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>
         </div>
-
-        <div id="cus-comment" style="display: block;">
-            <p class="wx-xg">相关评论</p>
+        <div  id="cus-comment">
+            <div class="wl-xiangguan">相关评论</div>
             <div id="cus-comment-content">
 
             </div>
-            <p class="xs" style="display: none;" id="cus-comment-tip">已显示所有评论</p>
+            <p class="ckgd" style="display: none;" id="cus-comment-tip">以显示所有评论</p>
         </div>
-
-        <div class="" style="height: 80px;width: 100%;float: left">
-
-        </div>
-
-    <div class="wx-foot"  id="ad">
-        <input type="text" placeholder="写评论..." class="xpq1"/>
-        <dl class="iconfont icon-comment_light" style="font-size: 23px"></dl>
-        <?php if($article_info['isFavorites'] == 1):?>
-        <dt class="iconfont icon-favor_fill_light cus-favorite"   style="font-size: 23px"></dt>
-        <?php else:?>
-        <dt class="iconfont icon-favor_light " id="cus-click-favorite"   style="font-size: 23px"></dt>
-        <?php endif;?>
-    </div>
-        <div class="marsk-container">
-            <div class="tkyy_con" style="border: none;">
-                <div class="z-top">
-                    <a id="tui" class="iconfont icon-close_light"
-                       style="float: left;font-size: 0.5rem; color:#999999 ;"></a>回复
-                </div>
-                <div id="cus-subreview-container" style="overflow: hidden auto;padding:40px 20px 0 0;">
-
-                </div>
-
-            </div>
-        </div>
-        <div class="wl-zhez">
-            <div class="kl1 wl-zl" style="">
-                <textarea type="text" placeholder="请输入评论内容" class="neirong" style="resize: none;text-indent: 2px"></textarea>
-                <input type="hidden"  value="0" id="cus-comment-pid" >
-                <button class="fb1" onclick="objClass.publishComment()">发布</button>
-            </div>
-        </div>
-    </div>
+    </main>
 </div>
-
-<div id="cus-myshare-box" style="display: none">
-    <div class="wl-fenxiang">
-        <img src="/static/image/index/fenxiang.png" alt="" width="100" height="100">
-        <p >点击右上角 <br>将它分享好友或分享朋友圈</p>
+<footer>
+    <div class="wl-foot">
+        <input type="text" class="wl-foot-input" placeholder="写评论...">
+        <ul class="wl-shoucang">
+            <li class="iconfont icon-comment_light " style="margin-left: 10px;"></li>
+            <?php if($article_info['isFavorites'] == 1):?>
+            <li class="iconfont icon-favor_fill_light cus-favorite " ></li>
+            <?php else:?>
+            <li class="iconfont icon-favor_light " id="cus-click-favorite"   ></li>
+            <?php endif;?>
+        </ul>
     </div>
-</div>
+    <div class="wl-zhez2">
+        <div class="wl-zl2">
+            <textarea name="wl-text" cols="30" rows="10" class="wl-text" id="cus-comment-pid"></textarea>
+            <i class="wl-fabu iconfont icon-fabu" onclick="objClass.publishComment()"></i>
+        </div>
+    </div>
 
-<div class="wl-zhezhao">
-    <div class="wl-zhe1">
-        <p class="wl-renzh">申请备注</p>
+    <div id="cus-myshare-box">
+        <img src="/static/weixin/shop/image/index/bjtu.png" alt="" width="100%" height="100%">
+    </div>
+
+    <div class="wl-zhezhao">
+        <div class="wl-zhe1">
+        <p class="wl-renzh">备注信息 <i class="iconfont icon-guanbi1 wl-guanbi1"></i></p>
         <div class="wl-neie1">
             <p>你需要发送验证申请，等待对方通过</p>
-            <textarea class="wl-neie2" style="resize: none" placeholder="添加申请备注(必填)..." id="fr-friend-remarks"></textarea>
-            <button class="wl-btn" onclick="objClass.submitFriendApply()">发送</button>
+            <textarea class="wl-neie2" style="resize: none" placeholder="(必填)填写备注信息..." id="fr-friend-remarks"></textarea>
+            <button class="wl-btn" onclick="objClass.submitFriendApply()">立即申请</button>
         </div>
     </div>
-</div>
-</body>
-<script type="text/javascript">
-    var objClass = {
-        article_id: {$article_info['id']},
-        u_id: {$article_info['user_id']},
-        recommendData: {
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 3,
-            template: function (data) {
-                var src = '';
-                if (data.thumbnail != '' && data.thumbnail !=null) {
-                    var thumbnailObj = $.parseJSON(data.thumbnail);
-                    src = thumbnailObj.img_1;
-                }
+    </div>
+</footer>
+{/block}
 
-                var html = '<div class="wzxq "  >' +
-                    '<div class="wx-x">' +
-                    '<h3   onclick="objClass.hrefDetails('+ data.id +')"  >' + data.title + '</h3>' +
-                    '<p><span class="cus-touser-main" data-user_id="'+ data.user_id +'" >' + data.nickname + '</span> <span>' + data.hits + '阅览量</span></p>' +
-                    '</div>' +
-                    '<img src="' + src + '" alt="" class="cus-recommend-href"  data-id="' + data.id + '"  />' +
-                    '</div>';
-                return html;
-            }
-        },
-        //相关推荐数据加载
-        loadRecommendList: function () {
-            if (this.recommendData.loading) {
-                return false;
-            }
-
-            this.recommendData.page++;
-            if (this.recommendData.ini == true) {
-                if (this.recommendData.page > this.recommendData.page_total) {
-                    $('#cus-recommend-loading-btn').text('没有了');
-                    return false;
-                }
-            }
-            $.ajax({
-                url: "/weixin/article/getRelevantList",
-                type: 'post',
-                data: {id: this.article_id, page: this.recommendData.page, page_size: this.recommendData.page_size},
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.recommendData.loading = true;
-                    $('#cus-recommend-loading-btn').text('加载中...');
-                },
-                complete: function () {
-                    objClass.recommendData.loading = false;
-                    $('#cus-recommend-loading-btn').text('查看更多');
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        var data = res.data;
-                        if (objClass.recommendData.ini == false) {
-                            objClass.recommendData.ini = true;
-                            objClass.recommendData.page_total = data.page_total;
-                            if (data.page_total == 0) {
-                                $('#cus-recommend').hide();
-                            } else {
-                                $('#cus-recommend').show();
-                            }
-                        }
-
-                        $.each(data.rows, function (k, val) {
-                            $('#cus-recommend-content').append(objClass.recommendData.template(val));
-                        });
-                    }
-                }
-            });
-        },
-
-        //用户点赞操作
-        clickFabulous: function () {
-            var type = $('#cus-click-fabulous').data('fabulous');
-            $.ajax({
-                url: "/weixin/article/clickZan",
-                type: 'post',
-                data: {id: objClass.article_id, type: type},
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.oneLoading = true;
-                },
-                complete: function () {
-                    objClass.oneLoading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        var num = parseInt($('#cus-click-fabulous').find('span').text());
-                        if(type == 1){
-                            $('#cus-click-fabulous').data('fabulous', 2);
-
-                            $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
-                            $('#cus-click-fabulous').find('span').text( num + 1);
-                        }else{
-                            $('#cus-click-fabulous').data('fabulous', 1);
-                            $('#cus-click-fabulous').find('i').removeClass('cus-blue').removeClass('icon-dianzan1').removeClass('icon-dianzan1').addClass("icon-dianzan");
-                            $('#cus-click-fabulous').find('span').text( num - 1);
-                        }
-                    } else if (res.code == 401) {
-                        alert('请登录后操作');
-                        return false;
-                    }
-                }
-            });
-        },
-
-        commentData: {
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 15,
-            template: function (data) {
-
-                var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
-
-                return '<div class="wl-xiang">\n' +
-                    '                 <div  style="float: left;"> <img src="'+ data.portrait+'" onerror="this.src=\'/static/image/user/tou.png\'" width="30" height="30"  class="cus-touser-main" data-user_id="'+ data.user_id +'"  ></div>' +
-                    '                    <div class="wl-xiaa1" style="float: right;">' +
-                    '                        <div class="wl-uh">' +
-                    '                            <div class="wl-das1 cus-touser-main" data-user_id="'+ data.user_id +'">'+ data.nickname +'</div><div  class="wl-das2 cus-comment-fabulous"  data-id="' + data.id + '" data-click="' + data.isZan + '"><i class="iconfont '+css +'" style="font-size: 18px"></i><span>     '+data.like_count+'</span></div>' +
-                    '                        </div>' +
-                    '                        <div class="wl-neirnga">' + data.content +
-                    '                        </div>' +
-                    '                        <div class="wl-neiha">' +
-                    '                            <div class="wl-pji">'+ data.created_time +'</div><div class="wl-mjs cus-reply-btn" data-commentid="' + data.id + '"  data-replynum="'+data.reply_count+'" data-name="@' + data.nickname + '">'+data.reply_count +'回复</div>' +
-                    '                        </div>' +
-                    '                    </div>' +
-                    '                </div>';
-            }
-        },
-        loadCommentList: function () {
-            if (this.commentData.loading) {
-                return false;
-            }
-            this.commentData.page++;
-            if (this.commentData.ini == true) {
-                if (this.commentData.page > this.commentData.page_total) {
-                    $('#cus-comment-tip').show();
-                    return false;
-                }
-            }
-
-            $.ajax({
-                url: "/weixin/article/getCommentList",
-                type: 'post',
-                data: {id: this.article_id, page: this.commentData.page, page_size: this.commentData.page_size},
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.commentData.loading = true;
-                },
-                complete: function () {
-                    objClass.commentData.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        var data = res.data;
-                        if (objClass.commentData.ini == false) {
-
-                            $('#cus-comment-content').html('');
-                            objClass.commentData.ini = true;
-                            objClass.commentData.page_total = data.page_total;
-                            if (data.page_total == 0) {
-                                $('#cus-comment').hide();
-                            } else {
-                                $('#cus-comment').show();
-                            }
-                        }
-                        $.each(data.rows, function (k, val) {
-                            $('#cus-comment-content').append(objClass.commentData.template(val));
-                        });
-                    }
-                }
-            });
-        },
-
-        //评论点赞方法
-        clickCommentFabulousLading:false,
-        clickCommentFabulous: function (obj, flag) {
-            var id = obj.data('id');
-            var type = obj.data('click') == 1 ? 2 : 1;
-            if(type == 2){
-                return false;
-            }else if(!objClass.clickCommentFabulousLading){
-                $.ajax({
-                    url: "/weixin/article/commentClickZan",
-                    type: 'post',
-                    data: {id: id, type: type},
-                    dataType: 'json',
-                    beforeSend: function () {
-                        objClass.clickCommentFabulousLading = true;
-                    },
-                    complete: function () {
-                        objClass.clickCommentFabulousLading = false;
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            if (flag == 1) {
-                                var num = parseInt(obj.find('span').text());
-                                if (type == 1) {
-                                    obj.data('click', 1);
-                                    obj.find('span').text(num + 1);
-                                    obj.find('i').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
-                                } else {
-                                    obj.data('click', 0);
-                                    obj.find('span').text(num - 1);
-                                }
-                            } else {
-                                if (type == 1) {
-                                    obj.data('click', 1);
-                                    obj.next().text(parseInt(obj.next().text()) + 1);
-                                    obj.removeClass('icon-appreciate_light').addClass('cus-blue').addClass('icon-appreciate_fill_light');
-                                } else {
-                                    obj.data('click', 0);
-                                    obj.next().text(parseInt(obj.next().text()) - 1);
-                                    obj.removeClass('cus-blue').removeClass('icon-appreciate_fill_light').addClass('icon-appreciate_light');
-                                }
-                            }
-                        }else if(res.code == 401){
-                            redream.showTip('请先进行登录');
-                        }else if(res.code == 403){
-                            redream.showTip('您还没有该权限');
-                        }
-                    }
-                });
-            }
-        },
-
-        //子评论配置信息
-        subreviewConf: {
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 1000,
-            template: function (data) {
-                var css = (data.isZan != 0) ? ' icon-appreciate_fill_light cus-blue ' : 'icon-appreciate_light';
-                return '<div class="wz1">' +
-                        '<img src="' + data.portrait + '"  onerror="this.src=\'/static/image/user/tou.png \'"  class="wl-subreview-comment-head"   />' +
-                        '<div class="wz2">' +
-                            '<p><span style="color: #7DB0E8;font-size: 0.3rem;line-height: 20px;height: 20px;">' + data.nickname + '</span><span style="float: right;color: #999999;font-size: 0.24rem;"><i class="iconfont cus-pinglun-click ' + css + '" data-id="' + data.id + '" data-click="' + data.isZan + '" ></i><span class="cus-pinglun-text">' + data.like_count + '</span></span></p>' +
-                            '<p>' + data.content + '</p>' +
-                            '<p>' + redream.beautifyTime(data.created_time) + '</p>' +
-                            '<div class="wz3" style="margin-top: 10px;">' +
-                                '<span class="wl-namep" style="display: inline-block"><span class="wl-namei">'+ data.parent.nickname +'</span>:'+ data.parent.content +'</span>' +
-                                '<p  class="wl-timeh" style="font-size: 0.2rem;color: #b3b3b3;margin-top: 5px">' + data.parent.created_time  +'</p>'+
-                            '</div>' +
-                        '</div>' +
-                    '</div>';
-            }
-        },
-        //加载子评论信息
-        loadSubreviewList: function () {
-            if (this.subreviewConf.loading) {
-                return false;
-            }
-            this.subreviewConf.page++;
-            if (this.subreviewConf.ini == true) {
-                if (this.subreviewConf.page > this.subreviewConf.page_total) {
-                    return false;
-                }
-            }
-            $.ajax({
-                url: "/weixin/article/getSecondCommentList",
-                type: 'post',
-                data: {
-                    id: objClass.article_id,
-                    comment_id: objClass.subreviewConf.commentid,
-                    page: objClass.subreviewConf.page,
-                    page_size: objClass.subreviewConf.page_size
-                },
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.subreviewConf.loading = true;
-                },
-                complete: function () {
-                    objClass.subreviewConf.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        if (objClass.subreviewConf.ini == false) {
-                            objClass.subreviewConf.ini = true;
-                            objClass.subreviewConf.page_total = res.data.page_total;
-                        }
-
-                        $.each(res.data.rows, function (k, val) {
-                            $('#cus-subreview-container').append(objClass.subreviewConf.template(val));
-                        });
-                    }
-                }
-            });
-        },
-
-        //一级回复评论方法
-        replyComment: function (obj) {
-            //每次点击清除之前加载的数据
-            this.subreviewConf.loading = false;
-            this.subreviewConf.ini = false;
-            this.subreviewConf.page = 0;
-            this.subreviewConf.page_total = 1;
-            this.subreviewConf.page_size = 10;
-            this.subreviewConf.commentid = obj.data('commentid');
-
-            $('#cus-subreview-container').html('');
-            var h = getClientHeight();
-            $('.marsk-container').css('height',h + 'px').show();
-            var h2 = h - 82;
-            $('#cus-subreview-container').css('height',h2 + 'px');
-            this.loadSubreviewList();
-        },
-
-        //发表评论
-        publishCommentConf:{
-            loading:false,
-        },
-        publishComment:function(){
-            var content = $('.neirong').val();
-            $('.neirong').focus();
-            $('.neirong').val('');
-
-            var pid = $('#cus-comment-pid').val();
-            if(this.publishCommentConf.loading){
-                return false;
-            }
-
-            $.ajax({
-                url: "/weixin/article/comment",
-                type: 'post',
-                data: {pid: pid, object_id: objClass.article_id,content:content},
-                dataType: 'json',
-                beforeSend: function () {
-                    objClass.publishCommentConf.loading = true;
-                },
-                success: function (res) {
-                    objClass.publishCommentConf.loading = false;
-                    if (res.code == 200) {
-                        $('.neirong').val('');
-                        $('.wx-foot').show();
-                        $('.wl-zhez').hide();
-                        document.activeElement.blur();
-                        $(".wl-zhez").blur();
-                        $('.wl-zhez').hide();
-                        $(".neirong").val("");
-                        redream.showTip('发布成功');
-                        objClass.commentData.ini= false;
-                        objClass.commentData.page= 0;
-                        objClass.commentData.page_total= 0;
-                        objClass.loadCommentList();
-                        $('.neirong').val('');
-                    }else if (res.code == 401){
-                        redream.showTip('请先进行登录');
-                    }else if (res.code == 403){
-                        redream.showTip('您还没有授权');
-                    }else{
-                        redream.showTip('评论失败');
-                    }
-                }
-            });
-        },
-
-        hrefDetails:function(id){
-            window.location.href = '/weixin/article/articleDetails/id/' + id;
-        },
-
-        isAdd:false,
-        addFriendLoading:false,
-        showAddFriend:function(){
-            if(!this.isAdd){
-                $(".wl-zhezhao").toggle();
-            }else{
-                redream.showTip('不能重复申请...');
-            }
-        },
-        submitFriendApply:function(){
-            var remarks = $.trim($('#fr-friend-remarks').val());
-            if(redream.isEmptyStr(remarks)){
-                redream.showTip('申请备注不能为空...');
-                return false;
-            }else if(!this.addFriendLoading){
-                $.ajax({
-                    url: "/weixin/user/addFriend",
-                    type: 'post',
-                    data: {friend_id: objClass.u_id,remarks:remarks},
-                    dataType: 'json',
-                    beforeSend:function(){
-                        objClass.addFriendLoading = true;
-                    },
-                    complete:function(){
-                        objClass.addFriendLoading = false;
-                    },
-                    success: function (res) {
-                        if (res.code == 200) {
-                            objClass.isAdd = true;
-                            redream.showTip('申请提交成功...');
-                            $('#cus-add-friend').text('已申请');
-                            $(".wl-zhezhao").toggle();
-                        }else if (res.code == 401){
-                            redream.showTip('请先进行登录');
-                        }else if (res.code == 403){
-                            redream.showTip('您还没有授权');
-                        }else{
-                            redream.showTip(res.msg);
-                        }
-                    }
-                });
-            }
-        },
-
-        myFavorite:{
-            loading:false,
-            submit:function(){
-                if(objClass.myFavorite.loading){
-                    return false;
-                }
-                $.ajax({
-                    url: "/weixin/article/addFavorite",
-                    type: 'post',
-                    data: {id:objClass.article_id},
-                    dataType: 'json',
-                    beforeSend: function () {
-                        objClass.myFavorite.loading = true;
-                    },
-                    success: function (res) {
-                        objClass.myFavorite.loading = false;
-                        if (res.code == 200) {
-                            $('#cus-click-favorite').removeClass('icon-favor_light').addClass('icon-favor_fill_light').addClass('cus-favorite');
-                            objClass.myFavorite.loading = true;
-                            redream.showTip('收藏成功...');
-                        }else if(res.code == 401){
-
-                            redream.showTip('请登录后操作...');
-                        }
-                    }
-                });
-            }
-        }
-    };
-
-    $('.mp img').removeAttr('style');
-
-    setTimeout(function () {
-        objClass.loadRecommendList();
-    }, 500);
-
-    setTimeout(function () {
-        objClass.loadCommentList();
-    }, 1000);
-
-    $(document).on('click', '.cus-recommend-href', function () {
-        window.location.href = '/weixin/article/articleDetails/id/' + $(this).data('id');
-    });
-
-    $(document).on('click', '.cus-comment-fabulous', function () {
-        objClass.clickCommentFabulous($(this), 1);
-    });
-
-    $(document).on('click', '.cus-reply-btn', function () {
-        var num = parseInt($(this).data('replynum'));
-        if(num == 0 || num == ''){
-            var name = $(this).data('name');
-            $('#cus-comment-pid').val($(this).data('commentid'));
-            $('.neirong').attr('placeholder','回复 '+ name);
-            $('.wx-foot').hide();
-            $('.kl1').show();
-            $('.wl-zhez').show();
-            $('.fb1').css('color','#ccc');
-        }else{
-            objClass.replyComment($(this));
-        }
-    });
-
-    $(document).on('click', '.cus-pinglun-click', function () {
-        objClass.clickCommentFabulous($(this), 2);
-    });
-
-    $(document).ready(function () {
-        $(".cus-reply-btn").click(function (event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".marsk-container").toggle();
-            $(".marsk-container").css({'overflow': 'hidden'});
-        });
-        //点击空白处隐藏弹出层
-        $(".marsk-container").click(function (event) {
-            var _con = $('.tkyy_con'); // 设置目标区域
-            if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.marsk-container').hide(); //淡出消失
-            }
-        });
-        $("#tui").click(function () {
-            $('.marsk-container').hide(); //淡出消失
-        })
-        $('.cus-reply-btn').click(function(){
-            $('html,body').addClass('ovfHiden'); //使网页不可滚动
-            $(".tkyy_con").show();
-        })
-    });
-
-    $(document).on('click','.cus-touser-main', function () {
-        window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
-    });
-
-    $('#cus-myshare-box').on('click',function(){
-        $(this).hide();
-    });
-
-    $('#cus-click-favorite').on('click',function(){
-        objClass.myFavorite.submit();
-    });
+{block name="script"}
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script id="demo" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+        <div class="wzxq ">
+            <div class="wx-x">
+                <h3 data-id="{{item.id}}" class="cus-recommend-href href" >{{item.title}}</h3>
+                <p><span data-user_id="{{item.user_id}}" class="cus-touser-main href"  >{{item.nickname}}</span>
+                    <span>{{item.hits}}阅览量</span>
+                </p>
+            </div>
+            <img src="{{item.thumbnail}}" alt="" data-id="{{item.id}}" class="cus-recommend-href">
+        </div>
+    {{#  }); }}
 </script>
-<script type="text/javascript">
-    $(".xpq1").click(function () {
-        $('.wx-foot').hide();
-        $('.kl1').show();
-        $('.fb1').css('color','#ccc');
-        $('.neirong').val('');
-        $('#cus-comment-pid').val('');
-    });
 
-    $(function () {
-        $('.kl1 textarea').on('.kl1 input ', function () {
-            if (($.trim($('.neirong').val()) !== "")) {
-                $('.fb1').css({'color': '#7DB0E8'});
-            } else {
-                $('.fb1').css({'color': '#EBEBEB'});
-                $('neirong').val('');
-            }
-        });
-    });
+<script id="demo1" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-pinglun">
+        <div style="float: left">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" class="cus-touser-main " data-user_id="{{item.user_id}}" onerror="this.src='/static/image/user/tou.png'">
+        </div>
+        <div class="wl-ping-xiang">
+            <div>
+                <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
 
-    function getClientHeight(){
-        var clientHeight=0;
-        if(document.body.clientHeight&&document.documentElement.clientHeight){
-            var clientHeight = (document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
-        }else{
-            var clientHeight = (document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
-        }
+                {{#  if(item.isZan == 0){ }}
+                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.isZan}}" >
+                    <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
+                    <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
+                </div>
+                {{#  } }}
 
-        return clientHeight;
-    }
-
-    $(document).ready(function() {
-        $(".xpq1").click(function(event) {
-            event.stopPropagation(); //停止事件冒泡
-            $(".wl-zhez").toggle();
-            $('.neirong').focus();
-
-        });
-
-
-        //点击空白处隐藏弹出层
-        $(".wl-zhez").click(function(event) {
-            var _con = $('.wl-zl'); // 设置目标区域
-            if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-                $('.wl-zhez').hide(); //淡出消失
-                $('.wx-foot').show();
-                $('.neirong').val("");
-                $('#cus-comment-pid').val('');
-
-                $('.neirong').attr('placeholder','请输入评论内容');
-            }
-        });
-    });
+                {{#  if(item.isZan == 1){ }}
+                    <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.isZan}}" >
+                        <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
+                        <span style="font-size: 13px">{{item.like_count}}</span>
+                    </div>
+                {{#  } }}
+            </div>
+            <div style="clear:both"></div>
+            <div class="wl-ping-neirong">{{item.content}}</div>
+            <div class="wl-pji">{{item.created_time}}</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+        {{#  }); }}
 </script>
+
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="/static/plugin/wechat/WechatJsSdk.js"></script>
 <script type="text/javascript" src="/static/plugin/nativeShare/NativeShare.js"></script>
@@ -733,6 +169,12 @@
             "onMenuShareQQ",                    //分享到QQ
             "onMenuShareWeibo",                 //分享到微博
         ]
+    };
+
+
+    const conf = {
+        article_id: {$article_info['id']},
+        u_id: {$article_info['user_id']},
     };
 
     function callbacks(){
@@ -799,13 +241,8 @@
             }
         }
     };
+
 </script>
-<script type="text/javascript">
-    $(".wl-zhezhao").click(function(event) {
-        var _con = $('.wl-zhe1'); // 设置目标区域
-        if(!_con.is(event.target) && _con.has(event.target).length == 0) {
-            $('.wl-zhezhao').hide(); //淡出消失
-        }
-    });
-</script>
-</html>
+<script type="text/javascript" src="/static/weixin/viewjs/article-details.js"></script>
+
+{/block}

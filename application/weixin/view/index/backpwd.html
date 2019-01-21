@@ -1,138 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-		<meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta content="telephone=no" name="format-detection" />
-		<link rel="stylesheet" type="text/css" href="/static/css/iconfont.css"/>
-		<link rel="stylesheet" type="text/css" href="/static/css/backpwd.css" />
-		<link rel="stylesheet" type="text/css" href="/static/css/wkf.css" />
-		<title>{:config('conf.title')} - 账号找回</title>
-        <style>
-            .code-hui{
-                color: #cccccc !important;
+{extend name="layout/layout" /}
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/login.css">
+<link rel="stylesheet" type="text/css" href="/static/css/function.css" />
+{/block}
+
+{block name="main"}
+<!--这里编写主体内容-->
+<div class="wl-login">
+    <a href="/weixin/index/login" class="wl-jump-left"><i class="iconfont icon-back_light"></i></a>
+    <a href="/weixin/index/index"><div class="wl-logo"><img src="/static/weixin/image/bg-logo.png" alt=""></div></a>
+    <div class="wl-dialog">
+        <div class="wl-backpwd">找回密码</div>
+        <div style="clear: both"></div>
+        <div class="content">
+            <div class="wl-d active one">
+                <div class="wl-input-box wl-back-pwd">
+                    <input type="text" placeholder="请输入您的手机号" style="width: 60%" id="mobile" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')">
+                    <button class="wl-obtain"  id="code-btn" onclick="objClass.sendSms()">获取验证码</button></div>
+                <div class="wl-input-box"><input type="text" placeholder="请输入您收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" id="sms_code"></div>
+                <button class="wl-the-login" id="btn"  onclick="objClass.submit()">找回密码</button>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+
+</div>
+
+{/block}
+{block name="script"}
+<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/plugin/layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
+    codeObj.run();
+
+    var  objClass = {
+        loading:false,
+        sendSmsCode:false,
+        checkMobile:function(mobile){
+            var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+            return reg_phone.test(mobile);
+        },
+        submit:function(){
+            var mobile = $('#mobile').val();
+            var sms_code = $('#sms_code').val();
+
+            if(!this.checkMobile(mobile)){
+                redream.showTip('手机号格式不正确！');
+                return false;
             }
-        </style>
 
-	</head>
-
-	<body style="background-color: #fff;">
-		<div class="con">
-			<div class="wx-top">
-			<a href="login.html"  class="iconfont icon-back_light" style="font-size: 40px;padding-top: 10px;margin-left: 25px;"></a>
-				<div class="wx-reg">
-					<h3 style="font-size:38px;width: 95%;height: 127px;line-height: 127px;text-align: center;color: #1f1f1f">找回密码</h3>
-			     	<p style="margin-top: 40px;"><input id="mobile" type="text"  placeholder="请输入你的手机号" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" /><button id="code-btn" onclick="objClass.sendSms()">获取验证码</button></p>
-					<p style="margin-top: 40px;"><input id="sms_code" type="text" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 555px"></p>
-					<button id="btn" style="margin-top: 100px;" onclick="objClass.submit()">找回密码</button>
-				</div>
-				<!--<p class="weixin"><a href="/weixin/index/otherLogin?platform=weixin" class="qian"><img src="/static/image/reg/wx.jpg" width="80px" height="80px"/ style="float: left;margin-left: 100px;margin-left: 20px;"/><span style="margin-left: 30px;"> <<微信授权登录</span></a></p>-->
-			</div>
-		</div>
-	</body>
-	<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>>
-	<script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-        var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
-        codeObj.run();
-
-        var  objClass = {
-            loading:false,
-            sendSmsCode:false,
-            checkMobile:function(mobile){
-                var reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
-                return reg_phone.test(mobile);
-            },
-            submit:function(){
-                var mobile = $('#mobile').val();
-                var sms_code = $('#sms_code').val();
-
-                if(!this.checkMobile(mobile)){
-                    redream.showTip('手机号格式不正确！');
-                    return false;
-                }
-
-                if(sms_code == ''){
-                    redream.showTip('请填写验证码！');
-                    return false;
-                }
-                if(!this.loading){
-                    $.ajax({
-                        url:"/weixin/index/checkSmsCode",
-                        type:'post',
-                        data:{mobile:mobile,sms_code:sms_code},
-                        dataType:'json',
-                        beforeSend:function(){
-                            objClass.loading = true;
-                        },
-                        complete:function(){
-                            objClass.loading = false;
-                        },
-                        success:function(res){
-                            if(res.code == 200){
-                                window.location.href = '/weixin/index/rePwd?mobile='+res.data.mobile+'&verify_code='+ encodeURIComponent(res.data.verify_code);
-                                return false;
-                            }else if(res.code == 301){
-                                redream.showTip('请求参数错误！');
-                            }else if(res.code == 302){
-                                redream.showTip('验证码错误！');
-                            }else if(res.code == 303){
-                                redream.showTip('验证码已过期！');
-                            }else {
-                                redream.showTip('验证码错误！');
-                            }
-                        }
-                    });
-                }
-            },
-            sendSms:function(){
-                var mobile = $('#mobile').val();
-                if(!this.checkMobile(mobile)){
-                    redream.showTip('手机号格式不正确！');
-                    return false;
-                }else if(codeObj.checkTime()){
-                    return false;
-                }else if(!this.sendSmsCode){
-                    $.ajax({
-                        url:"/weixin/index/sendResetPwdSmsCode",
-                        type:'post',
-                        data:{mobile:mobile},
-                        dataType:'json',
-                        beforeSend:function(){
-                            objClass.sendSmsCode = true;
-                        },
-                        complete:function(){
-                            objClass.sendSmsCode = false;
-                        },
-                        success:function(res){
-                            if(res.code == 200){
-                                redream.showTip('发送成功！');
-                                codeObj.sendSmsCode();
-                            }else if(res.code == 301){
-                                redream.showTip('请求参数错误！');
-                            }else if(res.code == 302){
-                                redream.showTip('该用户未被使用！');
-                            }else{
-                                redream.showTip('发送失败！');
-                            }
-                        }
-                    });
-                }
+            if(sms_code == ''){
+                redream.showTip('请填写验证码！');
+                return false;
             }
-        };
-
-		$(function(){
-			$('.wx-reg input').on('.wx-reg input ',function(){
-				if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")){
-				$('#btn').css({'background':'#7DB0E8'});
-			}else{
-				$('#btn').css({'background':'#EBEBEB'});
-				 }
-			});
-		});
-	</script>
-</html>
+            if(!this.loading){
+                $.ajax({
+                    url:"/weixin/index/checkSmsCode",
+                    type:'post',
+                    data:{mobile:mobile,sms_code:sms_code},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass.loading = true;
+                    },
+                    complete:function(){
+                        objClass.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            window.location.href = '/weixin/index/rePwd?mobile='+res.data.mobile+'&verify_code='+ encodeURIComponent(res.data.verify_code);
+                            return false;
+                        }else if(res.code == 301){
+                            redream.showTip('请求参数错误！');
+                        }else if(res.code == 302){
+                            redream.showTip('验证码错误！');
+                        }else if(res.code == 303){
+                            redream.showTip('验证码已过期！');
+                        }else {
+                            redream.showTip('验证码错误！');
+                        }
+                    }
+                });
+            }
+        },
+        sendSms:function(){
+            var mobile = $('#mobile').val();
+            if(!this.checkMobile(mobile)){
+                redream.showTip('手机号格式不正确！');
+                return false;
+            }else if(codeObj.checkTime()){
+                return false;
+            }else if(!this.sendSmsCode){
+                $.ajax({
+                    url:"/weixin/index/sendResetPwdSmsCode",
+                    type:'post',
+                    data:{mobile:mobile},
+                    dataType:'json',
+                    beforeSend:function(){
+                        objClass.sendSmsCode = true;
+                    },
+                    complete:function(){
+                        objClass.sendSmsCode = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            redream.showTip('发送成功！');
+                            codeObj.sendSmsCode();
+                        }else if(res.code == 301){
+                            redream.showTip('请求参数错误！');
+                        }else if(res.code == 302){
+                            redream.showTip('该用户未被使用！');
+                        }else{
+                            redream.showTip('发送失败！');
+                        }
+                    }
+                });
+            }
+        }
+    };
+        $('.one input').on('input ',function(){
+            if(($.trim($('#mobile').val())!=="")&&($.trim($('#sms_code').val())!=="")){
+                $('#btn').css({'background':'#7DB0E8'});
+            }else{
+                $('#btn').css({'background':'#EBEBEB'});
+            }
+        });
+</script>
+{/block}

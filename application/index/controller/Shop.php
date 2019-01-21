@@ -38,7 +38,7 @@ class Shop extends CController
 
         $this->assign('isAuth',$auth);
 
-        return $this->fetch('shop/shoplist1');
+        return $this->fetch('shop/shoplist');
     }
 
     /**
@@ -64,7 +64,7 @@ class Shop extends CController
         }
 
         $this->assign('goods_info',$shopGoodInfo);
-        return $this->fetch('shop/good_editor1');
+        return $this->fetch('shop/good_editor');
     }
 
     /**
@@ -126,7 +126,7 @@ class Shop extends CController
         $data = (new \app\api\domain\SpGoodGoodsDomain())->getUserGoodGoodsList($this->getUserId(),$page,$page_size);
 
         $this->assign('list',$data);
-        return $this->fetch('shop/myshoplist1');
+        return $this->fetch('shop/myshoplist');
     }
 
     /**
