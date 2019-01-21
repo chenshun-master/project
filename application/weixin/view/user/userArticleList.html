@@ -49,20 +49,20 @@
         <img src="{$user_info['portrait']}"  onclick="redream.href('/weixin/user/main')" onerror='this.src="/static/image/user/tou.png"' />
         <div class="wx-wen">
             <dl>
-                <dt>{$publishStatistics['type_1']['total']}</dt>
+                <dt>{$publishStatistics['article']}</dt>
                 <dd>文章</dd>
             </dl>
             <dl>
-                <dt>{$publishStatistics['type_2']['total']}</dt>
+                <dt>{$publishStatistics['video']}</dt>
                 <dd>视频</dd>
             </dl>
             <dl>
-                <dt>{$publishStatistics['type_3']['total']}</dt>
+                <dt>{$publishStatistics['diary']}</dt>
                 <dd>案例</dd>
             </dl>
             <dl>
-                <dt>{$publishStatistics['type_4']['total']}</dt>
-                <dd>问答</dd>
+                <dt>{$publishStatistics['goodsgood']}</dt>
+                <dd>热门商品</dd>
             </dl>
             <button id="btn">
                 <?php if($user_info['type'] == 1):?>

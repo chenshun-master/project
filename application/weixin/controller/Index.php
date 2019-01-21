@@ -517,21 +517,6 @@ class Index extends BaseController
         $uDomain = new \app\api\domain\UDomain();
         $info = $uDomain->getHospitalInfo($uid);
 
-        $data = [
-            'type_1' => ['type' => 1, 'total' => 0],
-            'type_2' => ['type' => 2, 'total' => 0],
-            'type_3' => ['type' => 3, 'total' => 0],
-            'type_4' => ['type' => 4, 'total' => 0]
-        ];
-
-        $statistics = $this->articleDomain->getArticleStatisticsData($uid);
-        if ($statistics) {
-            foreach ($statistics as $val) {
-                $type = 'type_' . $val['type'];
-                $data[$type] = $val;
-            }
-        }
-
         $myID = $this->getUserId();
         $isFollow = 0;
         if ($uid == $myID) {
@@ -541,7 +526,7 @@ class Index extends BaseController
         }
 
         $this->assign('info', $info);
-        $this->assign('statistics', $data);
+        $this->assign('statistics', app('domain')->getDomain('udomain')->statistics($uid));
         $this->assign('uid', $uid);
         $this->assign('isFollow', $isFollow);
         return $this->fetch('index/hospital_details');
@@ -613,21 +598,6 @@ class Index extends BaseController
         $uDomain = new \app\api\domain\UDomain();
         $info = $uDomain->getDoctorInfo($uid);
 
-        $data = [
-            'type_1' => ['type' => 1, 'total' => 0],
-            'type_2' => ['type' => 2, 'total' => 0],
-            'type_3' => ['type' => 3, 'total' => 0],
-            'type_4' => ['type' => 4, 'total' => 0]
-        ];
-
-        $statistics = $this->articleDomain->getArticleStatisticsData($uid);
-        if ($statistics) {
-            foreach ($statistics as $val) {
-                $type = 'type_' . $val['type'];
-                $data[$type] = $val;
-            }
-        }
-
         $myID = $this->getUserId();
         $isFollow = 0;
         if ($uid == $myID) {
@@ -637,7 +607,7 @@ class Index extends BaseController
         }
 
         $this->assign('info', $info);
-        $this->assign('statistics', $data);
+        $this->assign('statistics', app('domain')->getDomain('udomain')->statistics($uid));
         $this->assign('uid', $uid);
         $this->assign('isFollow', $isFollow);
         return $this->fetch('index/doctor_details');

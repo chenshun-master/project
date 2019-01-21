@@ -505,4 +505,16 @@ class Api extends BaseController
         $data = Singleton::getDomain('DiaryDomain')->getUserDiary($uid,$page,$page_size,$searchParams);
         return $this->returnData($data);
     }
+
+    /**
+     * 获取用户分销商品列表
+     */
+    public function getUserGoodGoods()
+    {
+        $uid       = $this->request->param('uid/d', 0);
+        $page = $this->request->param('page/d',1);
+        $page_size = $this->request->param('page_size',15);
+        $data = (new \app\api\domain\SpGoodGoodsDomain())->getUserGoodGoodsList($uid,$page,$page_size);
+        return $this->returnData($data);
+    }
 }
