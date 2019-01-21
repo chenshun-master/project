@@ -60,11 +60,9 @@ class CommentDomain
                 }
             }
 
-            Db::commit();
-            return true;
+            Db::commit();return true;
         } catch (\Exception $e) {
-            Db::rollback();
-            return false;
+            Db::rollback();return false;
         }
     }
 }

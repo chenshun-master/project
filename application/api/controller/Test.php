@@ -21,4 +21,5 @@ class Test
 //        //将图片裁剪为300x300并保存为crop.png
 //        $image->thumb(240, 180,\think\Image::THUMB_CENTER)->save('./20150521142543307_240_180.png');
 //    }
+
 }
