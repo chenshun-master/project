@@ -282,6 +282,7 @@ dianhua-left dl>a{
     text-align: center;
     float: left;
     font-size: 13px;
+    cursor: pointer;
 }
 .wl-deji-show{
     display: block;

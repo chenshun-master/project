@@ -13,14 +13,11 @@
         <dl><img src="{$user_info['portrait']}" alt="" onerror="this.src='/static/image/user/tou.png '" ></dl>
         <dt>{$user_info['nickname']}</dt>
         <p>{$user_info['profile']}</p>
-
-
         <?php if($is_friend === true):?>
         <dd><a href="/weixin/user/userDialogue/uid/{$user_info['id']}">私信</a></dd>
         <?php elseif($is_friend === false):?>
         <dd onclick="myObj.showAddFriend()">加好友</dd>
         <?php endif;?>
-
     </div>
     <div class="wl-main">
         <div class="nav">
@@ -39,7 +36,6 @@
                 <div>尚未上传内容</div>
             </div>
             <ul id="dataList1" class="data-list">
-
             </ul>
         </div>
 
@@ -135,15 +131,11 @@
         user_id:{$user_info['id']},
         url:[
             '/weixin/Article/getUserPublishArticle',
-            '',
-            '',
-            ''
         ],
         searchList: function (page, successCallback, errorCallback) {
             var data = $.extend({}, {user_id:listObj.user_id,uid:listObj.user_id,page: page.num, page_size: page.size});
             $.ajax({
                 url: listObj.url[listObj.index],
-                // url:'/weixin/Article/getUserPublishArticle',
                 type: 'post',
                 data: data,
                 dataType: 'json',
@@ -154,52 +146,34 @@
         },
     };
 
-
-    var curNavIndex=0;
-    var mescrollArr=new Array(4);
-    var url = window.location.toString();
-    var maodian = url.split('#')[1];
+    var curNavIndex=0,mescrollArr=new Array(4);
     $('.mescroll').addClass('hide');
-    if(maodian == 'all'){
-        $('#mescroll0').removeClass('hide');
-        mescrollArr[0]= initMescroll("mescroll0", "dataList0");
-    }else if(maodian  == 'paid'){
-        curNavIndex = 1;
-        $('#mescroll1').removeClass('hide');
-        mescrollArr[1]= initMescroll("mescroll1", "dataList1");
-    }else if(maodian == 'consumption'){
-        curNavIndex = 2;
-        mescrollArr[2]= initMescroll("mescroll2", "dataList2");
-        $('#mescroll2').removeClass('hide');
-    }else if(maodian == 'complete'){
-        curNavIndex = 3;
-        mescrollArr[3]= initMescroll("mescroll3", "dataList3");
-        $('#mescroll3').removeClass('hide');
-    }else{
-        curNavIndex = 0;
-        mescrollArr[0]= initMescroll("mescroll0", "dataList0");
-        $('#mescroll0').removeClass('hide');
-    }
+    mescrollArr[0]= initMescroll("mescroll0", "dataList0");
+    $('#mescroll0').removeClass('hide');
 
     $(".nav > p").eq(curNavIndex).addClass('active').siblings().removeClass('active');
-
     $(".nav p").click(function(){
         var i=Number($(this).attr("i"));
         if(curNavIndex!=i) {
-            //更改列表条件
-            $(".nav .active").removeClass("active");
-            $(this).addClass("active");
-            //隐藏当前列表和回到顶部按钮
-            $("#mescroll" + curNavIndex).hide();
+            if(curNavIndex == 0){
+                //更改列表条件
+                $(".nav .active").removeClass("active");
+                $(this).addClass("active");
+                //隐藏当前列表和回到顶部按钮
+                $("#mescroll" + curNavIndex).hide();
                 mescrollArr[curNavIndex].hideTopBtn();
-                //显示对应的列表
-                $("#mescroll"+i).show();
                 // 取出菜单所对应的mescroll对象,如果未初始化则初始化
                 if(mescrollArr[i]==null) {
                     mescrollArr[i] = initMescroll("mescroll" + i, "dataList" + i);
                 }
-                //更新标记
-                curNavIndex=i;
+            }else{
+                $(".nav .active").removeClass("active");
+                $(this).addClass("active");
+                $("#mescroll" + curNavIndex).hide();
+            }
+
+            $("#mescroll"+i).show();
+            curNavIndex=i;
         }
     });
 

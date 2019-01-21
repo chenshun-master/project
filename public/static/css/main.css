@@ -401,3 +401,7 @@ position: absolute;
     width: 255px;
     height: 180px;
 }
+.wl-tubiao i{
+    font-size: 30px!important;
+    margin-right: 10px;
+}

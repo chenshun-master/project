@@ -448,7 +448,7 @@ class Index extends BaseController
             'verify_code' => $request->param('verify_code')
         ]);
 
-        return $this->fetch('index/resetpwd1');
+        return $this->fetch('index/resetpwd');
     }
 
     /**
