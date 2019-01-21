@@ -770,4 +770,13 @@ class Index extends BaseController
 
          return $this->fetch('index/inquiry');
      }
+      /**
+       * 问答详情页面
+       * @return mixed
+       */
+      public function inquiryDetails()
+      {
+
+          return $this->fetch('index/inquiry-details');
+      }
 }
