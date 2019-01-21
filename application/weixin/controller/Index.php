@@ -448,7 +448,7 @@ class Index extends BaseController
             'verify_code' => $request->param('verify_code')
         ]);
 
-        return $this->fetch('index/resetpwd1');
+        return $this->fetch('index/resetpwd');
     }
 
     /**
@@ -761,4 +761,13 @@ class Index extends BaseController
 
         return $this->fetch('index/diary_user');
     }
+     /**
+      * 问答页面
+      * @return mixed
+      */
+     public function inquiry()
+     {
+
+         return $this->fetch('index/inquiry');
+     }
 }

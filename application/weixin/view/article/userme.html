@@ -13,33 +13,26 @@
         <dl><img src="{$user_info['portrait']}" alt="" onerror="this.src='/static/image/user/tou.png '" ></dl>
         <dt>{$user_info['nickname']}</dt>
         <p>{$user_info['profile']}</p>
-
-
         <?php if($is_friend === true):?>
         <dd><a href="/weixin/user/userDialogue/uid/{$user_info['id']}">私信</a></dd>
         <?php elseif($is_friend === false):?>
         <dd onclick="myObj.showAddFriend()">加好友</dd>
         <?php endif;?>
-
     </div>
     <div class="wl-main">
         <div class="nav">
             <p class="active" i="0">文章</p>
-            <p i="1">视频</p>
-            <p i="2">热门项目</p>
-            <p i="3">提问</p>
+            <!--<p i="1">视频</p>-->
+            <p i="1">热门项目</p>
+            <!--<p i="2">提问</p>-->
         </div>
         <div id="mescroll0" class="mescroll">
             <ul id="dataList0" class="data-list">
             </ul>
         </div>
         <div id="mescroll1" class="mescroll hide">
-            <div class="wl-weisahng">
-                <div><i class="iconfont icon-icon-test wl-shangwei"></i></div>
-                <div>尚未上传内容</div>
-            </div>
-            <ul id="dataList1" class="data-list">
 
+            <ul id="dataList1" class="data-list">
             </ul>
         </div>
 
@@ -49,6 +42,7 @@
                 <div>尚未上传内容</div>
             </div>
             <ul id="dataList2" class="data-list">
+
             </ul>
         </div>
         <div id="mescroll3" class="mescroll hide">
@@ -129,21 +123,40 @@
     </div>
     {{#  }); }}
 </script>
+<script id="templateListgoods" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-shangping href click-to-havegoodDetails">
+        <div class="wl-sp-img">
+            <img src="{{item.img}}" />
+        </div>
+        <div class="wl-xiang href">
+            <div class="wl-top-title">{{item.title}}</div>
+            <div class="wl-title">發但是</div>
+            <div class="wl-yuding">
+                <div class="wl-yiyuan">{{item.like}}人喜欢</div>
+                <div class="wl-jiage">
+                    <span class="wl-jiage1"><sub style="font-size: 8px">￥</sub><span>{{item.sell_price}}</span></span>
+                    <span class="wl-quchu">￥{{item.market_price}}</span>
+                </div>
+            </div>
+        </div>
+        <dl style="clear: both"></dl>
+    </div>
+    {{#  }); }}
+</script>
+
 <script>
     var listObj = {
         index:0,
         user_id:{$user_info['id']},
         url:[
             '/weixin/Article/getUserPublishArticle',
-            '',
-            '',
-            ''
+            '/weixin/api/getUserGoodGoods'
         ],
         searchList: function (page, successCallback, errorCallback) {
             var data = $.extend({}, {user_id:listObj.user_id,uid:listObj.user_id,page: page.num, page_size: page.size});
             $.ajax({
-                url: listObj.url[listObj.index],
-                // url:'/weixin/Article/getUserPublishArticle',
+                url: listObj.url[curNavIndex],
                 type: 'post',
                 data: data,
                 dataType: 'json',
@@ -154,52 +167,40 @@
         },
     };
 
-
     var curNavIndex=0;
-    var mescrollArr=new Array(4);
-    var url = window.location.toString();
-    var maodian = url.split('#')[1];
+    mescrollArr=new Array(4);
     $('.mescroll').addClass('hide');
-    if(maodian == 'all'){
-        $('#mescroll0').removeClass('hide');
-        mescrollArr[0]= initMescroll("mescroll0", "dataList0");
-    }else if(maodian  == 'paid'){
-        curNavIndex = 1;
-        $('#mescroll1').removeClass('hide');
-        mescrollArr[1]= initMescroll("mescroll1", "dataList1");
-    }else if(maodian == 'consumption'){
-        curNavIndex = 2;
-        mescrollArr[2]= initMescroll("mescroll2", "dataList2");
-        $('#mescroll2').removeClass('hide');
-    }else if(maodian == 'complete'){
-        curNavIndex = 3;
-        mescrollArr[3]= initMescroll("mescroll3", "dataList3");
-        $('#mescroll3').removeClass('hide');
-    }else{
-        curNavIndex = 0;
-        mescrollArr[0]= initMescroll("mescroll0", "dataList0");
-        $('#mescroll0').removeClass('hide');
-    }
+
+    $('#mescroll0').removeClass('hide');
+    mescrollArr[0]= initMescroll("mescroll0", "dataList0");
 
     $(".nav > p").eq(curNavIndex).addClass('active').siblings().removeClass('active');
-
     $(".nav p").click(function(){
         var i=Number($(this).attr("i"));
         if(curNavIndex!=i) {
-            //更改列表条件
-            $(".nav .active").removeClass("active");
-            $(this).addClass("active");
-            //隐藏当前列表和回到顶部按钮
-            $("#mescroll" + curNavIndex).hide();
-                mescrollArr[curNavIndex].hideTopBtn();
+
+            if(curNavIndex == 0 || curNavIndex == 1){
+                $(".nav .active").removeClass("active");
+                $(this).addClass("active");
+
+                //隐藏当前列表和回到顶部按钮
+                $("#mescroll" + curNavIndex).addClass('hide');
                 //显示对应的列表
-                $("#mescroll"+i).show();
-                // 取出菜单所对应的mescroll对象,如果未初始化则初始化
+                $("#mescroll"+i).removeClass('hide');
+
+                mescrollArr[curNavIndex].hideTopBtn();
+
                 if(mescrollArr[i]==null) {
                     mescrollArr[i] = initMescroll("mescroll" + i, "dataList" + i);
                 }
-                //更新标记
+
                 curNavIndex=i;
+            }else{
+                $(".nav .active").removeClass("active");
+                $(this).addClass("active");
+                $("#mescroll" + curNavIndex).addClass('hide');
+                $("#mescroll"+i).removeClass('hide');
+            }
         }
     });
 
@@ -224,27 +225,19 @@
                 callback: function(page){
                     listObj.searchList(page,function(curPageData){
                         mescroll.endSuccess(curPageData.length);
-                        var template = templateList.innerHTML;
-                        if(curNavIndex==0){
+                        if(curNavIndex == 0){
                             $.each(curPageData, function (k, val) {
                                 if (val.thumbnail != '' && val.thumbnail != undefined) {
                                     curPageData[k].thumbnail = $.parseJSON(val.thumbnail);
                                 }
                             });
+
                             layui.laytpl(templateList.innerHTML).render(curPageData, function (html) {
                                 $('#dataList0').append(html);
                             });
-                        }else if(curNavIndex==1){
-                            layui.laytpl(isnoTemplateList.innerHTML).render( function(html){
+                        }else if(curNavIndex == 1){
+                            layui.laytpl(templateListgoods.innerHTML).render( curPageData,function(html){
                                 $('#dataList1').append(html);
-                            });
-                        }else if(curNavIndex==2){
-                            layui.laytpl(isnoTemplateList.innerHTML).render( function(html){
-                                $('#dataList2').append(html);
-                            });
-                        }else if(curNavIndex==3){
-                            layui.laytpl(isnoTemplateList.innerHTML).render(function(html){
-                                $('#dataList3').append(html);
                             });
                         }
                     }, function(){
