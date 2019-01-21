@@ -33,11 +33,42 @@ layui.table.render({
                 }
             }},
         {field: 'username', title: '运营者姓名'},
-        {field: 'idcard', title: '运营者身份证号'},
         {field: 'enterprise_name', title: '医院/组织名称'},
-        {field: 'address', title: '详细地址'},
-        {field: 'duties', title: '岗位职称'},
-        {field: 'founding_time', title: '医院机构成立时间',sort:true},
+        {field: 'card_img1',title:'身份证照正面照',width:100,align:"center",templet:function (res) {
+                if(res.type == 1|| res.type == 2 || res.type == 3 || res.type == 4){
+                    return '<img src="'+res.card_img1+'" width="50" >'
+                }else{
+                    return '';
+                }
+            }},
+        {field: 'card_img2',title:'身份证照背面照',width:100,align:"center",templet:function (res) {
+                if(res.type == 1|| res.type == 2 || res.type == 3 || res.type == 4){
+                    return '<img src="'+res.card_img2+'" width="50" >'
+                }else{
+                    return '';
+                }
+            }},
+        {field: 'qualification',title:'医师资格证书',width:100,align:"center",templet:function (res) {
+                if(res.type == 2){
+                    return '<img src="'+res.qualification+'" width="50" >'
+                }else{
+                    return '';
+                }
+            }},
+        {field: 'practice_certificate',title:'医师执业证书',width:100,align:"center",templet:function (res) {
+                if(res.type == 2){
+                    return '<img src="'+res.practice_certificate+'" width="50" >'
+                }else{
+                    return '';
+                }
+            }},
+        {field: 'business_licence',title:'组织机构代码证/营业执照',width:100,align:"center",templet:function (res) {
+                if(res.type == 3 || res.type == 4){
+                    return '<img src="'+res.business_licence+'" width="50" >'
+                }else{
+                    return '';
+                }
+            }},
         {field: 'status', title: '审核状态',width:92,templet:function (res) {
                 if(res.status == 1){
                     return '<span class="label label-primary">待审核</span>';
@@ -57,10 +88,13 @@ layui.table.render({
 layui.table.on('tool(auth)', function(obj){
     var data = obj.data;
     if(obj.event === 'detail'){
-        layer.alert('id：'+ data.id +'<br/>用户手机号：'+data.mobile+'<br/>用户昵称：'+data.nickname+'<br/>运营者姓名：'+data.username
-            +'<br/>运营者身份证号：'+data.idcard+'<br/>医院/组织名称：'+data.enterprise_name+'<br/>简介：'+data.profile+'<br/>联系手机号：'+data.phone+'<br/>详细地址：'+data.address
-            +'<br/>岗位职称：'+data.duties+'<br/>擅长项目：'+data.speciality+'<br/>医院类型：'+data.hospital_type+'<br/>医院/企业规模：'+data.scale+'<br/>医院机构成立时间：'+
-            data.founding_time+'<br/>审核时间：'+data.audit_time+'<br/>审核备注：'+data.audit_remark+'<br/>申请时间：'+data.created_time,{title:'详细信息'});
+        layer.alert('用户手机号：'+data.mobile+'<br>用户昵称：'+data.nickname+'<br/>运营者姓名：'+data.username+'<br/>运营者身份证号：'+data.idcard+'<br/>' +
+            '身份证照正面照：<img src="'+data.card_img1+'" width="200px" height="120px"><br/><br/>身份证照背面照：<img src="'+data.card_img2+'" width="200px" height="120px"><br/><br/>' +
+            '医师资格证书：<img src="'+data.qualification+'" width="200px" height="120px"><br/><br/>医师执业证书：<img src="'+data.practice_certificate+'" width="200px" height="120px"><br/><br/>' +
+            '组织机构代码证/营业执照：<img src="'+data.business_licence+'" width="200px" height="120px"><br/>医院/组织名称：'+data.enterprise_name+'<br/>简介：'+data.profile+'<br>' +
+            '联系手机号：'+data.phone+'<br/>详细地址：'+data.address+'<br/>岗位职称：'+data.duties+'<br/>擅长项目：'+data.speciality+'<br/>医院类型：'+data.hospital_type+'<br/>' +
+            '医院/企业规模：'+data.scale+'<br/>医院机构成立时间：'+data.founding_time+'<br/>审核时间：'+data.audit_time+'<br/>审核备注：'+data.audit_remark+'<br/>' +
+            '申请时间：'+data.created_time,{title:'详细信息',area:['500px','900px']});
     }
 });
 
@@ -133,5 +167,5 @@ var objClass = {
                 }
             });
         }
-    }
+    },
 };
