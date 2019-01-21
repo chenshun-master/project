@@ -517,4 +517,27 @@ class Api extends BaseController
         $data = (new \app\api\domain\SpGoodGoodsDomain())->getUserGoodGoodsList($uid,$page,$page_size);
         return $this->returnData($data);
     }
+
+    /**
+     * 获取问答题目列表数据
+     */
+    public function getInquiryList(){
+        $page      = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
+
+        $data = Singleton::getDomain('InquiryDomain')->getInquiryList($page,$page_size);
+        return $this->returnData($data);
+    }
+
+    /**
+     * 获取问答题目列表数据
+     */
+    public function getAnswerList(){
+        $id       = $this->request->param('id/d', 0);
+        $page      = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
+
+        $data = Singleton::getDomain('InquiryDomain')->getAnswerList($id,$page,$page_size);
+        return $this->returnData($data);
+    }
 }

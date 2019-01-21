@@ -26,7 +26,7 @@ class InquiryDomain
             'category_id'   =>$category_id,
             'user_id'       =>$user_id,
             'title'         =>$title,
-            'describe'       =>$content,
+            'describe'       =>$describe,
             'created_time'  =>date('Y-m-d H:i:s'),
         ]);
 
@@ -49,6 +49,25 @@ class InquiryDomain
         ]);
 
         return $insertId ? true : false;
+    }
+
+
+    public function getUserInquiryNum($uid){
+
+
+        if($uid == 0){
+            return [
+                'inquiry_num'  =>0,
+                'answer_num'   =>0,
+            ];
+        }
+        $inquiry_num = Db::table('wl_inquiry')->where('user_id',$uid)->count('id');
+        $answer_num = Db::table('wl_inquiry_answer')->where('user_id',$uid)->count('id');
+
+        return [
+          'inquiry_num'  =>$inquiry_num,
+          'answer_num'   =>$answer_num,
+        ];
     }
 
     /**
