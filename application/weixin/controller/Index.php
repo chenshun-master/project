@@ -76,10 +76,10 @@ class Index extends BaseController
      */
     public function login()
     {
-        $redir =  $this->request->param('redir','');
-        if(empty($redir)){
-            url('/weixin/user/main','','',true);
-        }else{
+        $redir = $this->request->param('redir', '');
+        if (empty($redir)) {
+            url('/weixin/user/main', '', '', true);
+        } else {
             $redir = base64url_decode($redir);
         }
 
@@ -87,10 +87,10 @@ class Index extends BaseController
             return redirect('/weixin/user/main');
         } else if (is_weixin() && config('conf.weixin_automatic_logon')) {
             Session::delete('wxAuthorize');
-            $this->wxAuthorize(true,$redir);
+            $this->wxAuthorize(true, $redir);
         }
 
-        $this->assign('redir',$redir);
+        $this->assign('redir', $redir);
 
 
         return $this->fetch('index/login');
@@ -263,17 +263,17 @@ class Index extends BaseController
     public function sendOtherLoginSmsCode(Request $request)
     {
 
-        $mobile    = $request->param('mobile', '');
+        $mobile = $request->param('mobile', '');
         $authToken = $request->param('auth_token', '');
-        $authType  = (int)$request->param('auth_type', 0);
+        $authType = (int)$request->param('auth_type', 0);
 
-        $authToken = encryptStr(urldecode($authToken),'D',config('conf.secret_key'));
-        if (empty($mobile) || !checkMobile($mobile) || empty($authToken) || !in_array($authType,[1,2,3,4])) {
+        $authToken = encryptStr(urldecode($authToken), 'D', config('conf.secret_key'));
+        if (empty($mobile) || !checkMobile($mobile) || empty($authToken) || !in_array($authType, [1, 2, 3, 4])) {
             return $this->returnData([], '请求参数不符合规范', 301);
         }
 
         $domain = new \app\api\domain\RhirdPartyUserDomain();
-        $res = $domain->getBindingInfo($mobile, $authToken,$authType);
+        $res = $domain->getBindingInfo($mobile, $authToken, $authType);
         if ($res) {
             return $this->returnData([], '手机号已绑定第三方账号', 302);
         }
@@ -293,9 +293,9 @@ class Index extends BaseController
     public function otherLogin(Request $request)
     {
         $platform = $request->param('platform', '');
-        if($platform == 'weixin'){
+        if ($platform == 'weixin') {
             Session::delete('wxAuthorize');
-            $this->wxAuthorize(true,$request->server('HTTP_REFERER'));
+            $this->wxAuthorize(true, $request->server('HTTP_REFERER'));
             exit;
         }
 
@@ -344,13 +344,13 @@ class Index extends BaseController
      */
     public function otherLoginBindingMobile(Request $request)
     {
-        $auth_token = $request->param('auth_token','');
-        $auth_type = $request->param('type',0);
+        $auth_token = $request->param('auth_token', '');
+        $auth_type = $request->param('type', 0);
         $this->assign('auth_token', $auth_token);
         $this->assign('auth_type', $auth_type);
 
-        $redir = $request->param('redir','');
-        $this->assign('redir', !empty($redir) ? base64url_decode($redir) :'');
+        $redir = $request->param('redir', '');
+        $this->assign('redir', !empty($redir) ? base64url_decode($redir) : '');
         return $this->fetch('index/otherLoginBindingMobile');
     }
 
@@ -361,10 +361,10 @@ class Index extends BaseController
     {
         $mobile = $request->post('mobile', '');
         $sms_code = $request->post('sms_code', '');
-        $auth_token = $request->post('auth_token','');
-        $auth_type = $request->post('auth_type',0);
-        $auth_token = encryptStr(urldecode($auth_token),'D',config('conf.secret_key'));
-        if (empty($mobile) || !checkMobile($mobile) || empty($auth_token) || !in_array($auth_type,[1,2,3,4])) {
+        $auth_token = $request->post('auth_token', '');
+        $auth_type = $request->post('auth_type', 0);
+        $auth_token = encryptStr(urldecode($auth_token), 'D', config('conf.secret_key'));
+        if (empty($mobile) || !checkMobile($mobile) || empty($auth_token) || !in_array($auth_type, [1, 2, 3, 4])) {
             return $this->returnData([], '请求参数不符合规范', 301);
         }
 
@@ -378,7 +378,7 @@ class Index extends BaseController
 
         $userDomain = new UserDomain();
         $wxAuthorize = Session::get('wxAuthorize');
-        $isTrue = $userDomain->bindingMobile($mobile, $auth_token,$auth_type,$wxAuthorize['openid']);
+        $isTrue = $userDomain->bindingMobile($mobile, $auth_token, $auth_type, $wxAuthorize['openid']);
         if ($isTrue) {
             $userDomain = new UserDomain();
             $info = $userDomain->login($mobile, '', true);
@@ -752,6 +752,7 @@ class Index extends BaseController
 
         return $this->fetch('index/map');
     }
+
     /**
      * 日记页面
      * @return mixed
@@ -761,22 +762,20 @@ class Index extends BaseController
 
         return $this->fetch('index/diary_user');
     }
-     /**
-      * 问答页面
-      * @return mixed
-      */
-     public function inquiry()
-     {
 
-         return $this->fetch('index/inquiry');
-     }
-      /**
-       * 问答详情页面
-       * @return mixed
-       */
-      public function inquiryDetails()
-      {
+    /**
+     * 问答页面
+     * @return mixed
+     */
+    public function inquiry()
+    {
+        $data = app('domain')->getDomain('InquiryDomain')->getUserInquiryNum($this->getUserId());
 
-          return $this->fetch('index/inquiry-details');
-      }
+        $this->assign('info',$data);
+        $this->assign('nickname',$this->getUserInfo() ?$this->getUserInfo()['nickname']:'');
+        $this->assign('portrait',$this->getUserInfo() ?$this->getUserInfo()['portrait']:'');
+        $this->assign('isLogin',$this->checkLogin());
+
+        return $this->fetch('index/inquiry');
+    }
 }
