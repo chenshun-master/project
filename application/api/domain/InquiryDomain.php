@@ -25,6 +25,7 @@ class InquiryDomain
         $insertId = Db::name('inquiry')->insertGetId([
             'category_id'   =>$category_id,
             'user_id'       =>$user_id,
+            'visit'         =>mt_rand(1,20),
             'title'         =>$title,
             'describe'       =>$describe,
             'created_time'  =>date('Y-m-d H:i:s'),
@@ -106,6 +107,7 @@ class InquiryDomain
             'inquiry.id',
             'inquiry.title',
             'inquiry.describe',
+            'inquiry.visit',
             'inquiry.created_time'=>'ask_time',
             'user.nickname',
             'user.portrait',

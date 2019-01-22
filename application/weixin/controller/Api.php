@@ -576,7 +576,7 @@ class Api extends BaseController
 
         if(!$this->checkLogin()){
             return $this->returnData([], '用户未登录', 401);
-        }else if(empty($title) || empty($content)){
+        }else if(empty($id) || empty($content)){
             return $this->returnData([], '参数不符合规范', 301);
         }
 
