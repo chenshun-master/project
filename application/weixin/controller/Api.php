@@ -540,4 +540,52 @@ class Api extends BaseController
         $data = Singleton::getDomain('InquiryDomain')->getAnswerList($id,$page,$page_size);
         return $this->returnData($data);
     }
+
+    /**
+     * 发布提问
+     * @return false|string
+     * @throws \think\Exception
+     */
+    public function createInquiry(){
+        $title      = $this->request->post('title', '');
+        $describe   = $this->request->post('describe', '');
+
+        if(!$this->checkLogin()){
+            return $this->returnData([], '用户未登录', 401);
+        }else if(empty($title) || empty($describe)){
+            return $this->returnData([], '参数不符合规范', 301);
+        }
+
+        $isTrue = Singleton::getDomain('InquiryDomain')->create($this->getUserId(),$title,$describe);
+
+        if($isTrue){
+            return $this->returnData([], '发布提问成功...', 200);
+        }
+
+        return $this->returnData([], '发布提问失败...', 305);
+    }
+
+    /**
+     * 发布答案
+     * @return false|string
+     * @throws \think\Exception
+     */
+    public function createAnswer(){
+        $id        = $this->request->post('id/d', 0);
+        $content   = $this->request->post('content', '');
+
+        if(!$this->checkLogin()){
+            return $this->returnData([], '用户未登录', 401);
+        }else if(empty($title) || empty($content)){
+            return $this->returnData([], '参数不符合规范', 301);
+        }
+
+        $isTrue = Singleton::getDomain('InquiryDomain')->answer($id,$this->getUserId(),$content);
+
+        if($isTrue){
+            return $this->returnData([], '发布答案成功...', 200);
+        }
+
+        return $this->returnData([], '发布答案失败...', 305);
+    }
 }
