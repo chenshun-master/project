@@ -43,29 +43,14 @@
         <div style="clear: both"></div>
         <ul class="wl-answers-answer">
             <li><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
-            <li class="wl-tan-questions"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
+            <li class="wl-tan-questions" data-islogin="{$isLogin}"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
         </ul>
 
         <div style="clear: both"></div>
     </div>
 
-        <div id="container-list" class="wl-list-answers">
-
-        </div>
-
-        <!--<div class="wl-answers">-->
-            <!--<div class="wl-answers-list">-->
-                <!--<div class="wl-answers-title">-->
-                    <!--除了基本补偿费用；土地补偿.安置费.地上附属物以及青苗费以外，-->
-                    <!--还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。-->
-                <!--</div>-->
-                <!--<div class="wl-user-notice1">-->
-                    <!--<dt>回答10<i class="iconfont icon-yuandian"></i>提问10</dt>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div style="clear: both"></div>-->
-
+    <div id="container-list" class="wl-list-answers">
+    </div>
 </main>
 
 <div class="marsk-container">
@@ -109,7 +94,11 @@
 <script>
     $(".wl-tan-questions").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container").fadeIn();
+        if($(this).data('islogin') == 1){
+            $(".marsk-container").fadeIn();
+        }else{
+            LoginBox.showBox();
+        }
     });
 
     //点击取消按钮关闭遮罩层
@@ -132,7 +121,7 @@
             clearEmptyId: "container-list",
             page: {num: 0,size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
-            isBounce: false,
+            isBounce: true,
             noMoreSize: 5,
             empty: {
                 icon: "/static/weixin/shop/image/tuoian.png",
@@ -173,8 +162,6 @@
             };
             if(data.title == ''){
                 redream.showTip('请输入你的提问标题');
-            }else if(data.describe == ''){
-                redream.showTip('请输入你的问题描述');
             }
             $.ajax({
                 url: "/weixin/api/createInquiry",
