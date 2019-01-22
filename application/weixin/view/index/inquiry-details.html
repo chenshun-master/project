@@ -2,6 +2,7 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/inquiry-details.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
@@ -11,7 +12,7 @@
         问答
     </div>
 </header>
-<main>
+<main  id="container" class="mescroll">
     <div class="wl-inquiry-header">
         <div class="wl-inquiry-title">
             {$info['title']}
@@ -25,25 +26,28 @@
         </div>
     </div>
     <div class="wl--inquiry-popular">热门回答</div>
-    <div class="wl-answers">
-        <div class="wl-answers-list">
-            <div class="wl-answers-top">
-                <img src="/static/image/user/tou.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
-                <div class="wl-answers-name">
-                    <dt>上海薇琳医疗美容医院 <span>+ 关注</span></dt>
-                    <span class="wl-answers-Icon"></span>
-                </div>
-            </div>
-            <div class="wl-answers-title">
-                除了基本补偿费用；土地补偿.安置费.地上附；土地补偿.安置费.地上附；土
-                地补偿.安置费.地上附；土地补偿.安置费.地上附属物以及青苗费以外，
-                还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。
-            </div>
-            <div class="wl-user-notice1">
-                <dt>刚刚<i class="iconfont icon-yuandian"></i>回答10</dt>
-            </div>
-        </div>
+    <div id="container-list">
+
     </div>
+    <!--<div class="wl-answers">-->
+        <!--<div class="wl-answers-list">-->
+            <!--<div class="wl-answers-top">-->
+                <!--<img src="/static/image/user/tou.png" alt="" onerror="this.src ='/static/image/user/tou.png'">-->
+                <!--<div class="wl-answers-name">-->
+                    <!--<dt>上海薇琳医疗美容医院 <span>+ 关注</span></dt>-->
+                    <!--<span class="wl-answers-Icon"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="wl-answers-title">-->
+                <!--除了基本补偿费用；土地补偿.安置费.地上附；土地补偿.安置费.地上附；土-->
+                <!--地补偿.安置费.地上附；土地补偿.安置费.地上附属物以及青苗费以外，-->
+                <!--还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。-->
+            <!--</div>-->
+            <!--<div class="wl-user-notice1">-->
+                <!--<dt>刚刚<i class="iconfont icon-yuandian"></i>回答10</dt>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </main>
 <footer>
 
@@ -56,11 +60,11 @@
 
 <div class="marsk-container2">
     <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>添加回答
-        <span class="wl-release href">发布</span>
+        <span class="wl-release href" onclick="listObj.release()">发布</span>
     </div>
     <div class="wl-answer-title">{$info['title']}</div>
     <div class="wl-wenti">
-        <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo"></textarea>
+        <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo" id="wl-probletwo-con"></textarea>
     </div>
 </div>
 {/block}
@@ -68,6 +72,27 @@
 {block name="script"}
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-answers" data-id="{{item.id}}">
+        <div class="wl-answers-list">
+            <div class="wl-answers-top">
+                <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
+                <div class="wl-answers-name">
+                    <dt>{{item.nickname}}</dt>
+                    <span class="wl-answers-Icon"></span>
+                </div>
+            </div>
+            <div class="wl-answers-title">{{item.content}}</div>
+            <div class="wl-user-notice1">
+                <dt>{{item.answer_time}}</dt>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    {{#  }); }}
+</script>
 <script>
     const id = {$info['id']};
 
@@ -78,10 +103,96 @@
     //点击取消按钮关闭遮罩层
     $('.wl-cancel2').click(function () {
         $(".marsk-container2").fadeOut();
+        $(".wl-probletwo").val("");
     });
     //textarea随着内容的变化而改变高度
     $('textarea').on('input', function () {
         this.style.height = (this.scrollHeight) + 'px';
     });
+    $(document).on('click','.wl-wenda',function(){
+        window.location.href = '/weixin/index/inquiry';
+    })
+    $(document).on('click','.wl-wenda2',function(){
+        window.location.href = '/weixin/index/inquiry';
+        $('.marsk-container').show();
+    });
+
+    $('textarea').keydown( function(e) {
+        var key = window.event?e.keyCode:e.which;
+        if(key.toString() == "13"){
+            return false;
+        }
+    });
+
+    var mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0,size: 10},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {
+                tip: "亲，你可以去发布第一条答案哦^_^", //提示
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                        $('#container-list').append(html);
+                    });
+                }, function(){
+                    mescroll.endErr();
+                });
+            }
+        }
+    });
+    var listObj = {
+        loading: false,
+        searchList: function (page, successCallback, errorCallback) {
+            $.ajax({
+                url: "/weixin/api/getAnswerList",
+                type: 'get',
+                data: {id,page: page.num, page_size: page.size},
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+                error:function () {
+                    errorCallback();
+                }
+            });
+        },
+        release:function () {
+            var data = {
+                id,
+                content: $('#wl-probletwo-con').val(),
+            };
+            if(data.content == ''){
+                redream.showTip('请输入你的观点和经验');
+                return false;
+            }
+            $.ajax({
+                url: "/weixin/api/createAnswer",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                beforeSend: function () {
+                    listObj.loading = true;
+                },
+                complete: function () {
+                    listObj.loading = false;
+                },
+                success: function (res) {
+                    if (res.code == 200) {
+                        redream.showTip('发布成功');
+                        window.location.reload();
+                    }else if(res.code == 401){
+                        LoginBox.showTip('请登录后进行操作').showBox();
+                    }
+                },
+            });
+        }
+    };
 </script>
 {/block}

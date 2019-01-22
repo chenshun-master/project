@@ -108,7 +108,7 @@
     $('textarea').on('input', function () {
         this.style.height = (this.scrollHeight) + 'px';
     });
-    $(window).keydown( function(e) {
+    $('textarea').keydown( function(e) {
         var key = window.event?e.keyCode:e.which;
         if(key.toString() == "13"){
             return false;
@@ -123,8 +123,7 @@
             isBounce: false,
             noMoreSize: 5,
             empty: {
-                icon: "/static/weixin/shop/image/tuoian.png",
-                tip: "亲,没有您要找的商品~", //提示
+                tip: "亲,暂时还没人发布问答~", //提示
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){

@@ -191,6 +191,7 @@
             }
 
             $('#wl-login-box-tip').fadeIn("slow").delay(time).fadeOut().text(msg);
+            return this;
         };
 
         /**
