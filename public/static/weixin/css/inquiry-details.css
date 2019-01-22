@@ -25,7 +25,7 @@
     line-height: 23px;
     font-size: 18px;
     padding: 10px 0 10px 0;
-    font-weight: bold;
+    font-weight: 500;
     color: #2e2e2e;
 }
 .wl-inquiry-describe{
@@ -269,4 +269,13 @@ footer{
     background-size: 20px;
     top: 23px;
     left: 12px;
+}
+.wl-view {
+    height: 20px;
+    line-height: 20px;
+    text-align: left;
+    margin-top: 5px;
+    font-size: 12px;
+    display: none;
+    color: #7DB0E8;
 }
