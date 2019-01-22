@@ -49,6 +49,9 @@ textarea::-webkit-input-placeholder {
     height: 40px;
     line-height: 40px;
 }
+.wl-notice-login a{
+    color:#7DB0E8
+}
 .wl-answer{
     margin-right: 10px;
     color: #7DB0E8;
