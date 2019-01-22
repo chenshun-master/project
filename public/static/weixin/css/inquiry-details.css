@@ -1,13 +1,17 @@
-main{
-    margin-bottom: 60px;
+#container{
+    padding-bottom: 45px;
+    padding-top: 40px;
 }
 .wl-top {
     width: 100%;
     height: 40px;
     line-height: 40px;
     border-bottom: 1px solid #F1F1F1;
-    position: relative;
     text-align: center;
+    position: fixed;
+    top: 0;
+    background: white;
+    z-index: 999;
 }
 .wl-top i{
     position: absolute;
@@ -22,7 +26,7 @@ main{
     font-size: 18px;
     padding: 10px 0 10px 0;
     font-weight: bold;
-    color: #202020;
+    color: #2e2e2e;
 }
 .wl-inquiry-describe{
     min-height: 20px;
@@ -51,13 +55,6 @@ main{
     font-size: 16px;
     border-bottom: 5px solid #f1f1f1;
     color: #5881A8;
-}
-.wl-answers {
-    width: 100%;
-    min-height: 50px;
-    margin: 0 auto;
-    border-bottom: 5px solid #f1f1f1;
-    background: white;
 }
 .wl-answers-list {
     width: 93%;
@@ -131,9 +128,11 @@ footer{
     line-height: 40px;
     border: 1px solid #f1f1f1;
     max-width: 640px;
+    background: white;
 }
 .wl-inquiry-footer{
     height: 100%;
+
 }
 .wl-inquiry-footer li{
     width: 33.3%;
@@ -178,7 +177,7 @@ footer{
     max-width: 640px;
     margin: 0 auto;
     overflow-y: auto;
-    z-index: 999999;
+    z-index: 999;
 }
 .wl-tkyy-top {
     width: 100%;
@@ -186,7 +185,8 @@ footer{
     line-height: 40px;
     text-align: center;
     position: relative;
-    background: #FBFBFB;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eaeaea;
 }
 .wl-cancel2 {
     position: absolute;
@@ -219,12 +219,54 @@ footer{
     min-height: 20px;
     line-height: 20px;
     margin: 0 auto;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    color: #444444;
+    /*display: -webkit-box;*/
+    /*-webkit-box-orient: vertical;*/
+    /*-webkit-line-clamp: 2;*/
+    /*overflow: hidden;*/
+    color: #6e6e6e;
     font-size: 15px;
-    background: #FBFBFB;
-    padding: 10px 10px 0 10px;
+    background: #f8f8f8;
+    padding: 10px;
+}
+.wl-answers {
+    width: 100%;
+    min-height: 50px;
+    margin: 0 auto;
+    border-bottom: 5px solid #f1f1f1;
+    background: white;
+}
+
+.wl-answers-list {
+    width: 93%;
+    margin: 0 auto;
+}
+.wl-answers-top {
+    min-height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+.wl-answers-top img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+.wl-answers-name {
+    float: left;
+    margin-left: 10px;
+    font-size: 13px;
+}
+.wl-answers-name dt {
+    font-size: 14px;
+    color: #272727;
+}
+.wl-answers-Icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: url('/static/image/user/chengv.png')no-repeat;
+    background-size: 20px;
+    top: 23px;
+    left: 12px;
 }
