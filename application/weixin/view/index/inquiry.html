@@ -69,11 +69,12 @@
 </main>
 
 <div class="marsk-container">
-        <div class="wl-tkyy-top"><span class="wl-cancel href"><i class="iconfont icon-back_light"></i>取消</span>提问 <span class="wl-release href">发布</span></div>
+        <div class="wl-tkyy-top"><span class="wl-cancel href"><i class="iconfont icon-back_light"></i>取消</span>提问
+            <span class="wl-release href" onclick="listObj.release()">发布</span></div>
         <div class="wl-problem">
-            <textarea type="text" placeholder="请输入问题(40字以内)" class="wl-probleone" maxlength="40"></textarea>
+            <textarea type="text" placeholder="请输入问题(40字以内)" id="wl-questions-title" class="wl-probleone" maxlength="40"></textarea>
 
-            <textarea type="text" placeholder="添加问题描述(选填)"  class="wl-probletwo"></textarea>
+            <textarea type="text" placeholder="添加问题描述(选填)"  id="wl-content-title" class="wl-probletwo"></textarea>
         </div>
 </div>
 {include file="layout/footer" /}
@@ -149,20 +150,51 @@
             }
         }
     });
-
     var listObj = {
+        loading: false,
         searchList: function (page, successCallback, errorCallback) {
-            var data = $.extend({}, {page: page.num, page_size: page.size});
             $.ajax({
                 url: "/weixin/api/getInquiryList",
-                type: 'post',
-                data: data,
+                type: 'get',
+                data: {page: page.num, page_size: page.size},
                 dataType: 'json',
                 success: function (res) {
                     successCallback(res.data.rows);
                 },
+                error:function () {
+                    errorCallback();
+                }
             });
         },
+        release:function () {
+            var data = {
+                title: $('#wl-questions-title').val(),
+                describe:$('#wl-content-title').val(),
+            };
+            if(data.title == ''){
+                redream.showTip('请输入你的提问标题');
+            }else if(data.describe == ''){
+                redream.showTip('请输入你的问题描述');
+            }
+            $.ajax({
+                url: "/weixin/api/createInquiry",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                beforeSend: function () {
+                    listObj.loading = true;
+                },
+                complete: function () {
+                    listObj.loading = false;
+                },
+                success: function (res) {
+                    if (res.code == 200) {
+                        redream.showTip('发布成功');
+                        window.location.href = '/weixin/index/inquiry';
+                    }
+                },
+            });
+        }
     };
 </script>
 {/block}

@@ -192,7 +192,7 @@ textarea::-webkit-input-placeholder {
     max-width: 640px;
     margin: 0 auto;
     overflow-y:auto;
-
+    z-index: 999999;
 }
 
 .wl-tkyy-top{
@@ -201,6 +201,7 @@ textarea::-webkit-input-placeholder {
     line-height: 40px;
     text-align: center;
     position: relative;
+
 }
 .wl-cancel{
     position: absolute;
@@ -218,9 +219,9 @@ textarea::-webkit-input-placeholder {
 .wl-probleone{
     width: 100%;
     height: 40px;
-    line-height: 20px;
+    line-height: 22px;
     resize: none;
-    font-size: 18px;
+    font-size: 17px;
     border-bottom: 1px solid #f1f1f1;
     padding: 10px 0 10px 0;
 }
