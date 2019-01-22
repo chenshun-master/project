@@ -12,16 +12,18 @@
     </div>
 </header>
 <main>
-<div class="wl-inquiry-header">
-    <div class="wl-inquiry-title">
-        40年前，那个捡到价值10亿钻石的女孩，现在怎么样了？
+    <div class="wl-inquiry-header">
+        <div class="wl-inquiry-title">
+            {$info['title']}
+        </div>
+        {if(!empty($info['describe']))}
+            <div class="wl-inquiry-describe">
+                描述:{$info['describe']}
+            </div>
+        {/if}
+        <div class="wl-inquiry-one">{$info['answer_num']}个问答 <i class="iconfont icon-yuandian"></i>{$info['answer_num']}阅览
+        </div>
     </div>
-    <div class="wl-inquiry-describe">
-        描述:40年前，有一位姑娘魏振芳，是山东人，她成年被分配到生产队劳动，一天她回家的时候，发现一块地还没有翻，就准备做完了再回家。令人意外的是，她一铁锹下去，挖出一块石头，泛着光，非常的通透。她觉得应该是个宝贝，于是她拿回了家。经过鉴定，她挖到的石头
-        ，是一个158.7869克拉的钻石，是中国迄今为止最大的一块钻石，价值10亿的宝贝。
-    </div>
-    <div class="wl-inquiry-one">10个问答 <i class="iconfont icon-yuandian"></i>10阅览</div>
-</div>
     <div class="wl--inquiry-popular">热门回答</div>
     <div class="wl-answers">
         <div class="wl-answers-list">
@@ -37,7 +39,9 @@
                 地补偿.安置费.地上附；土地补偿.安置费.地上附属物以及青苗费以外，
                 还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。
             </div>
-            <div class="wl-user-notice1">  <dt>刚刚<i class="iconfont icon-yuandian"></i>回答10</dt></div>
+            <div class="wl-user-notice1">
+                <dt>刚刚<i class="iconfont icon-yuandian"></i>回答10</dt>
+            </div>
         </div>
     </div>
 </main>
@@ -52,11 +56,9 @@
 
 <div class="marsk-container2">
     <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>添加回答
-        <span class="wl-release href" >发布</span>
+        <span class="wl-release href">发布</span>
     </div>
-    <div class="wl-answer-title">
-        40年前，那个捡到价值10亿钻石的女孩，现在怎么，现在怎么，现在怎么，现在怎么样了？
-    </div>
+    <div class="wl-answer-title">{$info['title']}</div>
     <div class="wl-wenti">
         <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo"></textarea>
     </div>
@@ -67,6 +69,8 @@
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script>
+    const id = {$info['id']};
+
     $(".wl-wenda3").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container2").fadeIn();
