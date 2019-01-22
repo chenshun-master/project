@@ -42,17 +42,15 @@
 
         <div style="clear: both"></div>
         <ul class="wl-answers-answer">
-            <li class="wl-tan-answer" ><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
-            <li class="wl-tan-questions"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
+            <li><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
+            <li class="wl-tan-questions" data-islogin="{$isLogin}"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
         </ul>
 
         <div style="clear: both"></div>
     </div>
 
-        <div id="container-list" class="wl-list-answers">
-
-        </div>
-
+    <div id="container-list" class="wl-list-answers">
+    </div>
 </main>
 
 <div class="marsk-container">
@@ -63,13 +61,6 @@
 
             <textarea type="text" placeholder="添加问题描述(选填)"  id="wl-content-title" class="wl-probletwo"></textarea>
         </div>
-</div>
-<div class="marsk-container2">
-    <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>问答</div>
-    <div class="wl-wenti">
-        <div class="wl-answer-title">房间号恐惧发的不是你还爱迪生八点上班爱的方式吧的合肥市包积分</div>
-        <div class="wl-answer-num">10个回答</div>
-    </div>
 </div>
 {include file="layout/footer" /}
 {/block}
@@ -103,19 +94,16 @@
 <script>
     $(".wl-tan-questions").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container").fadeIn();
+        if($(this).data('islogin') == 1){
+            $(".marsk-container").fadeIn();
+        }else{
+            LoginBox.showBox();
+        }
     });
-    $(".wl-tan-answer").click(function (event) {
-        event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container2").fadeIn();
-    });
+
     //点击取消按钮关闭遮罩层
     $('.wl-cancel').click(function () {
         $(".marsk-container").fadeOut();
-    });
-    //点击取消按钮关闭遮罩层
-    $('.wl-cancel2').click(function () {
-        $(".marsk-container2").fadeOut();
     });
     //textarea随着内容的变化而改变高度
     $('textarea').on('input', function () {
@@ -133,7 +121,7 @@
             clearEmptyId: "container-list",
             page: {num: 0,size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
-            isBounce: false,
+            isBounce: true,
             noMoreSize: 5,
             empty: {
                 icon: "/static/weixin/shop/image/tuoian.png",
@@ -174,8 +162,6 @@
             };
             if(data.title == ''){
                 redream.showTip('请输入你的提问标题');
-            }else if(data.describe == ''){
-                redream.showTip('请输入你的问题描述');
             }
             $.ajax({
                 url: "/weixin/api/createInquiry",
@@ -197,8 +183,5 @@
             });
         }
     };
-    $(document).on('click','.wl-answers',function(){
-        window.location.href = '/weixin/index/inquiryDetails';
-    })
 </script>
 {/block}
