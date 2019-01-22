@@ -53,8 +53,6 @@ class InquiryDomain
 
 
     public function getUserInquiryNum($uid){
-
-
         if($uid == 0){
             return [
                 'inquiry_num'  =>0,
@@ -77,6 +75,7 @@ class InquiryDomain
         $obj = Db::name('inquiry')->alias('inquiry');
 
         $field = [
+            'inquiry.id',
             'inquiry.title',
             'inquiry.created_time'=>'ask_time',
             'user.nickname',
@@ -113,7 +112,7 @@ class InquiryDomain
             'user.type'=>'userType',
             '(select count(1) from wl_inquiry_answer a where a.inquiry_id = inquiry.id)'=>'answer_num',
         ];
-
+        $obj->where('inquiry.id',$id);
         $obj->leftJoin('wl_user user','user.id = inquiry.user_id');
         return $obj->field($field)->find();
     }
