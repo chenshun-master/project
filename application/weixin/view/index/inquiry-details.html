@@ -7,7 +7,7 @@
 {block name="main"}
 <header>
     <div class="wl-top">
-        <i class="iconfont icon-back_light"onclick="redream.toReferer()"></i>
+        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
         问答
     </div>
 </header>
@@ -41,9 +41,43 @@
         </div>
     </div>
 </main>
+<footer>
+
+    <ul class="wl-inquiry-footer">
+        <li class="wl-wenda"><i class="iconfont icon-wenda"></i>更多问答</li>
+        <li class="wl-wenda2"><i class="iconfont icon-iconset0137"></i>提问</li>
+        <li class="wl-wenda3">回答</li>
+    </ul>
+</footer>
+
+<div class="marsk-container2">
+    <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>添加回答
+        <span class="wl-release href" >发布</span>
+    </div>
+    <div class="wl-answer-title">
+        40年前，那个捡到价值10亿钻石的女孩，现在怎么，现在怎么，现在怎么，现在怎么样了？
+    </div>
+    <div class="wl-wenti">
+        <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo"></textarea>
+    </div>
+</div>
 {/block}
 
 {block name="script"}
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script>
+    $(".wl-wenda3").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container2").fadeIn();
+    });
+    //点击取消按钮关闭遮罩层
+    $('.wl-cancel2').click(function () {
+        $(".marsk-container2").fadeOut();
+    });
+    //textarea随着内容的变化而改变高度
+    $('textarea').on('input', function () {
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+</script>
 {/block}

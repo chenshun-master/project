@@ -42,7 +42,7 @@
 
         <div style="clear: both"></div>
         <ul class="wl-answers-answer">
-            <li><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
+            <li class="wl-tan-answer" ><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
             <li class="wl-tan-questions"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
         </ul>
 
@@ -52,19 +52,6 @@
         <div id="container-list" class="wl-list-answers">
 
         </div>
-
-        <!--<div class="wl-answers">-->
-            <!--<div class="wl-answers-list">-->
-                <!--<div class="wl-answers-title">-->
-                    <!--除了基本补偿费用；土地补偿.安置费.地上附属物以及青苗费以外，-->
-                    <!--还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。-->
-                <!--</div>-->
-                <!--<div class="wl-user-notice1">-->
-                    <!--<dt>回答10<i class="iconfont icon-yuandian"></i>提问10</dt>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div style="clear: both"></div>-->
 
 </main>
 
@@ -76,6 +63,13 @@
 
             <textarea type="text" placeholder="添加问题描述(选填)"  id="wl-content-title" class="wl-probletwo"></textarea>
         </div>
+</div>
+<div class="marsk-container2">
+    <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>问答</div>
+    <div class="wl-wenti">
+        <div class="wl-answer-title">房间号恐惧发的不是你还爱迪生八点上班爱的方式吧的合肥市包积分</div>
+        <div class="wl-answer-num">10个回答</div>
+    </div>
 </div>
 {include file="layout/footer" /}
 {/block}
@@ -111,10 +105,17 @@
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").fadeIn();
     });
-
+    $(".wl-tan-answer").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container2").fadeIn();
+    });
     //点击取消按钮关闭遮罩层
     $('.wl-cancel').click(function () {
         $(".marsk-container").fadeOut();
+    });
+    //点击取消按钮关闭遮罩层
+    $('.wl-cancel2').click(function () {
+        $(".marsk-container2").fadeOut();
     });
     //textarea随着内容的变化而改变高度
     $('textarea').on('input', function () {
@@ -196,5 +197,8 @@
             });
         }
     };
+    $(document).on('click','.wl-answers',function(){
+        window.location.href = '/weixin/index/inquiryDetails';
+    })
 </script>
 {/block}
