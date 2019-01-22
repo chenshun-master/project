@@ -100,12 +100,13 @@
 <script>
     $(".wl-tan-questions").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
-        $(".marsk-container").slideToggle("slow");
+        $(".marsk-container").fadeIn();
     });
+
     //点击取消按钮关闭遮罩层
     $('.wl-cancel').click(function () {
-        $(".marsk-container").slideToggle('slow');
-    })
+        $(".marsk-container").fadeOut();
+    });
     //textarea随着内容的变化而改变高度
     $('textarea').on('input', function () {
         this.style.height = (this.scrollHeight) + 'px';
