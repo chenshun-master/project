@@ -45,12 +45,11 @@
             <li><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
             <li class="wl-tan-questions" data-islogin="{$isLogin}"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
         </ul>
-
         <div style="clear: both"></div>
     </div>
+        <div id="container-list">
 
-    <div id="container-list" class="wl-list-answers">
-    </div>
+        </div>
 </main>
 
 <div class="marsk-container">
@@ -119,9 +118,9 @@
         down:{auto:true},
         up: {
             clearEmptyId: "container-list",
-            page: {num: 0,size: 20},
+            page: {num: 0,size: 10},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
-            isBounce: true,
+            isBounce: false,
             noMoreSize: 5,
             empty: {
                 icon: "/static/weixin/shop/image/tuoian.png",

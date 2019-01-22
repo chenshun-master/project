@@ -7,10 +7,10 @@ header{
     margin: 0 auto;
     max-width: 640px;
 }
-main{
-    margin-top: 90px;
-    margin-bottom: 50px;
-}
+/*main{*/
+    /*margin-top: 90px;*/
+    /*margin-bottom: 50px;*/
+/*}*/
 .wl-header-dd{
     position: fixed;
     top: 0;
@@ -263,8 +263,9 @@ textarea::-webkit-input-placeholder {
     right: 20px;
     color:#7DB0E8;
 }
-.mescroll{
-    height: auto!important;
+#container {
+    padding-top: 75px;
+    padding-bottom: 55px;
 }
 .wl-wenti{
     width: 100%;
