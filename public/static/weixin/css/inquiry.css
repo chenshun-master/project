@@ -12,6 +12,10 @@ main{
     margin-bottom: 50px;
 }
 
+textarea::-webkit-input-placeholder {
+    /* placeholder颜色  */
+    color: #cfcfcf;
+}
 .wl-liebiao {
     width: 100%;
     height: 40px;
@@ -54,12 +58,8 @@ main{
     float: left;
     width: 50%;
     text-align: center;
-    height: 20px;
-    line-height: 20px;
-    margin-top: 12px;
-}
-.wl-answers-answer li:nth-child(1){
-    border-right: 1px solid #f1f1f1;
+    height: 40px;
+    line-height: 40px;
 }
 .wl-notice-login{
     height: 40px;
@@ -171,4 +171,65 @@ main{
 }
 .wl-answers:active{
     background: #dddddd;
+}
+.marsk-container {
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: none;
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    z-index: 10;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow-y:auto;
+
+}
+
+.wl-tkyy-top{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    position: relative;
+}
+.wl-cancel{
+    position: absolute;
+    left: 10px;
+}
+
+.wl-cancel i{
+    margin-right:3px ;
+}
+.wl-problem{
+    width: 95%;
+    margin: 0 auto;
+    min-height: 20px;
+}
+.wl-probleone{
+    width: 100%;
+    height: 40px;
+    line-height: 20px;
+    resize: none;
+    font-size: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0 10px 0;
+
+}
+.wl-probletwo{
+    width: 100%;
+    min-height: 250px;
+    line-height: 20px;
+    resize: none;
+    font-size: 15px;
+    padding: 10px 0 10px 0;
+}
+.wl-release{
+    position: absolute;
+    right: 20px;
+    color:#7DB0E8;
 }

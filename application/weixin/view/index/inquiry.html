@@ -42,7 +42,7 @@
         <div style="clear: both"></div>
         <ul class="wl-answers-answer">
             <li><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
-            <li><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
+            <li class="wl-tan-questions"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
         </ul>
 
         <div style="clear: both"></div>
@@ -82,10 +82,39 @@
         <div style="clear: both"></div>
     </div>
 </main>
+
+<div class="marsk-container">
+        <div class="wl-tkyy-top"><span class="wl-cancel href"><i class="iconfont icon-back_light"></i>取消</span>提问 <span class="wl-release href">发布</span></div>
+        <div class="wl-problem">
+            <textarea type="text" placeholder="请输入问题(40字以内)" class="wl-probleone" maxlength="40"></textarea>
+
+            <textarea type="text" placeholder="添加问题描述(选填)"  class="wl-probletwo"></textarea>
+        </div>
+</div>
 {include file="layout/footer" /}
 {/block}
 
 {block name="script"}
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script>
+    $(".wl-tan-questions").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").slideToggle("slow");
+    });
+    //点击取消按钮关闭遮罩层
+    $('.wl-cancel').click(function () {
+        $(".marsk-container").slideToggle('slow');
+    })
+    //textarea随着内容的变化而改变高度
+    $('textarea').on('input', function () {
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+    $(window).keydown( function(e) {
+        var key = window.event?e.keyCode:e.which;
+        if(key.toString() == "13"){
+            return false;
+        }
+    });
+</script>
 {/block}
