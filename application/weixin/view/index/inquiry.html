@@ -2,10 +2,11 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/inquiry.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
-<header>
+<div class="wl-header-dd">
     {include file="layout:header" /}
     <div class="wl-liebiao">
         <ul>
@@ -23,7 +24,7 @@
             </a>
         </ul>
     </div>
-</header>
+</div>
 <main>
     <div class="wl-answers-notice">
         {if($isLogin)}
@@ -47,40 +48,24 @@
 
         <div style="clear: both"></div>
     </div>
+    <div id="container" class="mescroll">
+        <div id="container-list" class="wl-list-answers">
 
-    <div class="wl-list-answers">
-        <div class="wl-answers">
-            <div class="wl-answers-list">
-                <div class="wl-answers-top">
-                    <img src="" alt="" onerror="this.src ='/static/image/user/tou.png'">
-                    <div class="wl-answers-name">
-                        <dt>上海薇琳医疗美容医院</dt>
-                        <span class="wl-answers-Icon"></span>
-                    </div>
-                </div>
-                <div class="wl-answers-title">
-                    除了基本补偿费用；土地补偿.安置费.地上附属物以及青苗费以外，
-                    还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。
-                </div>
-                <div class="wl-user-notice1">
-                    <dt>刚刚<i class="iconfont icon-yuandian"></i>回答10</dt>
-                </div>
-            </div>
         </div>
-        <div style="clear: both"></div>
-        <div class="wl-answers">
-            <div class="wl-answers-list">
-                <div class="wl-answers-title">
-                    除了基本补偿费用；土地补偿.安置费.地上附属物以及青苗费以外，
-                    还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。
-                </div>
-                <div class="wl-user-notice1">
-                    <dt>回答10<i class="iconfont icon-yuandian"></i>提问10</dt>
-                </div>
-            </div>
-        </div>
-        <div style="clear: both"></div>
     </div>
+        <!--<div class="wl-answers">-->
+            <!--<div class="wl-answers-list">-->
+                <!--<div class="wl-answers-title">-->
+                    <!--除了基本补偿费用；土地补偿.安置费.地上附属物以及青苗费以外，-->
+                    <!--还有一个按时签协搬迁奖励，只要米能够签协及时按时搬迁，原则上会给予不少于18000元的奖励。-->
+                <!--</div>-->
+                <!--<div class="wl-user-notice1">-->
+                    <!--<dt>回答10<i class="iconfont icon-yuandian"></i>提问10</dt>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div style="clear: both"></div>-->
+
 </main>
 
 <div class="marsk-container">
@@ -97,6 +82,27 @@
 {block name="script"}
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-answers" data-id="{{item.id}}">
+        <div class="wl-answers-list">
+            <div class="wl-answers-top">
+                <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
+                <div class="wl-answers-name">
+                    <dt>{{item.nickname}}</dt>
+                    <span class="wl-answers-Icon"></span>
+                </div>
+            </div>
+            <div class="wl-answers-title">{{item.title}}</div>
+            <div class="wl-user-notice1">
+                <dt>{{item.ask_time}}<i class="iconfont icon-yuandian"></i>回答{{item.answer_num}}</dt>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    {{#  }); }}
+</script>
 <script>
     $(".wl-tan-questions").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
@@ -116,5 +122,44 @@
             return false;
         }
     });
+    var mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0,size: 20},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {
+                icon: "/static/weixin/shop/image/tuoian.png",
+                tip: "亲,没有您要找的商品~", //提示
+            },
+            callback: function(page){
+                listObj.searchList(page,function(curPageData){
+                    mescroll.endSuccess(curPageData.length);
+                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
+                        $('#container-list').append(html);
+                    });
+                }, function(){
+                    mescroll.endErr();
+                });
+            }
+        }
+    });
+
+    var listObj = {
+        searchList: function (page, successCallback, errorCallback) {
+            var data = $.extend({}, {page: page.num, page_size: page.size});
+            $.ajax({
+                url: "/weixin/api/getInquiryList",
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    successCallback(res.data.rows);
+                },
+            });
+        },
+    };
 </script>
 {/block}

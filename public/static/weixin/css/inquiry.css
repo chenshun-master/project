@@ -11,7 +11,12 @@ main{
     margin-top: 90px;
     margin-bottom: 50px;
 }
-
+.wl-header-dd{
+    position: fixed;
+    top: 0;
+    max-width: 640px;
+    z-index: 9999;
+}
 textarea::-webkit-input-placeholder {
     /* placeholder颜色  */
     color: #cfcfcf;
@@ -218,7 +223,6 @@ textarea::-webkit-input-placeholder {
     font-size: 15px;
     border-bottom: 1px solid #f1f1f1;
     padding: 10px 0 10px 0;
-
 }
 .wl-probletwo{
     width: 100%;
@@ -232,4 +236,7 @@ textarea::-webkit-input-placeholder {
     position: absolute;
     right: 20px;
     color:#7DB0E8;
+}
+.mescroll{
+    height: auto!important;
 }
