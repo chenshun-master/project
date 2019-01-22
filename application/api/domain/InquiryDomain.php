@@ -132,11 +132,13 @@ class InquiryDomain
             'user.nickname',
             'user.portrait',
             'user.type'=>'userType',
+            'auth.duties'
         ];
 
         $obj->where('answer.inquiry_id',$inquiry_id);
 
         $obj->leftJoin('wl_user user','user.id = answer.user_id');
+        $obj->leftJoin('wl_auth auth','user.id = auth.user_id');
 
         $rows = $obj->field($field)->order('answer.created_time','desc')->page($page,$page_size)->select();
         if($rows){
