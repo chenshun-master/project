@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{extend name="layout/layout" /}
 
-</body>
-</html>
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/answers-me.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
+{/block}
+
+{block name="main"}
+    <div class="wl-top">
+        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
+        我的问答
+    </div>
+    <div>
+        <div class="wl-daan"></div>
+        <ul class="wl-deji">
+            <li class="active">提问</li>
+            <li>回答</li>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="content">
+            <div class="wl-d active">
+                <div class="wl-answers" data-id="26">
+                    <div class="wl-answers-list">
+                        <!--<div class="wl-answers-top">-->
+                            <!--<img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">-->
+                            <!--<div class="wl-answers-name">-->
+                            <!--<dt>上海人民美容整形医院</dt>-->
+                                <!--<span class="wl-answers-Icon"></span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
+                        <div class="wl-user-notice1">
+                            <dt>2小时前<i class="iconfont icon-yuandian"></i>回答1</dt>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wl-d">456</div>
+        </div>
+    </div>
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-answers" data-id="{{item.id}}">
+        <div class="wl-answers-list">
+            <div class="wl-answers-top">
+                <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
+                <div class="wl-answers-name">
+                    <dt>{{item.nickname}}</dt>
+                    {{# if(item.userType == 4){ }}
+                    <span class="wl-answers-Icon"></span>
+                    {{# } }}
+                </div>
+            </div>
+            <div class="wl-answers-title">{{item.content}}</div>
+            <div class="wl-view">查看全文</div>
+            <div class="wl-user-notice1">
+                <dt>{{item.answer_time}}</dt>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    {{#  }); }}
+</script>
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+    });
+</script>
+{/block}
