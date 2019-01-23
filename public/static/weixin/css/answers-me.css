@@ -152,22 +152,3 @@
 .wl-answers:active{
     background: #eeeeee;
 }
-.header .nav {
-    width: 100%;
-    margin-top: 8px;
-    height: 27px;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px!important;
-    color: #000000!important;
-    max-width: 640px;
-    margin: 0 auto;
-}
-.header .nav p {
-    display: inline-block;
-    width: 23%;
-    padding: 5px 0;
-}
-.header .nav .active {
-    border-bottom: 1px solid #7DB0E8;
-    color: #7DB0E8;
-}

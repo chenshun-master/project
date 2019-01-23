@@ -9,8 +9,8 @@
     <div class="wl-top">
         <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>我的问答
     </div>
-    <div>
-        <div class="wl-daan">
+    <div class=""  id="">
+        <div class="wl-daan ">
             <div class="wl-tiwen">
                 <dl><i class="iconfont icon-wenda2"style="color:#FF615C "></i>提问({$info['inquiry_num']})</dl>
                 <dt>共{$info['inquiry_visit_num']}次浏览</dt>
@@ -26,48 +26,11 @@
         </ul>
         <div style="clear: both"></div>
         <div class="content">
-            <div class="wl-d active mescroll"  id="container">
-                <div id="container-list" ></div>
+            <div class="wl-d active mescroll"  id="container0">
+                <div id="container-list0"></div>
             </div>
-            <div class="wl-d">
-                <div class="wl-answers jump-details">
-                    <div class="wl-answers-list">
-                        <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
-                        <div class="wl-answer-content">确实很厉害，意识，枪法各方面都很强，你可以去
-                            看看直播确实很厉害，意识，枪法各方面都很强，你意识，枪法各方面都很强，你可
-                            以去看意识，枪法各方面都很强，你可以去看可以去看看直播</div>
-                        <div class="wl-user-notice1">
-                            <dt>2小时前<i class="iconfont icon-yuandian"></i>回答1</dt>
-                        </div>
-                    </div>
-                </div>
-                <div class="wl-answers">
-                    <div class="wl-answers-list">
-                        <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
-                        <div class="wl-answer-content">确实很厉害，意识，枪法各方面都很强，你可以去看看直播</div>
-                        <div class="wl-user-notice1">
-                            <dt>2小时前<i class="iconfont icon-yuandian"></i>回答1</dt>
-                        </div>
-                    </div>
-                </div>
-                <div class="wl-answers">
-                    <div class="wl-answers-list">
-                        <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
-                        <div class="wl-answer-content">确实很厉害，意识，枪法各方面都很强，你可以去看看直播</div>
-                        <div class="wl-user-notice1">
-                            <dt>2小时前<i class="iconfont icon-yuandian"></i>回答1</dt>
-                        </div>
-                    </div>
-                </div>
-                <div class="wl-answers">
-                    <div class="wl-answers-list">
-                        <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
-                        <div class="wl-answer-content">确实很厉害，意识，枪法各方面都很强，你可以去看看直播</div>
-                        <div class="wl-user-notice1">
-                            <dt>2小时前<i class="iconfont icon-yuandian"></i>回答1</dt>
-                        </div>
-                    </div>
-                </div>
+            <div class="wl-d  mescroll"  id="container1">
+                <div id="container-list1"></div>
             </div>
         </div>
     </div>
@@ -77,7 +40,7 @@
 <script src="/static/js/functions.js"></script>
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
-<script id="templateList" type="text/html">
+<script id="inquiryTemplate" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-answers" data-id="{{ item.id }}">
         <div class="wl-answers-list">
@@ -89,7 +52,25 @@
     </div>
     {{#  }); }}
 </script>
+<script id="answerTemplate" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-answers jump-details">
+        <div class="wl-answers-list">
+            <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
+            <div class="wl-answer-content">确实很厉害，意识，枪法各方面都很强，你可以去
+                看看直播确实很厉害，意识，枪法各方面都很强，你意识，枪法各方面都很强，你可
+                以去看意识，枪法各方面都很强，你可以去看可以去看看直播</div>
+            <div class="wl-user-notice1">
+                <dt>2小时前<i class="iconfont icon-yuandian"></i>回答1</dt>
+            </div>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+
 <script>
+    let type = 1;
+
     $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
         $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
         var index = $(this).index();
@@ -97,26 +78,78 @@
     });
     $(document).on('click','.jump-details',function(){
         window.location.href = '/weixin/index/answerDetails';
-    })
+    });
 
-    var mescroll = new MeScroll("container", {
-        down:{auto:true},
+    //
+    // var mescrollArr=new Array(2);
+    // var curNavIndex = 0;
+    // mescrollArr[curNavIndex] = initMescroll("mescroll0", "dataList0");
+    // function initMescroll(mescrollId,clearEmptyId){
+    //     var mescroll = new MeScroll(mescrollId, {
+    //         down:{auto:true},
+    //         up: {
+    //             clearEmptyId: clearEmptyId,
+    //             page: {num: 0,size: 20},
+    //             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+    //             isBounce: false, //此处禁止ios回弹,解析(务必认真阅读,特别是最后一点): http://www.mescroll.com/qa.html#q10
+    //             noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+    //             empty: {
+    //                 icon: "/static/weixin/image/mescroll/dingdan.png", //图标,默认null
+    //                 tip: "亲,您还没有相关的订单~", //提示
+    //                 btntext: "去逛逛 >",
+    //                 btnClick: function(){
+    //                     window.location.href = "/weixin/shop/index";
+    //                 }
+    //             },
+    //             callback: function(page){
+    //                 listObj.searchList(page,function(curPageData){
+    //                     mescroll.endSuccess(curPageData.length);
+    //                     var template = orderList.innerHTML;
+    //                     if(curNavIndex==0){
+    //                         layui.laytpl(template).render(curPageData, function(html){
+    //                             $('#dataList0').append(html);
+    //                         });
+    //                     }else if(curNavIndex==1){
+    //                         layui.laytpl(template).render(curPageData, function(html){
+    //                             $('#dataList1').append(html);
+    //                         });
+    //                     }else if(curNavIndex==2){
+    //                         layui.laytpl(template).render(curPageData, function(html){
+    //                             $('#dataList2').append(html);
+    //                         });
+    //                     }else if(curNavIndex==3){
+    //                         layui.laytpl(template).render(curPageData, function(html){
+    //                             $('#dataList3').append(html);
+    //                         });
+    //                     }
+    //                 }, function(){
+    //                     mescroll.endErr();
+    //                 });
+    //             },
+    //         }
+    //     });
+    //
+    //     return mescroll;
+    // }
+
+    var mescroll = new MeScroll("container0", {
+        down:{auto:true,isLock:true},
         up: {
-            clearEmptyId: "container-list",
+            clearEmptyId: "container-list0",
             page: {num: 0,size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false,
             noMoreSize:10,
             empty: {
-                icon: "/static/weixin/shop/image/tuoian.png",
                 tip: "亲,没有您要找的商品~", //提示
             },
             callback: function(page){
                 listObj.searchList(page,function(curPageData){
                     console.log(curPageData);
                     mescroll.endSuccess(curPageData.length);
-                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
-                        $('#container-list').append(html);
+                    layui.laytpl(inquiryTemplate.innerHTML).render(curPageData, function(html){
+                        console.log(html);
+                        $('#container-list0').append(html);
                     });
                 }, function(){
                     mescroll.endErr();
@@ -125,10 +158,10 @@
         }
     });
 
-    var listObj = {
+    let listObj = {
+        type:1,
         searchList: function (page, successCallback, errorCallback) {
             var data = $.extend({}, {page: page.num, page_size: page.size});
-
             $.ajax({
                 url: "/weixin/api/getUserInquiryAnswer",
                 type: 'post',
