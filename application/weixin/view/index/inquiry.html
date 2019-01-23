@@ -103,6 +103,8 @@
     //点击取消按钮关闭遮罩层
     $('.wl-cancel').click(function () {
         $(".marsk-container").fadeOut();
+        $(".wl-probleone").val("");
+        $(".wl-probletwo").val("");
     });
     //textarea随着内容的变化而改变高度
     $('textarea').on('input', function () {
@@ -183,6 +185,9 @@
     };
     $(document).on('click','.wl-answers',function(){
         window.location.href = '/weixin/index/inquiryDetails/id/'+$(this).data('id');
+    })
+    $(document).on('click','.wl-me-answers',function(){
+        window.location.href = '/weixin/index/answersMe';
     })
 </script>
 {/block}
