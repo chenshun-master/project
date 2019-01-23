@@ -595,12 +595,12 @@ class Api extends BaseController
     public function getUserInquiryAnswer(){
         $type = $this->request->get('type/d', 1);
         $page = $this->request->param('page/d',1);
-        $page_size = $this->request->param('page_size',15);
+        $page_size = $this->request->param('page_size/d',15);
 
         if($type == 1){
-            $data = app('domain')->getDomain('InquiryDomain')->getUserInquiryList($this->getUserId());
+            $data = app('domain')->getDomain('InquiryDomain')->getUserInquiryList($this->getUserId(),$page,$page_size);
         }else if($type == 2){
-            $data = app('domain')->getDomain('InquiryDomain')->getUserAnswerList($this->getUserId());
+            $data = app('domain')->getDomain('InquiryDomain')->getUserAnswerList($this->getUserId(),$page,$page_size);
         }else{
             $data = [];
         }

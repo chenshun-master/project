@@ -41,12 +41,12 @@
     color: #7DB0E8;
     border-bottom: 2px solid #7DB0E8;
 }
-.content .wl-d {
+.wl-d {
     width: 100%;
     min-height: 100px;
     display: none;
 }
-.content .active {
+.active {
     display: block;
 }
 .wl-answers {
@@ -157,11 +157,17 @@
     min-height: 20px;
     position: fixed;
     top: 0;
-    background: white;
+    background: #EEEEEE!important;
     max-width: 640px;
 }
-.mescroll{
+.mescroll {
     position: fixed;
-    top: 160px;
+    top: 200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto!important;
+    width: 100%;
     max-width: 640px;
+    margin: 0 auto;
 }

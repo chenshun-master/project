@@ -6,36 +6,32 @@
 {/block}
 
 {block name="main"}
-    <div class="wl-top">
-        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>我的问答
-    </div>
-    <div>
-        <div class="wl-top-wenzhang">
-            <div class="wl-daan ">
-                <div class="wl-tiwen">
-                    <dl><i class="iconfont icon-wenda2"style="color:#FF615C "></i>提问({$info['inquiry_num']})</dl>
-                    <dt>共{$info['inquiry_visit_num']}次浏览</dt>
-                </div>
-                <div class="wl-tiwen wl-wenda">
-                    <dl><i class="iconfont icon-wenda1" style="color: #7DB0E8"></i>回答({$info['answer_num']})</dl>
-                    <dt>共{$info['answer_visit_num']}次浏览</dt>
-                </div>
-            </div>
-            <ul class="wl-deji">
-                <li class="active">提问</li>
-                <li>回答</li>
-            </ul>
-            <div style="clear: both"></div>
-        </div>
-        <div class="content mescroll">
-            <div class="wl-d active"  id="container0">
-                <div id="container-list0"></div>
-            </div>
-            <div class="wl-d "  id="container1">
-                <div id="container-list1"></div>
-            </div>
-        </div>
-    </div>
+         <div class="wl-top-wenzhang">
+             <div class="wl-top">
+                 <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>我的问答
+             </div>
+             <div class="wl-daan ">
+                 <div class="wl-tiwen">
+                     <dl><i class="iconfont icon-wenda2"style="color:#FF615C "></i>提问({$info['inquiry_num']})</dl>
+                     <dt>共{$info['inquiry_visit_num']}次浏览</dt>
+                 </div>
+                 <div class="wl-tiwen wl-wenda">
+                     <dl><i class="iconfont icon-wenda1" style="color: #7DB0E8"></i>回答({$info['answer_num']})</dl>
+                     <dt>共{$info['answer_visit_num']}次浏览</dt>
+                 </div>
+             </div>
+             <ul class="wl-deji">
+                 <li class="active">提问</li>
+                 <li>回答</li>
+             </ul>
+             <div style="clear: both"></div>
+         </div>
+         <div class="wl-d active mescroll"  id="container0">
+             <div id="container-list0"></div>
+         </div>
+         <div class="wl-d mescroll"  id="container1">
+             <div id="container-list1"></div>
+         </div>
 {/block}
 
 {block name="script"}
@@ -79,7 +75,7 @@
         o.tabIndex = $(this).index();
         o.type =  o.tabIndex + 1;
         $(this).addClass("active").siblings().removeClass("active");
-        $('.content').children().eq(o.tabIndex).addClass("active").siblings().removeClass("active");
+        $('.wl-d').eq(o.tabIndex).addClass("active").siblings().removeClass("active");
         if(mescrollArr[o.tabIndex]==null){
             mescrollArr[o.tabIndex]= initMescroll("container"+o.tabIndex, "container-list"+o.tabIndex);
         }
@@ -89,14 +85,13 @@
         window.location.href = '/weixin/index/answerDetails';
     });
 
-
     mescrollArr[o.tabIndex] = initMescroll("container0", "container-list0");
     function initMescroll(mescrollId,clearEmptyId){
         return new MeScroll(mescrollId, {
             down:{auto:true,isLock:false},
             up: {
                 clearEmptyId: clearEmptyId,
-                page: {num: 0,size:10},
+                page: {num: 0,size:20},
                 htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
                 isBounce: false,
                 noMoreSize:10,
@@ -108,6 +103,8 @@
                         data: {page: page.num, page_size: page.size,type:o.type},
                         dataType: 'json',
                         success: function (res) {
+                            console.log(o.tabIndex);
+                            console.log(mescrollArr);
                             mescrollArr[o.tabIndex].endSuccess(res.data.rows.length);
                             let template = o.tabIndex == 0 ? inquiryTemplate.innerHTML : answerTemplate.innerHTML;
                             layui.laytpl(template).render(res.data.rows, function (html) {
