@@ -103,8 +103,6 @@
                         data: {page: page.num, page_size: page.size,type:o.type},
                         dataType: 'json',
                         success: function (res) {
-                            console.log(o.tabIndex);
-                            console.log(mescrollArr);
                             mescrollArr[o.tabIndex].endSuccess(res.data.rows.length);
                             let template = o.tabIndex == 0 ? inquiryTemplate.innerHTML : answerTemplate.innerHTML;
                             layui.laytpl(template).render(res.data.rows, function (html) {
