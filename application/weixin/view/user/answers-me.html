@@ -7,20 +7,18 @@
 
 {block name="main"}
     <div class="wl-top">
-        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
-        我的问答
+        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>我的问答
     </div>
     <div>
         <div class="wl-daan">
             <div class="wl-tiwen">
-                <dl><i class="iconfont icon-wenda2"style="color:#FF615C "></i>提问(10)</dl>
-                <dt>共10人浏览</dt>
+                <dl><i class="iconfont icon-wenda2"style="color:#FF615C "></i>提问({$info['inquiry_num']})</dl>
+                <dt>共{$info['inquiry_visit_num']}次浏览</dt>
           </div>
             <div class="wl-tiwen wl-wenda">
-                <dl><i class="iconfont icon-wenda1" style="color: #7DB0E8"></i>回答(20)</dl>
-                <dt>共10人浏览</dt>
+                <dl><i class="iconfont icon-wenda1" style="color: #7DB0E8"></i>回答({$info['answer_num']})</dl>
+                <dt>共{$info['answer_visit_num']}次浏览</dt>
             </div>
-
         </div>
         <ul class="wl-deji">
             <li class="active">提问</li>

@@ -4,6 +4,7 @@ namespace app\weixin\controller;
 
 use think\App;
 use think\Request;
+use app\api\model\InquiryModel;
 
 /**
  * 用户中心控制器
@@ -870,5 +871,21 @@ class User extends BaseController
         $uinfo = $this->_userDomain->getUserInfo($this->getUserId());
         $this->assign('uinfo',$uinfo);
         return $this->fetch('user/balance_of');
+    }
+
+    /**
+     * 我的问答页面
+     * @return mixed
+     */
+    public function answersMe()
+    {
+        if (!$this->checkLogin()) {
+            return redirect('/weixin/index/login');
+        }
+
+        $data = InquiryModel::census($this->getUserId());
+        $this->assign('info',$data);
+
+        return $this->fetch('user/answers-me');
     }
 }

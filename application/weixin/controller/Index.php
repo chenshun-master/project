@@ -794,14 +794,9 @@ class Index extends BaseController
          $this->assign('info',$data);
          return $this->fetch('index/inquiry-details');
      }
-    /**
-     * 我的问答页面
-     * @return mixed
-     */
-    public function answersMe()
-    {
-        return $this->fetch('index/answers-me');
-    }
+
+
+
     /**
      * 我的问答详情页
      * @return mixed
@@ -810,5 +805,4 @@ class Index extends BaseController
     {
         return $this->fetch('index/answer-details');
     }
-
 }

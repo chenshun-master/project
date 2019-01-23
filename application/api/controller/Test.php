@@ -2,9 +2,9 @@
 namespace app\api\controller;
 
 use think\Db;
-
 use app\common\helpers\Jwt;
 use think\Request;
+use app\api\model\InquiryModel;
 
 class Test
 {
@@ -21,5 +21,10 @@ class Test
 //        //将图片裁剪为300x300并保存为crop.png
 //        $image->thumb(240, 180,\think\Image::THUMB_CENTER)->save('./20150521142543307_240_180.png');
 //    }
+
+      public function test(){
+//          $data = app('domain')->getDomain('InquiryDomain')->getUserAnswerList(61);
+//          halt($data);
+      }
 
 }

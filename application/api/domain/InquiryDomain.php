@@ -152,6 +152,62 @@ class InquiryDomain
     }
 
     /**
+     * 获取用户发布的提问列表
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserInquiryList($uid,$page=1,$page_size=15){
+        $obj = Db::name('inquiry')->alias('inquiry')->where('inquiry.user_id',$uid);
+
+        $field = [
+            'inquiry.id',
+            'inquiry.user_id',
+            'inquiry.title',
+            'inquiry.visit',
+            'inquiry.created_time'=>'ask_time',
+            '(select count(1) from wl_inquiry_answer a where a.inquiry_id = inquiry.id)'=>'answer_num',
+        ];
+
+        $rows = $obj->field($field)->order('inquiry.created_time','desc')->page($page,$page_size)->select();
+        if($rows){
+            foreach ($rows as $key=>$val){
+                $rows[$key]['ask_time'] = formatTime(strtotime($val['ask_time']));
+            }
+        }
+
+        $total = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
+     * 获取用户回答列表数据
+     */
+    public function getUserAnswerList($uid,$page=1,$page_size=15){
+        $field = [
+            'answer.id',
+            'inquiry.title',
+            'answer.content',
+            'answer.visit',
+            'answer.created_time'=>'answer_time',
+        ];
+
+        $obj = Db::name('inquiry_answer')->alias('answer')->where('answer.user_id',$uid);
+        $obj->leftJoin('wl_inquiry inquiry','inquiry.id = answer.inquiry_id');
+        $rows = $obj->field($field)->order('answer.created_time','desc')->page($page,$page_size)->select();
+
+        if($rows){
+            foreach ($rows as $key=>$val){
+                $rows[$key]['answer_time'] = formatTime(strtotime($val['answer_time']));
+            }
+        }
+
+        $total = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
      * 获取问答详情信息
      */
     public function getAnswerDetail($answer_id){

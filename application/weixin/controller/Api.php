@@ -588,4 +588,23 @@ class Api extends BaseController
 
         return $this->returnData([], '发布答案失败...', 305);
     }
+
+    /**
+     * 获取用户发布的问题及回答列表
+     */
+    public function getUserInquiryAnswer(){
+        $type = $this->request->get('type/d', 1);
+        $page = $this->request->param('page/d',1);
+        $page_size = $this->request->param('page_size',15);
+
+        if($type == 1){
+            $data = app('domain')->getDomain('InquiryDomain')->getUserInquiryList($this->getUserId());
+        }else if($type == 2){
+            $data = app('domain')->getDomain('InquiryDomain')->getUserAnswerList($this->getUserId());
+        }else{
+            $data = [];
+        }
+
+        return $this->returnData($data);
+    }
 }
