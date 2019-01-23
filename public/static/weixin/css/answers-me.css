@@ -152,3 +152,16 @@
 .wl-answers:active{
     background: #eeeeee;
 }
+.wl-top-wenzhang{
+    width: 100%;
+    min-height: 20px;
+    position: fixed;
+    top: 0;
+    background: white;
+    max-width: 640px;
+}
+.mescroll{
+    position: fixed;
+    top: 160px;
+    max-width: 640px;
+}
