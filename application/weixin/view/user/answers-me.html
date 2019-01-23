@@ -40,7 +40,7 @@
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="inquiryTemplate" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-answers" data-id="{{ item.id }}">
+    <div class="wl-answers jump-answer" data-id="{{ item.id }}">
         <div class="wl-answers-list">
             <div class="wl-answers-title">{{ item.title }}</div>
             <div class="wl-user-notice1">
@@ -117,5 +117,8 @@
             }
         });
     }
+    $(document).on('click', '.jump-answer', function () {
+        window.location.href = '/weixin/index/inquiryDetails/id/' + $(this).data('id');
+    })
 </script>
 {/block}
