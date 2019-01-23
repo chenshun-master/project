@@ -8,10 +8,10 @@
 {block name="main"}
 <header>
     <div class="wl-top">
-        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
-        问答
+        <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>问答
     </div>
 </header>
+
 <main  id="container" class="mescroll">
     <div class="wl-inquiry-header">
         <div class="wl-inquiry-title">
@@ -26,12 +26,10 @@
         </div>
     </div>
     <div class="wl--inquiry-popular">热门回答</div>
-    <div id="container-list">
-
-    </div>
+    <div id="container-list"></div>
 </main>
-<footer>
 
+<footer>
     <ul class="wl-inquiry-footer">
         <li class="wl-wenda"><i class="iconfont icon-wenda"></i>更多问答</li>
         <li class="wl-wenda2"><i class="iconfont icon-iconset0137"></i>提问</li>
@@ -79,24 +77,48 @@
 </script>
 <script>
     const id = {$info['id']};
+    const mescroll = new MeScroll("container", {
+        down:{auto:true},
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0,size: 15},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {tip: "亲，你可以去发布第一条答案哦^_^"},
+            callback: function (page) {
+                $.ajax({
+                    url: "/weixin/api/getAnswerList",
+                    type: 'get',
+                    data: {id,page: page.num, page_size: page.size},
+                    dataType: 'json',
+                    success: function (res) {
+                        mescroll.endSuccess(res.data.rows.length);
+                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                            $('#container-list').append(html);
+                        });
+                    },
+                    error:function () {
+                        mescroll.endErr();
+                    }
+                });
+            },
+        }
+    });
 
     $(".wl-wenda3").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container2").fadeIn();
     });
-    //点击取消按钮关闭遮罩层
+
     $('.wl-cancel2').click(function () {
         $(".marsk-container2").fadeOut();
         $(".wl-probletwo").val("");
     });
-    //textarea随着内容的变化而改变高度
-    $('textarea').on('input', function () {
-        this.style.height = (this.scrollHeight) + 'px';
-    });
+
     $(document).on('click','.wl-wenda',function(){
         window.location.href = '/weixin/index/inquiry';
-    })
-    $(document).on('click','.wl-wenda2',function(){
+    }).on('click','.wl-wenda2',function(){
         window.location.href = '/weixin/index/inquiry';
         $('.marsk-container').show();
     });
@@ -106,81 +128,42 @@
         if(key.toString() == "13"){
             return false;
         }
+    }).on('input', function () {
+        this.style.height = (this.scrollHeight) + 'px';
     });
 
-    var mescroll = new MeScroll("container", {
-        down:{auto:true},
-        up: {
-            clearEmptyId: "container-list",
-            page: {num: 0,size: 10},
-            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
-            isBounce: false,
-            noMoreSize: 5,
-            empty: {
-                tip: "亲，你可以去发布第一条答案哦^_^", //提示
-            },
-            callback: function(page){
-                listObj.searchList(page,function(curPageData){
-                    mescroll.endSuccess(curPageData.length);
-                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
-                        $('#container-list').append(html);
-                    });
-
-                }, function(){
-                    mescroll.endErr();
+    let listObj = {
+        loading: false,
+        release:function () {
+            let data = {id,content: $('#wl-probletwo-con').val()};
+            if(data.content == ''){
+                redream.showTip('请输入你的观点和经验');
+            }else if(this.loading == false){
+                $.ajax({
+                    url: "/weixin/api/createAnswer",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        listObj.loading = true;
+                    },
+                    complete: function () {
+                        listObj.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            redream.showTip('发布成功');
+                            $('.wl-cancel2').trigger('click');
+                            mescroll.resetUpScroll();
+                        }else if(res.code == 401){
+                            LoginBox.showTip('请登录后进行操作').showBox();
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
                 });
             }
         }
-    });
-    var listObj = {
-        loading: false,
-        searchList: function (page, successCallback, errorCallback) {
-            $.ajax({
-                url: "/weixin/api/getAnswerList",
-                type: 'get',
-                data: {id,page: page.num, page_size: page.size},
-                dataType: 'json',
-                success: function (res) {
-                    successCallback(res.data.rows);
-                },
-                error:function () {
-                    errorCallback();
-                }
-            });
-        },
-        release:function () {
-            var data = {
-                id,
-                content: $('#wl-probletwo-con').val(),
-            };
-            if(data.content == ''){
-                redream.showTip('请输入你的观点和经验');
-                return false;
-            }
-            $.ajax({
-                url: "/weixin/api/createAnswer",
-                type: 'post',
-                data: data,
-                dataType: 'json',
-                beforeSend: function () {
-                    listObj.loading = true;
-                },
-                complete: function () {
-                    listObj.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        redream.showTip('发布成功');
-                        window.location.reload();
-                    }else if(res.code == 401){
-                        LoginBox.showTip('请登录后进行操作').showBox();
-                    }
-                },
-            });
-        }
     };
-
-
-
 </script>
 {/block}

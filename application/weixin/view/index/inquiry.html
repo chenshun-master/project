@@ -10,56 +10,53 @@
     {include file="layout:header" /}
     <div class="wl-liebiao">
         <ul>
-            <a href="/weixin/index/index">
-                <li>推荐</li>
-            </a>
-            <a href="/weixin/index/diaryUser">
-                <li>日记</li>
-            </a>
-            <a href="/weixin/index/inquiry">
-                <li class="actice">问答</li>
-            </a>
-            <a href="/weixin/shop/haveGood">
-                <li>有好货</li>
-            </a>
+            <a href="/weixin/index/index"><li>推荐</li></a>
+            <a href="/weixin/index/diaryUser"><li>日记</li></a>
+            <a href="/weixin/index/inquiry"><li class="actice">问答</li></a>
+            <a href="/weixin/shop/haveGood"><li>有好货</li></a>
         </ul>
     </div>
 </div>
+
 <main id="container" class="mescroll">
     <div class="wl-answers-notice">
         {if($isLogin)}
-            <div class="wl-notice-user">
-                <img src="{$portrait}"  onerror="this.src ='/static/image/user/tou.png'">
-                <div class="wl-user-notice">
-                    <dl>{$nickname}</dl>
-                    <dt>回答{$info['answer_num']}<i class="iconfont icon-yuandian"></i>提问{$info['inquiry_num']}</dt>
-                </div>
-                <div><span class="wl-me-answers">我的问答<i class="iconfont icon-back_left-copy"></i></span></div>
+        <div class="wl-notice-user">
+            <img src="{$portrait}" onerror="this.src ='/static/image/user/tou.png'">
+            <div class="wl-user-notice">
+                <dl>{$nickname}</dl>
+                <dt>回答{$info['answer_num']}<i class="iconfont icon-yuandian"></i>提问{$info['inquiry_num']}</dt>
             </div>
+            <div><span class="wl-me-answers">我的问答<i class="iconfont icon-back_left-copy"></i></span></div>
+        </div>
         {else /}
-            <div class="wl-notice-login"> <a href="{:url('/weixin/index/login',['redir'=>base64url_encode('/weixin/index/inquiry')])}" >马上登录</a>,参与问答</div>
+        <div class="wl-notice-login">
+            <a href="{:url('/weixin/index/login',['redir'=>base64url_encode('/weixin/index/inquiry')])}">马上登录</a>,参与问答
+        </div>
         {/if}
 
         <div style="clear: both"></div>
         <ul class="wl-answers-answer">
             <li><i class="iconfont icon-xiugaiziliao wl-answer"></i>答题</li>
-            <li class="wl-tan-questions" data-islogin="{$isLogin}"><i class="iconfont icon-icon_tiwen wl-questions "></i>提问</li>
+            <li class="wl-tan-questions" data-islogin="{$isLogin}"><i
+                    class="iconfont icon-icon_tiwen wl-questions "></i>提问
+            </li>
         </ul>
         <div style="clear: both"></div>
     </div>
-        <div id="container-list">
 
-        </div>
+    <div id="container-list"></div>
 </main>
 
 <div class="marsk-container">
-        <div class="wl-tkyy-top"><span class="wl-cancel href"><i class="iconfont icon-back_light"></i>取消</span>提问
-            <span class="wl-release href" onclick="listObj.release()">发布</span></div>
-        <div class="wl-problem">
-            <textarea type="text" placeholder="请输入问题(40字以内)" id="wl-questions-title" class="wl-probleone" maxlength="40"></textarea>
-
-            <textarea type="text" placeholder="添加问题描述(选填)"  id="wl-content-title" class="wl-probletwo"></textarea>
-        </div>
+    <div class="wl-tkyy-top">
+        <span class="wl-cancel href"><i class="iconfont icon-back_light"></i>取消</span>提问
+        <span class="wl-release href" onclick="listObj.release()">发布</span>
+    </div>
+    <div class="wl-problem">
+        <textarea type="text" placeholder="请输入问题(40字以内)" id="wl-questions-title" class="wl-probleone" maxlength="40"></textarea>
+        <textarea type="text" placeholder="添加问题描述(选填)" id="wl-content-title" class="wl-probletwo"></textarea>
+    </div>
 </div>
 {include file="layout/footer" /}
 {/block}
@@ -93,101 +90,93 @@
 <script>
     $(".wl-tan-questions").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
-        if($(this).data('islogin') == 1){
+        if ($(this).data('islogin') == 1) {
             $(".marsk-container").fadeIn();
-        }else{
+        } else {
             LoginBox.showBox();
         }
     });
 
-    //点击取消按钮关闭遮罩层
     $('.wl-cancel').click(function () {
         $(".marsk-container").fadeOut();
         $(".wl-probleone").val("");
         $(".wl-probletwo").val("");
     });
-    //textarea随着内容的变化而改变高度
-    $('textarea').on('input', function () {
-        this.style.height = (this.scrollHeight) + 'px';
-    });
-    $('textarea').keydown( function(e) {
-        var key = window.event?e.keyCode:e.which;
-        if(key.toString() == "13"){
+
+    $('textarea').keydown(function (e) {
+        var key = window.event ? e.keyCode : e.which;
+        if (key.toString() == "13") {
             return false;
         }
+    }).on('input', function () {
+        this.style.height = (this.scrollHeight) + 'px';
     });
-    var mescroll = new MeScroll("container", {
-        down:{auto:true},
+
+    const mescroll = new MeScroll("container", {
+        down: {auto: true},
         up: {
             clearEmptyId: "container-list",
-            page: {num: 0,size: 10},
+            page: {num: 0, size: 15},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false,
             noMoreSize: 5,
-            empty: {
-                tip: "亲,暂时还没人发布问答~", //提示
+            empty: {tip: "亲,暂时还没相关问答哦~"},
+            callback: function (page) {
+                $.ajax({
+                    url: "/weixin/api/getInquiryList",
+                    type: 'get',
+                    data: {page: page.num, page_size: page.size},
+                    dataType: 'json',
+                    success: function (res) {
+                        mescroll.endSuccess(res.data.rows.length);
+                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                            $('#container-list').append(html);
+                        });
+                    },
+                    error: function () {
+                        mescroll.endErr();
+                    }
+                });
             },
-            callback: function(page){
-                listObj.searchList(page,function(curPageData){
-                    mescroll.endSuccess(curPageData.length);
-                    layui.laytpl(templateList.innerHTML).render(curPageData, function(html){
-                        $('#container-list').append(html);
-                    });
-                }, function(){
-                    mescroll.endErr();
+        }
+    });
+
+    let listObj = {
+        loading: false,
+        release: function () {
+            let data = {title: $('#wl-questions-title').val(),describe: $('#wl-content-title').val()};
+            if (data.title == '') {
+                redream.showTip('请输入你的提问标题');
+            }else if(this.loading == false){
+                $.ajax({
+                    url: "/weixin/api/createInquiry",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        listObj.loading = true;
+                    },
+                    complete: function () {
+                        listObj.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            redream.showTip('发布成功');
+                            mescroll.resetUpScroll();
+                            $('.wl-cancel').trigger('click');
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
                 });
             }
         }
-    });
-    var listObj = {
-        loading: false,
-        searchList: function (page, successCallback, errorCallback) {
-            $.ajax({
-                url: "/weixin/api/getInquiryList",
-                type: 'get',
-                data: {page: page.num, page_size: page.size},
-                dataType: 'json',
-                success: function (res) {
-                    successCallback(res.data.rows);
-                },
-                error:function () {
-                    errorCallback();
-                }
-            });
-        },
-        release:function () {
-            var data = {
-                title: $('#wl-questions-title').val(),
-                describe:$('#wl-content-title').val(),
-            };
-            if(data.title == ''){
-                redream.showTip('请输入你的提问标题');
-            }
-            $.ajax({
-                url: "/weixin/api/createInquiry",
-                type: 'post',
-                data: data,
-                dataType: 'json',
-                beforeSend: function () {
-                    listObj.loading = true;
-                },
-                complete: function () {
-                    listObj.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        redream.showTip('发布成功');
-                        window.location.href = '/weixin/index/inquiry';
-                    }
-                },
-            });
-        }
     };
-    $(document).on('click','.wl-answers',function(){
-        window.location.href = '/weixin/index/inquiryDetails/id/'+$(this).data('id');
-    })
-    $(document).on('click','.wl-me-answers',function(){
+
+    $(document).on('click', '.wl-answers', function () {
+        window.location.href = '/weixin/index/inquiryDetails/id/' + $(this).data('id');
+    }).on('click', '.wl-me-answers', function () {
         window.location.href = '/weixin/user/answersMe';
-    })
+    });
 </script>
 {/block}
