@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="wl-d">
-                <div class="wl-answers">
+                <div class="wl-answers jump-details">
                     <div class="wl-answers-list">
                         <div class="wl-answers-title">七八十年代的缝纫机，现在能值多少人民币？</div>
                         <div class="wl-answer-content">确实很厉害，意识，枪法各方面都很强，你可以去
@@ -139,5 +139,8 @@
         var index = $(this).index();
         $('.content').children().eq(index).addClass("active").siblings().removeClass("active");
     });
+    $(document).on('click','.jump-details',function(){
+        window.location.href = '/weixin/index/answerDetails';
+    })
 </script>
 {/block}
