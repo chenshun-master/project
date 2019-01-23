@@ -114,4 +114,41 @@
     background: white;
     margin:10px auto;
     border-radius: 3px;
+    padding: 10px;
+}
+.wl-answer-content{
+    min-height: 20px;
+    line-height: 20px;
+    color: #838383;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.wl-tiwen{
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin-top: 20px;
+}
+.wl-tiwen:nth-child(1){
+    border-right:1px solid #EEEEEE;
+}
+.wl-tiwen dl{
+    font-size: 16px;
+    color: #333333;
+}
+.wl-tiwen dl>i{
+    font-size: 17px!important;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+.wl-tiwen dt{
+    font-size: 12px;
+    color: #8c8c8c;
+    padding-left: 6.5%;
+}
+.wl-answers:active{
+    background: #eeeeee;
 }

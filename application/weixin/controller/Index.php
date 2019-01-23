@@ -800,8 +800,15 @@ class Index extends BaseController
      */
     public function answersMe()
     {
-
         return $this->fetch('index/answers-me');
+    }
+    /**
+     * 我的问答详情页
+     * @return mixed
+     */
+    public function answerDetails()
+    {
+        return $this->fetch('index/answer-details');
     }
 
 }
