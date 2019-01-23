@@ -52,7 +52,7 @@
 </script>
 <script id="answerTemplate" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-answers jump-details">
+    <div class="wl-answers jump-details" data-answerid="{{ item.id }}" >
         <div class="wl-answers-list">
             <div class="wl-answers-title">{{item.title}}</div>
             <div class="wl-answer-content">{{item.content}}</div>
@@ -81,9 +81,6 @@
         }
     });
 
-    $(document).on('click','.jump-details',function(){
-        window.location.href = '/weixin/index/answerDetails';
-    });
 
     mescrollArr[o.tabIndex] = initMescroll("container0", "container-list0");
     function initMescroll(mescrollId,clearEmptyId){
@@ -120,5 +117,9 @@
     $(document).on('click', '.jump-answer', function () {
         window.location.href = '/weixin/index/inquiryDetails/id/' + $(this).data('id');
     })
+    $(document).on('click','.jump-details',function(){
+        window.location.href = '/weixin/index/answerDetails/id/'+ $(this).data('answerid');
+    });
+
 </script>
 {/block}
