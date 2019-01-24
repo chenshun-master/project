@@ -73,41 +73,6 @@ class Article extends BaseController
     }
 
     /**
-     * 文章评论处理
-     */
-    public function comment(Request $request){
-        if(!$this->checkLogin()){
-            return $this->returnData([],'请登录后再进行操作',401);
-        }
-
-        if(!checkUserAuth($this->userDomain->getUserType($this->getUserId()),1)){
-            return $this->returnData([],'未授权操作',403);
-        }
-
-        $parent_id              = (int)$request->param('pid','');
-        $object_id              = (int)$request->param('object_id','');
-        $content                = $request->param('content','');
-
-        if(empty($object_id) || empty($content)){
-            return $this->returnData([],'请求参数不符合规范',301);
-        }
-
-        $data = [
-            'user_id'      =>$this->getUserId(),
-            'parent_id'    =>$parent_id,
-            'object_id'    =>$object_id,
-            'content'      =>htmlspecialchars($content),
-            'created_time' =>date('Y-m-d H:i:s')
-        ];
-
-        $res = $this->articleDomain->createComment($data,'article');
-        if(!$res){
-            return $this->returnData([],'评论失败',305);
-        }
-        return $this->returnData([],'评论成功',200);
-    }
-
-    /**
      * 获取首页文章列表
      */
     public function getArticleList(Request $request){
@@ -319,13 +284,10 @@ class Article extends BaseController
         }
 
         $data = $this->articleDomain->getFirstComment($id,$page,$page_size,$user_id);
-
         if(count($data['rows']) > 0){
             foreach ($data['rows'] as  $k=>$v){
                 $time = strtotime($v['created_time']);
                 $data['rows'][$k]['created_time'] = formatTime($time);
-
-
                 if($v['user_type'] == 3){
                     $data['rows'][$k]['nickname'] = $v['username'];
                 }else if($v['user_type'] == 4 || $v['user_type'] == 5){

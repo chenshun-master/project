@@ -220,7 +220,7 @@ class DiaryDomain
                 }
             }
 
-            $data['commentList'] = app('domain')->getDomain('CommentDomain')->getCommentList('diary',$diaryId,$user_id,1,5)['rows'];
+            $data['commentList'] = app('domain')->getDomain('CommentDomain')->getCommentList('diary',$diaryId,$user_id,1,3)['rows'];
         }
 
         return $data;

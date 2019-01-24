@@ -3,8 +3,8 @@
 <meta name="renderer" content="webkit">
 <meta name="renderer" content="ie-stand">
 <!--避免IE使用兼容模式-->
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,IE=9" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,IE=9"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/swiper.min.css">
@@ -24,7 +24,7 @@
     </div>
 </header>
 
-<main style="width: 100%;min-height: 500px;padding-bottom: 45px"  id="container" class="mescroll">
+<main style="width: 100%;min-height: 500px;padding-bottom: 45px" id="container" class="mescroll">
     <div class="wl-meili">
         <div class="wl-meili-top">
             <div class="wl-meili-left">
@@ -33,7 +33,7 @@
                 <!--<span class="wl-yonghu">用户</span>-->
             </div>
             <div class="wl-meili-right">
-                <button id="click-to-follow" data-isFollow="{$isFollow}" > {$isFollow == 1?'已关注':'＋关注'}</button>
+                <button id="click-to-follow" data-isFollow="{$isFollow}"> {$isFollow == 1?'已关注':'＋关注'}</button>
             </div>
         </div>
 
@@ -96,7 +96,7 @@
                 </div>
                 <div class="wl-riji-shuhou">术后<span style="color: #F24F4F">{$diary['day']}</span>天</div>
                 <div style="" class="wl-riji-xiang">
-                    <div class="wl-riji-title wl-content">{$diary['content']}   </div>
+                    <div class="wl-riji-title wl-content">{$diary['content']}</div>
                     <div class="wl-view">查看全文</div>
                     <div class="wl-neirong-img wl-showimg">
                         <div class="wl-img-top">
@@ -160,12 +160,12 @@
         </div>
         {/foreach}
 
-        {if(count($commentList) ==5)}
+        {if(count($commentList) ==3)}
         <div class="wl-chakna wl-comments-num">查看更多 <i class="iconfont icon-pull_down"></i></div>
         {/if}
     </div>
     {/if}
-        <!--相关推荐数据-->
+    <!--相关推荐数据-->
     <div class="wl-xiangguan">相关推荐</div>
     <div>
         <div class="wl-tuijian " id="container-recommend">
@@ -174,7 +174,6 @@
     </div>
     <div style="clear: both"></div>
     </div>
-
 </main>
 
 <footer>
@@ -200,7 +199,7 @@
                     class="iconfont icon-guanbi1 wl-quxiao href"></span></div>
         </div>
         <div class="wl-foot-gundong " style="overflow-x:hidden">
-            <div id="container-list" >
+            <div id="container-list">
 
             </div>
         </div>
@@ -260,11 +259,11 @@
     <div class="wl-tui1">
         <div class="wl-tui-img">
             {{#if(item.after_imgs.length > 0){ }}
-            <img src="{{item.after_imgs[0]}}" alt=""  class="wl-diary-img">
+            <img src="{{item.after_imgs[0]}}" alt="" class="wl-diary-img">
             {{# } }}
 
             {{#if(item.after_imgs.length == 0){ }}
-            <img src="{{item.before_imgs[0]}}" alt=""  class="wl-diary-img">
+            <img src="{{item.before_imgs[0]}}" alt="" class="wl-diary-img">
             {{# } }}
 
         </div>
@@ -284,11 +283,10 @@
         closeBtn: true, //是否打开右上角关闭按钮
         rollSpeed: 200, //切换速度
         miscellaneous: false, //是否显示底部辅助按钮
-        slitherCallback: function(direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
+        slitherCallback: function (direction, DOM) { //左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
             console.log(direction, DOM);
         }
     });
-
 
     var mySwiper = new Swiper('.swiper-container', {
         autoplay: true,//可选选项，自动滑动
@@ -296,6 +294,7 @@
             el: '.swiper-pagination',
         },
     });
+
     $(".wl-comments").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").show();
@@ -303,7 +302,8 @@
             "height": "100%",
             "overflow": "hidden"
         });
-    })
+    });
+
     $(".wl-comments-num").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").show();
@@ -311,8 +311,8 @@
             "height": "100%",
             "overflow": "hidden"
         });
-    })
-    //点击空白处隐藏弹出层
+    });
+
     $(".marsk-container").click(function (event) {
         var _con = $('.tkyy_con'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
@@ -327,7 +327,6 @@
         event.stopPropagation(); //停止事件冒泡
     });
 
-
     $(".wl-quxiao").click(function () {
         $(".marsk-container").hide();
         $("body").removeClass("body");
@@ -336,18 +335,19 @@
             "overflow": "auto"
         });
     });
+
     $('.wl-tan-pinglun').on('touchstart', function (event) {
+        $('.wl-foot-gundong').css('overflowY', "auto");
+    }).on('click', function (event) {
         $('.wl-foot-gundong').css('overflowY', "auto");
     });
 
-    $('.wl-tan-pinglun').on('click', function (event) {
-        $('.wl-foot-gundong').css('overflowY', "auto");
-    });
     $(".wl-foot-input").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".wl-zhez2").toggle();
         $('.wl-text').focus();
     });
+
     $(document).on('input', 'textarea', function () {
         if (($.trim($('.wl-text').val()) !== "")) {
             $('.wl-fabu').css({'color': '#7DB0E8'});
@@ -355,6 +355,7 @@
             $('.wl-fabu').css({'color': '#B7B7B9'});
         }
     });
+
     $(".wl-zhez2").click(function (event) {
         var _con = $('.wl-zl2'); // 设置目标区域
         if (!_con.is(event.target) && _con.has(event.target).length == 0) {
@@ -362,10 +363,8 @@
         }
     });
 
-    var wlObj = {
-        desc: [],
-        asc: [],
-    };
+    var wlObj = {desc: [],asc: []};
+
     $('#diary-order-by').on('click', function () {
         if ($(this).data('order') == 'desc') {
             $('.diary-list-box').html('');
@@ -394,47 +393,32 @@
 
         flyZommImg._bindDom();
     });
-
 </script>
 <script>
     const id = {$info['id']};
     const user_id = {$info['user_id']};
-    var myObj = {
-        goods: {
-            listData: {
-                diary_id: id,
-                loading: false,
-                ini: false,
-                page: 0,
-                page_total: 1,
-                page_size: 10,
-            },
-            loadList: function () {
-                $.ajax({
-                    url: "/weixin/api/getCommentList",
-                    type: 'get',
-                    data: {
-                        type:2,
-                        obj_id: myObj.goods.listData.diary_id,
-                        page: myObj.goods.listData.page,
-                        page_size: myObj.goods.listData.page_size
-                    },
-                    dataType: 'json',
-                    success: function (res) {
-                        if (res.code == 200) {
-                            $('#container-list').html('');
-                            if (res.data.page_total == 0) {
-                                $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
-                            }
 
-                            $("#cus-pinglun-num").html(res.data.total);
-                            layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
-                                $('#container-list').append(html);
-                            });
+    var myObj = {
+        getCommentList: function () {
+            $.ajax({
+                url: "/weixin/api/getCommentList",
+                type: 'get',
+                data: {type: 2,obj_id: id,page: 1,page_size: 100000},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        $('#container-list').html('');
+                        if (res.data.page_total == 0) {
+                            $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
                         }
+
+                        $("#cus-pinglun-num").html(res.data.total);
+                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                            $('#container-list').append(html);
+                        });
                     }
-                });
-            }
+                }
+            });
         },
         giveLikeLoading: false,
         giveLike: function (o, dataObj) {
@@ -493,7 +477,7 @@
             $.ajax({
                 url: "/weixin/api/createComment",
                 type: 'post',
-                data: {type:2,obj_id: id,content: content},
+                data: {type: 2, obj_id: id, content: content},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.publishCommentConf.loading = true;
@@ -505,7 +489,7 @@
                         redream.showTip('发布成功');
                         $('.wl-text').val('').blur();
                         $('.wl-foot-gundong ').animate({scrollTop: 0});
-                        myObj.goods.loadList();
+                        myObj.getCommentList();
                     } else if (res.code == 401) {
                         redream.showTip('请先进行登录');
                         LoginBox.showBox();
@@ -552,8 +536,9 @@
                 });
             }
         },
-    }
-    myObj.goods.loadList();
+    };
+
+    myObj.getCommentList();
     $(document).on('click', '.cus-comment-fabulous', function () {
         var type = $(this).data('type');
         if (type == 0) {
@@ -584,10 +569,10 @@
     });
 
     var mescroll = new MeScroll("container", {
-        down:{auto:true},
+        down: {auto: true},
         up: {
             clearEmptyId: "container-recommend",
-            page: {num: 0,size: 20},
+            page: {num: 0, size: 20},
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false,
             noMoreSize: 5,
@@ -595,13 +580,13 @@
                 icon: "/static/weixin/shop/image/wl-imgloss.png",
                 tip: "暂无推荐日记~", //提示
             },
-            callback: function(page){
-                listObj.searchList(page,function(curPageData){
+            callback: function (page) {
+                listObj.searchList(page, function (curPageData) {
                     mescroll.endSuccess(curPageData.length);
-                    layui.laytpl(templateListrecommend.innerHTML).render(curPageData, function(html){
+                    layui.laytpl(templateListrecommend.innerHTML).render(curPageData, function (html) {
                         $('#container-recommend').append(html);
                     });
-                }, function(){
+                }, function () {
                     mescroll.endErr();
                 });
             }
@@ -610,7 +595,7 @@
     mescroll.lockDownScroll(true);
     var listObj = {
         searchList: function (page, successCallback, errorCallback) {
-            var data = $.extend({}, {diary_id:id,page: page.num, page_size: page.size});
+            var data = $.extend({}, {diary_id: id, page: page.num, page_size: page.size});
             $.ajax({
                 url: "/weixin/api/getUserGoods",
                 type: 'post',
@@ -624,23 +609,23 @@
         },
     };
 
-    $(document).on('click','.wl-goods-article',function(){
-        window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('id');
+    $(document).on('click', '.wl-goods-article', function () {
+        window.location.href = '/weixin/shop/goodsDetails/goodsid/' + $(this).data('id');
     });
 
-    $.each(document.getElementsByClassName('wl-content'),function (index, obj) {
+    $.each(document.getElementsByClassName('wl-content'), function (index, obj) {
         var total_height = obj.scrollHeight; //文章总高度
         var show_height = 40; //定义原始显示高度
-        if(total_height > show_height) {
+        if (total_height > show_height) {
             document.getElementsByClassName('wl-view')[index].style.display = 'block';
         }
     });
 
-    $(document).on('click','.wl-view',function(){
-        if($(this).text() == '查看全文'){
-            $(this).text('收起').prev().css('height','auto');
-        }else{
-            $(this).text('查看全文').prev().css('height','40px');
+    $(document).on('click', '.wl-view', function () {
+        if ($(this).text() == '查看全文') {
+            $(this).text('收起').prev().css('height', 'auto');
+        } else {
+            $(this).text('查看全文').prev().css('height', '40px');
         }
     });
 </script>
