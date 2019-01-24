@@ -5,6 +5,8 @@ use think\Db;
 use app\api\model\AnswerModel;
 use app\api\traits\DTrait;
 
+use app\api\model\CommentModel;
+
 /**
  * 问答内容处理操作类
  * Class InquiryDomain
@@ -239,6 +241,12 @@ class InquiryDomain
             ->leftJoin('wl_user user','user.id = answer.user_id')
             ->where('answer.id',$answer_id)
             ->field($field)->find();
+
+
+        if($row){
+            $row['comment_num'] = (int)CommentModel::getCommentNum($answer_id,'inquiry_answer');
+        }
+
         return $row?:[];
     }
 }
