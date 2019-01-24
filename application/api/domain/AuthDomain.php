@@ -65,20 +65,26 @@ class AuthDomain
                 Db::rollback();return false;
             }
 
-            if($status === 3){#审核成功更新用户类型
+            if($status === 3){
                 $auth_info = Db::name('auth')->find($id);
                 $type = 1;
                 if($auth_info['type'] == 1){
                     $type = 2;
+                    $data = ['type'=>$type];
                 }else if($auth_info['type'] == 2){
                     $type = 3;
+                    $data = ['type'=>$type,'nickname'=>$auth_info['username']];
                 }else if($auth_info['type'] == 3){
                     $type = 4;
+                    $data = ['type'=>$type,'nickname'=>$auth_info['enterprise_name']];
                 }else if($auth_info['type'] == 4){
                     $type = 5;
+                    $data = ['type'=>$type,'nickname'=>$auth_info['enterprise_name']];
+                }else{
+                    $data = ['type'=>$type];
                 }
 
-                if(!Db::name('user')->where('id', $auth_info['user_id'])->data(['type'=>$type])->update()){
+                if(!Db::name('user')->where('id', $auth_info['user_id'])->data($data)->update()){
                     Db::rollback();return false;
                 }else if($type == 3){
                     $isTrue3  = Db::name('doctor')->insert([

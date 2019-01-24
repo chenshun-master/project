@@ -783,9 +783,26 @@ class Index extends BaseController
       * 问答详情页
       * @return mixed
       */
-     public function inquiryDetails()
+     public function inquiryDetails(int $id)
      {
+         $data = app('domain')->getDomain('InquiryDomain')->getInquiryDetail($id);
+
+         if(!$data){
+             return $this->fetch('error/loss');
+         }
+
+         $this->assign('info',$data);
          return $this->fetch('index/inquiry-details');
      }
 
+
+
+    /**
+     * 我的问答详情页
+     * @return mixed
+     */
+    public function answerDetails()
+    {
+        return $this->fetch('index/answer-details');
+    }
 }

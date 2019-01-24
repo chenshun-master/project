@@ -1,0 +1,63 @@
+{extend name="layout/layout" /}
+
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/answer-details.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
+{/block}
+
+{block name="main"}
+<div class="wl-top">
+    <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
+    我的问答
+</div>
+<div class="wl-answer-details">
+    <div class="wl-title">
+        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+    </div>
+    <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>3个回答 <i class="iconfont icon-back_left-copy"></i></div>
+</div>
+<div class="wl-user-name">
+    <div class="wl-answers-top">
+        <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
+        <div class="wl-answers-name">
+            <dt>上海人民美容整形医院</dt>
+
+        </div>
+        <span class="wl-read">阅读 2</span>
+    </div>
+    <div class="wl-conter">
+        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+    </div>
+    <div class="wl-establish">创建于2019-12-12</div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script src="/static/js/functions.js"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-answers" data-id="{{item.id}}">
+        <div class="wl-answers-list">
+            <div class="wl-answers-top">
+                <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
+                <div class="wl-answers-name">
+                    <dt>{{item.nickname}}</dt>
+                    {{# if(item.userType == 4){ }}
+                    <span class="wl-answers-Icon"></span>
+                    {{# } }}
+                </div>
+            </div>
+            <div class="wl-answers-title">{{item.content}}</div>
+            <div class="wl-view">查看全文</div>
+            <div class="wl-user-notice1">
+                <dt>{{item.answer_time}}</dt>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    {{#  }); }}
+</script>
+{/block}

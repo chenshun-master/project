@@ -25,6 +25,7 @@ class InquiryDomain
         $insertId = Db::name('inquiry')->insertGetId([
             'category_id'   =>$category_id,
             'user_id'       =>$user_id,
+            'visit'         =>mt_rand(1,20),
             'title'         =>$title,
             'describe'       =>$describe,
             'created_time'  =>date('Y-m-d H:i:s'),
@@ -41,6 +42,11 @@ class InquiryDomain
      * @return bool
      */
     public function answer($inquiry_id,$user_id,$content){
+
+        if(Db::name('inquiry_answer')->where('inquiry_id',$inquiry_id)->where('user_id',$user_id)->value('id')){
+            return [false,'不能重复回答问题'];
+        }
+
         $insertId = Db::name('inquiry_answer')->insertGetId([
             'inquiry_id'   =>$inquiry_id,
             'user_id'       =>$user_id,
@@ -48,13 +54,15 @@ class InquiryDomain
             'created_time'  =>date('Y-m-d H:i:s'),
         ]);
 
-        return $insertId ? true : false;
+        if($insertId){
+            return [true,'发表问答成功...'];
+        }
+
+        return [false,'发表问答失败...'];
     }
 
 
     public function getUserInquiryNum($uid){
-
-
         if($uid == 0){
             return [
                 'inquiry_num'  =>0,
@@ -77,6 +85,7 @@ class InquiryDomain
         $obj = Db::name('inquiry')->alias('inquiry');
 
         $field = [
+            'inquiry.id',
             'inquiry.title',
             'inquiry.created_time'=>'ask_time',
             'user.nickname',
@@ -107,13 +116,14 @@ class InquiryDomain
             'inquiry.id',
             'inquiry.title',
             'inquiry.describe',
+            'inquiry.visit',
             'inquiry.created_time'=>'ask_time',
             'user.nickname',
             'user.portrait',
             'user.type'=>'userType',
             '(select count(1) from wl_inquiry_answer a where a.inquiry_id = inquiry.id)'=>'answer_num',
         ];
-
+        $obj->where('inquiry.id',$id);
         $obj->leftJoin('wl_user user','user.id = inquiry.user_id');
         return $obj->field($field)->find();
     }
@@ -131,13 +141,71 @@ class InquiryDomain
             'user.nickname',
             'user.portrait',
             'user.type'=>'userType',
+            'auth.duties'
         ];
 
         $obj->where('answer.inquiry_id',$inquiry_id);
 
         $obj->leftJoin('wl_user user','user.id = answer.user_id');
+        $obj->leftJoin('wl_auth auth','user.id = auth.user_id');
 
         $rows = $obj->field($field)->order('answer.created_time','desc')->page($page,$page_size)->select();
+        if($rows){
+            foreach ($rows as $key=>$val){
+                $rows[$key]['answer_time'] = formatTime(strtotime($val['answer_time']));
+            }
+        }
+
+        $total = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
+     * 获取用户发布的提问列表
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserInquiryList($uid,$page=1,$page_size=15){
+        $obj = Db::name('inquiry')->alias('inquiry')->where('inquiry.user_id',$uid);
+
+        $field = [
+            'inquiry.id',
+            'inquiry.user_id',
+            'inquiry.title',
+            'inquiry.visit',
+            'inquiry.created_time'=>'ask_time',
+            '(select count(1) from wl_inquiry_answer a where a.inquiry_id = inquiry.id)'=>'answer_num',
+        ];
+
+        $rows = $obj->field($field)->order('inquiry.created_time','desc')->page($page,$page_size)->select();
+        if($rows){
+            foreach ($rows as $key=>$val){
+                $rows[$key]['ask_time'] = formatTime(strtotime($val['ask_time']));
+            }
+        }
+
+        $total = $obj->count(1);
+        return $this->packData($rows,$total,$page,$page_size);
+    }
+
+    /**
+     * 获取用户回答列表数据
+     */
+    public function getUserAnswerList($uid,$page=1,$page_size=15){
+        $field = [
+            'answer.id',
+            'inquiry.title',
+            'answer.content',
+            'answer.visit',
+            'answer.created_time'=>'answer_time',
+        ];
+
+        $obj = Db::name('inquiry_answer')->alias('answer')->where('answer.user_id',$uid);
+        $obj->leftJoin('wl_inquiry inquiry','inquiry.id = answer.inquiry_id');
+        $rows = $obj->field($field)->order('answer.created_time','desc')->page($page,$page_size)->select();
+
         if($rows){
             foreach ($rows as $key=>$val){
                 $rows[$key]['answer_time'] = formatTime(strtotime($val['answer_time']));

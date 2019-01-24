@@ -552,7 +552,7 @@ class Api extends BaseController
 
         if(!$this->checkLogin()){
             return $this->returnData([], '用户未登录', 401);
-        }else if(empty($title) || empty($describe)){
+        }else if(empty($title)){
             return $this->returnData([], '参数不符合规范', 301);
         }
 
@@ -576,16 +576,35 @@ class Api extends BaseController
 
         if(!$this->checkLogin()){
             return $this->returnData([], '用户未登录', 401);
-        }else if(empty($title) || empty($content)){
+        }else if(empty($id) || empty($content)){
             return $this->returnData([], '参数不符合规范', 301);
         }
 
-        $isTrue = Singleton::getDomain('InquiryDomain')->answer($id,$this->getUserId(),$content);
+        list($isTrue,$msg) = Singleton::getDomain('InquiryDomain')->answer($id,$this->getUserId(),$content);
 
         if($isTrue){
             return $this->returnData([], '发布答案成功...', 200);
         }
 
-        return $this->returnData([], '发布答案失败...', 305);
+        return $this->returnData([], $msg, 305);
+    }
+
+    /**
+     * 获取用户发布的问题及回答列表
+     */
+    public function getUserInquiryAnswer(){
+        $type = $this->request->get('type/d', 1);
+        $page = $this->request->param('page/d',1);
+        $page_size = $this->request->param('page_size/d',15);
+
+        if($type == 1){
+            $data = app('domain')->getDomain('InquiryDomain')->getUserInquiryList($this->getUserId(),$page,$page_size);
+        }else if($type == 2){
+            $data = app('domain')->getDomain('InquiryDomain')->getUserAnswerList($this->getUserId(),$page,$page_size);
+        }else{
+            $data = [];
+        }
+
+        return $this->returnData($data);
     }
 }

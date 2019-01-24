@@ -5,11 +5,17 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 ol, ul { list-style: none; }
 body{position:relative;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
-body{max-width:750px;margin:0 auto;min-width: 320px;    overflow:auto;   /* 用于 android4+，或其他设备 */    -webkit-overflow-scrolling:touch;    /* 用于 ios5+ */background: white}
+body{max-width:750px;margin:0 auto;min-width: 320px;    overflow:auto;   /* 用于 android4+，或其他设备 */    -webkit-overflow-scrolling:touch;}
 ul li{list-style-type: none;}
 a{text-decoration: none;}
 input,textarea,button{outline:none}
 input,textarea:focus { outline: none; }
+#main-body{
+    background: white;
+    width:100%;
+    max-width: 640px;
+    margin:0 auto;
+}
 .wl-header-left {
     width: 40%;
     height: 40px;
