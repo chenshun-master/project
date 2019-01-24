@@ -82,8 +82,9 @@
     <div class="wl-bianmei">
         <div class="wl-bianmei-title">
             <span class="wl-riji">我的变美日记</span>
-            <span class="wl-daoxu" data-order="asc" id="diary-order-by">时间排序 <i
-                    class="iconfont icon-iconsort"></i></span>
+            <span class="wl-daoxu" data-order="{$sort == 'desc'?'asc':'desc'}" id="diary-order-by">时间排序
+                <i class="iconfont {$sort == 'desc'?'icon-iconsort':'icon-iconasc'}"></i>
+            </span>
         </div>
         <div class="diary-list-box">
             {if($diaryList)}
@@ -363,33 +364,8 @@
         }
     });
 
-    var wlObj = {desc: [],asc: []};
-
     $('#diary-order-by').on('click', function () {
-        if ($(this).data('order') == 'desc') {
-            $('.diary-list-box').html('');
-            $.each(wlObj.desc, function (k, html) {
-                $('.diary-list-box').append(html);
-            });
-            $(this).data('order', 'asc').find('i').removeClass('icon-iconasc').addClass('icon-iconsort');
-        } else {
-            if (wlObj.desc.length == 0 && wlObj.asc.length == 0) {
-                var asc = [];
-                var desc = [];
-                $.each($('.diary-list'), function (k, html) {
-                    asc[parseInt($('.diary-list')[k].dataset.day)] = html;
-                    desc.push(html);
-                });
-                wlObj.desc = desc;
-                wlObj.asc = asc;
-            }
-
-            $('.diary-list-box').html('');
-            $.each(wlObj.asc, function (k, html) {
-                $('.diary-list-box').append(html);
-            });
-            $(this).data('order', 'desc').find('i').removeClass('icon-iconsort').addClass('icon-iconasc');
-        }
+        window.location.href = '/weixin/shop/diary?id='+id +'&sort='+$(this).data('order');
     });
 </script>
 <script>
