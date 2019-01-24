@@ -2,7 +2,6 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/answer-details.css">
-<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
@@ -21,7 +20,6 @@
         <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
         <div class="wl-answers-name">
             <dt>上海人民美容整形医院</dt>
-
         </div>
         <span class="wl-read">阅读 2</span>
     </div>
@@ -30,34 +28,58 @@
     </div>
     <div class="wl-establish">创建于2019-12-12</div>
 </div>
+<div class="reply-comments">
+    <div class="wl-reply-top">
+        评论 10
+    </div>
+    <div class="wl-answers-top">
+        <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
+        <div class="wl-answers-name">
+            <dt>上海人民美容整形医院</dt>
+        </div>
+    </div>
+    <div class="wl-conter wl-conter1">
+        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+        <div class="wl-establish">刚刚</div>
+    </div>
+</div>
 
+<div class="marsk-container">
+    <div class="tkyy_con">
+        <textarea name="" id="wl-pincontent"></textarea><span class=" iconfont icon-fabu"></span>
+    </div>
+</div>
+<ul class="wl-reply-footer">
+    <li class="wl-pinglun"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
+    <li><i class="iconfont icon-pinglun1 wl-comment-icon"></i><span class="wl-reply-num">12</span></li>
+    <li><i class="iconfont icon-dianzan2 wl-comment-icon"></i></li>
+    <li><i class="iconfont icon-web__bitebiyoujiantou wl-comment-icon"></i></li>
+</ul>
 {/block}
 
 {block name="script"}
 <script src="/static/js/functions.js"></script>
-<script src="/static/plugin/layui/layui.all.js"></script>
-<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
-<script id="templateList" type="text/html">
-    {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-answers" data-id="{{item.id}}">
-        <div class="wl-answers-list">
-            <div class="wl-answers-top">
-                <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
-                <div class="wl-answers-name">
-                    <dt>{{item.nickname}}</dt>
-                    {{# if(item.userType == 4){ }}
-                    <span class="wl-answers-Icon"></span>
-                    {{# } }}
-                </div>
-            </div>
-            <div class="wl-answers-title">{{item.content}}</div>
-            <div class="wl-view">查看全文</div>
-            <div class="wl-user-notice1">
-                <dt>{{item.answer_time}}</dt>
-            </div>
-        </div>
-    </div>
-    <div style="clear: both"></div>
-    {{#  }); }}
+<script>
+    $(".wl-pinglun").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").toggle();
+        $('#wl-pincontent').focus();
+    });
+
+    //点击空白处隐藏弹出层
+    $(".marsk-container").click(function (event) {
+        var _con = $('.tkyy_con'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.marsk-container').hide(); //淡出消失
+        }
+    });
+    $('textarea').keydown( function(e) {
+        var key = window.event?e.keyCode:e.which;
+        if(key.toString() == "13"){
+            return false;
+        }
+    }).on('input', function () {
+        this.style.height = (this.scrollHeight) + 'px';
+    });
 </script>
 {/block}
