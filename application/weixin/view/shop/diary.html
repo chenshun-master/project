@@ -491,12 +491,9 @@
             $('.wl-text').val('');
             var pid = $('#cus-comment-pid').val();
             $.ajax({
-                url: "/weixin/api/addDiaryComment",
+                url: "/weixin/api/createComment",
                 type: 'post',
-                data: {
-                    obj_id: id,
-                    content: content
-                },
+                data: {type:2,obj_id: id,content: content},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.publishCommentConf.loading = true;

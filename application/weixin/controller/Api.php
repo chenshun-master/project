@@ -593,12 +593,12 @@ class Api extends BaseController
     }
 
     /**
-     * 获取分销商品评论
+     * 评论接口
      */
     public function createComment()
     {
+        $type = $this->request->post('type/d', 0);
         $data  = [
-            'type'        =>$this->request->post('type/d', 0),
             'parent_id'   =>$this->request->post('pid/d', 0),
             'user_id'     =>$this->getUserId(),
             'object_id'   =>$this->request->post('obj_id/d', 0),
@@ -606,13 +606,13 @@ class Api extends BaseController
         ];
 
         $tableName = '';
-        if($data['type'] == 1){
+        if($type == 1){
             $tableName = 'article';
-        }else if($data['type'] == 2){
+        }else if($type == 2){
             $tableName = 'diary';
-        }else if($data['type'] == 3){
+        }else if($type == 3){
             $tableName = 'sp_good_goods';
-        }else if($data['type'] == 4){
+        }else if($type == 4){
             $tableName = 'inquiry_answer';
         }
 
