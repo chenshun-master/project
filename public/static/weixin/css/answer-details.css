@@ -8,6 +8,8 @@
     /*top: 0;*/
     background: white;
     z-index: 999;
+    position: fixed;
+    top: 0px;
 }
 .wl-top i {
     position: absolute;
@@ -193,4 +195,8 @@
     font-size: 24px;
     text-align: center;
     color: #B7B7B9;
+}
+.mescroll{
+    padding-top: 40px;
+    padding-bottom: 40px;
 }

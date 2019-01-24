@@ -10,7 +10,7 @@
     <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
     我的问答
 </div>
-<div id="container">
+<div id="container" class="mescroll">
     <div class="wl-answer-details">
         <div class="wl-title">
             就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
@@ -34,7 +34,7 @@
         <div class="wl-reply-top">
             评论 10
         </div>
-        <div class="container-list mescroll">
+        <div class="container-list ">
 
 
         </div>
@@ -162,6 +162,7 @@
                         mescroll.triggerDownScroll();
                         $('.marsk-container').css('display','none');
                         redream.showTip('发布成功');
+                        $('#wl-pincontent').val('');
                     } else if (res.code == 401) {
                         redream.showTip('请先进行登录');
                         LoginBox.showBox();
