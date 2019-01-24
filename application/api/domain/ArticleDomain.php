@@ -87,19 +87,6 @@ class ArticleDomain extends ArticleModel
     }
 
     /**
-     * 添加文章评论
-     * @param $data        待添加数据
-     * @param string $tablename    评论所对应的表名
-     * @return bool
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public function createComment($data,$tablename='article'){
-        return (new \app\api\domain\CommentDomain())->createComment($data,'article');
-    }
-
-    /**
      * 获取文章详情信息
      * @param $id               文章ID
      * @param int $user_id      用户ID

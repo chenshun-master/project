@@ -13,7 +13,6 @@ $(".cus-ping").click(function (event) {
     });
 });
 
-//点击空白处隐藏弹出层
 $(".marsk-container").click(function (event) {
     var _con = $('.tkyy_con'); // 设置目标区域
     if (!_con.is(event.target) && _con.has(event.target).length == 0) {
@@ -28,28 +27,24 @@ $(".marsk-container").click(function (event) {
     event.stopPropagation(); //停止事件冒泡
 });
 
-
 $(".wl-quxiao").click(function () {
     $(".marsk-container").hide();
     $("body").removeClass("body");
-    $("body,html").css({
-        "height":"100%",
-        "overflow":"auto"
-    });
+    $("body,html").css({"height":"100%","overflow":"auto"});
 });
 
-$('.wl-tan-pinglun').on('touchstart', function (event) {
+$('.wl-tan-pinglun').on('touchstart', function () {
+    $('.wl-foot-gundong').css('overflowY', "auto");
+}).on('click', function () {
     $('.wl-foot-gundong').css('overflowY', "auto");
 });
 
-$('.wl-tan-pinglun').on('click', function (event) {
-    $('.wl-foot-gundong').css('overflowY', "auto");
-});
 $(".wl-foot-input").click(function (event) {
     event.stopPropagation(); //停止事件冒泡
     $(".wl-zhez2").toggle();
     $('.wl-text').focus();
 });
+
 $(document).on('input', 'textarea', function () {
     if (($.trim($('.wl-text').val()) !== "")) {
         $('.wl-fabu').css({'color': '#7DB0E8'});
@@ -68,57 +63,38 @@ $(".wl-zhez2").click(function (event) {
 
 $(".wl-fenxiang").click(function () {
     $("#cus-myshare-box").show();
-})
+});
 $("#cus-myshare-box").click(function () {
     $("#cus-myshare-box").hide();
-})
+});
 
+$(".wl-zhezhao").click(function (event) {
+    var _con = $('.wl-zhe1');
+    if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+        $('.wl-zhezhao').hide();
+    }
+});
 
 var myObj = {
-    goods: {
-        listData: {
-            gid: $('#fr-good-goods-id').val(),
-            loading: false,
-            ini: false,
-            page: 0,
-            page_total: 1,
-            page_size: 1000,
-        },
-        loadList: function () {
-            if (myObj.goods.listData.loading) {
-                return false;
-            }
-
-            $.ajax({
-                url: "/weixin/shopapi/getGoodGoodsComment",
-                type: 'post',
-                data: {
-                    gid: myObj.goods.listData.gid,
-                    page: myObj.goods.listData.page,
-                    page_size: myObj.goods.listData.page_size
-                },
-                dataType: 'json',
-                beforeSend: function () {
-                    myObj.goods.listData.loading = true;
-                },
-                complete: function () {
-                    myObj.goods.listData.loading = false;
-                },
-                success: function (res) {
-                    if (res.code == 200) {
-                        $('#container-list').html('');
-                        if (res.data.page_total == 0) {
-                            $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
-                        }
-
-                        $("#cus-pinglun-num").html(res.data.total);
-                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
-                            $('#container-list').append(html);
-                        });
+    getCommentList: function () {
+        $.ajax({
+            url: "/weixin/api/getCommentList",
+            type: 'get',
+            data: {type:3,obj_id: $('#fr-good-goods-id').val(),page: 1,page_size: 10000},
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 200) {
+                    $('#container-list').html('');
+                    if (res.data.page_total == 0) {
+                        $('#container-list').html(' <div class="wl-no-shuju"> <dl class="iconfont icon-tianxierenzhengxinxi"></dl> <dt>暂无评论</dt></div>');
                     }
+                    $("#cus-pinglun-num").html(res.data.total);
+                    layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                        $('#container-list').append(html);
+                    });
                 }
-            });
-        }
+            }
+        });
     },
     recommended: {
         listData: {
@@ -244,44 +220,38 @@ var myObj = {
             });
         }
     },
-    publishCommentConf: {
-        loading: false,
-    },
+    publishCommentConf: {loading: false},
     publishComment: function (type, flag) {
         var content = $('.wl-text').val();
         $('.wl-text').focus();
         $('.wl-text').val('');
         var pid = $('#cus-comment-pid').val();
-        $.ajax({
-            url: "/weixin/shopapi/createGoodGoodsComment",
-            type: 'post',
-            data: {
-                obj_id: $('#fr-good-goods-id').val(),
-                content: content
-            },
-            dataType: 'json',
-            beforeSend: function () {
-                myObj.publishCommentConf.loading = true;
-            },
-            success: function (res) {
-                myObj.publishCommentConf.loading = false;
-                if (res.code == 200) {
-                    $('.wl-zhez2').hide();
-                    myObj.recommended.ini = false;
-                    myObj.recommended.page = 0;
-                    myObj.recommended.page_total = 0;
-                    redream.showTip('发布成功');
-                    $('.wl-text').val('').blur();
-                    $('.wl-foot-gundong ').animate({scrollTop:0});
-                    myObj.goods.loadList();
-                } else if (res.code == 401) {
-                    redream.showTip('请先进行登录');
-                    $('.wl-zhez2').hide();
-                }else{
-                    redream.showTip('评论失败');
+        if(myObj.publishCommentConf.loading == false){
+            $.ajax({
+                url: "/weixin/api/createComment",
+                type: 'post',
+                data: {type:3,obj_id: $('#fr-good-goods-id').val(),content: content},
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.publishCommentConf.loading = true;
+                },
+                success: function (res) {
+                    myObj.publishCommentConf.loading = false;
+                    if (res.code == 200) {
+                        $('.wl-zhez2').hide();
+                        $('.wl-text').val('').blur();
+                        $('.wl-foot-gundong ').animate({scrollTop:0});
+                        myObj.getCommentList();
+                        redream.showTip('发布成功');
+                    } else if (res.code == 401) {
+                        redream.showTip('请先进行登录');
+                        $('.wl-zhez2').hide();
+                    }else{
+                        redream.showTip('评论失败');
+                    }
                 }
-            }
-        });
+            });
+        }
     },
     isAdd: false,
     addFriendLoading: false,
@@ -333,58 +303,26 @@ var myObj = {
     },
 };
 
-
-myObj.goods.loadList();
+myObj.getCommentList();
 myObj.recommended.loadList();
-
-$('#cus-click-fabulous').on('click', function () {
-    var type = $(this).data('type');
-    if (type == 0) {
-        type = 1;
-    } else {
-        type = 2;
-    }
-    myObj.giveLike($(this), {type: type, obj_id: $('#fr-good-goods-id').val(), flag: 3});
-});
-
-
-$(document).on('click', '#cus-click-collection', function () {
-    var type = $(this).data('type');
-    if (type == 0) {
-        type = 1;
-    } else {
-        type = 2;
-    }
-    myObj.collection($(this), {type: type, obj_id: $('#fr-good-goods-id').val(), flag: 3});
-});
-
-$(document).on('click', '.cus-comment-fabulous', function () {
-    var type = $(this).data('type');
-    if (type == 0) {
-        type = 1;
-    } else {
-        type = 2;
-    }
-    myObj.giveLike($(this), {type: type, obj_id: $(this).data('id'), flag: 2});
-});
-
-$(document).on('click', '.cus-touser-main', function () {
-    window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
-});
-
-$(".wl-zhezhao").click(function (event) {
-    var _con = $('.wl-zhe1'); // 设置目标区域
-    if (!_con.is(event.target) && _con.has(event.target).length == 0) {
-        $('.wl-zhezhao').hide(); //淡出消失
-    }
-});
 
 $(document).on('click', '#click-place-order', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $('#fr-goodid').val() + '&gid=' + $('#fr-good-goods-id').val();
-});
-$(document).on('click', '.click-to-havegoodDetails', function () {
+}).on('click', '.click-to-havegoodDetails', function () {
     window.location.href = '/weixin/shop/goodsDetails?goodsid=' + $(this).data('id') ;
+}).on('click', '.cus-touser-main', function () {
+    window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
+}).on('click', '.cus-comment-fabulous', function () {
+    var type = $(this).data('type') ==0 ?1:2;
+    myObj.giveLike($(this), {type: type, obj_id: $(this).data('id'), flag: 2});
+}).on('click', '#cus-click-collection', function () {
+    var type = $(this).data('type') ==0 ?1:2;
+    myObj.collection($(this), {type: type, obj_id: $('#fr-good-goods-id').val(), flag: 3});
+});
 
+$('#cus-click-fabulous').on('click', function () {
+    var type = $(this).data('type') ==0 ?1:2;
+    myObj.giveLike($(this), {type: type, obj_id: $('#fr-good-goods-id').val(), flag: 3});
 });
 
 $('#wl-goods-detail').find('img').removeAttr('width').removeAttr('height');

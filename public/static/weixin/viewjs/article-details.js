@@ -216,9 +216,9 @@ var objClass = {
         }
         objClass.publishCommentConf.loading = true;
         $.ajax({
-            url: "/weixin/article/comment",
+            url: "/weixin/api/createComment",
             type: 'post',
-            data: {pid: pid, object_id: objClass.article_id,content:content},
+            data: {type:1,pid: 0, obj_id: objClass.article_id,content:content},
             dataType: 'json',
             beforeSend: function () {
                 objClass.publishCommentConf.loading = true;
