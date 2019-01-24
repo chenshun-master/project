@@ -78,11 +78,11 @@ var objClass = {
                     var num = parseInt($('#cus-click-fabulous').find('span').text());
                     if(type == 1){
                         $('#cus-click-fabulous').data('fabulous', 2);
-                        $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
+                        // $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
                         $('#cus-click-fabulous').find('span').text( num + 1);
                     }else{
                         $('#cus-click-fabulous').data('fabulous', 1);
-                        $('#cus-click-fabulous').find('i').removeClass('cus-blue').removeClass('icon-dianzan1').removeClass('icon-dianzan1').addClass("icon-dianzan");
+                        // $('#cus-click-fabulous').find('i').removeClass('cus-blue').removeClass('icon-dianzan1').removeClass('icon-dianzan1').addClass("icon-dianzan");
                         $('#cus-click-fabulous').find('span').text( num - 1);
                     }
                 } else if (res.code == 401) {
@@ -97,9 +97,9 @@ var objClass = {
         page: 0,
         page_total: 1,
         page_size: 15,
-        template: function (data) {
-            var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
-        }
+        // template: function (data) {
+        //     var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
+        // }
     },
     loadCommentList: function () {
         if (this.commentData.loading) {
@@ -185,22 +185,6 @@ var objClass = {
                 }
             });
         }
-    },
-    replyComment: function (obj) {
-        //每次点击清除之前加载的数据
-        this.subreviewConf.loading = false;
-        this.subreviewConf.ini = false;
-        this.subreviewConf.page = 0;
-        this.subreviewConf.page_total = 1;
-        this.subreviewConf.page_size = 10;
-        this.subreviewConf.commentid = obj.data('commentid');
-
-        $('#cus-subreview-container').html('');
-        var h = getClientHeight();
-        $('.marsk-container').css('height',h + 'px').show();
-        var h2 = h - 82;
-        $('#cus-subreview-container').css('height',h2 + 'px');
-        this.loadSubreviewList();
     },
     publishCommentConf:{
         loading:false,

@@ -2,6 +2,7 @@
 
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/answer-details.css">
+<link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
 {block name="main"}
@@ -9,48 +10,44 @@
     <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
     我的问答
 </div>
-<div class="wl-answer-details">
-    <div class="wl-title">
-        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
-    </div>
-    <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>3个回答 <i class="iconfont icon-back_left-copy"></i></div>
-</div>
-<div class="wl-user-name">
-    <div class="wl-answers-top">
-        <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
-        <div class="wl-answers-name">
-            <dt>上海人民美容整形医院</dt>
+<div id="container" class="mescroll">
+    <div class="wl-answer-details">
+        <div class="wl-title">
+            就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
         </div>
-        <span class="wl-read">阅读 2</span>
+        <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>3个回答 <i class="iconfont icon-back_left-copy"></i></div>
     </div>
-    <div class="wl-conter">
-        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
-    </div>
-    <div class="wl-establish">创建于2019-12-12</div>
-</div>
-<div class="reply-comments">
-    <div class="wl-reply-top">
-        评论 10
-    </div>
-    <div class="wl-answers-top">
-        <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
-        <div class="wl-answers-name">
-            <dt>上海人民美容整形医院</dt>
+    <div class="wl-user-name">
+        <div class="wl-answers-top">
+            <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
+            <div class="wl-answers-name">
+                <dt>上海人民美容整形医院</dt>
+            </div>
+            <span class="wl-read">阅读 2</span>
         </div>
+        <div class="wl-conter">
+            就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+        </div>
+        <div class="wl-establish">创建于2019-12-12</div>
     </div>
-    <div class="wl-conter wl-conter1">
-        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
-        <div class="wl-establish">刚刚</div>
-    </div>
-</div>
+    <div class="reply-comments">
+        <div class="wl-reply-top">
+            评论 10
+        </div>
+        <div class="container-list ">
 
+
+        </div>
+    </div>
+
+</div>
 <div class="marsk-container">
     <div class="tkyy_con">
-        <textarea name="" id="wl-pincontent"></textarea><span class=" iconfont icon-fabu"></span>
+        <textarea id="wl-pincontent"></textarea><span class=" iconfont icon-fabu" onclick="myObj.publishComment()"></span>
     </div>
 </div>
 <ul class="wl-reply-footer">
-    <li class="wl-pinglun"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
+    <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
     <li><i class="iconfont icon-pinglun1 wl-comment-icon"></i><span class="wl-reply-num">12</span></li>
     <li><i class="iconfont icon-dianzan2 wl-comment-icon"></i></li>
     <li><i class="iconfont icon-web__bitebiyoujiantou wl-comment-icon"></i></li>
@@ -59,8 +56,43 @@
 
 {block name="script"}
 <script src="/static/js/functions.js"></script>
+<script src="/static/plugin/layui/layui.all.js"></script>
+<script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
+<script id="templateList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="wl-pinglun">
+        <div style="float: left">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" class="cus-touser-main " data-user_id="{{item.user_id}}" onerror="this.src='/static/image/user/tou.png'">
+        </div>
+        <div class="wl-ping-xiang">
+            <div>
+                <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
+
+                {{#  if(item.isZan == 0){ }}
+                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.isZan}}" >
+                    <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
+                    <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
+                </div>
+                {{#  } }}
+
+                {{#  if(item.isZan == 1){ }}
+                <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.isZan}}" >
+                    <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
+                    <span style="font-size: 13px">{{item.like_count}}</span>
+                </div>
+                {{#  } }}
+            </div>
+            <div style="clear:both"></div>
+            <div class="wl-ping-neirong">{{item.content}}</div>
+            <div class="wl-pji">{{item.created_time}}</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    {{#  }); }}
+</script>
 <script>
-    $(".wl-pinglun").click(function (event) {
+    const id = 1;
+    $(".wl-write-comment").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").toggle();
         $('#wl-pincontent').focus();
@@ -81,5 +113,65 @@
     }).on('input', function () {
         this.style.height = (this.scrollHeight) + 'px';
     });
+
+    const mescroll = new MeScroll("container", {
+        down: {auto: true},
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0, size: 15},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {tip: "亲,暂时还没相关问答哦~"},
+            callback: function (page) {
+                $.ajax({
+                    url: "/weixin/api/getCommentList",
+                    type: 'get',
+                    data: {id,page: page.num, page_size: page.size,type:4},
+                    dataType: 'json',
+                    success: function (res) {
+                        mescroll.endSuccess(res.data.rows.length);
+                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                            $('#container-list').append(html);
+                        });
+                    },
+                    error: function () {
+                        mescroll.endErr();
+                    }
+                });
+            },
+        }
+    });
+    var  myObj = {
+        publishCommentConf: {
+            loading: false,
+        },
+        publishComment: function () {
+            var content = $('#wl-pincontent').val();
+            $.ajax({
+                url: "/weixin/api/createComment",
+                type: 'post',
+                data: {type:4,obj_id: id,content: content},
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.publishCommentConf.loading = true;
+                },
+                success: function (res) {
+                    myObj.publishCommentConf.loading = false;
+                    if (res.code == 200) {
+                        mescroll.triggerDownScroll();
+                        $('.marsk-container').css('display','none');
+                        redream.showTip('发布成功');
+                        $('#wl-pincontent').val('');
+                    } else if (res.code == 401) {
+                        redream.showTip('请先进行登录');
+                        LoginBox.showBox();
+                    } else {
+                        redream.showTip('评论失败');
+                    }
+                }
+            });
+        },
+    }
 </script>
 {/block}
