@@ -7,19 +7,11 @@ var objClass = {
         page: 0,
         page_total: 1,
         page_size: 3,
-        template: function (data) {
-            var src = '';
-            if (data.thumbnail != '' && data.thumbnail !=null) {
-                var thumbnailObj = $.parseJSON(data.thumbnail);
-                src = thumbnailObj.img_1;
-            }
-        }
     },
     loadRecommendList: function () {
         if (this.recommendData.loading) {
             return false;
         }
-
         this.recommendData.page++;
         if (this.recommendData.ini == true) {
             if (this.recommendData.page > this.recommendData.page_total) {

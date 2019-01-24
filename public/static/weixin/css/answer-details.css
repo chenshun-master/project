@@ -23,14 +23,16 @@
     border-bottom: 1px solid #f1f1f1;
 }
 .wl-title{
-    min-height: 20px;
-    line-height: 22px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    color: #444444;
-    font-size: 16px;
+    min-height: 20px;
+    line-height: 23px;
+    font-size: 18px;
+    padding: 10px 0 10px 0;
+    font-weight: 500;
+    color: #2e2e2e;
 }
 .wl-huida{
     margin: 5px 0 5px 0;
@@ -115,6 +117,7 @@
     max-width: 640px;
     bottom: 0;
     border-top: 1px solid #f1f1f1;
+    background: white;
 }
 .wl-reply-footer li:nth-child(1){
     width: 50%;

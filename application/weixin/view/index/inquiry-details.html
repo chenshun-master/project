@@ -54,7 +54,7 @@
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-answers" data-id="{{item.id}}">
+    <div class="wl-answers jump-answer-details" data-id="{{item.id}}">
         <div class="wl-answers-list">
             <div class="wl-answers-top">
                 <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
@@ -165,5 +165,8 @@
             }
         }
     };
+    $(document).on('click', '.jump-answer-details', function () {
+        window.location.href = '/weixin/index/answerDetails/id/' + $(this).data('id');
+    })
 </script>
 {/block}
