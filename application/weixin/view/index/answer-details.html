@@ -34,7 +34,10 @@
         <div class="wl-reply-top">
             评论 10
         </div>
-        <div class="container-list mescroll"></div>
+        <div class="container-list mescroll">
+
+
+        </div>
     </div>
 
 </div>
@@ -88,7 +91,7 @@
     {{#  }); }}
 </script>
 <script>
-    const id= 1;
+    const id = 1;
     $(".wl-write-comment").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").toggle();
@@ -144,11 +147,11 @@
             loading: false,
         },
         publishComment: function () {
-            var content = $('.wl-pincontent').val();
+            var content = $('#wl-pincontent').val();
             $.ajax({
                 url: "/weixin/api/createComment",
                 type: 'post',
-                data: {type:2,obj_id: id,content: content},
+                data: {type:4,obj_id: id,content: content},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.publishCommentConf.loading = true;
@@ -156,15 +159,12 @@
                 success: function (res) {
                     myObj.publishCommentConf.loading = false;
                     if (res.code == 200) {
-                        $('.wl-zhez2').hide();
+                        mescroll.triggerDownScroll();
+                        $('.marsk-container').css('display','none');
                         redream.showTip('发布成功');
-                        $('.wl-text').val('').blur();
-                        $('.wl-foot-gundong ').animate({scrollTop: 0});
-                        myObj.goods.loadList();
                     } else if (res.code == 401) {
                         redream.showTip('请先进行登录');
                         LoginBox.showBox();
-                        $('.wl-zhez2').hide();
                     } else {
                         redream.showTip('评论失败');
                     }
