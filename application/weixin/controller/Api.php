@@ -580,13 +580,13 @@ class Api extends BaseController
             return $this->returnData([], '参数不符合规范', 301);
         }
 
-        $isTrue = Singleton::getDomain('InquiryDomain')->answer($id,$this->getUserId(),$content);
+        list($isTrue,$msg) = Singleton::getDomain('InquiryDomain')->answer($id,$this->getUserId(),$content);
 
         if($isTrue){
             return $this->returnData([], '发布答案成功...', 200);
         }
 
-        return $this->returnData([], '发布答案失败...', 305);
+        return $this->returnData([], $msg, 305);
     }
 
     /**

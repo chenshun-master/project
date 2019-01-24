@@ -24,7 +24,6 @@ class InquiryModel extends Model
     }
 
     public static function census($uid){
-
         $inquiry_info = self::where('user_id',$uid)->field([
             'count(id)'      =>'inquiry_num',
             'sum(visit)'     =>"inquiry_visit_num",
@@ -36,10 +35,10 @@ class InquiryModel extends Model
         ])->find();
 
         return [
-            'inquiry_num'       =>$inquiry_info?$inquiry_info['inquiry_num']:0,
-            'inquiry_visit_num' =>$inquiry_info?$inquiry_info['inquiry_visit_num']:0,
-            'answer_num'        =>$answer_info?$answer_info['answer_num']:0,
-            'answer_visit_num'  =>$answer_info?$answer_info['answer_visit_num']:0,
+            'inquiry_num'       =>$inquiry_info?(int)$inquiry_info['inquiry_num']:0,
+            'inquiry_visit_num' =>$inquiry_info?(int)$inquiry_info['inquiry_visit_num']:0,
+            'answer_num'        =>$answer_info?(int)$answer_info['answer_num']:0,
+            'answer_visit_num'  =>$answer_info?(int)$answer_info['answer_visit_num']:0,
         ];
     }
 }

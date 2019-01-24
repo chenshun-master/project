@@ -42,6 +42,11 @@ class InquiryDomain
      * @return bool
      */
     public function answer($inquiry_id,$user_id,$content){
+
+        if(Db::name('inquiry_answer')->where('inquiry_id',$inquiry_id)->where('user_id',$user_id)->value('id')){
+            return [false,'不能重复回答问题'];
+        }
+
         $insertId = Db::name('inquiry_answer')->insertGetId([
             'inquiry_id'   =>$inquiry_id,
             'user_id'       =>$user_id,
@@ -49,7 +54,11 @@ class InquiryDomain
             'created_time'  =>date('Y-m-d H:i:s'),
         ]);
 
-        return $insertId ? true : false;
+        if($insertId){
+            return [true,'发表问答成功...'];
+        }
+
+        return [false,'发表问答失败...'];
     }
 
 
