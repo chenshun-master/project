@@ -34,7 +34,7 @@
         <div class="wl-reply-top">
             评论 2
         </div>
-        <div class="container-list "></div>
+        <div id="container-list"></div>
     </div>
 
 </div>
@@ -57,7 +57,7 @@
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-pinglun">
+    <div class="wl-pinglun" data-id="{{ item.id}}">
         <div style="float: left">
             <img src="{{item.portrait}}" alt="" width="30" height="30" class="cus-touser-main " data-user_id="{{item.user_id}}" onerror="this.src='/static/image/user/tou.png'">
         </div>
@@ -65,14 +65,14 @@
             <div>
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
 
-                {{#  if(item.isZan == 0){ }}
+                {{#  if(item.islike == 0){ }}
                 <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.isZan}}" >
                     <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
                     <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
                 </div>
                 {{#  } }}
 
-                {{#  if(item.isZan == 1){ }}
+                {{#  if(item.islike == 1){ }}
                 <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.isZan}}" >
                     <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
                     <span style="font-size: 13px">{{item.like_count}}</span>
@@ -120,12 +120,12 @@
             htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
             isBounce: false,
             noMoreSize: 5,
-            empty: {tip: "亲,暂时还没相关问答哦~"},
+            empty: {tip: "亲,暂时还没相关评论~"},
             callback: function (page) {
                 $.ajax({
                     url: "/weixin/api/getCommentList",
                     type: 'get',
-                    data: {id,page: page.num, page_size: page.size,type:4},
+                    data: {obj_id:answer_id,page: page.num, page_size: page.size,type:4},
                     dataType: 'json',
                     success: function (res) {
                         mescroll.endSuccess(res.data.rows.length);
@@ -149,7 +149,7 @@
             $.ajax({
                 url: "/weixin/api/createComment",
                 type: 'post',
-                data: {type:4,obj_id: id,content: content},
+                data: {type:4,obj_id: answer_id,content: content},
                 dataType: 'json',
                 beforeSend: function () {
                     myObj.publishCommentConf.loading = true;
