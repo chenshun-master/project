@@ -40,11 +40,11 @@
 </div>
 <div class="marsk-container">
     <div class="tkyy_con">
-        <textarea name="" id="wl-pincontent"></textarea><span class=" iconfont icon-fabu"></span>
+        <textarea id="wl-pincontent"></textarea><span class=" iconfont icon-fabu" onclick="myObj.publishComment()"></span>
     </div>
 </div>
 <ul class="wl-reply-footer">
-    <li class="wl-pinglun"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
+    <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
     <li><i class="iconfont icon-pinglun1 wl-comment-icon"></i><span class="wl-reply-num">12</span></li>
     <li><i class="iconfont icon-dianzan2 wl-comment-icon"></i></li>
     <li><i class="iconfont icon-web__bitebiyoujiantou wl-comment-icon"></i></li>
@@ -89,7 +89,7 @@
 </script>
 <script>
     const id= 1;
-    $(".wl-pinglun").click(function (event) {
+    $(".wl-write-comment").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").toggle();
         $('#wl-pincontent').focus();
@@ -139,5 +139,38 @@
             },
         }
     });
+    var  myObj = {
+        publishCommentConf: {
+            loading: false,
+        },
+        publishComment: function () {
+            var content = $('.wl-pincontent').val();
+            $.ajax({
+                url: "/weixin/api/createComment",
+                type: 'post',
+                data: {type:2,obj_id: id,content: content},
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.publishCommentConf.loading = true;
+                },
+                success: function (res) {
+                    myObj.publishCommentConf.loading = false;
+                    if (res.code == 200) {
+                        $('.wl-zhez2').hide();
+                        redream.showTip('发布成功');
+                        $('.wl-text').val('').blur();
+                        $('.wl-foot-gundong ').animate({scrollTop: 0});
+                        myObj.goods.loadList();
+                    } else if (res.code == 401) {
+                        redream.showTip('请先进行登录');
+                        LoginBox.showBox();
+                        $('.wl-zhez2').hide();
+                    } else {
+                        redream.showTip('评论失败');
+                    }
+                }
+            });
+        },
+    }
 </script>
 {/block}

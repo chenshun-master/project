@@ -97,9 +97,9 @@ var objClass = {
         page: 0,
         page_total: 1,
         page_size: 15,
-        template: function (data) {
-            var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
-        }
+        // template: function (data) {
+        //     var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
+        // }
     },
     loadCommentList: function () {
         if (this.commentData.loading) {
