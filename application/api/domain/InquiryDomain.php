@@ -244,6 +244,7 @@ class InquiryDomain
 
 
         if($row){
+            Db::name('inquiry_answer')->where('id',$answer_id)->setInc('visit');
             $row['comment_num'] = (int)CommentModel::getCommentNum($answer_id,'inquiry_answer');
         }
 
