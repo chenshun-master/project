@@ -611,6 +611,7 @@ class Api extends BaseController
     /**
      * 获取评论列表
      * @param  type          1:获取文章评论，2:获取日记评论，3:获取有好货商品评论
+     * @param  obj_id        获取数据的对象ID
      * @return false|string
      */
     public function getCommentList(){
