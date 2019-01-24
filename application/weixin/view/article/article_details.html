@@ -6,26 +6,33 @@
 {block name="main"}
 
 <div class="wl-body " style="padding-bottom: 100px;background: white">
-<header>
-    <div class="wl-top" >
-        <i class="iconfont icon-back_light " style="position: absolute;top: 0px;left: 5px;font-size: 25px" onclick="redream.toReferer()"></i>
-    </div>
-</header>
+    <header>
+        <div class="wl-top">
+            <i class="iconfont icon-back_light " style="position: absolute;top: 0px;left: 5px;font-size: 25px"
+               onclick="redream.toReferer()"></i>
+        </div>
+    </header>
     <main>
         <div class="wl-title href">{$article_info['title']}</div>
         <div class="wl-main href">
             <div>
-                <div class="wl-tou-img href"><img src="{$article_info['portrait']}" alt="" data-user_id="{$article_info['user_id']}" onerror='this.src="/static/image/user/tou.png"' class="cus-touser-main"></div>
+                <div class="wl-tou-img href"><img src="{$article_info['portrait']}" alt=""
+                                                  data-user_id="{$article_info['user_id']}"
+                                                  onerror='this.src="/static/image/user/tou.png"'
+                                                  class="cus-touser-main"></div>
                 <div class="wl-tou-yonghu href">
                     <dl>
-                        {$article_info['user_type'] ==3 ? $article_info['username'] : ($article_info['user_type'] == 4 || $article_info['user_type'] ==5 ? $article_info['enterprise_name'] : $article_info['nickname'])}
+                        {$article_info['user_type'] ==3 ? $article_info['username'] : ($article_info['user_type'] == 4
+                        || $article_info['user_type'] ==5 ? $article_info['enterprise_name'] :
+                        $article_info['nickname'])}
                     </dl>
                     <dt>{$article_info['published_time']|strtotime|formatTime|}</dt>
                 </div>
             </div>
             <div class="wl-jiahy href">
                 <?php if($isFriend === true):?>
-                <button ><a href="/weixin/user/userDialogue/uid/{$article_info['user_id']}" style="color: #ffffff">私信</a></button>
+                <button><a href="/weixin/user/userDialogue/uid/{$article_info['user_id']}" style="color: #ffffff">私信</a>
+                </button>
                 <?php elseif($isFriend === false):?>
                 <button onclick="objClass.showAddFriend()" id="cus-add-friend">加好友</button>
                 <?php else:?>
@@ -38,15 +45,18 @@
         </div>
         <div class="wl-end">--&nbsp;THE END&nbsp;--</div>
         <div class="wl-fengxiang">
-            <div class="wl-xiang" style="position: relative" id="cus-click-fabulous"  data-fabulous="{$isFabulous}" onclick="objClass.clickFabulous()" >
-                <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}" style="font-size: 20px;color: #E0E0E0;float: left;margin-left: 30%;"></i>
+            <div class="wl-xiang" style="position: relative" id="cus-click-fabulous" data-fabulous="{$isFabulous}"
+                 onclick="objClass.clickFabulous()">
+                <i class="iconfont  {$isFabulous == 1 ? 'icon-dianzan':'icon-dianzan1 cus-blue'}"
+                   style="font-size: 20px;color: #E0E0E0;float: left;margin-left: 30%;"></i>
                 <span class="wl-weixn" style="left: 7px;">{$article_info['like']}</span>
             </div>
             <div class="wl-xiang pengyouqua" onclick="myShare.wechatTimeline()">
                 <span>分享朋友圈</span>
             </div>
             <div class="wl-xiang" style="position: relative" onclick="myShare.wechatFriend()">
-                <i class="iconfont  icon-weixin1" style="font-size: 25px;color: #0dc323;float: left;margin-left: 14%;"></i>
+                <i class="iconfont  icon-weixin1"
+                   style="font-size: 25px;color: #0dc323;float: left;margin-left: 14%;"></i>
                 <span class="wl-weixn">分享微信</span>
             </div>
         </div>
@@ -57,7 +67,7 @@
             </div>
             <p class="ckgd" onclick="objClass.loadRecommendList()" id="cus-recommend-loading-btn">查看更多</p>
         </div>
-        <div  id="cus-comment">
+        <div id="cus-comment">
             <div class="wl-xiangguan">相关评论</div>
             <div id="cus-comment-content">
 
@@ -72,9 +82,9 @@
         <ul class="wl-shoucang">
             <li class="iconfont icon-comment_light " style="margin-left: 10px;"></li>
             <?php if($article_info['isFavorites'] == 1):?>
-            <li class="iconfont icon-favor_fill_light cus-favorite " ></li>
+            <li class="iconfont icon-favor_fill_light cus-favorite "></li>
             <?php else:?>
-            <li class="iconfont icon-favor_light " id="cus-click-favorite"   ></li>
+            <li class="iconfont icon-favor_light " id="cus-click-favorite"></li>
             <?php endif;?>
         </ul>
     </div>
@@ -91,13 +101,14 @@
 
     <div class="wl-zhezhao">
         <div class="wl-zhe1">
-        <p class="wl-renzh">备注信息 <i class="iconfont icon-guanbi1 wl-guanbi1"></i></p>
-        <div class="wl-neie1">
-            <p>你需要发送验证申请，等待对方通过</p>
-            <textarea class="wl-neie2" style="resize: none" placeholder="(必填)填写备注信息..." id="fr-friend-remarks"></textarea>
-            <button class="wl-btn" onclick="objClass.submitFriendApply()">立即申请</button>
+            <p class="wl-renzh">备注信息 <i class="iconfont icon-guanbi1 wl-guanbi1"></i></p>
+            <div class="wl-neie1">
+                <p>你需要发送验证申请，等待对方通过</p>
+                <textarea class="wl-neie2" style="resize: none" placeholder="(必填)填写备注信息..."
+                          id="fr-friend-remarks"></textarea>
+                <button class="wl-btn" onclick="objClass.submitFriendApply()">立即申请</button>
+            </div>
         </div>
-    </div>
     </div>
 </footer>
 {/block}
@@ -106,15 +117,15 @@
 <script src="/static/plugin/layui/layui.all.js"></script>
 <script id="demo" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-        <div class="wzxq ">
-            <div class="wx-x">
-                <h3 data-id="{{item.id}}" class="cus-recommend-href href" >{{item.title}}</h3>
-                <p><span data-user_id="{{item.user_id}}" class="cus-touser-main href"  >{{item.nickname}}</span>
-                    <span>{{item.hits}}阅览量</span>
-                </p>
-            </div>
-            <img src="{{item.thumbnail}}" alt="" data-id="{{item.id}}" class="cus-recommend-href">
+    <div class="wzxq ">
+        <div class="wx-x">
+            <h3 data-id="{{item.id}}" class="cus-recommend-href href">{{item.title}}</h3>
+            <p><span data-user_id="{{item.user_id}}" class="cus-touser-main href">{{item.nickname}}</span>
+                <span>{{item.hits}}阅览量</span>
+            </p>
         </div>
+        <img src="{{item.thumbnail}}" alt="" data-id="{{item.id}}" class="cus-recommend-href">
+    </div>
     {{#  }); }}
 </script>
 
@@ -122,33 +133,31 @@
     {{#  layui.each(d, function(index, item){ }}
     <div class="wl-pinglun">
         <div style="float: left">
-            <img src="{{item.portrait}}" alt="" width="30" height="30" class="cus-touser-main " data-user_id="{{item.user_id}}" onerror="this.src='/static/image/user/tou.png'">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" class="cus-touser-main "
+                 data-user_id="{{item.user_id}}" onerror="this.src='/static/image/user/tou.png'">
         </div>
         <div class="wl-ping-xiang">
             <div>
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
-
-                {{#  if(item.isZan == 0){ }}
-                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.isZan}}" >
+                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}"
+                     data-click="{{item.isZan}}">
+                    {{# if(item.isZan == 0){ }}
                     <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
+                    {{# } }}
+                    {{# if(item.isZan == 1){ }}
+                    <span class="iconfont icon-dianzan1 wl-fabulous-icon cus-blue"
+                          style="font-size: 18px;"></span>
+                    {{# } }}
                     <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
                 </div>
-                {{#  } }}
-
-                {{#  if(item.isZan == 1){ }}
-                    <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.isZan}}" >
-                        <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8 "></span>
-                        <span style="font-size: 13px">{{item.like_count}}</span>
-                    </div>
-                {{#  } }}
+                <div style="clear:both"></div>
+                <div class="wl-ping-neirong">{{item.content}}</div>
+                <div class="wl-pji">{{item.created_time}}</div>
             </div>
             <div style="clear:both"></div>
-            <div class="wl-ping-neirong">{{item.content}}</div>
-            <div class="wl-pji">{{item.created_time}}</div>
         </div>
-        <div style="clear:both"></div>
     </div>
-        {{#  }); }}
+        {{# }); }}
 </script>
 
 <script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
@@ -157,7 +166,7 @@
 <script type="text/javascript" src="/static/plugin/nativeShare/NativeShare.js"></script>
 <script type="text/javascript">
     var config = {
-        debug:false,
+        debug: false,
         appId: '{$weixin_config["appId"]}',
         timestamp: '{$weixin_config["timestamp"]}',
         nonceStr: '{$weixin_config["nonceStr"]}',
@@ -177,61 +186,65 @@
         u_id: {$article_info['user_id']},
     };
 
-    function callbacks(){
+    function callbacks() {
         var desc = "{$article_info['excerpt']}";
         var shareMessage = {
             title: "{$article_info['title']}",
-            desc: (desc == '')? window.location.href :desc,
+            desc: (desc == '') ? window.location.href : desc,
             link: window.location.href,
             imgUrl: '{$shareImg}',
         };
 
         var wxCallback = {
-            success:function(){},
-            cancel:function(){},
-            fail:function(){},
-            complete:function(){}
+            success: function () {
+            },
+            cancel: function () {
+            },
+            fail: function () {
+            },
+            complete: function () {
+            }
         };
 
-        weixinObj.onMenuShareTimeline(shareMessage,wxCallback);
-        weixinObj.onMenuShareAppMessage(shareMessage,wxCallback);
+        weixinObj.onMenuShareTimeline(shareMessage, wxCallback);
+        weixinObj.onMenuShareAppMessage(shareMessage, wxCallback);
     }
 
-    var weixinObj = new WechatSdkModel(config,callbacks);
+    var weixinObj = new WechatSdkModel(config, callbacks);
 
     var nativeShare = new NativeShare();
     var desc = "{$article_info['excerpt']}";
     nativeShare.setShareData({
         title: "{$article_info['title']}",
-        desc: (desc == '')? window.location.href :desc,
+        desc: (desc == '') ? window.location.href : desc,
         link: window.location.href,
         icon: '{$shareImg}'
     });
 
     //自定义浏览器分享
     var myShare = {
-        showShareBox:function(){
-            if(redream.isWeiXin()){
+        showShareBox: function () {
+            if (redream.isWeiXin()) {
                 $('#cus-myshare-box').show();
                 return true;
             }
             this.call();
         },
         //分享到朋友圈
-        wechatTimeline:function(){
-            if(this.showShareBox()){
+        wechatTimeline: function () {
+            if (this.showShareBox()) {
                 return false;
             }
             this.call('wechatTimeline');
         },
         //分享给微信好友
-        wechatFriend:function(){
-            if(this.showShareBox()){
+        wechatFriend: function () {
+            if (this.showShareBox()) {
                 return false;
             }
             this.call('wechatFriend');
         },
-        call:function(command){
+        call: function (command) {
             try {
                 nativeShare.call(command)
             } catch (err) {

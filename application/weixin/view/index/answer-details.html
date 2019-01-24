@@ -49,7 +49,7 @@
 <ul class="wl-reply-footer">
     <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
     <li><i class="iconfont icon-pinglun1 wl-comment-icon"></i><span class="wl-reply-num"><span class="comment-num">0</span></span></li>
-    <li><i class="iconfont icon-dianzan wl-comment-icon wl-fabulous-icon"></i></li>
+    <li><i class="iconfont icon-dianzan wl-comment-icon"></i></li>
     <li><i class="iconfont icon-web__bitebiyoujiantou wl-comment-icon"></i></li>
 </ul>
 {/block}
@@ -67,18 +67,21 @@
         <div class="wl-ping-xiang">
             <div>
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
-                {{#  if(item.islike == 0){ }}
+
                 <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.islike}}" >
-                    <span class="iconfont icon-dianzan wl-fabulous-icon" style="font-size: 18px;"></span>
+
+                    {{#  if(item.islike == 0){ }}
+                    <span class="iconfont icon-dianzan wl-fabulous-icon"></span>
+                    {{#  } }}
+
+                    {{#  if(item.islike == 1){ }}
+                    <span class="iconfont icon-dianzan1 cus-blue  wl-fabulous-icon"></span>
+                    {{#  } }}
+
                     <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
+
                 </div>
-                {{#  } }}
-                {{#  if(item.islike == 1){ }}
-                <div class=" wl-dianzan cus-comment-fabulous"  data-id="{{item.id}}" data-click="{{item.islike}}" >
-                    <span class="iconfont icon-dianzan1" style="font-size: 18px;color: #7DB0E8; "></span>
-                    <span style="font-size: 13px">{{item.like_count}}</span>
-                </div>
-                {{#  } }}
+
             </div>
             <div style="clear:both"></div>
             <div class="wl-ping-neirong">{{item.content}}</div>
@@ -183,9 +186,8 @@
         clickCommentFabulous:function (obj, flag) {
             var id = obj.data('id');
             var type = obj.data('click') == 1 ? 2 : 1;
-            if(type == 2){
-                return false;
-            }else if(!myObj.clickCommentFabulousLading){
+            console.log(obj.data('click'));
+            if(!myObj.clickCommentFabulousLading){
                 $.ajax({
                     url: "/weixin/user/giveFabulous",
                     type: 'post',
@@ -200,6 +202,7 @@
                     success: function (res) {
                         if (res.code == 200) {
                                 var num = parseInt(obj.find('.wl-dian-one').text());
+                                console.log()
                                 if (type == 1) {
                                     obj.data('click', 1);
                                     obj.find('.wl-dian-one').text(num + 1);
@@ -207,7 +210,7 @@
                                 }else{
                                     obj.data('click', 0);
                                     obj.find('.wl-dian-one').text(num - 1);
-                                    obj.find('.wl-fabulous-icon').addClass('icon-dianzan1').removeClass('cus-blue').removeClass('icon-dianzan');
+                                    obj.find('.wl-fabulous-icon').removeClass('icon-dianzan1').addClass('icon-dianzan').removeClass('cus-blue');
                                 }
                         }else if(res.code == 401){
                             LoginBox.showBox().showTip('请先进行登录操作');
@@ -223,8 +226,8 @@
     $(document).on('click', '.cus-comment-fabulous', function () {
         myObj.clickCommentFabulous($(this), 1);
     });
-    // $(document).on('click', '.wl-answer-number', function () {
-    //     window.location.href = '/weixin/index/inquiryDetails/id?/' + $(this).data('answer_id');
-    // })
+    $(document).on('click', '.wl-answer-number', function () {
+        window.location.href = '/weixin/index/inquiryDetails/id/' + inquiry_id;
+    })
 </script>
 {/block}
