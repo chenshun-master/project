@@ -2,6 +2,7 @@
 namespace app\api\domain;
 
 use think\Db;
+use app\api\model\AnswerModel;
 use app\api\traits\DTrait;
 
 /**
@@ -219,7 +220,24 @@ class InquiryDomain
     /**
      * 获取问答详情信息
      */
-    public function getAnswerDetail($answer_id){
+    public function getAnswerDetail(int $answer_id){
+        $field = [
+            'answer.id'             =>'answer_id',
+            'answer.inquiry_id',
+            'answer.content'        =>'answer_content',
+            'answer.created_time'   =>'answer_time',
+            'inquiry.title'         =>'title',
+            'user.nickname',
+            'user.type'             =>'user_type',
+            'user.portrait',
+            '(select count(id) from wl_inquiry_answer where inquiry_id = answer.inquiry_id )'=>'answer_num'
+        ];
 
+        $row = Db::name('inquiry_answer')->alias('answer')
+            ->leftJoin('wl_inquiry inquiry','inquiry.id = answer.inquiry_id')
+            ->leftJoin('wl_user user','user.id = answer.user_id')
+            ->where('answer.id',$answer_id)
+            ->field($field)->find();
+        return $row?:[];
     }
 }
