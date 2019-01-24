@@ -224,13 +224,14 @@ class InquiryDomain
         $field = [
             'answer.id'             =>'answer_id',
             'answer.inquiry_id',
+            'answer.visit',
             'answer.content'        =>'answer_content',
             'answer.created_time'   =>'answer_time',
             'inquiry.title'         =>'title',
             'user.nickname',
             'user.type'             =>'user_type',
             'user.portrait',
-            '(select count(id) from wl_inquiry_answer where inquiry_id = answer.inquiry_id )'=>'answer_num'
+            '(select count(id) from wl_inquiry_answer where inquiry_id = answer.inquiry_id )'=>'answer_num',
         ];
 
         $row = Db::name('inquiry_answer')->alias('answer')

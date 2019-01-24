@@ -13,31 +13,28 @@
 <div id="container" class="mescroll">
     <div class="wl-answer-details">
         <div class="wl-title">
-            就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+            {$info['title']}
         </div>
-        <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>3个回答 <i class="iconfont icon-back_left-copy"></i></div>
+        <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>{$info['answer_num']}个回答 <i class="iconfont icon-back_left-copy"></i></div>
     </div>
     <div class="wl-user-name">
         <div class="wl-answers-top">
             <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
             <div class="wl-answers-name">
-                <dt>上海人民美容整形医院</dt>
+                <dt>{$info['nickname']}</dt>
             </div>
-            <span class="wl-read">阅读 2</span>
+            <span class="wl-read">阅读 {$info['visit']}</span>
         </div>
         <div class="wl-conter">
-            就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+            {$info['answer_content']}
         </div>
-        <div class="wl-establish">创建于2019-12-12</div>
+        <div class="wl-establish">创建于{$info['answer_time']}</div>
     </div>
     <div class="reply-comments">
         <div class="wl-reply-top">
-            评论 10
+            评论 2
         </div>
-        <div class="container-list ">
-
-
-        </div>
+        <div class="container-list "></div>
     </div>
 
 </div>
@@ -91,7 +88,8 @@
     {{#  }); }}
 </script>
 <script>
-    const id = 1;
+    const answer_id = {$info['answer_id']};
+    const inquiry_id = {$info['inquiry_id']};
     $(".wl-write-comment").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").toggle();
