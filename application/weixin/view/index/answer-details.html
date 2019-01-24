@@ -129,6 +129,8 @@
                         mescroll.endSuccess(res.data.rows.length);
                         if(res.data.total){
                             $('.comment-num').text(res.data.total);
+                        }else if(res.data.total == 0){
+                            $('.wl-reply-num').hide();
                         }
                         layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
                             $('#container-list').append(html);
