@@ -15,7 +15,10 @@
         <div class="wl-title">
             {$info['title']}
         </div>
-        <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>{$info['answer_num']}个回答 <i class="iconfont icon-back_left-copy"></i></div>
+        <div class="wl-huida"><span class="wl-mehuida">
+            <i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>
+            <span class="wl-answer-number">{$info['answer_num']}个回答 <i class="iconfont icon-back_left-copy"></i></span>
+        </div>
     </div>
     <div class="wl-user-name">
         <div class="wl-answers-top">
@@ -46,7 +49,7 @@
 <ul class="wl-reply-footer">
     <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
     <li><i class="iconfont icon-pinglun1 wl-comment-icon"></i><span class="wl-reply-num"><span class="comment-num">0</span></span></li>
-    <li><i class="iconfont icon-dianzan2 wl-comment-icon"></i></li>
+    <li><i class="iconfont icon-dianzan wl-comment-icon wl-fabulous-icon"></i></li>
     <li><i class="iconfont icon-web__bitebiyoujiantou wl-comment-icon"></i></li>
 </ul>
 {/block}
@@ -111,7 +114,10 @@
     });
 
     const mescroll = new MeScroll("container", {
-        down: {auto: true},
+        down: {
+            auto: true,
+            isLock:true
+        },
         up: {
             clearEmptyId: "container-list",
             page: {num: 0, size: 10},
@@ -176,7 +182,6 @@
         clickCommentFabulousLading:false,
         clickCommentFabulous:function (obj, flag) {
             var id = obj.data('id');
-            console.log(id);
             var type = obj.data('click') == 1 ? 2 : 1;
             if(type == 2){
                 return false;
@@ -194,17 +199,16 @@
                     },
                     success: function (res) {
                         if (res.code == 200) {
-                            if (flag == 1) {
                                 var num = parseInt(obj.find('.wl-dian-one').text());
                                 if (type == 1) {
                                     obj.data('click', 1);
                                     obj.find('.wl-dian-one').text(num + 1);
                                     obj.find('.wl-fabulous-icon').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
-                                } else {
+                                }else{
                                     obj.data('click', 0);
                                     obj.find('.wl-dian-one').text(num - 1);
+                                    obj.find('.wl-fabulous-icon').addClass('icon-dianzan1').removeClass('cus-blue').removeClass('icon-dianzan');
                                 }
-                            }
                         }else if(res.code == 401){
                             LoginBox.showBox().showTip('请先进行登录操作');
                         }else if(res.code == 403){
@@ -219,5 +223,8 @@
     $(document).on('click', '.cus-comment-fabulous', function () {
         myObj.clickCommentFabulous($(this), 1);
     });
+    // $(document).on('click', '.wl-answer-number', function () {
+    //     window.location.href = '/weixin/index/inquiryDetails/id?/' + $(this).data('answer_id');
+    // })
 </script>
 {/block}
