@@ -220,7 +220,7 @@ class DiaryDomain
                 }
             }
 
-            $data['commentList'] = $this->getDiaryCommentList($diaryId,$user_id,1,5)['rows'];
+            $data['commentList'] = app('domain')->getDomain('CommentDomain')->getCommentList('diary',$diaryId,$user_id,1,5)['rows'];
         }
 
         return $data;
@@ -264,42 +264,6 @@ class DiaryDomain
      */
     public function updateDiaryVisit($id){
         Db::name('diary')->where('id',$id)->setInc('visit');
-    }
-
-    /**
-     * 获取日记评论列表
-     * @param $diaryId
-     * @param int $user_id
-     * @param int $page
-     * @param int $page_size
-     * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public function getDiaryCommentList($diaryId,$user_id=0,$page=1,$page_size=15){
-        $field = [
-            'comment.id','comment.user_id','comment.like_count','comment.content','comment.created_time','user.nickname',
-            'user.portrait',
-            'IF(like.id > 0,1,0)'=>'islike',
-        ];
-
-        $obj = Db::name('comment')->alias('comment');
-        $obj->leftJoin('wl_user user','comment.user_id = user.id');
-        $obj->leftJoin('wl_user_like like',"like.object_id = comment.id and like.table_name = 'comment' and like.user_id = {$user_id} and like.status = 0");
-        $obj->where('comment.object_id',$diaryId);
-        $obj->where('comment.table_name','diary');
-        $obj->order('comment.created_time', 'desc');
-
-        $total = $obj->count();
-        $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
-
-        return [
-            'rows'          =>$rows,
-            'page'          =>$page,
-            'page_total'    =>getPageTotal($total,$page_size),
-            'total'         =>$total
-        ];
     }
 
     /**

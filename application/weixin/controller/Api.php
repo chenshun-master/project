@@ -437,22 +437,6 @@ class Api extends BaseController
     }
 
     /**
-     * 获取日记评论列表
-     * @param  int diary_id   日记id
-     * @return false|string
-     * @throws \think\Exception
-     */
-    public function getDiaryComment()
-    {
-        $id = $this->request->param('diary_id/d', 0);
-        $page = $this->request->param('page/d', 1);
-        $page_size = $this->request->param('page_size/d', 15);
-
-        $data = Singleton::getDomain('diarydomain')->getDiaryCommentList($id,$this->getUserId(),$page,$page_size,$this->getUserId());
-        return $this->returnData($data);
-    }
-
-    /**
      * 获取分销商品评论
      */
     public function addDiaryComment()
@@ -606,6 +590,41 @@ class Api extends BaseController
         }
 
         return $this->returnData($data);
+    }
+
+    /**
+     * 评论接口
+     */
+    public function createComment()
+    {
+        $type = $this->request->post('type/d', 0);
+        $data  = [
+            'parent_id'   =>$this->request->post('pid/d', 0),
+            'user_id'     =>$this->getUserId(),
+            'object_id'   =>$this->request->post('obj_id/d', 0),
+            'content'     =>$this->request->post('content', ''),
+        ];
+
+        $tableName = '';
+        if($type == 1){
+            $tableName = 'article';
+        }else if($type == 2){
+            $tableName = 'diary';
+        }else if($type == 3){
+            $tableName = 'sp_good_goods';
+        }else if($type == 4){
+            $tableName = 'inquiry_answer';
+        }
+
+        if(!$this->checkLogin()){
+            return $this->returnData([], '用户未登录', 401);
+        }else if(empty($data['object_id']) || empty($data['content'])){
+            return $this->returnData([], '参数不符合规范', 301);
+        }else if(Singleton::getDomain('CommentDomain')->createComment($data,$tableName)){
+            return $this->returnData([], '评论成功...', 200);
+        }
+
+        return $this->returnData([], '评论失败...', 305);
     }
 
     /**
