@@ -607,4 +607,35 @@ class Api extends BaseController
 
         return $this->returnData($data);
     }
+
+    /**
+     * 获取评论列表
+     * @param  type          1:获取文章评论，2:获取日记评论，3:获取有好货商品评论
+     * @return false|string
+     */
+    public function getCommentList(){
+        $type = $this->request->get('type/d', 0);
+        $obj_id = $this->request->get('obj_id/d', 0);
+
+        $tableName = '';
+        if($type == 1){
+            $tableName = 'article';
+        }else if($type == 2){
+            $tableName = 'diary';
+        }else if($type == 3){
+            $tableName = 'sp_good_goods';
+        }else if($type == 4){
+            $tableName = 'inquiry_answer';
+        }else if(empty($tableName) || empty($obj_id)){
+            return $this->returnData([], '参数不符合规范', 301);
+        }
+
+        $data = app('domain')->getDomain('CommentDomain')->getCommentList(
+            $tableName,$obj_id,$this->getUserId(),
+            $this->request->param('page/d', 1),
+            $this->request->param('page_size/d', 15)
+        );
+
+        return $this->returnData($data);
+    }
 }
