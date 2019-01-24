@@ -374,7 +374,6 @@ class SpGoodsDomain
 
         //查询商品信息
         $obj = Db::name('sp_goods')->alias('goods');
-        $obj->where('goods.status','in',[0,2]);
         $obj->where('goods.id',$goods_id);
         $obj->leftJoin('wl_sp_goods_buy_notice buy_notice','buy_notice.goods_id = goods.id');
         $obj->leftJoin('wl_user_favorite favorite',"favorite.user_id = {$user_id} and favorite.table_name='goods' and favorite.status=0 and favorite.object_id = goods.id");

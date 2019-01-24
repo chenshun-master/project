@@ -192,7 +192,7 @@ class DiaryDomain
     /**
      * 获取日记信息
      */
-    public function getDiaryInfo($diaryId,$user_id =0){
+    public function getDiaryInfo($diaryId,$user_id =0,$sort='desc'){
         $data = [
             'info'=>[],
             'goods_infos'=>[],
@@ -213,7 +213,7 @@ class DiaryDomain
             $data['info']['after_imgs']  = !empty($data['info']['after_imgs']) ?  json_decode($data['info']['after_imgs'],true) : [];
 
             $data['goods_infos'] = Db::name('sp_goods')->where('id','in',$data['info']['goods_ids'])->field(['id','name','sell_price','img'])->select();
-            $data['diaryList'] = Db::name('diary_detail')->where('diary_id',$diaryId)->order('day','desc')->select();
+            $data['diaryList'] = Db::name('diary_detail')->where('diary_id',$diaryId)->order('day',$sort)->select();
             if($data['diaryList']){
                 foreach ($data['diaryList'] as $key=>$row){
                     $data['diaryList'][$key]['imgs'] = !empty($row['imgs']) ?  json_decode($row['imgs'],true) : [];
