@@ -30,6 +30,10 @@ class CommentDomain
      * @throws \think\exception\DbException
      */
     public function createComment($data,$tablename ='article'){
+        if(!in_array($tablename,$this->tableName)){
+            return false;
+        }
+
         $data['like_count']         = 0;
         $data['status']             = 1;
         $data['created_time']       = date('Y-m-d H:i:s');

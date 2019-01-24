@@ -410,24 +410,16 @@
                 page_size: 10,
             },
             loadList: function () {
-                if (myObj.goods.listData.loading) {
-                    return false;
-                }
                 $.ajax({
-                    url: "/weixin/api/getDiaryComment",
-                    type: 'post',
+                    url: "/weixin/api/getCommentList",
+                    type: 'get',
                     data: {
-                        diary_id: myObj.goods.listData.diary_id,
+                        type:2,
+                        obj_id: myObj.goods.listData.diary_id,
                         page: myObj.goods.listData.page,
                         page_size: myObj.goods.listData.page_size
                     },
                     dataType: 'json',
-                    beforeSend: function () {
-                        myObj.goods.listData.loading = true;
-                    },
-                    complete: function () {
-                        myObj.goods.listData.loading = false;
-                    },
                     success: function (res) {
                         if (res.code == 200) {
                             $('#container-list').html('');
@@ -639,10 +631,6 @@
         window.location.href = '/weixin/shop/goodsDetails/goodsid/'+$(this).data('id');
     });
 
-</script>
-
-<script>
-
     $.each(document.getElementsByClassName('wl-content'),function (index, obj) {
         var total_height = obj.scrollHeight; //文章总高度
         var show_height = 40; //定义原始显示高度
@@ -651,7 +639,6 @@
         }
     });
 
-
     $(document).on('click','.wl-view',function(){
         if($(this).text() == '查看全文'){
             $(this).text('收起').prev().css('height','auto');
@@ -659,8 +646,5 @@
             $(this).text('查看全文').prev().css('height','40px');
         }
     });
-
-
-
 </script>
 {/block}
