@@ -94,8 +94,8 @@
                 page: {num: 0,size:20},
                 htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
                 isBounce: false,
-                noMoreSize:10,
-                empty: {tip: "亲,没有您要找的商品~"},
+                noMoreSize:5,
+                empty: {tip: "亲,您没有相关的数据哦^_^~"},
                 callback: function (page) {
                     $.ajax({
                         url: "/weixin/api/getUserInquiryAnswer",
