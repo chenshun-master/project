@@ -222,7 +222,7 @@ class InquiryDomain
     /**
      * 获取问答详情信息
      */
-    public function getAnswerDetail(int $answer_id){
+    public function getAnswerDetail(int $answer_id,$user_id=0){
         $field = [
             'answer.id'             =>'answer_id',
             'answer.inquiry_id',
@@ -234,11 +234,13 @@ class InquiryDomain
             'user.type'             =>'user_type',
             'user.portrait',
             '(select count(id) from wl_inquiry_answer where inquiry_id = answer.inquiry_id )'=>'answer_num',
+            'IF(like.id > 0,1,0)'=>'islike',
         ];
 
         $row = Db::name('inquiry_answer')->alias('answer')
             ->leftJoin('wl_inquiry inquiry','inquiry.id = answer.inquiry_id')
             ->leftJoin('wl_user user','user.id = answer.user_id')
+            ->leftJoin('wl_user_like like',"like.object_id = answer.id and like.table_name = 'inquiry_answer' and like.user_id = {$user_id} and like.status = 0")
             ->where('answer.id',$answer_id)
             ->field($field)->find();
 
