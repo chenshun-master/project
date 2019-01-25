@@ -3,21 +3,39 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> - 空白页</title>
+    <title>{:config('conf.title')}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico"> <link href="/static/plugin/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/static/plugin/hAdmin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="/static/plugin/hAdmin/css/animate.css" rel="stylesheet">
     <link href="/static/plugin/hAdmin/css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .form-control,input{
+            border-radius: 0 !important;
+        }
+    </style>
+
     {block name="css"}{/block}
     {block name="style"}{/block}
 </head>
-<body class="gray-bg">
+<body class="gray-bg" >
+<div class="row white-bg" style="width: 100%;padding: 10px;margin: 0">
+    <div class="col-sm-4">
+        <ul class="breadcrumb">
+            <li>主页</li>
+            <li>包屑导航</li>
+        </ul>
+    </div>
+</div>
 
-{block name="main"}
+<section style="padding: 3px;">
+    {block name="main"}
 
-{/block}
+    {/block}
+</section>
+
+
 
 <!-- 全局js -->
 <script src="/static/plugin/hAdmin/js/jquery.min.js?v=2.1.4"></script>

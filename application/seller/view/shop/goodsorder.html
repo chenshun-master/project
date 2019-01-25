@@ -1,20 +1,15 @@
-{extend name="layout/layout" /}
+{extend name="layout/layout2-main" /}
 
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
 {/block}
 
 {block name="main"}
-<div id="breadcrumb">
-    <ul class="breadcrumb">
-        <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
-        <li class="active">订单管理</li>
-    </ul>
-</div>
-<section class="content">
+
+<section class="animated fadeInRight">
     <div class="row">
         <div class="col-xs-12">
-            <div class="nav-tabs-custom" >
+            <div class="tabs-container nav-tabs-custom">
                 <ul class="nav nav-tabs" id="my-tab-status">
                     <li class="active" data-status="0"><a href="#tab-box1" data-toggle="tab">全部订单</a></li>
                     <li data-status="1"><a href="#tab-box1" data-toggle="tab">待支付</a></li>
@@ -22,14 +17,10 @@
                     <li data-status="3"><a href="#tab-box1" data-toggle="tab">已完成</a></li>
                     <li data-status="4"><a href="#tab-box1" data-toggle="tab">退款</a></li>
                 </ul>
-                <div class="tab-content" style="min-height: 500px;">
-                    <div class="tab-pane active" id="tab-box1">
-                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="layui-hide" id="cus-data-table" lay-filter="test"></table>
-                                </div>
-                            </div>
+                <div class="tab-content">
+                    <div id="tab-box1" class="tab-pane active">
+                        <div class="panel-body">
+                            <table class="layui-hide" id="cus-data-table" lay-filter="test"></table>
                         </div>
                     </div>
                 </div>

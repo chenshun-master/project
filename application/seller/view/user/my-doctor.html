@@ -1,25 +1,26 @@
-{extend name="layout/layout" /}
+{extend name="layout/layout2-main" /}
 
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
+<style>
+    .nav-tabs > li > a {
+        color: #A7B1C2;
+        font-weight: 200;
+        padding: 10px 20px 10px 25px;
+    }
+</style>
 {/block}
 
 {block name="main"}
-<div id="breadcrumb">
-    <ul class="breadcrumb">
-        <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
-        <li class="active">医生管理</li>
-    </ul>
-</div>
-<section class="content">
+<section class="animated fadeInRight">
     <div class="row">
         <div class="col-xs-12">
-            <div class="nav-tabs-custom" >
+            <div class="nav-tabs-custom white-bg"  >
                 <ul class="nav nav-tabs" id="my-tab">
                     <li class="active" data-reload="tab-reload"><a href="#tab-box1" data-toggle="tab">医生列表</a></li>
                     <li data-reload="tab-reload2"><a href="#tab-box2" data-toggle="tab">申请列表</a></li>
                 </ul>
-                <div class="tab-content" style="min-height: 500px;">
+                <div class="tab-content" style="min-height: 500px;padding: 5px;">
                     <div class="tab-pane active" id="tab-box1">
                         <div class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
