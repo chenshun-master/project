@@ -804,7 +804,6 @@ class Index extends BaseController
     public function answerDetails(int $id)
     {
         $data = app('domain')->getDomain('InquiryDomain')->getAnswerDetail($id);
-
         if(!$data){
             return $this->fetch('error/loss');
         }

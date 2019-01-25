@@ -31,12 +31,12 @@
 
 <footer>
     <ul class="wl-inquiry-footer">
-        <li class="wl-wenda"><i class="iconfont icon-wenda"></i>更多问答</li>
+        <li class="wl-wenda"><i class="iconfont icon-gengduowenda"></i>更多问答</li>
         <li class="wl-wenda2"><i class="iconfont icon-iconset0137"></i>提问</li>
         <li class="wl-wenda3">回答</li>
     </ul>
 </footer>
-
+ <!--回答遮罩层-->
 <div class="marsk-container2">
     <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>添加回答
         <span class="wl-release href" onclick="listObj.release()">发布</span>
@@ -44,6 +44,18 @@
     <div class="wl-answer-title">{$info['title']}</div>
     <div class="wl-wenti">
         <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo" id="wl-probletwo-con"></textarea>
+    </div>
+</div>
+
+<!--提问遮罩层-->
+<div class="marsk-container">
+    <div class="wl-tkyy-top1">
+        <span class="wl-cancel href"><i class="iconfont icon-back_light"></i>取消</span>提问
+        <span class="wl-release href" onclick="listObj.questions()">发布</span>
+    </div>
+    <div class="wl-problem">
+        <textarea type="text" placeholder="请输入问题(40字以内)" id="wl-questions-title" class="wl-probleone" maxlength="40"></textarea>
+        <textarea type="text" placeholder="添加问题描述(选填)" id="wl-content-title" class="wl-probletwo"></textarea>
     </div>
 </div>
 {/block}
@@ -110,6 +122,10 @@
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container2").fadeIn();
     });
+    $(".wl-wenda2").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").fadeIn();
+    });
 
     $('.wl-cancel2').click(function () {
         $(".marsk-container2").fadeOut();
@@ -118,18 +134,21 @@
 
     $(document).on('click','.wl-wenda',function(){
         window.location.href = '/weixin/index/inquiry';
-    }).on('click','.wl-wenda2',function(){
-        window.location.href = '/weixin/index/inquiry';
-        $('.marsk-container').style('display','block');
     });
 
-    $('textarea').keydown( function(e) {
-        var key = window.event?e.keyCode:e.which;
-        if(key.toString() == "13"){
+    $('textarea').keydown(function (e) {
+        var key = window.event ? e.keyCode : e.which;
+        if (key.toString() == "13") {
             return false;
         }
     }).on('input', function () {
         this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    $('.wl-cancel').click(function () {
+        $(".marsk-container").fadeOut();
+        $(".wl-probleone").val("");
+        $(".wl-probletwo").val("");
     });
 
     let listObj = {
@@ -157,6 +176,33 @@
                             mescroll.resetUpScroll();
                         }else if(res.code == 401){
                             LoginBox.showTip('请登录后进行操作').showBox();
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        },
+        questions:function () {
+            let data = {title: $('#wl-questions-title').val(),describe: $('#wl-content-title').val()};
+            if (data.title == '') {
+                redream.showTip('请输入你的提问标题');
+            }else if(this.loading == false){
+                $.ajax({
+                    url: "/weixin/api/createInquiry",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        listObj.loading = true;
+                    },
+                    complete: function () {
+                        listObj.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            redream.showTip('发布成功');
+                            window.location.href = '/weixin/index/inquiry';
                         }else{
                             redream.showTip(res.msg);
                         }
