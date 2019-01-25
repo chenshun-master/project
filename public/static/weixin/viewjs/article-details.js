@@ -70,11 +70,11 @@ var objClass = {
                     var num = parseInt($('#cus-click-fabulous').find('span').text());
                     if(type == 1){
                         $('#cus-click-fabulous').data('fabulous', 2);
-                        // $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
+                        $('#cus-click-fabulous').find('i').removeClass('icon-dianzan').addClass("icon-dianzan1").addClass('cus-blue');
                         $('#cus-click-fabulous').find('span').text( num + 1);
                     }else{
                         $('#cus-click-fabulous').data('fabulous', 1);
-                        // $('#cus-click-fabulous').find('i').removeClass('cus-blue').removeClass('icon-dianzan1').removeClass('icon-dianzan1').addClass("icon-dianzan");
+                        $('#cus-click-fabulous').find('i').removeClass('cus-blue').removeClass('icon-dianzan1').removeClass('icon-dianzan1').addClass("icon-dianzan");
                         $('#cus-click-fabulous').find('span').text( num - 1);
                     }
                 } else if (res.code == 401) {
@@ -167,6 +167,7 @@ var objClass = {
                             } else {
                                 obj.data('click', 0);
                                 obj.find('.wl-dian-one').text(num - 1);
+                                obj.find('.wl-fabulous-icon').removeClass('icon-dianzan1').addClass('cus-blue').addClass('icon-dianzan');
                             }
                         }
                     }else if(res.code == 401){

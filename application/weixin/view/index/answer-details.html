@@ -63,7 +63,9 @@
 <ul class="wl-reply-footer">
     <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
     <li><i class="iconfont icon-pinglun- wl-comment-icon"></i><span class="wl-reply-num"><span class="comment-num">0</span></span></li>
-    <li ><i class="iconfont icon-dianzan- wl-comment-icon wl-fabulous-icon" ></i></li>
+    <li id="cus-click-fabulous" data-type="{$info['islike']}" data-id="{$info['answer_id']}">
+        <i class="iconfont {$info['islike'] == 1?'icon-dianzan-- cus-blue':'icon-dianzan-'} wl-comment-icon wl-fabulous-icon" ></i>
+    </li>
     <li><i class="iconfont icon-jiantou- wl-comment-icon wl-answer-number"></i></li>
 </ul>
 {/block}
@@ -208,7 +210,6 @@
         clickCommentFabulous:function (obj) {
             var id = obj.data('id');
             var type = obj.data('click') == 1 ? 2 : 1;
-            console.log(obj.data('click'));
             if(!myObj.clickCommentFabulousLading){
                 $.ajax({
                     url: "/weixin/user/giveFabulous",
@@ -272,6 +273,37 @@
                 });
             }
         },
+
+        //用户点赞操作
+        isZanLoadind:false,
+        clickFabulous:function(obj){
+            var type = obj.data('click') == 1 ?2:1;
+            if(!myObj.isZanLoadind){
+                $.ajax({
+                    url: "/weixin/user/giveFabulous",
+                    type: 'post',
+                    data: {obj_id: answer_id, type: type,flag:1},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.isZanLoadind = true;
+                    },
+                    complete:function(){
+                        myObj.isZanLoadind = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(type == 1){
+                                obj.data('click',1);
+                                obj.find('i').removeClass('icon-dianzan-').addClass('icon-dianzan--').addClass('cus-blue');
+                            }else{
+                                obj.data('click',0);
+                                obj.find('i').removeClass('icon-dianzan--').removeClass('cus-blue').addClass('icon-dianzan-');
+                            }
+                        }
+                    }
+                });
+            }
+        },
     }
 
     $(document).on('click', '.cus-comment-fabulous', function () {
@@ -279,5 +311,10 @@
     }).on('click', '.wl-answer-number', function () {
         window.location.href = '/weixin/index/inquiryDetails/id/' + inquiry_id;
     })
+    $(document).on('click','#cus-click-fabulous',function(event){
+        myObj.clickFabulous($(this));
+        event.stopPropagation();
+    });
+
 </script>
 {/block}
