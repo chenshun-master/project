@@ -14,16 +14,20 @@
         .form-control,input{
             border-radius: 0 !important;
         }
+
+        #cus-breadcrumb{
+            width: 100%;padding: 10px;margin: 0;
+        }
     </style>
 
     {block name="css"}{/block}
     {block name="style"}{/block}
 </head>
 <body class="gray-bg" >
-<div class="row white-bg" style="width: 100%;padding: 10px;margin: 0">
+<div class="row white-bg" id="cus-breadcrumb">
     <div class="col-sm-4">
         <ul class="breadcrumb">
-            <li>主页</li>
+            <li><i class="fa fa-home"></i> 主页</li>
             <li>包屑导航</li>
         </ul>
     </div>
