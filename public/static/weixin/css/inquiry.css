@@ -135,6 +135,7 @@ textarea::-webkit-input-placeholder {
     height: 40px;
     margin: 0 auto;
     text-align: left;
+    position: relative;
 }
 .wl-answers-name dt{
     font-size: 14px;
@@ -176,6 +177,15 @@ textarea::-webkit-input-placeholder {
     background-size: 20px;
     top: 23px;
     left: 12px;
+}
+.wl-answers-Icon1{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: url('/static/image/user/chengv.png')no-repeat;
+    background-size: 20px;
+    top: 25px;
+    left: 16px;
 }
 .wl-answers:active{
     background: #dddddd;
