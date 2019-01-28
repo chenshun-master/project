@@ -23,7 +23,7 @@
     {block name="css"}{/block}
     {block name="style"}{/block}
 </head>
-<body class="gray-bg" >
+<body class="gray-bg" id="cus-body" >
 <div class="row white-bg" id="cus-breadcrumb">
     <div class="col-sm-4">
         <ul class="breadcrumb">
@@ -33,18 +33,28 @@
     </div>
 </div>
 
-<section style="padding: 3px;">
-    {block name="main"}
 
-    {/block}
-</section>
+{block name="main"}
 
-
+{/block}
 
 <!-- 全局js -->
 <script src="/static/plugin/hAdmin/js/jquery.min.js?v=2.1.4"></script>
 <script src="/static/plugin/hAdmin/js/bootstrap.min.js?v=3.3.6"></script>
-
+<script>
+    var layuiTable =  {
+        getCheckId: function(tableId,id){
+            var checkStatus = table.checkStatus(tableId) ,data = checkStatus.data;
+            if(data.length > 0){
+                var ids = [];
+                $.each(data,function(k,v){ids.push(v[id]);});
+                return ids;
+            }else{
+                return [];
+            }
+        }
+    };
+</script>
 {block name="js"}
 
 {/block}

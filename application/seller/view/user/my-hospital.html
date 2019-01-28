@@ -1,51 +1,32 @@
-{extend name="layout/layout" /}
+{extend name="layout/layout2-main" /}
 
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
 {/block}
 
 {block name="main"}
-<div id="breadcrumb">
-    <ul class="breadcrumb">
-        <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
-        <li class="active">医院管理</li>
-    </ul>
-</div>
-<section class="content">
+<section class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-xs-12">
-            <div class="nav-tabs-custom" >
-                <ul class="nav nav-tabs" id="my-tab">
-                    <li class="active" data-id="tab-reload"><a href="#tab-box1" data-toggle="tab">所属医院</a></li>
-                    <li data-id="tab-reload2"><a href="#tab-box2" data-toggle="tab">我的申请</a></li>
-                    <li data-id=""><a href="#tab-box3" data-toggle="tab">医院邀请</a></li>
+            <div class="tabs-container nav-tabs-custom">
+                <ul class="nav nav-tabs" id="my-tab-status">
+                    <li class="active"  data-id="tab-reload" ><a href="#tab-box1" data-toggle="tab">所属医院</a></li>
+                    <li data-id="tab-reload2" ><a href="#tab-box2" data-toggle="tab">我的申请</a></li>
                 </ul>
-                <div class="tab-content" style="height: 100%;">
-                    <div class="tab-pane active" id="tab-box1">
-                        <div  class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="layui-hide" id="table-list" ></table>
-                                </div>
-                            </div>
+                <div class="tab-content">
+                    <div id="tab-box1" class="tab-pane active">
+                        <div class="panel-body">
+                            <table class="layui-hide" id="table-list" ></table>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab-box2">
-                        <div  class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="layui-hide" id="table-list2" ></table>
-                                </div>
-                            </div>
+                    <div id="tab-box2" class="tab-pane">
+                        <div class="panel-body">
+                            <table class="layui-hide" id="table-list2" ></table>
                         </div>
                     </div>
-                    <div class="tab-pane " id="tab-box3">
-                        <div  class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="layui-hide" id="table-list3"></table>
-                                </div>
-                            </div>
+                    <div id="tab-box3" class="tab-pane">
+                        <div class="panel-body">
+                            <table class="layui-hide" id="table-list3" ></table>
                         </div>
                     </div>
                 </div>
@@ -53,8 +34,6 @@
         </div>
     </div>
 </section>
-
-
 {/block}
 
 {block name="js"}
@@ -67,7 +46,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">医院名称</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="fr-select">
+                            <select class="form-control" id="fr-select" style="height: 37px;">
                                 <option>请选择申请的医院机构...</option>
                                 {foreach($list as $v)}
                                 <option value="{$v['id']}" >{$v['hospital_name']}</option>
