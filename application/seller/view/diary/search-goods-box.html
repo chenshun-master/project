@@ -60,7 +60,7 @@
         var checkStatus = layui.table.checkStatus('search-goods-reload') ,data = checkStatus.data;
         if(data.length > 0){
             var index = parent.layer.getFrameIndex(window.name);
-            parent.objClass.choiceGoodsList = data;
+            parent.classObj.choiceGoodsList = data;
             parent.layer.close(index);
         }else{
             layer.msg('您还没有选择商品...');
@@ -69,7 +69,7 @@
 
     function cancel(){
         var index = parent.layer.getFrameIndex(window.name);
-        parent.objClass.choiceGoodsList = [];
+        parent.classObj.choiceGoodsList = [];
         parent.layer.close(index);
     }
 </script>

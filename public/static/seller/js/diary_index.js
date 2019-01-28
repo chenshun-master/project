@@ -43,15 +43,13 @@ var objClass = {
 
     addDiaryBoxIndex:null,
     add:function(){
-        this.addDiaryBoxIndex = layer.open({
-            type: 1,
-            shade: false,
-            title: '添加美丽日记',
-            area: ['1200px', '700px'],
-            content: caseTemplate.innerHTML,
-            cancel: function(){
-
-            }
+        layer.open({
+            title:'添加案例',
+            type: 2,
+            area: ['1250px', '500px'],
+            fixed: false, //不固定
+            maxmin: false,
+            content: 'http://172.16.100.85/seller/diary/createDiary'
         });
     },
 

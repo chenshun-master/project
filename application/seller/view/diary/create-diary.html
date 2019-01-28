@@ -1,0 +1,295 @@
+{extend name="layout/layout2-main" /}
+
+{block name="css"}
+<link rel="stylesheet" href="/static/plugin/layui/css/layui.css" media="all">
+<style>
+    .diary-img-boxs {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        float: left !important;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        background-color: #f9f3f3;
+    }
+
+    .diary-img-boxs-remove {
+        position: absolute;
+        top: 0;
+        right: 0px;
+        z-index: 2;
+        color: #ff808d;
+        background: white;
+        width: 20px;
+        height: 20px;
+        display: none;
+    }
+
+    .diary-img-boxs:hover .diary-img-boxs-remove {
+        display: block;
+    }
+
+    .fr-diary-submit {
+        background: #23b7e5;
+        color: white;
+        border: none !important;
+    }
+
+    .fr-diary-submit:hover {
+        background: #F29C9F !important;
+        color: white;
+        border: none !important;
+    }
+
+    #fr-input-day {
+        width: 50px;
+        padding-left: 2px;
+        padding-right: 2px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    #upload-file-box, #upload-file-box1 {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #CCCCCC;
+        cursor: pointer;
+        float: left;
+        position: relative;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    #fr-diary-img-upload, #fr-diary-img-upload1 {
+        width: 100px;
+        height: 100px;
+        border: none;
+        opacity: 0;
+        cursor: pointer
+    }
+
+    .diary-goods  li{
+        padding-top: 3px;
+    }
+</style>
+
+{/block}
+
+{block name="main"}
+<section class="wrapper wrapper-content" style="margin-bottom: 0;padding-bottom: 0;margin-top: 2px;padding-top: 2px;">
+    <div class="row">
+        <div class="col-sm-12 animated fadeInRight ">
+            <div class="row">
+                <div class="tabs-container nav-tabs-custom">
+                    <ul class="nav nav-tabs" id="my-tab-status">
+                        <li class="active"><a href="#timeline" data-toggle="tab" aria-expanded="true">编辑案例</a></li>
+                        <li><a href="#settings" data-toggle="tab" aria-expanded="false" class="edit-tab">添加术后日记</a></li>
+                    </ul>
+                    <div class="tab-content white-bg" style="min-height: 400px;">
+                        <div class="tab-pane active" id="timeline">
+                            <form class="form-horizontal" onsubmit="return false;"
+                                  style="padding-top: 20px;padding-bottom: 20px;">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">案例标题</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">相关商品</label>
+                                    <div class="col-sm-10">
+                                        <p style="margin-top: 7px;color: #0b93d5;cursor: pointer;margin-bottom: 5px;"
+                                           onclick="classObj.choiceGoods()">选择相关商品</p>
+                                        <div class="diary-goods">
+                                            <ul></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 30px;">
+                                    <label class="col-sm-1 control-label">术前照</label>
+                                    <div class="col-sm-10">
+                                        <div id="upload-file-box1">
+                                            <div style="width: 100%;height: 100%;">
+                                                <img src="/static/seller/image/plus.png" width="20" height="20"
+                                                     style="margin-left: 40px;margin-top: 40px;" class="cus-img">
+                                            </div>
+                                            <div style="position: absolute;z-index: 2;top: 0px">
+                                                <input type="file" name="imgFile" id="fr-diary-img-upload1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-11">
+                                        <span type="submit" class="btn fr-diary-submit">下一步</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="settings">
+                            <form class="form-horizontal" id="form-diary" onsubmit="return false;"
+                                  style="padding-top: 20px;padding-bottom: 20px;">
+                                <input type="hidden" id="fr-diary-id" value="">
+                                <input type="hidden" id="fr-id" value="0">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">术后时间</label>
+                                    <div class="col-sm-11">
+                                        术后 <input type="text" id="fr-input-day" class="form-control"
+                                                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                                  onafterpaste="this.value=this.value.replace(/\D/g,'')"> 天
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">日记描述</label>
+                                    <div class="col-sm-11">
+                                        <textarea class="form-control" placeholder="日记描述(必填)" rows="5"
+                                                  style="resize: none" id="fr-textarea-content"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-11" id="img-container">
+                                        <div id="upload-file-box">
+                                            <div style="width: 100%;height: 100%;">
+                                                <img src="/static/seller/image/plus.png" width="20" height="20"
+                                                     style="margin-left: 40px;margin-top: 40px;" class="cus-img">
+                                            </div>
+                                            <div style="position: absolute;z-index: 2;top: 0px">
+                                                <input type="file" name="imgFile" id="fr-diary-img-upload"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-11">
+                                        <span type="submit" class="btn fr-diary-submit" id="fr-submit">提交</span>
+                                        <span style="color: #efdddd !important;">&nbsp;&nbsp;&nbsp;图片最多只能上传6张,图片大小不超过3M</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{/block}
+
+{block name="js"}
+{js href="/static/plugin/layui/layui.all.js" /}
+<script>
+    $('#fr-diary-img-upload').on('change', function () {
+        var formData = new FormData($('#form-diary')[0]);
+        $.ajax({
+            url: '/seller/diary/uploadImgFile',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (res) {
+                if (res.code == 200) {
+                    $('#img-container').append('<div class="diary-img-boxs"><img src="' + res.data.url + '" width="100"  /><div class="diary-img-boxs-remove"><i class="fa fa-fw fa-trash"></i></div></div>');
+                    if ($('.diary-img-boxs > img').length >= 9) {
+                        $('#fr-diary-img-upload').prop('disabled', true);
+                    } else {
+                        $('#fr-diary-img-upload').prop('disabled', false);
+                    }
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.diary-img-boxs-remove', function () {
+        $(this).parent().remove();
+        $('#fr-diary-img-upload').prop('disabled', false);
+    });
+
+    var classObj = {
+        loading: false,
+        getImgs: function () {
+            var arr = [];
+            $.each($('.diary-img-boxs > img'), function (k, v) {
+                arr.push($('.diary-img-boxs > img')[k].src);
+            });
+            return arr;
+        },
+        choiceGoodsList:[],
+        choiceGoods:function(){
+            layer.open({
+                type: 2,
+                shade: false,
+                title: '选择相关商品',
+                area: ['800px', '300px'],
+                content: '/seller/diary/searchGoodsBox',
+                cancel:function(){
+                    classObj.choiceGoodsList = [];
+                },
+                end:function(){
+                    if(classObj.choiceGoodsList.length > 0){
+                        console.log(classObj.choiceGoodsList);
+                        var html = '';
+
+                        $.each(classObj.choiceGoodsList,function(k,v){
+                            html  += '<li data-goodis="'+ v.id +'">' +
+                                '<img src="'+ v.img +'" width="30">' +
+                                '<span>'+ v.name+'</span>' +
+                                '<span  class="diary-goods-remove"><i class="layui-icon layui-icon-delete"></i>删除</span>' +
+                                '</li>';
+                        });
+
+                        $('.diary-goods > ul').append(html);
+                    }
+                }
+            });
+        }
+    };
+
+    $('#fr-submit').on('click', function () {
+        var data = {
+            diary_id: $('#fr-diary-id').val(),
+            id: $('#fr-id').val(),
+            day: $('#fr-input-day').val() == '' ? 0 : parseInt($('#fr-input-day').val()),
+            content: $.trim($('#fr-textarea-content').val()),
+            imgs: classObj.getImgs(),
+        };
+
+        if (data.day == 0) {
+            layer.msg('术后时间不能为空');
+        } else if (data.content == '') {
+            layer.msg('日记描述不能为空');
+        } else if (data.imgs.length == 0) {
+            layer.msg('图片不能为空');
+        } else if (classObj.loading == false) {
+            $.ajax({
+                url: '/seller/diary/editDiaryDetail',
+                type: 'POST',
+                data: data,
+                dataType: "json",
+                beforeSend: function () {
+                    classObj.loading = true;
+                },
+                complete: function () {
+                    classObj.loading = false;
+                },
+                success: function (res) {
+                    if (res.code == 200) {
+                        layer.msg('编辑成功...', {icon: 1});
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+        }
+    });
+</script>
+{/block}
