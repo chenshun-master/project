@@ -801,8 +801,15 @@ class Index extends BaseController
      * 我的问答详情页
      * @return mixed
      */
-    public function answerDetails()
+    public function answerDetails(int $id)
     {
+        $data = app('domain')->getDomain('InquiryDomain')->getAnswerDetail($id,$this->getUserId());
+
+        if(!$data){
+            return $this->fetch('error/loss');
+        }
+
+        $this->assign('info',$data);
         return $this->fetch('index/answer-details');
     }
 }

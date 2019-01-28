@@ -8,6 +8,8 @@
     /*top: 0;*/
     background: white;
     z-index: 999;
+    position: fixed;
+    top: 0px;
 }
 .wl-top i {
     position: absolute;
@@ -22,13 +24,11 @@
 }
 .wl-title{
     min-height: 20px;
-    line-height: 22px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    color: #444444;
-    font-size: 16px;
+    line-height: 23px;
+    font-size: 18px;
+    padding: 10px 0 10px 0;
+    font-weight: 500;
+    color: #2e2e2e;
 }
 .wl-huida{
     margin: 5px 0 5px 0;
@@ -89,4 +89,185 @@
     font-size: 12px;
     color: #a2a2a2;
     margin: 5px 0 5px 0 ;
+}
+.reply-comments{
+    width: 100%;
+    min-height: 50px;
+    padding: 0 10px 0 10px;
+}
+.wl-reply-top{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 14px;
+    color: #333333;
+}
+.wl-conter1{
+    margin-left: 40px;
+}
+.wl-reply-footer{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    max-width: 640px;
+    bottom: 0;
+    border-top: 1px solid #f1f1f1;
+    background: white;
+}
+.wl-reply-footer li:nth-child(1){
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    background: #F6F5F5;
+    border-radius:25px;
+    font-size: 13px;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.wl-reply-footer li{
+    width: 15.5%;
+    height: 100px;
+    float: left;
+    text-align: center;
+}
+.wl-comment-icon{
+    font-size: 24px!important;
+}
+.wl-reply-footer li:nth-child(2){
+    position: relative;
+}
+.wl-reply-num{
+    height: 10px;
+    line-height: 10px;
+    background: red;
+    padding:  0 3px 0 3px;
+    font-size: 8px;
+    color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 7px;
+    left: 28px;
+}
+.marsk-container {
+    display: none;
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    background: rgba(0, 0, 0, .5);
+    z-index: 999;
+}
+.tkyy_con{
+    width: 100%;
+    min-height: 40px;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0;
+    max-width: 640px;
+    border-top: 1px solid #f1f1f1;
+    background: white;
+}
+.tkyy_con textarea{
+    width: 80%;
+    height: 30px;
+    padding: 5px 10px 5px 10px;
+    font-size: 15px;
+    background: #F6F5F5;
+    resize: none;
+    margin-top: 5px;
+    border-radius: 25px;
+    margin-left: 10px;
+    float: left;
+    color: #333333;
+}
+.wl-write{
+    font-size: 14px!important;
+}
+.tkyy_con span{
+    width: 15%;
+    line-height: 40px;
+    float: left;
+    font-size: 24px;
+    text-align: center;
+    color: #B7B7B9;
+}
+.mescroll{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.cus-blue {
+    color: #7DB0E8 !important;
+}
+.wl-fabulous-icon{
+    font-size: 18px
+}
+.marsk-container2 {
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: none;
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    z-index: 10;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow-y: auto;
+    z-index: 999;
+}
+.wl-tkyy-top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    position: relative;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eaeaea;
+}
+.wl-cancel2 {
+    position: absolute;
+    left: 10px;
+}
+.wl-answer-title {
+    width: 100%;
+    min-height: 20px;
+    line-height: 20px;
+    margin: 0 auto;
+    /* display: -webkit-box; */
+    /* -webkit-box-orient: vertical; */
+    /* -webkit-line-clamp: 2; */
+    /* overflow: hidden; */
+    color: #6e6e6e;
+    font-size: 15px;
+    background: #f8f8f8;
+    padding: 10px;
+}
+.wl-wenti {
+    width: 95%;
+    min-height: 50px;
+    margin: 0 auto;
+}
+.wl-probletwo {
+    width: 100%;
+    min-height: 250px;
+    line-height: 20px;
+    resize: none;
+    font-size: 15px;
+    padding: 10px 0 10px 0;
+}
+.wl-release {
+    position: absolute;
+    right: 20px;
+    color: #7DB0E8;
+}
+.cus-sou{
+    color: #7DB0E8;
 }

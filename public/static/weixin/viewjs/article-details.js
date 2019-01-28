@@ -7,19 +7,11 @@ var objClass = {
         page: 0,
         page_total: 1,
         page_size: 3,
-        template: function (data) {
-            var src = '';
-            if (data.thumbnail != '' && data.thumbnail !=null) {
-                var thumbnailObj = $.parseJSON(data.thumbnail);
-                src = thumbnailObj.img_1;
-            }
-        }
     },
     loadRecommendList: function () {
         if (this.recommendData.loading) {
             return false;
         }
-
         this.recommendData.page++;
         if (this.recommendData.ini == true) {
             if (this.recommendData.page > this.recommendData.page_total) {
@@ -97,9 +89,9 @@ var objClass = {
         page: 0,
         page_total: 1,
         page_size: 15,
-        template: function (data) {
-            var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
-        }
+        // template: function (data) {
+        //     var css =  data.isZan == 1 ? 'icon-dianzan1 cus-blue ': 'icon-dianzan';
+        // }
     },
     loadCommentList: function () {
         if (this.commentData.loading) {
@@ -175,6 +167,7 @@ var objClass = {
                             } else {
                                 obj.data('click', 0);
                                 obj.find('.wl-dian-one').text(num - 1);
+                                obj.find('.wl-fabulous-icon').removeClass('icon-dianzan1').addClass('cus-blue').addClass('icon-dianzan');
                             }
                         }
                     }else if(res.code == 401){
@@ -185,22 +178,6 @@ var objClass = {
                 }
             });
         }
-    },
-    replyComment: function (obj) {
-        //每次点击清除之前加载的数据
-        this.subreviewConf.loading = false;
-        this.subreviewConf.ini = false;
-        this.subreviewConf.page = 0;
-        this.subreviewConf.page_total = 1;
-        this.subreviewConf.page_size = 10;
-        this.subreviewConf.commentid = obj.data('commentid');
-
-        $('#cus-subreview-container').html('');
-        var h = getClientHeight();
-        $('.marsk-container').css('height',h + 'px').show();
-        var h2 = h - 82;
-        $('#cus-subreview-container').css('height',h2 + 'px');
-        this.loadSubreviewList();
     },
     publishCommentConf:{
         loading:false,
@@ -216,9 +193,9 @@ var objClass = {
         }
         objClass.publishCommentConf.loading = true;
         $.ajax({
-            url: "/weixin/article/comment",
+            url: "/weixin/api/createComment",
             type: 'post',
-            data: {pid: pid, object_id: objClass.article_id,content:content},
+            data: {type:1,pid: 0, obj_id: objClass.article_id,content:content},
             dataType: 'json',
             beforeSend: function () {
                 objClass.publishCommentConf.loading = true;

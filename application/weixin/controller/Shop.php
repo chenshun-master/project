@@ -248,7 +248,12 @@ class Shop extends BaseController
     {
         Singleton::getDomain('diarydomain')->updateDiaryVisit($id);
 
-        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id, $this->getUserId());
+        $sort = $this->request->param('sort','desc');
+        if($sort != 'desc'){
+            $sort = 'asc';
+        }
+
+        $data = Singleton::getDomain('diarydomain')->getDiaryInfo($id, $this->getUserId(),$sort);
 
         $myID = $this->getUserId();
         $uid = $data['info']['user_id'];
@@ -261,6 +266,7 @@ class Shop extends BaseController
 
         $this->assign('isFollow', $isFollow);
         $this->assign($data);
+        $this->assign('sort',$sort);
         return $this->fetch('shop/diary');
     }
 

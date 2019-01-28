@@ -13,5 +13,10 @@ class CommentModel extends Model
     }
 
 
-
+    /**
+     * 获取评论数量
+     */
+    public static function getCommentNum(int $obj_id,string $table_name){
+        return self::where('object_id',$obj_id)->where('table_name',$table_name)->where('status',1)->count('id');
+    }
 }

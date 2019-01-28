@@ -10,27 +10,64 @@
     <i class="iconfont icon-back_light" onclick="redream.toReferer()"></i>
     我的问答
 </div>
-<div class="wl-answer-details">
-    <div class="wl-title">
-        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
-    </div>
-    <div class="wl-huida"><span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>3个回答 <i class="iconfont icon-back_left-copy"></i></div>
-</div>
-<div class="wl-user-name">
-    <div class="wl-answers-top">
-        <img src="http://172.16.100.85:81/head/e0691a27d8871e6b46f1de6cb0332553.png" alt="" onerror="this.src ='/static/image/user/tou.png'">
-        <div class="wl-answers-name">
-            <dt>上海人民美容整形医院</dt>
-
+<div id="container" class="mescroll">
+    <div class="wl-answer-details">
+        <div class="wl-title">
+            {$info['title']}
         </div>
-        <span class="wl-read">阅读 2</span>
+        <div class="wl-huida">
+            <span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>
+            <span class="wl-answer-number">{$info['answer_num']}个回答 <i class="iconfont icon-back_left-copy"></i></span>
+        </div>
     </div>
-    <div class="wl-conter">
-        就让牛股题主虎泸沽湖塔伊尔哦汤普森突破图片就节后途虎去我婆婆
+    <div class="wl-user-name">
+        <div class="wl-answers-top">
+            <img src="{$info['portrait']}" alt="" onerror="this.src ='/static/image/user/tou.png'">
+            <div class="wl-answers-name">
+                <dt>{$info['nickname']}</dt>
+            </div>
+            <span class="wl-read">阅读 {$info['visit']}</span>
+        </div>
+        <div class="wl-conter">
+            {$info['answer_content']}
+        </div>
+        <div class="wl-establish">创建于 {$info['answer_time']|date='Y-m-d H:i'}</div>
     </div>
-    <div class="wl-establish">创建于2019-12-12</div>
+    <div class="reply-comments">
+        <div class="wl-reply-top">
+            评论 <span class="comment-num">0</span>
+        </div>
+        <div id="container-list"></div>
+    </div>
+
+</div>
+<!--评论遮罩层-->
+<div class="marsk-container">
+    <div class="tkyy_con">
+        <textarea id="wl-pincontent"></textarea><span class=" iconfont icon-fabu" onclick="myObj.publishComment()"></span>
+    </div>
 </div>
 
+
+<!--回答遮罩层-->
+<div class="marsk-container2">
+    <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>添加回答
+        <span class="wl-release href" onclick="myObj.release()">发布</span>
+    </div>
+    <div class="wl-answer-title">{$info['title']}</div>
+    <div class="wl-wenti">
+        <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo" id="wl-probletwo-con"></textarea>
+    </div>
+</div>
+
+<ul class="wl-reply-footer">
+    <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
+    <li><i class="iconfont icon-pinglun- wl-comment-icon"></i><span class="wl-reply-num"><span class="comment-num">0</span></span></li>
+    <li id="cus-click-fabulous" data-type="{$info['islike']}" data-id="{$info['answer_id']}">
+        <i class="iconfont {$info['islike'] == 1?'icon-dianzan-- cus-blue':'icon-dianzan-'} wl-comment-icon wl-fabulous-icon" ></i>
+    </li>
+    <li><i class="iconfont icon-jiantou- wl-comment-icon wl-answer-number"></i></li>
+</ul>
 {/block}
 
 {block name="script"}
@@ -39,25 +76,245 @@
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="wl-answers" data-id="{{item.id}}">
-        <div class="wl-answers-list">
-            <div class="wl-answers-top">
-                <img src="{{item.portrait}}" alt="" onerror="this.src ='/static/image/user/tou.png'">
-                <div class="wl-answers-name">
-                    <dt>{{item.nickname}}</dt>
-                    {{# if(item.userType == 4){ }}
-                    <span class="wl-answers-Icon"></span>
-                    {{# } }}
-                </div>
-            </div>
-            <div class="wl-answers-title">{{item.content}}</div>
-            <div class="wl-view">查看全文</div>
-            <div class="wl-user-notice1">
-                <dt>{{item.answer_time}}</dt>
-            </div>
+    <div class="wl-pinglun" data-id="{{ item.id}}">
+        <div style="float: left">
+            <img src="{{item.portrait}}" alt="" width="30" height="30" class="cus-touser-main " data-user_id="{{item.user_id}}" onerror="this.src='/static/image/user/tou.png'">
         </div>
+        <div class="wl-ping-xiang">
+            <div>
+                <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
+                <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.islike}}" >
+                    {{#  if(item.islike == 0){ }}
+                    <span class="iconfont icon-dianzan wl-fabulous-icon"></span>
+                    {{#  } }}
+
+                    {{#  if(item.islike == 1){ }}
+                    <span class="iconfont icon-dianzan1 cus-blue  wl-fabulous-icon"></span>
+                    {{#  } }}
+                    <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
+                </div>
+
+            </div>
+            <div style="clear:both"></div>
+            <div class="wl-ping-neirong">{{item.content}}</div>
+            <div class="wl-pji">{{item.created_time}}</div>
+        </div>
+        <div style="clear:both"></div>
     </div>
-    <div style="clear: both"></div>
     {{#  }); }}
+</script>
+<script>
+    const answer_id = {$info['answer_id']};
+    const inquiry_id = {$info['inquiry_id']};
+
+    $(".wl-write-comment").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container").toggle();
+        $('#wl-pincontent').focus();
+    });
+
+    $(".wl-mehuida").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container2").fadeIn();
+    });
+
+    //点击空白处隐藏弹出层
+    $(".marsk-container").click(function (event) {
+        var _con = $('.tkyy_con'); // 设置目标区域
+        if (!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.marsk-container').hide(); //淡出消失
+        }
+    });
+    $('textarea').keydown( function(e) {
+        var key = window.event?e.keyCode:e.which;
+        if(key.toString() == "13"){
+            return false;
+        }
+    }).on('input', function () {
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    $('.wl-cancel2').click(function () {
+        $(".marsk-container2").fadeOut();
+        $(".wl-probletwo").val("");
+    });
+
+    const mescroll = new MeScroll("container", {
+        down: {
+            auto: true,
+            isLock:true
+        },
+        up: {
+            clearEmptyId: "container-list",
+            page: {num: 0, size: 10},
+            htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
+            isBounce: false,
+            noMoreSize: 5,
+            empty: {tip: "亲,暂时还没相关评论~"},
+            callback: function (page) {
+                $.ajax({
+                    url: "/weixin/api/getCommentList",
+                    type: 'get',
+                    data: {obj_id:answer_id,page: page.num, page_size: page.size,type:4},
+                    dataType: 'json',
+                    success: function (res) {
+                        mescroll.endSuccess(res.data.rows.length);
+                        if(res.data.total){
+                            $('.comment-num').text(res.data.total);
+                        }else if(res.data.total == 0){
+                            $('.wl-reply-num').hide();
+                        }
+                        layui.laytpl(templateList.innerHTML).render(res.data.rows, function (html) {
+                            $('#container-list').append(html);
+                        });
+                    },
+                    error: function () {
+                        mescroll.endErr();
+                    }
+                });
+            },
+        }
+    });
+    var  myObj = {
+        loading: false,
+        publishCommentConf: {
+            loading: false,
+        },
+        publishComment: function () {
+            var content = $('#wl-pincontent').val();
+            $.ajax({
+                url: "/weixin/api/createComment",
+                type: 'post',
+                data: {type:4,obj_id: answer_id,content: content},
+                dataType: 'json',
+                beforeSend: function () {
+                    myObj.publishCommentConf.loading = true;
+                },
+                success: function (res) {
+                    myObj.publishCommentConf.loading = false;
+                    if (res.code == 200) {
+                        $('.marsk-container').css('display','none');
+                        redream.showTip('发布成功');
+                        $('#wl-pincontent').val('');
+                        mescroll.resetUpScroll();
+                    } else if (res.code == 401) {
+                        redream.showTip('请先进行登录');
+                        LoginBox.showBox();
+                    } else {
+                        redream.showTip('评论失败');
+                    }
+                }
+            });
+        },
+        clickCommentFabulousLading:false,
+        clickCommentFabulous:function (obj) {
+            var id = obj.data('id');
+            var type = obj.data('click') == 1 ? 2 : 1;
+            if(!myObj.clickCommentFabulousLading){
+                $.ajax({
+                    url: "/weixin/user/giveFabulous",
+                    type: 'post',
+                    data: {obj_id: id, type: type,flag:2},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.clickCommentFabulousLading = true;
+                    },
+                    complete: function () {
+                        myObj.clickCommentFabulousLading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                                var num = parseInt(obj.find('.wl-dian-one').text());
+                                console.log()
+                                if (type == 1) {
+                                    obj.data('click', 1);
+                                    obj.find('.wl-dian-one').text(num + 1);
+                                    obj.find('.wl-fabulous-icon').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
+                                }else{
+                                    obj.data('click', 0);
+                                    obj.find('.wl-dian-one').text(num - 1);
+                                    obj.find('.wl-fabulous-icon').removeClass('icon-dianzan1').addClass('icon-dianzan').removeClass('cus-blue');
+                                }
+                        }else if(res.code == 401){
+                            LoginBox.showBox().showTip('请先进行登录操作');
+                        }else if(res.code == 403){
+                            redream.showTip('您还没有该权限');
+                        }
+                    }
+                });
+            }
+        },
+        release:function () {
+            let data = {id:inquiry_id,content: $('#wl-probletwo-con').val()};
+            if(data.content == ''){
+                redream.showTip('请输入你的观点和经验');
+            }else if(this.loading == false){
+                $.ajax({
+                    url: "/weixin/api/createAnswer",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.loading = true;
+                    },
+                    complete: function () {
+                        myObj.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            redream.showTip('发布成功');
+                            window.location.href = '/weixin/index/inquiryDetails/id/' + inquiry_id;
+                        }else if(res.code == 401){
+                            LoginBox.showTip('请登录后进行操作').showBox();
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        },
+
+        //用户点赞操作
+        isZanLoadind:false,
+        clickFabulous:function(obj){
+            var type = obj.data('click') == 1 ?2:1;
+            if(!myObj.isZanLoadind){
+                $.ajax({
+                    url: "/weixin/user/giveFabulous",
+                    type: 'post',
+                    data: {obj_id: answer_id, type: type,flag:1},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.isZanLoadind = true;
+                    },
+                    complete:function(){
+                        myObj.isZanLoadind = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(type == 1){
+                                obj.data('click',1);
+                                obj.find('i').removeClass('icon-dianzan-').addClass('icon-dianzan--').addClass('cus-blue');
+                            }else{
+                                obj.data('click',0);
+                                obj.find('i').removeClass('icon-dianzan--').removeClass('cus-blue').addClass('icon-dianzan-');
+                            }
+                        }
+                    }
+                });
+            }
+        },
+    }
+
+    $(document).on('click', '.cus-comment-fabulous', function () {
+        myObj.clickCommentFabulous($(this), 1);
+    }).on('click', '.wl-answer-number', function () {
+        window.location.href = '/weixin/index/inquiryDetails/id/' + inquiry_id;
+    })
+    $(document).on('click','#cus-click-fabulous',function(event){
+        myObj.clickFabulous($(this));
+        event.stopPropagation();
+    });
+
 </script>
 {/block}

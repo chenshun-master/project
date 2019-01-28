@@ -23,8 +23,7 @@ class Test
 //    }
 
       public function test(){
-//          $data = app('domain')->getDomain('InquiryDomain')->getUserAnswerList(61);
-//          halt($data);
+          $data = app('domain')->getDomain('CommentDomain')->getCommentList('article',67,0,1,15);
+          halt($data);
       }
-
 }
