@@ -74,7 +74,7 @@ a{text-decoration: none;color: #221815;display: block;}
     -webkit-line-clamp:3;
 }
 .wl-jh{
-    width: 100%;
+    width: 95%;
     min-height: 50px;
     overflow: hidden;
     margin-top: 25px;
@@ -83,8 +83,7 @@ a{text-decoration: none;color: #221815;display: block;}
     font-size: 32px;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:2;
-    padding: 7px 20px 0 20px;
-
+    margin: 0 auto;
 }
 .wx-name{
     min-height: 80px;
@@ -134,18 +133,16 @@ a{text-decoration: none;color: #221815;display: block;}
     color: #000000;
     margin-top: -5px;
 }
-.lists{
-    position: relative;
-    padding-bottom: 15px
-}
 .wl-one1-1{
-    width: 100%;min-height: 380px;border-bottom: 10px solid #EEEEEE;
+    width: 100%;min-height: 50px;border-bottom: 10px solid #EEEEEE;
 }
 .name1{
     border:none;position: relative;top:10px;
 }
 .wl-one1-2{
-    position:absolute;top: 20px;
+    width: 100%;
+    min-height: 50px;
+    margin-top: 15px;
 }
 .wl-on1-3 dt{
 font-size:28px;color: #1D1D1D;font-weight: bold;
@@ -171,7 +168,7 @@ font-size:28px;color: #1D1D1D;font-weight: bold;
 font-size:24px;color: #898989;
 }
 .w-video{
-width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relative;top: 20px
+width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;
 }
 .wl-ml{
     width: 100%;
@@ -252,7 +249,7 @@ width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relati
 }
 .wx-name9{
     width: 100%;
-    height: 72px;
+    min-height: 50px;
 }
 .wl-neil7{
     width: 402px;
@@ -301,4 +298,37 @@ width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relati
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:2;
+}
+.wl-deji {
+    width: 60%;
+    height: 60px;
+    border-bottom: 1px solid #f1f1f1;
+    margin: 0 auto;
+}
+.wl-deji li {
+    width: 20%;
+    height: 60px;
+    line-height: 60px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    font-size: 30px;
+}
+.wl-deji li.active {
+    color: #7DB0E8;
+    border-bottom: 2px solid #7DB0E8;
+}
+.content .wl-d {
+    width: 100%;
+    min-height: 100px;
+    display: none;
+}
+.content .active {
+    display: block;
+}
+.wl-deji li:nth-child(1){
+    margin-left: 100px;
+}
+.size{
+    font-size: 32px;
 }

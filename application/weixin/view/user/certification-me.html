@@ -1,97 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta content="telephone=no" name="format-detection"/>
-    <title>{:config('conf.title')}</title>
-    <link rel="stylesheet" type="text/css" href="/static/weixin/css/collection.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/weixin/css/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
-    <style>
-        .cus-click-href,.cus-article-href2,.cus-article-fabulous{cursor: pointer;}
-        .cus-blue{color: #7DB0E8}
-        .wl-ttu{    margin-top: 14px !important;}
-    </style>
-</head>
-<style>
+{extend name="layout/layout" /}
 
-</style>
-<body style="background: #ffffff;">
-<div class="wl-con">
-    <div class="wx-content">
-        <header>
-            <div class="top" style="position: relative;margin: 0">
-                <a href="/weixin/user/main"><i class="iconfont icon-back_light" style="    font-size: 40px; position: absolute;top: 4px;left: 11px;" ></i></a>
-                <div  class="wl-ttu" style="border-bottom: 1px solid #EEEEEE;">
-                    <div style="margin: 0 auto;width: 43%;">
-                        <span id="one">收藏</span>
-                        <span id="two">评论</span>
-                        <span id="three">点赞</span>
-                    </div>
-                </div>
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/collection1.css">
+<link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
+{/block}
+
+{block name="main"}
+<div>
+    <i class="iconfont icon-back_light wl-fanhui "onclick="redream.toReferer()"></i>
+    <ul class="wl-deji">
+        <li class="active left-li" id="one">收藏</li>
+        <li id="two">评论</li>
+        <li id="three">点赞</li>
+    </ul>
+    <div class="content">
+        <div class="wl-d active" id="cus-favorite-container">
+            <div id="cus-favorite-container-list" >
             </div>
-        </header>
-        <div class="xia">
-            <div class="one ones " id="cus-favorite-container" style="padding-bottom: 110px;margin-top: 0px">
-                <div class="one-1 lists" id="cus-favorite-container-list" >
-                </div>
+        </div>
+        <div class="wl-d" id="cus-comment-container">
+            <div id="cus-comment-container-list" >
             </div>
-                <div class="one w-one3" id="cus-comment-container" style="padding-bottom: 110px;margin-top: 0px">
-                    <div class="one-1 lists" id="cus-comment-container-list" >
-                    </div>
-                </div>
-            <div class="one" style=";padding-bottom: 110px;margin-top: 0px" id="cus-like-container">
-                <div class="one-1 lists" id="cus-like-container-list" >
-                </div>
+        </div>
+        <div class="wl-d" id="cus-like-container">
+            <div id="cus-like-container-list" >
             </div>
         </div>
     </div>
 </div>
-</body>
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+{/block}
+{block name="script"}
 <script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    $(function () {
-        $(".ones").show();
-        $(".top span").eq(0).addClass("se");
-        var a,b,c,index = 0;
-        $(".top span").click(function () {
-            index = $(this).index();
-            $(".xia .one").eq(index).show().siblings().hide();
-            $(".top span").eq(index).addClass("se").siblings().removeClass("se");
-            if (index == 0) {
-                a = 1;
-            }
-            if (index == 1) {
-                b = 1;
-            }
-            if (index == 2) {
-                c = 1;
-            }
-            if (a == 1 && b == 1 && c == 1) {
-                $("#xiao").hide();
-            }
-        });
+<script>
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 
-        var url = window.location.toString();
-        var maodian = url.split('#')[1];
-        if(maodian == 'favorite'){
-            $('#one').trigger('click');
-        }else if(maodian == 'comment'){
-            $('#two').trigger('click');
-        }else if(maodian == 'like'){
-            $('#three').trigger('click');
-        }
     });
 </script>
-
 <script type="text/javascript">
     var myObj = {
         favorite:{
@@ -340,9 +287,16 @@
         event.stopPropagation();
     });
 
-    $(function(){
-        $("#cus-favorite-container-list,#cus-comment-container-list,#cus-like-container-list").css('minHeight','300px');
-    });
-</script>
+    // $(function(){
+    //     $("#cus-favorite-container-list,#cus-comment-container-list,#cus-like-container-list").css('minHeight','300px');
+    // });
+    $(".wl-deji li").click(function () {　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");　　　　 //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
 
-</html>
+    });
+
+
+</script>
+{/block}

@@ -123,7 +123,7 @@ class User extends BaseController
         if (!$this->checkLogin()) {
             return redirect('/weixin/index/login');
         }
-        return $this->fetch('user/collection');
+        return $this->fetch('user/certification-me');
     }
 
     /**
@@ -410,7 +410,7 @@ class User extends BaseController
 
         $this->assign('user_info', $user_info);
 
-        return $this->fetch('user/userArticleList');
+        return $this->fetch('user/userArticleList1');
     }
 
     /**

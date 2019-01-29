@@ -154,7 +154,7 @@ footer{
 }
 .wl-wenda2 i{
     position: absolute;
-    left: 30px;
+    left: 20px;
     top: 0px;
     color: black;
     font-size: 17px!important;
@@ -282,6 +282,8 @@ footer{
 }
 .wl-inquiry-footer li:nth-child(3){
     width: 33.4%;
+    float: right;
+    margin-right: -1px;
 }
 .marsk-container{
     width: 100%;
