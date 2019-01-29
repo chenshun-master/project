@@ -20,9 +20,9 @@
         <div style="clear:both"></div>
     </div>
 
-    <div class="wl-neirong cus-click-href" >
-        <div class="wl-nei1"  data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']} </div>
-        <div class="wl-nei3 cus-click-href">
+    <div class="wl-neirong cus-click-href"   data-id="{$vo['id']}">
+        <div class="wl-nei1 cus-click-href"  data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']} </div>
+        <div class="wl-nei3 cus-click-href" data-id="{$vo['id']}" >
             {foreach $thumbnail as $k=>$v}
             <img src="{$v}" alt="">
             {/foreach}
@@ -80,7 +80,7 @@
     </div>
     <div class="wl-neirong cus-click-href" >
         <div class="wl-nei5 cus-click-href"  data-id="{$vo['id']}" data-type="{$vo['type']}"> {$vo['title']} </div>
-        <div class="wl-left-img">
+        <div class="wl-left-img cus-click-href" data-id="{$vo['id']}">
             <?php if(count($thumbnail) > 0):?>
             <img src="{$thumbnail['img_1']}" alt="图片"/>
             <?php else:?>
