@@ -27,7 +27,7 @@
         ,url: '/seller/shopapi/getGoodsList' //数据接口
         ,page: true
         ,loading:true
-        ,height: 540
+        ,height: 400
         ,parseData: function(res){ //res 即为原始返回的数据
             return {
                 "code": res.code == 200?0:res.code, //解析接口状态

@@ -47,88 +47,12 @@ var objClass = {
             title:'添加案例',
             type: 2,
             area: ['1250px', '500px'],
-            fixed: false, //不固定
-            maxmin: false,
+            fixed: true, //不固定
+            maxmin: true,
             content: 'http://172.16.100.85/seller/diary/createDiary'
         });
     },
 
-    choiceGoodsList:[],
-    choiceGoods:function(){
-        layer.open({
-            type: 2,
-            shade: false,
-            title: '选择相关商品',
-            area: ['1200px', '700px'],
-            content: '/seller/diary/searchGoodsBox',
-            cancel:function(){
-                objClass.choiceGoodsList = [];
-            },
-            end:function(){
-                if(objClass.choiceGoodsList.length > 0){
-                    console.log(objClass.choiceGoodsList);
-                    var html = '';
-
-                    $.each(objClass.choiceGoodsList,function(k,v){
-                        html  += '<li data-goodis="'+ v.id +'">' +
-                                    '<img src="'+ v.img +'" width="30">' +
-                                    '<span>'+ v.name+'</span>' +
-                                    '<span  class="diary-goods-remove"><i class="layui-icon layui-icon-delete"></i>删除</span>' +
-                                 '</li>';
-                    });
-
-                    $('.diary-goods > ul').append(html);
-                }
-            }
-        });
-    },
-
-
-    getGoodsId:function(){
-        var arr = [];
-        $.each($('.diary-goods >ul li'),function(k,v){
-            arr.push($('.diary-goods >ul li')[k].dataset.goodis);
-        });
-
-        return arr;
-    },
-    getImgs:function(){
-        var arr = [];
-        $.each($('.diary-img-boxs > img'),function(k,v){
-            arr.push($('.diary-img-boxs > img')[k].src);
-        });
-        return arr;
-    },
-    addDiary:function(){
-        var data = {title:$.trim($('#fr-diary-title').val()),ids:this.getGoodsId(),imgs:this.getImgs()};
-        if(data.ids.length == 0){
-            layer.msg('相关产品不能为空');
-            return false;
-        }else if(data.imgs.length == 0){
-            layer.msg('术前照不能为空');
-            return false;
-        }else{
-            var loadIndex = layer.msg('提交中...', {icon: 16,shade: 0.01,time:0});
-            $.ajax({
-                url: '/seller/diary/addDiary',
-                type: 'POST',
-                data:data,
-                dataType: "json",
-                complete:function(){
-                    layer.close(loadIndex);
-                },
-                success: function (res) {
-                    if(res.code == 200){
-                        layer.msg('添加成功...', {icon: 1});
-                        layer.close(objClass.addDiaryBoxIndex);
-                        objClass.reload();
-                    }else{
-                        layer.msg(res.msg);
-                    }
-                }
-            });
-        }
-    }
 };
 
 var uploadIndex = null;
