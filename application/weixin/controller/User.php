@@ -447,11 +447,7 @@ class User extends BaseController
             }
         }
 
-
         $this->assign($data);
-
-        $data['htmlContent'] = $this->fetch('user/userArticleList_tpl');
-
         return $this->returnData($data, '', 200);
     }
 
