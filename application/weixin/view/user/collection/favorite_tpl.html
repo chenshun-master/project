@@ -22,7 +22,7 @@
 
     <div class="wl-neirong cus-click-href"   data-id="{$vo['id']}">
         <div class="wl-nei1 cus-click-href"  data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']} </div>
-        <div class="wl-nei3 cus-click-href" data-id="{$vo['id']}" >
+        <div class="wl-nei3 cus-click-href href" data-id="{$vo['id']}" >
             {foreach $thumbnail as $k=>$v}
             <img src="{$v}" alt="">
             {/foreach}
@@ -32,9 +32,9 @@
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light" ></i><span></span></li>
         <li><i class="iconfont icon-comment_light" ></i><span>{$vo['comment_count']}</span></li>
-        <li class="cus-article-fabulous">
-            <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-            <span>{$vo['like']}</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>
@@ -57,9 +57,9 @@
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light" ></i><span></span></li>
         <li><i class="iconfont icon-comment_light" ></i><span>{$vo['comment_count']}</span></li>
-        <li class="cus-article-fabulous">
-            <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-            <span>{$vo['like']}</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>
@@ -78,7 +78,7 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-neirong cus-click-href" >
+    <div class="wl-neirong cus-click-href" data-id="{$vo['id']}">
         <div class="wl-nei5 cus-click-href"  data-id="{$vo['id']}" data-type="{$vo['type']}"> {$vo['title']} </div>
         <div class="wl-left-img cus-click-href" data-id="{$vo['id']}">
             <?php if(count($thumbnail) > 0):?>
@@ -92,9 +92,9 @@
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light" ></i><span></span></li>
         <li><i class="iconfont icon-comment_light" ></i><span>2</span></li>
-        <li class="cus-article-fabulous">
-            <i class="iconfont icon-dianzan"></i>
-            <span>1</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>
@@ -121,9 +121,9 @@
                         <ul class="wl-tubiao">
                             <li><i class="iconfont icon-share_light" ></i><span></span></li>
                             <li><i class="iconfont icon-comment_light" ></i><span>{$vo['comment_count']}</span></li>
-                            <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous">
-                                <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-                                <span>{$vo['like']}</span>
+                            <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+                                <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+                                <span class="wl-dian-one">{$vo['like']}</span>
                             </li>
                         </ul>
 

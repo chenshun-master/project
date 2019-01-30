@@ -117,21 +117,16 @@ class UserDomain
      * @throws \think\exception\PDOException
      */
     public function editPwd($user_id,$old_password,$new_password){
-        $info = $this->userModel->findUserId($user_id);
-
-        if(!$info){
+        $password = Db::name('user')->where('id',$user_id)->value('password');
+        if(!$password){
             return false;
         }
 
-        if($info['password'] !== encryptPwd($old_password)){
+        if($password !== encryptPwd($old_password)){
             return false;
         }
 
-        $res = Db::table('wl_user')
-            ->where('id', $user_id)
-            ->update(['password' => encryptPwd($new_password)]);
-
-        if(!$res){
+        if(!Db::table('wl_user') ->where('id', $user_id)->update(['password' => encryptPwd($new_password)])){
             return false;
         }
 

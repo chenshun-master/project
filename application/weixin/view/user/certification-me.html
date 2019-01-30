@@ -193,39 +193,45 @@
         },
         //用户点赞操作
 
-        isZanLoadind:false,
-        clickFabulous:function(obj){
+        //文章点赞方法
+        clickFabulousLading:false,
+        clickFabulous:function (obj) {
             var id = obj.data('id');
-            var type = obj.data('click') == 1 ?2:1;
-            if(!myObj.isZanLoadind){
+            var type = obj.data('type') == 1 ? 2 : 1;
+            console.log(obj.data('type'));
+            if(!myObj.clickFabulousLading){
                 $.ajax({
                     url: "/weixin/user/giveFabulous",
                     type: 'post',
                     data: {obj_id: id, type: type,flag:1},
-                    dataType:'json',
-                    beforeSend:function(){
-                        myObj.isZanLoadind = true;
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.clickFabulousLading = true;
                     },
-                    complete:function(){
-                        myObj.isZanLoadind = false;
+                    complete: function () {
+                        myObj.clickFabulousLading = false;
                     },
-                    success:function(res){
-                        if(res.code == 200){
-                            var num = parseInt(obj.find('span').text());
-                            if(type == 1){
-                                obj.data('click',1);
-                                obj.find('span').text(num + 1);
-                                obj.find('i').removeClass('icon-dianzan').addClass('icon-dianzan1').addClass('cus-blue');
-                            }else{
-                                obj.data('click',0);
-                                obj.find('span').text(num - 1);
-                                obj.find('i').removeClass('icon-dianzan1').removeClass('cus-blue').addClass('icon-dianzan');
+                    success: function (res) {
+                        if (res.code == 200) {
+                            var num = parseInt(obj.find('.wl-dian-one').text());
+                            if (type == 1) {
+                                obj.data('click', 1);
+                                obj.find('.wl-dian-one').text(num + 1);
+                                obj.find('.wl-fabulous-icon').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
+                            } else {
+                                obj.data('click', 0);
+                                obj.find('.wl-dian-one').text(num - 1);
+                                obj.find('.wl-fabulous-icon').removeClass('icon-dianzan1').removeClass('cus-blue').addClass('icon-dianzan');
                             }
+
+                        }else if(res.code == 401){
+                            LoginBox.showBox().showTip('请先进行登录操作');
+                        }else if(res.code == 403){
+                            redream.showTip('您还没有该权限');
                         }
                     }
                 });
             }
-
         },
     };
 
@@ -283,7 +289,7 @@
     });
 
     $(document).on('click','.cus-article-fabulous',function(event){
-        myObj.clickFabulous($(this));
+        myObj.clickFabulous($(this),1);
         event.stopPropagation();
     });
 

@@ -21,10 +21,10 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-on-content cus-click-href " data-id="{$vo['id']}">{$vo['comment_content']}</div>
+    <div class="wl-on-content cus-click-href" data-id="{$vo['id']}">{$vo['comment_content']}</div>
     <div class="wl-neirong border cus-click-href"  data-id="{$vo['id']}">
         <div class="wl-nei1  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']}</div>
-        <div class="wl-nei3  cus-click-href " data-id="{$vo['id']}">
+        <div class="wl-nei3  cus-click-href" data-id="{$vo['id']}">
             {foreach $thumbnail as $k=>$v}
             <img src="{$v}" alt="">
             {/foreach}
@@ -34,9 +34,9 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light"></i><span></span></li>
         <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
-        <li class="cus-article-fabulous">
-            <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-            <span>{$vo['like']}</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>
@@ -62,9 +62,9 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light"></i><span></span></li>
         <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
-        <li class="cus-article-fabulous">
-            <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-            <span>{$vo['like']}</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>
@@ -99,9 +99,9 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light"></i><span></span></li>
         <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
-        <li class="cus-article-fabulous">
-            <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-            <span>{$vo['like']}</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>
@@ -136,9 +136,9 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light"></i><span></span></li>
         <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
-        <li data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous">
-            <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"></i>
-            <span>{$vo['like']}</span>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
         </li>
     </ul>
 </div>

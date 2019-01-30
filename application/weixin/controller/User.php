@@ -73,7 +73,7 @@ class User extends BaseController
         $user_info = $this->_userDomain->getUserInfo($this->getUserId());
 
         $this->assign('user_info', $user_info);
-        return $this->fetch('user/modify');
+        return $this->fetch('user/modify1');
     }
 
     /**
@@ -313,8 +313,7 @@ class User extends BaseController
             return $this->returnData([], '新密码不能与旧密码一致', 302);
         }
 
-        $user_info = $this->getUserInfo();
-        $isTrue = $this->_userDomain->editPwd($user_info['id'], $old_password, $new_password);
+        $isTrue = $this->_userDomain->editPwd($this->getUserId(), $old_password, $new_password);
         if ($isTrue) {
             return $this->returnData([], '密码修改成功', 200);
         }

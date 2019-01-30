@@ -34,12 +34,12 @@ main{
     border-radius: 50%;
 }
 .wl-top-right{
-    width: 70%;
+    width: 75%;
     min-height: 20px;
     float: right;
     padding: 5px;
 }
-.wl-wenzhnag li{
+.wl-wenzhnag li {
     text-align: center;
     width: 25%;
     float: left;
