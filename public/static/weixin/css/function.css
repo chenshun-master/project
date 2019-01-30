@@ -51,6 +51,6 @@
     background-color: #fff1f1;
     border-radius: 5px 5px 5px 5px;
     color: #d4a6a6;
-    margin-top: 5px;
     z-index:999999;
+    max-width: 640px;
 }

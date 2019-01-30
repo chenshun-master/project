@@ -1,9 +1,10 @@
 {extend name="layout/layout" /}
+
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/modify1.css">
 <link rel="stylesheet" href="/static/plugin/uploadtx/style.css">
-
 {/block}
+
 {block name="main"}
 <header>
     <div class="wl-top" id="logox">
@@ -69,6 +70,7 @@
         <button class="quxiao1" data-val="cancel">取消</button>
     </div>
 </div>
+
 <article class="htmleaf-container">
     <div id="clipArea"></div>
         <ul class="wl-xuanze">
@@ -76,6 +78,18 @@
             <li id="wl-photo"><span class="iconfont icon-camera"></span><input id="file" type="file" accept="image/*" multiple/></li>
             <li id="clipBtn"><span class="iconfont icon-check" ></span></li>
         </ul>
+        <!--<div class="wl-foot" id="wl-fanhui" >-->
+            <!--<span class="iconfont icon-back_light"></span>-->
+        <!--</div>-->
+        <!--<div style="position: relative" class="wl-foot">-->
+            <!--<div style="position: absolute">-->
+                <!--<span class="iconfont icon-camera"></span>-->
+                <!--<input id="file" type="file" accept="image/*" multiple/>-->
+           <!--</div>-->
+        <!--</div>-->
+        <!--<div class="wl-foot" id="clipBtn">-->
+            <!--<span class="iconfont icon-check" ></span>-->
+        <!--</div>-->
     <div id="view"></div>
 </article>
 
@@ -197,14 +211,30 @@
         $(".marsk-container").toggle();
     });
 
-    //编辑日期
     new Mdate("fr-birthday-date",{
         acceptId: "fr-birthday-date",
-            beginYear: "1980",
-            beginMonth: "1",
-            beginDay: "24",
-            format: "-"
+        beginYear: "1980",
+        beginMonth: "10",
+        beginDay: "24",
+        format: "-"
     });
-
+    $("#clipArea").photoClip({
+        width: 250,
+        height: 250,
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function () {
+            console.log("照片读取中");
+        },
+        loadComplete: function () {
+            console.log("照片读取完成");
+        },
+        clipFinish: function (dataURL) {
+            if(dataURL !== ''){
+                objClass.uploadHead(dataURL);
+            }
+        }
+    });
 </script>
 {/block}
