@@ -7,8 +7,13 @@ use app\api\domain\PictureLibraryDomain;
 class Index extends BaseController
 {
     public function index(){
+        return $this->fetch('index/main');
+    }
+
+    public function index2(){
         return $this->fetch('index/index');
     }
+
 
     /**
      * 商家登录页面
