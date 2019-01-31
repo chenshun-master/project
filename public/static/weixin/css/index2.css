@@ -61,7 +61,7 @@
 .wl-nei2 li{
     font-size: 12px;
     color: #898989;
-    margin-right: 15px;
+    margin-right: 10px;
     float: left;
 }
 .wl-zhiding{
@@ -69,10 +69,10 @@
     width: 27px;
     text-align: center;
     line-height: 14px;
-    color: #7DB0E8;
+    color: #7DB0E8!important;
     border: 1px solid #7DB0E8;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 10px!important;
 }
 .wl-nei3{
     margin-top: 5px;
@@ -125,7 +125,7 @@
 }
 .wl-jleft{
     float: left;
-    margin-left: 3px;
+    margin-right: 2px;
 }
 .wl-jri{
     float: left;
