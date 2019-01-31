@@ -70,7 +70,6 @@
 .wl-neirong {
     width: 95%;
     min-height: 70px;
-    border-bottom: 1px solid #F1F1F1;
     margin: 0 auto  ;
     padding: 5px;
 }
@@ -111,7 +110,7 @@
 .wl-nei3 img {
     width: 31.3%;
     height: 75px;
-    margin-left: 5px;
+    margin-right: 5px;
     background: #EEEEEE;
     border: none;
     float: left;

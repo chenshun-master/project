@@ -16,9 +16,6 @@
     border-bottom: 1px solid #EEEEEE;
     z-index: 999!important;
 }
-main{
-    margin-top: 40px;
-}
 .wl-top-img{
     width: 100%;
     min-height: 100px;
@@ -41,7 +38,7 @@ main{
 }
 .wl-wenzhnag li {
     text-align: center;
-    width: 25%;
+    width: 24%;
     float: left;
 }
 .wl-attes{
@@ -65,6 +62,9 @@ main{
     color: #FFFFFF;
     margin-left: 5%;
 
+}
+.wl-wenzhnag li:last-child{
+    width: 26%;
 }
 .wl-attes li:nth-child(2){
     border-radius: 5px;
@@ -101,7 +101,8 @@ main{
     font-size: 12px;
 }
 #container{
-    padding: 0!important;
+    padding-top: 40px!important;
+    padding-bottom: 0!important;
 }
 .wl-tubiao li {
     display: inline-block;
@@ -126,6 +127,7 @@ main{
     min-height: 20px;
 }
 .wl-neirong{
+    border-bottom: 5px solid #F1F1F1!important;
     padding: 10px 10px 0 10px!important;
 }
 .cus-blue{
