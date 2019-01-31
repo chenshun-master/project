@@ -28,10 +28,11 @@
         <div style="position: relative"><span class="wl-biao1"></span></div>
         <div class="wl-pingjia">
             <dl>{{item.hospital_name}}</dl>
-            <dd>医院类型:
-                {{#  if(item.type != null){ }}
-                {{item.type}}
-                {{#  } }}
+            <dd>
+                擅长项目:
+                {{#  layui.each(item.speciality, function(index2, item2){ }}
+                    <span>{{ item2 }}&nbsp;&nbsp;</span>
+                {{#  }); }}
             </dd>
             <dt><i class="iconfont icon-xingji"></i>
                 <i class="iconfont icon-xingji"></i>

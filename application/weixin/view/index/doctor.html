@@ -30,9 +30,10 @@
                 <div class="wl-pingjia">
                     <dl>{{item.real_name}} <span class="wl-the-title">{{ item.duties}}</span></dl>
                     <dd>
-                        {{#  if(item.hospital_name != null){ }}
-                        所在医院: {{ item.hospital_name}}
-                        {{#  } }}
+                        擅长项目:
+                        {{#  layui.each(item.speciality, function(index2, item2){ }}
+                            <span>{{ item2 }}&nbsp;&nbsp;</span>
+                        {{#  }); }}
                     </dd>
                     <dt><i class="iconfont icon-xingji"></i>
                         <i class="iconfont icon-xingji"></i>
