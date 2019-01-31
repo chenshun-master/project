@@ -126,21 +126,26 @@ class Diary extends BaseController
     public function addDiary(){
         $title  = $this->request->post('title','');
         $ids    = $this->request->post('ids/a',[]);
-        $imgs   = $this->request->post('imgs/a',[]);
+        $frontImgs   = $this->request->post('frontImgs/a',[]);
+        $afterImgs   = $this->request->post('afterImgs/a',[]);
+        $day = $this->request->post('day/d',0);
+        $content  = $this->request->post('content','');
 
-        if(empty($title) || empty($ids) || empty($imgs)){
+        if(empty($title) || empty($ids) || empty($frontImgs) || empty($afterImgs)){
             return $this->returnData([],'参数不符合规范',301);
         }
 
-        $isTrue = $this->_diaryDomain->addDiary([
+        $data = [
             'user_id'      =>$this->getUserId(),
-            'goods_ids'    =>implode(',',$ids),
             'title'        =>$title,
-            'before_imgs'  =>json_encode($imgs),
-            'created_time' =>date('Y-m-d H:i:s'),
-            'updated_time' =>date('Y-m-d H:i:s'),
-        ]);
+            'goods_ids'    =>implode(',',$ids),
+            'before_imgs'  =>json_encode($frontImgs),
+            'after_imgs'   =>json_encode($afterImgs),
+            'day'          =>$day,
+            'content'      =>$content
+        ];
 
+        $isTrue = $this->_diaryDomain->addDiary($data);
         if($isTrue){
             return $this->returnData([],'添加成功',200);
         }

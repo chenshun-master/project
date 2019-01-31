@@ -1,27 +1,26 @@
-{extend name="layout/layout" /}
+{extend name="layout/layout2-main" /}
 
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
 {/block}
 
 {block name="main"}
-    <div id="breadcrumb">
-        <ul class="breadcrumb">
-            <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
-            <li class="active">商品管理</li>
-        </ul>
+    <div class="row white-bg" id="cus-breadcrumb">
+        <div class="col-sm-4">
+            <ul class="breadcrumb">
+                <li><a ><i class="fa fa-home"></i> 主页</a></li>
+                <li>商品管理</li>
+                <li>商品列表</li>
+            </ul>
+        </div>
     </div>
-    <section class="content" >
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">商品列表</h3>
-                    </div>
-                    <div class="box-body table-responsive">
-                        <table id="table-list" ></table>
-                    </div>
-                </div>
+    <section class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox">
+            <div class="ibox-title white-bg" style="border-top: 3px solid #f58d8d">
+                <h5>商品列表</h5>
+            </div>
+            <div class="ibox-content">
+                <table id="table-list" ></table>
             </div>
         </div>
     </section>
