@@ -130,9 +130,6 @@
             if (redream.isEmptyStr(data.nickname)) {
                 redream.showTip('昵称不能为空');
                 return false;
-            } else if (redream.strlen(data.nickname) > 15) {
-                redream.showTip('昵称过于太长');
-                return false;
             } else if (!this.loading) {
                 $.ajax({
                     url: "/weixin/user/editProfile",

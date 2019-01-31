@@ -21,14 +21,13 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-on-content cus-click-href" data-id="{$vo['id']}">{$vo['comment_content']}</div>
-    <div class="wl-neirong border cus-click-href"  data-id="{$vo['id']}">
-        <div class="wl-nei1  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']}</div>
-        <div class="wl-nei3  cus-click-href" data-id="{$vo['id']}">
+    <div class="wl-on-content cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['comment_content']}</div>
+    <div class="wl-neirong border cus-click-href"  data-id="{$vo['id']}"  data-type="{$vo['type']}">
+        <div class="wl-nei1">{$vo['title']}</div>
+        <div class="wl-nei3" >
             {foreach $thumbnail as $k=>$v}
             <img src="{$v}" alt="">
             {/foreach}
-
         </div>
     </div>
     <ul class="wl-tubiao">
@@ -57,8 +56,8 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-on-content cus-click-href " data-id="{$vo['id']}">{$vo['comment_content']}</div>
-    <div class="wl-nei1 cus-click-href border" data-id="{$vo['id']}">{$vo['title']}</div>
+    <div class="wl-on-content cus-click-href " data-id="{$vo['id']}"  data-type="{$vo['type']}">{$vo['comment_content']}</div>
+    <div class="wl-nei1 cus-click-href border" data-id="{$vo['id']}"  data-type="{$vo['type']}">{$vo['title']}</div>
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light"></i><span></span></li>
         <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
@@ -84,10 +83,10 @@ $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-on-content cus-click-href" data-id="{$vo['id']}">{$vo['comment_content']}</div>
-    <div class="wl-neirong border cus-click-href"  data-id="{$vo['id']}">
-        <div class="wl-nei5 cus-click-href " data-id="{$vo['id']}" data-type="{$vo['type']}"> {$vo['title']}</div>
-        <div class="wl-left-img cus-click-href" data-id="{$vo['id']}">
+    <div class="wl-on-content cus-click-href" data-id="{$vo['id']}"  data-type="{$vo['type']}">{$vo['comment_content']}</div>
+    <div class="wl-neirong border cus-click-href"  data-id="{$vo['id']}"  data-type="{$vo['type']}">
+        <div class="wl-nei5"> {$vo['title']}</div>
+        <div class="wl-left-img" >
             <?php if(count($thumbnail) > 0):?>
             <img src="{$thumbnail['img_1']}" alt="图片"/>
             <?php else:?>

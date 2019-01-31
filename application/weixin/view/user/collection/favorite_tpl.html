@@ -20,13 +20,12 @@
         <div style="clear:both"></div>
     </div>
 
-    <div class="wl-neirong cus-click-href"   data-id="{$vo['id']}">
-        <div class="wl-nei1 cus-click-href"  data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']} </div>
-        <div class="wl-nei3 cus-click-href href" data-id="{$vo['id']}" >
+    <div class="wl-neirong cus-click-href"   data-id="{$vo['id']}"  data-type="{$vo['type']}">
+        <div class="wl-nei1">{$vo['title']} </div>
+        <div class="wl-nei3 href" >
             {foreach $thumbnail as $k=>$v}
-            <img src="{$v}" alt="">
+            <img src="{$v}" alt="" class="cus-click-href"  data-id="{$vo['id']}">
             {/foreach}
-
         </div>
     </div>
     <ul class="wl-tubiao">
@@ -53,7 +52,7 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-nei1 cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">{$vo['title']}</div>
+    <div class="wl-nei1 cus-click-href" data-id="{$vo['id']}"  data-type="{$vo['type']}">{$vo['title']}</div>
     <ul class="wl-tubiao">
         <li><i class="iconfont icon-share_light" ></i><span></span></li>
         <li><i class="iconfont icon-comment_light" ></i><span>{$vo['comment_count']}</span></li>
@@ -78,9 +77,9 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="wl-neirong cus-click-href" data-id="{$vo['id']}">
-        <div class="wl-nei5 cus-click-href"  data-id="{$vo['id']}" data-type="{$vo['type']}"> {$vo['title']} </div>
-        <div class="wl-left-img cus-click-href" data-id="{$vo['id']}">
+    <div class="wl-neirong cus-click-href" data-id="{$vo['id']}"  data-type="{$vo['type']}">
+        <div class="wl-nei5"> {$vo['title']} </div>
+        <div class="wl-left-img">
             <?php if(count($thumbnail) > 0):?>
             <img src="{$thumbnail['img_1']}" alt="图片"/>
             <?php else:?>
