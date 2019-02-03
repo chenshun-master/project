@@ -107,3 +107,24 @@
     margin: 0 auto;
     margin-top: 80px;
 }
+.wl-top-tt{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.wl-integral-list{
+    position: fixed;
+    top: 75px;
+    bottom: 0;
+    height: auto!important;
+    max-width: 640px;
+    width: 95%;
+ }
+
+.wl-ding{
+    width: 100%;min-height: 500px; position: fixed;top: 0;left: 0;right: 0;max-width: 640px;
+    margin: 0 auto;
+}
