@@ -111,8 +111,8 @@ class ShopApi extends BaseController
      * @return false|string
      */
     public function getGoodGoodsList(){
-        $page = $this->request->get('page/d', 1);
-        $page_size = $this->request->get('page_size/d', 15);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 15);
 
         $data = $this->_spGoodGoodsDomain->getGoodGoodsList($page,$page_size);
         return $this->returnData($data, '', 200);
