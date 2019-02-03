@@ -33,13 +33,13 @@ class ShopApi extends BaseController
      */
     public function getGoodsList()
     {
-        $page = $this->request->post('page/d', 1);
-        $page_size = $this->request->post('page_size/d', 5);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 5);
         $data = [
-            'category' => $this->request->post('category', ''),
-            'sort' => $this->request->post('sort/d', 0),
-            'city' => $this->request->post('city', ''),
-            'keywords' => $this->request->post('keywords', '')
+            'category' => $this->request->param('category', ''),
+            'sort' => $this->request->param('sort/d', 0),
+            'city' => $this->request->param('city', ''),
+            'keywords' => $this->request->param('keywords', '')
         ];
 
         $doamin = new \app\api\domain\SpGoodsDomain();
@@ -82,9 +82,9 @@ class ShopApi extends BaseController
      */
     public function getSellerHotGoods()
     {
-        $sellerid = $this->request->post('sellerid/d', 0);
-        $page = $this->request->post('page/d', 1);
-        $page_size = $this->request->post('page_size/d', 5);
+        $sellerid = $this->request->param('sellerid/d', 0);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 5);
 
         $data = $this->_spGoodsDomain->getSellerHotGoods($sellerid, $page, $page_size);
         return $this->returnData($data, '', 200);
@@ -95,9 +95,9 @@ class ShopApi extends BaseController
      */
     public function getUserOrder()
     {
-        $status = $this->request->post('status/d', 0);
-        $page = $this->request->post('page/d', 1);
-        $page_size = $this->request->post('page_size/d', 10);
+        $status = $this->request->param('status/d', 0);
+        $page = $this->request->param('page/d', 1);
+        $page_size = $this->request->param('page_size/d', 10);
         if (!$this->checkLogin()) {
             return $this->returnData([], '用户未登录', 401);
         }
@@ -210,7 +210,7 @@ class ShopApi extends BaseController
     public function search()
     {
         $page = $this->request->post('page/d', 1);
-        $page_size = $this->request->post('page_size/d', 15);
+        $page_size = $this->request->param('page_size/d', 15);
         $type = $this->request->param('type', 0);
         $keyword = $this->request->param('keywords', '');
 
