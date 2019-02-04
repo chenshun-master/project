@@ -66,7 +66,7 @@ var mescroll = new MeScroll("container", {
     down:{auto:true},
     up: {
         clearEmptyId: "container-list",
-        page: {num: 0,size: 15},
+        page: {num: 0,size: 20},
         htmlNodata: '<p class="upwarp-nodata">-- 已加载全部 --</p>',
         isBounce: false,
         noMoreSize: 5,

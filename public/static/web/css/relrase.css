@@ -2,72 +2,25 @@
 * {
     margin: 0;
     padding: 0;
-    border: 0;
-    list-style: none;
-    list-style-image: none;
-    list-style-type: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
     border: 0px;
     outline:none;
 
-}
-
-a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    /*font: inherit;*/
-    vertical-align: baseline;
-}
-
-ol, ul {
-    list-style: none;
-}
-/*select {*/
-    /*!*清除select默认样式*!*/
-    /*!*appearance:none;*!*/
-    /*!*-moz-appearance:none;*!*/
-    /*!*-webkit-appearance:none;*!*/
-    /*!*-ms-appearance:none;*!*/
-
-    /*border:1px solid #CCC;*/
-    /*!*自定义箭头的样式，记得背景一定要加 白色或其他*!*/
-    /*!*ie下,原默认的箭头样式还是会显示，所以这里把自定义的样式给去除了*!*/
-    /*background:#fff;*/
-    /*color:#666;*/
-    /*outline:none;*/
-/*}*/
-
-
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
-    margin: 0;
-    padding: 0;
-}
-.de{
-    background: #7DB0E8;
-    color: white;
 }
 body {
     font-family: "微软雅黑 CN";
     color: #221815;
     background: white;
 }
-
 body {
     margin: 0 auto;
     min-width: 1500px;
 }
-
-ul li {
-    list-style-type: none;
+a{
+    text-decoration: none;
 }
-
-a {
-    text-decoration: none !important;
+.de{
+    background: #7DB0E8;
+    color: white;
 }
 .wl-cang1 a:active{
     text-decoration: none;
@@ -359,17 +312,22 @@ a {
     position: absolute;bottom: 90px;
 }
 .wl-btn button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
-    background:#7DB0E8;
-    color: #FFfFFF;
-    font-size: 20px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 3px;
     float: right;
-    margin-top: 40px;
-    margin-right: 100px;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn button:hover{
+    background: #7DB0E8;
+    color: #FFfFFF;
 }
 .wl-zhao1{
     font-size: 14px;
@@ -399,17 +357,22 @@ a {
     position: absolute;bottom: 65px;
 }
 .wl-btn1 button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn1 button:hover{
     background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    float: right;
-    margin-top: 40px;
-    margin-right: 100px;
 }
 .wl-sc-js{
     color: #AAAAAA;
@@ -425,17 +388,22 @@ a {
     position: absolute;bottom: 65px;
 }
 .wl-btn2 button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn2 button:hover{
     background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    float: right;
-    margin-top: 40px;
-    margin-right: 100px;
 }
 .wl-btn3{
     width: 100%;
@@ -444,17 +412,22 @@ a {
     position: absolute;bottom: 34px;
 }
 .wl-btn3 button{
-    width: 130px;
-    height: 45px;
-    line-height: 45px;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    background: #EEEEEE;
+    color: #909090;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.wl-btn3 button:hover{
     background: #7DB0E8;
     color: #FFfFFF;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    float: right;
-    margin-top: 40px;
-    margin-right: 100px;
 }
 .wl-huoqu{
     width: 164px;
@@ -465,8 +438,8 @@ a {
     font-size: 14px;
     border: 1px solid #F1F1F1;
     float: right;
-    margin-right: 104px;
-    margin-top: 12px;
+    margin-right: 159px;
+    margin-top: 10px;
 }
 .wl-sxia{
     position: absolute;
@@ -1093,7 +1066,7 @@ top: 190px;
     color: #888888;
 }
 .wl-zhen1 textarea{
-    width: 72%;
+    width: 67.5%;
     min-height: 150px;
     border: 1px solid #e7e7e7;
     margin-left: 30px;

@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>发表文章</title>
+    <link rel="stylesheet" href="/static/plugin/layui/css/new-layui.css">
     <link rel="stylesheet" href="/static/web/css/test.css">
     <link rel="stylesheet" href="/static/web/css/relrase.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/web/css/graphic.css">
     <link rel="stylesheet" href="/static/css/function.css">
-    <link rel="stylesheet" href="/static/plugin/layui/css/layui.css">
+
 </head>
 <body style="background: #F8F8F8">
 <div class="wl-con">
@@ -22,10 +23,11 @@
     <div class="wl-zhanghao-box"
          style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian">
+            <p style="height: 80px;background: #7DB0E8;" class="wl-xian">
                 <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i
-                    class="iconfont icon-triangledownfill" style="color: white;"></i></p>
+                <span style="color: white;margin-left: 48px;float: left;margin-top: 8px;">{$user_info['nickname']}</span>
+                <i class="iconfont icon-triangledownfill" style="color: white;display: inline-block;margin-top: 7px;"></i>
+            </p>
             <div class="wl-cang" style="display: none">
                 <a href="/index/user/main"><p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi"
                                                                                  style="font-size: 22px;margin-right: 10px"></i>账号设置
@@ -89,7 +91,7 @@
                     <input type="hidden" id="fr-goods_id" value="{$goods_info['id']}">
                     <div style="height: 60px;line-height: 60px;padding-left: 10px;margin-top: 20px">
                         <div style="float: left;width: 7%;margin-left: 52px;"> 标 题</div>
-                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入商品标题" style="width: 93%;height: 36px;text-indent: 10px">
+                        <div style="float: left;width: 87%;"><input type="text" value="" id="fr-title" placeholder="请输入商品标题" style="width: 93%;height: 36px;text-indent: 10px;border-bottom: 1px solid #f1f1f1">
                         </div>
                     </div>
                     <div style="clear: both;height: 60px;line-height: 60px;padding-left: 10px;display: none" >

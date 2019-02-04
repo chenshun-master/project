@@ -21,9 +21,11 @@
     </div>
     <div class="wl-zhanghao-box" style="position:relative;width:1265px;margin:0 auto;top:-80px;right: 42px;cursor: pointer">
         <div class="wl-zhanghao" style="right:0;">
-            <p style="height: 80px;padding-top: 9px; background: #7DB0E8;" class="wl-xian">
+            <p style="height: 80px;background: #7DB0E8;" class="wl-xian">
                 <img src="{$user_info['portrait']}" class="wl-toux" onerror="this.src='/static/web/image/tou.png'"/>
-                <span style="color: white;margin-left: 48px;float: left;margin-top: -1px;">{$user_info['nickname']}</span><i class="iconfont icon-triangledownfill" style="color: white;"></i> </p>
+                <span style="color: white;margin-left: 48px;float: left;margin-top: 8px;">{$user_info['nickname']}</span>
+                <i class="iconfont icon-triangledownfill" style="color: white;display: inline-block;margin-top: 7px;"></i>
+            </p>
             <div class="wl-cang" style="display: none">
                 <a href="/index/user/main"> <p class="wl-xiany" id="wl-anquan"><i class="iconfont icon-shezhi" style="font-size: 22px;margin-right: 10px"></i>账号设置</p></a>
                 <p class="wl-xiany" onclick="redream.href('/index/user/signOut')"><i class="iconfont icon-guanbi" style="font-size: 18px;margin-right: 10px"></i>退出登录</a></p>
@@ -64,6 +66,7 @@
                 <p class="wl-fabiaowen">我的分销商品</p>
                 <div class="wl-xianshi-neirong">
                     <!--<div class="wl-all-title">已显示全部40条内容</div>-->
+                    {if(count($list['rows']) > 0)}
                     {foreach($list['rows'] as $val)}
                         <div class="wl-all-neirong">
                             <div class="wl-all-left">
@@ -81,6 +84,12 @@
                             <!--</div>-->
                         </div>
                     {/foreach}
+                    {else/}
+                    <div class="wl-weifabiao">
+                        <dl class="iconfont icon-wushuju"></dl>
+                        <dt>你还没有分销过商品</dt>
+                    </div>
+                    {/if}
                     <div id="wl-fenye" ></div>
                     </div>
                 <footer class="wl-foot" style="">{:config('conf.copyright')}</footer>
