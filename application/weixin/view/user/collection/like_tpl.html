@@ -1,133 +1,133 @@
 {if condition="count($rows) > 0"}
-    {foreach $rows as $vo}
-        {php}
-            $thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
-        {/php}
-
-        {switch $vo.type}
-            {case 1}
-                {if condition="count($thumbnail) >= 3"}
-                    <div  class="w-video">
-                        <div class="wx-name9 neme2" >
-                            <div style="position:absolute;">
-                                <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2" onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
-                                <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
-                                    <dd>{$vo['published_time']|strtotime|formatTime} </dd>
-                                </dl>
-                            </div>
-                        </div>
-                        <div class="wl-jh  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
-                            {$vo['title']}
-                        </div>
-                        <div class="wl-img  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
-                            {foreach $thumbnail as $k=>$v}
-                                <dd ><img src="{$v}" alt="图片"/></dd>
-                            {/foreach}
-                        </div>
-                        <div style="height: 80px">
-                            <ul class="wx-fen " style="bottom: 38px">
-                                <li><i class="iconfont icon-share_light" ></i><span></span></li>
-                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
-                                <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
-                                    <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"style=" font-size: 30px;"></i>
-                                    <span >{$vo['like']}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                {elseif condition="count($thumbnail)  == 0"/}
-            <div style="width: 100%;min-height: 290px">
-                <div class="wx-name9 name1">
-                    <div class="wl-one1-2">
-                        <img src="{$vo['portrait']}" alt="" class="wx-tou cus-article-href2"
-                             onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
-                        <dl class="wx-yh wl-on1-3">
-                            <dt>{$vo['nickname']}</dt>
-                            <dd>{$vo['published_time']|strtotime|formatTime}</dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="wx-moban">
-                    <div class="wx-nei1 cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}" style="min-height: 150px">
-                        <div class="wl-mo1">{$vo['title']}</div>
-                        <div >
-                            <ul class="wx-fen" style="margin-bottom: 10px;" >
-                                <li style="margin-left: 31px;"><i class="iconfont icon-share_light"></i><span></span></li>
-                                <li><i class="iconfont icon-comment_light"></i><span style="margin-left: 8px;">{$vo['comment_count']}</span>
-                                </li>
-                                <li data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous">
-                                    <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"
-                                       style=" font-size: 30px;"></i>
-                                    <span>{$vo['like']}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+{foreach $rows as $vo}
+{php}
+$thumbnail = !empty($vo['thumbnail']) ? json_decode($vo['thumbnail'],true) :[];
+{/php}
+{switch $vo.type}
+{case 1}
+{if condition="count($thumbnail) >= 3"}
+<div class="wl-img-3">
+    <div class="wl-main href">
+        <div>
+            <div class="wl-tou-img href">
+                <img src="{$vo['portrait']}" class="cus-article-href2" alt=""
+                     onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
             </div>
-                {else /}
-                    <div class="wl-one1-1">
-                        <div class="wx-name9 name1">
-                            <div class="wl-one1-2">
-                                <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2" onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
-                                <dl class="wx-yh wl-on1-3"><dt >{$vo['nickname']}</dt>
-                                    <dd>{$vo['published_time']|strtotime|formatTime} </dd>
-                                </dl>
-                            </div>
-                        </div>
-                        <div class="wx-nei1  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
-                            <dl class="wl-teo1">
-                                <dl  class="wl-neil7">{$vo['title']}</dl>
-                                <?php if(count($thumbnail) > 0):?>
-                                <dd><img src="{$thumbnail['img_1']}" alt="图片"/></dd>
-                                <?php else:?>
-                                <dd><img src="" alt="图片"/></dd>
-                                <?php endif;?>
-                            </dl>
-                        </div>
-                        <div style="position: relative">
-                            <ul class="wx-fen" style="position:relative;bottom: 4px">
-                                <li><i class="iconfont icon-share_light" ></i><span></span></li>
-                                <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
-                                <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
-                                    <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}"style=" font-size: 30px;"></i>
-                                    <span >{$vo['like']}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                {/if}
-            {/case}
+            <div class="wl-tou-yonghu href">
+                <dl>{$vo['nickname']}</dl>
+                <dt>{$vo['published_time']|strtotime|formatTime}</dt>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
 
-            {case 2}
-                <div style="width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relative">
-                    <div class="wx-name9 neme2" >
-                        <div class="name2-1" >
-                            <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2"  onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
-                            <dl class="wx-yh"><dt>{$vo['nickname']}</dt>
-                                <dd>{$vo['published_time']|strtotime|formatTime} </dd>
-                            </dl>
-                        </div>
-                    </div>
-                    <div class="wl-jh  cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
-                        {$vo['title']}
-                    </div>
-                    <div class="wx-video">
-                        <video src="{$vo['video_url']}" controls="controls" width="100%" height="420px"/>
-                    </div>
-                    <div style="height: 80px">
-                        <ul class="wx-fen"style="bottom: 38px">
-                            <li><i class="iconfont icon-share_light" ></i><span></span></li>
-                            <li><i class="iconfont icon-comment_light" ></i><span style="margin-left: 8px;">{$vo['comment_count']}</span></li>
-                            <li  data-click="{$vo['isZan']}" data-id="{$vo['id']}" class="cus-article-fabulous" >
-                                <i class="iconfont   {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'}" style=" font-size: 30px;"></i>
-                                <span>{$vo['like']}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            {/case}
-        {/switch}
-    {/foreach}
+    <div class="wl-neirong cus-click-href" data-id="{$vo['id']}" data-type="{$vo['type']}">
+        <div class="wl-nei1">{$vo['title']}</div>
+        <div class="wl-nei3">
+            {foreach $thumbnail as $k=>$v}
+            <img src="{$v}" alt="">
+            {/foreach}
+        </div>
+    </div>
+    <ul class="wl-tubiao">
+        <li><i class="iconfont icon-share_light"></i><span></span></li>
+        <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
+        </li>
+    </ul>
+</div>
+{elseif condition="count($thumbnail)  == 0"/}
+<div class="wl-neirong cus-click-href">
+    <div class="wl-main href">
+        <div>
+            <div class="wl-tou-img href">
+                <img src="{$vo['portrait']}" alt="" onerror='this.src="/static/image/user/tou.png"'
+                     class="cus-article-href2" data-user_id="{$vo['user_id']}">
+            </div>
+            <div class="wl-tou-yonghu href">
+                <dl>{$vo['nickname']}</dl>
+                <dt>{$vo['published_time']|strtotime|formatTime}</dt>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="wl-nei1 cus-click-href" data-id="{$vo['id']}"  data-type="{$vo['type']}">{$vo['title']}</div>
+    <ul class="wl-tubiao">
+        <li><i class="iconfont icon-share_light"></i><span></span></li>
+        <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
+        </li>
+    </ul>
+</div>
+{else /}
+<div class="wl-img-1">
+    <div class="wl-main href">
+        <div>
+            <div class="wl-tou-img href">
+                <img src="{$vo['portrait']}" alt="" class="cus-article-href2"
+                     onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
+            </div>
+            <div class="wl-tou-yonghu href">
+                <dl>{$vo['nickname']}</dl>
+                <dt>{$vo['published_time']|strtotime|formatTime}</dt>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="wl-neirong cus-click-href" data-id="{$vo['id']}"  data-type="{$vo['type']}">
+        <div class="wl-nei5"> {$vo['title']}</div>
+        <div class="wl-left-img">
+            <?php if(count($thumbnail) > 0):?>
+            <img src="{$thumbnail['img_1']}" alt="图片"/>
+            <?php else:?>
+            <img src="" alt="图片"/>
+            <?php endif;?>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <ul class="wl-tubiao">
+        <li><i class="iconfont icon-share_light"></i><span></span></li>
+        <li><i class="iconfont icon-comment_light"></i><span>2</span></li>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
+        </li>
+    </ul>
+</div>
 
+{/if}
+{/case}
+
+{case 2}
+<div style="width: 100%;min-height: 400px;border-bottom: 10px solid #EEEEEE;position: relative">
+    <div class="wx-name9 neme2">
+        <div class="name2-1">
+            <img src="{$vo['portrait']}" alt="" class="wx-tou  cus-article-href2"
+                 onerror='this.src="/static/image/user/tou.png"' data-user_id="{$vo['user_id']}">
+            <dl class="wx-yh">
+                <dt>{$vo['nickname']}</dt>
+                <dd>{$vo['published_time']|strtotime|formatTime}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="wl-jh  cus-click-href" data-id="{$vo['id']}"  data-type="{$vo['type']}">{$vo['title']}</div>
+    <div class="wx-video">
+        <video src="{$vo['video_url']}" controls="controls" width="100%" height="420px"/>
+    </div>
+    <ul class="wl-tubiao">
+        <li><i class="iconfont icon-share_light"></i><span></span></li>
+        <li><i class="iconfont icon-comment_light"></i><span>{$vo['comment_count']}</span></li>
+        <li class="cus-article-fabulous" data-type="{$vo['isZan']}"  data-id="{$vo['id']}">
+            <i class="iconfont  {$vo['isZan'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-fabulous-icon"></i>
+            <span class="wl-dian-one">{$vo['like']}</span>
+        </li>
+    </ul>
+</div>
+{/case}
+{/switch}
+{/foreach}
 {/if}

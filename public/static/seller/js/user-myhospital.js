@@ -47,7 +47,7 @@ table.render({
             "data": res.data.rows //解析数据列表
         };
     }
-    ,text:{none:'您还没有添加任何盛申请...'}
+    ,text:{none:'您还没有添加任何申请记录...'}
     ,cols: [[ //表头
         {type:'numbers'},
         {type:'checkbox'},

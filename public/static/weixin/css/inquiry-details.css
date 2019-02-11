@@ -36,8 +36,8 @@
 }
 .wl-inquiry-header{
     width: 100%;
-    min-height: 100px;
-    padding: 0 10px 0 10px;
+    min-height: 50px;
+    padding: 5px 10px 5px 10px;
     border-bottom: 1px solid #f1f1f1;
 }
 .wl-inquiry-one{
@@ -147,16 +147,17 @@ footer{
     left: 10px;
     top: 1px;
     color: black;
-    font-size: 17px!important;
+    font-size: 18px!important;
 }
 .wl-wenda2{
     position: relative;
 }
 .wl-wenda2 i{
     position: absolute;
-    left: 24px;
+    left: 20px;
     top: 0px;
     color: black;
+    font-size: 17px!important;
 }
 .wl-wenda3{
     background: #7DB0E8;
@@ -278,4 +279,59 @@ footer{
     font-size: 12px;
     display: none;
     color: #7DB0E8;
+}
+.wl-inquiry-footer li:nth-child(3){
+    width: 33.4%;
+    float: right;
+    margin-right: -1px;
+}
+.marsk-container{
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    z-index: 10;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow-y:auto;
+    z-index: 999999;
+}
+.wl-tkyy-top1{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    position: relative;
+
+}
+.wl-cancel {
+    position: absolute;
+    left: 10px;
+}
+.wl-probleone {
+    width: 100%;
+    height: 40px;
+    line-height: 22px;
+    resize: none;
+    font-size: 17px;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0 10px 0;
+}
+.wl-probletwo {
+    width: 100%;
+    min-height: 250px;
+    line-height: 20px;
+    resize: none;
+    font-size: 15px;
+    padding: 10px 0 10px 0;
+}
+.wl-problem {
+    width: 95%;
+    margin: 0 auto;
+    min-height: 20px;
 }

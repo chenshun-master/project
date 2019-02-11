@@ -29,11 +29,19 @@ class UDomain
         $total = $obj->count();
         $field = [
             'user.portrait','doctor.real_name','doctor.user_id','hospital.id as hospital_id','hospital.hospital_name','auth.duties',
+            'auth.speciality',
             '(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1)'=>'article_num',
             '(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id)'=>'case_num',
         ];
 
         $rows = $obj->field($field)->page($page,$page_size)->fetchSql(false)->select();
+
+        if($rows){
+            foreach ($rows as $key => $val){
+                $rows[$key]['speciality'] = explode(',',$val['speciality']);
+            }
+        }
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,
@@ -63,11 +71,18 @@ class UDomain
             'hospital.hospital_name',
             'auth.hospital_type as type',
             'user.portrait',
+            'auth.speciality',
             '(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1)'=>'article_num',
             '(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id)'=>'case_num',
         ];
 
         $rows = $obj->field($field)->page($page,$page_size)->select();
+        if($rows){
+            foreach ($rows as $key => $val){
+                $rows[$key]['speciality'] = explode(',',$val['speciality']);
+            }
+        }
+
         return [
             'rows'          =>$rows,
             'page'          =>$page,

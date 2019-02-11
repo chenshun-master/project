@@ -15,8 +15,8 @@
         <div class="wl-title">
             {$info['title']}
         </div>
-        <div class="wl-huida"><span class="wl-mehuida">
-            <i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>
+        <div class="wl-huida">
+            <span class="wl-mehuida"><i class="iconfont icon-combinedshapecopy2"></i>我要回答</span>
             <span class="wl-answer-number">{$info['answer_num']}个回答 <i class="iconfont icon-back_left-copy"></i></span>
         </div>
     </div>
@@ -41,16 +41,32 @@
     </div>
 
 </div>
+<!--评论遮罩层-->
 <div class="marsk-container">
     <div class="tkyy_con">
         <textarea id="wl-pincontent"></textarea><span class=" iconfont icon-fabu" onclick="myObj.publishComment()"></span>
     </div>
 </div>
+
+
+<!--回答遮罩层-->
+<div class="marsk-container2">
+    <div class="wl-tkyy-top"><span class="wl-cancel2 href"><i class="iconfont icon-back_light"></i>取消</span>添加回答
+        <span class="wl-release href" onclick="myObj.release()">发布</span>
+    </div>
+    <div class="wl-answer-title">{$info['title']}</div>
+    <div class="wl-wenti">
+        <textarea type="text" placeholder="分享你的真实观点和经验" class="wl-probletwo" id="wl-probletwo-con"></textarea>
+    </div>
+</div>
+
 <ul class="wl-reply-footer">
     <li class="wl-write-comment"><i class="iconfont icon-combinedshapecopy2 wl-write"></i> 写评论...</li>
     <li><i class="iconfont icon-pinglun- wl-comment-icon"></i><span class="wl-reply-num"><span class="comment-num">0</span></span></li>
-    <li><i class="iconfont icon-dianzan- wl-comment-icon"></i></li>
-    <li><i class="iconfont icon-jiantou- wl-comment-icon"></i></li>
+    <li id="cus-click-fabulous" data-type="{$info['islike']}" data-id="{$info['answer_id']}">
+        <i class="iconfont {$info['islike'] == 1?'icon-dianzan1 cus-blue':'icon-dianzan'} wl-comment-icon wl-fabulous-icon" ></i>
+    </li>
+    <li><i class="iconfont icon-jiantou- wl-comment-icon wl-answer-number"></i></li>
 </ul>
 {/block}
 
@@ -67,9 +83,7 @@
         <div class="wl-ping-xiang">
             <div>
                 <div class="wl-name cus-touser-main" data-user_id="{{item.user_id}}">{{item.nickname}}</div>
-
                 <div class=" wl-dianzan cus-comment-fabulous" style="font-size: 18px" data-id="{{item.id}}" data-click="{{item.islike}}" >
-
                     {{#  if(item.islike == 0){ }}
                     <span class="iconfont icon-dianzan wl-fabulous-icon"></span>
                     {{#  } }}
@@ -77,9 +91,7 @@
                     {{#  if(item.islike == 1){ }}
                     <span class="iconfont icon-dianzan1 cus-blue  wl-fabulous-icon"></span>
                     {{#  } }}
-
                     <span class="wl-dian-one" style="font-size: 13px">{{item.like_count}}</span>
-
                 </div>
 
             </div>
@@ -94,10 +106,16 @@
 <script>
     const answer_id = {$info['answer_id']};
     const inquiry_id = {$info['inquiry_id']};
+
     $(".wl-write-comment").click(function (event) {
         event.stopPropagation(); //停止事件冒泡
         $(".marsk-container").toggle();
         $('#wl-pincontent').focus();
+    });
+
+    $(".wl-mehuida").click(function (event) {
+        event.stopPropagation(); //停止事件冒泡
+        $(".marsk-container2").fadeIn();
     });
 
     //点击空白处隐藏弹出层
@@ -114,6 +132,11 @@
         }
     }).on('input', function () {
         this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    $('.wl-cancel2').click(function () {
+        $(".marsk-container2").fadeOut();
+        $(".wl-probletwo").val("");
     });
 
     const mescroll = new MeScroll("container", {
@@ -153,6 +176,7 @@
         }
     });
     var  myObj = {
+        loading: false,
         publishCommentConf: {
             loading: false,
         },
@@ -183,10 +207,9 @@
             });
         },
         clickCommentFabulousLading:false,
-        clickCommentFabulous:function (obj, flag) {
+        clickCommentFabulous:function (obj) {
             var id = obj.data('id');
             var type = obj.data('click') == 1 ? 2 : 1;
-            console.log(obj.data('click'));
             if(!myObj.clickCommentFabulousLading){
                 $.ajax({
                     url: "/weixin/user/giveFabulous",
@@ -202,7 +225,6 @@
                     success: function (res) {
                         if (res.code == 200) {
                                 var num = parseInt(obj.find('.wl-dian-one').text());
-                                console.log()
                                 if (type == 1) {
                                     obj.data('click', 1);
                                     obj.find('.wl-dian-one').text(num + 1);
@@ -221,13 +243,78 @@
                 });
             }
         },
+        release:function () {
+            let data = {id:inquiry_id,content: $('#wl-probletwo-con').val()};
+            if(data.content == ''){
+                redream.showTip('请输入你的观点和经验');
+            }else if(this.loading == false){
+                $.ajax({
+                    url: "/weixin/api/createAnswer",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        myObj.loading = true;
+                    },
+                    complete: function () {
+                        myObj.loading = false;
+                    },
+                    success: function (res) {
+                        if (res.code == 200) {
+                            redream.showTip('发布成功');
+                            window.location.href = '/weixin/index/inquiryDetails/id/' + inquiry_id;
+                        }else if(res.code == 401){
+                            LoginBox.showTip('请登录后进行操作').showBox();
+                        }else{
+                            redream.showTip(res.msg);
+                        }
+                    }
+                });
+            }
+        },
+
+        //用户点赞操作
+        isZanLoadind:false,
+        clickFabulous:function(obj){
+            var type = obj.data('click') == 1 ? 2 : 1;
+            console.log(obj.data('click'));
+            if(!myObj.isZanLoadind){
+                $.ajax({
+                    url: "/weixin/user/giveFabulous",
+                    type: 'post',
+                    data: {obj_id: answer_id, type: type,flag:1},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.isZanLoadind = true;
+                    },
+                    complete:function(){
+                        myObj.isZanLoadind = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(type == 1){
+                                obj.data('click', 1);
+                                obj.find('.wl-fabulous-icon').removeClass('icon-dianzan').addClass('cus-blue').addClass('icon-dianzan1');
+                            }else{
+                                obj.data('click', 0);
+                                obj.find('.wl-fabulous-icon').removeClass('icon-dianzan1').addClass('icon-dianzan').removeClass('cus-blue');
+                            }
+                        }
+                    }
+                });
+            }
+        },
     }
 
     $(document).on('click', '.cus-comment-fabulous', function () {
         myObj.clickCommentFabulous($(this), 1);
-    });
-    $(document).on('click', '.wl-answer-number', function () {
+    }).on('click', '.wl-answer-number', function () {
         window.location.href = '/weixin/index/inquiryDetails/id/' + inquiry_id;
     })
+    $(document).on('click','#cus-click-fabulous',function(event){
+        myObj.clickFabulous($(this));
+        event.stopPropagation();
+    });
+
 </script>
 {/block}

@@ -1,7 +1,6 @@
 {extend name="layout/layout" /}
 {block name="cssOrcrsipt"}
 <link rel="stylesheet" href="/static/weixin/css/index2.css">
-<link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
 <link rel="stylesheet" href="/static/plugin/mescroll/mescroll.min.css">
 {/block}
 
@@ -28,7 +27,6 @@
 
 {block name="script"}
 <script src="/static/plugin/layui/layui.all.js"></script>
-<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/plugin/mescroll/mescroll.min.js" charset="utf-8"></script>
 <script id="templateList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
@@ -41,8 +39,8 @@
                             <li class="wl-zhiding">置顶</li>
                         {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
-                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
-                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                        <li><span class="wl-jleft">{{ item.hits }}</span>浏览</li>
+                        <li><span class="wl-jleft">{{ item.comment_count }}</span>评论</li>
                     </ul>
                 </div>
             </div>
@@ -62,8 +60,8 @@
                         <li class="wl-zhiding">置顶</li>
                         {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
-                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
-                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                        <li></span><span class="wl-jleft">{{ item.hits }}</span>浏览</li>
+                        <li><span class="wl-jleft">{{ item.comment_count }}</span>评论</li>
                     </ul>
                 </div>
             </div>
@@ -83,8 +81,8 @@
                         <li class="wl-zhiding">置顶</li>
                         {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
-                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
-                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                        <li><span class="wl-jleft">{{ item.hits }}</span>浏览</li>
+                        <li><span class="wl-jleft">{{ item.comment_count }}</span>评论</li>
                     </ul>
                 </div>
             </div>
@@ -104,8 +102,8 @@
                         <li class="wl-zhiding">置顶</li>
                         {{#  } }}
                         <li  data-uid="{{item.user_id}}">{{ item.nickname }}</li>
-                        <li><span class="iconfont icon-attention wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.hits }}</span></li>
-                        <li><span class="iconfont icon-comment_light wl-jri" style="font-size: 17px;color: #b1b1b1"></span><span class="wl-jleft">{{ item.comment_count }}</span></li>
+                        <li><span class="wl-jleft">{{ item.hits }}</span>浏览</li>
+                        <li><span class="wl-jleft">{{ item.comment_count }}</span>评论</li>
                     </ul>
                 </div>
             </div>

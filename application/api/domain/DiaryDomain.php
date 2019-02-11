@@ -123,11 +123,38 @@ class DiaryDomain
      * @return bool
      */
     public function addDiary($data){
-        if(!$insertId = Db::name('diary')->insertGetId($data)){
-            return false;
-        }
+        Db::startTrans();
+        try {
+            if(!$insertId = Db::name('diary')->insertGetId([
+                'user_id'       =>$data['user_id'],
+                'goods_ids'     =>$data['goods_ids'],
+                'title'         =>$data['title'],
+                'before_imgs'   =>$data['before_imgs'],
+                'after_imgs'    =>$data['after_imgs'],
+                'created_time'  =>date('Y-m-d H:i:s'),
+                'updated_time'  =>date('Y-m-d H:i:s')
+            ])){
+                throw new \think\Exception('异常消息1');
+            }
 
-        return true;
+            if(!Db::name('diary_detail')->insertGetId([
+                'user_id'       =>$data['user_id'],
+                'diary_id'      =>$insertId,
+                'day'           =>$data['day'],
+                'type'          =>1,
+                'imgs'          =>$data['after_imgs'],
+                'content'       =>$data['content'],
+                'created_time'  =>date('Y-m-d H:i:s'),
+            ])){
+                throw new \think\Exception('异常消息2');
+            }
+
+            Db::commit();
+            return true;
+        } catch (\Exception $e) {
+            halt($e->getMessage());
+            Db::rollback();return false;
+        }
     }
 
     /**

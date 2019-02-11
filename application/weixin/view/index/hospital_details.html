@@ -201,12 +201,15 @@
     {{# if(item.thumbnail == 0){ }}
     <div class="wl-nei1 href click-to-article" data-id="{{item.id}}">
         <div class="wl-dem2">{{item.title}}</div>
+        <div class="wl-time">{{ item.published_time }}</div>
     </div>
     {{# } }}
 
     {{# if(item.thumbnail != 0 ){ }}
     <div class="wl-nei1 href click-to-article" data-id="{{item.id}}" >
-        <div class="wl-neirong1">{{item.title}}</div>
+        <div class="wl-neirong1">{{item.title}}
+            <div class="wl-time">{{ item.published_time }}</div>
+        </div>
         <div class="wl-neirong2">
             <img src="{{item.thumbnail}}" alt="" width="128" height="90">
         </div>

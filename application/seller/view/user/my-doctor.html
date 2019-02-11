@@ -1,41 +1,38 @@
-{extend name="layout/layout" /}
+{extend name="layout/layout2-main" /}
 
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
+
 {/block}
 
 {block name="main"}
-<div id="breadcrumb">
-    <ul class="breadcrumb">
-        <li><i class="home-icon fa fa-home"></i> <a href="/seller">主页</a></li>
-        <li class="active">医生管理</li>
-    </ul>
+<div class="row white-bg" id="cus-breadcrumb">
+    <div class="col-sm-4">
+        <ul class="breadcrumb">
+            <li><a ><i class="fa fa-home"></i> 主页</a></li>
+            <li>我的管理</li>
+            <li>医生管理</li>
+        </ul>
+    </div>
 </div>
-<section class="content">
+
+<section class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-xs-12">
-            <div class="nav-tabs-custom" >
-                <ul class="nav nav-tabs" id="my-tab">
-                    <li class="active" data-reload="tab-reload"><a href="#tab-box1" data-toggle="tab">医生列表</a></li>
-                    <li data-reload="tab-reload2"><a href="#tab-box2" data-toggle="tab">申请列表</a></li>
+            <div class="tabs-container nav-tabs-custom">
+                <ul class="nav nav-tabs" id="my-tab-status">
+                    <li class="active" ><a href="#tab-box1" data-toggle="tab">医生列表</a></li>
+                    <li ><a href="#tab-box2" data-toggle="tab">申请列表</a></li>
                 </ul>
-                <div class="tab-content" style="min-height: 500px;">
-                    <div class="tab-pane active" id="tab-box1">
-                        <div class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="layui-hide" id="table-list" ></table>
-                                </div>
-                            </div>
+                <div class="tab-content">
+                    <div id="tab-box1" class="tab-pane active">
+                        <div class="panel-body">
+                            <table class="layui-hide" id="table-list" ></table>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab-box2">
-                        <div class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="layui-hide" id="table-list2" ></table>
-                                </div>
-                            </div>
+                    <div id="tab-box2" class="tab-pane">
+                        <div class="panel-body">
+                            <table class="layui-hide" id="table-list2" ></table>
                         </div>
                     </div>
                 </div>

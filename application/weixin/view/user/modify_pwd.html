@@ -1,46 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!--  <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta content="telephone=no" name="format-detection"/>
-    <link rel="stylesheet" type="text/css" href="/static/weixin/css/modify_pwd.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/weixin/css/wkf.css"/>
-    <title>{:config('conf.title')}</title>
-    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <!--<script src="/static/js/rem.js" type="text/javascript" charset="utf-8"></script>-->
-</head>
+{extend name="layout/layout" /}
 
-<body style="background: #ffffff">
-<div class="con">
-    <div class="wx-top">
-        <a href="javascript:history.go(-1)" class="tb"></a> 修改密码
+{block name="cssOrcrsipt"}
+<link rel="stylesheet" href="/static/weixin/css/modify-pwd.css">
+
+{/block}
+
+{block name="main"}
+<header>
+    <div class="wl-top">
+        <div style="position: relative;" class="href">
+            <i class="iconfont icon-back_light top-left" style="font-size: 25px;color: #333333"   onclick="redream.toReferer()"></i>
+            <span>修改密码</span>
+        </div>
     </div>
-    <p class="xgma">
-        <span>旧密码</span>
-        <input type="password"  id="old-passwrod" placeholder="请输入你的旧密码"  style="padding-left: 25px;"/></p>
-    <p class="xgma" style="	border-bottom: 10px solid #F1F1F1;">
-        <span>新密码</span>
-        <input type="password"  id="passwrod" placeholder="请输入你的新密码"  style="padding-left: 25px;"/>
-    </p>
-    <p class="xgma"  style="	border-bottom: 10px solid #F1F1F1;">
-        <span>确认密码</span>
-        <input type="password"  id="new-password" placeholder="请再次输入你的新密码"  style="margin-left: 25px" />
-    </p>
-    <button id="btn" onclick="objClass.submit()">修改密码</button>
-</div>
-</body>
-<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
+</header>
 
-    $('.con input').on('.con input ',function(){
+<main>
+    <div class="wl-pwd">
+        <div class="wl-pwd-left">
+            旧密码
+        </div>
+        <div class="wl-pwd-right">
+            <input type="password" id="old-passwrod"  placeholder="请输入你的旧密码">
+        </div>
+    </div>
+    <div class="wl-pwd wl-pwd2">
+        <div class="wl-pwd-left">
+            新密码
+        </div>
+        <div class="wl-pwd-right">
+            <input type="password" id="passwrod" placeholder="请输入你的新密码">
+        </div>
+    </div>
+    <div class="wl-pwd wl-pwd2">
+        <div class="wl-pwd-left">
+            确认密码
+        </div>
+        <div class="wl-pwd-right">
+            <input type="password"  id="new-password" placeholder="请再次确认你的新密码">
+        </div>
+    </div>
+
+    <div class="wl-btn"  onclick="objClass.submit()">修改密码</div>
+</main>
+{/block}
+
+{block name="script"}
+<script>
+    $('.wl-pwd-right input').on('input ',function(){
         if(($.trim($('#old-passwrod').val())!=="")&&($.trim($('#passwrod').val())!=="")&&($.trim($('#new-password').val())!=="")){
-            $('#btn').css({'background':'#7DB0E8'});
+            $('.wl-btn').css({'background':'#7DB0E8'});
         }else{
-            $('#btn').css({'background':'#EBEBEB'});
+            $('.wl-btn').css({'background':'#EBEBEB'});
         }
     });
     var objClass ={
@@ -81,6 +92,8 @@
                             $('#old-passwrod').val('');
                             $('#passwrod').val('');
                             $('#new-password').val('');
+                            window.location.href = '/weixin/user/main';
+
                         }else{
                             redream.showTip(res.msg);
                         }
@@ -89,6 +102,5 @@
             }
         }
     }
-
 </script>
-</html>
+{/block}
