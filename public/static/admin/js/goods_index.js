@@ -130,9 +130,9 @@ var objClass = {
             objClass.updateSatus(ids,'normal',index);
         });
     },
-    updateLoading:false,
+    updateLoading:true,
     updateSatus:function(ids,flag,index){
-        if(objClass.updateLoading == false){
+        if(objClass.updateLoading == true){
             $.ajax({
                 url: '/admin/goods/updateGoodsStatus',
                 type: 'POST',
