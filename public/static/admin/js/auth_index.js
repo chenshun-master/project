@@ -148,9 +148,9 @@ var objClass = {
             objClass.updateSatus(ids,'success','手动审核',index);
         });
     },
-    updateLoading:false,
+    updateLoading:true,
     updateSatus:function(ids,flag,audit_remark,index){
-        if(objClass.updateLoading == false){
+        if(objClass.updateLoading == true){
             $.ajax({
                 url: '/admin/auth/updateAuthStatus',
                 type: 'POST',
