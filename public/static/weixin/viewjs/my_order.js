@@ -1,9 +1,5 @@
+var curNavIndex=0,mescrollArr=new Array(4),url = window.location.toString(),maodian = url.split('#')[1];
 
-
-var curNavIndex=0;
-var mescrollArr=new Array(4);
-var url = window.location.toString();
-var maodian = url.split('#')[1];
 $('.mescroll').addClass('hide');
 if(maodian == 'all'){
     $('#mescroll0').removeClass('hide');
@@ -111,7 +107,22 @@ var listObj = {
             error: errorCallback
         });
     },
+    complete:function(oid){
+        $.ajax({
+            url: "/weixin/shopapi/orderComplete",
+            type: 'post',
+            data: {oid:oid},
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                if(res.code == 305){
+                    alert('操作失败');
+                }
+            }
+        });
+    }
 };
+
 $(document).on('click','.click-to-orderpaydetail',function(){
     window.location.href = '/weixin/shop/orderDetails?oid='+$(this).data('oid');
 }).on('click','.click-to-paydetail',function(){
@@ -120,4 +131,7 @@ $(document).on('click','.click-to-orderpaydetail',function(){
     window.location.href = '/weixin/shop/paymentOrder/oid/'+$(this).data('oid');
 });
 
-
+$(document).on('click','.wl-confirm-complete',function(event){
+    listObj.complete($(this).parent().data('oid'));
+    event.stopPropagation();
+});

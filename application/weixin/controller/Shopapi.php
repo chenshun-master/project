@@ -102,6 +102,11 @@ class Shopapi extends BaseController
             return $this->returnData([], '用户未登录', 401);
         }
 
+        if($status == 3){
+            $status = 5;
+        }
+
+
         $data = $this->_shOrderDomain->getUserOrder($this->getUserId(), $status, $page, $page_size);
         return $this->returnData($data, '', 200);
     }
@@ -210,4 +215,23 @@ class Shopapi extends BaseController
         return $this->returnData($data, '', 200);
     }
 
+    /**
+     * 订单完成操作
+     * @return false|string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function orderComplete(){
+        if (!$this->checkLogin()) {
+            return $this->returnData([], '用户未登录', 401);
+        }
+
+        $order_id =  $this->request->post('oid/d', 0);
+        $isTrue = $this->_shOrderDomain->orderComplete($this->getUserId(),$order_id);
+        if($isTrue){
+            return $this->returnData([],'订单确认完成操作成功...');
+        }
+
+        return $this->returnData([],'操作失败...',305);
+    }
 }

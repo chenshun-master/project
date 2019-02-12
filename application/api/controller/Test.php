@@ -23,7 +23,14 @@ class Test
 //    }
 
       public function test(){
-          $data = app('domain')->getDomain('CommentDomain')->getCommentList('article',67,0,1,15);
+          $data = app('domain')->getDomain('rechargedomain')->addRechargeOrder([
+              'user_id'   =>61,
+              'mode'      =>1,
+              'account'   =>500.00,
+              'return_url'=>'http://172.16.100.85/weixin/shop/index',
+              'notify_url'=>'http://172.16.100.85/weixin/shop/index',
+              'request_ip'=>'192.168.220.180',
+          ]);
           halt($data);
       }
 }

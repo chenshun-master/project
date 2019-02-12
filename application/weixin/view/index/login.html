@@ -24,7 +24,7 @@
                     <button class="wl-the-login" id="btn" onclick="objClass.submitOne()">登录</button>
                 </div>
                 <div class="wl-d two">
-                    <div class="wl-input-box"><input type="text" placeholder="请输入您的手机号" id="mobile2"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"></div>
+                    <div class="wl-input-box"><input type="text" placeholder="请输入您的手机号" id="mobile2"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" ></div>
                     <div class="wl-input-box"><input type="password" placeholder="请输入密码" id="password" maxlength="18"></div>
 
                     <button class="wl-the-login" id="btn1" onclick="objClass.submitTwo()">登录</button>
@@ -33,7 +33,6 @@
             </div>
         </div>
         <div style="clear: both"></div>
-
 </div>
 
 {/block}

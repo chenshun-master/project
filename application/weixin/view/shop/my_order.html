@@ -56,11 +56,11 @@
 <script id="orderList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
 
-    {{#  if(item.status == 5){ }}
+    {{#  if(item.status == 6){ }}
     <div class="wl-dingdan">
         <div class="wl-zonghe1">
             <span class="wl-xiannv">订单号：{{item.order_no}}</span>
-            <span class="wl-jiage1" style="color: #F24F4F">待支付</span>
+            <span class="wl-jiage1" style="color: #F24F4F">退款订单</span>
         </div>
         <div class="wl-remen">
             <div class="wl-remen-img">
@@ -126,7 +126,7 @@
             </div>
 
         </div>
-        <!--<span class="wl-zhifu1">确认完成</span>-->
+        <span class="wl-zhifu1 wl-confirm-complete">确认完成</span>
         <div style="clear: both"></div>
     </div>
     {{#  } }}

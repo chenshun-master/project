@@ -6,7 +6,6 @@ use app\api\model\RegionsModel;
 
 class ShOrderDomain
 {
-
     /**
      * 获取用户订单列表
      * @param $user_id           用户ID
@@ -84,6 +83,15 @@ class ShOrderDomain
         return $data;
     }
 
+    /**
+     * 获取支付订单信息
+     * @param $user_id      用户ID
+     * @param $order_id     订单ID
+     * @return array|null|\PDOStatement|string|\think\Model
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function getPayOrderDetail($user_id,$order_id){
         $obj = Db::name('sh_order')->alias('order');
         $obj->leftJoin('wl_hospital hospital','order.hospital_id = hospital.id');
@@ -105,7 +113,6 @@ class ShOrderDomain
         }
         return $info;
     }
-
 
     /**
      * 获取用户订单列表
@@ -176,5 +183,21 @@ class ShOrderDomain
             'page_total'    =>getPageTotal($total,$page_size),
             'total'         =>$total
         ];
+    }
+
+    /**
+     * 订单确认完成操作
+     * @param int $user_id
+     * @param int $order_id
+     * @return bool
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function orderComplete(int $user_id,int $order_id){
+        $isTrue = Db::name('sh_order')->where('id',$order_id)->where('user_id',$user_id)->where('status',3)->update(['status'=>5]);
+        if($isTrue){
+            return true;
+        }
+        return false;
     }
 }
