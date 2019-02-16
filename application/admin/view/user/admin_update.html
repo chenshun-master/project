@@ -94,7 +94,7 @@
             }else if(objClass.loading == false){
                 var loading = layer.msg('提交中，请稍等...', {icon: 16,shade: 0.01,time:0});
                 $.ajax({
-                    url: '/admin/admin/updateInfo',
+                    url: '/admin/user/updateInfo',
                     type: 'POST',
                     data: data,
                     dataType: "json",
@@ -109,7 +109,7 @@
                         if(res.code == 200){
                             layer.msg('提交成功...', {icon: 1});
                             setTimeout(function(){
-                                window.location.href = '/admin/admin/index'
+                                window.location.href = '/admin/user/adminList'
                             },2000)
                         }else{
                             layer.msg(res.msg);
