@@ -1,7 +1,7 @@
 layui.table.render({
     elem: '#table-list'
     ,id:'tab-reload'
-    ,url: '/admin/goods/getGoodsList' //数据接口
+    ,url: '/admin/seller/getGoodsList' //数据接口
     ,toolbar: '#toolbarDemo'
     ,page: true
     ,request: {
@@ -134,7 +134,7 @@ var objClass = {
     updateSatus:function(ids,flag,index){
         if(objClass.updateLoading == true){
             $.ajax({
-                url: '/admin/goods/updateGoodsStatus',
+                url: '/admin/seller/updateGoodsStatus',
                 type: 'POST',
                 data:{ids:ids,flag:flag},
                 dataType: "json",

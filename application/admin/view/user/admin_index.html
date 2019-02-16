@@ -3,24 +3,23 @@
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
 {/block}
-
 {block name="main"}
 <div class="row white-bg" id="cus-breadcrumb">
     <div class="col-sm-4">
         <ul class="breadcrumb">
             <li><a ><i class="fa fa-home"></i> 主页</a></li>
-            <li>轮播图管理</li>
-            <li>轮播图列表</li>
+            <li>用户管理</li>
+            <li>管理员列表</li>
         </ul>
     </div>
 </div>
 <section class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox">
         <div class="ibox-title white-bg" style="border-top: 3px solid #f58d8d">
-            <h5>轮播图列表</h5>
+            <h5>管理员列表</h5>
         </div>
         <div class="ibox-content">
-            <table id="table-list" lay-filter="banner"></table>
+            <table id="table-list" lay-filter="admin"></table>
         </div>
     </div>
 </section>
@@ -30,17 +29,12 @@
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm btn-refresh-bg" onclick="objClass.reload()" ><i class="layui-icon layui-icon-refresh-3"></i></button>
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.add()"><i class="layui-icon layui-icon-add-1" ></i>添加轮播图</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="objClass.add()"><i class="layui-icon layui-icon-add-1" ></i>添加管理员</button>
     </div>
 </script>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
 {js href="/static/plugin/layui/layui.all.js" /}
-{js href="/static/admin/js/banner_index.js" /}
+{js href="/static/admin/js/admin_index.js"}
 <script type="text/javascript">
 
 </script>
 {/block}
-

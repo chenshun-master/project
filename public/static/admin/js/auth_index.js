@@ -1,7 +1,7 @@
 layui.table.render({
     elem: '#table-list'
     ,id:'tab-reload'
-    ,url: '/admin/auth/getAuthList' //数据接口
+    ,url: '/admin/seller/getAuthList' //数据接口
     ,toolbar: '#toolbarDemo'
     ,page: true
     ,request: {
@@ -21,7 +21,7 @@ layui.table.render({
         {field: 'id', title: 'ID', fixed: 'left',width:60},
         {field: 'mobile', title: '用户手机号'},
         {field: 'nickname', title: '用户昵称'},
-        {field: 'type', title: '认证类型',width:92,sort:true,templet:function (res) {
+        {field: 'type', title: '认证类型',width:95,sort:true,templet:function (res) {
                 if(res.type == 1){
                     return '<span class="label label-success">个人认证</span>';
                 }else if(res.type == 2){
@@ -152,7 +152,7 @@ var objClass = {
     updateSatus:function(ids,flag,audit_remark,index){
         if(objClass.updateLoading == true){
             $.ajax({
-                url: '/admin/auth/updateAuthStatus',
+                url: '/admin/seller/updateAuthStatus',
                 type: 'POST',
                 data:{id:ids,flag:flag,audit_remark:audit_remark},
                 dataType: "json",

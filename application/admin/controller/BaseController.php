@@ -16,8 +16,8 @@ class BaseController extends Controller
         if($this->request->isGet() && !$this->request->isAjax()){
             if(!$this->checkLogin()){
                 $u =  $this->request->controller(true).'/'.$this->request->action(true);
-                if($u != 'login/index'){
-                    header('Location: /admin/login/index');exit;
+                if($u != 'index/login'){
+                    header('Location: /admin/index/login');exit;
                 }
             }
             $this->assign('user_auth',$this->getAdminInfo());

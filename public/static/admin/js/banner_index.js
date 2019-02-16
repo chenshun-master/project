@@ -1,6 +1,7 @@
 layui.table.render({
     elem: '#table-list'
     ,id:'tab-reload'
+    ,toolbar: '#toolbarDemo'
     ,url: '/admin/banner/getBannerList' //数据接口
     ,page: true
     ,request: {

@@ -1,4 +1,4 @@
-{extend name="layout/layout" /}
+{extend name="layout/layout2-main" /}
 
 {block name="css"}
 <link rel="stylesheet" href="/static/plugin/layui/css/layui.css"  media="all">
@@ -9,86 +9,99 @@
 </style>
 {/block}
 {block name="main"}
-<section class="content">
+<div class="row white-bg" id="cus-breadcrumb">
+    <div class="col-sm-4">
+        <ul class="breadcrumb">
+            <li><a ><i class="fa fa-home"></i> 主页</a></li>
+            <li>轮播图管理</li>
+            <li>添加轮播图</li>
+        </ul>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeIn">
     <div class="row">
-        <div class="col-xs-12">
-            <div class="nav-tabs-custom">
+        <div class="col-sm-12">
+            <div class="tabs-container">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-box1" data-toggle="tab">添加轮播图</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">添加轮播图</a></li>
                 </ul>
-                <div class="tab-content" style='min-height: 500px;'>
-                    <div class="tab-pane active" id="tab-box1">
-                        <form class="form-horizontal " id="infoLogoForm"  enctype="multipart/form-data" onsubmit="return false;">
-                            <div class="box-body">
-                                <input type="hidden" value="{$res.id}" id="fr-banner_id">
-                                <div class="form-group">
-                                    <label  class="col-sm-1 control-label">轮播图名称</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="fr-banner-name" placeholder="请输入轮播图名称"  value="{$res.name}"  />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label  class="col-sm-1 control-label">链接地址</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="fr-banner-url" placeholder="请输入有效的url地址"  value="{$res.url}"  />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label  class="col-sm-1 control-label">类型</label>
-                                    <div class="col-sm-10" style="padding-top: 8px;">
-                                        <div class="layui-input-block" style="margin-left: 0px;" >
-
-                                            <label  style="font-weight:normal;cursor: pointer">
-                                                <input type="radio" name="platform" value="h5" {eq name="res.platform|default='1'" value="h5"}checked{/eq} checked> H5
-                                            </label>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <label  style="font-weight:normal;cursor: pointer">
-                                                <input type="radio" name="platform" value="pc" {eq name="res.platform|default='1'" value="pc"}checked{/eq}>  PC
-                                            </label>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <form class="form-horizontal " id="infoLogoForm"  enctype="multipart/form-data" onsubmit="return false;">
+                                <div class="box-body">
+                                    <input type="hidden" value="{$res.id}" id="fr-banner_id">
+                                    <div class="form-group">
+                                        <label  class="col-sm-1 control-label">轮播图名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="fr-banner-name" placeholder="请输入轮播图名称"  value="{$res.name}"  />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label  class="col-sm-1 control-label">排序</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="fr-banner-order" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" placeholder="请输入排序内容"  value="{$res.order}"  />
+                                    <div class="form-group">
+                                        <label  class="col-sm-1 control-label">链接地址</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="fr-banner-url" placeholder="请输入有效的url地址"  value="{$res.url}"  />
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label  class="col-sm-1 control-label">轮播图片</label>
-                                    <div class="col-sm-10">
-                                        <div style="position: relative;cursor: pointer">
-                                            <div class="layui-btn layui-btn-sm layui-btn-normal" style="position: absolute;top: 0;z-index: 1;">
-                                                <i class="layui-icon layui-icon-upload-drag"></i>轮播图片
-                                            </div>
-                                            <input type="file" name="img" style="position: absolute;top: 0;z-index: 2;width: 87px;opacity: 0;"  id="fr-upload-img"  />
-                                        </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-1 control-label">类型</label>
+                                        <div class="col-sm-10" style="padding-top: 8px;">
+                                            <div class="layui-input-block" style="margin-left: 0px;" >
 
-                                        <div class="layui-inline layui-word-aux" style="margin-left: 100px;padding-top: 5px;top: 5px;">
-                                            每张图片最大限制在2M以内，必须上传图片
-                                        </div>
-                                        <div id="from-img-box">
-                                            <div class="from-img-divs">
-                                                {gt name="res.id" value="1"}
-                                                <img src="{$res.img}" data-imgid="{$res.id}" style="width: 100px;height: 100px;"  class="fr-imgs-val" >
-                                                {/gt}
+                                                <label  style="font-weight:normal;cursor: pointer">
+                                                    <input type="radio" name="platform" value="h5" {eq name="res.platform|default='1'" value="h5"}checked{/eq} checked> H5
+                                                </label>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <label  style="font-weight:normal;cursor: pointer">
+                                                    <input type="radio" name="platform" value="pc" {eq name="res.platform|default='1'" value="pc"}checked{/eq}>  PC
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-1 control-label">排序</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="fr-banner-order" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" placeholder="请输入排序内容"  value="{$res.order}"  />
+                                        </div>
+                                    </div>
 
-                                <div class="box-footer clearfix" style="padding-left: 146px;">
-                                    <button type="submit" class="btn btn-success btn-embossed" onclick="objClass.releaseBanner()">提交数据</button>
+                                    <div class="form-group">
+                                        <label  class="col-sm-1 control-label">轮播图片</label>
+                                        <div class="col-sm-10">
+                                            <div style="position: relative;cursor: pointer">
+                                                <div class="layui-btn layui-btn-sm layui-btn-normal" style="position: absolute;top: 0;z-index: 1;">
+                                                    <i class="layui-icon layui-icon-upload-drag"></i>轮播图片
+                                                </div>
+                                                <input type="file" name="img" style="position: absolute;top: 0;z-index: 2;width: 87px;opacity: 0;"  id="fr-upload-img"  />
+                                            </div>
+
+                                            <div class="layui-inline layui-word-aux" style="margin-left: 100px;padding-top: 5px;top: 5px;">
+                                                每张图片最大限制在2M以内，必须上传图片
+                                            </div>
+                                            <div id="from-img-box">
+                                                <div class="from-img-divs">
+                                                    {gt name="res.id" value="1"}
+                                                    <img src="{$res.img}" data-imgid="{$res.id}" style="width: 100px;height: 100px;"  class="fr-imgs-val" >
+                                                    {/gt}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-footer clearfix" style="padding-left: 146px;">
+                                        <button type="submit" class="btn btn-info btn-embossed" onclick="objClass.releaseBanner()">提交数据</button>
+                                    </div>
+
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
 {/block}
 {block name="js"}
 <script src="/static/js/functions.js"></script>

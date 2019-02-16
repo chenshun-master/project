@@ -1,7 +1,8 @@
 layui.table.render({
     elem: '#table-list'
     ,id:'tab-reload'
-    ,url: '/admin/admin/getAdminList' //数据接口
+    ,toolbar: '#toolbarDemo'
+    ,url: '/admin/user/getAdminList' //数据接口
     ,page: true
     ,request: {
         pageName: 'page' //页码的参数名称，默认：page
@@ -27,7 +28,9 @@ layui.table.render({
             }},
         {field: 'created_at', title: '添加时间',sort:true},
         {field: 'updated_at', title: '修改时间'},
-        {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150},
+        {field: '', title: '操作',width:100,templet:function(row){
+                return '<a href="/admin/user/updateAdmin/id/'+ row.id +'">编辑</a>';
+            }},
     ]]
 });
 layui.table.on('tool(admin)',function (obj) {
@@ -35,7 +38,7 @@ layui.table.on('tool(admin)',function (obj) {
     var id = data.id;
     if (obj.event === 'show'){
         $.ajax({
-            url:'/admin/admin/update',
+            url:'/admin/user/update',
             data:{id:id,status:data.status},
             type:"POST",
             dataType:"json",
@@ -49,7 +52,7 @@ layui.table.on('tool(admin)',function (obj) {
         })
     }else if(obj.event === 'end'){
         $.ajax({
-            url:'/admin/admin/update',
+            url:'/admin/user/update',
             data:{id:id,status:data.status},
             type:"POST",
             dataType:"json",
@@ -61,8 +64,6 @@ layui.table.on('tool(admin)',function (obj) {
                 }
             }
         })
-    }else if(obj.event === 'edit'){
-        window.location.href = "/admin/admin/updateAdmin/id/"+id;
     }
 });
 var objClass = {
@@ -79,6 +80,6 @@ var objClass = {
         });
     },
     add:function(){
-        window.location.href = '/admin/admin/newAdmin';
+        window.location.href = '/admin/user/newAdmin';
     }
 };
