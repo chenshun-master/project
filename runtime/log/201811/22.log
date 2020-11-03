@@ -1,0 +1,344 @@
+---------------------------------------------------------------
+[ 2018-11-22T09:33:11+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/modifypwd
+[运行时间：0.113245s] [吞吐率：8.83req/s] [内存消耗：2,427.79kb] [文件加载：91]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/modifypwd' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\modify_pwd.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2018-11-22T09:33:11+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/modifypwd
+[运行时间：0.141128s] [吞吐率：7.09req/s] [内存消耗：2,302.16kb] [文件加载：89]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/modifypwd' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\modify_pwd.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2018-11-22T09:33:13+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.113821s] [吞吐率：8.79req/s] [内存消耗：3,133.62kb] [文件加载：95]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'publishStatistics',
+  1 => 'user_info',
+  2 => 'contactMobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011336s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.018772s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000685s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 10 AND  status=1 and published_time <='2018-11-22 09:33:13'  GROUP BY type [ RunTime:0.001292s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:33:14+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/modifypwd
+[运行时间：0.069389s] [吞吐率：14.41req/s] [内存消耗：2,302.16kb] [文件加载：89]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/modifypwd' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\modify_pwd.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2018-11-22T09:33:18+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.119034s] [吞吐率：8.40req/s] [内存消耗：3,133.62kb] [文件加载：95]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/modifypwd',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'publishStatistics',
+  1 => 'user_info',
+  2 => 'contactMobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010731s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.026746s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000677s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 10 AND  status=1 and published_time <='2018-11-22 09:33:18'  GROUP BY type [ RunTime:0.000818s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:33:20+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/replacephone
+[运行时间：0.109614s] [吞吐率：9.12req/s] [内存消耗：3,320.19kb] [文件加载：96]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/replacephone' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\replace_phone.html [ array (
+  0 => 'mobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010476s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.017730s ]
+[ sql ] [ SQL ] SELECT `mobile` FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000405s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:33:29+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.125782s] [吞吐率：7.95req/s] [内存消耗：3,133.62kb] [文件加载：95]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/modifypwd',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'publishStatistics',
+  1 => 'user_info',
+  2 => 'contactMobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012738s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.017624s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000504s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 10 AND  status=1 and published_time <='2018-11-22 09:33:29'  GROUP BY type [ RunTime:0.000674s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:34:39+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/replacephone
+[运行时间：0.114553s] [吞吐率：8.73req/s] [内存消耗：3,130.26kb] [文件加载：94]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/replacephone' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\replace_phone.html [ array (
+  0 => 'mobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010569s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.027939s ]
+[ sql ] [ SQL ] SELECT `mobile` FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000434s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:34:45+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.116541s] [吞吐率：8.58req/s] [内存消耗：3,133.62kb] [文件加载：95]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/replacephone',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'publishStatistics',
+  1 => 'user_info',
+  2 => 'contactMobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010115s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.016608s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000591s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 10 AND  status=1 and published_time <='2018-11-22 09:34:45'  GROUP BY type [ RunTime:0.000692s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:34:48+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/replacephone
+[运行时间：0.109993s] [吞吐率：9.09req/s] [内存消耗：3,130.26kb] [文件加载：94]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/replacephone' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\replace_phone.html [ array (
+  0 => 'mobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011085s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.018757s ]
+[ sql ] [ SQL ] SELECT `mobile` FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000447s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:43:42+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/replacephone
+[运行时间：0.108722s] [吞吐率：9.20req/s] [内存消耗：3,130.32kb] [文件加载：94]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/replacephone' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\replace_phone.html [ array (
+  0 => 'mobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012480s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.017487s ]
+[ sql ] [ SQL ] SELECT `mobile` FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000401s ]
+---------------------------------------------------------------
+[ 2018-11-22T09:43:44+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.103408s] [吞吐率：9.67req/s] [内存消耗：3,133.62kb] [文件加载：95]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/replacephone',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Mobile Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'publishStatistics',
+  1 => 'user_info',
+  2 => 'contactMobile',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010860s ] mysql:host=127.0.0.1;port=3306;dbname=wl_project;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.016013s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000496s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 10 AND  status=1 and published_time <='2018-11-22 09:43:44'  GROUP BY type [ RunTime:0.000667s ]
+---------------------------------------------------------------
+[ 2018-11-22T10:37:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/index
+[运行时间：0.065752s] [吞吐率：15.21req/s] [内存消耗：1,860.05kb] [文件加载：77]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=gs9n5cb5hf9df3hg2m9ba3mqh0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index' => '',
+)

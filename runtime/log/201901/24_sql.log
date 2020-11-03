@@ -1,0 +1,62 @@
+---------------------------------------------------------------
+[ 2019-01-24T14:23:05+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063233s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.043364s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.042083s ]
+---------------------------------------------------------------
+[ 2019-01-24T14:23:09+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081368s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.055513s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.054044s ]
+---------------------------------------------------------------
+[ 2019-01-24T14:23:13+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079277s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052590s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.050984s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052219s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.051915s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.053312s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.052617s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,0)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 1)  AND `created_time` BETWEEN '2019-01-18 00:00:00' AND '2019-01-24 14:23:13' [ RunTime:0.053462s ]
+---------------------------------------------------------------
+[ 2019-01-24T14:23:15+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079405s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052881s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054445s ]
+---------------------------------------------------------------
+[ 2019-01-24T14:23:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064698s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043307s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.043227s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043139s ]
+---------------------------------------------------------------
+[ 2019-01-24T14:23:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078766s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052738s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.052940s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053834s ]
+---------------------------------------------------------------
+[ 2019-01-24T14:23:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061479s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042832s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041985s ]
+---------------------------------------------------------------
+[ 2019-01-24T17:00:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078423s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052629s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053701s ]
+---------------------------------------------------------------
+[ 2019-01-24T17:00:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061960s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043022s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042761s ]
+---------------------------------------------------------------
+[ 2019-01-24T17:14:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082190s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.056057s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055191s ]
+---------------------------------------------------------------
+[ 2019-01-24T17:14:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061985s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042615s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042910s ]

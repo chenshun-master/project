@@ -1,0 +1,35 @@
+---------------------------------------------------------------
+[ 2019-08-31T09:37:59+08:00 ] 127.0.0.1 GET www.mytest.com/
+[运行时间：0.473860s] [吞吐率：2.11req/s] [内存消耗：2,332.96kb] [文件加载：102]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-08-31T09:43:03+08:00 ] 127.0.0.1 GET www.mytest.com/
+[运行时间：0.155436s] [吞吐率：6.43req/s] [内存消耗：2,333.24kb] [文件加载：102]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hffa8moh8rn7put85o9vofbes1',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+)

@@ -1,0 +1,42 @@
+---------------------------------------------------------------
+[ 2019-04-28T09:27:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[运行时间：0.410344s] [吞吐率：2.44req/s] [内存消耗：2,254.77kb] [文件加载：98]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin' => '',
+)
+---------------------------------------------------------------
+[ 2019-04-28T09:27:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/index/login
+[运行时间：0.181760s] [吞吐率：5.50req/s] [内存消耗：2,331.62kb] [文件加载：103]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=7qe4od1e5vt5jc5mfa97anemh3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index/login' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\index\login.html [ array (
+  0 => 'user_auth',
+) ]

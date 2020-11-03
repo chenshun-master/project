@@ -1,0 +1,117 @@
+---------------------------------------------------------------
+[ 2018-12-29T14:20:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category
+[ error ] [8]未定义变量: vo[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T14:20:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category
+[ error ] [2]Use of undefined constant res - assumed 'res' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T14:22:18+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category
+[ error ] [2]A non-numeric value encountered[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T14:22:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category
+[ error ] [2]A non-numeric value encountered[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/releaseCategory/id/277
+[ error ] [10501]SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:764]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/releaseCategory/id/277
+[ error ] [10501]SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:764]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/releaseCategory/id/277
+[ error ] [10501]SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:764]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:49+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:07:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:210]
+---------------------------------------------------------------
+[ 2018-12-29T15:25:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '<'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:25:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '<'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:26:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '<'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:26:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '<'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:26:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected ''-\',data[\'level\'] * 4){{dat' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:235]
+---------------------------------------------------------------
+[ 2018-12-29T15:27:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '{'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:27:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '{'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:28:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:29:05+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:29:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:29:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:29:09+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:31:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:31:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:31:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:31:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T15:31:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected '"+res.name+"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T16:05:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant data - assumed 'data' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:209]
+---------------------------------------------------------------
+[ 2018-12-29T16:07:49+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [8]未定义变量: val[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T16:08:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [2]Use of undefined constant res - assumed 'res' (this will throw an Error in a future version of PHP)[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T16:08:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected ','[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T16:08:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected 'res' (T_STRING), expecting ',' or ')'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T16:09:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ error ] [0]语法解析错误: syntax error, unexpected 'res' (T_STRING), expecting ',' or ')'[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\31dafd7e34f000a49256c50a065a14ff.php:232]
+---------------------------------------------------------------
+[ 2018-12-29T18:22:36+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]上传文件大小超过了最大值！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]

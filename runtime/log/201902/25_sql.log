@@ -1,0 +1,79 @@
+---------------------------------------------------------------
+[ 2019-02-25T09:30:39+08:00 ] 127.0.0.1 POST www.mytest.com/admin/index/login.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064280s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.043244s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.042979s ]
+---------------------------------------------------------------
+[ 2019-02-25T09:30:42+08:00 ] 127.0.0.1 POST www.mytest.com/admin/index/login.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.067814s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.045089s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.043964s ]
+---------------------------------------------------------------
+[ 2019-02-25T09:30:47+08:00 ] 127.0.0.1 POST www.mytest.com/admin/index/login.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.054289s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.037265s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.036533s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.036320s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.035162s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.036631s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.036280s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,0)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 1)  AND `created_time` BETWEEN '2019-02-19 00:00:00' AND '2019-02-25 09:30:47' [ RunTime:0.036276s ]
+---------------------------------------------------------------
+[ 2019-02-25T09:30:52+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.059746s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.039607s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.038293s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.039842s ]
+---------------------------------------------------------------
+[ 2019-02-25T09:30:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.057833s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.039205s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.038028s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.040351s ]
+---------------------------------------------------------------
+[ 2019-02-25T09:30:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045574s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.030157s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.029827s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.032226s ]
+---------------------------------------------------------------
+[ 2019-02-25T09:30:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046358s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.032553s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` WHERE  `type` IN (3,4) ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.031763s ]
+[ sql ] [ SQL ] SELECT `mobile`,`nickname`,`portrait`,`type`,`profile`,`created_time` FROM `wl_user` WHERE  `type` IN (3,4) ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.032022s ]
+---------------------------------------------------------------
+[ 2019-02-25T14:01:12+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.074908s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.050877s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.050625s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.050336s ]
+---------------------------------------------------------------
+[ 2019-02-25T14:01:13+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.056562s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.039026s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.037162s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.038439s ]
+---------------------------------------------------------------
+[ 2019-02-25T14:01:15+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.054981s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.038782s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` WHERE  `type` IN (3,4) ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.038300s ]
+[ sql ] [ SQL ] SELECT `mobile`,`nickname`,`portrait`,`type`,`profile`,`created_time` FROM `wl_user` WHERE  `type` IN (3,4) ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.037292s ]
+---------------------------------------------------------------
+[ 2019-02-25T14:01:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081353s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.055129s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.055269s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.052379s ]
+---------------------------------------------------------------
+[ 2019-02-25T14:01:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/updateAdmin/id/1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.057722s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.038630s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.038435s ]
+---------------------------------------------------------------
+[ 2019-02-25T14:01:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.055818s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.036707s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.035932s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.035729s ]

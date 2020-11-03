@@ -1,0 +1,12 @@
+---------------------------------------------------------------
+[ 2018-12-25T10:59:22+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2018-12-25T10:59:24+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2018-12-25T10:59:41+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2018-12-25T15:35:37+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'goods.category_id' in 'field list'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]

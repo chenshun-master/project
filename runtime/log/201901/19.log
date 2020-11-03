@@ -1,0 +1,469 @@
+---------------------------------------------------------------
+[ 2019-01-19T09:18:13+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[运行时间：0.133621s] [吞吐率：7.48req/s] [内存消耗：2,737.00kb] [文件加载：111]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\index\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T09:18:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/index
+[运行时间：0.114461s] [吞吐率：8.74req/s] [内存消耗：2,757.27kb] [文件加载：112]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\auth\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T09:18:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[运行时间：0.390252s] [吞吐率：2.56req/s] [内存消耗：3,562.83kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T13:55:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[运行时间：0.356403s] [吞吐率：2.81req/s] [内存消耗：3,546.24kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '1',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T13:55:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[运行时间：0.265174s] [吞吐率：3.77req/s] [内存消耗：3,544.47kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '2',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T13:55:51+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=3
+[运行时间：0.344049s] [吞吐率：2.91req/s] [内存消耗：3,562.06kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T13:55:52+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=0
+[运行时间：0.286031s] [吞吐率：3.50req/s] [内存消耗：3,562.91kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '0',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T14:00:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/index
+[运行时间：0.112761s] [吞吐率：8.87req/s] [内存消耗：2,757.34kb] [文件加载：112]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\auth\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T14:00:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[运行时间：0.313541s] [吞吐率：3.19req/s] [内存消耗：3,562.83kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:07:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[运行时间：0.346400s] [吞吐率：2.89req/s] [内存消耗：3,546.24kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '1',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:07:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[运行时间：0.285911s] [吞吐率：3.50req/s] [内存消耗：3,544.47kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '2',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:07:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=3
+[运行时间：0.287681s] [吞吐率：3.48req/s] [内存消耗：3,562.06kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/auth/getAuthList' => '',
+  'page' => '1',
+  'page_size' => '10',
+  'status' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:07:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/index
+[运行时间：0.107785s] [吞吐率：9.28req/s] [内存消耗：2,743.61kb] [文件加载：112]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/auth/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/admin/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\admin\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T17:08:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[运行时间：0.288438s] [吞吐率：3.47req/s] [内存消耗：3,515.12kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/admin/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/admin/getAdminList' => '',
+  'page' => '1',
+  'page_size' => '10',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:08:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/index
+[运行时间：0.114614s] [吞吐率：8.72req/s] [内存消耗：2,785.47kb] [文件加载：114]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/admin/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/user/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\user\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T17:08:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[运行时间：0.357590s] [吞吐率：2.80req/s] [内存消耗：3,568.26kb] [文件加载：119]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/user/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/user/getUserList' => '',
+  'page' => '1',
+  'page_size' => '10',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:08:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/index
+[运行时间：0.083912s] [吞吐率：11.92req/s] [内存消耗：2,785.66kb] [文件加载：114]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/admin/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/user/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\user\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T17:08:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[运行时间：0.354597s] [吞吐率：2.82req/s] [内存消耗：3,568.26kb] [文件加载：119]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/user/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/user/getUserList' => '',
+  'page' => '1',
+  'page_size' => '10',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-01-19T17:08:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/index
+[运行时间：0.081998s] [吞吐率：12.20req/s] [内存消耗：2,785.66kb] [文件加载：114]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/admin/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/user/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\user\index.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-01-19T17:08:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[运行时间：0.353921s] [吞吐率：2.83req/s] [内存消耗：3,568.26kb] [文件加载：119]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=f2a1k7mt1f0ctae1smn548kvmv',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/admin/user/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/user/getUserList' => '',
+  'page' => '1',
+  'page_size' => '10',
+)
+[ info ] [ DB ] INIT mysql

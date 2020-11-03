@@ -1,0 +1,42 @@
+---------------------------------------------------------------
+[ 2019-02-16T10:11:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/adminList
+[ error ] [0]模板文件不存在:D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\admin\index.html[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\view\driver\Think.php:86]
+---------------------------------------------------------------
+[ 2019-02-16T10:15:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/updateAdmin/id/32
+[ error ] [0]模板文件不存在:D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\admin\update.html[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\view\driver\Think.php:86]
+---------------------------------------------------------------
+[ 2019-02-16T10:16:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/updateAdmin/id/32
+[ error ] [0]模板文件不存在:D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\admin\update.html[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\view\driver\Think.php:86]
+---------------------------------------------------------------
+[ 2019-02-16T10:31:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/index/index2
+[ error ] [2]file_put_contents(D:\phpstudy\PHPTutorial\WWW\project\runtime\build_route.php): failed to open stream: Permission denied[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Build.php:218]
+---------------------------------------------------------------
+[ 2019-02-16T10:58:34+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2019-02-16T10:58:43+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2019-02-16T11:01:01+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2019-02-16T13:49:33+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-16T13:49:39+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-16T13:49:40+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-16T13:49:41+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-16T13:49:42+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-16T14:03:34+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]
+---------------------------------------------------------------
+[ 2019-02-16T14:03:36+08:00 ] 127.0.0.1 POST www.mytest.com/index/upload/uploadAuthFile
+[ error ] [0]致命错误: Class 'think\Image' not found[D:\phpstudy\PHPTutorial\WWW\project\application\index\controller\Upload.php:135]

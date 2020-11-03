@@ -1,0 +1,1929 @@
+---------------------------------------------------------------
+[ 2019-04-19T09:10:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[运行时间：0.618170s] [吞吐率：1.62req/s] [内存消耗：2,255.16kb] [文件加载：98]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin' => '',
+)
+---------------------------------------------------------------
+[ 2019-04-19T09:10:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/index/login
+[运行时间：0.179113s] [吞吐率：5.58req/s] [内存消耗：2,331.62kb] [文件加载：103]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index/login' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\index\login.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[运行时间：0.405747s] [吞吐率：2.46req/s] [内存消耗：2,255.16kb] [文件加载：98]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin' => '',
+)
+---------------------------------------------------------------
+[ 2019-04-19T10:51:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/index/login
+[运行时间：0.203201s] [吞吐率：4.92req/s] [内存消耗：2,331.62kb] [文件加载：103]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/admin/index/login' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\index\login.html [ array (
+  0 => 'user_auth',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:27+08:00 ] 127.0.0.1 GET www.mytest.com/login
+[运行时间：0.204536s] [吞吐率：4.89req/s] [内存消耗：2,297.01kb] [文件加载：100]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'rule' => 'login',
+  'route' => 'index/Index/login',
+  'option' => 
+  array (
+    'merge_rule_regex' => false,
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/login' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\index\view\index\login.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:27+08:00 ] 127.0.0.1 GET www.mytest.com/static/css/function.css
+[运行时间：0.170445s] [吞吐率：5.87req/s] [内存消耗：1,958.58kb] [文件加载：94]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+---------------------------------------------------------------
+[ 2019-04-19T10:51:27+08:00 ] 127.0.0.1 GET www.mytest.com/login
+[运行时间：0.182589s] [吞吐率：5.48req/s] [内存消耗：2,296.48kb] [文件加载：100]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'rule' => 'login',
+  'route' => 'index/Index/login',
+  'option' => 
+  array (
+    'merge_rule_regex' => false,
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/login' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\index\view\index\login.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:32+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/login.html
+[运行时间：0.330560s] [吞吐率：3.03req/s] [内存消耗：2,904.37kb] [文件加载：115]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/login_html' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\index\login.html [ array (
+  0 => 'redir',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:41+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/index/postLogin
+[运行时间：0.491629s] [吞吐率：2.03req/s] [内存消耗：3,554.60kb] [文件加载：119]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '36',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/postLogin' => '',
+  'mobile' => '15321829813',
+  'password' => 'cs123456',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:51:43+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/login.html
+[运行时间：0.214571s] [吞吐率：4.66req/s] [内存消耗：2,775.20kb] [文件加载：113]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/login_html' => '',
+)
+---------------------------------------------------------------
+[ 2019-04-19T10:51:43+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.370120s] [吞吐率：2.70req/s] [内存消耗：3,688.40kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:44+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.315339s] [吞吐率：3.17req/s] [内存消耗：3,469.33kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:51:48+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/index
+[运行时间：0.236692s] [吞吐率：4.22req/s] [内存消耗：2,767.27kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\index\index.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:51+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.357461s] [吞吐率：2.80req/s] [内存消耗：3,540.73kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:52+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.314990s] [吞吐率：3.17req/s] [内存消耗：3,469.36kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:51:54+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/collection
+[运行时间：0.238910s] [吞吐率：4.19req/s] [内存消耗：2,917.05kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/collection' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\certification-me.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:55+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getFavoriteArticleList
+[运行时间：0.462885s] [吞吐率：2.16req/s] [内存消耗：3,663.42kb] [文件加载：123]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '19',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getFavoriteArticleList' => '',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\collection\favorite_tpl.html [ array (
+  0 => 'rows',
+  1 => 'page',
+  2 => 'page_total',
+  3 => 'total',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:56+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getCommentArticleList
+[运行时间：0.321425s] [吞吐率：3.11req/s] [内存消耗：3,521.45kb] [文件加载：126]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '26',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getCommentArticleList' => '',
+  'type' => '1',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:51:56+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getLikeArticleList
+[运行时间：0.451825s] [吞吐率：2.21req/s] [内存消耗：3,652.17kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '26',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getLikeArticleList' => '',
+  'type' => '1',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\collection\like_tpl.html [ array (
+  0 => 'rows',
+  1 => 'page',
+  2 => 'page_total',
+  3 => 'total',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:59+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.257557s] [吞吐率：3.88req/s] [内存消耗：3,540.73kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:59+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.222535s] [吞吐率：4.49req/s] [内存消耗：3,469.36kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:00+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/index
+[运行时间：0.116661s] [吞吐率：8.57req/s] [内存消耗：2,767.27kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/index' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\index\index.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:04+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.239670s] [吞吐率：4.17req/s] [内存消耗：3,540.73kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:04+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.208406s] [吞吐率：4.80req/s] [内存消耗：3,469.36kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:05+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/doctor
+[运行时间：0.133893s] [吞吐率：7.47req/s] [内存消耗：2,864.78kb] [文件加载：114]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/doctor' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\index\doctor.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:05+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getDoctorList
+[运行时间：0.331539s] [吞吐率：3.02req/s] [内存消耗：3,497.73kb] [文件加载：124]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/doctor',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '19',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getDoctorList' => '',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:09+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/index
+[运行时间：0.315372s] [吞吐率：3.17req/s] [内存消耗：3,628.31kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/doctor',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shop/index' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\shop\index.html [ array (
+  0 => 'categoryNav',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:09+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodsList
+[运行时间：0.288569s] [吞吐率：3.47req/s] [内存消耗：3,498.11kb] [文件加载：118]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/index',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '59',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shopapi/getGoodsList' => '',
+  'page' => '1',
+  'page_size' => '20',
+  'category' => '',
+  'sort' => '0',
+  'city' => '',
+  'keywords' => '',
+  'type' => '1',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:11+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/goodsDetails/goodsid/2
+[运行时间：0.494357s] [吞吐率：2.02req/s] [内存消耗：3,821.67kb] [文件加载：124]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shop/goodsDetails/goodsid/2' => '',
+  'goodsid' => '2',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\shop\goods_details.html [ array (
+  0 => 'weixin_config',
+  1 => 'referer',
+  2 => 'info',
+  3 => 'gid',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:12+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getSellerHotGoods
+[运行时间：0.338694s] [吞吐率：2.95req/s] [内存消耗：3,486.46kb] [文件加载：118]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/goodsDetails/goodsid/2',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shopapi/getSellerHotGoods' => '',
+  'uid' => '61',
+  'page' => '1',
+  'page_size' => '5',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:12+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUserDiary
+[运行时间：0.620317s] [吞吐率：1.61req/s] [内存消耗：3,528.09kb] [文件加载：118]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/goodsDetails/goodsid/2',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '35',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUserDiary' => '',
+  'uid' => '61',
+  'goodsid' => '2',
+  'page' => '1',
+  'page_size' => '5',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:13+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/goodsDetails/goodsid/undefined
+[运行时间：0.426771s] [吞吐率：2.34req/s] [内存消耗：3,587.59kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/goodsDetails/goodsid/2',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shop/goodsDetails/goodsid/undefined' => '',
+  'goodsid' => 'undefined',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\error\loss.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:13+08:00 ] 127.0.0.1 GET www.mytest.com/static/js/swiper.min.js.map
+[运行时间：0.103212s] [吞吐率：9.69req/s] [内存消耗：1,958.59kb] [文件加载：94]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+---------------------------------------------------------------
+[ 2019-04-19T10:52:15+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/index.html
+[运行时间：0.268227s] [吞吐率：3.73req/s] [内存消耗：3,480.52kb] [文件加载：119]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/goodsDetails/goodsid/2',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shop/index_html' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\shop\index.html [ array (
+  0 => 'categoryNav',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:15+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodsList
+[运行时间：0.271080s] [吞吐率：3.69req/s] [内存消耗：3,498.12kb] [文件加载：118]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '59',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/shopapi/getGoodsList' => '',
+  'page' => '1',
+  'page_size' => '20',
+  'category' => '',
+  'sort' => '0',
+  'city' => '',
+  'keywords' => '',
+  'type' => '1',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:16+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.269429s] [吞吐率：3.71req/s] [内存消耗：3,540.73kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:17+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.201971s] [吞吐率：4.95req/s] [内存消耗：3,469.36kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:18+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/userArticleList
+[运行时间：0.311703s] [吞吐率：3.21req/s] [内存消耗：3,774.71kb] [文件加载：124]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/userArticleList' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\userArticleList1.html [ array (
+  0 => 'publishStatistics',
+  1 => 'user_info',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:19+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getPublishList
+[运行时间：0.262976s] [吞吐率：3.80req/s] [内存消耗：3,541.60kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/userArticleList',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '26',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getPublishList' => '',
+  'type' => '1',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:22+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.250282s] [吞吐率：4.00req/s] [内存消耗：3,540.73kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/shop/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:22+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.194340s] [吞吐率：5.15req/s] [内存消耗：3,469.36kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:24+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/signOut
+[运行时间：0.106171s] [吞吐率：9.42req/s] [内存消耗：2,742.43kb] [文件加载：114]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/signOut' => '',
+)
+---------------------------------------------------------------
+[ 2019-04-19T10:52:24+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/login
+[运行时间：0.097861s] [吞吐率：10.22req/s] [内存消耗：2,757.80kb] [文件加载：113]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/login' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\index\login.html [ array (
+  0 => 'redir',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:33+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/index/postLogin
+[运行时间：0.391535s] [吞吐率：2.55req/s] [内存消耗：3,554.87kb] [文件加载：119]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '36',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/postLogin' => '',
+  'mobile' => '17601628133',
+  'password' => 'cs123456',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:35+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/login
+[运行时间：0.134022s] [吞吐率：7.46req/s] [内存消耗：2,775.38kb] [文件加载：113]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/index/login' => '',
+)
+---------------------------------------------------------------
+[ 2019-04-19T10:52:35+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[运行时间：0.301535s] [吞吐率：3.32req/s] [内存消耗：3,541.23kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/index/login',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/main' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\main.html [ array (
+  0 => 'user_info',
+  1 => 'contactMobile',
+  2 => 'isSignOut',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:36+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[运行时间：0.268183s] [吞吐率：3.73req/s] [内存消耗：3,469.58kb] [文件加载：117]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/api/getUnreadMsg' => '',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:37+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/collection
+[运行时间：0.129757s] [吞吐率：7.71req/s] [内存消耗：2,759.66kb] [文件加载：115]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/main',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/collection' => '',
+)
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\certification-me.html [ array (
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:38+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getCommentArticleList
+[运行时间：0.248188s] [吞吐率：4.03req/s] [内存消耗：3,521.66kb] [文件加载：126]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '26',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getCommentArticleList' => '',
+  'type' => '1',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:38+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getFavoriteArticleList
+[运行时间：0.527705s] [吞吐率：1.89req/s] [内存消耗：3,549.64kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '19',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getFavoriteArticleList' => '',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\collection\favorite_tpl.html [ array (
+  0 => 'rows',
+  1 => 'page',
+  2 => 'page_total',
+  3 => 'total',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:39+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getLikeArticleList
+[运行时间：0.322042s] [吞吐率：3.11req/s] [内存消耗：3,537.88kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '26',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/user/getLikeArticleList' => '',
+  'type' => '1',
+  'page' => '1',
+  'page_size' => '20',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\collection\like_tpl.html [ array (
+  0 => 'rows',
+  1 => 'page',
+  2 => 'page_total',
+  3 => 'total',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:40+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.378630s] [吞吐率：2.64req/s] [内存消耗：3,684.40kb] [文件加载：124]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:41+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getCommentList
+[运行时间：0.342934s] [吞吐率：2.92req/s] [内存消耗：3,549.50kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getCommentList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '15',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T10:52:41+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getRelevantList
+[运行时间：0.567175s] [吞吐率：1.76req/s] [内存消耗：3,539.74kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '24',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getRelevantList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:27:05+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.390886s] [吞吐率：2.56req/s] [内存消耗：3,509.98kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:33:26+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.329170s] [吞吐率：3.04req/s] [内存消耗：3,684.48kb] [文件加载：124]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:33:27+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getRelevantList
+[运行时间：0.287990s] [吞吐率：3.47req/s] [内存消耗：3,539.83kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '24',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getRelevantList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:33:28+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getCommentList
+[运行时间：0.330740s] [吞吐率：3.02req/s] [内存消耗：3,549.59kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getCommentList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '15',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:33:41+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.344508s] [吞吐率：2.90req/s] [内存消耗：3,684.48kb] [文件加载：124]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:33:41+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getRelevantList
+[运行时间：0.336009s] [吞吐率：2.98req/s] [内存消耗：3,539.83kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '24',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getRelevantList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:33:42+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getCommentList
+[运行时间：0.288568s] [吞吐率：3.47req/s] [内存消耗：3,549.59kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getCommentList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '15',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:35:13+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.387314s] [吞吐率：2.58req/s] [内存消耗：3,526.05kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:35:14+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getRelevantList
+[运行时间：0.303370s] [吞吐率：3.30req/s] [内存消耗：3,540.06kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '24',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getRelevantList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:35:15+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getCommentList
+[运行时间：0.339351s] [吞吐率：2.95req/s] [内存消耗：3,549.82kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getCommentList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '15',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:35:20+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.310389s] [吞吐率：3.22req/s] [内存消耗：3,526.05kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:35:21+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.329852s] [吞吐率：3.03req/s] [内存消耗：3,526.05kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:35:21+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.328615s] [吞吐率：3.04req/s] [内存消耗：3,526.05kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:35:22+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getRelevantList
+[运行时间：0.302520s] [吞吐率：3.31req/s] [内存消耗：3,540.06kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '24',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getRelevantList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:35:23+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getCommentList
+[运行时间：0.330968s] [吞吐率：3.02req/s] [内存消耗：3,549.82kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getCommentList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '15',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:36:11+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.302293s] [吞吐率：3.31req/s] [内存消耗：3,515.27kb] [文件加载：123]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:37:26+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.276821s] [吞吐率：3.61req/s] [内存消耗：3,560.55kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:37:47+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.247410s] [吞吐率：4.04req/s] [内存消耗：3,560.55kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:37:59+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[运行时间：0.338117s] [吞吐率：2.96req/s] [内存消耗：3,525.82kb] [文件加载：122]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/user/collection',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/articleDetails/id/50' => '',
+  'id' => '50',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\article\article_details.html [ array (
+  0 => 'article_info',
+  1 => 'isFriend',
+  2 => 'shareImg',
+  3 => 'isFabulous',
+  4 => 'weixin_config',
+) ]
+---------------------------------------------------------------
+[ 2019-04-19T11:38:00+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getRelevantList
+[运行时间：0.297571s] [吞吐率：3.36req/s] [内存消耗：3,539.83kb] [文件加载：120]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '24',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getRelevantList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '3',
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-04-19T11:38:01+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/article/getCommentList
+[运行时间：0.282942s] [吞吐率：3.53req/s] [内存消耗：3,549.59kb] [文件加载：121]
+[ info ] [ LANG ] D:\phpstudy\PHPTutorial\WWW\project\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=oib6ts1q94ner07hukk46cv312',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.mytest.com/weixin/article/articleDetails/id/50',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.mytest.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '25',
+  'connection' => 'close',
+  'host' => 'www.mytest.com',
+)
+[ info ] [ PARAM ] array (
+  '/weixin/article/getCommentList' => '',
+  'id' => '50',
+  'page' => '1',
+  'page_size' => '15',
+)
+[ info ] [ DB ] INIT mysql

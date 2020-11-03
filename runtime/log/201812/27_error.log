@@ -1,0 +1,42 @@
+---------------------------------------------------------------
+[ 2018-12-27T09:12:00+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'wl_project'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:528]
+---------------------------------------------------------------
+[ 2018-12-27T09:12:03+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'wl_project'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:528]
+---------------------------------------------------------------
+[ 2018-12-27T09:12:05+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'wl_project'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:528]
+---------------------------------------------------------------
+[ 2018-12-27T09:12:36+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'wl_project'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:528]
+---------------------------------------------------------------
+[ 2018-12-27T11:18:12+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sp.id' in 'order clause'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2018-12-27T11:18:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getsellerlist
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sp.id' in 'order clause'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2018-12-27T11:18:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getsellerlist
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sp.id' in 'order clause'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2018-12-27T14:31:09+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2018-12-27T15:24:32+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]上传文件大小超过了最大值！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2018-12-27T16:41:01+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]上传文件大小超过了最大值！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2018-12-27T16:42:05+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]上传文件大小超过了最大值！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2018-12-27T16:53:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ error ] [8]未定义数组下标: 1[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Builder.php:373]
+---------------------------------------------------------------
+[ 2018-12-27T16:53:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ error ] [8]未定义数组下标: 1[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Builder.php:373]
+---------------------------------------------------------------
+[ 2018-12-27T16:53:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ error ] [8]未定义数组下标: 1[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Builder.php:373]

@@ -1,0 +1,18 @@
+---------------------------------------------------------------
+[ 2019-02-18T09:48:34+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-18T09:48:36+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-18T09:48:36+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-18T09:48:37+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-18T09:48:37+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-18T09:48:37+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]

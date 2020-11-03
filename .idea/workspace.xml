@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="71837b37-91e2-4896-83bb-8b8faf6a8117" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/domain/DiaryDomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/domain/DiaryDomain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/weixin/controller/Api.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/weixin/controller/Api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/weixin/controller/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/weixin/controller/Article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/weixin/view/article/userme.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/weixin/view/article/userme.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/weixin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/weixin/view/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/weixin/view/shop/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/weixin/view/shop/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Flot/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Flot/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Flot/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Ionicons/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Ionicons/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Ionicons/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/PACE/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/PACE/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/PACE/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-colorpicker/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-colorpicker/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-colorpicker/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/grunt/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/js/.jscsrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/js/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/less/.csslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-daterangepicker/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-daterangepicker/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-daterangepicker/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-slider/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-slider/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-slider/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-timepicker/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-timepicker/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-timepicker/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/grunt/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/js/.jscsrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/js/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/less/.csscomb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/less/.csslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/chart.js/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/chart.js/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/chart.js/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/chart.js/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/chart.js/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ckeditor/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ckeditor/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ckeditor/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/datatables.net-bs/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/datatables.net-bs/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/datatables.net-bs/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/datatables.net/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/datatables.net/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/datatables.net/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/eve-raphael/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/eve-raphael/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/eve-raphael/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/fastclick/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/fastclick/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/fastclick/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/font-awesome/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/font-awesome/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/font-awesome/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/font-awesome/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/font-awesome/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/fullcalendar/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/fullcalendar/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/fullcalendar/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/inputmask/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/inputmask/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/inputmask/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ion.rangeSlider/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ion.rangeSlider/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ion.rangeSlider/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ion.rangeSlider/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ion.rangeSlider/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-knob/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-knob/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-knob/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-knob/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-slimscroll/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-slimscroll/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-slimscroll/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-sparkline/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-sparkline/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-sparkline/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-ui/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-ui/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-ui/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-ui/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-ui/ui/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery/src/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jvectormap/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jvectormap/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/mocha/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/mocha/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/mocha/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/moment/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/moment/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/moment/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/morris.js/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/morris.js/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/morris.js/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/morris.js/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/morris.js/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/raphael/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/raphael/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/raphael/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/.bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/.jshintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/build/bootstrap-less/.csscomb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/build/bootstrap-less/.csslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/build/grunt/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/build/js/.jscsrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/build/js/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/admin/build/less/.csslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/plugin/wangEditor/src/js/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/weixin/viewjs/article-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/weixin/viewjs/article-details.js" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1191239981">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="149" />
+          <entry key="project.open.time.0" value="32" />
+          <entry key="project.open.time.1" value="55" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.13" value="3" />
+          <entry key="project.open.time.14" value="5" />
+          <entry key="project.open.time.15" value="12" />
+          <entry key="project.open.time.16" value="8" />
+          <entry key="project.open.time.17" value="5" />
+          <entry key="project.open.time.18" value="3" />
+          <entry key="project.open.time.19" value="2" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.20" value="3" />
+          <entry key="project.open.time.21" value="2" />
+          <entry key="project.open.time.22" value="4" />
+          <entry key="project.open.time.23" value="2" />
+          <entry key="project.open.time.24" value="2" />
+          <entry key="project.open.time.27" value="3" />
+          <entry key="project.open.time.3" value="3" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.32" value="1" />
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.44" value="1" />
+          <entry key="project.open.time.50" value="1" />
+          <entry key="project.open.time.53" value="1" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.opened" value="156" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="24" />
+          <entry key="gif" value="5" />
+          <entry key="gitignore" value="1" />
+          <entry key="htaccess" value="2" />
+          <entry key="html" value="1150" />
+          <entry key="ico" value="3" />
+          <entry key="jpg" value="80" />
+          <entry key="js" value="253" />
+          <entry key="log" value="1" />
+          <entry key="md" value="2" />
+          <entry key="php" value="1642" />
+          <entry key="png" value="40" />
+          <entry key="rnc" value="11" />
+          <entry key="ts" value="12" />
+          <entry key="txt" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="24" />
+          <entry key="HTML" value="1150" />
+          <entry key="Image" value="128" />
+          <entry key="JavaScript" value="253" />
+          <entry key="Markdown" value="2" />
+          <entry key="PHP" value="1642" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="RNG Compact" value="11" />
+          <entry key="TypeScript" value="12" />
+          <entry key="htaccess" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="58" />
+          <entry key="dummy" value="10" />
+          <entry key="html" value="44096" />
+          <entry key="js" value="2256" />
+          <entry key="php" value="39235" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="59" />
+          <entry key="HTML" value="44149" />
+          <entry key="JavaScript" value="2201" />
+          <entry key="PHP" value="39185" />
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="RegExp" value="1" />
+          <entry key="SQL" value="50" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.new.class">
+        <counts>
+          <entry key="PHP Class.type" value="27" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="project" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/weixin/view/index/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3915">
+              <caret line="145" column="25" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/weixin/view/layout/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/conf.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="34" column="10" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/static/weixin/css/login.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1998">
+              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>sca</find>
+      <find>wl-huqou</find>
+      <find>VerificationCode</find>
+      <find>code-btn</find>
+      <find>sendSmsCode</find>
+      <find>sms_code</find>
+      <find>code-hui</find>
+      <find>postReister</find>
+      <find>barDemo</find>
+      <find>banner</find>
+      <find>getBannerList</find>
+      <find>status</find>
+      <find>index</find>
+      <find>getCheckId</find>
+      <find>currentpage</find>
+      <find>产品</find>
+      <find>editor</find>
+      <find>infoLogoForm</find>
+      <find>fr-upload-img</find>
+      <find>img</find>
+      <find>tab-reload</find>
+      <find>releaseBanner</find>
+      <find>auth</find>
+      <find>detail</find>
+      <find>app</find>
+      <find>append</find>
+      <find>uploadFile</find>
+      <find>data-id</find>
+      <find>$uid</find>
+      <find>title</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/public/static/plugin/hAdmin/css/login.css" />
+        <option value="$PROJECT_DIR$/application/seller/view/index/login.html" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Login.php" />
+        <option value="$PROJECT_DIR$/application/admin/view/login/index.html" />
+        <option value="$PROJECT_DIR$/application/admin/view/admin/add.html" />
+        <option value="$PROJECT_DIR$/application/admin/view/admin/update.html" />
+        <option value="$PROJECT_DIR$/application/admin/controller/BaseController.php" />
+        <option value="$PROJECT_DIR$/application/admin/view/index/login.html" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Index.php" />
+        <option value="$PROJECT_DIR$/public/static/admin/js/admin_index.js" />
+        <option value="$PROJECT_DIR$/application/admin/view/index/main.html" />
+        <option value="$PROJECT_DIR$/public/static/admin/js/auth_index.js" />
+        <option value="$PROJECT_DIR$/application/api/domain/SellerDomain.php" />
+        <option value="$PROJECT_DIR$/public/static/admin/js/goods_index.js" />
+        <option value="$PROJECT_DIR$/application/admin/view/category/index.html" />
+        <option value="$PROJECT_DIR$/application/admin/view/user/admin_update.html" />
+        <option value="$PROJECT_DIR$/application/admin/view/user/admin_add.html" />
+        <option value="$PROJECT_DIR$/public/static/seller/js/diary_index.js" />
+        <option value="$PROJECT_DIR$/public/static/seller/js/user-myhospital.js" />
+        <option value="$PROJECT_DIR$/application/seller/controller/Shop.php" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Seller.php" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Category.php" />
+        <option value="$PROJECT_DIR$/application/admin/controller/User.php" />
+        <option value="$PROJECT_DIR$/thinkphp/base.php" />
+        <option value="$PROJECT_DIR$/application/api/domain/ArticleDomain.php" />
+        <option value="$PROJECT_DIR$/application/weixin/view/index/index.html" />
+        <option value="$PROJECT_DIR$/application/weixin/view/shop/index.html" />
+        <option value="$PROJECT_DIR$/application/api/domain/DiaryDomain.php" />
+        <option value="$PROJECT_DIR$/application/weixin/view/index/doctor.html" />
+        <option value="$PROJECT_DIR$/application/weixin/controller/Api.php" />
+        <option value="$PROJECT_DIR$/application/weixin/controller/User.php" />
+        <option value="$PROJECT_DIR$/application/seller/view/index/main.html" />
+        <option value="$PROJECT_DIR$/application/index/view/article/article_lists.html" />
+        <option value="$PROJECT_DIR$/application/weixin/view/article/userme.html" />
+        <option value="$PROJECT_DIR$/application/index/view/article/my_article.html" />
+        <option value="$PROJECT_DIR$/application/weixin/view/index/diary_user.html" />
+        <option value="$PROJECT_DIR$/thinkphp/library/think/db/Query.php" />
+        <option value="$PROJECT_DIR$/application/common.php" />
+        <option value="$PROJECT_DIR$/application/api/domain/MessageDomain.php" />
+        <option value="$PROJECT_DIR$/extend/anerg/OAuth2/Connector/Gateway.php" />
+        <option value="$PROJECT_DIR$/public/static/weixin/viewjs/article-details.js" />
+        <option value="$PROJECT_DIR$/application/weixin/view/article/article_details.html" />
+        <option value="$PROJECT_DIR$/application/api/domain/UserFriendDomain.php" />
+        <option value="$PROJECT_DIR$/application/weixin/controller/Article.php" />
+        <option value="$PROJECT_DIR$/application/admin/controller/Banner.php" />
+        <option value="$PROJECT_DIR$/application/api/domain/AuthDomain.php" />
+        <option value="$PROJECT_DIR$/application/seller/controller/Diary.php" />
+        <option value="$PROJECT_DIR$/application/api/domain/UDomain.php" />
+        <option value="$PROJECT_DIR$/application/weixin/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/admin/view/index/index.html" />
+        <option value="$PROJECT_DIR$/application/admin/view/banner/add.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/Flot/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-datepicker/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap-daterangepicker/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/bootstrap/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/chart.js/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ckeditor/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/eve-raphael/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/ion.rangeSlider/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-knob/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-slimscroll/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/jquery-ui/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/morris.js/package.json" />
+      <path value="$PROJECT_DIR$/public/static/plugin/admin/bower_components/select2/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1337" />
+    <option name="width" value="1235" />
+    <option name="height" value="1250" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Angular</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="weixin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="weixin" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="plugin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="plugin" type="462c0819:PsiDirectoryNode" />
+              <item name="layer_mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\public\static\admin\js" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\index" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\layout" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\public\static\admin\dist\js" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\public\static\admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\application\test\view\index" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\application\admin\view\admin" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\public\static\admin" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\public\static\admin\dist\js" />
+      <recent name="D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71837b37-91e2-4896-83bb-8b8faf6a8117" name="Default Changelist" comment="" />
+      <created>1540958467453</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1540958467453</updated>
+      <workItem from="1540958470193" duration="96000" />
+      <workItem from="1540958581593" duration="13938000" />
+      <workItem from="1541041462462" duration="8786000" />
+      <workItem from="1541553794188" duration="424000" />
+      <workItem from="1541554237269" duration="35211000" />
+      <workItem from="1541639387697" duration="56673000" />
+      <workItem from="1541984681877" duration="31509000" />
+      <workItem from="1542265270259" duration="26736000" />
+      <workItem from="1542589863331" duration="8281000" />
+      <workItem from="1542791617205" duration="13403000" />
+      <workItem from="1542881843411" duration="4777000" />
+      <workItem from="1543485446462" duration="13007000" />
+      <workItem from="1543544611530" duration="17400000" />
+      <workItem from="1543799602166" duration="139522000" />
+      <workItem from="1544153328324" duration="16253000" />
+      <workItem from="1544231339358" duration="22185000" />
+      <workItem from="1544404119206" duration="100790000" />
+      <workItem from="1544663197279" duration="68445000" />
+      <workItem from="1545009167570" duration="133904000" />
+      <workItem from="1545354319677" duration="63536000" />
+      <workItem from="1545614194000" duration="101739000" />
+      <workItem from="1545976207624" duration="2247000" />
+      <workItem from="1545978590405" duration="11114000" />
+      <workItem from="1546045795803" duration="28495000" />
+      <workItem from="1546391497700" duration="20714000" />
+      <workItem from="1546477746282" duration="5730000" />
+      <workItem from="1546563983228" duration="21584000" />
+      <workItem from="1546823218959" duration="26858000" />
+      <workItem from="1546909668141" duration="7396000" />
+      <workItem from="1546931191011" duration="1345000" />
+      <workItem from="1546996160238" duration="7013000" />
+      <workItem from="1547082588418" duration="13872000" />
+      <workItem from="1547169160214" duration="21751000" />
+      <workItem from="1547428110959" duration="9477000" />
+      <workItem from="1547514589900" duration="13339000" />
+      <workItem from="1547604697068" duration="6644000" />
+      <workItem from="1547687335704" duration="6034000" />
+      <workItem from="1547773532585" duration="19939000" />
+      <workItem from="1547860469672" duration="8580000" />
+      <workItem from="1548033154643" duration="16256000" />
+      <workItem from="1548125426966" duration="12977000" />
+      <workItem from="1548205651196" duration="8263000" />
+      <workItem from="1548292196911" duration="9377000" />
+      <workItem from="1548378384571" duration="4039000" />
+      <workItem from="1548637523845" duration="3710000" />
+      <workItem from="1548724274342" duration="16969000" />
+      <workItem from="1548810693556" duration="20893000" />
+      <workItem from="1548896712723" duration="13550000" />
+      <workItem from="1549847230892" duration="16318000" />
+      <workItem from="1549933513775" duration="1207000" />
+      <workItem from="1549940436899" duration="14911000" />
+      <workItem from="1550107471836" duration="13419000" />
+      <workItem from="1550193766246" duration="27331000" />
+      <workItem from="1550280481062" duration="22217000" />
+      <workItem from="1550452608485" duration="21889000" />
+      <workItem from="1550539907289" duration="8015000" />
+      <workItem from="1550624873578" duration="14592000" />
+      <workItem from="1550711368940" duration="19305000" />
+      <workItem from="1550797978254" duration="9331000" />
+      <workItem from="1550884603170" duration="12284000" />
+      <workItem from="1550970898771" duration="17465000" />
+      <workItem from="1551056833028" duration="1826000" />
+      <workItem from="1551143308762" duration="9703000" />
+      <workItem from="1551229761912" duration="1724000" />
+      <workItem from="1551317367071" duration="667000" />
+      <workItem from="1551404073732" duration="1567000" />
+      <workItem from="1551661972787" duration="1846000" />
+      <workItem from="1551748667576" duration="4544000" />
+      <workItem from="1551834901543" duration="159000" />
+      <workItem from="1552441542446" duration="496000" />
+      <workItem from="1553162482721" duration="562000" />
+      <workItem from="1554185021180" duration="850000" />
+      <workItem from="1555386813915" duration="5107000" />
+      <workItem from="1555464448804" duration="11795000" />
+      <workItem from="1555550174218" duration="8234000" />
+      <workItem from="1555636124011" duration="13150000" />
+      <workItem from="1555895611872" duration="5909000" />
+      <workItem from="1556006014316" duration="2897000" />
+      <workItem from="1556070489986" duration="3004000" />
+      <workItem from="1556101525946" duration="465000" />
+      <workItem from="1556154859841" duration="1853000" />
+      <workItem from="1556269357611" duration="10133000" />
+      <workItem from="1556327649092" duration="3771000" />
+      <workItem from="1556414002806" duration="17732000" />
+      <workItem from="1556509113849" duration="3732000" />
+      <workItem from="1556528076596" duration="4088000" />
+      <workItem from="1556587294267" duration="17216000" />
+      <workItem from="1557105349219" duration="11008000" />
+      <workItem from="1557191675782" duration="19738000" />
+      <workItem from="1557278591555" duration="25798000" />
+      <workItem from="1557364684911" duration="24191000" />
+      <workItem from="1557623969903" duration="7879000" />
+      <workItem from="1557710942865" duration="800000" />
+      <workItem from="1557916441823" duration="4567000" />
+      <workItem from="1557973603566" duration="11102000" />
+      <workItem from="1558003006759" duration="782000" />
+      <workItem from="1558084663570" duration="9530000" />
+      <workItem from="1558315377865" duration="8095000" />
+      <workItem from="1567480570765" duration="5000" />
+      <workItem from="1569207083907" duration="18497000" />
+      <workItem from="1569289318840" duration="14190000" />
+      <workItem from="1569475804841" duration="11224000" />
+      <workItem from="1569548267277" duration="14148000" />
+      <workItem from="1570850008787" duration="4424000" />
+      <workItem from="1570935853499" duration="2061000" />
+      <workItem from="1571024058536" duration="7095000" />
+      <workItem from="1571119668397" duration="1847000" />
+      <workItem from="1571212904851" duration="2578000" />
+      <workItem from="1571300424974" duration="1547000" />
+      <workItem from="1571456827552" duration="28000" />
+      <workItem from="1571468750407" duration="8000" />
+      <workItem from="1571470257273" duration="1685000" />
+      <workItem from="1571538129381" duration="1583000" />
+      <workItem from="1571797907839" duration="184000" />
+      <workItem from="1571801227820" duration="767000" />
+      <workItem from="1571820346527" duration="611000" />
+      <workItem from="1572330191124" duration="678000" />
+      <workItem from="1573546249361" duration="978000" />
+      <workItem from="1573717389562" duration="2589000" />
+      <workItem from="1573888291355" duration="2678000" />
+      <workItem from="1574128565365" duration="230000" />
+      <workItem from="1585462232675" duration="785000" />
+      <workItem from="1585738747620" duration="579000" />
+      <workItem from="1587537874589" duration="571000" />
+      <workItem from="1587973321151" duration="672000" />
+      <workItem from="1588989885948" duration="35000" />
+      <workItem from="1588990397546" duration="916000" />
+      <workItem from="1588991485262" duration="12000" />
+      <workItem from="1589012716833" duration="190000" />
+      <workItem from="1589249336391" duration="1054000" />
+      <workItem from="1589263317330" duration="1929000" />
+      <workItem from="1589267817455" duration="30000" />
+      <workItem from="1589268230522" duration="98000" />
+      <workItem from="1589339811771" duration="90000" />
+      <workItem from="1589339928054" duration="861000" />
+      <workItem from="1589352731959" duration="13000" />
+      <workItem from="1589352841435" duration="82000" />
+      <workItem from="1589353612310" duration="49000" />
+      <workItem from="1590127752300" duration="179000" />
+      <workItem from="1590129776582" duration="32000" />
+      <workItem from="1590219059747" duration="139000" />
+      <workItem from="1590657474968" duration="1072000" />
+      <workItem from="1590730488905" duration="661000" />
+      <workItem from="1590739474898" duration="72000" />
+      <workItem from="1590739948993" duration="453000" />
+      <workItem from="1590823923374" duration="146000" />
+      <workItem from="1591255928802" duration="138000" />
+      <workItem from="1591257519282" duration="116000" />
+      <workItem from="1591508645641" duration="176000" />
+      <workItem from="1591509387099" duration="810000" />
+      <workItem from="1593508621773" duration="201000" />
+      <workItem from="1593508891138" duration="13000" />
+      <workItem from="1594607962612" duration="9000" />
+      <workItem from="1594631557817" duration="35000" />
+      <workItem from="1595494266063" duration="4417000" />
+      <workItem from="1595578224283" duration="1149000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1777004000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49882904" visible="true" weight="0.09379968" />
+      <window_info id="Structure" order="1" sideWeight="0.50117093" side_tool="true" weight="0.11486486" />
+      <window_info id="Favorites" order="2" sideWeight="0.5003903" side_tool="true" weight="0.12321144" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32943013" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="9" weight="0.32943013" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32943013" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.32943013" />
+      <window_info anchor="bottom" id="调试" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Remote Host" order="4" weight="0.15063593" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/index/view/layout/footer.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/layout/header.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/layout/navigation.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/layout/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/layout/box-layout.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/banner/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="772">
+          <caret line="32" column="98" lean-forward="true" selection-start-line="32" selection-start-column="98" selection-end-line="32" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/admin/js/seller_index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/admin/js/user_index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/user/admin_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="837">
+          <caret line="31" column="97" selection-start-line="31" selection-start-column="97" selection-end-line="31" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/category/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/domain/PictureLibraryDomain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8127">
+          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/index/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1053">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/admin/js/admin_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2187">
+          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/index/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2052">
+          <caret line="76" column="9" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/layout/layout2-main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/index/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2106">
+          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/admin/js/auth_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1916">
+          <caret line="85" column="3" selection-start-line="85" selection-start-column="3" selection-end-line="85" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/article/published_article.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="108" column="57" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/weixin/viewjs/shop_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="79" column="82" selection-start-line="79" selection-start-column="82" selection-end-line="79" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/seller/goods_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-416" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/seller/auth_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-443" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/user/admin_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/seller/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/plugin/wangEditor/release/wangEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="4343" column="4" selection-start-line="4343" selection-start-column="4" selection-end-line="4343" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/article/graphic.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/model/BannerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/admin/js/banner_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="29" column="78" selection-start-line="29" selection-start-column="78" selection-end-line="29" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/weixin/viewjs/goods_details.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/article/my_article.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1145" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/article/userme.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="273" column="54" selection-start-line="273" selection-start-column="54" selection-end-line="273" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4536">
+          <caret line="169" column="30" selection-start-line="169" selection-start-column="20" selection-end-line="169" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/shop/good_editor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1971">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/shop/myshoplist.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/banner/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3456">
+          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/article/article_lists.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1944">
+          <caret line="72" column="63" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Banner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/category/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/admin/js/goods_index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/article/article_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1177">
+          <caret line="142" column="49" selection-start-line="142" selection-start-column="49" selection-end-line="142" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/js/verification-code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/plugin/layer_mobile/layer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/weixin/css/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/layout/footer.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/layout/footer1.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/layout/header.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/conf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="34" column="10" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/layout/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/weixin/view/index/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3915">
+          <caret line="145" column="25" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

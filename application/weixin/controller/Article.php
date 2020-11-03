@@ -90,7 +90,6 @@ class Article extends BaseController
     public function getArticleInfo(Request $request){
         $id = $request->param('id',0);
         $data = $this->articleDomain->getArticleInfo($id);
-
         return $this->returnData($data,'',200);
     }
 

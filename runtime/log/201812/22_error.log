@@ -1,0 +1,36 @@
+---------------------------------------------------------------
+[ 2018-12-22T10:03:13+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/getGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to think\db\Query::update() must be of the type array, string given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 46[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Query.php:2875]
+---------------------------------------------------------------
+[ 2018-12-22T10:03:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to think\db\Query::update() must be of the type array, string given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 46[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Query.php:2875]
+---------------------------------------------------------------
+[ 2018-12-22T10:04:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsStatus
+[ error ] [8]未定义数组索引: status[D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php:46]
+---------------------------------------------------------------
+[ 2018-12-22T11:45:24+08:00 ] 172.16.100.117 GET 172.16.100.117/banner/20181222/164a4973d18b002151624a52aab240b5.jpg
+[ error ] [2]file_put_contents(D:\phpstudy\PHPTutorial\WWW\project\runtime\build_route.php): failed to open stream: Permission denied[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Build.php:218]
+---------------------------------------------------------------
+[ 2018-12-22T14:20:45+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [0]致命错误: Call to undefined method app\admin\controller\Goods::getSellerId()[D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php:64]
+---------------------------------------------------------------
+[ 2018-12-22T14:21:39+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to app\api\domain\SpGoodsDomain::examineGoods() must be of the type integer, array given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 64[D:\phpstudy\PHPTutorial\WWW\project\application\api\domain\SpGoodsDomain.php:195]
+---------------------------------------------------------------
+[ 2018-12-22T14:22:40+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to app\api\domain\SpGoodsDomain::examineGoods() must be of the type integer, array given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 64[D:\phpstudy\PHPTutorial\WWW\project\application\api\domain\SpGoodsDomain.php:195]
+---------------------------------------------------------------
+[ 2018-12-22T14:25:02+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to app\api\domain\SpGoodsDomain::examineGoods() must be of the type integer, array given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 64[D:\phpstudy\PHPTutorial\WWW\project\application\api\domain\SpGoodsDomain.php:195]
+---------------------------------------------------------------
+[ 2018-12-22T14:25:17+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to app\api\domain\SpGoodsDomain::examineGoods() must be of the type integer, array given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 64[D:\phpstudy\PHPTutorial\WWW\project\application\api\domain\SpGoodsDomain.php:195]
+---------------------------------------------------------------
+[ 2018-12-22T14:26:37+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [0]类型错误: Argument 1 passed to app\api\domain\SpGoodsDomain::examineGoods() must be of the type integer, array given, called in D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Goods.php on line 61[D:\phpstudy\PHPTutorial\WWW\project\application\api\domain\SpGoodsDomain.php:195]
+---------------------------------------------------------------
+[ 2018-12-22T17:53:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/update
+[ error ] [8]未定义数组索引: id[D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Category.php:100]
+---------------------------------------------------------------
+[ 2018-12-22T17:59:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/login/loginout
+[ error ] [0]致命错误: Class 'app\admin\controller\Session' not found[D:\phpstudy\PHPTutorial\WWW\project\application\admin\controller\Login.php:49]

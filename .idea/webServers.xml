@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0a1e7591-2cbe-4efc-8efe-9d3b76072f5a" name="薇琳" url="http://120.27.221.61">
+        <fileTransfer host="120.27.221.61" port="22" rootFolder="/home/wwwroot/wx.redream.com" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

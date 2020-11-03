@@ -273,12 +273,10 @@ class DiaryDomain
 
             $data['goods_infos'] = Db::name('sp_goods')->where('id','in',$data['info']['goods_ids'])->field(['id','name','sell_price','img'])->select();
 
-            $data['diaryDetail'] = Db::name('diary_detail')->where('id',$diaryDetailId)->find();
+            $data['diarWyDetail'] = Db::name('diary_detail')->where('id',$diaryDetailId)->find();
             if($data['diaryDetail']){
                 $data['diaryDetail']['imgs'] = !empty($data['diaryDetail']['imgs']) ?  json_decode($data['diaryDetail']['imgs'],true) : [];
             }
-
-            $data['commentList'] = Db::name('comment')->where('table_name','diary_detail')->where('parent_id',0)->where('object_id',$diaryId)->limit(5)->select();
         }
 
         return $data;

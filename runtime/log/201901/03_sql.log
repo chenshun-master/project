@@ -1,0 +1,1149 @@
+---------------------------------------------------------------
+[ 2019-01-03T09:59:11+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080646s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053248s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '17601628133' LIMIT 1 [ RunTime:0.052863s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.052028s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.053607s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.053235s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,4)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 68)  AND `created_time` BETWEEN '2018-12-28 00:00:00' AND '2019-01-03 09:59:11' [ RunTime:0.053202s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:13+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079816s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055112s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053985s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 68 AND  status=1 and published_time <='2019-01-03 09:59:13'  GROUP BY type [ RunTime:0.054998s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:14+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064094s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.046611s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:16+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getUserOrder
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081882s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.055375s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` IN ('1','3','6') LIMIT 1 [ RunTime:0.053890s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_price`,`order`.`goods_nums`,`order`.`real_amount`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name`,`order`.`status`,`order`.`goods_name` FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` IN ('1','3','6') LIMIT 0,5 [ RunTime:0.058203s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:26+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getUserOrder
+[ sql ] [ DB ] CONNECT:[ UseTime:0.067172s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.044309s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` = '1' LIMIT 1 [ RunTime:0.047006s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_price`,`order`.`goods_nums`,`order`.`real_amount`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name`,`order`.`status`,`order`.`goods_name` FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` = '1' LIMIT 0,5 [ RunTime:0.044950s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:27+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getUserOrder
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081147s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.055827s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` = '3' LIMIT 1 [ RunTime:0.058354s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_price`,`order`.`goods_nums`,`order`.`real_amount`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name`,`order`.`status`,`order`.`goods_name` FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` = '3' LIMIT 0,5 [ RunTime:0.055804s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:57+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getUserOrder
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078431s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.053529s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` = '6' LIMIT 1 [ RunTime:0.053849s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_price`,`order`.`goods_nums`,`order`.`real_amount`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name`,`order`.`status`,`order`.`goods_name` FROM `wl_sh_order` `order` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`order`.`hospital_id` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`order`.`doctor_id` WHERE  `order`.`user_id` = '68'  AND `order`.`status` = '6' LIMIT 0,5 [ RunTime:0.056770s ]
+---------------------------------------------------------------
+[ 2019-01-03T09:59:59+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079837s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053725s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`parent_id`,`path` FROM `wl_sp_category` ORDER BY `id` ASC [ RunTime:0.053304s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:00+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodsList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062673s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.043513s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.046658s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,15 [ RunTime:0.045340s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:02+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodsList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080600s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054566s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.054148s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,15 [ RunTime:0.058635s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:36+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getHospitalList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082013s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054561s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 1 [ RunTime:0.053057s ]
+[ sql ] [ SQL ] SELECT hospital.user_id,hospital.hospital_name,auth.hospital_type as type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 0,15 [ RunTime:0.054349s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:38+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063770s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043619s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.043239s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 68 AND  status=1 and published_time <='2019-01-03 10:00:38'  GROUP BY type [ RunTime:0.042605s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:39+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080143s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.053976s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:40+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getHospitalList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077243s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052866s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 1 [ RunTime:0.052211s ]
+[ sql ] [ SQL ] SELECT hospital.user_id,hospital.hospital_name,auth.hospital_type as type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 0,15 [ RunTime:0.056267s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:41+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047032s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.032311s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`parent_id`,`path` FROM `wl_sp_category` ORDER BY `id` ASC [ RunTime:0.031668s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:42+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodsList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077856s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.052782s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.055051s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,15 [ RunTime:0.057470s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:42+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getDoctorList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079296s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053962s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM ( SELECT count(*) AS think_count FROM `wl_user` `user` LEFT JOIN `wl_doctor` `doctor` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_doctor_hospital` `dh` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` WHERE  ( user.type = '3' and IFNULL(dh.status,0) != 2 ) GROUP BY `user`.`id` ORDER BY `user`.`created_time` DESC ) `_group_count_` LIMIT 1 [ RunTime:0.056195s ]
+[ sql ] [ SQL ] SELECT count(*) AS think_count,user.portrait,
+                  doctor.real_name,
+                  doctor.user_id,
+                  hospital.id as hospital_id,
+                  hospital.hospital_name,
+                  ( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,
+                  0 AS case_num FROM `wl_user` `user` LEFT JOIN `wl_doctor` `doctor` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_doctor_hospital` `dh` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` WHERE  ( user.type = '3' and IFNULL(dh.status,0) != 2 ) GROUP BY `user`.`id` ORDER BY `user`.`created_time` DESC LIMIT 0,15 [ RunTime:0.054937s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:43+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/index/getArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064425s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.042956s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`status` = '1'  AND `article`.`published_time` <= '2019-01-03 10:00:43' ORDER BY `article`.`is_top` DESC,`article`.`published_time` DESC LIMIT 1 [ RunTime:0.043657s ]
+[ sql ] [ SQL ] SELECT article.*,user.type as user_type,user.nickname,INSERT(user.mobile,4,4,'****') as mobile,auth.username,auth.enterprise_name FROM `wl_article` `article` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`status` = '1'  AND `article`.`published_time` <= '2019-01-03 10:00:43' ORDER BY `article`.`is_top` DESC,`article`.`published_time` DESC LIMIT 0,15 [ RunTime:0.170096s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:44+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getDoctorList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077995s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053172s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM ( SELECT count(*) AS think_count FROM `wl_user` `user` LEFT JOIN `wl_doctor` `doctor` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_doctor_hospital` `dh` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` WHERE  ( user.type = '3' and IFNULL(dh.status,0) != 2 ) GROUP BY `user`.`id` ORDER BY `user`.`created_time` DESC ) `_group_count_` LIMIT 1 [ RunTime:0.053009s ]
+[ sql ] [ SQL ] SELECT count(*) AS think_count,user.portrait,
+                  doctor.real_name,
+                  doctor.user_id,
+                  hospital.id as hospital_id,
+                  hospital.hospital_name,
+                  ( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,
+                  0 AS case_num FROM `wl_user` `user` LEFT JOIN `wl_doctor` `doctor` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_doctor_hospital` `dh` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` WHERE  ( user.type = '3' and IFNULL(dh.status,0) != 2 ) GROUP BY `user`.`id` ORDER BY `user`.`created_time` DESC LIMIT 0,15 [ RunTime:0.056281s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:46+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/index/getArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079854s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.055062s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`status` = '1'  AND `article`.`published_time` <= '2019-01-03 10:00:45' ORDER BY `article`.`is_top` DESC,`article`.`published_time` DESC LIMIT 1 [ RunTime:0.054471s ]
+[ sql ] [ SQL ] SELECT article.*,user.type as user_type,user.nickname,INSERT(user.mobile,4,4,'****') as mobile,auth.username,auth.enterprise_name FROM `wl_article` `article` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`status` = '1'  AND `article`.`published_time` <= '2019-01-03 10:00:45' ORDER BY `article`.`is_top` DESC,`article`.`published_time` DESC LIMIT 0,15 [ RunTime:0.212652s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:47+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodGoodsList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064694s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_good_goods` [ RunTime:0.043407s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_good_goods` `good_goods` INNER JOIN `wl_sp_goods` `goods` ON `goods`.`id`=good_goods.goods_id and goods.status = 0 ORDER BY `good_goods`.`created_time` DESC LIMIT 1 [ RunTime:0.042357s ]
+[ sql ] [ SQL ] SELECT `good_goods`.`id`,`goods`.`img`,`good_goods`.`title`,`good_goods`.`favorites`,`good_goods`.`like`,`good_goods`.`comment`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`name` FROM `wl_sp_good_goods` `good_goods` INNER JOIN `wl_sp_goods` `goods` ON `goods`.`id`=good_goods.goods_id and goods.status = 0 ORDER BY `good_goods`.`created_time` DESC LIMIT 0,15 [ RunTime:0.043681s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:48+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/shop/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079230s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054619s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`parent_id`,`path` FROM `wl_sp_category` ORDER BY `id` ASC [ RunTime:0.055267s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:49+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/shopapi/getGoodsList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083256s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.056790s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.058417s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,15 [ RunTime:0.058075s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:50+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064990s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044742s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044011s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 68 AND  status=1 and published_time <='2019-01-03 10:00:50'  GROUP BY type [ RunTime:0.043659s ]
+---------------------------------------------------------------
+[ 2019-01-03T10:00:50+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066902s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.043927s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:49:07+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048991s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.030985s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.031220s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.031776s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.033026s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.032000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.031783s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,0)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 1)  AND `created_time` BETWEEN '2018-12-28 00:00:00' AND '2019-01-03 14:49:06' [ RunTime:0.030893s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:49:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078026s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.051921s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.052931s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.053795s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:49:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077566s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053777s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '3' LIMIT 1 [ RunTime:0.052831s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '3' LIMIT 0,10 [ RunTime:0.053868s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:49:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064283s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.044998s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '2' LIMIT 1 [ RunTime:0.043443s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '2' LIMIT 0,10 [ RunTime:0.049579s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:50:05+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082981s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054367s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.053459s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.057343s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:50:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077060s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053480s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.051991s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.054924s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:50:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064352s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.048532s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.043878s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.047887s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:50:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060196s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.041881s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.039625s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.040119s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:51:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061967s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.043001s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.042269s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.046500s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:51:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063087s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.044809s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.041460s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.044307s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:51:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063240s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043198s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.043024s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.042882s ]
+---------------------------------------------------------------
+[ 2019-01-03T14:51:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077991s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052727s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.050877s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.051430s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:38:29+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045971s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.030496s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.030007s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 68 AND  status=1 and published_time <='2019-01-03 15:38:29'  GROUP BY type [ RunTime:0.031064s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:38:30+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080435s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.053949s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:38:34+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getHospitalList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061469s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.042584s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 1 [ RunTime:0.043011s ]
+[ sql ] [ SQL ] SELECT hospital.user_id,hospital.hospital_name,auth.hospital_type as type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 0,15 [ RunTime:0.041995s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:38:36+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/hospitalDetails/uid/68
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082888s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053291s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.052843s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.053608s ]
+[ sql ] [ SQL ] SELECT hospital.id as hospital_id,user.id as uid,`user`.`portrait`,`hospital`.`hospital_name`,`auth`.`address`,`auth`.`profile` FROM `wl_hospital` `hospital` LEFT JOIN `wl_user` `user` ON `user`.`id`=`hospital`.`user_id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `hospital`.`user_id` = '68' LIMIT 1 [ RunTime:0.054595s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.054554s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` LEFT JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_auth` `auth` ON `doctor`.`auth_id`=`auth`.`id` WHERE  `dh`.`status` = '1'  AND `hospital`.`user_id` = '68' LIMIT 1 [ RunTime:0.056475s ]
+[ sql ] [ SQL ] SELECT user.id as uid,`user`.`portrait`,`doctor`.`real_name`,`auth`.`duties`,`auth`.`speciality`,`auth`.`profile`,`auth`.`address`,`hospital`.`hospital_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` LEFT JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_auth` `auth` ON `doctor`.`auth_id`=`auth`.`id` WHERE  `dh`.`status` = '1'  AND `hospital`.`user_id` = '68' LIMIT 0,100 [ RunTime:0.054977s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 68 AND  status=1 and published_time <='2019-01-03 15:38:36'  GROUP BY type [ RunTime:0.053510s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:38:36+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/Article/getUserPublishArticle
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064211s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.041882s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` INNER JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1'  AND `article`.`published_time` <= '2019-01-03 15:38:36' ORDER BY `article`.`published_time` DESC LIMIT 1 [ RunTime:0.042603s ]
+[ sql ] [ SQL ] SELECT article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =68 AND wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name FROM `wl_article` `article` INNER JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1'  AND `article`.`published_time` <= '2019-01-03 15:38:36' ORDER BY `article`.`published_time` DESC LIMIT 0,3 [ RunTime:0.063861s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:38:39+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getHospitalList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061437s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.046471s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 1 [ RunTime:0.044680s ]
+[ sql ] [ SQL ] SELECT hospital.user_id,hospital.hospital_name,auth.hospital_type as type,user.portrait,( SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1 ) AS article_num,0 AS case_num FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 0,15 [ RunTime:0.043356s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:42:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075446s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.052153s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.051251s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.052888s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:42:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.059589s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.040975s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.040965s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.043589s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:42:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079882s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.052961s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.052456s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.056545s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:45:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077026s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.053017s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.052722s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.054471s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:45:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062024s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042692s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.042444s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.043984s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:45:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080175s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055441s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 1 [ RunTime:0.053170s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 0,10 [ RunTime:0.055158s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:45:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047749s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.032196s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 1 [ RunTime:0.035971s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 0,10 [ RunTime:0.033040s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:45:49+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080358s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055331s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.053741s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.058167s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:46:02+08:00 ] 127.0.0.1 POST www.mytest.com/admin/auth/updateAuthStatus
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078270s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054204s ]
+[ sql ] [ SQL ] UPDATE `wl_auth`  SET `status` = 2 , `audit_time` = '2019-01-03 15:46:02' , `audit_remark` = '手动审核'  WHERE  `id` = 149  AND `status` = 1 [ RunTime:0.052592s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:46:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.059167s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.040986s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.040244s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.045151s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:46:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064088s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044299s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 1 [ RunTime:0.043817s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 0,10 [ RunTime:0.046172s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:46:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062944s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043592s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.043017s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044371s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:52:21+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080478s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054201s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '17601628133' LIMIT 1 [ RunTime:0.053799s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.052514s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.053048s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.053108s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,4)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 68)  AND `created_time` BETWEEN '2018-12-28 00:00:00' AND '2019-01-03 15:52:21' [ RunTime:0.055131s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:52:23+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079923s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053670s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.054861s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054290s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.054537s ]
+---------------------------------------------------------------
+[ 2019-01-03T15:52:25+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064926s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044876s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.041906s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:21:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.068625s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.045144s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.043802s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.048573s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:21:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082331s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055307s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.054099s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.057076s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:21:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.059823s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.042126s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.040550s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.041164s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:21:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079481s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054120s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.053969s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:21:54+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078113s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052306s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sp_banner` (`name` , `url` , `img` , `order` , `platform`) VALUES ('轮播图' , 'http://172.16.100.117/uploads/20181228/93038dd81460a90fe4909437728c91f8.jpg' , 'http://172.16.100.117/banner/20190103/01ce318e6a824e3c013af793d8de1269.jpg' , 20 , 'h5') [ RunTime:0.054989s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:21:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077423s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.051426s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.050785s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.051757s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:22:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.084861s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054308s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.053747s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053482s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:22:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078127s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053650s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052687s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052755s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:22:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064475s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043260s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.044349s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.042291s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:27:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061275s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.041119s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.041188s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.041253s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:27:05+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066435s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.045559s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.044527s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.044038s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:27:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047761s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.032643s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.033325s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.034586s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:27:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081947s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054991s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.053956s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:27:33+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081220s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054986s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sp_banner` (`name` , `url` , `img` , `order` , `platform`) VALUES ('轮播图' , 'http://www.mytest.com/admin/banner/addBanner' , 'http://172.16.100.117/banner/20190103/04c327079d7b58f06f8cd5a00432ab08.jpg' , 20 , 'h5') [ RunTime:0.054889s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:27:35+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078115s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052541s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.050965s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052716s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:31:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.067215s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.046714s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.043190s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.043387s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:31:09+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062813s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043358s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.042039s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:31:19+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060813s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.040795s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sp_banner` (`name` , `url` , `img` , `order` , `platform`) VALUES ('轮播图' , 'http://www.mytest.com/admin/banner/addBanner' , 'http://172.16.100.117/banner/20190103/201bb0b7bcb18fb58ce14d49cd530e24.jpg' , 20 , 'pc') [ RunTime:0.045516s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:31:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061573s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.041643s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.043479s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.041299s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:31:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080738s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.055270s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.053829s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.054980s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:32:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081229s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.055022s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.055887s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052910s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:33:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081156s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052883s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.053041s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053500s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:33:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077811s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053968s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052044s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053008s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:33:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079420s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054391s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.054071s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053991s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:33:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078263s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052843s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.051757s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052279s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:33:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061309s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.042856s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042334s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.042143s ]
+---------------------------------------------------------------
+[ 2019-01-03T16:33:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075094s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.051805s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.050195s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052729s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:01:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079082s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053469s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.053492s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053239s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:01:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.044360s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.031037s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.030239s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.032114s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:01:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079780s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052455s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.050796s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052933s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:01:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076729s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052472s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.051030s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052453s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:02:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065469s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.044013s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042782s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.046342s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:02:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063237s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.042654s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042557s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.044113s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:02:05+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081425s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054723s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.054019s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.056616s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:02:46+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064878s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043170s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042041s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.043248s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:03:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078022s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053714s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.052797s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.052577s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:03:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077925s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052103s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.052135s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.051884s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:03:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064339s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.044368s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.043188s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.042943s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:24:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064643s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.042256s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.042581s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.042707s ]
+---------------------------------------------------------------
+[ 2019-01-03T17:24:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077996s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.054745s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.052506s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.052051s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063231s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.042067s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.042675s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.041092s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061156s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.041494s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.041136s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.041133s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045794s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.032458s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.031338s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.032494s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077320s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054697s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.051862s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.052680s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:32+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079075s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052530s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.050564s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.051397s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080047s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054841s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.053330s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.054527s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.050853s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.032112s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.031527s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.033142s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:35+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048633s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.033203s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.032531s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.033184s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079851s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053842s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.055191s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.053013s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080471s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054654s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.054352s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.055850s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080726s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.055415s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.055662s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.057552s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:54+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061911s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.042552s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.042299s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043251s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.042228s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.042616s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.042915s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,0)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 1)  AND `created_time` BETWEEN '2018-12-28 00:00:00' AND '2019-01-03 18:54:54' [ RunTime:0.046258s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047318s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.032270s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.034246s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.032690s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049010s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.033723s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.032249s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.033786s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:54:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049224s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.033208s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.033348s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.032522s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/newAdmin/id/30
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062118s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.041844s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `id` = 30 LIMIT 1 [ RunTime:0.040377s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062803s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.043615s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.041317s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.042466s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/newAdmin/id/30
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080671s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.055572s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `id` = 30 LIMIT 1 [ RunTime:0.054743s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064327s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043475s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.041925s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.042567s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner/id/12
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078456s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052626s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` = 12 LIMIT 1 [ RunTime:0.052291s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:10+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078413s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053270s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052604s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052378s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:12+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079315s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.054057s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.053362s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.054835s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078947s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052741s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.052706s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.052251s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065813s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044275s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.043518s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.044673s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061840s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.041943s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.041521s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.043765s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063709s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.044730s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.043397s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.047889s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061498s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042742s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.042909s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.043510s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064315s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044110s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.042193s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.046709s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:32+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078242s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054234s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.052936s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.054352s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078857s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.053779s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 1 [ RunTime:0.053617s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 0,10 [ RunTime:0.055692s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078530s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054330s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 1 [ RunTime:0.052508s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 0,10 [ RunTime:0.054628s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077791s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053018s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.054737s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.053720s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062263s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.043174s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '3' LIMIT 1 [ RunTime:0.045033s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '3' LIMIT 0,10 [ RunTime:0.044186s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046426s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.031848s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '2' LIMIT 1 [ RunTime:0.033643s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` WHERE  `sp`.`status` = '2' LIMIT 0,10 [ RunTime:0.033827s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083756s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054737s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.055933s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.055070s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:39+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060380s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.041080s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.041164s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.041576s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062172s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.042045s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.042634s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.043411s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047114s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.032517s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.031569s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.032524s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063352s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.043251s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.042382s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.042106s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079744s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052021s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.051848s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.052636s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080795s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054818s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055479s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077220s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052569s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.053791s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.051963s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:55:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079516s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054155s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.054100s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053964s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:07+08:00 ] 127.0.0.1 POST www.mytest.com/seller/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064229s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044694s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`password`,`type`,`portrait` FROM `wl_user` WHERE  `mobile` = '17601628133'  AND `type` IN (3,4) LIMIT 1 [ RunTime:0.044252s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.044733s ]
+[ sql ] [ SQL ] SELECT id as seller_id,`is_lock`,`user_id` FROM `wl_sp_seller` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.043337s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043738s ]
+[ sql ] [ SQL ] SELECT `username`,`enterprise_name` FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.042460s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:10+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064050s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.044558s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 9 LIMIT 1 [ RunTime:0.044220s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.043198s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.042151s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.043579s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.045148s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:11+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getGoodsList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066363s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.045781s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 1 [ RunTime:0.044817s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 0,20 [ RunTime:0.050117s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:12+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078881s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.050586s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.052575s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.052938s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:13+08:00 ] 127.0.0.1 GET www.mytest.com/seller/user/getMyDoctorList?page=1&limit=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062883s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.044203s ]
+[ sql ] [ SQL ] SELECT user.id as user_id,`user`.`mobile`,`user`.`nickname`,`user`.`sex`,`user`.`portrait`,`auth`.`username`,`auth`.`duties`,`auth`.`speciality`,`dh`.`created_time`,dh.status relation_status FROM `wl_doctor_hospital` `dh` INNER JOIN `wl_hospital` `hospital` ON `dh`.`hospital_id`=hospital.id and hospital.user_id = 68 INNER JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` INNER JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` INNER JOIN `wl_auth` `auth` ON `auth`.`id`=`doctor`.`auth_id` [ RunTime:0.044019s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:14+08:00 ] 127.0.0.1 GET www.mytest.com/seller/user/getHospitalEnterApplyList?page=1&limit=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046440s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital_enter_apply` [ RunTime:0.033006s ]
+[ sql ] [ SQL ] SELECT `apply`.*,`user`.`mobile`,user.id as user_id,`user`.`nickname`,`user`.`sex`,`user`.`portrait`,`auth`.`username`,`auth`.`duties`,`auth`.`speciality` FROM `wl_hospital_enter_apply` `apply` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`apply`.`doctor_id` LEFT JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_auth` `auth` ON `auth`.`id`=`doctor`.`auth_id` WHERE  `apply`.`hospital_id` = '10' [ RunTime:0.033878s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:15+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066237s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.043731s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.045387s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.045188s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:15+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getGoodsList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077021s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053539s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 1 [ RunTime:0.051804s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 0,20 [ RunTime:0.053872s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:16+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078965s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.055114s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 9 LIMIT 1 [ RunTime:0.056151s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.054075s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.052235s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.053733s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.052945s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:17+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062093s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.042238s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.042679s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.045639s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:18+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getGoodsList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046786s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.032718s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 1 [ RunTime:0.030897s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 0,20 [ RunTime:0.033487s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:21+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064423s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.044654s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.042631s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.045625s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:22+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080261s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.054428s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '1' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.053984s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '1' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.057825s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:22+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077254s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.053134s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '3' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.056027s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '3' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.056940s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:23+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080446s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.054377s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '6' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.056563s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '6' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.055103s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:24+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063472s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.043769s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '1' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.042377s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '1' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.047725s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:25+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076540s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.052406s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '3' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.052363s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '3' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.052800s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:26+08:00 ] 127.0.0.1 GET www.mytest.com/seller/user/getMyDoctorList?page=1&limit=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081328s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.056796s ]
+[ sql ] [ SQL ] SELECT user.id as user_id,`user`.`mobile`,`user`.`nickname`,`user`.`sex`,`user`.`portrait`,`auth`.`username`,`auth`.`duties`,`auth`.`speciality`,`dh`.`created_time`,dh.status relation_status FROM `wl_doctor_hospital` `dh` INNER JOIN `wl_hospital` `hospital` ON `dh`.`hospital_id`=hospital.id and hospital.user_id = 68 INNER JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` INNER JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` INNER JOIN `wl_auth` `auth` ON `auth`.`id`=`doctor`.`auth_id` [ RunTime:0.054718s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:27+08:00 ] 127.0.0.1 GET www.mytest.com/seller/user/getHospitalEnterApplyList?page=1&limit=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080699s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital_enter_apply` [ RunTime:0.054352s ]
+[ sql ] [ SQL ] SELECT `apply`.*,`user`.`mobile`,user.id as user_id,`user`.`nickname`,`user`.`sex`,`user`.`portrait`,`auth`.`username`,`auth`.`duties`,`auth`.`speciality` FROM `wl_hospital_enter_apply` `apply` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`apply`.`doctor_id` LEFT JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_auth` `auth` ON `auth`.`id`=`doctor`.`auth_id` WHERE  `apply`.`hospital_id` = '10' [ RunTime:0.055645s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:28+08:00 ] 127.0.0.1 GET www.mytest.com/seller/user/getHospitalEnterApplyList?page=1&limit=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065114s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital_enter_apply` [ RunTime:0.043750s ]
+[ sql ] [ SQL ] SELECT `apply`.*,`user`.`mobile`,user.id as user_id,`user`.`nickname`,`user`.`sex`,`user`.`portrait`,`auth`.`username`,`auth`.`duties`,`auth`.`speciality` FROM `wl_hospital_enter_apply` `apply` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`apply`.`doctor_id` LEFT JOIN `wl_user` `user` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_auth` `auth` ON `auth`.`id`=`doctor`.`auth_id` WHERE  `apply`.`hospital_id` = '10' [ RunTime:0.045200s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:31+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047425s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.032425s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.032010s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.036609s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:33+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getGoodsList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063361s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.044724s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 1 [ RunTime:0.042744s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '9' ORDER BY `goods`.`create_time` DESC LIMIT 0,20 [ RunTime:0.044474s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:35+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061451s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.042945s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 9 LIMIT 1 [ RunTime:0.046137s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.041810s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.040714s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.042334s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.042364s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:37+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079318s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054759s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 9 LIMIT 1 [ RunTime:0.055935s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.053804s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.053195s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.052906s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.056543s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:39+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078325s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054151s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 9 LIMIT 1 [ RunTime:0.054457s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.053023s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.052323s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.052985s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.052754s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:40+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079203s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053966s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 9 LIMIT 1 [ RunTime:0.057420s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.052142s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.051050s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.052933s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.053875s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:42+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079752s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.055010s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.054123s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.055909s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:43+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=0
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063857s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.044014s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.043777s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` IN ('1','3','6') ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.047862s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:44+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081398s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.056008s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '1' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.055172s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '1' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.057882s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:44+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079437s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.054204s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '3' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.056305s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '3' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.057079s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:45+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getSellerOrderList?page=1&limit=20&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062790s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sh_order` [ RunTime:0.043776s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '6' ORDER BY `order`.`create_time` DESC LIMIT 1 [ RunTime:0.043644s ]
+[ sql ] [ SQL ] SELECT `order`.`id`,`order`.`order_no`,`order`.`goods_id`,`order`.`user_id`,`order`.`img`,`order`.`goods_nums`,`order`.`status`,`goods`.`name`,`order`.`goods_price`,`order`.`discount_price`,`order`.`payable_amount`,`order`.`prepay_price`,`order`.`topay_price`,`order`.`real_amount`,`order`.`pay_time`,`user`.`mobile`,`auth`.`username`,`order`.`good_goods_id`,`order`.`pay_status` FROM `wl_sh_order` `order` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=`order`.`goods_id` LEFT JOIN `wl_user` `user` ON `order`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `order`.`user_id`=`auth`.`user_id` WHERE  `order`.`seller_id` = '9'  AND `order`.`status` = '6' ORDER BY `order`.`create_time` DESC LIMIT 0,20 [ RunTime:0.043682s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063767s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044114s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.043103s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.044535s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076692s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052698s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.051180s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.051412s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:56:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064309s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043612s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.043383s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044863s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:57:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061769s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.042163s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.043000s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.043802s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:57:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065170s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.042790s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.043676s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.043228s ]
+---------------------------------------------------------------
+[ 2019-01-03T18:57:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062111s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042341s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.041853s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044405s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079764s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054363s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.053910s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.053891s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063080s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042757s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.042674s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.045589s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061627s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.041469s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.040946s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.042085s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066311s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044245s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.043640s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.044225s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063225s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.043570s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.042966s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.043423s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063924s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.044300s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.042709s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.044008s ]
+---------------------------------------------------------------
+[ 2019-01-03T19:05:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061536s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042337s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.041163s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044669s ]
+---------------------------------------------------------------
+[ 2019-01-03T20:39:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080250s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054545s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.053866s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.055282s ]

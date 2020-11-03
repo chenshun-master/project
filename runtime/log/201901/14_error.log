@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2019-01-14T17:29:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'wl_dev3.wl_wl_user' doesn't exist[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-01-14T17:30:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getsellerlist
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'wl_dev3.wl_wl_user' doesn't exist[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-01-14T17:30:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getsellerlist
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'wl_dev3.wl_wl_user' doesn't exist[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-01-14T17:30:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getsellerlist
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'create_time' in 'order clause'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-01-14T17:30:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getsellerlist
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seller.id' in 'field list'[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]

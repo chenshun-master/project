@@ -1,0 +1,70 @@
+---------------------------------------------------------------
+[ 2019-01-15T14:19:15+08:00 ] 127.0.0.1 POST www.mytest.com/seller/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.121513s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053347s ]
+[ sql ] [ SQL ] SELECT `user`.`id`,`user`.`mobile`,`user`.`password`,`user`.`type`,`user`.`portrait`,`auth`.`username`,`auth`.`enterprise_name` FROM `wl_user` `user` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` WHERE  `user`.`mobile` = '17601628133'  AND `user`.`type` IN ('3','4') LIMIT 1 [ RunTime:0.053155s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:18+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077689s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054479s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 68 LIMIT 1 [ RunTime:0.056942s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.053601s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.052335s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.053659s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.053066s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:22+08:00 ] 127.0.0.1 POST www.mytest.com/seller/shopApi/getCategoryList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082159s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055566s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`parent_id`,`is_leaf` FROM `wl_sp_category` WHERE  `parent_id` = 0 ORDER BY `sort` DESC,`id` ASC [ RunTime:0.054994s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:25+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shopapi/getGoodsList?page=1&limit=20
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076472s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.055494s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '68' ORDER BY `goods`.`create_time` DESC LIMIT 1 [ RunTime:0.052102s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_goods` `goods` WHERE  `goods`.`seller_id` = '68' ORDER BY `goods`.`create_time` DESC LIMIT 0,20 [ RunTime:0.052356s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:28+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079444s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054906s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 68 LIMIT 1 [ RunTime:0.059087s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.053165s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.053136s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.054287s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.054942s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:45+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077361s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053009s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 68 LIMIT 1 [ RunTime:0.055794s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.056111s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.051868s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.052337s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.051970s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:53+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079965s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053165s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 68 LIMIT 1 [ RunTime:0.057653s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.052459s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.052357s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.052900s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.054023s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:53+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079325s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053536s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 68 LIMIT 1 [ RunTime:0.055403s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.054100s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.052812s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.052541s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.051880s ]
+---------------------------------------------------------------
+[ 2019-01-15T14:19:54+08:00 ] 127.0.0.1 GET www.mytest.com/seller/shop/addGood
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081930s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.055196s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`topay_price`,`goods`.`royalty`,`goods`.`store_nums`,`goods`.`status`,`goods`.`keywords`,`goods`.`description`,`goods`.`search_words`,`goods`.`doctor_id`,`goods`.`hospital_id`,`goods`.`content`,`notice`.`buy_deadline`,`notice`.`notice`,`notice`.`buyflow`,`notice`.`time_slot`,`goods`.`category_id`,category.name as category_name FROM `wl_sp_goods` `goods` LEFT JOIN `wl_sp_category` `category` ON `category`.`id`=`goods`.`category_id` LEFT JOIN `wl_sp_goods_buy_notice` `notice` ON `notice`.`goods_id`=`goods`.`id` WHERE  `goods`.`id` = '0'  AND `seller_id` = 68 LIMIT 1 [ RunTime:0.057000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_hospital` [ RunTime:0.054668s ]
+[ sql ] [ SQL ] SELECT id as hospital_id,`user_id`,`hospital_name` FROM `wl_hospital` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.054999s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_doctor_hospital` [ RunTime:0.055091s ]
+[ sql ] [ SQL ] SELECT doctor.id as doctor_id,`doctor`.`user_id`,`doctor`.`real_name` FROM `wl_doctor_hospital` `dh` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`dh`.`doctor_id` WHERE  `dh`.`hospital_id` = '12' [ RunTime:0.058180s ]

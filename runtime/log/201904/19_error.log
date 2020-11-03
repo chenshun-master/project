@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2019-04-19T10:51:48+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/index
+[ error ] [8]unserialize(): Error at offset 87 of 104 bytes[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Template.php:318]
+---------------------------------------------------------------
+[ 2019-04-19T10:51:56+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getCommentArticleList
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'tmp.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:00+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/index/index
+[ error ] [8]unserialize(): Error at offset 87 of 104 bytes[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Template.php:318]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:05+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getDoctorList
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'wl_dev3.doctor.real_name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-04-19T10:52:38+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getCommentArticleList
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'tmp.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:687]

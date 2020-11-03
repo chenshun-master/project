@@ -1,0 +1,371 @@
+<?php /*a:1:{s:75:"D:\phpstudy\PHPTutorial\WWW\project\application\index\view\index\login.html";i:1549940378;}*/ ?>
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title><?php echo config('conf.title'); ?> - 登录页</title>
+		<link rel="stylesheet" href="/static/web/css/login.css">
+		<link rel="stylesheet" href="/static/css/iconfont.css">
+        <link rel="stylesheet" href="/static/css/function.css">
+        <style>
+            i,a,button{cursor: pointer}
+            .code-hui{
+                color: #cccccc !important;
+            }
+        </style>
+	</head>
+	<body >
+	<div  id="wl-con">
+        <!--登录页-->
+		<div id="wl-neirong" >
+			<div class="wl-left">
+                <img src="/static/web/image/zhulogo.png" alt="" style="margin-top: 55px">
+				<dl>还没有账号？</dl>
+				<dd>立即免费注册！</dd>
+				<dt>现在注册，遇见不一样的自己</dt>
+               <a href="#register" class="wl-zc" onclick="zhuce()" style="cursor: pointer" id="fr-to-register">注册</a>
+			</div>
+			<div class="wl-right">
+               <span class="wl-tub">登录</span>
+                <p class="wl-cuowu" id="cus-login-from-err" style="display: none;"></p>
+				<!--<div class="wl-ma"></div>-->
+				<!--<div class="wl-ma-dun"><span style="  margin-top: -10px"> <img src="/pc/image/bg-dun.png" alt="" width="35px" height="35px" style="margin-top: 4px;margin-left: 8px"><span class="wl-sao-zi">扫码登录更安全</span></span></div>-->
+			<div class="wl-shuru">
+                <p><input type="text" id="fr-login-mobile" placeholder="请输入你的手机号" class="wl-input"  maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')"><i class="iconfont icon-my_light" style="font-size: 30px;color: #A9A9A9"></i></p>
+                <p ><input type="password" id="fr-login-password" placeholder="密码必须是字母+数字(8~16位)" maxlength="18" class="wl-input"><span id="xian"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9;cursor: pointer"></i></span></p>
+                <a href="#wl-neirong1" style="color: #A9A9A9;font-size: 16px;margin-top: 30px;background: white;margin-left: 44px;" onclick="zhuce2()">忘记密码？</a>
+                <button class="btn" id="fr-login-btn" onclick="objClass.login()" style="cursor: pointer">登录</button>
+            </div>
+            </div>
+		</div>
+
+        <!--修改密码页面-->
+        <div  id="wl-neirong1" style="display: none">
+            <div class="wl-left">
+                <img src="/static/web/image/zhulogo.png" alt="" style="margin-top: 55px">
+                <dl>还没有账号？</dl>
+                <dd>立即免费注册！</dd>
+                <dt>现在注册，遇见不一样的自己</dt>
+                <a href="#register" class="wl-zc1" onclick="zhuce()" style="cursor: pointer" id="fr-to-reg">注册</a>
+            </div>
+            <div class="wl-right">
+                <span class="wl-tub1">重置密码</span>
+                <p class="wl-cuowu1" id="cus-reset-from-err" style="display: none;"></p>
+                <div class="wl-shuru1" style="margin-top: 145px">
+                    <p style="margin-top: 40px"><input type="text" id="fr-reset-mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px;cursor: pointer" id="code-btn1" onclick="objClass.sendResetPwdSms()">获取验证码</a></p>
+                    <p ><input type="text" id="fr-reset-sms-code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
+                    <p ><input type="password" id="fr-reset-password" placeholder="设置新密码(格式为8~16位字母+数字)" maxlength="16" class="wl-input"><span id="xian1"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9"></i></span></p>
+                    <button id="fr-reset-btn"   onclick="objClass.resetPwd()">立即重置</button>
+                </div>
+            </div>
+        </div>
+
+        <!--注册页-->
+        <div id="wl-neirong2" style="display: none" >
+            <div class="wl-left1">
+                <img src="/static/web/image/zhulogo.png" alt="" style="margin-top: 55px">
+                <dl>已有账号？</dl>
+                <dd>立即登录！</dd>
+                <dt>现在登录，遇见不一样的自己</dt>
+                <a href="#login" class="wl-zc1" onclick="zhuce1()" style="cursor: pointer" id="fr-to-login">登录  </a>
+            </div>
+            <div class="wl-right1">
+                <p style=" height: 70px;line-height: 70px;border-bottom: 1px solid #A5A5A5; "><i class="iconfont icon-shouji" style="font-size: 40px;margin-left: 50px"></i><span style="    color: #262626;font-size: 14px;float: right;margin-right: 337px;">用手机注册</span></p>
+                <span class="wl-tub2">注册</span>
+                <p class="wl-cuowu2" id="cus-reg-from-err" style="display: none;">手机号输入错误</p>
+                <div class="wl-shuru1" >
+                    <p style="margin-top: 30px"><input type="text" id="fr-reg-mobile" placeholder="请输入你的手机号" class="wl-input" maxlength="11" onkeyup = "value=value.replace(/[^\d]/g,'')" style="width: 290px"><a  style="color: #7DB0E8;font-size: 14px;float: right;margin-top: 13px;cursor: pointer" id="code-btn" onclick="objClass.sendRegSms()">获取验证码</a></p>
+                    <p ><input type="text" id="fr-reg-sms-code" placeholder="请输入你收到的验证码" maxlength="6" onkeyup = "value=value.replace(/[^\d]/g,'')" class="wl-input"></p>
+                    <p ><input type="password" id="fr-reg-password" placeholder="密码必须是字母+数字(8~16位)" class="wl-input yan"  style="width: 320px"  maxlength="16"  ><span id="xian2"><i class="iconfont icon-yanjing" style="font-size: 30px;color: #A9A9A9;cursor: pointer" ></i></span></p>
+                    <button id="fr-reg-btn" style="margin-top: 25px;cursor: pointer" onclick="objClass.register()">立即注册</button>
+                </div>
+            </div>
+        </div>
+	</div>
+	</body>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/verification-code.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/functions.js"></script>
+    <script>
+        function zhuce(){
+            $('#wl-neirong2').show();
+            $('#wl-neirong').hide();
+            $('#wl-neirong1').hide();
+        }
+        function zhuce1(){
+            $('#wl-neirong').show();
+            $('#wl-neirong1').hide();
+            $('#wl-neirong2').hide();
+        }
+        function zhuce2(){
+            $('#wl-neirong1').show();
+            $('#wl-neirong').hide();
+            $('#wl-neirong2').hide();
+        }
+
+        //注册获取验证码
+        var codeObj = new VerificationCode('code-btn','获取验证码','code-hui');
+        codeObj.run();
+
+        //修改密码获取验证码
+        var codeObj1 = new VerificationCode('code-btn1','获取验证码','code-hui');
+        codeObj1.run();
+
+        var  objClass = {
+            loginLoading:false,
+            registerLoading:false,
+            resetLoading:false,
+            sendSmsCode:false,
+            sendResetSmsCode:false,
+            register:function(){
+                var mobile   = $.trim($('#fr-reg-mobile').val());
+                var sms_code = $('#fr-reg-sms-code').val();
+                var password = $('#fr-reg-password').val();
+                if(mobile == ''){
+                    $('#cus-reg-from-err').html('手机号不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(!redream.checkMobile(mobile)){
+                    $('#cus-reg-from-err').html('手机号格式不正确！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(sms_code == ''){
+                    $('#cus-reg-from-err').html('请填写验证码！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(password == ''){
+                    $('#cus-reg-from-err').html('密码不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(!redream.checkPassword(password)){
+                    $('#cus-reg-from-err').html('密码格式错误！').fadeIn().delay(3000).fadeOut();return false;
+                }
+
+                if(!this.registerLoading){
+                    $.ajax({
+                        url:"/index/index/postRegister",
+                        type:'post',
+                        data:{mobile:mobile,sms_code:sms_code,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.registerLoading = true;
+                            $('#fr-reg-btn').html('注册中...');
+                        },
+                        complete:function(){
+                            objClass.registerLoading = false;
+                        },
+                        success:function(res){
+                            $('#fr-reg-btn').html('立即注册');
+                            if(res.code == 200){
+                                objClass.registerLoading = true;
+                                $('#fr-reg-btn').html('注册成功');
+                                $('#cus-reg-from-err').html('注册成功,请立即登录！').fadeIn().delay(3000).fadeOut();
+                                setTimeout(function(){
+                                    window.location.href = '/login';
+                                },5000);
+                            }else if(res.code == 302 || res.code == 303){
+                                $('#cus-reg-from-err').html('验证码错误！').fadeIn().delay(3000).fadeOut();
+                            }else if(res.code == 304){
+                                $('#cus-reg-from-err').html('用户不存在！').fadeIn().delay(3000).fadeOut();
+                            }else {
+                                $('#cus-reg-from-err').html('登录失败！').fadeIn().delay(3000).fadeOut();
+                            }
+                        }
+                    });
+                }
+            },
+            sendRegSms:function(){
+                var mobile   = $.trim($('#fr-reg-mobile').val());
+                if(!redream.checkMobile(mobile)){
+                    $('#cus-reg-from-err').html('手机号格式不正确！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(codeObj.checkTime()){return false;}
+                if(!this.sendSmsCode){
+                    $.ajax({
+                        url:"/index/index/sendSmsCode",
+                        type:'post',
+                        data:{mobile:mobile,type:1},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.sendSmsCode = true;
+                        },
+                        complete:function(){
+                            objClass.sendSmsCode = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                $('#cus-reg-from-err').html('验证码发送成功！').fadeIn().delay(3000).fadeOut();
+                                codeObj.sendSmsCode();
+                            }else if(res.code == 302){
+                                $('#cus-reg-from-err').html('该用户已被使用！').fadeIn().delay(3000).fadeOut();
+                            }else{
+                                $('#cus-reg-from-err').html('发送失败！').fadeIn().delay(3000).fadeOut();
+                            }
+                        }
+                    });
+                }
+            },
+            login:function(){
+                var mobile      = $.trim($('#fr-login-mobile').val());
+                var password    = $('#fr-login-password').val();
+                $('#cus-login-from-err').html('').hide();
+                if(mobile == ''){
+                    $('#cus-login-from-err').html('手机号不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(!redream.checkMobile(mobile)){
+                    $('#cus-login-from-err').html('手机号格式不正确！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(password == ''){
+                    $('#cus-login-from-err').html('密码不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }
+                if(!this.loginLoading){
+                    $.ajax({
+                        url:"/index/index/postLogin",
+                        type:'post',
+                        data:{mobile:mobile,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.loginLoading = true;
+                            $('#fr-login-btn').text('登录中...');
+                        },
+                        complete:function(res){
+                            objClass.loginLoading = false;
+                            if(res.responseJSON.code == 200){
+                                $('#fr-login-btn').text('登录成功,页面跳转中...');
+                            }else{
+                                $('#fr-login-btn').text('登录');
+                            }
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                setTimeout(function(){
+                                    window.location.href = '/index/user/main';
+                                },2000);
+                            }else if(res.code == 302){
+                                $('#cus-login-from-err').html('用户不存在,请先注册！').fadeIn().delay(3000).fadeOut();return false;
+                            }else if(res.code == 303){
+                                $('#cus-login-from-err').html('用户密码填写错误！').fadeIn().delay(3000).fadeOut();return false;
+                            }
+                        }
+                    });
+                }
+            },
+            resetPwd:function(){
+                var mobile   = $.trim($('#fr-reset-mobile').val());
+                var sms_code = $('#fr-reset-sms-code').val();
+                var password = $('#fr-reset-password').val();
+                if(!redream.checkMobile(mobile)){
+                    $('#cus-reset-from-err').html('手机号格式不正确！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(sms_code == ''){
+                    $('#cus-reset-from-err').html('请填写验证码！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(password == ''){
+                    $('#cus-reset-from-err').html('密码不能为空！').fadeIn().delay(3000).fadeOut();return false;
+                }else if(!redream.checkPassword(password)){
+                    $('#cus-reset-from-err').html('密码格式错误！').fadeIn().delay(3000).fadeOut();return false;
+                }
+
+                if(!this.resetLoading){
+                    $.ajax({
+                        url:"/index/index/postResetPassword",
+                        type:'post',
+                        data:{mobile:mobile,sms_code:sms_code,password:password},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.resetLoading = true;
+                            $('#fr-reset-btn').html('提交中...');
+                        },
+                        complete:function(){
+                            objClass.resetLoading = false;
+                            $('#fr-reset-btn').html('立即重置');
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                objClass.resetLoading = true;
+                                $('#fr-reset-btn').html('重置成功');
+                                $('#cus-reset-from-err').html('密码重置成功！').fadeIn().delay(3000).fadeOut();
+                                setTimeout(function(){
+                                    window.location.href = '/login';
+                                },5000);
+                            }else if(res.code == 302 || res.code == 303){
+                                $('#cus-reset-from-err').html('验证码错误！').fadeIn().delay(3000).fadeOut();
+                            }else {
+                                $('#cus-reset-from-err').html('密码重置失败！').fadeIn().delay(3000).fadeOut();
+                            }
+                        }
+                    });
+                }
+            },
+            sendResetPwdSms:function(){
+                var mobile   = $.trim($('#fr-reset-mobile').val());
+                if(!redream.checkMobile(mobile)){
+                    $('#cus-reset-from-err').html('手机号格式不正确！').fadeIn().delay(3000).fadeOut();return false;
+                }
+                if(!this.sendResetSmsCode){
+                    $.ajax({
+                        url:"/index/index/sendSmsCode",
+                        type:'post',
+                        data:{mobile:mobile,type:2},
+                        dataType:'json',
+                        beforeSend:function(){
+                            objClass.sendResetSmsCode = true;
+                        },
+                        complete:function(){
+                            objClass.sendResetSmsCode = false;
+                        },
+                        success:function(res){
+                            if(res.code == 200){
+                                $('#cus-reset-from-err').html('验证码发送成功！').fadeIn().delay(3000).fadeOut();
+                                codeObj1.sendSmsCode();
+                            }else if(res.code == 302){
+                                $('#cus-reset-from-err').html('该用户未被使用！').fadeIn().delay(3000).fadeOut();
+                            }else{
+                                $('#cus-reset-from-err').html('发送失败！').fadeIn().delay(3000).fadeOut();
+                            }
+                        }
+                    });
+                }
+            }
+        };
+        //登录页密码显示隐藏
+        $("#xian").click(function(){
+            if($("#fr-login-password").prop("type")=="password"){
+                $("#fr-login-password").prop("type","text");
+
+                $("#xian i").attr("class","iconfont icon-yanjing1")
+            }else{
+                $("#fr-login-password").prop("type","password");
+                $("#xian i").attr("class","iconfont icon-yanjing")
+            }
+        });
+        //修改密码显示隐藏
+        $("#xian1").click(function(){
+            if($("#fr-reset-password").prop("type")=="password"){
+                $("#fr-reset-password").prop("type","text");
+                $("#xian1 i").attr("class","iconfont icon-yanjing1")
+            }else{
+                $("#fr-reset-password").prop("type","password");
+                $("#xian1 i").attr("class","iconfont icon-yanjing")
+            }
+        });
+
+        $("#xian2").click(function(){
+                if($("#fr-reg-password").prop("type")=="password"){
+                    $("#fr-reg-password").prop("type","text");
+
+                    $("#xian2 i").attr("class","iconfont icon-yanjing1")
+                }else{
+                    $("#fr-reg-password").prop("type","password");
+                    $("#xian2 i").attr("class","iconfont icon-yanjing")
+                }
+            })
+
+        var url = window.location.toString();
+        var maodian = url.split('#')[1];
+        if(maodian == 'register'){
+            $('#wl-neirong2').show();
+            $('#wl-neirong').hide();
+            $('#wl-neirong1').hide();
+         }else if(maodian == 'login'){
+            $('#wl-neirong').show();
+            $('#wl-neirong1').hide();
+            $('#wl-neirong2').hide();
+        }else if(maodian == 'wl-neirong1'){
+            $('#wl-neirong1').show();
+            $('#wl-neirong').hide();
+            $('#wl-neirong2').hide();
+        }
+
+    </script>
+</html>

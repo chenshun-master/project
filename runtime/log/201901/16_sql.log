@@ -1,0 +1,481 @@
+---------------------------------------------------------------
+[ 2019-01-16T09:33:31+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.085782s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.035172s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '17601628133' LIMIT 1 [ RunTime:0.033876s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.033820s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.034612s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.035974s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,4)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 68)  AND `created_time` BETWEEN '2019-01-10 00:00:00' AND '2019-01-16 09:33:31' [ RunTime:0.034923s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:33+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065581s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043463s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.045655s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044949s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.045659s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:38+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049374s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.034291s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.033556s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:39+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083057s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.057957s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:40+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.084297s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.056302s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055295s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.056314s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.056515s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:42+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.068474s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.045999s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.046223s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.045749s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.046377s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:43+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063652s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043177s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.042703s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:43+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080118s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.057622s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:50+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064355s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044537s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.043326s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:33:50+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080275s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.060702s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:34+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/uploadHead
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080667s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055575s ]
+[ sql ] [ SQL ] UPDATE `wl_user`  SET `portrait` = 'http://172.16.100.117/head/27cec917e0b714db1cc3fb2ac3ff22f5.png'  WHERE  `id` = 68 [ RunTime:0.057565s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:37+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065497s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043811s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044586s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:37+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047695s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.034265s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:40+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066381s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.045577s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044520s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:40+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065208s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.044327s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:40+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.074644s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.051356s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.052460s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:41+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065283s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044156s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044120s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:41+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066830s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.046782s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:41+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065154s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.044392s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.043455s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:41+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.068131s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.045273s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044625s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:41+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083317s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.058182s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:42+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082032s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.057184s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:42+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.067959s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.045350s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.046106s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:42+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079865s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.058072s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:44+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080949s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.056061s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055772s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.056225s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.055349s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:34:47+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082968s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.057189s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055624s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.057444s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.056125s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:37:07+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/sendSmsCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081678s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.054975s ]
+[ sql ] [ SQL ] INSERT INTO `wl_verification_code` (`type` , `mobile` , `expire_time` , `code` , `created_time`) VALUES (8 , '17601628133' , '2019-01-16 09:52:07' , '734195' , '2019-01-16 09:37:07') [ RunTime:0.059850s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sms_whitelist` [ RunTime:0.055848s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sms_whitelist` (`ip` , `type` , `mobile` , `created_time`) VALUES ('127.0.0.1' , 8 , '17601628133' , '2019-01-16 09:37:07') [ RunTime:0.054118s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:37:19+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/verifyCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.084497s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.055244s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_verification_code` WHERE  `mobile` = '17601628133'  AND `type` = 8  AND `code` = '734195' ORDER BY `id` DESC LIMIT 1 [ RunTime:0.055718s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:37:45+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/sendSmsCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066286s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.051063s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '15321829813' LIMIT 1 [ RunTime:0.045531s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.044487s ]
+[ sql ] [ SQL ] INSERT INTO `wl_verification_code` (`type` , `mobile` , `expire_time` , `code` , `created_time`) VALUES (6 , '15321829813' , '2019-01-16 09:52:45' , '168574' , '2019-01-16 09:37:45') [ RunTime:0.047834s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sms_whitelist` [ RunTime:0.044284s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sms_whitelist` (`ip` , `type` , `mobile` , `created_time`) VALUES ('127.0.0.1' , 6 , '15321829813' , '2019-01-16 09:37:45') [ RunTime:0.043205s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:37:55+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/modifyMobile
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066047s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.042387s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_verification_code` WHERE  `mobile` = '15321829813'  AND `type` = 6  AND `code` = '168574' ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042780s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.042915s ]
+[ sql ] [ SQL ] UPDATE `wl_user`  SET `mobile` = '15321829813'  WHERE  `id` = 68  AND `mobile` = '17601628133' [ RunTime:0.044520s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:37:59+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081089s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055534s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055328s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055331s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.054799s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:38:03+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081958s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.056094s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053455s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055002s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.055528s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:38:10+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/sendSmsCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082195s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.056823s ]
+[ sql ] [ SQL ] INSERT INTO `wl_verification_code` (`type` , `mobile` , `expire_time` , `code` , `created_time`) VALUES (8 , '15321829813' , '2019-01-16 09:53:10' , '359864' , '2019-01-16 09:38:10') [ RunTime:0.058371s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sms_whitelist` [ RunTime:0.056018s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sms_whitelist` (`ip` , `type` , `mobile` , `created_time`) VALUES ('127.0.0.1' , 8 , '15321829813' , '2019-01-16 09:38:10') [ RunTime:0.055340s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:38:12+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/verifyCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083081s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.056047s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_verification_code` WHERE  `mobile` = '15321829813'  AND `type` = 8  AND `code` = '168574' ORDER BY `id` DESC LIMIT 1 [ RunTime:0.055712s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:38:21+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/verifyCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079296s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.054003s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_verification_code` WHERE  `mobile` = '15321829813'  AND `type` = 8  AND `code` = '359864' ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052985s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:38:51+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/sendSmsCode
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082272s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055856s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '17601628133' LIMIT 1 [ RunTime:0.054613s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.055411s ]
+[ sql ] [ SQL ] INSERT INTO `wl_verification_code` (`type` , `mobile` , `expire_time` , `code` , `created_time`) VALUES (6 , '17601628133' , '2019-01-16 09:53:50' , '861397' , '2019-01-16 09:38:50') [ RunTime:0.056469s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sms_whitelist` [ RunTime:0.055420s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sms_whitelist` (`ip` , `type` , `mobile` , `created_time`) VALUES ('127.0.0.1' , 6 , '17601628133' , '2019-01-16 09:38:50') [ RunTime:0.053987s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:38:59+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/modifyMobile
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081056s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_verification_code` [ RunTime:0.055448s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_verification_code` WHERE  `mobile` = '17601628133'  AND `type` = 6  AND `code` = '861397' ORDER BY `id` DESC LIMIT 1 [ RunTime:0.055370s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054814s ]
+[ sql ] [ SQL ] UPDATE `wl_user`  SET `mobile` = '17601628133'  WHERE  `id` = 68  AND `mobile` = '15321829813' [ RunTime:0.056898s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:39:03+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064307s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043542s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044043s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044044s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.044113s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:39:05+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066595s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043934s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044573s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044474s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.044398s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:39:09+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080973s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055831s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.058061s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:39:13+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/graphic
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079259s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.054108s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 1 [ RunTime:0.053771s ]
+[ sql ] [ SQL ] SELECT `article`.`id`,`article`.`type`,`article`.`user_id`,`article`.`title`,`article`.`tag`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`status`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`article`.`updated_time` FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 0,15 [ RunTime:0.054696s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_article` WHERE  `type` = 1  AND `user_id` = 68  AND `status` = 2 LIMIT 1 [ RunTime:0.056544s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054254s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.056634s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:39:18+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081563s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054419s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053741s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:02+08:00 ] 127.0.0.1 GET www.mytest.com/index/shop/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065910s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.046343s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.043642s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044341s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`parent_id`,`is_leaf` FROM `wl_sp_category` WHERE  `parent_id` = 0 ORDER BY `sort` DESC,`id` ASC [ RunTime:0.045943s ]
+[ sql ] [ SQL ] SELECT `type` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.042722s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:03+08:00 ] 127.0.0.1 POST www.mytest.com/index/shop/getShopList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062820s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.043471s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.045875s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,16 [ RunTime:0.043590s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:05+08:00 ] 127.0.0.1 POST www.mytest.com/index/shop/getShopList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079993s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.057213s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' ORDER BY `goods`.`create_time` DESC LIMIT 1 [ RunTime:0.056922s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' ORDER BY `goods`.`create_time` DESC LIMIT 0,16 [ RunTime:0.058092s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:08+08:00 ] 127.0.0.1 POST www.mytest.com/index/shop/getShopList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063922s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.043190s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' ORDER BY `goods`.`sale_num` DESC LIMIT 1 [ RunTime:0.043168s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' ORDER BY `goods`.`sale_num` DESC LIMIT 0,16 [ RunTime:0.047078s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:12+08:00 ] 127.0.0.1 POST www.mytest.com/index/shop/getShopList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.050046s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.035374s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.033762s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,16 [ RunTime:0.038490s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:15+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/certification
+[ sql ] [ DB ] CONNECT:[ UseTime:0.068834s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043477s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.044283s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.045294s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.044225s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:15+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049059s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.034474s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:17+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063033s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043516s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.042395s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043030s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.043325s ]
+---------------------------------------------------------------
+[ 2019-01-16T09:50:24+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062477s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.041491s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.042592s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:47:40+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078669s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052072s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.051864s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:47:41+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077323s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052711s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.051525s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:47:41+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062778s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043272s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.042617s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:47:42+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049826s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.034604s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.033923s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:48:30+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081438s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055181s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.057696s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:48:32+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081284s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054624s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.054858s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:48:34+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/graphic
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081707s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.056678s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 1 [ RunTime:0.056060s ]
+[ sql ] [ SQL ] SELECT `article`.`id`,`article`.`type`,`article`.`user_id`,`article`.`title`,`article`.`tag`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`status`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`article`.`updated_time` FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 0,15 [ RunTime:0.055931s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_article` WHERE  `type` = 1  AND `user_id` = 68  AND `status` = 2 LIMIT 1 [ RunTime:0.054930s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055286s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055690s ]
+---------------------------------------------------------------
+[ 2019-01-16T11:48:39+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081297s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054740s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.054876s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:37:07+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.068357s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043727s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.043687s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044843s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.044722s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:16+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079512s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054059s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053523s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:17+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/graphic
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062884s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.042915s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 1 [ RunTime:0.042438s ]
+[ sql ] [ SQL ] SELECT `article`.`id`,`article`.`type`,`article`.`user_id`,`article`.`title`,`article`.`tag`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`status`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`article`.`updated_time` FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 0,15 [ RunTime:0.042671s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_article` WHERE  `type` = 1  AND `user_id` = 68  AND `status` = 2 LIMIT 1 [ RunTime:0.042378s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.042758s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.041815s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:19+08:00 ] 127.0.0.1 GET www.mytest.com/index/shop/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061523s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.042707s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.041876s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041157s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`parent_id`,`is_leaf` FROM `wl_sp_category` WHERE  `parent_id` = 0 ORDER BY `sort` DESC,`id` ASC [ RunTime:0.042175s ]
+[ sql ] [ SQL ] SELECT `type` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.041691s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:19+08:00 ] 127.0.0.1 POST www.mytest.com/index/shop/getShopList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063728s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.045517s ]
+[ sql ] [ SQL ] SELECT COUNT(`goods`.`id`) AS tp_count FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 1 [ RunTime:0.046201s ]
+[ sql ] [ SQL ] SELECT `goods`.`id`,`goods`.`name`,`goods`.`market_price`,`goods`.`sell_price`,`goods`.`prepay_price`,`goods`.`img`,`goods`.`visit`,`goods`.`favorites`,`goods`.`sale_num`,`goods`.`case_num`,`goods`.`grade`,`doctor`.`real_name` AS `doctor_name`,`hospital`.`hospital_name` FROM `wl_sp_goods` `goods` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`goods`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `goods`.`status` = '0' LIMIT 0,16 [ RunTime:0.045181s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:21+08:00 ] 127.0.0.1 GET www.mytest.com/index/shop/myshoplist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081473s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055675s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055687s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_good_goods` [ RunTime:0.055740s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_good_goods` `good_goods` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=good_goods.goods_id and goods.status = 0 LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `good_goods`.`user_id` = '68' ORDER BY `good_goods`.`created_time` DESC LIMIT 1 [ RunTime:0.055743s ]
+[ sql ] [ SQL ] SELECT `good_goods`.`id`,`goods`.`img`,`good_goods`.`title`,`good_goods`.`favorites`,`good_goods`.`like`,`good_goods`.`comment`,`goods`.`market_price`,`goods`.`sell_price`,`good_goods`.`created_time`,`hospital`.`hospital_name` FROM `wl_sp_good_goods` `good_goods` LEFT JOIN `wl_sp_goods` `goods` ON `goods`.`id`=good_goods.goods_id and goods.status = 0 LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `good_goods`.`user_id` = '68' ORDER BY `good_goods`.`created_time` DESC LIMIT 0,15 [ RunTime:0.056068s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:23+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/certification
+[ sql ] [ DB ] CONNECT:[ UseTime:0.084551s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.056503s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.056587s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.056095s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.055474s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:23+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065905s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.047180s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:25+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078973s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.052736s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.051748s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.052549s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.053422s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:27+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078227s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053467s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053437s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:27+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082254s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.056496s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:44+08:00 ] 127.0.0.1 POST www.mytest.com/index/user/editProfile
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080623s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.055191s ]
+[ sql ] [ SQL ] UPDATE `wl_user`  SET `profile` = '啦咯啦咯啦咯啦咯' , `sex` = 1 , `birthday_date` = '2019-01-16'  WHERE  `id` = 68 [ RunTime:0.056686s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:49+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081008s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053882s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.054418s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054336s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.054742s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:51+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/security
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079650s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053610s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053019s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054312s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.053918s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:51+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/modifyUserInfo
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045680s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.030913s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.030135s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:51+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060774s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.043819s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:54+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/certification
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077251s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.053734s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.052353s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053615s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053131s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:55+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getAddress
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081460s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT * from wl_regions where  region_grade = 1 and  region_path LIKE ',%' [ RunTime:0.057672s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:56+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/article
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078016s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053182s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.052758s ]
+---------------------------------------------------------------
+[ 2019-01-16T13:47:57+08:00 ] 127.0.0.1 GET www.mytest.com/index/article/graphic
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081859s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.056487s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 1 [ RunTime:0.055288s ]
+[ sql ] [ SQL ] SELECT `article`.`id`,`article`.`type`,`article`.`user_id`,`article`.`title`,`article`.`tag`,`article`.`excerpt`,`article`.`thumbnail`,`article`.`status`,`article`.`is_top`,`article`.`recommended`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,`article`.`updated_time` FROM `wl_article` `article` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '68'  AND `article`.`status` = '1' ORDER BY `article`.`published_time` DESC LIMIT 0,15 [ RunTime:0.059104s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_article` WHERE  `type` = 1  AND `user_id` = 68  AND `status` = 2 LIMIT 1 [ RunTime:0.054328s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053555s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.054139s ]
+---------------------------------------------------------------
+[ 2019-01-16T16:25:07+08:00 ] 127.0.0.1 POST www.mytest.com/index/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048855s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.034470s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '17601628133' LIMIT 1 [ RunTime:0.041414s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.031806s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.032406s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.033184s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,4)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 68)  AND `created_time` BETWEEN '2019-01-10 00:00:00' AND '2019-01-16 16:25:07' [ RunTime:0.036139s ]
+---------------------------------------------------------------
+[ 2019-01-16T16:25:09+08:00 ] 127.0.0.1 GET www.mytest.com/index/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078601s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054134s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.053751s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.052442s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_auth` WHERE  `user_id` = 68 LIMIT 1 [ RunTime:0.053808s ]

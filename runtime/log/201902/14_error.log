@@ -1,0 +1,48 @@
+---------------------------------------------------------------
+[ 2019-02-14T16:35:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Connection.php:678]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Loader.php:121]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/index
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:35:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin
+[ error ] [1]Maximum execution time of 30 seconds exceeded[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Session.php:536]
+---------------------------------------------------------------
+[ 2019-02-14T16:47:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [8]未定义变量: doctorOrHospitalList[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\4c81818b969ec7537acacdf85af86dc8.php:133]
+---------------------------------------------------------------
+[ 2019-02-14T16:49:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ error ] [8]未定义变量: info[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\4c81818b969ec7537acacdf85af86dc8.php:99]
+---------------------------------------------------------------
+[ 2019-02-14T17:01:48+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]
+---------------------------------------------------------------
+[ 2019-02-14T17:12:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/newAdmin
+[ error ] [8]未定义变量: res[D:\phpstudy\PHPTutorial\WWW\project\runtime\temp\f9343f696b2d6bdbd8422ce1d1c2f554.php:62]

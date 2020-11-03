@@ -1,0 +1,1595 @@
+---------------------------------------------------------------
+[ 2018-12-29T09:12:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081542s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054255s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052828s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053270s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061790s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.042868s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.041135s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.042219s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:12+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049847s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.032483s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.030506s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.030930s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079852s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054099s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.053393s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.054129s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:15+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077572s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.052772s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.052337s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.052522s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077927s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.052119s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.052238s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.052989s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:18+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080712s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.052193s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.054703s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.054453s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080969s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.052280s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.051208s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.055817s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076763s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054003s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.054939s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.052699s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064030s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042455s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.042426s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.044082s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:12:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=0
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081353s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055872s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.053988s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.057162s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:13:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=0
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080746s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.053661s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.053823s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.057484s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:13:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=0
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062710s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043931s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.042562s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044255s ]
+---------------------------------------------------------------
+[ 2018-12-29T09:14:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066742s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044855s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.043372s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.046471s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081353s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054268s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.051708s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.054824s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.069190s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043972s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.046533s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044952s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064597s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043338s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.041473s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.045830s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083310s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055957s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.053571s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.057274s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063930s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044742s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.042426s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044877s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062228s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042009s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.041496s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.044942s ]
+---------------------------------------------------------------
+[ 2018-12-29T11:31:52+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081116s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054107s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.054073s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.058820s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:26+08:00 ] 127.0.0.1 POST www.mytest.com/admin/login/index.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079124s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052234s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.052560s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053446s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.052440s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.052791s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.053009s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,0)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 1)  AND `created_time` BETWEEN '2018-12-23 00:00:00' AND '2018-12-29 13:48:26' [ RunTime:0.053187s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082775s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053229s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052863s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053183s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062926s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043837s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.041978s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.045691s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.085635s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.056270s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.055763s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062776s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043073s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043082s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:46+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078759s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.056062s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052938s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075643s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052883s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.050747s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051785s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078911s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053108s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.052860s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053296s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:48:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061884s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.041648s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.040617s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.041712s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:49:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080051s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052562s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052267s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052758s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:49:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064019s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.044101s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042736s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.044598s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:52:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080507s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054262s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054660s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:52+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082475s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054518s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054198s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063310s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043991s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043370s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075757s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.051839s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052975s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082165s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053731s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053702s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046887s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.032926s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.032542s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081515s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054517s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054397s ]
+---------------------------------------------------------------
+[ 2018-12-29T13:57:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066494s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.046225s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045543s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:00:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079239s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054253s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054316s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:00:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078335s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053254s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053524s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:00:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081441s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.053864s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.053642s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.054562s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062267s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042455s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042513s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080975s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.055411s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.055614s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.054661s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062526s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043040s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043191s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045566s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.032290s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.032567s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.031760s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079189s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053782s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.052977s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053906s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078473s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053197s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.052903s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054474s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080046s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054087s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.054256s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054380s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065560s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044638s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045024s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077711s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.052039s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.051848s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.051774s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079460s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054605s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053999s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060734s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.041459s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.045194s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.041208s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061598s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042222s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042070s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:01:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061787s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.042554s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.041196s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.042252s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:03:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048059s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.032283s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.032541s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.032572s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:03:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082224s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.055627s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.054885s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.054936s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:03:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077176s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053489s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052370s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:03:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076576s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052541s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051648s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:03:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064607s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.044232s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.043427s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.043512s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:04:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078312s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052494s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052504s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:04:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078166s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053551s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053458s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:04:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061470s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042786s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.040486s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:06:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078697s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053602s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051951s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:06:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062169s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041494s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041933s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:06:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063184s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045817s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044039s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:06:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064997s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041896s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043689s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:06:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083268s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054467s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054806s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064657s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043370s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044030s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064940s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044692s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044190s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081161s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054466s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054060s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081737s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054368s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054772s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079683s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053863s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053844s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078254s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052195s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052573s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:07:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065447s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044007s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.047843s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:08:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080624s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054869s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055570s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:08:52+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080577s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054216s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055452s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:08:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.059587s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.040867s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041384s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:08:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065276s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043883s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043291s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063358s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042244s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042753s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065417s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.044289s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.048328s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.045779s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getgoodslist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081638s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.056077s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.055385s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.057021s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:39+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getgoodslist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.069170s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.043369s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.042140s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.044200s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079288s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053821s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.055992s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.054684s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076277s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.051757s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.051063s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052515s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:10:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063483s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042857s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043089s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:11:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082388s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054965s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055586s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:11:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061466s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044095s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041987s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:12:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080851s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053465s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052885s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082908s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052817s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054491s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.067197s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044127s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044106s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082553s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054799s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055561s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083580s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053670s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054330s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062490s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041252s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041569s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:39+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080502s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054102s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054410s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047478s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.032299s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.031645s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:13:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080536s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055433s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051887s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:14:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082025s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054703s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054479s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.084161s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053954s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055668s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:18+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079945s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053864s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052965s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064422s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043505s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045434s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079688s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052978s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053558s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getcategorylist
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063568s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044784s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044685s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080947s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054242s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054368s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:15:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078171s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052362s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052480s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:21:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080178s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053169s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054181s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:25:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063091s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042576s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044430s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:02+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061674s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041336s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041601s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079703s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053134s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052392s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:18+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079161s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053691s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052816s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078744s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052751s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052949s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063363s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041749s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043055s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078877s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053237s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053347s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:26:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080955s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055125s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054612s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:09+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078653s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052354s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055724s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063989s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043598s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044113s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064128s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041805s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042336s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048794s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.032768s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.032043s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062807s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042796s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045264s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062121s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041581s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041064s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:27:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080068s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053976s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053880s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:30:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078032s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053709s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052539s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:30:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079984s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054341s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054874s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:31:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063937s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042492s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042113s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:31:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/newAdmin/id/277
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081525s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.055768s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` WHERE  `id` = 277 LIMIT 1 [ RunTime:0.059021s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063473s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043067s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042494s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:09+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064200s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043460s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042623s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/releaseCategory/id/277
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080177s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054775s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080231s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054539s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054067s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/releaseCategory/id/277
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065932s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045372s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:32:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/releaseCategory/id/277
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063996s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042957s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:34:55+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081185s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.051601s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052121s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:34:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061911s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042857s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044074s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:35:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082296s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055905s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.056244s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:35:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063211s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042660s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043351s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:35:12+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062942s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042460s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043042s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:10+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081712s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054544s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054415s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/277
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063616s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045011s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 277 LIMIT 1 [ RunTime:0.043769s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044667s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:13+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/277
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066499s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043376s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 277 LIMIT 1 [ RunTime:0.044426s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044399s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064112s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043268s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042462s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/300
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065260s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043381s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 300 LIMIT 1 [ RunTime:0.043737s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045721s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079347s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054375s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053990s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/308
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077618s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053545s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 308 LIMIT 1 [ RunTime:0.053928s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053290s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078657s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053730s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053679s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/303
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079311s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053948s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 303 LIMIT 1 [ RunTime:0.054326s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054839s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:35+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/303
+[ sql ] [ DB ] CONNECT:[ UseTime:0.086611s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.056042s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 303 LIMIT 1 [ RunTime:0.054590s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.056242s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/303
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082415s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054382s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 303 LIMIT 1 [ RunTime:0.054833s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054301s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/303
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064345s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045098s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 303 LIMIT 1 [ RunTime:0.044045s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043741s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/303
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065464s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043937s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 303 LIMIT 1 [ RunTime:0.046254s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044130s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/303
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079697s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055353s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 303 LIMIT 1 [ RunTime:0.053276s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053689s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077764s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052215s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052345s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:46+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/308
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064142s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044938s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 308 LIMIT 1 [ RunTime:0.044767s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043751s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/308
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049185s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.034585s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 308 LIMIT 1 [ RunTime:0.031143s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.031380s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:51+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064124s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.263380s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042750s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061341s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041295s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.041789s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.041656s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:36:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080490s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054332s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053761s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:37:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065416s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042713s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042710s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:37:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.070113s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044369s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045665s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:37:17+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065184s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045068s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044114s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:38:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082305s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.056089s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054407s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:38:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064207s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043062s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042127s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:38:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082553s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055685s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.056557s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:38:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079565s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053815s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054358s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:41:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066210s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043277s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.041421s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045368s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:41:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080767s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054213s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.053322s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054341s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:42:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062864s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.041962s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043663s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:47:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079475s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053849s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055492s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:47:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081262s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054008s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054766s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:47:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.068725s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045854s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044245s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:47:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047150s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.032539s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.031934s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:50:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083590s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054676s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053821s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:50:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066439s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044478s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045361s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:50:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079028s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055197s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054409s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:50:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064927s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044277s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043087s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:50:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079503s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052620s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053431s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:51:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065566s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042814s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042649s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:51:13+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064545s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044058s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043759s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:51:14+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063482s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042805s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042883s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:51:16+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079741s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053841s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053882s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:52:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083256s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055325s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055227s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:53:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063032s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043107s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043279s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:53:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076669s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052217s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053243s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:54:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063190s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042657s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042237s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:54:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080613s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054431s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055902s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:55:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066203s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044321s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043869s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:55:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063356s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044047s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043443s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:57:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079378s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053909s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055133s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:57:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061566s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042512s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.048824s ]
+---------------------------------------------------------------
+[ 2018-12-29T14:57:39+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079542s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053436s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054060s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:08:22+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080229s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053147s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053364s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:08:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076398s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.051460s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051675s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:20:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.083821s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053963s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055072s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:20:28+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081038s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053059s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053358s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:21:35+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077266s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052495s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052052s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:32:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065677s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043961s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045071s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:34:43+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079794s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054880s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055078s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:34:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064408s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044971s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044231s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:34:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066111s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.046346s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045205s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:34:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063415s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043485s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043513s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:35:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063749s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043560s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043520s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:49:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064020s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043809s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043401s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:51:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063975s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043719s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043836s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:51:37+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066641s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.045299s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043821s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:51:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079056s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053352s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053841s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:51:54+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080218s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.056216s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055288s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:51:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077683s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052069s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051882s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:52:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063534s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044150s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043408s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:53:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078969s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053458s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053976s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:53:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079297s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055592s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054228s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:53:35+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065207s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044293s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044488s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:55:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.066759s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044186s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043769s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:55:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062497s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043237s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.046511s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:55:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062769s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043283s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.042677s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043329s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:55:56+08:00 ] 127.0.0.1 POST www.mytest.com/admin/category/releaseCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082799s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055387s ]
+[ sql ] [ SQL ] SELECT `path` FROM `wl_sp_category` WHERE  ( id=332 ) LIMIT 1 [ RunTime:0.053896s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sp_category` (`path` , `name` , `parent_id` , `sort` , `title` , `keywords` , `descript` , `created_time`) VALUES (',252,,252,332' , 'justus' , 332 , 1 , '你好' , '4' , '你真的很搞笑' , '2018-12-29 15:55:55') [ RunTime:0.054684s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:55:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078699s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053989s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054326s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:56:06+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077324s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054546s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052946s ]
+---------------------------------------------------------------
+[ 2018-12-29T15:56:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045826s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.030992s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.030902s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:01:50+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063503s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043293s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043709s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:01:53+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079034s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054730s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054726s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:02:20+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079275s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053612s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.054145s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053167s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:02:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080964s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053760s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.054488s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054267s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:02:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063569s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043096s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042300s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.043423s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:02:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079880s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053841s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052871s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053351s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:03:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062774s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042904s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043567s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:06:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075735s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.050688s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.050449s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:07:13+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082206s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054186s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053912s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:11:07+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063749s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042992s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043518s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:11:23+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063875s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043356s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043676s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:21:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081518s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052973s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052550s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:22:51+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064087s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044363s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043921s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:23:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079761s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054110s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054179s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:23:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081241s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055975s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055608s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:24:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/getCategoryList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078528s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053523s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.053790s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:39:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082084s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055183s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054541s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:39:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062686s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042751s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.043073s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:39:45+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080129s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054816s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.053701s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054607s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:39:47+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076164s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052088s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.051739s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052474s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:39:58+08:00 ] 127.0.0.1 POST www.mytest.com/admin/category/releaseCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080514s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053559s ]
+[ sql ] [ SQL ] SELECT `path` FROM `wl_sp_category` WHERE  ( id=332 ) LIMIT 1 [ RunTime:0.052747s ]
+[ sql ] [ SQL ] INSERT INTO `wl_sp_category` (`path` , `name` , `parent_id` , `sort` , `title` , `keywords` , `descript` , `created_time`) VALUES (',252,,252,332' , '拉拉' , 332 , 1 , '你好' , '4' , '你真的很搞笑' , '2018-12-29 16:39:58') [ RunTime:0.053323s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:00+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064017s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044269s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044064s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:03+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/335.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078622s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053503s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 335 LIMIT 1 [ RunTime:0.053614s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052367s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:10+08:00 ] 127.0.0.1 POST www.mytest.com/admin/category/releaseCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064038s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043222s ]
+[ sql ] [ SQL ] SELECT `path` FROM `wl_sp_category` WHERE  ( id=335 ) LIMIT 1 [ RunTime:0.042533s ]
+[ sql ] [ SQL ] UPDATE `wl_sp_category`  SET `name` = '拉拉1' , `parent_id` = 335 , `sort` = 1 , `title` = '你好' , `keywords` = '4' , `descript` = '你真的很搞笑' , `updated_time` = '2018-12-29 16:40:10'  WHERE  `id` = 335 [ RunTime:0.047975s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:13+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081467s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055458s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.055283s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/addCategory/id/334.html
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048529s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.030499s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` WHERE  `id` = 334 LIMIT 1 [ RunTime:0.030897s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.033494s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:29+08:00 ] 127.0.0.1 POST www.mytest.com/admin/category/releaseCategory
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080677s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054709s ]
+[ sql ] [ SQL ] SELECT `path` FROM `wl_sp_category` WHERE  ( id=252 ) LIMIT 1 [ RunTime:0.054609s ]
+[ sql ] [ SQL ] UPDATE `wl_sp_category`  SET `name` = 'justus' , `parent_id` = 252 , `sort` = 1 , `title` = '你好' , `keywords` = '4' , `descript` = '你真的很搞笑' , `updated_time` = '2018-12-29 16:40:28'  WHERE  `id` = 334 [ RunTime:0.057863s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064229s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.043526s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042464s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079239s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.053972s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054584s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080206s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.055690s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.059249s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:44+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075946s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052479s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.052298s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:46+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064735s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044498s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.044302s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:40:48+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077217s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.052221s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.051911s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:41:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062040s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042797s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042227s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:41:36+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060916s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.042556s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.042224s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:41:38+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065351s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.044281s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.045300s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:41:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/category/index
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079383s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_category` [ RunTime:0.054704s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_category` ORDER BY `sort` DESC [ RunTime:0.054322s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:47:49+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077907s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052915s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052152s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053539s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:47:51+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081135s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054021s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052249s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.053854s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:47:57+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046453s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.031513s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.031837s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:47:59+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064686s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043108s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.042663s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:04+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077368s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.052265s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.050990s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077126s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053874s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.051551s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052421s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:09+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077902s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053360s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.051385s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052698s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:11+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061604s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.041913s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.041554s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.041882s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:12+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062634s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.043474s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.041940s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.042953s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075632s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.051286s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.050586s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.051650s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081206s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.056179s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.054395s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.055215s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/user/getUserList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077830s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.053015s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user` ORDER BY `created_time` DESC LIMIT 1 [ RunTime:0.051258s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` ORDER BY `created_time` DESC LIMIT 0,10 [ RunTime:0.052521s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:32+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.075155s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.051432s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.050779s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.050588s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:34+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080624s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.054594s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.053223s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.054200s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:35+08:00 ] 127.0.0.1 GET www.mytest.com/admin/admin/getAdminList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078886s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_admin` [ RunTime:0.053211s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 1 [ RunTime:0.052764s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_admin` ORDER BY `created_at` DESC LIMIT 0,10 [ RunTime:0.053374s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:39+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063665s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.043078s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.044075s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.044549s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:48:41+08:00 ] 127.0.0.1 GET www.mytest.com/admin/seller/getSellerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080596s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_seller` [ RunTime:0.054661s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 1 [ RunTime:0.054373s ]
+[ sql ] [ SQL ] SELECT `seller`.`id`,`user`.`mobile`,`user`.`nickname`,`user`.`portrait`,`user`.`type`,`auth`.`enterprise_name`,`seller`.`is_lock`,`seller`.`account`,`seller`.`grade`,`seller`.`sale`,`seller`.`comments`,`seller`.`create_time` FROM `wl_sp_seller` `seller` LEFT JOIN `wl_user` `user` ON `user`.`id`=`seller`.`user_id` LEFT JOIN `wl_auth` `auth` ON `user`.`id`=`auth`.`user_id` ORDER BY `seller`.`create_time` DESC LIMIT 0,10 [ RunTime:0.055905s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:08+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080121s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.055771s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.054292s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.057633s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:10+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079056s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.053245s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.053519s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.054637s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:18+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048083s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.034325s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.032079s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.034190s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.078707s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.053231s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 1 [ RunTime:0.052394s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 0,10 [ RunTime:0.056293s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:19+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063532s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044665s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 1 [ RunTime:0.043778s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 0,10 [ RunTime:0.049725s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:21+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062183s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043295s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.042029s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.046575s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=1
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077444s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.052286s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 1 [ RunTime:0.051930s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1') LIMIT 0,10 [ RunTime:0.054004s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=2
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061962s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.043179s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 1 [ RunTime:0.041795s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('2') LIMIT 0,10 [ RunTime:0.044805s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=3
+[ sql ] [ DB ] CONNECT:[ UseTime:0.060588s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.042167s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 1 [ RunTime:0.042179s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('3') LIMIT 0,10 [ RunTime:0.043992s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:27+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10&status=0
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081543s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.054287s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.052933s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.056135s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:29+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076291s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.051517s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.050827s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.053388s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:30+08:00 ] 127.0.0.1 GET www.mytest.com/admin/auth/getAuthList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064388s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_auth` [ RunTime:0.044903s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 1 [ RunTime:0.044020s ]
+[ sql ] [ SQL ] SELECT `auth`.`id`,`user`.`mobile`,`user`.`nickname`,`auth`.`type`,`auth`.`username`,`auth`.`idcard`,`auth`.`card_img1`,`auth`.`card_img2`,`auth`.`qualification`,`auth`.`practice_certificate`,`auth`.`business_licence`,`auth`.`enterprise_name`,`auth`.`profile`,`auth`.`phone`,`auth`.`province`,`auth`.`city`,`auth`.`area`,`auth`.`address`,`auth`.`duties`,`auth`.`speciality`,`auth`.`hospital_type`,`auth`.`scale`,`auth`.`founding_time`,`auth`.`status`,`auth`.`audit_time`,`auth`.`audit_remark`,`auth`.`created_time` FROM `wl_auth` `auth` LEFT JOIN `wl_user` `user` ON `user`.`id`=`auth`.`user_id` WHERE  `auth`.`status` IN ('1','2','3') LIMIT 0,10 [ RunTime:0.046172s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:31+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077629s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.053120s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.051605s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.053478s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:33+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062299s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.042607s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.040423s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.042383s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:49:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064134s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.045876s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.043441s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.044231s ]
+---------------------------------------------------------------
+[ 2018-12-29T16:50:01+08:00 ] 127.0.0.1 GET www.mytest.com/admin/goods/getGoodsList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079968s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_goods` [ RunTime:0.054210s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 1 [ RunTime:0.053854s ]
+[ sql ] [ SQL ] SELECT `sp`.`id`,`sp`.`name`,`sp`.`goods_no`,`sp`.`market_price`,`sp`.`sell_price`,`sp`.`prepay_price`,`sp`.`topay_price`,`sp`.`up_time`,`sp`.`down_time`,`sp`.`store_nums`,`sp`.`img`,`sp`.`status`,`sp`.`sale_num`,`sp`.`case_num`,`doctor`.`real_name`,`hospital`.`hospital_name`,`sp`.`create_time` FROM `wl_sp_goods` `sp` LEFT JOIN `wl_doctor` `doctor` ON `doctor`.`id`=`sp`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`sp`.`hospital_id` LIMIT 0,10 [ RunTime:0.057859s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:18:40+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082522s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.055388s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.057244s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.058319s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:18:42+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.063141s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.042196s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.042657s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.042727s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:18:56+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079459s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.053400s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.052002s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.052782s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:18:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080050s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054273s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.054704s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.055335s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:22:25+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080263s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.055192s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.054244s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:24:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082696s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.055708s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.053964s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:24:58+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081653s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.055336s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.053749s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:25:24+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/addBanner
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080956s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054255s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.054365s ]
+---------------------------------------------------------------
+[ 2018-12-29T18:25:26+08:00 ] 127.0.0.1 GET www.mytest.com/admin/banner/getBannerList?page=1&page_size=10
+[ sql ] [ DB ] CONNECT:[ UseTime:0.081257s ] mysql:host=47.105.180.123;port=3306;dbname=wl_project_3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_banner` [ RunTime:0.054327s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.053485s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_sp_banner` WHERE  `is_del` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.056386s ]

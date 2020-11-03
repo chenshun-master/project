@@ -1,0 +1,109 @@
+---------------------------------------------------------------
+[ 2019-05-17T19:39:32+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/index/postLogin
+[ sql ] [ DB ] CONNECT:[ UseTime:0.065399s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.043619s ]
+[ sql ] [ SQL ] SELECT * FROM `wl_user` WHERE  `mobile` = '17601628133' LIMIT 1 [ RunTime:0.043482s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`created_time` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.043465s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message` [ RunTime:0.043172s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_message_read` [ RunTime:0.044040s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_message` WHERE  `type` IN (0,4)  AND `id` NOT IN (SELECT `message_id` FROM `wl_message_read` WHERE  `receive_user_id` = 68)  AND `created_time` BETWEEN '2019-05-11 00:00:00' AND '2019-05-17 19:39:32' [ RunTime:0.043926s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:34+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077630s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054623s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.051823s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:35+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062098s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.042679s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:42+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.041335s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.027208s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.029058s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:42+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.043496s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.030884s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:45+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getDoctorList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079485s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.054613s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM ( SELECT count(*) AS think_count FROM `wl_user` `user` LEFT JOIN `wl_doctor` `doctor` ON `user`.`id`=`doctor`.`user_id` LEFT JOIN `wl_doctor_hospital` `dh` ON `doctor`.`id`=`dh`.`doctor_id` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`dh`.`hospital_id` LEFT JOIN `wl_auth` `auth` ON `auth`.`user_id`=`user`.`id` WHERE  ( user.type = '3' and IFNULL(dh.status,0) != 2 ) GROUP BY `user`.`id` ORDER BY `user`.`created_time` DESC ) `_group_count_` LIMIT 1 [ RunTime:0.049958s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:48+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getHospitalList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046106s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.031063s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 1 [ RunTime:0.031201s ]
+[ sql ] [ SQL ] SELECT `hospital`.`user_id`,`hospital`.`hospital_name`,auth.hospital_type as type,`user`.`portrait`,`auth`.`speciality`,(SELECT count(1) FROM wl_article WHERE user.id = wl_article.user_id AND wl_article.type = 1) AS `article_num`,(SELECT count(1) FROM wl_diary WHERE user.id = wl_diary.user_id) AS `case_num` FROM `wl_user` `user` LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `hospital`.`auth_id`=`auth`.`id` WHERE  `user`.`type` = '4' LIMIT 0,15 [ RunTime:0.032582s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:50+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/user/main
+[ sql ] [ DB ] CONNECT:[ UseTime:0.044495s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.031219s ]
+[ sql ] [ SQL ] SELECT `id`,`mobile`,`nickname`,`type`,`score`,`usable_score`,`account`,`sex`,`portrait`,`birthday_date`,`profile` FROM `wl_user` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.033200s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:50+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUnreadMsg
+[ sql ] [ DB ] CONNECT:[ UseTime:0.061604s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SELECT count(id) as num,'chat_record' as type from wl_chat_record WHERE receive_user_id = 68 and is_read = 1
+                UNION all
+                SELECT count(id) as num,'message_read' as type from wl_message_read WHERE receive_user_id = 68 and is_read = 0 [ RunTime:0.040937s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:53+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getFavoriteArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.080273s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user_favorite` [ RunTime:0.052563s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user_favorite` `favorite` INNER JOIN `wl_article` `article` ON `favorite`.`object_id`=`article`.`id` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `favorite`.`table_name` = 'article'  AND `article`.`type` IN ('1','2')  AND `article`.`status` = '1'  AND `favorite`.`user_id` = '68' ORDER BY `favorite`.`created_time` DESC LIMIT 1 [ RunTime:0.053366s ]
+[ sql ] [ SQL ] SELECT article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =68 and wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name FROM `wl_user_favorite` `favorite` INNER JOIN `wl_article` `article` ON `favorite`.`object_id`=`article`.`id` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `favorite`.`table_name` = 'article'  AND `article`.`type` IN ('1','2')  AND `article`.`status` = '1'  AND `favorite`.`user_id` = '68' ORDER BY `favorite`.`created_time` DESC LIMIT 0,20 [ RunTime:0.058601s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:53+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getCommentArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076586s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+---------------------------------------------------------------
+[ 2019-05-17T19:39:54+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/articleDetails/id/50
+[ sql ] [ DB ] CONNECT:[ UseTime:0.043407s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.030844s ]
+[ sql ] [ SQL ] SELECT article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =68 AND wl_user_like.object_id = article.id) as isZan,(SELECT count(1) from wl_user_favorite where wl_user_favorite.table_name ='article' AND wl_user_favorite.user_id =68 AND wl_user_favorite.object_id = article.id) as isFavorites,auth.username,auth.enterprise_name,user.type as user_type FROM `wl_article` `article` INNER JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`id` = '50' LIMIT 1 [ RunTime:0.032582s ]
+[ sql ] [ SQL ] UPDATE `wl_article`  SET `hits` = `hits` + 1  WHERE  `id` = 50 [ RunTime:0.030273s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:39:55+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getLikeArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.054285s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user_like` [ RunTime:0.038848s ]
+[ sql ] [ SQL ] SELECT `article`.`id`,`article`.`type`,`article`.`title`,`article`.`thumbnail`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,user.id as user_id,`user`.`nickname`,`user`.`portrait`,INSERT(user.mobile,4,4,'****') as mobile,user.type as user_type,`auth`.`username`,`auth`.`enterprise_name`,1 as isZan FROM `wl_user_like` `user_like` INNER JOIN `wl_article` `article` ON `user_like`.`object_id`=article.id and article.status = 1 and article.type in(1,2) LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `user_like`.`table_name` = 'article'  AND `user_like`.`user_id` = '68'  AND `user_like`.`status` = '0' ORDER BY `user_like`.`created_time` DESC LIMIT 0,20 [ RunTime:0.038993s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user_like` `user_like` INNER JOIN `wl_article` `article` ON `user_like`.`object_id`=article.id and article.status = 1 and article.type in(1,2) LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `user_like`.`table_name` = 'article'  AND `user_like`.`user_id` = '68'  AND `user_like`.`status` = '0' ORDER BY `user_like`.`created_time` DESC LIMIT 1 [ RunTime:0.037697s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:40:15+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getFavoriteArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.074119s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user_favorite` [ RunTime:0.067663s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_user_favorite` `favorite` INNER JOIN `wl_article` `article` ON `favorite`.`object_id`=`article`.`id` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `favorite`.`table_name` = 'article'  AND `article`.`type` IN ('1','2')  AND `article`.`status` = '1'  AND `favorite`.`user_id` = '68' ORDER BY `favorite`.`created_time` DESC LIMIT 1 [ RunTime:0.042264s ]
+[ sql ] [ SQL ] SELECT article.id,article.type,article.title,article.thumbnail,article.video_url,article.comment_count,article.hits,article.like,article.favorites,article.published_time,user.id as user_id,user.nickname,user.portrait,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =68 and wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name FROM `wl_user_favorite` `favorite` INNER JOIN `wl_article` `article` ON `favorite`.`object_id`=`article`.`id` LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `favorite`.`table_name` = 'article'  AND `article`.`type` IN ('1','2')  AND `article`.`status` = '1'  AND `favorite`.`user_id` = '68' ORDER BY `favorite`.`created_time` DESC LIMIT 0,20 [ RunTime:0.046141s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:40:16+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getCommentArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.077415s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+---------------------------------------------------------------
+[ 2019-05-17T19:40:17+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/user/getLikeArticleList
+[ sql ] [ DB ] CONNECT:[ UseTime:0.052662s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user_like` [ RunTime:0.037586s ]
+[ sql ] [ SQL ] SELECT `article`.`id`,`article`.`type`,`article`.`title`,`article`.`thumbnail`,`article`.`hits`,`article`.`favorites`,`article`.`like`,`article`.`comment_count`,`article`.`published_time`,user.id as user_id,`user`.`nickname`,`user`.`portrait`,INSERT(user.mobile,4,4,'****') as mobile,user.type as user_type,`auth`.`username`,`auth`.`enterprise_name`,1 as isZan FROM `wl_user_like` `user_like` INNER JOIN `wl_article` `article` ON `user_like`.`object_id`=article.id and article.status = 1 and article.type in(1,2) LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `user_like`.`table_name` = 'article'  AND `user_like`.`user_id` = '68'  AND `user_like`.`status` = '0' ORDER BY `user_like`.`created_time` DESC LIMIT 0,20 [ RunTime:0.038920s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_user_like` `user_like` INNER JOIN `wl_article` `article` ON `user_like`.`object_id`=article.id and article.status = 1 and article.type in(1,2) LEFT JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `user_like`.`table_name` = 'article'  AND `user_like`.`user_id` = '68'  AND `user_like`.`status` = '0' ORDER BY `user_like`.`created_time` DESC LIMIT 1 [ RunTime:0.035517s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:40:17+08:00 ] 127.0.0.1 GET www.mytest.com/weixin/article/userMain/id/64
+[ sql ] [ DB ] CONNECT:[ UseTime:0.058775s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user` [ RunTime:0.040631s ]
+[ sql ] [ SQL ] SELECT `id`,`type`,`mobile`,`nickname`,`portrait`,`profile` FROM `wl_user` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.040734s ]
+[ sql ] [ SQL ] SELECT type,count(1) as total from wl_article where user_id = 64 AND  status=1 and published_time <='2019-05-17 19:40:17'  GROUP BY type [ RunTime:0.042531s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_user_friends` [ RunTime:0.042070s ]
+[ sql ] [ SQL ] SELECT `id` FROM `wl_user_friends` WHERE  `user_id` = 64  AND `friend_id` = 68  AND `status` = 2 LIMIT 1 [ RunTime:0.040448s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:40:18+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/Article/getUserPublishArticle
+[ sql ] [ DB ] CONNECT:[ UseTime:0.062211s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_article` [ RunTime:0.042239s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wl_article` `article` INNER JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '64'  AND `article`.`status` = '1'  AND `article`.`published_time` <= '2019-05-17 19:40:18' ORDER BY `article`.`published_time` DESC LIMIT 1 [ RunTime:0.043345s ]
+[ sql ] [ SQL ] SELECT article.*,user.nickname,user.portrait,INSERT(user.mobile,4,4,'****') as mobile,(SELECT count(1) from wl_user_like where wl_user_like.table_name ='article' AND wl_user_like.user_id =68 AND wl_user_like.status=0 AND wl_user_like.object_id = article.id) as isZan,user.type as user_type,auth.username,auth.enterprise_name FROM `wl_article` `article` INNER JOIN `wl_user` `user` ON `article`.`user_id`=`user`.`id` LEFT JOIN `wl_auth` `auth` ON `article`.`user_id`=`auth`.`user_id` WHERE  `article`.`type` = '1'  AND `article`.`user_id` = '64'  AND `article`.`status` = '1'  AND `article`.`published_time` <= '2019-05-17 19:40:18' ORDER BY `article`.`published_time` DESC LIMIT 0,20 [ RunTime:0.041859s ]
+---------------------------------------------------------------
+[ 2019-05-17T19:40:21+08:00 ] 127.0.0.1 POST www.mytest.com/weixin/api/getUserGoodGoods
+[ sql ] [ DB ] CONNECT:[ UseTime:0.058137s ] mysql:host=47.105.180.123;port=3306;dbname=wl_dev3;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wl_sp_good_goods` [ RunTime:0.041232s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS tp_count FROM `wl_sp_good_goods` `good_goods` INNER JOIN `wl_sp_goods` `goods` ON `goods`.`id`=good_goods.goods_id and goods.status = 0 LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `good_goods`.`user_id` = '64' ORDER BY `good_goods`.`created_time` DESC LIMIT 1 [ RunTime:0.038857s ]
+[ sql ] [ SQL ] SELECT `good_goods`.`id`,`goods`.`img`,`goods`.`name`,`good_goods`.`title`,`good_goods`.`favorites`,`good_goods`.`like`,`good_goods`.`comment`,`goods`.`market_price`,`goods`.`sell_price`,`good_goods`.`created_time`,`hospital`.`hospital_name` FROM `wl_sp_good_goods` `good_goods` INNER JOIN `wl_sp_goods` `goods` ON `goods`.`id`=good_goods.goods_id and goods.status = 0 LEFT JOIN `wl_hospital` `hospital` ON `hospital`.`id`=`goods`.`hospital_id` WHERE  `good_goods`.`user_id` = '64' ORDER BY `good_goods`.`created_time` DESC LIMIT 0,20 [ RunTime:0.039775s ]

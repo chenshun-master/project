@@ -1,0 +1,15 @@
+---------------------------------------------------------------
+[ 2019-01-02T09:46:15+08:00 ] 127.0.0.1 POST www.mytest.com/admin/goods/updateGoodsStatus
+[ error ] [8]未定义数组下标: 1[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\db\Builder.php:373]
+---------------------------------------------------------------
+[ 2019-01-02T11:00:53+08:00 ] 127.0.0.1 GET www.mytest.com/static/admin/dist/css/skins/_all-skins.min.css
+[ error ] [2]file_put_contents(D:\phpstudy\PHPTutorial\WWW\project\runtime\build_route.php): failed to open stream: Permission denied[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Build.php:218]
+---------------------------------------------------------------
+[ 2019-01-02T12:04:22+08:00 ] 127.0.0.1 GET www.mytest.com/static/admin/bower_components/jquery/dist/jquery.min.js
+[ error ] [2]file_put_contents(D:\phpstudy\PHPTutorial\WWW\project\runtime\build_route.php): failed to open stream: Permission denied[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Build.php:218]
+---------------------------------------------------------------
+[ 2019-01-02T12:05:08+08:00 ] 127.0.0.1 GET www.mytest.com/static/admin/bower_components/bootstrap/dist/css/bootstrap.min.css
+[ error ] [2]file_put_contents(D:\phpstudy\PHPTutorial\WWW\project\runtime\build_route.php): failed to open stream: Permission denied[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Build.php:218]
+---------------------------------------------------------------
+[ 2019-01-02T14:19:15+08:00 ] 127.0.0.1 POST www.mytest.com/admin/banner/releaseBanner
+[ error ] [0]没有文件被上传！[D:\phpstudy\PHPTutorial\WWW\project\thinkphp\library\think\Request.php:1256]

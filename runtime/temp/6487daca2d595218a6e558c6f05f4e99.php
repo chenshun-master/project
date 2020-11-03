@@ -1,0 +1,423 @@
+<?php /*a:1:{s:76:"D:\phpstudy\PHPTutorial\WWW\project\application\weixin\view\user\notice.html";i:1548119468;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=750px, user-scalable=no">
+    <title><?php echo config('conf.title'); ?></title>
+    <link rel="stylesheet" type="text/css" href="/static/weixin/css/notice.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/weixin/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/weixin/css/dropload.css"/>
+</head>
+<style>
+    .cus-click-usermian,.cus-to-detail{cursor: pointer;}
+    .cus-blue {
+        color: #7DB0E8 !important;
+    }
+    .href{cursor: pointer;}
+</style>
+<body style="background: #ffffff;">
+
+<header style="position: relative;">
+    <i class="iconfont icon-back_light" style="font-size: 40px;position: absolute;top: 18px;left:10px;z-index: 1;" onclick="redream.href('/weixin/user/main')"></i>
+    <div class="top" style="position: relative">
+        <span id="san" ><a href="#notice">公告</a></span>
+        <span id="one" style="position:relative;"><a href="#message">通知</a><i class="wl-dian" style="display: none" id="cus-message-tip"></i></span>
+        <span id="two" style="position:relative;"><a href="#letter">私信</a><i class="wl-dian" style="display: none" id="cus-letter-tip"></i></span>
+    </div>
+</header>
+
+<content>
+    <div class="xia">
+        <div class="san wl-box" id="cus-notice-container" >
+            <p class="wl-hy1">网站公告</p>
+            <div id="cus-notice-container-list" style="min-height: 300px;">
+            </div>
+        </div>
+
+        <div class="one wl-box" id="cus-noticetwo-container">
+            <p class="wl-hy1">系统通知</p>
+            <div class="wl-nei1" id="cus-noticetwo-container-list" style="min-height: 300px;">
+            </div>
+        </div>
+
+        <div class="two wl-box" id="cus-notice-three-container">
+            <?php if(count($applyList) > 0): ?>
+            <div class="wl-haoyou" id="cus-haoyou-box">
+                <p class="wl-hy1">好友申请</p>
+                <?php foreach($applyList as $vo): ?>
+                <div class="wl-nei1">
+                    <img src="<?php echo htmlentities($vo['portrait']); ?>"  onerror="this.src='/static/image/user/tou.png'" class="cus-click-usermian" data-user_id="<?php echo htmlentities($vo['friends_id']); ?>">
+                    <div class="wl-nei2 cus-agreeapply-parent-<?php echo htmlentities($vo['id']); ?>" data-id="<?php echo htmlentities($vo['id']); ?>"  data-remarks="<?php echo htmlentities($vo['remarks']); ?>" style="border-bottom: 1px solid #EEEEEE;">
+                        <dl class="cus-show-box"><?php echo htmlentities($vo['nickname']); ?></dl>
+                        <dt class="cus-show-box"><?php echo htmlentities($vo['remarks']); ?></dt>
+                        <button class="wl-tian cus-click-agreeapply" data-id="<?php echo htmlentities($vo['id']); ?>"> 同意</button>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <p class="wl-hy1">私信消息</p>
+            <div class="wl-nei1" id="cus-notice-three-container-list">
+            </div>
+        </div>
+    </div>
+</content>
+
+<div class="wl-zhezhao" >
+    <div class="wl-zhe1">
+        <p class="wl-renzh">好友认证</p>
+        <div class="wl-neie1">
+            <p>对方通过发送验证申请，等待添加好友</p>
+            <textarea class="wl-neie2" readonly="readonly" id="cus-apply-remarks"></textarea>
+            <button class="wl-btn" id="cus-apply-agree">同意</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/functions.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/dropload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var myObj = {
+        notice:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            template:function(data){
+                return '<div class="wl-nei1">' +
+                            '<img src="/static/image/user/rederam.png" alt="">' +
+                            '<div class="wl-nei2 cus-to-detail" data-id="'+data.id+'"  >' +
+                                '<dl>'+ data.title +'</dl>' +
+                                '<dt>'+ data.content +'</dt>' +
+                                '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+                            '</div>' +
+                        '</div>';
+            },
+            loadList:function(me){
+                if(myObj.notice.listData.loading){
+                    return false;
+                }
+
+                myObj.notice.listData.page++;
+                if(myObj.notice.listData.ini == true){
+                    if(myObj.notice.listData.page > myObj.notice.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/user/getNoticeList",
+                    type:'post',
+                    data:{page:myObj.notice.listData.page,page_size:myObj.notice.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.notice.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.notice.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.notice.listData.ini == false){
+                                myObj.notice.listData.ini = true;
+                                myObj.notice.listData.page_total = res.data.page_total;
+                                $('#cus-notice-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#cus-notice-container-list').append(myObj.notice.template(val));
+                            });
+                            if(myObj.notice.listData.page >= myObj.notice.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        noticeTwo:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            template:function(data){
+                return '<div class="wl-nei1">' +
+                    '<img src="/static/image/user/rederam.png" alt="">' +
+                    '<div class="wl-nei2 cus-to-detail" data-id="'+data.message_id+'">' +
+                    '<dl>'+ data.title +'</dl>' +
+                    '<dt>'+ data.content +'</dt>' +
+                    '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+                    '</div>' +
+                    '</div>';
+            },
+            loadList:function(me){
+                if(myObj.noticeTwo.listData.loading){
+                    return false;
+                }
+
+                myObj.noticeTwo.listData.page++;
+                if(myObj.noticeTwo.listData.ini == true){
+                    if(myObj.noticeTwo.listData.page > myObj.noticeTwo.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/user/getUserMailList",
+                    type:'post',
+                    data:{page:myObj.noticeTwo.listData.page,page_size:myObj.noticeTwo.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.noticeTwo.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.noticeTwo.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.noticeTwo.listData.ini == false){
+                                myObj.noticeTwo.listData.ini = true;
+                                myObj.noticeTwo.listData.page_total = res.data.page_total;
+                                $('#cus-noticetwo-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#cus-noticetwo-container-list').append(myObj.noticeTwo.template(val));
+                            });
+                            if(myObj.noticeTwo.listData.page >= myObj.noticeTwo.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        noticeThree:{
+            listData:{
+                loading:false,
+                ini:false,
+                page:0,
+                page_total:1,
+                page_size:20,
+            },
+            template:function(data){
+                var portrait = (data.portrait == null || data.portrait == '') ? '':data.portrait;
+                var unread_html = (data.unread_num == 0) ? '' : '<dd class="wl-tian2"><span>'+ data.unread_num +'</span>未读</dd>';
+                return '<div class="wl-nei1 href  cus-to-dialogue" data-uid = "'+data.uid +'">' +
+                    '<img src="'+ portrait +'" alt="" onerror="this.src=\'/static/image/user/tou.png\'" >' +
+                    '<div class="wl-nei2">' +
+                    '<dl>'+ data.nickname +'</dl>' +
+                    '<dt>'+ data.content +'</dt>' +
+                      unread_html +
+                    '<dd class="wl-tian1">'+ data.created_time +'</dd>' +
+                    '</div>' +
+                    '</div>';
+            },
+            loadList:function(me){
+                if(myObj.noticeThree.listData.loading){
+                    return false;
+                }
+
+                myObj.noticeThree.listData.page++;
+                if(myObj.noticeThree.listData.ini == true){
+                    if(myObj.noticeThree.listData.page > myObj.noticeThree.listData.page_total){
+                        me.resetload();return false;
+                    }
+                }
+
+                $.ajax({
+                    url:"/weixin/user/getPrivateLetterList",
+                    type:'post',
+                    data:{page:myObj.noticeThree.listData.page,page_size:myObj.noticeThree.listData.page_size},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.noticeThree.listData.loading = true;
+                    },
+                    complete:function(){
+                        myObj.noticeThree.listData.loading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            if(myObj.noticeThree.listData.ini == false){
+                                myObj.noticeThree.listData.ini = true;
+                                myObj.noticeThree.listData.page_total = res.data.page_total;
+                                $('#cus-notice-three-container-list').html('');
+                            }
+                            $.each(res.data.rows,function(key,val){
+                                $('#cus-notice-three-container-list').append(myObj.noticeThree.template(val));
+                            });
+                            if(myObj.noticeThree.listData.page >= myObj.noticeThree.listData.page_total){
+                                me.noData();
+                            }
+                        }
+                        me.resetload();
+                    }
+                });
+            },
+        },
+        agreeApplyId:0,
+        agreeApplyLoading:false,
+        agreeApply:function(){
+            if(!this.agreeApplyLoading){
+                $.ajax({
+                    url:"/weixin/user/agreeFriendsApply",
+                    type:'post',
+                    data:{id:myObj.agreeApplyId},
+                    dataType:'json',
+                    beforeSend:function(){
+                        myObj.agreeApplyLoading = true;
+                    },
+                    complete:function(){
+                        myObj.agreeApplyLoading = false;
+                    },
+                    success:function(res){
+                        if(res.code == 200){
+                            $('.cus-agreeapply-parent-'+myObj.agreeApplyId).find('button').remove();
+                            $('.cus-agreeapply-parent-'+myObj.agreeApplyId).append('<dd class="wl-tian1">已添加</dd>');
+                        }else{
+                            redream.showTip('添加失败，请稍后重试');
+                        }
+                    }
+                });
+            }
+        },
+        loadindUnreadMsg:function(){
+            $.ajax({
+                url: "/weixin/api/getUnreadMsg",
+                type: 'post',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        if(res.data.total > 0){
+                            if(res.data.info.message_read > 0){
+                                $('#cus-message-tip').show();
+                            }
+                            if(res.data.info.chat_record > 0){
+                                $('#cus-letter-tip').show();
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    };
+
+    $(document).on('click','.cus-click-agreeapply',function(){
+        myObj.agreeApplyId = $(this).data('id');
+        myObj.agreeApply();
+    });
+
+    $(document).on('click','#cus-apply-agree',function(){
+        $('.wl-zhezhao').hide(); //淡出消失
+        myObj.agreeApply();
+    });
+
+    $(document).on('click','.cus-click-usermian',function(){
+        window.location.href = '/weixin/article/userMain/id/' + $(this).data('user_id');
+    });
+
+    $(document).on('click','.cus-to-detail',function(){
+        window.location.href = '/weixin/user/dialogue/id/' + $(this).data('id');
+    });
+
+    $(document).on('click','.cus-to-dialogue',function(){
+        window.location.href = '/weixin/user/userDialogue/uid/' + $(this).data('uid');
+    });
+
+    $(".cus-show-box").click(function(event) {
+        myObj.agreeApplyId = $(this).parent().data('id');
+        $('#cus-apply-remarks').val($(this).parent().data('remarks'));
+        event.stopPropagation(); //停止事件冒泡
+        $(".wl-zhezhao").toggle();
+    });
+
+    //点击空白处隐藏弹出层
+    $(".wl-zhezhao").click(function(event) {
+        var _con = $('.wl-zhe1'); // 设置目标区域
+        if(!_con.is(event.target) && _con.has(event.target).length == 0) {
+            $('.wl-zhezhao').hide(); //淡出消失
+        }
+    });
+
+    $(".top span").click(function () {
+        var index = $(this).index();
+
+        $(".xia .wl-box").eq(index).show().siblings().hide();
+        $('.se').removeClass('se');
+        $(".top span").eq(index).find('a').addClass("se").siblings();
+        if(index == 0 && myObj.notice.listData.ini == false){
+            $('#cus-notice-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.notice.listData.loading = false;
+                    myObj.notice.listData.ini = false;
+                    myObj.notice.listData.page = 0;
+                    myObj.notice.listData.page_total = 0;
+                    myObj.notice.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.notice.loadList(me);
+                }
+            });
+        }else if(index == 1 && myObj.noticeTwo.listData.ini == false){
+            $('#cus-noticetwo-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.noticeTwo.listData.loading = false;
+                    myObj.noticeTwo.listData.ini = false;
+                    myObj.noticeTwo.listData.page = 0;
+                    myObj.noticeTwo.listData.page_total = 0;
+                    myObj.noticeTwo.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.noticeTwo.loadList(me);
+                }
+            });
+        }else if(index == 2 && myObj.noticeThree.listData.ini == false){
+            $('#cus-notice-three-container').dropload({
+                scrollArea : window,
+                loadUpFn:function(me){
+                    myObj.noticeThree.listData.loading = false;
+                    myObj.noticeThree.listData.ini = false;
+                    myObj.noticeThree.listData.page = 0;
+                    myObj.noticeThree.listData.page_total = 0;
+                    myObj.noticeThree.loadList(me);
+                },
+                loadDownFn : function(me){
+                    myObj.noticeThree.loadList(me);
+                }
+            });
+        }
+    });
+
+    $(function(){
+        var maodian = window.location.toString().split('#')[1];
+        if(maodian == 'notice'){
+            $('#san').trigger('click');
+        }else if(maodian == 'message'){
+            $('#one').trigger('click');
+        }else if(maodian == 'letter'){
+            $('#two').trigger('click');
+        }else{
+            $(".top span:first-child").trigger('click');
+        }
+
+
+        var h = $(window).height() - 200;
+        $("#cus-notice-container-list,#cus-noticetwo-container-list,#cus-notice-three-container-list").css('minHeight',h + 'px');
+    });
+
+    myObj.loadindUnreadMsg();
+</script>
+</html>

@@ -175,11 +175,6 @@ var objClass = {
                     }else if(res.code == 403){
                         redream.showTip('您还没有该权限');
                     }
-                }
-            });
-        }
-    },
-    publishCommentConf:{
         loading:false,
     },
     publishComment:function(){
